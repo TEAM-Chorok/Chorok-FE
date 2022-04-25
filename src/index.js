@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import store from "./redux/ConfigStore";
 import { ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
-import App from './shared/App';
+import { store } from './Redux/configStore';
+import App from './Shared/App';
 import './index.css';
 
 

@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../Redux/configStore";
 
-import { Login } from './pages';
+import { Login } from '../Pages';
 
 
 

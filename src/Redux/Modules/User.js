@@ -1,8 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
-import LoginAPI from "../../Shared/api";
-
+import { userAPI } from "../../Shared/api";
 
 
 // 액션 
@@ -20,7 +19,7 @@ const initialState = {
 const logInDB = (id, pwd) => {
   return function (dispatch, getState, { history }) {
 
-    LoginAPI.login(id, pwd)
+    userAPI.login(id, pwd)
       .then((response) => {
 
         const token = response.headers.authorization.split(" ")[1];
