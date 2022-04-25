@@ -5,10 +5,10 @@ import { userAPI } from "../../Shared/api";
 
 
 // 액션 
-const LOG_IN = "LOG_IN";
+const SET_USER = "Setuser";
 
 // 액션 생성
-const logIn = createAction(LOG_IN, (user) => ({ user }));
+const logIn = createAction(SET_USER, (user) => ({ user }));
 
 // 초기값
 const initialState = {
@@ -35,7 +35,9 @@ const logInDB = (id, pwd) => {
 // 리듀서
 export default handleActions(
   {
+    [SET_USER]: (state, action) => produce(state, (draft) => {
 
+    }),
   }, initialState
 )
 
