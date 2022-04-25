@@ -9,7 +9,6 @@ import configStore from "./Redux/configStore";
 import App from './Shared/App';
 import './index.css';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const history = createBrowserHistory();

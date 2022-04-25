@@ -11,9 +11,7 @@ import { Login } from '../Pages';
 function App() {
   return (
     <React.Fragment>
-      <ConnectedRouter history={history}>
         <Route path="/" exact component={Login} />
-      </ConnectedRouter>
     </React.Fragment>
   );
 }

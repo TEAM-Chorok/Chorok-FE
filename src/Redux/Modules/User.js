@@ -21,10 +21,8 @@ const logInDB = (id, pwd) => {
 
     userAPI.login(id, pwd)
       .then((response) => {
-
         const token = response.headers.authorization.split(" ")[1];
         sessionStorage.setItem("token", token);
-
       }).catch((error) => {
         console.log("logInDB : error", error.response);
         alert("아이디와 비밀번호를 다시 확인해주세요.")

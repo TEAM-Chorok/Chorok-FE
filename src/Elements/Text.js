@@ -4,12 +4,14 @@ import styled from "styled-components";
 
 const Text = (props) => {
 
-  const { size, children, bold, align } = props
+  const { size, children, bold, align, color, display } = props
 
   const styles = {
     size: size,
     bold: bold,
     align: align,
+    color: color,
+    display: display,
   }
 
   if (size === "L") {
@@ -40,19 +42,24 @@ Text.defaultProps = {
   children: "",
   bold: "",
   align: "",
+  color: "black",
+  display: "unset",
 }
 
 const P_L = styled.p`
   margin: 0;
   font-size: 2.5em;
   font-weight: ${(props) => props.bold ? 800 : 600};
-  
+  color: ${(props) => props.color};
+  display: ${(props) => props.display};
 `
 
 const P_M = styled.p`
   margin: 0;
   font-size: 2em;
   font-weight: ${(props) => props.bold ? 800 : 600};
+  color: ${(props) => props.color};
+  display: ${(props) => props.display};
 `
 
 const P = styled.p`
@@ -60,6 +67,8 @@ const P = styled.p`
   font-size: 1em;
   font-weight: ${(props) => props.bold ? 800 : 500};
   ${(props) => props.align ? `text-align: ${props.align};` : ""};
+  color: ${(props) => props.color};
+  display: ${(props) => props.display};
 `
 
 export default Text;
