@@ -3,8 +3,10 @@ import { Button } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 import Grid from '../Elements/Grid';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+  const history = useHistory();
   return (
     <React.Fragment>
       <Grid padding="30px 10px">
@@ -17,7 +19,7 @@ const Login = () => {
             <Input placeholder="이메일(아이디)" type="email" />
             <Input type="password" placeholder="비밀번호" />
             <Button variant='contained' style={{display:"block", margin:"10px auto", width:"320px"}}>Login</Button>
-            <Button variant='text' style={{display:"block", margin:"10px auto", width:"320px"}}>비밀번호 찾기</Button>
+            <Button variant='text' style={{display:"block", margin:"10px auto", width:"320px"}} onClick={()=>history.push('/findpwd')}>비밀번호 찾기</Button>
           </InnerDiv>
           <hr />
           <InnerDiv>
@@ -27,7 +29,7 @@ const Login = () => {
           <hr />
           <InnerDiv>
             <Text >회원이 아니신가요? </Text>
-            <Button variant='contained' style={{display:"block", margin:"10px auto", width:"320px"}}>회원가입</Button>
+            <Button variant='contained' style={{display:"block", margin:"10px auto", width:"320px"}} onClick={()=>history.push('/signup')}>회원가입</Button>
             <Button variant='text' style={{display:"block", margin:"10px auto", width:"320px"}}>먼저 둘러보고 싶어요! </Button>
           </InnerDiv>
         </InnerWrap>

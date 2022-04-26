@@ -4,13 +4,15 @@ import React from 'react';
 import styled from 'styled-components';
 import Grid from '../Elements/Grid';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
+import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
+  const history = useHistory();
   return (
     <React.Fragment>
       <Grid padding="30px 10px">
         <Header>
-            <ArrowBackIosNewOutlinedIcon style={{position: "relative", left: "-320px", top:"8px" }}></ArrowBackIosNewOutlinedIcon>
+            <ArrowBackIosNewOutlinedIcon style={{position: "relative", left: "-320px", top:"8px" }} onClick={()=>history.goBack()}></ArrowBackIosNewOutlinedIcon>
             <Text>회원가입</Text>
         </Header>
         <FindPwdWrap>
