@@ -33,6 +33,7 @@ Grid.defaultProps = {
   margin: false,
   bg: false,
   align: "left",
+  justifyContent: false,
 }
 
 const GridBox = styled.div`
@@ -42,7 +43,7 @@ const GridBox = styled.div`
     ${(props) => props.padding ? `padding: ${props.padding};` : ""};
     ${(props) => props.margin ? `margin: ${props.margin};` : ""};
     ${(props) => props.bg ? `background: ${props.bg};` : ""};
-    ${(props) => props.is_flex ? `display: flex; align-items: center;` : ""};
+    ${(props) => props.is_flex ? `display: flex; justify-content: center;` : ""};
     text-align: ${(props) => props.align};
     align-items: ${(props) => props.align};
 `;
