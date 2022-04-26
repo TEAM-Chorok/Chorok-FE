@@ -20,13 +20,13 @@ const ProfileSetting = () => {
               {/* 프로필 이미지 미리보기 */}
             <img src="favicon.ico" style={{width:"100px", height: "100px", margin:"30px auto 10px auto", borderRadius:"50px"}}/>
             </div>
-            <Input type="file" margin="20px auto" display="none"></Input>
-            <Input display="inline-block" placeholder="닉네임" margin="10px 12px 10px 0px" width="233px"></Input>
-            <Button style={{fontSize:"12px", height:"40px"}} variant='contained'>중복확인</Button>
+            <Input type="file" margin="20px auto" display="none" name="signup_profile_img"></Input>
+            <Input display="inline-block" placeholder="닉네임" margin="10px 12px 10px 0px" width="233px" name="signup_profile_nickname"></Input>
+            <Button style={{fontSize:"12px", height:"40px"}} variant='contained' >중복확인</Button>
             {/* 중복확인 후에 아래 텍스트 출력 */}
             <Text display="none">사용가능한 닉네임입니다.</Text>
             
-            <Button style={{display:"block", margin:"160px auto auto auto", width:"160px"}}variant='contained'>다음</Button>
+            <Button style={{display:"block", margin:"160px auto auto auto", width:"160px"}}variant='contained' name="signup_submit">회원가입</Button>
         </ProfileWrap>
       </Grid>
     </React.Fragment>

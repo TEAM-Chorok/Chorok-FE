@@ -49,7 +49,7 @@ Text.defaultProps = {
 
 const P_L = styled.p`
   margin: 0;
-  font-size: 2.5em;
+  font-size: 2em;
   font-weight: ${(props) => props.bold ? 800 : 600};
   color: ${(props) => props.color};
   display: ${(props) => props.display};
@@ -57,7 +57,7 @@ const P_L = styled.p`
 
 const P_M = styled.p`
   margin: 0;
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: ${(props) => props.bold ? 800 : 600};
   color: ${(props) => props.color};
   display: ${(props) => props.display};

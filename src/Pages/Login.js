@@ -16,8 +16,8 @@ const Login = () => {
             <img src="favicon.ico" style={{width:"100px", height: "100px", margin:"0px auto"}}/>
           </InnerDiv>
           <InnerDiv>
-            <Input placeholder="이메일(아이디)" type="email" />
-            <Input type="password" placeholder="비밀번호" />
+            <Input placeholder="이메일(아이디)" type="email" name="user_id"/>
+            <Input type="password" placeholder="비밀번호" name="user_pwd" />
             <Button variant='contained' style={{display:"block", margin:"10px auto", width:"320px"}}>Login</Button>
             <Button variant='text' style={{display:"block", margin:"10px auto", width:"320px"}} onClick={()=>history.push('/findpwd')}>비밀번호 찾기</Button>
           </InnerDiv>

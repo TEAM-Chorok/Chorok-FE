@@ -17,6 +17,7 @@ const Input = (props) => {
         padding,
         value,
         border,
+        name,
     } = props;
     const styles = {
         width,
@@ -34,7 +35,8 @@ const Input = (props) => {
             type={type}
             placeholder={placeholder}
             onChange={_onChange}
-            value={value}>
+            value={value}
+            name={name}>
         </Inputs>
         </React.Fragment>
     );
@@ -51,6 +53,7 @@ Input.defaultProps = {
     height: "40px",
     border: "1px solid darkgrey",
     borderRadius: "10px",
+    name: false,
 }
 const Inputs = styled.input`
     width: ${(props) => props.width};

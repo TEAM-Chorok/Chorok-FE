@@ -3,4 +3,6 @@ import SignUp from "./SignUp";
 import FindPwd from "./FindPwd";
 import RecommendQuestion from "./RecommendQuestion";
 import ProfileSetting from "./ProfileSetting";
-export { Login, FindPwd, SignUp, RecommendQuestion, ProfileSetting };
+import ChangePwd from "./ChangePwd";
+
+export { Login, FindPwd, SignUp, RecommendQuestion, ProfileSetting,ChangePwd };

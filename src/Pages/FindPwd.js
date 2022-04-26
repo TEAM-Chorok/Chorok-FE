@@ -16,11 +16,10 @@ const FindPwd = (props) => {
             <Text>비밀번호 찾기</Text>
         </Header>
         <FindPwdWrap>
-            <Text display="block">회원정보를 입력하시면 이메일로</Text>
-            <Text display="block">임시 비밀번호를 발급해드려요.</Text>
-            <Input placeholder="이름" margin="20px auto 10px auto"></Input>
-            <Input placeholder="이메일(아이디)" type="email"></Input>
-            <Button style={{marginTop: "30px"}}variant='contained'>비밀번호 찾기</Button>
+            <Text display="block">회원정보를 입력하시면 이메일로 <br />비밀번호 변경 링크를 보내드려요.</Text>
+            <Input placeholder="이름" name="search_pw_name" margin="20px auto 10px auto"></Input>
+            <Input placeholder="이메일(아이디)" name="search_pw_id" type="email"></Input>
+            <Button style={{marginTop: "30px"}}variant='contained' name="search_pw_submit" >비밀번호 찾기</Button>
         </FindPwdWrap>
       </Grid>
     </React.Fragment>
