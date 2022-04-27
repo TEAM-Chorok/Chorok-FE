@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Text = (props) => {
 
-  const { size, children, bold, align, color, display, line, margin } = props
+  const { size, children, bold, align, color, display, line, margin, fontSize, } = props
 
   const styles = {
     size: size,
@@ -14,6 +14,7 @@ const Text = (props) => {
     color: color,
     display: display,
     line: line,
+    fontSize: fontSize,
   }
 
   if (size === "L") {
@@ -48,9 +49,8 @@ const Text = (props) => {
 }
 
 Text.defaultProps = {
-  type: "",
   children: "",
-  bold: "",
+  bold: false,
   align: "",
   color: "black",
   display: "unset",
@@ -65,7 +65,7 @@ const P_L = styled.p`
   padding: none;
   box-sizing: border-box;
 
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: ${(props) => props.bold ? 800 : 600};
   line-height: ${(props) => props.line};
   color: ${(props) => props.color};
@@ -93,9 +93,9 @@ const P = styled.p`
 
   word-break: keep-all;
 
-  font-size: 1rem;
+  font-size: ${(props) => props.fontSize};
   line-height: ${(props) => props.line};
-  font-weight: ${(props) => props.bold ? 800 : 400};
+  font-weight: ${(props) => props.bold ? 800 : 500};
   ${(props) => props.align ? `text-align: ${props.align};` : ""};
   color: ${(props) => props.color};
 `

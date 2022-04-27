@@ -5,15 +5,25 @@ axios.defaults.withCredentials = true;
 // 서버 주소
 const api = axios.create({
   baseURL: 'http://000.000.00.00:8080',
-});
+},{ withCredentials: true } //CORS error 방지
+);
 
 
 // 유저정보 관련 API
 export const userAPI = {
-  login: () => api.post('/api/login', {
-    headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
-    },
+  login: (id, pwd) => api.post('/api/login', {
+    userId: id,
+    userPwd: pwd,
+  }
+  ),
+  findPwd: (userName, userId) => api.post('/api/findPwd', {
+    userName: userName,
+    userId: userId,
+  }),
+  changePwd: (tempPassword, password, passwordCheck) => api.put('/api/changePwd', {
+    tempPassword: tempPassword,
+    password: password,
+    passwordCheck: passwordCheck,
   }),
 }
 
