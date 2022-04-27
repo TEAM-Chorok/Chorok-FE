@@ -12,7 +12,7 @@ const FindPwd = (props) => {
     <React.Fragment>
       <Grid padding="30px 10px">
         <Header>
-            <ArrowBackIosNewOutlinedIcon style={{position: "relative", left: "-320px", top:"8px" }} onClick={()=>history.goBack()}></ArrowBackIosNewOutlinedIcon>
+            <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "0px", top:"8px" }} onClick={()=>history.goBack()}></ArrowBackIosNewOutlinedIcon>
             <Text>비밀번호 찾기</Text>
         </Header>
         <FindPwdWrap>
