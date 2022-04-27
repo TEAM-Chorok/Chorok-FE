@@ -4,14 +4,16 @@ import styled from "styled-components";
 
 const Text = (props) => {
 
-  const { size, children, bold, align, color, display } = props
+  const { size, children, bold, align, color, display, line, margin } = props
 
   const styles = {
     size: size,
+    margin: margin,
     bold: bold,
     align: align,
     color: color,
     display: display,
+    line: line,
   }
 
   if (size === "L") {
@@ -30,6 +32,14 @@ const Text = (props) => {
     );
   }
 
+  if (size === "XS") {
+    return (
+      <React.Fragment>
+        <P_XS {...styles}>{children}</P_XS>
+      </React.Fragment>
+    );
+  }
+
   return (
     <React.Fragment>
       <P {...styles}>{children}</P>
@@ -44,31 +54,63 @@ Text.defaultProps = {
   align: "",
   color: "black",
   display: "unset",
+  line: "",
+  margin: "none",
 }
 
 const P_L = styled.p`
-  margin: 0;
-  font-size: 2.5em;
-  font-weight: ${(props) => props.bold ? 800 : 600};
-  color: ${(props) => props.color};
   display: ${(props) => props.display};
+
+  margin: ${(props) => props.margin};
+  padding: none;
+  box-sizing: border-box;
+
+  font-size: 2.5rem;
+  font-weight: ${(props) => props.bold ? 800 : 600};
+  line-height: ${(props) => props.line};
+  color: ${(props) => props.color};
 `
 
 const P_M = styled.p`
-  margin: 0;
-  font-size: 2em;
-  font-weight: ${(props) => props.bold ? 800 : 600};
-  color: ${(props) => props.color};
   display: ${(props) => props.display};
+
+  margin: ${(props) => props.margin};
+  padding: none;
+  box-sizing: border-box;
+
+  font-size: 1.2rem;
+  font-weight: ${(props) => props.bold ? 800 : 600};
+  line-height: ${(props) => props.line};
+  color: ${(props) => props.color};
 `
 
 const P = styled.p`
-  margin: 0;
-  font-size: 1em;
-  font-weight: ${(props) => props.bold ? 800 : 500};
+  display: ${(props) => props.display};
+
+  margin: ${(props) => props.margin};
+  padding: none;
+  box-sizing: border-box;
+
+  word-break: keep-all;
+
+  font-size: 1rem;
+  line-height: ${(props) => props.line};
+  font-weight: ${(props) => props.bold ? 800 : 400};
   ${(props) => props.align ? `text-align: ${props.align};` : ""};
   color: ${(props) => props.color};
+`
+
+const P_XS = styled.p`
   display: ${(props) => props.display};
+
+  margin: ${(props) => props.margin};
+  padding: none;
+  box-sizing: border-box;
+
+  font-size: 0.8rem;
+  font-weight: ${(props) => props.bold ? 800 : 400};
+  line-height: ${(props) => props.line};
+  color: ${(props) => props.color};
 `
 
 export default Text;

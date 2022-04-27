@@ -1,4 +1,5 @@
 import React from "react";
+import { HiPlus } from "react-icons/hi";
 import styled from "styled-components";
 
 
@@ -17,6 +18,7 @@ const Button = (props) => {
         children,
         _onClick,
         _value,
+        type,
       } = props;
     
       const styles = {
@@ -34,6 +36,17 @@ const Button = (props) => {
       };
 
       
+      if(type === "plus"){
+        return (
+          <React.Fragment>
+            <PlusButton {...styles} onClick={_onClick}>
+              <HiPlus size="20px" color="#aaa"/>
+            </PlusButton>
+          </React.Fragment>
+        );
+      }
+
+
     return (
         <React.Fragment>
             <BasicButton {...styles} onClick={_onClick} value={_value}>
@@ -75,4 +88,20 @@ const BasicButton = styled.button`
     border: 1px solid #333333;
   }
 `;
+
+const PlusButton = styled.button`
+  margin: 10px 0;
+  width: 60px;
+  height: 60px;
+  
+  border: 1px solid #aaa;
+  border-radius: 60px;
+
+  background: none;
+
+  &: hover {
+    background: #eee;
+  }
+`
+
     export default Button;

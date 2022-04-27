@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@material-ui/icons": "^4.11.3",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.6.2",
     "@testing-library/jest-dom": "^5.14.1",
@@ -19,6 +21,7 @@
     "moment": "^2.29.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-icons": "^4.3.1",
     "react-modal": "^3.14.4",
     "react-redux": "^8.0.1",
     "react-router-dom": "5.3.0",
