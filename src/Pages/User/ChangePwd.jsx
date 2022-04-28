@@ -1,8 +1,7 @@
-import { Input, Text} from '../Elements/index';
+import { Input, Text, Grid} from '../../Elements/index';
 import { Button } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
-import Grid from '../Elements/Grid';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { useHistory } from 'react-router-dom';
 import { useRef } from 'react';
@@ -25,7 +24,8 @@ const ChangePwd = (props) => {
       <React.Fragment>
         <Grid padding="30px 10px">
           <Header>
-              <ArrowBackIosNewOutlinedIcon style={{position: "relative", left: "-320px", top:"8px" }} onClick={()=> history.replace('/')}></ArrowBackIosNewOutlinedIcon>
+              <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "10px", top:"58px" }} 
+              onClick={()=> history.replace('/')}></ArrowBackIosNewOutlinedIcon>
               <Text>비밀번호 변경</Text>
           </Header>
           <ChangePwdWrap>

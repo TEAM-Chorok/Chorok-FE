@@ -1,13 +1,13 @@
 
 
-import Login from "./Login";
-import SignUp from "./SignUp";
+import Login from "./User/Login";
+import SignUp from "./User/SignUp";
 
-import FindPwd from "./FindPwd";
-import ChangePwd from "./ChangePwd";
+import FindPwd from "./User/FindPwd";
+import ChangePwd from "./User/ChangePwd";
 
-import RecommendQuestion from "./RecommendQuestion";
-import ProfileSetting from "./ProfileSetting";
+import RecommendQuestion from "./User/RecommendQuestion";
+import ProfileSetting from "./User/ProfileSetting";
 
 import Home from "./Home";
 
@@ -18,13 +18,17 @@ import AddLocation from "./AddPlant/AddLocation";
 import AddClass from "./AddPlant/AddClass";
 import AddPlant from "./AddPlant/AddPlant";
 
+import Community from "./Community/Community";
 
-
-
+import MyPage from "./MyPage/MyPage";
+import Setting from "../Pages/User/Setting";
 
 export { Login, SignUp, 
     FindPwd, ChangePwd, 
     RecommendQuestion, ProfileSetting,
     Home, 
     AddLocation, AddClass, AddPlant,
-    PlantCard };
+    PlantCard,
+    Community,
+    MyPage, Setting,
+ };

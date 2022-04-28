@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Grid = (props) => {
 
-  const { is_flex, width, margin, padding, bg, children, align, height, _onClick } = props;
+  const { is_flex, width, margin, padding, bg, children, align, height, _onClick, position, left, right, top, bottom, key, borderRadius} = props;
 
   const styles = {
     is_flex: is_flex,
@@ -13,11 +13,17 @@ const Grid = (props) => {
     padding: padding,
     bg: bg,
     align: align,
+    position: position,
+    left: left, 
+    right: right, 
+    top: top, 
+    bottom: bottom,
+    borderRadius: borderRadius,
   }
 
   return (
     <React.Fragment>
-      <GridBox {...styles} onClick={_onClick}>
+      <GridBox {...styles} onClick={_onClick} key={key}>
         {children}
       </GridBox>
     </React.Fragment>
@@ -34,6 +40,8 @@ Grid.defaultProps = {
   bg: false,
   align: "left",
   justifyContent: false,
+  key: false,
+  borderRadius: false,
 }
 
 const GridBox = styled.div`
@@ -46,6 +54,12 @@ const GridBox = styled.div`
     ${(props) => props.is_flex ? `display: flex; justify-content: center;` : ""};
     text-align: ${(props) => props.align};
     align-items: ${(props) => props.align};
+    position: ${(props) => props.position};
+    left: ${(props) => props.left};
+    right: ${(props) => props.right};
+    top: ${(props) => props.top};
+    bottom: ${(props) => props.bottom};
+    border-radius: ${(props) => props.borderRadius};
 `;
 
 

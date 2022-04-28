@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Route } from 'react-router-dom';
-import { Login, Home, AddLocation, AddClass, AddPlant, PlantCard,  SignUp, ProfileSetting, RecommendQuestion, FindPwd, ChangePwd } from '../Pages';
+import { Route } from 'react-router-dom'
+import { Login, Home, AddLocation, AddClass, AddPlant, PlantCard,  SignUp, ProfileSetting, RecommendQuestion, FindPwd, ChangePwd , Community, MyPage, Setting} from '../Pages';
 
 
 function App() {
@@ -25,6 +25,10 @@ function App() {
 
         <Route path="/plant/:plantname" exact component={PlantCard} />
 
+        <Route path="/community" exact component={Community} />
+
+        <Route path="/mypage" exact component={MyPage} />
+        <Route path="/setting" exact component={Setting} />
     </React.Fragment>
   );
 }

@@ -15,9 +15,9 @@ const Input = (props) => {
         display,
         margin,
         padding,
-        value,
         border,
         name,
+        defaultValue,
     } = props;
     const styles = {
         width,
@@ -35,8 +35,8 @@ const Input = (props) => {
             type={type}
             placeholder={placeholder}
             onChange={_onChange}
-            value={value}
-            name={name}>
+            name={name}
+            defaultValue={defaultValue}>
         </Inputs>
         </React.Fragment>
     );
@@ -54,6 +54,7 @@ Input.defaultProps = {
     border: "1px solid darkgrey",
     borderRadius: "10px",
     name: false,
+    defaultValue: null,
 }
 const Inputs = styled.input`
     width: ${(props) => props.width};
@@ -67,5 +68,6 @@ const Inputs = styled.input`
     &:focus {
         border: 1px solid #333333;
     }
+    defaultValue: ${(props) => props.defaultValue};
 `
     export default Input;
