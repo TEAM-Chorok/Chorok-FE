@@ -1,5 +1,5 @@
 
-
+// user
 import Login from "./User/Login";
 import SignUp from "./User/SignUp";
 
@@ -20,11 +20,14 @@ import AddPlant from "./AddPlant/AddPlant";
 
 import Community from "./Community/Community";
 
+//My Page
 import MyPage from "./MyPage/MyPage";
 import MyPicturesPage from "./MyPage/MyPicturesPage";
 import MyPlantsPage from "./MyPage/MyPlantsPage";
 import ScrapPlantsPage from "./MyPage/ScrapPlantsPage";
 import ScrapPicturesPage from "./MyPage/ScrapPicturesPage";
+import EditPlant from "./MyPage/EditPlant";
+import MyPostsPage from "./User/MyPostsPage";
 
 import Setting from "../Pages/User/Setting";
 
@@ -35,6 +38,6 @@ export { Login, SignUp,
     AddLocation, AddClass, AddPlant,
     PlantCard,
     Community,
-    MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage,
+    MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage, EditPlant, MyPostsPage,
     Setting,
  };

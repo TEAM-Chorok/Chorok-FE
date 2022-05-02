@@ -18,9 +18,23 @@ import CommPost from "./Community/CommPost";
 
 import SearchHeader from "./SearchHeader";
 
-import MyPage from "../Pages/MyPage/MyPage";
+// My Page
 import MyPageHeader from "./MyPage/MyPageHeader";
 import MyCategoryBar from "./MyPage/MyCategoryBar";
+
+import MyPagePost from "./MyPage/MyPagePost";
+
+import MyPicturesHeader from "./MyPage/MyPicturesHeader";
+import MyPicturesPostList from "./MyPage/MyPicturesPostList";
+import ScrapPicturesHeader from "./MyPage/ScrapPicturesHeader";
+import ScrapPicturesPostList from "./MyPage/ScrapPicturesPostList";
+import MyPlants from "./MyPage/MyPlants";
+import MyPlantsHeader from "./MyPage/MyPlantsHeader";
+import MyPlantsList from "./MyPage/MyPlantsList";
+import EditPlantHeader from "./MyPage/EditPlant/EditPlantHeader";
+import EditPlantBody from "./MyPage/EditPlant/EditPlantBody";
+import MyPostsHeader from "./MyPage/MyPostsHeader";
+import MyPostsPostList from "./MyPage/MyPostsPostList";
 
 import SettingHeader from "./MyPage/SettingHeader";
 
@@ -29,6 +43,9 @@ export { TodoContent, TodoProfile, HomeHeader, HomeMyplant,
     PlantCardProfile, PlantCardFeed,
     CommPost, CommPostList,
     SearchHeader,
-    MyPage, MyPageHeader, MyCategoryBar, 
+    MyPageHeader, MyCategoryBar, MyPicturesPostList, MyPicturesHeader, MyPagePost,
+    ScrapPicturesHeader, ScrapPicturesPostList, MyPlantsHeader, MyPlantsList, MyPlants, 
+    EditPlantHeader, EditPlantBody,
+    MyPostsHeader, MyPostsPostList,
     SettingHeader,
  };

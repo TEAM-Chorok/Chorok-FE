@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Route } from 'react-router-dom'
-import { Login, Home, AddLocation, AddClass, AddPlant, PlantCard,  SignUp, ProfileSetting, RecommendQuestion, FindPwd, ChangePwd , Community, MyPage, Setting, MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage} from '../Pages';
+import { Login, Home, AddLocation, AddClass, AddPlant, PlantCard,  SignUp, ProfileSetting, RecommendQuestion, FindPwd, ChangePwd , Community, MyPage, Setting, MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage, EditPlant, MyPostsPage} from '../Pages';
 
 
 function App() {
@@ -29,7 +29,9 @@ function App() {
 
         <Route path="/mypage" exact component={MyPage} />
         <Route path="/myplants" exact component={MyPlantsPage} />
+        <Route path="/myplant/:id" exact component={EditPlant} />
         <Route path="/mypictures" exact component={MyPicturesPage} />
+        <Route path="/myposts" exact component={MyPostsPage} />
         <Route path="/scrap-plant" exact component={ScrapPlantsPage} />
         <Route path="/scrap-picture" exact component={ScrapPicturesPage} />
 

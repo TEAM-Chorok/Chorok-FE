@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text, Grid } from '../../Elements';
+import { Text, Grid, Container } from '../../Elements';
+import { MyPlantsHeader, MyPlantsList } from '../../Components';
 
 const MyPlantsPage = () => {
 
     return (
         <React.Fragment>
-            <Grid padding="30px 0px 10px 0px" width="100%">
-            </Grid>
+            <Container>
+                <MyPlantsHeader />
+                <MyPlantsList />
+            </Container>
         </React.Fragment>
     )
 }

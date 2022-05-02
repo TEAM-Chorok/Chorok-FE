@@ -1,15 +1,17 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { SettingHeader } from "../../Components";
 import { Container } from "../../Elements";
 
 const Setting = () => {
+    const history = useHistory();
     return (
         <React.Fragment>
             <Container>
                 <SettingHeader />
                 <ScrapSettingWrap>
-                    <SettingUpperDiv>내가 쓴 글</SettingUpperDiv>
+                    <SettingUpperDiv onClick={()=>history.push('/myposts')}>내가 쓴 글</SettingUpperDiv>
                     <SettingUpperDiv>프로필 편집</SettingUpperDiv>
                     <SettingLowerDiv>비밀번호 변경</SettingLowerDiv>
                 </ScrapSettingWrap>

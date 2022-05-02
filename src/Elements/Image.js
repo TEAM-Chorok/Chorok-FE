@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Image = (props) => {
 
-    const {type, size, imgUrl, margin, borderRadius} = props;
+    const {type, size, imgUrl, margin, borderRadius, } = props;
 
     const styles = {
         margin: margin,
