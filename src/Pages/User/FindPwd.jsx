@@ -21,8 +21,6 @@ const FindPwd = (props) => {
         <FindPwdWrap>
             <form>
                 <Text display="block">회원정보를 입력하시면 이메일로 <br />비밀번호 변경 링크를 보내드려요.</Text>
-                <Input placeholder="이름" name="search_pw_name" 
-                margin="20px auto 10px auto"></Input>
                 <Input placeholder="이메일(아이디)" name="search_pw_id" type="email"></Input>
                 <Button style={{marginTop: "30px"}}variant='contained' name="search_pw_submit" >비밀번호 찾기</Button>
                 </form>

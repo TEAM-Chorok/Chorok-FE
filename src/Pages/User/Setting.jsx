@@ -9,17 +9,17 @@ const Setting = () => {
             <Container>
                 <SettingHeader />
                 <ScrapSettingWrap>
-                    <SettingUpperDiv>스크랩한 식물</SettingUpperDiv>
-                    <SettingLowerDiv>스크랩한 글</SettingLowerDiv>
+                    <SettingUpperDiv>내가 쓴 글</SettingUpperDiv>
+                    <SettingUpperDiv>프로필 편집</SettingUpperDiv>
+                    <SettingLowerDiv>비밀번호 변경</SettingLowerDiv>
                 </ScrapSettingWrap>
                 <TeamInfoWrap>
-                    <SettingUpperDiv>팀 소개 페이지 바로가기</SettingUpperDiv>
-                    <SettingLowerDiv>인스타그램으로 바로가기</SettingLowerDiv>
+                    <SettingUpperDiv>Our Team</SettingUpperDiv>
+                    <SettingLowerDiv>FAQ / 문의사항</SettingLowerDiv>
                 </TeamInfoWrap>
                 <UserInfoEdit>
-                    <SettingUpperDiv>프로필 수정</SettingUpperDiv>
                     <SettingUpperDiv>로그아웃</SettingUpperDiv>
-                    <SettingLowerDiv>회원탈퇴</SettingLowerDiv>
+                    <SettingLowerDiv>계정 비활성화</SettingLowerDiv>
                 </UserInfoEdit>
             </Container>
         </React.Fragment>
@@ -51,6 +51,5 @@ width: 100%;
 height: fit-content;
 padding: 15px 10px;
 box-sizing: border-box;
-border-bottom: 1px solid darkgrey;
 `
 export default Setting; 

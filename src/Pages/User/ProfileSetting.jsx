@@ -21,12 +21,12 @@ const ProfileSetting = () => {
               <Text>회원가입</Text>
           </Header>
           <ProfileWrap>
-              <Text display="block">사용하실 닉네임과 프로필이미지를 </Text>
-              <Text display="block">설정해주세요. 😀</Text>
+              <Text display="block">사용하실 닉네임과 프로필이미지를 <br />설정해주세요. 😀</Text>
               <Grid margin="20px auto 10px auto" >
                 {/* 프로필 이미지 미리보기 */}
                 <Image src="sample.jpeg"/>
               </Grid>
+                {/* 미리보기 클릭하면 input type=file 오픈하기 */}
               <Input type="file" margin="20px auto" display="none" name="signup_profile_img"></Input>
               <Input display="inline-block" placeholder="닉네임" margin="10px 12px 10px 0px" width="233px" name="signup_profile_nickname"></Input>
               <Button style={{fontSize:"12px", height:"40px"}} variant='contained' >중복확인</Button>

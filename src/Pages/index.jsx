@@ -21,6 +21,11 @@ import AddPlant from "./AddPlant/AddPlant";
 import Community from "./Community/Community";
 
 import MyPage from "./MyPage/MyPage";
+import MyPicturesPage from "./MyPage/MyPicturesPage";
+import MyPlantsPage from "./MyPage/MyPlantsPage";
+import ScrapPlantsPage from "./MyPage/ScrapPlantsPage";
+import ScrapPicturesPage from "./MyPage/ScrapPicturesPage";
+
 import Setting from "../Pages/User/Setting";
 
 export { Login, SignUp, 
@@ -30,5 +35,6 @@ export { Login, SignUp,
     AddLocation, AddClass, AddPlant,
     PlantCard,
     Community,
-    MyPage, Setting,
+    MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage,
+    Setting,
  };

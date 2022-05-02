@@ -11,13 +11,14 @@ const SettingHeader = () => {
             <Header>
               <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "0px", top:"10px" }} 
               onClick={()=> history.goBack()}></ArrowBackIosNewOutlinedIcon>
+              <Text line="2.5em">설정</Text>
           </Header>
         </React.Fragment>
     )
 }
 const Header = styled.div`
   width: 100%;
-  height: 40px;
+  height: 50px;
   text-align: center;
   position: relative; 
 `

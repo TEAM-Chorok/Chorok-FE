@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import Grid from '../../Elements/Grid';
 import { useHistory } from 'react-router-dom';
 import Container from '../../Elements/Container';
-
+//1. JWT토큰 const isLogin  = dispatch(isLogin(sessionStorage.getItem('token')))
+//2. 소셜 로그인 (구글 로그인, 카카오로그인)
 const Login = () => {
   const history = useHistory();
 
@@ -68,5 +69,6 @@ const Image = styled.img`
 width:100px;
 height: 100px;
 margin: 0px auto;
+border-radius: 30px;
 `
 export default Login;
