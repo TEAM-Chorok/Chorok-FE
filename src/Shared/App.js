@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Route } from 'react-router-dom'
-import { Login, Home, AddLocation, AddClass, AddPlant, PlantCard,  SignUp, ProfileSetting, RecommendQuestion, FindPwd, ChangePwd , Community, MyPage, Setting, MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage, EditPlant, MyPostsPage} from '../Pages';
+import { Route } from 'react-router-dom';
+import { Login, Home, AddLocation, AddClass, AddPlant, PlantCard,  SignUp, ProfileSetting, Labeling, FindPwd, ChangePwd , Community, MyPage, Setting, MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage, EditPlant, MyPostsPage} from '../Pages';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Route path="/changepwd" exact component={ChangePwd} />
 
         <Route path="/profilesetting" exact component={ProfileSetting} />
-        <Route path="/recommend/:no" exact component={RecommendQuestion} />
+        <Route path="/labeling/:no" exact component={Labeling} />
 
         <Route path="/home" exact component={Home} />
 
@@ -31,11 +31,14 @@ function App() {
         <Route path="/myplants" exact component={MyPlantsPage} />
         <Route path="/myplant/:id" exact component={EditPlant} />
         <Route path="/mypictures" exact component={MyPicturesPage} />
-        <Route path="/myposts" exact component={MyPostsPage} />
         <Route path="/scrap-plant" exact component={ScrapPlantsPage} />
         <Route path="/scrap-picture" exact component={ScrapPicturesPage} />
 
         <Route path="/setting" exact component={Setting} />
+        <Route path="/setting/myposts" exact component={MyPostsPage} />
+        <Route path="/setting/profile" exact component={ProfileSetting} />
+        <Route path="/setting/changepwd" exact component={ChangePwd} />
+
     </React.Fragment>
   );
 }

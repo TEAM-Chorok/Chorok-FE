@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import { Input, Text, Grid} from '../../Elements/index';
+import { Input, Text, Grid} from '../../../Elements/index';
 import { useHistory } from "react-router-dom";
 
 const SettingHeader = () => {
@@ -9,17 +9,17 @@ const SettingHeader = () => {
     return (
         <React.Fragment>
             <Header>
-              <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "0px", top:"10px" }} 
+              <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "10px", top:"58px" }} 
               onClick={()=> history.goBack()}></ArrowBackIosNewOutlinedIcon>
-              <Text line="2.5em">설정</Text>
+              <Text >설정</Text>
           </Header>
         </React.Fragment>
     )
 }
 const Header = styled.div`
   width: 100%;
-  height: 50px;
+  height: 20%;
   text-align: center;
-  position: relative; 
+  margin: 10px auto;
 `
 export default SettingHeader; 

@@ -6,7 +6,7 @@ import SignUp from "./User/SignUp";
 import FindPwd from "./User/FindPwd";
 import ChangePwd from "./User/ChangePwd";
 
-import RecommendQuestion from "./User/RecommendQuestion";
+import Labeling from "./User/Labeling";
 import ProfileSetting from "./User/ProfileSetting";
 
 import Home from "./Home";
@@ -27,13 +27,13 @@ import MyPlantsPage from "./MyPage/MyPlantsPage";
 import ScrapPlantsPage from "./MyPage/ScrapPlantsPage";
 import ScrapPicturesPage from "./MyPage/ScrapPicturesPage";
 import EditPlant from "./MyPage/EditPlant";
-import MyPostsPage from "./User/MyPostsPage";
+import MyPostsPage from "./MyPage/MyPostsPage";
 
 import Setting from "../Pages/User/Setting";
 
 export { Login, SignUp, 
     FindPwd, ChangePwd, 
-    RecommendQuestion, ProfileSetting,
+    Labeling, ProfileSetting,
     Home, 
     AddLocation, AddClass, AddPlant,
     PlantCard,

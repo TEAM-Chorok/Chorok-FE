@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text, Grid, Container } from '../../Elements';
-import { MyPagePost } from '../index';
+import { Text, Grid, Container } from '../../../Elements';
+import { MyPagePost } from '../../index';
 
 const MyPicturesPostList = () => {
 

@@ -52,7 +52,7 @@ Input.defaultProps = {
     width: "320px",
     height: "40px",
     border: "1px solid darkgrey",
-    borderRadius: "10px",
+    borderRadius: "50px",
     name: false,
     defaultValue: null,
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
-import { Input, Text, Grid, Image} from '../../Elements/index';
+import { Input, Text, Grid, Image} from '../../../Elements/index';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { useHistory } from "react-router-dom";
 

@@ -5,6 +5,9 @@ import { userAPI } from "../../Shared/api";
 
 // 액션 
 const SET_USER = "SET_USER";
+//이메일 중복체크
+//닉네임 중복체크
+//식물 맞춤 테스트
 const LOG_OUT = "LOG_OUT";
 const FIND_PWD = "FIND_PWD";
 const CHANGE_PWD = "CHANGE_PWD"
@@ -16,12 +19,17 @@ const findPassword = createAction(FIND_PWD, (user) => ({}));
 const changePassword = createAction(CHANGE_PWD, (user) => ({}));
 // 초기값
 const initialState = {
-  userId: null,
+  username: null,
   nickname: null,
-  userName: null,
   isLogin: false,
 }
-
+const initialUser = {
+  username: "",
+  password: "",
+  passwordCheck : "",
+  nickname : "",
+  profileImgUrl: "",
+}
 // 미들웨어 
 const logInDB = (userId, password) => {
   return function (dispatch, getState, { history }) {
@@ -34,12 +42,31 @@ const logInDB = (userId, password) => {
         //몇번째에 nickname이 딸려올려나
         localStorage.setItem ("nickname", response.headers.authorization.split(" ")[3]);
         dispatch(logIn({})); //reducer에서 state 변경
+        history.replace('/home');
       }).catch((error) => {
         console.log("logInDB : error", error.response);
-        alert("아이디와 비밀번호를 다시 확인해주세요.")
+        window.alert("아이디와 비밀번호를 다시 확인해주세요.")
       });
   }
 };
+const signUpDb = (username, password, passwordCheck, nickname, profileImgUrl) => {
+  return function (dispatch, getState, { history }) {
+    userAPI
+      .signUp(username, password, passwordCheck, nickname, profileImgUrl)
+      .then((res) => {
+        //회원가입후 로그인을 유지하려면 토큰필요하지 않나? 그냥 다시 로그인페이지로 돌아갈것인지? 
+        sessionStorage.setItem("token", res.headers.authorization);
+        localStorage.setItem ("nickname", res.headers.authorization.split(" ")[3]);
+        dispatch(logIn({}));
+        setTimeout(() => {
+          history.replace('/home');
+        }, 3000);
+      }).catch((err) => {
+        console.log("signUpDB : error", err.response);
+        window.alert("회원가입에 실패하였습니다. 다시 시도하여주세요.")
+      })
+  }
+}
 const logOutDB  = () => {
   return function (dispatch, getState, { history }) {
     sessionStorage.removeItem("token");
