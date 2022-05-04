@@ -19,6 +19,7 @@ const Button = (props) => {
         _onClick,
         _value,
         type,
+        borderRadius,
       } = props;
     
       const styles = {
@@ -32,6 +33,7 @@ const Button = (props) => {
         backgroundColor,
         border,
         bold,
+        borderRadius,
 
       };
 
@@ -94,6 +96,7 @@ Button.defaultProps = {
     height: "40px",
     margin: "0px",
     padding: "10px",
+    borderRadius: "0px",
     size: "14px",
     color: "black",
     backgroundColor: "transparent",

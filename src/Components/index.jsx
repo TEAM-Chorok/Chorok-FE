@@ -8,6 +8,8 @@ import HomeHeader from "./Home/HomeHeader";
 import TodoContent from "./Home/TodoContent";
 import TodoProfile from "./Home/TodoProfile";
 
+import FirstVisitHome from "./Home/FirstVisitHome";
+
 // Add Plant
 // 사라진 페이지가 있어서 나중에 다시 정리하게 될 것 같아요! 
 import AddLocationList from "./AddPlant/AddLocationList";
@@ -36,13 +38,33 @@ import CommPost from "./Community/CommPost";
 
 import SearchHeader from "./SearchHeader";
 
-import MyPage from "../Pages/MyPage/MyPage";
+// My Page
 import MyPageHeader from "./MyPage/MyPageHeader";
 import MyCategoryBar from "./MyPage/MyCategoryBar";
 
-import SettingHeader from "./MyPage/SettingHeader";
+import MyPagePost from "./MyPage/MyPagePost";
+
+import MyPicturesHeader from "./MyPage/MyPictures/MyPicturesHeader";
+import MyPicturesPostList from "./MyPage/MyPictures/MyPicturesPostList";
+
+import ScrapPicturesHeader from "./MyPage/ScrapPicturesHeader";
+import ScrapPicturesPostList from "./MyPage/ScrapPicturesPostList";
+
+import MyPlants from "./MyPage/MyPlants";
+import MyPlantsHeader from "./MyPage/MyPlants/MyPlantsHeader";
+import MyPlantsList from "./MyPage/MyPlants/MyPlantsList";
+
+import EditPlantHeader from "./MyPage/EditPlant/EditPlantHeader";
+import EditPlantBody from "./MyPage/EditPlant/EditPlantBody";
+
+import MyPostsHeader from "./MyPage/Setting/MyPostsHeader";
+import MyPostsPostList from "./MyPage/MyPostsPostList";
+
+import SettingHeader from "./MyPage/Setting/SettingHeader";
+import DeactivationAgreement from "./MyPage/Setting/DeactivationAgreement";
 
 export {
+    FirstVisitHome,
     PlantProfile,
     TodoContent, TodoProfile, HomeHeader, HomeMyplant,
     AddLocationList, AddClassList, AddPlantList, BottomSheet, 
@@ -50,6 +72,12 @@ export {
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, SearchPageHeader, PlanteriorList, LabelingTestLink, RecommendPlant,
     CommPost, CommPostList,
     SearchHeader,
-    MyPage, MyPageHeader, MyCategoryBar, 
-    SettingHeader,
+    MyPageHeader, MyCategoryBar, MyPagePost,
+    MyPicturesPostList, MyPicturesHeader, 
+    ScrapPicturesHeader, ScrapPicturesPostList, 
+    MyPlantsHeader, MyPlantsList, MyPlants, 
+    EditPlantHeader, EditPlantBody,
+    MyPostsHeader, MyPostsPostList,
+    SettingHeader, DeactivationAgreement,
 };
+

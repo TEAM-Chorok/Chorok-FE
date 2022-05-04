@@ -11,11 +11,21 @@ const api = axios.create({
 
 // 유저정보 관련 API
 export const userAPI = {
-  login: (id, pwd) => api.post('/api/login', {
-    userId: id,
-    userPwd: pwd,
+  login: (username, password) => api.post('/api/login', {
+    username: username,
+    password: password,
   }
   ),
+
+  signUp: (username, password, passwordCheck, nickname, profileImgUrl) => api.post('/auth/signUp', {
+    username: username,
+    password: password,
+    passwordCheck:  passwordCheck,
+    nickname: nickname,
+    profileImgUrl:  profileImgUrl, 
+  }
+  ),
+
   findPwd: (userName, userId) => api.post('/api/findPwd', {
     userName: userName,
     userId: userId,

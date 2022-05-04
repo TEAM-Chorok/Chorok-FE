@@ -1,18 +1,18 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { Input, Text, Grid} from '../../Elements/index';
 import { useHistory } from "react-router-dom";
 
-const SettingHeader = () => {
+const ScrapPicturesHeader = () => {
     const history = useHistory();
     return (
         <React.Fragment>
             <Header>
-              <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "0px", top:"10px" }} 
-              onClick={()=> history.goBack()}></ArrowBackIosNewOutlinedIcon>
-              <Text line="2.5em">설정</Text>
-          </Header>
+                <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "0px", top:"10px" }} 
+                onClick={()=> history.goBack()}></ArrowBackIosNewOutlinedIcon>
+                <Text line="2.5em">스크랩한 사진</Text>
+            </Header>
         </React.Fragment>
     )
 }
@@ -22,4 +22,4 @@ const Header = styled.div`
   text-align: center;
   position: relative; 
 `
-export default SettingHeader; 
+export default ScrapPicturesHeader;
