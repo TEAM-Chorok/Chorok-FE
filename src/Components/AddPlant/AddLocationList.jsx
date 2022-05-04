@@ -4,6 +4,10 @@ import { Grid, Image, Text } from "../../Elements";
 
 
 
+
+
+// 필터기능 추가로 이 컴포넌트는 이후에 삭제하게 될 것 같아요! 
+
 const AddLocationList = () => {
 
   return (

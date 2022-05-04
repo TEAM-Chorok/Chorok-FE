@@ -5,10 +5,12 @@ import { createBrowserHistory } from "history";
 import thunk from "redux-thunk";
 
 import User from "./Modules/User";
+import Main from "./Modules/Main";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+    main: Main,
     user: User,
     router: connectRouter(history),
 });

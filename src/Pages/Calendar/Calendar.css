@@ -1,0 +1,188 @@
+
+
+.react-calendar {
+    width: 350px;
+    max-width: 100%;
+    background: white;
+    font-family: 'SUIT-Regular';
+    line-height: 1.125em;
+}
+
+.react-calendar--doubleView {
+    font-family: 'SUIT-Regular';
+    width: 700px;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer {
+    font-family: 'SUIT-Regular';
+    display: flex;
+    margin: -0.5em;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer>* {
+    font-family: 'SUIT-Regular';
+    width: 50%;
+    margin: 0.5em;
+}
+
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+    font-family: 'SUIT-Regular';
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.react-calendar button {
+    font-family: 'SUIT-Regular';
+    box-sizing: border-box;
+    height: 50px;
+    border: 0;
+    outline: none;
+}
+
+.react-calendar button:enabled:hover {
+    cursor: pointer;
+}
+
+.react-calendar__navigation {
+    font-family: 'SUIT-Regular';
+
+    display: flex;
+
+    margin: 1em auto;
+
+    width: 200px;
+    height: 20px;
+}
+
+.react-calendar__navigation button {
+    font-family: 'SUIT-Regular';
+    font-weight: 600;
+
+    font-size: 1em;
+    line-height: 15px;
+    min-width: 20px;
+    background: none;
+}
+
+.react-calendar__navigation button:disabled {
+    font-family: 'SUIT-Regular';
+    background-color: #f0f0f0;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+    font-family: 'SUIT-Regular';
+}
+
+.react-calendar__month-view__weekdays {
+    font-family: 'SUIT-Regular';
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.75em;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+    font-family: 'SUIT-Regular';
+    padding: 0.5em;
+}
+
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+    font-family: 'SUIT-Regular';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+.react-calendar__month-view__days__day--weekend {
+    font-family: 'SUIT-Regular';
+    font-weight: 600;
+    color: #15AE21;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+    font-family: 'SUIT-Regular';
+    color: #757575;
+}
+
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+    font-family: 'SUIT-Regular';
+    padding: 2em 0.5em;
+}
+
+.react-calendar__tile {
+    font-family: 'SUIT-Regular';
+    max-width: 100%;
+    padding: 10px 6.6667px;
+    background: none;
+    text-align: center;
+    line-height: 16px;
+}
+
+.react-calendar__tile:disabled {
+    font-family: 'SUIT-Regular';
+    background-color: #f0f0f0;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    font-family: 'SUIT-Regular';
+    font-weight: 600;
+    border-radius: 50px;
+    /* background-color: #e6e6e6; */
+}
+
+.react-calendar__tile--now {
+    font-family: 'SUIT-Regular';
+    font-weight: 600;
+    border-radius: 50px;
+    color: #fff;
+    background: #ADCAB0;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+    font-family: 'SUIT-Regular';
+    background: #ffffa9;
+}
+
+.react-calendar__tile--hasActive {
+    font-family: 'SUIT-Regular';
+    border-radius: 50px;
+    background: #76baff;
+}
+
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+    font-family: 'SUIT-Regular';
+    background: #a9d4ff;
+}
+
+.react-calendar__tile--active {
+    font-family: 'SUIT-Regular';
+    font-weight: 600;
+    border-radius: 50px;
+    background: #EAE296;
+    color: #fff;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+    font-family: 'SUIT-Regular';
+    border-radius: 50px;
+    background: #EAE296;
+}
+
+.react-calendar--selectRange .react-calendar__tile--hover {
+    font-family: 'SUIT-Regular';
+    background-color: #e6e6e6;
+}
+

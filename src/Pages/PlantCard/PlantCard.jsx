@@ -1,6 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 import { PlantCardFeed, PlantCardProfile } from '../../Components';
-import { Container } from '../../Elements';
+import { Button, Container, Grid } from '../../Elements';
+
+
+
+// 식물카드 페이지
 
 const PlantCard = () => {
   return (
@@ -9,11 +14,20 @@ const PlantCard = () => {
 
         <PlantCardProfile/>
         <PlantCardFeed />
+
+        <BtnBox>
+          <Button type="longfloat">내 식물에 추가하기</Button>
+        </BtnBox>
         
       </Container>
     </React.Fragment>
   );
 }
 
+
+const BtnBox = styled.div`
+  margin: auto;
+  width: 250px;
+`
 
 export default PlantCard;

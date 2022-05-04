@@ -20,6 +20,7 @@ Container.defaultProps = {
 
 
 const ContainerBox = styled.div`
+    position: relative;
     padding: 20px;
     box-sizing: border-box;
 
@@ -27,7 +28,6 @@ const ContainerBox = styled.div`
     min-height: 844px;
 
     border: 1px solid #000;
-    background: #ddd;
 `;
 
 export default Container;

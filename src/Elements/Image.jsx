@@ -19,6 +19,14 @@ const Image = (props) => {
             </React.Fragment>
         );
     }
+    
+    if(type==="planterior") {
+        return(
+            <React.Fragment>
+                <Planterior {...styles}/>
+            </React.Fragment>
+        );
+    }
 
     if(type==="circle") {
         return( 
@@ -42,20 +50,40 @@ Image.defaultProps = {
 }
 
 const Square = styled.div`
+    flex: none;
+
     margin: ${(props) => props.margin};
 
     width: ${(props) => props.size};
     height: ${(props) => props.size};
 
     border: ${(props) => props.imgUrl? "none" : "1px solid #ccc"};
-    border-radius: 4px;
+    border-radius: 5px;
+
+    background-image: url("${(props) => props.imgUrl}");
+    background-size: cover;
+`
+
+const Planterior = styled.div`
+    flex: none;
+    
+    margin: ${(props) => props.margin};
+
+    width: ${(props) => props.size};
+    height: ${(props) => props.size};
+
+    border: ${(props) => props.imgUrl? "none" : "1px solid #ccc"};
+    border-radius: 5px;
 
     background-image: url("${(props) => props.imgUrl}");
     background-size: cover;
 `
 
 
+
 const Circle = styled.div`
+    flex: none;
+    
     margin: ${(props) => props.margin};
 
     width: ${(props) => props.size};

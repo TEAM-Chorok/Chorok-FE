@@ -3,11 +3,16 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Grid, Image, Text } from "../../Elements";
 
+
+
+// 투두페이지 상단 내 식물 원형 프로필 
+
 const TodoProfile = () => {
 
   const history = useHistory();
 
-  const goToAddPlant = () => {
+  // 식물 추가 flow로 
+  const openAddPlant = () => {
     history.push('/add');
   }
 
@@ -31,7 +36,7 @@ const TodoProfile = () => {
 
         <ProfileBox>
           <Grid margin="auto" width="fit-content" height="fit-content">
-            <Button type="plus" _onClick={goToAddPlant} />
+            <Button type="plus" _onClick={openAddPlant} />
           </Grid>
         </ProfileBox>
 

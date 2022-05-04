@@ -46,6 +46,39 @@ const Button = (props) => {
         );
       }
 
+      if(type === "longfloat"){
+        return (
+            <React.Fragment>
+              <FloatLongButton {...styles} onClick={_onClick}>
+                {children}
+              </FloatLongButton>
+            </React.Fragment>
+        );
+      }
+
+      if(type === "filter") {
+        return (
+          <React.Fragment>
+            <FilterButton {...styles} onClick={_onClick}>{children}</FilterButton>
+          </React.Fragment>
+        )
+      }
+
+      if(type === "filterlong") {
+        return (
+          <React.Fragment>
+            <FilterLongButton {...styles} onClick={_onClick}>{children}</FilterLongButton>
+          </React.Fragment>
+        )
+      }
+
+      if(type === "filtersizing") {
+        return (
+          <React.Fragment>
+            <FilterSizingButton {...styles} onClick={_onClick}>{children}</FilterSizingButton>
+          </React.Fragment>
+        )
+      }
 
     return (
         <React.Fragment>
@@ -102,6 +135,68 @@ const PlusButton = styled.button`
   &: hover {
     background: #eee;
   }
-`
+`;
+
+const FloatLongButton = styled.button`
+  position: absolute;
+  bottom: 30px;
+
+  width: 250px;
+  height: 65px;
+
+  border: none;
+  border-radius: 65px;
+
+  color: #fff;
+  background: #667080;
+
+`;
+
+const FilterButton = styled.button`
+  font-family: 'SUIT-Regular';
+  margin-left: 5px;
+
+  width: fit-content;
+  height: 25px;
+
+  border: 1px solid #323232;
+  border-radius: 25px;
+
+  background: none;
+
+  &:hover {
+    background: #eee;
+  }
+`;
+
+const FilterLongButton = styled.button`
+  font-family: 'SUIT-Regular';
+
+  width: 100%;
+  height: 50px;
+  
+  border: 1px solid #878D96;
+  border-radius: 10px;
+  background: #fff;
+
+  &:hover {
+    background: #ddd;
+  }
+`;
+
+const FilterSizingButton = styled.button`
+  font-family: 'SUIT-Regular';
+
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};;
+  
+  border: 1px solid #878D96;
+  border-radius: 20px;
+  background: #fff;
+
+  &:hover {
+    background: #ddd;
+  }
+`;
 
     export default Button;

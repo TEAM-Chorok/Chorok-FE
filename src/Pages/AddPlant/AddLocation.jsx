@@ -9,7 +9,7 @@ import { Button, Container, Grid, Text } from "../../Elements";
 const AddLocation = () => {
   const history = useHistory();
 
-  const goToNext = () => {
+  const Next = () => {
     history.push("/add/livingroom")
   }
 
@@ -22,7 +22,7 @@ const AddLocation = () => {
 
         <AddLocationList />
 
-        <Button _onClick={goToNext}>다음</Button>
+        <Button _onClick={Next}>다음</Button>
       </Container>
     </React.Fragment>
   );

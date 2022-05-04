@@ -1,23 +1,29 @@
 import React from "react";
-import { AddPlantList } from "../../Components";
+import { AddPlantList, BottomSheet } from "../../Components";
 import { Container, Grid, Text } from "../../Elements";
+import styled from "styled-components";
+
 
 
 const AddPlant = () => {
+  
+  return (
+    <React.Fragment>
+      <Container>
+        <Grid height="50px" />
+        <Grid>
+          <Text size="M">허브</Text>
+        </Grid>
+        <Grid margin="15px 0">
 
-    return(
-        <React.Fragment>
-            <Container>
-                <Grid height="50px"/>
-                <Grid>
-                    <Text size="M">허브</Text>
-                </Grid>
+            <BottomSheet/>
+          
+        </Grid>
+        <AddPlantList />
 
-                <AddPlantList />
-
-            </Container>
-        </React.Fragment>
-    );
+      </Container>
+    </React.Fragment>
+  );
 }
 
 

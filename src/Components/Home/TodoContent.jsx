@@ -4,6 +4,8 @@ import { Grid, Image, Text } from "../../Elements";
 import TodoProfile from "./TodoProfile";
 
 
+// 투두페이지 할 일 목록 
+
 const TodoContent = () => {
 
   return (
@@ -21,26 +23,27 @@ const TodoContent = () => {
       <TodoProfile/>
 
       <TodoBox>
-        <Grid margin="0 5px" width="fit-content">
+        <Grid margin="0 5px">
           <Text bold size="M">동동이</Text>
         </Grid>
-        <Grid margin="5px 0">
+
+        <Grid margin="5px 0" width="100%">
 
           <ContentBox>
-            <Grid width="fit-content" height="fit-content">
+            <Grid>
               <Image type="circle" size="50px"/>
             </Grid>
-            <Grid margin="0 20px" height="fit-content">
+            <Grid margin="0 20px">
               <Text bold>물을 주는 날입니다.</Text><br/>
               <Text size="XS">💦물조리개를 준비하세요!</Text>
             </Grid>
           </ContentBox>
 
           <ContentBox>
-            <Grid width="fit-content" height="fit-content">
+            <Grid >
               <Image type="circle" size="50px"/>
             </Grid>
-            <Grid margin="0 20px" height="fit-content">
+            <Grid margin="0 20px" width="100%">
               <Text bold>분갈이한지 약 70일이 지났어요.</Text><br/>
               <Text size="XS">📏동동이의 키를 재볼까요?</Text>
             </Grid>
@@ -50,15 +53,15 @@ const TodoContent = () => {
         </TodoBox>
 
         <TodoBox>
-        <Grid margin="0 5px" width="fit-content">
+        <Grid margin="0 5px" >
           <Text bold size="M">초록이</Text>
         </Grid>
-        <Grid margin="5px 0">
+        <Grid margin="5px 0" width="100%">
           <ContentBox>
-            <Grid width="fit-content" height="fit-content">
+            <Grid>
               <Image type="circle" size="50px"/>
             </Grid>
-            <Grid margin="0 20px" height="fit-content">
+            <Grid margin="0 20px">
               <Text bold>할 일이 없어요.</Text><br/>
               <Text size="XS">🌿오늘은 지켜만 봐도 좋아요 :)</Text>
             </Grid>

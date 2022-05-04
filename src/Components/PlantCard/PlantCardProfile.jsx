@@ -3,15 +3,18 @@ import { Grid, Image, Text } from '../../Elements';
 
 
 
+// 식물카드 상단의 기본 정보부분 
+// 식물카드에 들어갈 내용이 어느정도 확정 된 뒤에 이어서 구현하겠습니다~!
+
 const PlantCardProfile = () => {
   return (
     <React.Fragment>
       <Grid margin="20px 0" padding="10px">
 
-        <Grid margin="auto" width="fit-content">
+        <Grid margin="auto">
           <Image type="circle" size="148px" />
         </Grid>
-        <Grid margin="15px auto" width="fit-content">
+        <Grid margin="15px auto">
           <Text bold>로즈마리</Text>
         </Grid>
 
@@ -25,12 +28,12 @@ const PlantCardProfile = () => {
         </Grid>
 
         <Grid>
-          <Grid is_flex height="fit-content">
-            <Text bold margin="5px 0">난이도</Text>
+        <Grid padding="5px 0">
+            <Text bold>난이도</Text>
             <Text margin="0 40px" size="XS">초보</Text>
           </Grid>
-          <Grid is_flex height="fit-content">
-            <Text bold margin="5px 0">맞춤 온도</Text>
+          <Grid padding="5px 0">
+            <Text bold>맞춤 온도</Text>
             <Text size="XS" margin="0 22px">16~20℃</Text>
           </Grid>
         </Grid>
