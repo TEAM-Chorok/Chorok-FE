@@ -1,11 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { SettingHeader } from "../../Components";
 import { Container, Grid } from "../../Elements";
+import { actionCreators as userActions } from "../../Redux/Modules/User";
 
 const Setting = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const signOut = () => {
+        dispatch(userActions.logOutDB());
+        console.log("로그아웃 시도");
+    }
     return (
         <React.Fragment>
             <Container>
@@ -21,8 +29,8 @@ const Setting = () => {
                         <SettingLowerDiv>FAQ / 문의사항</SettingLowerDiv>
                     </TeamInfoWrap>
                     <UserInfoEdit>
-                        <SettingUpperDiv>로그아웃</SettingUpperDiv>
-                        <SettingLowerDiv>계정 비활성화</SettingLowerDiv>
+                        <SettingUpperDiv onClick={()=>signOut()}>로그아웃</SettingUpperDiv>
+                        <SettingLowerDiv onClick={()=>history.push('/setting/deactivation')}>계정 비활성화</SettingLowerDiv>
                     </UserInfoEdit>
                 </Grid>
             </Container>

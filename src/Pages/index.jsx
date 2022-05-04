@@ -11,6 +11,8 @@ import ProfileSetting from "./User/ProfileSetting";
 
 import Home from "./Home";
 
+import Recommendation from "./User/Recommendation";
+
 import PlantCard from "./PlantCard/PlantCard";
 
 // Add Plant
@@ -30,14 +32,15 @@ import EditPlant from "./MyPage/EditPlant";
 import MyPostsPage from "./MyPage/MyPostsPage";
 
 import Setting from "../Pages/User/Setting";
+import DeactivateAccount from "./User/DeactivateAccount";
 
 export { Login, SignUp, 
     FindPwd, ChangePwd, 
     Labeling, ProfileSetting,
-    Home, 
+    Home, Recommendation,
     AddLocation, AddClass, AddPlant,
     PlantCard,
     Community,
     MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage, EditPlant, MyPostsPage,
-    Setting,
+    Setting, DeactivateAccount,
  };

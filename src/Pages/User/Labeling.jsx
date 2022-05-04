@@ -21,9 +21,10 @@ const Labeling = () => {
   const submit = () => {
     console.log(level, place, attribute, attribute2);
     //로딩 페이지 
+    setLoading(true);
     setTimeout(() => {
-      setLoading(true)
-    }, 100);
+      history.push('/recommendation');
+    }, 3000);
   }
 
   //로딩 페이지 return

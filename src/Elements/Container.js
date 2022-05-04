@@ -27,7 +27,7 @@ const ContainerBox = styled.div`
     min-height: 844px;
 
     border: 1px solid #000;
-    background: #ddd;
+    background: white;
 `;
 
 export default Container;

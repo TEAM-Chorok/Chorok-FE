@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Route } from 'react-router-dom';
-import { Login, Home, AddLocation, AddClass, AddPlant, PlantCard,  SignUp, ProfileSetting, Labeling, FindPwd, ChangePwd , Community, MyPage, Setting, MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage, EditPlant, MyPostsPage} from '../Pages';
+import { Login, Home, Recommendation, AddLocation, AddClass, AddPlant, PlantCard,  SignUp, ProfileSetting, Labeling, FindPwd, ChangePwd , Community, MyPage, Setting, MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage, EditPlant, MyPostsPage, DeactivateAccount } from '../Pages';
 
 
 function App() {
@@ -16,6 +16,8 @@ function App() {
 
         <Route path="/profilesetting" exact component={ProfileSetting} />
         <Route path="/labeling/:no" exact component={Labeling} />
+
+        <Route path="/recommendation" exact component={Recommendation} />
 
         <Route path="/home" exact component={Home} />
 
@@ -38,6 +40,10 @@ function App() {
         <Route path="/setting/myposts" exact component={MyPostsPage} />
         <Route path="/setting/profile" exact component={ProfileSetting} />
         <Route path="/setting/changepwd" exact component={ChangePwd} />
+        <Route path="/setting/deactivation" exact component={DeactivateAccount} />
+
+
+
 
     </React.Fragment>
   );

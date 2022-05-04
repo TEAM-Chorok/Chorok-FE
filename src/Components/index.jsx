@@ -5,7 +5,6 @@ import TodoContent from "./Home/TodoContent";
 import TodoProfile from "./Home/TodoProfile";
 
 import FirstVisitHome from "./Home/FirstVisitHome";
-import Recommendation from "./Home/Recommendation";
 
 // Add Plant
 import AddLocationList from "./AddPlant/AddLocationList";
@@ -44,9 +43,10 @@ import MyPostsHeader from "./MyPage/Setting/MyPostsHeader";
 import MyPostsPostList from "./MyPage/MyPostsPostList";
 
 import SettingHeader from "./MyPage/Setting/SettingHeader";
+import DeactivationAgreement from "./MyPage/Setting/DeactivationAgreement";
 
 export { TodoContent, TodoProfile, HomeHeader, HomeMyplant,
-    FirstVisitHome,Recommendation,
+    FirstVisitHome,
     AddLocationList, AddClassList, AddPlantList,
     PlantCardProfile, PlantCardFeed,
     CommPost, CommPostList,
@@ -57,5 +57,5 @@ export { TodoContent, TodoProfile, HomeHeader, HomeMyplant,
     MyPlantsHeader, MyPlantsList, MyPlants, 
     EditPlantHeader, EditPlantBody,
     MyPostsHeader, MyPostsPostList,
-    SettingHeader,
+    SettingHeader, DeactivationAgreement,
  };

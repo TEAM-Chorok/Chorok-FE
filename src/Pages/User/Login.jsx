@@ -30,7 +30,7 @@ const Login = () => {
             {/* 로고 */}
             <Image src="sample.jpeg" alt="logo"/>
           </InnerDiv>
-          <InnerDiv>
+          <InnerDiv style={{marginBottom:"10px"}}>
             <form>
               <Input _onChange={(e)=>setUserEmail(e.target.value)} placeholder="이메일(아이디)" type="email" name="user_id" padding="0px 0px 0px 20px" height="52px"/>
               <Input _onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="비밀번호" name="user_pwd" padding="0px 0px 0px 20px" height="52px"/>
@@ -45,10 +45,10 @@ const Login = () => {
             </div>
             <Button variant='contained' 
               onClick={()=>login()}
-              style={{display:"block", margin:"20px auto", width:"282px", height: "38px", backgroundColor:"#5A916F", borderRadius:"50px", boxShadow:"none"}}>로그인</Button>
+              style={{display:"block", margin:"20px auto 0px auto", width:"282px", height: "38px", backgroundColor:"#5A916F", borderRadius:"50px", boxShadow:"none"}}>로그인</Button>
           </InnerDiv>
           
-          <InnerDiv>
+          <InnerDiv style={{marginTop:"0px"}}>
             <Button variant='contained' 
             style={{display:"block", margin:"10px auto", width:"282px", height: "38px", backgroundColor:"#FADE86", borderRadius:"50px", color:"#392020", boxShadow:"none"}}>KaKao 계정으로 로그인</Button>
             <Button variant='contained' 
