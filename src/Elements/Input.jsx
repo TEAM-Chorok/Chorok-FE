@@ -16,6 +16,7 @@ const Input = (props) => {
       margin,
       padding,
       border,
+      value,
       name,
       defaultValue,
   } = props;
