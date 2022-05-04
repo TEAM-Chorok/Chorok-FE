@@ -19,6 +19,7 @@ const Input = (props) => {
     border,
     name,
   } = props;
+  
   const styles = {
     width,
     height,
