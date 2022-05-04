@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { AddPlantList, Planterior, SearchHeader } from "../../Components";
+import { AddPlantList, Planterior, SearchPageHeader } from "../../Components";
 
 import { Container, Grid, Image, Text } from "../../Elements";
 
@@ -21,7 +21,7 @@ const Search = () => {
     <React.Fragment>
       <Container>
         <Grid width="100%">
-          <SearchHeader />
+          <SearchPageHeader />
         </Grid>
 
         <TabMenu>

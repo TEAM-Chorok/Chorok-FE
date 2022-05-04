@@ -3,12 +3,13 @@ import styled from "styled-components";
 
 const Image = (props) => {
 
-    const {type, size, imgUrl, margin} = props;
+    const {type, size, imgUrl, margin, borderRadius} = props;
 
     const styles = {
         margin: margin,
         size: size,
         imgUrl: imgUrl,
+        borderRadius: borderRadius,
     };
 
 
@@ -58,7 +59,7 @@ const Square = styled.div`
     height: ${(props) => props.size};
 
     border: ${(props) => props.imgUrl? "none" : "1px solid #ccc"};
-    border-radius: 5px;
+    border-radius: ${(props) => props.borderRadius};
 
     background-image: url("${(props) => props.imgUrl}");
     background-size: cover;
@@ -80,7 +81,6 @@ const Planterior = styled.div`
 `
 
 
-
 const Circle = styled.div`
     flex: none;
     
@@ -90,7 +90,7 @@ const Circle = styled.div`
     height: ${(props) => props.size};
 
     border: ${(props) => props.imgUrl? "none" : "1px solid #ccc"};
-    border-radius: ${(props) => props.size};
+    border-radius: 100px;
 
     background-image: url("${(props) => props.imgUrl}");
     background-size: cover;

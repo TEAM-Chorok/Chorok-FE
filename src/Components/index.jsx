@@ -19,22 +19,37 @@ import BottomSheet from "./AddPlant/BottomSheet";
 import PlantCardProfile from "./PlantCard/PlantCardProfile";
 import PlantCardFeed from "./PlantCard/PlantCardFeed";
 
-
 // Search(planterior)
 // 식물도감탭은 식물 추가 flow의 AddPlant 페이지로 처리했습니다!
 import PlanteriorDetailContents from "./Search/Planterior/PlanteriorDetailContents";
 import PlanteriorDetailComments from "./Search/Planterior/PlanteriorDetailComments";
-import SearchHeader from "./Search/SearchHeader";
+import SearchPageHeader from "./Search/SearchHeader";
 import PlanteriorList from "./Search/Planterior/PlanteriorList";
 import LabelingTestLink from "./Search/Planterior/LabelingTestLink";
 import RecommendPlant from "./Search/Planterior/RecommendPlant"
 
 import Planterior from "./Search/Planterior";
 
+
+import CommPostList from "./Community/CommPostList";
+import CommPost from "./Community/CommPost";
+
+import SearchHeader from "./SearchHeader";
+
+import MyPage from "../Pages/MyPage/MyPage";
+import MyPageHeader from "./MyPage/MyPageHeader";
+import MyCategoryBar from "./MyPage/MyCategoryBar";
+
+import SettingHeader from "./MyPage/SettingHeader";
+
 export {
     PlantProfile,
     TodoContent, TodoProfile, HomeHeader, HomeMyplant,
     AddLocationList, AddClassList, AddPlantList, BottomSheet, 
     PlantCardProfile, PlantCardFeed, 
-    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, SearchHeader, PlanteriorList, LabelingTestLink, RecommendPlant,
+    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, SearchPageHeader, PlanteriorList, LabelingTestLink, RecommendPlant,
+    CommPost, CommPostList,
+    SearchHeader,
+    MyPage, MyPageHeader, MyCategoryBar, 
+    SettingHeader,
 };

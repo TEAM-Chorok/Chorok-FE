@@ -7,7 +7,7 @@ import { IoSearch } from "react-icons/io5";
 
 // 탐색탭 헤더부분(검색창) 컴포넌트
 
-const SearchHeader = () => {
+const SearchPageHeader = () => {
 
   return (
     <React.Fragment>
@@ -33,4 +33,4 @@ const InputWrapper = styled.div`
 `
 
 
-export default SearchHeader;
+export default SearchPageHeader;
