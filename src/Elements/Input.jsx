@@ -36,7 +36,6 @@ const Input = (props) => {
           {...styles}
           placeholder={placeholder}
           onChange={_onChange}
-          value={value}
         />
       </React.Fragment>
     );
@@ -56,18 +55,17 @@ const Input = (props) => {
   );
 }
 Input.defaultProps = {
-  label: false,
+  label: "",
   type: "text",
   _onChange: () => {},
   display: "block",
   margin: "10px auto",
   padding: "5px 0px 5px 5px",
-  value: "",
   width: "320px",
   height: "40px",
   border: "1px solid darkgrey",
   borderRadius: "50px",
-  name: false,
+  name: "",
   defaultValue: null,
 }
 const Inputs = styled.input`
