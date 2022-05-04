@@ -14,12 +14,15 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.26.1",
     "connected-react-router": "6.8.0",
+    "global": "^4.4.0",
     "history": "4.10.1",
     "immer": "^9.0.12",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
+    "mkcert": "^1.5.0",
     "moment": "^2.29.3",
     "react": "^18.0.0",
+    "react-calendar": "^3.7.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.3.1",
     "react-modal": "^3.14.4",
@@ -34,7 +37,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set HTTPS=true&&set SSL_CRT_FILE=C:/Windows/System32/cert.crt&&set SSL_KEY_FILE=C:/Windows/System32/cert.key&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
