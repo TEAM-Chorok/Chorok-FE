@@ -22,7 +22,7 @@ function App() {
   return (
     <React.Fragment>
 
-<Route path="/" exact component={Login} />
+        <Route path="/" exact component={Login} />
         <Route path="/signup" exact component={SignUp} />
 
         <Route path="/findpwd" exact component={FindPwd} />
@@ -35,9 +35,7 @@ function App() {
 
         <Route path="/home" exact component={Home} />
 
-        <Route path="/add" exact component={AddLocation} />
-        <Route path="/add/:location" exact component={AddClass} />
-        <Route path="/add/:location/list" exact component={AddPlant} />
+        <Route path="/add" exact component={AddPlant} />
 
       <Route path="/plant/:plantname" exact component={PlantCard} />
 
@@ -46,7 +44,7 @@ function App() {
       <Route path="/search" exact component={Search} />
       <Route path="/photo/:photoId" exact component={PlanteriorDetail} />
 
-      <Route path="/pagetest" exact component={Test} />
+      <Route path="/test" exact component={Test} />
 
       <Route path="/community" exact component={Community} />
 

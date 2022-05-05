@@ -8,30 +8,13 @@ import { Button, Grid, Image, Text } from '../../Elements';
 const PlantCardFeed = () => {
   return (
     <React.Fragment>
-      <Grid margin="auto">
-        <Image type="square" size="327px" />
-      </Grid>
-      <ImageXscroll>
-        <Image type="square" size="72px" margin="0 10px 0 0" />
-        <Image type="square" size="72px" margin="0 10px 0 0" />
-        <Image type="square" size="72px" margin="0 10px 0 0" />
-        <Image type="square" size="72px" margin="0 10px 0 0" />
-        <Image type="square" size="72px" margin="0 10px 0 0" />
-        <Image type="square" size="72px" margin="0 10px 0 0" />
-      </ImageXscroll>
+      <Grid height="400px"/>
 
     </React.Fragment>
   );
 }
 
-const ImageXscroll = styled.div`
-  display: flex;
-  margin: 10px auto;
-  
-  width: 327px;
 
-  overflow-x: scroll;
-`
 
 
 export default PlantCardFeed;

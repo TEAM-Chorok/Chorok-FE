@@ -25,7 +25,6 @@ import PlantCardFeed from "./PlantCard/PlantCardFeed";
 // 식물도감탭은 식물 추가 flow의 AddPlant 페이지로 처리했습니다!
 import PlanteriorDetailContents from "./Search/Planterior/PlanteriorDetailContents";
 import PlanteriorDetailComments from "./Search/Planterior/PlanteriorDetailComments";
-import SearchPageHeader from "./Search/SearchHeader";
 import PlanteriorList from "./Search/Planterior/PlanteriorList";
 import LabelingTestLink from "./Search/Planterior/LabelingTestLink";
 import RecommendPlant from "./Search/Planterior/RecommendPlant"
@@ -63,15 +62,22 @@ import MyPostsPostList from "./MyPage/MyPostsPostList";
 import SettingHeader from "./MyPage/Setting/SettingHeader";
 import DeactivationAgreement from "./MyPage/Setting/DeactivationAgreement";
 
+
+// 기타 모듈화 컴포넌트
+// 타이틀 + 검색창 헤더
+import PlantSearchHeader from "./PlantSearchHeader";
+// 탭바
+import Tabbar from "./Tabbar";
+
+
 export {
     FirstVisitHome,
     PlantProfile,
     TodoContent, TodoProfile, HomeHeader, HomeMyplant,
     AddLocationList, AddClassList, AddPlantList, BottomSheet, 
     PlantCardProfile, PlantCardFeed, 
-    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, SearchPageHeader, PlanteriorList, LabelingTestLink, RecommendPlant,
+    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, LabelingTestLink, RecommendPlant,
     CommPost, CommPostList,
-    SearchHeader,
     MyPageHeader, MyCategoryBar, MyPagePost,
     MyPicturesPostList, MyPicturesHeader, 
     ScrapPicturesHeader, ScrapPicturesPostList, 
@@ -79,5 +85,7 @@ export {
     EditPlantHeader, EditPlantBody,
     MyPostsHeader, MyPostsPostList,
     SettingHeader, DeactivationAgreement,
+    PlantSearchHeader, SearchHeader, Tabbar,
+    
 };
 

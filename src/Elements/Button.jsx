@@ -1,7 +1,7 @@
 import React from "react";
 import { HiPlus } from "react-icons/hi";
 import styled from "styled-components";
-
+import Text from "./Text";
 
 const Button = (props) => {
     const {
@@ -20,6 +20,7 @@ const Button = (props) => {
         _value,
         type,
         borderRadius,
+        checked,
       } = props;
     
       const styles = {
@@ -34,7 +35,7 @@ const Button = (props) => {
         border,
         bold,
         borderRadius,
-
+        checked,
       };
 
       
@@ -77,15 +78,37 @@ const Button = (props) => {
       if(type === "filtersizing") {
         return (
           <React.Fragment>
-            <FilterSizingButton {...styles} onClick={_onClick}>{children}</FilterSizingButton>
+            <FilterSizingButton {...styles} onClick={_onClick}>
+              {children}
+            </FilterSizingButton>
           </React.Fragment>
+        )
+      }
+
+      if(type === "basic") {
+        return (
+        <React.Fragment>
+          <BasicGreenButton {...styles} onClick={_onClick}>
+              {children}
+          </BasicGreenButton>
+        </React.Fragment>
+        )
+      }
+
+      if(type === "tran") {
+        return (
+        <React.Fragment>
+          <TransparentButton {...styles} onClick={_onClick}>
+              {children}
+          </TransparentButton>
+        </React.Fragment>
         )
       }
 
     return (
         <React.Fragment>
             <BasicButton {...styles} onClick={_onClick} value={_value}>
-            {children}
+              {children}
             </BasicButton>
         </React.Fragment>
         );
@@ -103,6 +126,7 @@ Button.defaultProps = {
     bold: false,
     border: null,
     children: null,
+    checked: false,
 }
 const BasicButton = styled.button`
   width: ${(props) => props.width};
@@ -111,7 +135,7 @@ const BasicButton = styled.button`
   ${(props) => (props.margin ? `margin:${props.margin};` : "")}
   padding: ${(props) => props.padding};
   border: ${(props) => (props.border ? `${props.border};` : "1px solid #bbb")};
-  border-radius: ${(props) => props.borderRadius};;
+  border-radius: ${(props) => props.borderRadius};
   background-color: ${(props) => props.backgroundColor};
   box-sizing: border-box;
 
@@ -141,10 +165,11 @@ const PlusButton = styled.button`
 `;
 
 const FloatLongButton = styled.button`
-  position: absolute;
-  bottom: 30px;
+  position: fixed;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
 
-  width: 250px;
   height: 65px;
 
   border: none;
@@ -152,20 +177,18 @@ const FloatLongButton = styled.button`
 
   color: #fff;
   background: #667080;
-
 `;
 
 const FilterButton = styled.button`
-  font-family: 'SUIT-Regular';
-  margin-left: 5px;
+  margin-right: 5px;
+  padding: 4px 12px;
+  ${'' /* width: fit-content; */}
+  ${'' /* height: 25px; */}
 
-  width: fit-content;
-  height: 25px;
-
-  border: 1px solid #323232;
+  border: ${(props) => (props.checked ? "1px solid #0AAF42" : "1px solid #E0E0E0")};
   border-radius: 25px;
 
-  background: none;
+  background: ${(props) => (props.checked ? "rgba(222, 251, 230, 0.5)" : "none")};
 
   &:hover {
     background: #eee;
@@ -173,12 +196,10 @@ const FilterButton = styled.button`
 `;
 
 const FilterLongButton = styled.button`
-  font-family: 'SUIT-Regular';
-
-  width: 100%;
-  height: 50px;
+  width: 172px;
+  height: 40px;
   
-  border: 1px solid #878D96;
+  border: 1px solid #45D17D;
   border-radius: 10px;
   background: #fff;
 
@@ -188,10 +209,8 @@ const FilterLongButton = styled.button`
 `;
 
 const FilterSizingButton = styled.button`
-  font-family: 'SUIT-Regular';
-
   width: ${(props) => props.width};
-  height: ${(props) => props.height};;
+  height: ${(props) => props.height};
   
   border: 1px solid #878D96;
   border-radius: 20px;
@@ -202,4 +221,24 @@ const FilterSizingButton = styled.button`
   }
 `;
 
-    export default Button;
+const BasicGreenButton = styled.button`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  
+  border: none;
+  border-radius: ${(props) => props.height};
+  background: #45D17D;
+  
+`
+
+const TransparentButton = styled.button`
+  box-sizing: border-box;
+
+  width: fit-content;
+  height: fit-content;
+
+  border: none;
+  background: transparent;
+`
+
+export default Button;

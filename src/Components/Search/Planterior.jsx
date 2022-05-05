@@ -14,7 +14,7 @@ const Planterior = () => {
         <Grid width="100%">
           <LabelingTestLink />
         </Grid>
-        <Grid>
+        <Grid width="100%">
           <RecommendPlant/>
         </Grid>
         <Grid width="100%">

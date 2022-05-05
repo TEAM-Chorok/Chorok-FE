@@ -17,6 +17,7 @@ const logIn = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, () => ({ }));
 const findPassword = createAction(FIND_PWD, (user) => ({}));
 const changePassword = createAction(CHANGE_PWD, (user) => ({}));
+
 // 초기값
 const initialState = {
   username: null,

@@ -55,3 +55,24 @@ export const mainAPI = {
   // To-Do 완료하기
   // todoChecked:
 }
+
+// 탐색페이지 관련 API
+export const searchAPI = {
+  // 식물도감 필터
+  plantFiltering: (filterData) => axios.post(`url`, filterData, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+    }
+  }),
+  getPlanteriorList: (placeCode) => axios.get(`url`, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+    }
+  }),
+  planteriorFiltering: (placeCode) => axios.get(`url`, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+    }
+  }),
+
+}

@@ -85,15 +85,27 @@ const Inputs = styled.input`
 
 const SearchInput = styled.input`
   font-family: 'SUIT-Regular';
+  font-size: 14px;
+  letter-spacing: 0.25px;
+
   box-sizing: border-box;
-  padding: 10px;
+  padding: 0 16px 0 44px;
+  
   width: ${(props) => props.width};
   height: 40px;
+  
   border: none;
   border-radius: 30px;
-  background: #DDE1E6;
+  background: #F7F8FA;
+  
   &:focus {
     outline: none;
+  }
+  
+  &::placeholder {
+    color: #6F6F6F;
+    font-size: 14px;
+    letter-spacing: 0.25px;
   }
 `
 

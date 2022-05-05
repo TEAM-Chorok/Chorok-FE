@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Image, Text } from "../../Elements";
+import { Grid, Image, Input, Text } from "../../Elements";
 import { IoIosArrowForward } from "react-icons/io";
 import { useHistory } from "react-router-dom";
 import { BottomSheet } from "..";
@@ -19,9 +19,6 @@ const AddPlantList = () => {
   
   return (
     <React.Fragment>
-    
-      <BottomSheet/>
-          
 
       <Grid is_flex _onClick={openPlantCard} width="100%">
         <Grid margin="10px 0">

@@ -12,13 +12,11 @@ const PlantCard = () => {
     <React.Fragment>
       <Container>
 
-        <PlantCardProfile/>
+        <PlantCardProfile />
         <PlantCardFeed />
-
         <BtnBox>
           <Button type="longfloat">내 식물에 추가하기</Button>
         </BtnBox>
-        
       </Container>
     </React.Fragment>
   );
@@ -26,8 +24,6 @@ const PlantCard = () => {
 
 
 const BtnBox = styled.div`
-  margin: auto;
-  width: 250px;
 `
 
 export default PlantCard;

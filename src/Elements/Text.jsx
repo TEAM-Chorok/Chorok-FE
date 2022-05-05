@@ -108,13 +108,14 @@ Text.defaultProps = {
   children: "",
   bold: false,
   align: "",
-  color: "black",
+  color: "#262626",
   display: "unset",
   line: "",
   margin: "none",
 }
 
 const P_L = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -128,6 +129,7 @@ const P_L = styled.p`
 `
 
 const P_M = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -141,6 +143,7 @@ const P_M = styled.p`
 `
 
 const P = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -157,6 +160,7 @@ const P = styled.p`
 `
 
 const P_XS = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -170,6 +174,7 @@ const P_XS = styled.p`
 `
 
 const H5 = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -183,6 +188,7 @@ const H5 = styled.p`
 `
 
 const H6 = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -196,6 +202,7 @@ const H6 = styled.p`
 `
 
 const LARGE = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -209,6 +216,7 @@ const LARGE = styled.p`
 `
 
 const BASE = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -220,9 +228,12 @@ const BASE = styled.p`
   line-height: ${(props) => props.line};
   letter-spacing: 0.15px;
   color: ${(props) => props.color};
+
+  transition: 0.2s;
 `
 
 const SMALL = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -237,6 +248,7 @@ const SMALL = styled.p`
 `
 
 const XSMALL = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -251,6 +263,7 @@ const XSMALL = styled.p`
 `
 
 const XXSMALL = styled.p`
+  font-family: 'SUIT-Regular';
   display: ${(props) => props.display};
 
   margin: ${(props) => props.margin};
@@ -263,7 +276,6 @@ const XXSMALL = styled.p`
   letter-spacing: 0.4px;
   color: ${(props) => props.color};
 `
-
 
 
 export default Text;

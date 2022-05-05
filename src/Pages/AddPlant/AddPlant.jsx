@@ -1,8 +1,6 @@
 import React from "react";
-import { AddPlantList, BottomSheet } from "../../Components";
-import { Container, Grid, Text } from "../../Elements";
-import styled from "styled-components";
-
+import { AddPlantList, BottomSheet, PlantSearchHeader } from "../../Components";
+import { Container, Grid, Input, Text } from "../../Elements";
 
 
 const AddPlant = () => {
@@ -10,10 +8,9 @@ const AddPlant = () => {
   return (
     <React.Fragment>
       <Container>
-        <Grid height="50px" />
-        <Grid>
-          <Text size="M">허브</Text>
-        </Grid>
+      
+        <PlantSearchHeader title="원하는 식물을 찾아보세요" size="large"/>
+
         <Grid margin="15px 0">
 
             <BottomSheet/>
