@@ -35,6 +35,9 @@ import Planterior from "./Search/Planterior";
 import CommPostList from "./Community/CommPostList";
 import CommPost from "./Community/CommPost";
 
+import AddQuestion from "./Community/AddQuestion";
+import AddPlantDairy from "./Community/AddPlantDairy";
+
 import SearchHeader from "./SearchHeader";
 
 // My Page
@@ -77,7 +80,7 @@ export {
     AddLocationList, AddClassList, AddPlantList, BottomSheet, 
     PlantCardProfile, PlantCardFeed, 
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, LabelingTestLink, RecommendPlant,
-    CommPost, CommPostList,
+    CommPost, CommPostList, AddQuestion, AddPlantDairy,
     MyPageHeader, MyCategoryBar, MyPagePost,
     MyPicturesPostList, MyPicturesHeader, 
     ScrapPicturesHeader, ScrapPicturesPostList, 
@@ -86,6 +89,5 @@ export {
     MyPostsHeader, MyPostsPostList,
     SettingHeader, DeactivationAgreement,
     PlantSearchHeader, SearchHeader, Tabbar,
-    
 };
 

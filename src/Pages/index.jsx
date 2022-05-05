@@ -26,6 +26,7 @@ import Search from "./Search/Search";
 import PlanteriorDetail from "./Search/PlanteriorDetail";
 
 import Community from "./Community/Community";
+import AddPost from "./Community/AddPost";
 
 //My Page
 import MyPage from "./MyPage/MyPage";
@@ -49,7 +50,7 @@ export { Login, SignUp,
     AddLocation, AddClass, AddPlant,
     PlantCard,
     Search, PlanteriorDetail,
-    Community,
+    Community, AddPost,
     MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage, EditPlant, MyPostsPage,
     Setting, DeactivateAccount,
     Test,

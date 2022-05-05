@@ -15,6 +15,7 @@ const SignUp = () => {
   const [nextPage, setNextPage] = React.useState(true);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [passwordChk, setPasswordChk] = React.useState("");
   const [profileImgUrl, setProfileImageUrl] = React.useState("");
   const [nickname, setNickname] = React.useState("");
   const [preview, setPreview] = React.useState("sample.jpeg");
@@ -33,16 +34,40 @@ const SignUp = () => {
   const reader = new FileReader();
   const encodeFileToBase64 = (fileBlob) => {
     reader.readAsDataURL(fileBlob);
-    return new Promise((reseolve) => {
+    return new Promise(() => {
       reader.onload = () => {
         setPreview(reader.result);
       }
     })
   }
+  //email& 비밀번호 정규식  
+  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
+
+  //콘솔 대신 input창 아래 혹은 상단에 표시
+  const emailCheck = (username) => {
+    return emailRegEx.test(username);
+  }
+  const passwordCheck = (password) => {
+    if(password.match(passwordRegEx)===null) {
+      console.log('비밀번호 형식을 확인해주세요');
+      return;
+    }else{
+      console.log('비밀번호 형식이 맞아요');
+    }
+  }
+  const passwordDoubleCheck = (password, passwordChk) => {
+    if(password !== passwordChk){
+      console.log('비밀번호가 다릅니다.');
+      return;
+    }else{
+      console.log('비밀번호가 동일합니다');
+    }
+  }
 
   const signUp = () => {
     // 나중에 여기서 dispatch해서 넘겨줄것
-    console.log(username, password, profileImgUrl, nickname); 
+    console.log(username, password, passwordChk, profileImgUrl, nickname); 
     //환영 페이지 
     setTimeout(() => {
       setLoading(true)
@@ -76,14 +101,24 @@ const SignUp = () => {
         {nextPage ? 
           <SingUpPage>
               <Text margin="88px 0px 32px 12px" fontSize="20px" display="block" bold>반가워요! 이메일과 비밀번호를 <br />입력해주세요. 😀</Text>
-              <Input _onChange={(e)=>setUsername(e.target.value)} placeholder="이메일(아이디)" name="signup_id" type="email" 
+              <Input 
+              _onChange={(e)=>{setUsername(e.target.value); 
+                              emailCheck(e.target.value)}} 
+              placeholder="이메일(아이디)" name="signup_id" type="email" 
               display="inline-block"  margin="10px 10px 10px auto" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB"></Input>
-              <Button style={{position:"absolute", top:"31%", right:"15px", color:"#0AAF42", fontSize:"12px", height:"40px"}} variant='text'>중복확인</Button>
+              <Button 
+              style={{position:"absolute", top:"31%", right:"15px", color:"#0AAF42", fontSize:"12px", height:"40px"}} variant='text'>중복확인</Button>
               {/* 중복확인 후에 아래 텍스트 출력 */}
               <Text display="none">사용가능한 이메일입니다.</Text>
-              <Input _onChange={(e)=>setPassword(e.target.value)} placeholder="비밀번호" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB"
+              <Input 
+              _onChange={(e)=>{setPassword(e.target.value); 
+                              passwordCheck(e.target.value)}} 
+              placeholder="비밀번호" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB"
               margin="32px 0px 0px 0px"></Input>
-              <Input placeholder="비밀번호 확인" type="password" name="signup_pwd_check" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB"></Input>
+              <Input 
+              _onChange={(e)=>{setPasswordChk(e.target.value); 
+                              passwordDoubleCheck(password, e.target.value)}} 
+              placeholder="비밀번호 확인" type="password" name="signup_pwd_check" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB"></Input>
               <Text fontSize="0.7em" color="grey">비밀번호는 영문 대소문자, 숫자를 혼합하여 8~20자로 입력해주세요</Text>
               <Button style={{display:"block", margin:"95px auto auto auto", width:"150px", height:"40px", boxShadow:"none", backgroundColor:"#F8F8F8", color:"#D5D8DB", borderRadius:"50px"}} variant='contained'
               onClick={() => {showNextPage()}}>다음으로</Button>

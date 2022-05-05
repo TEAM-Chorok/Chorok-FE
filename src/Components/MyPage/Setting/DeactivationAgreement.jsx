@@ -12,25 +12,13 @@ const DeactivationAgreement =() => {
 
 
     const checkHide = (e) => {
-        if(hideAccount === false) {
-            setHideAccount(true);
-        }else{
-            setHideAccount(false);
-        }
+        setHideAccount(!hideAccount);
     }
     const checkRestore = (e) => {
-        if(restore === false) {
-            setRestore(true);
-        }else{
-            setRestore(false);
-        }
+        setRestore(!restore);
     }
     const checkDisconnect = (e) => {
-        if(disconnect === false) {
-            setDisconnect(true);
-        }else{
-            setDisconnect(false);
-        }
+        setDisconnect(!disconnect);
     }
     const deactivate = () => {
         console.log("계정 비활성화 시도");

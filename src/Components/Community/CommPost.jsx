@@ -8,7 +8,7 @@ const CommPost = () => {
 
     return (
         <React.Fragment>
-            <Grid key={1} width="100%">
+            <Grid width="100%">
                 <Grid width="100%" position="relative" >
                     <Grid><Text fontSize="0.7em" color="grey">카테고리</Text></Grid>
                     <Grid position="absolute" top="0px" right="15px"><Text fontSize="0.7em" color="grey">n시간 전</Text></Grid>

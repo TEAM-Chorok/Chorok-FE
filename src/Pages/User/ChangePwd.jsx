@@ -12,6 +12,9 @@ const ChangePwd = (props) => {
   const newPwdRef = React.useRef("");
   const newPwdCheckRef = React.useRef("");
 
+  //비밀번호 정규식
+  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
+
   useEffect(() => {
     if(newPwdCheckRef === "" || newPwdRef === ""){
       alert('모든 칸을 채워주세요!');
@@ -53,8 +56,8 @@ const ChangePwd = (props) => {
           </Grid>
         </Container>
       </React.Fragment>
-    );
-  }
+  );
+}
   const Header = styled.div`
   width: 100%;
   height: 20%;
