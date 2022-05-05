@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "../../Elements";
-import{ CommPostList, SearchHeader } from "../../Components/";
+import{ CommPostList, SearchHeader } from "../../Components";
 
 const Community = () => {
 

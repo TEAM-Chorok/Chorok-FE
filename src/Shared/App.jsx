@@ -10,7 +10,10 @@ import {
   Community, MyPage, Setting,
   MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage,
   EditPlant, MyPostsPage, DeactivateAccount,
-  Test
+  Test,
+  AddQuestion,
+  AddPlantDairy,
+  AddPost
 } from '../Pages';
 
 
@@ -49,6 +52,7 @@ function App() {
       <Route path="/pagetest" exact component={Test} />
 
       <Route path="/community" exact component={Community} />
+      <Route path="/addpost" exact component={AddPost}/>
 
       <Route path="/mypage" exact component={MyPage} />
       <Route path="/myplants" exact component={MyPlantsPage} />

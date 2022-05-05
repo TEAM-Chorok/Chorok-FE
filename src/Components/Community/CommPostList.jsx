@@ -5,8 +5,8 @@ const CommPostList = () => {
 
     return (
         <React.Fragment>
-            <CommPost />
-            <CommPost />
+            <CommPost key={1} />
+            <CommPost key={2} />
         </React.Fragment>
     )
 

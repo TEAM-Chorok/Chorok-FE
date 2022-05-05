@@ -24,8 +24,7 @@ const ContainerBox = styled.div`
     padding: 20px;
     box-sizing: border-box;
 
-    width: 390px;
-    min-height: 844px;
+    width: 360px; 
 
     border: 1px solid #000;
     background: white;
