@@ -13,7 +13,7 @@ const TodoProfile = () => {
 
   // 식물 추가 flow로 
   const openAddPlant = () => {
-    history.push('/add');
+    history.push('/plant');
   }
 
   return (
