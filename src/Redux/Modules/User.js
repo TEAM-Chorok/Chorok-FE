@@ -13,21 +13,19 @@ const FIND_PWD = "FIND_PWD";
 const CHANGE_PWD = "CHANGE_PWD"
 
 // 액션 생성
-const logIn = createAction(SET_USER, (user) => ({ user }));
+const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, () => ({ }));
 const findPassword = createAction(FIND_PWD, (user) => ({}));
 const changePassword = createAction(CHANGE_PWD, (user) => ({}));
 
 // 초기값
 const initialState = {
-  username: null,
-  nickname: null,
+  user: null,
   isLogin: false,
 }
 const initialUser = {
   username: "",
   password: "",
-  passwordCheck : "",
   nickname : "",
   profileImgUrl: "",
 }
@@ -42,7 +40,9 @@ const logInDB = (userId, password) => {
         sessionStorage.setItem ("token", response.headers.authorization);
         //몇번째에 nickname이 딸려올려나
         localStorage.setItem ("nickname", response.headers.authorization.split(" ")[3]);
-        dispatch(logIn({})); //reducer에서 state 변경
+        dispatch(setUser({
+
+        })); //reducer에서 state 변경
         history.replace('/home');
       }).catch((error) => {
         console.log("logInDB : error", error.response);
@@ -50,15 +50,17 @@ const logInDB = (userId, password) => {
       });
   }
 };
-const signUpDb = (username, password, passwordCheck, nickname, profileImgUrl) => {
+const signUpDb = (username, password, nickname, profileImgUrl) => {
   return function (dispatch, getState, { history }) {
     userAPI
-      .signUp(username, password, passwordCheck, nickname, profileImgUrl)
+      .signUp(username, password, nickname, profileImgUrl)
       .then((res) => {
         //회원가입후 로그인을 유지하려면 토큰필요하지 않나? 그냥 다시 로그인페이지로 돌아갈것인지? 
         sessionStorage.setItem("token", res.headers.authorization);
         localStorage.setItem ("nickname", res.headers.authorization.split(" ")[3]);
-        dispatch(logIn({}));
+        dispatch(setUser({
+          
+        }));
         setTimeout(() => {
           history.replace('/home');
         }, 3000);
@@ -68,13 +70,38 @@ const signUpDb = (username, password, passwordCheck, nickname, profileImgUrl) =>
       })
   }
 }
+const kakaoLogInDB = (code) => {
+  return function (dispatch, getState, {history}){
+    userAPI
+      .kakaoLogIn(code)
+      .then((response) => {
+        console.log(response);
+        sessionStorage.setItem('Token', response.data.token);
+        localStorage.setItem('username', response.data.username);
+        dispatch(setUser({
+          username: response.data.username,
+          nickname: response.data.nickname,
+          profileImgUrl: response.data.profileImgUrl
+        }))
+        history.replace('/home');
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+        window.alert('로그인에 실패하였습니다. ')
+        window.replace('/');
+      })
+  }
+}
+
 const logOutDB  = () => {
   return function (dispatch, getState, { history }) {
     sessionStorage.removeItem("token");
+    localStorage.removeItem('username');
     dispatch(logOut());
     history.replace('/');
   }
 }
+
 const findPwdDB = (userName, userId) => {
   return function( dispatch, getState, {history} ) {
 
@@ -108,15 +135,11 @@ const changePwdDB = (tempPassword, password, passwordCheck) => {
 export default handleActions(
   {
     [SET_USER]: (state, action) => produce(state, (draft) => {
-      draft.userId = action.payload.userId;
-      draft.userName = action.payload.userName;
-      draft.nickname = action.payload.nickname;
+      draft.user = action.payload.user;
       draft.isLogin = true;
     }),
     [LOG_OUT]: (state, action) => produce(state, (draft) => {
-        draft.userId = null;
-        draft.userName = null;
-        draft.nickname = null;
+        draft.user = null;
         draft.isLogin = false;
     }),
   }, initialState
@@ -125,7 +148,8 @@ export default handleActions(
 
 
 const actionCreators = {
-  logIn,
+  setUser,
+  kakaoLogInDB,
   logInDB,
   logOutDB,
   findPwdDB,

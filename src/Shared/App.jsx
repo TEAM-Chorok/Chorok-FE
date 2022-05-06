@@ -3,7 +3,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import {
 
-  Login, Home, SignUp, ProfileSetting, Labeling,
+  Login, Home, SignUp, Kakao, ProfileSetting, Labeling,
   Recommendation, FindPwd, ChangePwd,
   AddPlants, SearchPlant, PlantCard,
   Search, PlanteriorDetail,
@@ -27,6 +27,8 @@ function App() {
 
         <Route path="/" exact component={Login} />
         <Route path="/signup" exact component={SignUp} />
+
+        <Route path="/auth/kakao/callback" component={Kakao} />
 
         <Route path="/findpwd" exact component={FindPwd} />
         <Route path="/changepwd" exact component={ChangePwd} />
