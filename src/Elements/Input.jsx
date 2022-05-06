@@ -78,7 +78,7 @@ const Inputs = styled.input`
     margin: ${(props) => props.margin};
     padding:${(props) => props.padding};
     &:focus {
-        border: 1px solid #333333;
+        outline: 1px solid #24A148;
     }
     defaultValue: ${(props) => props.defaultValue};
 `

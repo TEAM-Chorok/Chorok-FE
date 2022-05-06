@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import Container from '../../Elements/Container';
 import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
+import { KAKAO_AUTH_URL } from '../../Shared/OAuthKaKao';
 //1. JWT토큰 const isLogin  = dispatch(isLogin(sessionStorage.getItem('token')))
 //2. 소셜 로그인 (구글 로그인, 카카오로그인)
 const Login = () => {
@@ -49,7 +50,9 @@ const Login = () => {
           </InnerDiv>
           
           <InnerDiv style={{marginTop:"0px"}}>
-            <Button variant='contained' 
+            <Button 
+            href={KAKAO_AUTH_URL}
+            variant='contained' 
             style={{display:"block", margin:"10px auto", width:"282px", height: "38px", backgroundColor:"#FADE86", borderRadius:"50px", color:"#392020", boxShadow:"none"}}>KaKao 계정으로 로그인</Button>
             <Button variant='contained' 
             style={{display:"block", margin:"10px auto", width:"282px", height: "38px", backgroundColor:"#F2F4F8 ", borderRadius:"50px",  color:"#392020", boxShadow:"none"}}>Google 계정으로 로그인</Button>
