@@ -68,6 +68,7 @@ Input.defaultProps = {
   name: "",
   defaultValue: null,
 }
+
 const Inputs = styled.input`
     width: ${(props) => props.width};
     height: ${(props) => props.height};

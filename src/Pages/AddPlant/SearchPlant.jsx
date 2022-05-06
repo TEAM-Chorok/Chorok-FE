@@ -3,7 +3,7 @@ import { AddPlantList, BottomSheet, PlantSearchHeader } from "../../Components";
 import { Container, Grid, Input, Text } from "../../Elements";
 
 
-const AddPlant = () => {
+const SearchPlant = () => {
   
   return (
     <React.Fragment>
@@ -24,5 +24,5 @@ const AddPlant = () => {
 }
 
 
-export default AddPlant;
+export default SearchPlant;
 

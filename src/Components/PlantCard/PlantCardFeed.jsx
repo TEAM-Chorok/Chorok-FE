@@ -8,7 +8,7 @@ import { Button, Grid, Image, Text } from '../../Elements';
 const PlantCardFeed = () => {
   return (
     <React.Fragment>
-      <Grid height="400px"/>
+      <Grid height="1200px"/>
 
     </React.Fragment>
   );

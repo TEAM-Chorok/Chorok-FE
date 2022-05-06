@@ -5,7 +5,7 @@ import {
 
   Login, Home, SignUp, ProfileSetting, Labeling,
   Recommendation, FindPwd, ChangePwd,
-  AddLocation, AddClass, AddPlant, PlantCard,
+  AddPlants, SearchPlant, PlantCard,
   Search, PlanteriorDetail,
   Community, MyPage, Setting,
   MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage,
@@ -13,7 +13,7 @@ import {
   Test,
   AddQuestion,
   AddPlantDairy,
-  AddPost
+  AddPost,
 } from '../Pages';
 
 
@@ -38,33 +38,34 @@ function App() {
 
         <Route path="/home" exact component={Home} />
 
-        <Route path="/add" exact component={AddPlant} />
+        <Route path="/plant" exact component={SearchPlant} />
+        <Route path="/add" exact component={AddPlants} />
 
-      <Route path="/plant/:plantname" exact component={PlantCard} />
+        <Route path="/plant/:plantname" exact component={PlantCard} />
 
-      <Route path="/calendar" exact component={CalendarPage} />
+        <Route path="/calendar" exact component={CalendarPage} />
 
-      <Route path="/search" exact component={Search} />
-      <Route path="/photo/:photoId" exact component={PlanteriorDetail} />
+        <Route path="/search" exact component={Search} />
+        <Route path="/photo/:photoId" exact component={PlanteriorDetail} />
 
-      <Route path="/test" exact component={Test} />
+        <Route path="/test" exact component={Test} />
 
-      <Route path="/community" exact component={Community} />
-      <Route path="/addpost" exact component={AddPost}/>
+        <Route path="/community" exact component={Community} />
+        <Route path="/addpost" exact component={AddPost}/>
 
-      <Route path="/mypage" exact component={MyPage} />
-      <Route path="/myplants" exact component={MyPlantsPage} />
-      <Route path="/myplant/:id" exact component={EditPlant} />
-      <Route path="/mypictures" exact component={MyPicturesPage} />
-      <Route path="/scrap-plant" exact component={ScrapPlantsPage} />
-      <Route path="/scrap-picture" exact component={ScrapPicturesPage} />
+        <Route path="/mypage" exact component={MyPage} />
+        <Route path="/myplants" exact component={MyPlantsPage} />
+        <Route path="/myplant/:id" exact component={EditPlant} />
+        <Route path="/mypictures" exact component={MyPicturesPage} />
+        <Route path="/scrap-plant" exact component={ScrapPlantsPage} />
+        <Route path="/scrap-picture" exact component={ScrapPicturesPage} />
 
-      <Route path="/setting" exact component={Setting} />
-      <Route path="/setting/myposts" exact component={MyPostsPage} />
-      <Route path="/setting/profile" exact component={ProfileSetting} />
-      <Route path="/setting/changepwd" exact component={ChangePwd} />
-      <Route path="/setting/deactivation" exact component={DeactivateAccount} />
-    </React.Fragment>
+        <Route path="/setting" exact component={Setting} />
+        <Route path="/setting/myposts" exact component={MyPostsPage} />
+        <Route path="/setting/profile" exact component={ProfileSetting} />
+        <Route path="/setting/changepwd" exact component={ChangePwd} />
+        <Route path="/setting/deactivation" exact component={DeactivateAccount} />
+      </React.Fragment>
   );
 }
 

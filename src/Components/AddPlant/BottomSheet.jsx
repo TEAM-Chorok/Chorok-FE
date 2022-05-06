@@ -8,7 +8,10 @@ import { actionCreators as searchActions } from '../../Redux/Modules/Search';
 
 
 // 필터기능 관련 bottomsheet 컴포넌트
+// 리팩토링 예정입니다 ㅠ.ㅠ~!!
+
 export default function BottomSheet() {
+
   const dispatch = useDispatch();
 
   // 바텀시트 open/close 관련 state
@@ -30,6 +33,7 @@ export default function BottomSheet() {
     plantGrowthShapeCode : style, 
   };
   
+  // filter 항목 선택시 변경할 텍스트 (서버 연결시 삭제 예정!)
   const [spaceText, setSpaceText] = React.useState(null);
   const [levelText, setLevelText] = React.useState(null);
   const [typeText, setTypeText] = React.useState(null);
@@ -41,8 +45,6 @@ export default function BottomSheet() {
     plantTypeText : typeText,
     plantGrowthShapeText : styleText, 
   };
-  
-  console.log(filterTextData);
   
   // 바텀시트에서 보여줄 컴포넌트 세팅
   const [compNum, setCompNum] = React.useState(0);
@@ -62,6 +64,7 @@ export default function BottomSheet() {
     setCompNum(num)
   };
 
+  // 필터 데이터 서버로 전송 -> 필터링된 목록 조회
   const filterSubmit = () => {
     dispatch(searchActions.plantFilteringDB(filterData));
     console.log(filterData)
@@ -71,25 +74,25 @@ export default function BottomSheet() {
     <React.Fragment key={'bottom'}>
 
       <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
-        <Text size="small">전체</Text>
+        <Text bold size="small" color="#0AAF42">전체</Text>
       </Button>
       {levelText? 
         <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
-          <Text size="small">{levelText}</Text>
+          <Text bold size="small" color="#0AAF42">{levelText}</Text>
         </Button> : 
         <Button type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
           <Text size="small">난이도</Text>
         </Button>}
       {spaceText?
         <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 1)}>
-          <Text size="small">{spaceText}</Text>
+          <Text bold size="small" color="#0AAF42">{spaceText}</Text>
         </Button> : 
         <Button type="filter" _onClick={toggleDrawer('bottom', true, 1)}>
           <Text size="small">공간</Text>
         </Button>} 
       {typeText?
         <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 2)}>
-        <Text size="small">{typeText}</Text>
+        <Text bold size="small" color="#0AAF42">{typeText}</Text>
         </Button> :
         <Button type="filter" _onClick={toggleDrawer('bottom', true, 2)}>
           <Text size="small">종류</Text>
@@ -97,7 +100,7 @@ export default function BottomSheet() {
         }
       {styleText?
         <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 3)}>
-          <Text size="small">{styleText}</Text>
+          <Text bold size="small" color="#0AAF42">{styleText}</Text>
         </Button> :
         <Button type="filter" _onClick={toggleDrawer('bottom', true, 3)}>
           <Text size="small">특징</Text>

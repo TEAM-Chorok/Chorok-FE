@@ -17,9 +17,8 @@ import Home from "./Home";
 import PlantCard from "./PlantCard/PlantCard";
 
 // Add Plant
-import AddLocation from "./AddPlant/AddLocation";
-import AddClass from "./AddPlant/AddClass";
-import AddPlant from "./AddPlant/AddPlant";
+import AddPlants from "./AddPlant/AddPlants";
+import SearchPlant from "./AddPlant/SearchPlant";
 
 // 탐색페이지
 import Search from "./Search/Search";
@@ -47,7 +46,7 @@ export { Login, SignUp,
     FindPwd, ChangePwd, 
     Labeling, ProfileSetting,
     Home, Recommendation,
-    AddLocation, AddClass, AddPlant,
+    AddPlants, SearchPlant,
     PlantCard,
     Search, PlanteriorDetail,
     Community, AddPost,

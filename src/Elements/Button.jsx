@@ -164,11 +164,12 @@ const PlusButton = styled.button`
   }
 `;
 
+// 식물 추가 버튼
 const FloatLongButton = styled.button`
   position: fixed;
-  left: 24px;
-  right: 24px;
-  bottom: 24px;
+  left: 48px;
+  right: 48px;
+  bottom: 28px;
 
   height: 65px;
 
@@ -179,6 +180,7 @@ const FloatLongButton = styled.button`
   background: #667080;
 `;
 
+// 필터 선택 버튼
 const FilterButton = styled.button`
   margin-right: 5px;
   padding: 4px 12px;
@@ -195,6 +197,7 @@ const FilterButton = styled.button`
   }
 `;
 
+// 필터 내 항목 버튼 (long)
 const FilterLongButton = styled.button`
   width: 172px;
   height: 40px;
@@ -207,6 +210,7 @@ const FilterLongButton = styled.button`
     background: #ddd;
   }
 `;
+
 
 const FilterSizingButton = styled.button`
   width: ${(props) => props.width};
@@ -221,6 +225,7 @@ const FilterSizingButton = styled.button`
   }
 `;
 
+// 기본 녹색 버튼 
 const BasicGreenButton = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -231,6 +236,7 @@ const BasicGreenButton = styled.button`
   
 `
 
+// 텍스트만 보이는 버튼
 const TransparentButton = styled.button`
   box-sizing: border-box;
 

@@ -11,11 +11,12 @@ import TodoProfile from "./Home/TodoProfile";
 import FirstVisitHome from "./Home/FirstVisitHome";
 
 // Add Plant
-// 사라진 페이지가 있어서 나중에 다시 정리하게 될 것 같아요! 
-import AddLocationList from "./AddPlant/AddLocationList";
-import AddClassList from "./AddPlant/AddClassList";
 import AddPlantList from "./AddPlant/AddPlantList";
 import BottomSheet from "./AddPlant/BottomSheet";
+import SelectPlace from "./AddPlant/SelectPlace";
+import WritePlantProfile from "./AddPlant/WritePlantProfile";
+import AddDone from "./AddPlant/AddDone";
+
 
 // Plant Card
 import PlantCardProfile from "./PlantCard/PlantCardProfile";
@@ -71,13 +72,15 @@ import DeactivationAgreement from "./MyPage/Setting/DeactivationAgreement";
 import PlantSearchHeader from "./PlantSearchHeader";
 // 탭바
 import Tabbar from "./Tabbar";
+// alert 모달
+import Alert from "./Alert";
 
 
 export {
     FirstVisitHome,
     PlantProfile,
     TodoContent, TodoProfile, HomeHeader, HomeMyplant,
-    AddLocationList, AddClassList, AddPlantList, BottomSheet, 
+    AddPlantList, BottomSheet, SelectPlace, WritePlantProfile, AddDone,
     PlantCardProfile, PlantCardFeed, 
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, LabelingTestLink, RecommendPlant,
     CommPost, CommPostList, AddQuestion, AddPlantDairy,
@@ -88,6 +91,7 @@ export {
     EditPlantHeader, EditPlantBody,
     MyPostsHeader, MyPostsPostList,
     SettingHeader, DeactivationAgreement,
-    PlantSearchHeader, SearchHeader, Tabbar,
+    PlantSearchHeader, SearchHeader, Tabbar, Alert,
+
 };
 

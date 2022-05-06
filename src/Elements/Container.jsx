@@ -22,7 +22,7 @@ Container.defaultProps = {
 const ContainerBox = styled.div`
     position: relative;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 16px;
 
     width: 360px;
 

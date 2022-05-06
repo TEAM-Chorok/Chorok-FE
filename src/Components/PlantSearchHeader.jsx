@@ -5,7 +5,9 @@ import { Grid, Input, Text } from "../Elements";
 import { IoSearch } from "react-icons/io5";
 
 
-// 헤더(검색창) 컴포넌트
+// 헤더 컴포넌트
+// 호출시 다음과 같이 작성해주시면 됩니다!
+// <PlantSearchHeader title="상단에 표시될 문구" size="상단 문구 사이즈(ex_h5, base...)"/>
 
 const PlantSearchHeader = (props) => {
 
@@ -25,6 +27,12 @@ const PlantSearchHeader = (props) => {
     </React.Fragment>
   )
 }
+
+PlantSearchHeader.defaultProps = {
+  title: "title",
+  size: "base",
+}
+
 
 const InputWrapper = styled.div`
   position: relative;

@@ -90,7 +90,7 @@ const Circle = styled.div`
     height: ${(props) => props.size};
 
     border: ${(props) => props.imgUrl? "none" : "1px solid #ccc"};
-    border-radius: 100px;
+    border-radius: ${(props) => props.size};
 
     background-image: url("${(props) => props.imgUrl}");
     background-size: cover;

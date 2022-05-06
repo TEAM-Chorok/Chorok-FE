@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Button, Grid, Image, Text } from "../../Elements";
 
+
+
 // BottomSheet에서 보여질 필터 관련 컴포넌트를 이 파일에 전부 묶어두었습니다~!
 
 // 난이도

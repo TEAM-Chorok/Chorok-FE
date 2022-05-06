@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { HomeMyplant, TodoContent, HomeHeader } from "../Components";
+import { HomeMyplant, TodoContent, HomeHeader, Tabbar } from "../Components";
 import { Container, Text } from "../Elements";
-
 
 
 // 메인 페이지 
@@ -15,7 +14,7 @@ const Home = () => {
   };
 
   // 보여줄 컴포넌트 선택하는 state
-  const [active, setActive] = React.useState(0);
+  const [compNum, setCompNum] = React.useState(0);
 
   return (
     <React.Fragment>
@@ -23,14 +22,9 @@ const Home = () => {
 
         <HomeHeader />
 
-        <TabMenu>
-          <ul>
-            <li onClick={() => { setActive(0) }}><Text bold>할 일</Text></li>
-            <li onClick={() => { setActive(1) }}><Text bold>내 식물</Text></li>
-          </ul>
-        </TabMenu>
+        <Tabbar tab1="할 일" tab2="내 식물" setCompNum={setCompNum} compNum={compNum}/>
 
-          {comp[active]}
+          {comp[compNum]}
       
       </Container>
     </React.Fragment>
