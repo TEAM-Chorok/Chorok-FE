@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 // modal alert창 컴포넌트입니다~! 
-// 내용에 맞춰 높이가 늘어나도록 세팅해놨습니다! >.<
+// 내용에 맞춰 높이가 늘어납니다! >.<
 //
 // 사용방법 
 // 1. 상위 컴포넌트에서 

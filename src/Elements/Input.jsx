@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Grid from "./Grid";
 import Text from "./Text";
 
 
@@ -27,6 +28,21 @@ const Input = (props) => {
       border,
       padding,
       borderRadius,
+  }
+
+  if (type === "basic") {
+    return (
+      <React.Fragment>
+        <Grid margin="4px">
+          <Text size="base">{label}</Text>
+        </Grid>
+        <BasicInput 
+          {...styles}
+          placeholder={placeholder}
+          onChange={_onChange}
+        />
+      </React.Fragment>
+    );
   }
 
   if (type === "search") {
@@ -69,6 +85,7 @@ Input.defaultProps = {
   defaultValue: null,
 }
 
+
 const Inputs = styled.input`
     width: ${(props) => props.width};
     height: ${(props) => props.height};
@@ -84,10 +101,38 @@ const Inputs = styled.input`
     defaultValue: ${(props) => props.defaultValue};
 `
 
+const BasicInput = styled.input`
+  font-family: 'SUIT-Regular';
+  font-size: 14px;
+  letter-spacing: 0.25px;
+  color: #262626;
+
+  box-sizing: border-box;
+  padding: 0 16px;
+  
+  width: ${(props) => props.width};
+  height: 40px;
+  
+  border: none;
+  border-radius: 30px;
+  background: #F7F8FA;
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &::placeholder {
+    color: #6F6F6F;
+    font-size: 14px;
+    letter-spacing: 0.25px;
+  }
+`
+
 const SearchInput = styled.input`
   font-family: 'SUIT-Regular';
   font-size: 14px;
   letter-spacing: 0.25px;
+  color: #262626;
 
   box-sizing: border-box;
   padding: 0 16px 0 44px;

@@ -74,6 +74,8 @@ import PlantSearchHeader from "./PlantSearchHeader";
 import Tabbar from "./Tabbar";
 // alert 모달
 import Alert from "./Alert";
+// 프로그래스바
+import ProgressBar from "./ProgressBar";
 
 
 export {
@@ -91,7 +93,7 @@ export {
     EditPlantHeader, EditPlantBody,
     MyPostsHeader, MyPostsPostList,
     SettingHeader, DeactivationAgreement,
-    PlantSearchHeader, SearchHeader, Tabbar, Alert,
+    PlantSearchHeader, SearchHeader, Tabbar, Alert, ProgressBar,
 
 };
 

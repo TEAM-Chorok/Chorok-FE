@@ -5,7 +5,7 @@ import { Grid, Input, Text } from "../Elements";
 import { IoSearch } from "react-icons/io5";
 
 
-// 헤더 컴포넌트
+// 검색창이 포함된 헤더 컴포넌트
 // 호출시 다음과 같이 작성해주시면 됩니다!
 // <PlantSearchHeader title="상단에 표시될 문구" size="상단 문구 사이즈(ex_h5, base...)"/>
 
