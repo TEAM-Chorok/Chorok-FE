@@ -17,7 +17,7 @@ const AddPlants = () => {
         }
         setCompNum(compNum+1);
     }
-    console.log("컴포넌트 넘버", compNum);
+    // console.log("컴포넌트 넘버", compNum);
 
     return (
         <React.Fragment>

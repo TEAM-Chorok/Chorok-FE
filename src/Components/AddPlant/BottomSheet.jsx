@@ -67,7 +67,7 @@ export default function BottomSheet() {
   // 필터 데이터 서버로 전송 -> 필터링된 목록 조회
   const filterSubmit = () => {
     dispatch(searchActions.plantFilteringDB(filterData));
-    console.log(filterData)
+    // console.log(filterData)
   };
 
   return (
