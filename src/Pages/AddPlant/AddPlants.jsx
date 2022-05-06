@@ -5,20 +5,24 @@ import { Button, Container, Grid, Text } from "../../Elements";
 
 const AddPlants = () => {
 
+    // 보여줄 컴포넌트 
     const comp = {
         0: <SelectPlace />,
         1: <WritePlantProfile />,
         2: <AddDone />,
     }
 
+    // 컴포넌트 넘버 관리
     const [compNum, setCompNum] = React.useState(0);
+    
+    // 다음 컴포넌트로 전환될 때마다 compNum 1씩 증가
+    // Object.keys(객체).length : 객체에 들어있는 프로퍼티의 갯수를 구함 (comp의 프로퍼티 갯수 3)
     const progressCount = () => {
         if(compNum===Object.keys(comp).length-1) {
             return;
         }
         setCompNum(compNum+1);
     }
-    // console.log("컴포넌트 넘버", compNum);
 
     return (
         <React.Fragment>
