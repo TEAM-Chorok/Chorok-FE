@@ -242,7 +242,7 @@ const TransparentButton = styled.button`
 
   width: fit-content;
   height: fit-content;
-
+  
   border: none;
   background: transparent;
 `

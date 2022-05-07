@@ -1,9 +1,9 @@
 import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Grid, Text } from "../../Elements";
+import styled from "styled-components";
+import { Grid, Image, Text } from "../../Elements";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
-
 
 // 투두페이지 헤더부분 (날씨)
 
@@ -40,18 +40,31 @@ const TodoHeader = () => {
 
   return (
     <React.Fragment>
-      <Grid height="80px">
-        <Text size="XS" color="#999">2022년 04월 25일 (월)</Text>
-        <br />
-        <Text bold margin="5px 0"> 강남구, 맑음 29℃</Text>
-        <br />
-        <Text size="XS" color="#999"> 최고 22℃ 최저 11℃</Text>
+      <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F4F7 68.85%, rgba(242, 244, 248, 0) 88.45%)">
+        <Grid width="100%" padding="16px">
+          <Text size="XS" color="#999">2022년 04월 25일 (월)</Text>
+          <br />
+          <Text bold margin="5px 0"> 강남구, 맑음 29℃</Text>
+          <br />
+          <Text size="XS" color="#999"> 최고 22℃ 최저 11℃</Text>
+        </Grid>
+        <Grid padding="16px">
+          <Img src="img/suncloud.png" />
+        </Grid>
       </Grid>
     </React.Fragment>
   );
 }
 
+const Img = styled.img`
+  height: 100px;
+`
+
+
 export default TodoHeader;
+
+
+
 
 
 

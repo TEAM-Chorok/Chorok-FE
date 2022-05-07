@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { HomeMyplant, TodoContent, HomeHeader, Tabbar } from "../Components";
+import { Grid } from "../Elements";
 import { Container, Text } from "../Elements";
-
 
 // 메인 페이지 
 const Home = () => {
@@ -18,38 +18,26 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <Container>
-
-        <HomeHeader />
-
-        <Tabbar tab1="할 일" tab2="내 식물" setCompNum={setCompNum} compNum={compNum}/>
-
+      <Container type="np">
+        <Box>
+          <HomeHeader />
+        </Box>
+        <Container>
+          <Grid padding="90px 16px 0 16px" width="100%">
+            <Tabbar tab1="할 일" tab2="내 식물" setCompNum={setCompNum} compNum={compNum} />
+          </Grid>
           {comp[compNum]}
-      
+        </Container>
       </Container>
     </React.Fragment>
   );
 }
 
+const Box = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+`
 
-const TabMenu = styled.div`
-  display: flex;
-  ul {
-    display: flex;
-    margin: auto;
-    padding: 0;
-    li {
-      transition: 0.2s;
-      box-sizing: border-box;
-      margin: 5px 30px;
-      padding: 5px 0;
-      width: 55px;
-      text-align: center;
-      list-style: none;
-      cursor: pointer;
-
-      }
-    }
-`;
 
 export default Home;

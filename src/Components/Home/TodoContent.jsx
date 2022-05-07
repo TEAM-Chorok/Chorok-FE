@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../Elements";
+import TodoContentBlock from "./TodoContentBlock";
 import TodoProfile from "./TodoProfile";
-
-
 // 투두페이지 할 일 목록 
 
 const TodoContent = () => {
@@ -20,7 +19,7 @@ const TodoContent = () => {
         </Grid>
       </Grid>
 
-      <TodoProfile/>
+      <TodoProfile />
 
       <TodoBox>
         <Grid margin="0 5px">
@@ -29,45 +28,32 @@ const TodoContent = () => {
 
         <Grid margin="5px 0" width="100%">
 
-          <ContentBox>
-            <Grid>
-              <Image type="circle" size="50px"/>
-            </Grid>
-            <Grid margin="0 20px">
-              <Text bold>물을 주는 날입니다.</Text><br/>
-              <Text size="XS">💦물조리개를 준비하세요!</Text>
-            </Grid>
-          </ContentBox>
+          <TodoContentBlock img="img/water.png">
+            <Text bold size="base">물 주기</Text><br />
+            <Text size="xsmall">마지막으로 물 준지 5일 지났어요.</Text>
+          </TodoContentBlock>
 
-          <ContentBox>
-            <Grid >
-              <Image type="circle" size="50px"/>
-            </Grid>
-            <Grid margin="0 20px" width="100%">
-              <Text bold>분갈이한지 약 70일이 지났어요.</Text><br/>
-              <Text size="XS">📏동동이의 키를 재볼까요?</Text>
-            </Grid>
-          </ContentBox>
+          <TodoContentBlock img="img/leaf.png">
+            <Text bold>잎 닦기</Text><br />
+            <Text size="XS">마지막으로 물 준지 24일 지났어요.</Text>
+          </TodoContentBlock>
 
-          </Grid>
-        </TodoBox>
 
-        <TodoBox>
+        </Grid>
+      </TodoBox>
+
+      <TodoBox>
+
         <Grid margin="0 5px" >
           <Text bold size="M">초록이</Text>
         </Grid>
-        <Grid margin="5px 0" width="100%">
-          <ContentBox>
-            <Grid>
-              <Image type="circle" size="50px"/>
-            </Grid>
-            <Grid margin="0 20px">
-              <Text bold>할 일이 없어요.</Text><br/>
-              <Text size="XS">🌿오늘은 지켜만 봐도 좋아요 :)</Text>
-            </Grid>
-          </ContentBox>
-          </Grid>
-        </TodoBox>
+
+        <TodoContentBlock img="img/water.png">
+          <Text bold size="base">물 주기</Text><br />
+          <Text size="xsmall">마지막으로 물 준지 5일 지났어요.</Text>
+        </TodoContentBlock>
+
+      </TodoBox>
 
     </React.Fragment>
   );
@@ -79,14 +65,14 @@ const ContentBox = styled.div`
   box-sizing: border-box;
   
   margin: 5px 0;
-  padding: 10px 20px;
+  padding: 12px 16px;
 
   width: 100%;
-  height: 80px;
+  height: 84px;
   
   border-radius: 15px;
 
-  background: #eee;
+  background: #F4F4F4;
 `;
 
 const TodoBox = styled.div`

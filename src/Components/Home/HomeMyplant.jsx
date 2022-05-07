@@ -11,40 +11,40 @@ const HomeMyplant = () => {
 
   return (
     <React.Fragment>
-
-      <Wrapper>
-        <Grid margin="5px">
+      <Grid>
+        <Grid margin="12px">
           <Text size="M">거실</Text>
         </Grid>
-
-        <Grid is_flex>
-          <PlantProfile />
-          <PlantProfile />
-        </Grid>
-
-      </Wrapper>
-
-      <Wrapper>
-        <Grid margin="5px">
+        <GridBox>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+        </GridBox>
+      </Grid>
+      <Grid>
+        <Grid margin="12px">
           <Text size="M">창가</Text>
         </Grid>
-
-        <Grid is_flex>
-          <PlantProfile />
-        </Grid>
-
-      </Wrapper>
-
-
-
-
+        <GridBox>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+          <PlantProfile size="L" name="동동이" plant="몬스테라"/>
+        </GridBox>
+      </Grid>
     </React.Fragment>
   );
 }
 
-const Wrapper = styled.div`
-  padding: 15px 0;
-`
 
+const GridBox = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  width: 100%;
+`
 
 export default HomeMyplant;

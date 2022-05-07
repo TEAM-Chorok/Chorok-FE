@@ -15,10 +15,12 @@ const AddPlants = () => {
     // 컴포넌트 넘버 관리
     const [compNum, setCompNum] = React.useState(0);
     
-    // 다음 컴포넌트로 전환될 때마다 compNum 1씩 증가
     // Object.keys(객체).length : 객체에 들어있는 프로퍼티의 갯수를 구함 (comp의 프로퍼티 갯수 3)
+    const max = Object.keys(comp).length;
+
+    // 다음 컴포넌트로 전환될 때마다 compNum 1씩 증가
     const progressCount = () => {
-        if(compNum===Object.keys(comp).length-1) {
+        if(compNum===max-1) {
             return;
         }
         setCompNum(compNum+1);
@@ -27,10 +29,10 @@ const AddPlants = () => {
     return (
         <React.Fragment>
             <Container>
-                <ProgressBar count={compNum+1} max={Object.keys(comp).length}/>
+                <ProgressBar count={compNum+1} max={max}/>
                 {comp[compNum]}
                 <Grid margin="auto">
-                {compNum!==2?
+                {compNum!==max-1?
                     <Button type="basic" width="184px" _onClick={progressCount}>
                         <Text size="base" color="#fff">다음</Text>
                     </Button> :
