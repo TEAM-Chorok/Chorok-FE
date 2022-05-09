@@ -96,11 +96,6 @@ const SignUp = () => {
     <React.Fragment>
       <Container>
         <Grid padding="30px 0px" width="100%">
-          {/* <Header>
-              <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "10px", top:"58px" }} 
-              onClick={()=>history.goBack()}></ArrowBackIosNewOutlinedIcon>
-              <Text>회원가입</Text>
-          </Header> */}
         {nextPage ? 
           <SingUpPage>
               <Text margin="88px 0px 32px 12px" fontSize="20px" display="block" bold>반가워요! 이메일과 비밀번호를 <br />입력해주세요. 😀</Text>

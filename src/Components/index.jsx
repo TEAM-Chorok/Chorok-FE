@@ -8,7 +8,10 @@ import HomeHeader from "./Home/HomeHeader";
 import TodoContent from "./Home/TodoContent";
 import TodoProfile from "./Home/TodoProfile";
 
-import FirstVisitHome from "./Home/FirstVisitHome";
+import Questionnaire from "./Home/Questionnaire";
+import Questionnaire2 from "./Home/Questionnaire2";
+import Questionnaire3 from "./Home/Questionnaire3";
+import Questionnaire4 from "./Home/Questionnaire4";
 
 // Add Plant
 // 사라진 페이지가 있어서 나중에 다시 정리하게 될 것 같아요! 
@@ -35,6 +38,7 @@ import Planterior from "./Search/Planterior";
 import CommPostList from "./Community/CommPostList";
 import CommPost from "./Community/CommPost";
 import CommunityFilter from "./Community/CommunityFilter";
+import CommPostCommentList from "./Community/CommPostCommentList";
 
 import AddPostHeader from "./Community/AddPostHeader";
 import AddPostFooter from "./Community/AddPostFooter";
@@ -75,13 +79,14 @@ import Tabbar from "./Tabbar";
 
 
 export {
-    FirstVisitHome,
+    Questionnaire,Questionnaire2, Questionnaire3, Questionnaire4,
     PlantProfile,
     TodoContent, TodoProfile, HomeHeader, HomeMyplant,
     AddLocationList, AddClassList, AddPlantList, BottomSheet, 
     PlantCardProfile, PlantCardFeed, 
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, LabelingTestLink, RecommendPlant,
-    CommPost, CommPostList, CommunityFilter, AddQuestion, AddPlantDairy, AddPostHeader, AddPostFooter,
+    CommPost, CommPostList, CommunityFilter, CommPostCommentList,
+    AddQuestion, AddPlantDairy, AddPostHeader, AddPostFooter,
     MyPageHeader, MyCategoryBar, MyPagePost,
     MyPicturesPostList, ScrapPicturesPostList, 
      MyPlantsList, MyPlants, GeneralHeader,
