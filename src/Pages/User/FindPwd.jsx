@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
+import { GeneralHeader } from '../../Components';
 
 const FindPwd = (props) => {
   const history = useHistory();
@@ -21,11 +22,7 @@ const FindPwd = (props) => {
     <React.Fragment>
       <Container>
         <Grid padding="30px 0px" width="100%">
-        <Header>
-                <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "10px", top:"58px" }} 
-                onClick={()=>history.goBack()}></ArrowBackIosNewOutlinedIcon>
-                <Text>비밀번호 찾기</Text>
-            </Header>
+          <GeneralHeader title="비밀번호 찾기" size="h5" />
         <FindPwdWrap>
           <Text margin="0px 0px 32px 12px" fontSize="20px" display="block" bold>회원정보를 입력하시면 이메일로 <br />비밀번호 변경 링크를 보내드려요.</Text>
                 <form>

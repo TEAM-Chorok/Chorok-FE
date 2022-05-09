@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { MyPostsHeader, MyPostsPostList } from "../../Components";
+import { GeneralHeader, MyPostsPostList } from "../../Components";
 import { Container } from "../../Elements";
 
 const MyPostsPage = () => {
     return (
         <React.Fragment>
             <Container>
-                <MyPostsHeader />
+                <GeneralHeader title="내가 쓴 글" size="h5"/>
                 <MyPostsPostList />
             </Container>
         </React.Fragment>

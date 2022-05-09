@@ -6,7 +6,8 @@ import { useState } from 'react';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import styled from 'styled-components';
-import Container from '../../Elements/Container';
+import {Container} from '../../Elements';
+import { GeneralHeader } from '../../Components';
 
 const Labeling = () => {
   const params = useParams();  //params.no = 문제번호 (1~4)
@@ -48,10 +49,8 @@ const Labeling = () => {
       <React.Fragment>
         <Container>
           <Grid margin="auto">
-          <Header>
-              <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "10px", top:"58px" }} onClick={()=>history.goBack()}></ArrowBackIosNewOutlinedIcon>
+          <GeneralHeader />
               {/* <ProgressBar></ProgressBar> */}
-          </Header>
             <QuestionWrap>
               <Text color="#718096" fontSize="23px" bold >xx님의 집사레벨은 어떠한가요?😀</Text>
             
@@ -204,7 +203,7 @@ const Labeling = () => {
 } 
 const QuestionWrap = styled.div`
   width: 100%;
-  margin: 100px auto 0px auto;
+  margin: 10px auto 0px auto;
   // text-align: left;
 `
 const QuestionBox = styled.div`

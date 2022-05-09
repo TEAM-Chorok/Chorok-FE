@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { SettingHeader } from "../../Components";
+import { GeneralHeader } from "../../Components";
 import { Container, Grid } from "../../Elements";
 import { actionCreators as userActions } from "../../Redux/Modules/User";
 
@@ -18,7 +18,7 @@ const Setting = () => {
         <React.Fragment>
             <Container>
                 <Grid width="100%"  padding="30px 0px">
-                    <SettingHeader />
+                    <GeneralHeader title="설정" size="h5" />
                     <ScrapSettingWrap>
                         <SettingUpperDiv onClick={()=>history.push('/setting/myposts')}>내가 쓴 글</SettingUpperDiv>
                         <SettingUpperDiv onClick={()=>history.push('/setting/profile')}>프로필 편집</SettingUpperDiv>

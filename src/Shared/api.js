@@ -4,7 +4,8 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://000.000.00.00:8080',
+  baseURL: 'http://52.79.233.178',//민성님 Url
+  // baseURL: 'http://00.00.000.000',
 }, { withCredentials: true } //CORS error 방지
 );
 
@@ -17,15 +18,15 @@ export const userAPI = {
   }
   ),
 
-  signUp: (username, password, passwordCheck, nickname, profileImgUrl) => api.post('/auth/signUp', {
+  signUp: (username, password, nickname, profileImgUrl) => api.post('/auth/signUp', {
     username: username,
     password: password,
     nickname: nickname,
     profileImgUrl:  profileImgUrl, 
   }
   ),
-  kakaoLogIn:(code) => api.get(`/auth/kakao/callback?code=${code}`, {
-  }),
+  kakaoLogIn:(code) => api.get(`/auth/kakao/callback?code=${code}`),
+  
 
   findPwd: (userName, userId) => api.post('/api/findPwd', {
     userName: userName,

@@ -14,6 +14,7 @@ import {
   AddQuestion,
   AddPlantDairy,
   AddPost,
+  PostDetail
 } from '../Pages';
 
 
@@ -25,20 +26,20 @@ function App() {
   return (
     <React.Fragment>
 
-        <Route path="/" exact component={Login} />
-        <Route path="/signup" exact component={SignUp} />
+      <Route path="/" exact component={Login} />
+      <Route path="/signup" exact component={SignUp} />
 
-        <Route path="/auth/kakao/callback" component={Kakao} />
+      <Route path="/auth/kakao/callback" component={Kakao} />
 
-        <Route path="/findpwd" exact component={FindPwd} />
-        <Route path="/changepwd" exact component={ChangePwd} />
+      <Route path="/findpwd" exact component={FindPwd} />
+      <Route path="/changepwd" exact component={ChangePwd} />
 
-        <Route path="/profilesetting" exact component={ProfileSetting} />
-        <Route path="/labeling/:no" exact component={Labeling} />
+      <Route path="/profilesetting" exact component={ProfileSetting} />
+      <Route path="/labeling/:no" exact component={Labeling} />
 
-        <Route path="/recommendation" exact component={Recommendation} />
+      <Route path="/recommendation" exact component={Recommendation} />
 
-        <Route path="/home" exact component={Home} />
+      <Route path="/home" exact component={Home} />
 
         <Route path="/plant" exact component={SearchPlant} />
         <Route path="/add" exact component={AddPlants} />
@@ -52,8 +53,9 @@ function App() {
 
         <Route path="/test" exact component={Test} />
 
-        <Route path="/community" exact component={Community} />
-        <Route path="/addpost" exact component={AddPost}/>
+      <Route path="/community" exact component={Community} />
+      <Route path="/addpost" exact component={AddPost}/>
+      <Route path="/community/:postId" exact component={PostDetail} />
 
         <Route path="/mypage" exact component={MyPage} />
         <Route path="/myplants" exact component={MyPlantsPage} />

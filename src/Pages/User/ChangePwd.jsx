@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
+import { GeneralHeader } from '../../Components';
 
 const ChangePwd = (props) => {
   const history = useHistory();
@@ -30,11 +31,7 @@ const ChangePwd = (props) => {
       <React.Fragment>
         <Container>
           <Grid padding="30px 0px" width="100%">
-            <Header>
-                <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "10px", top:"58px" }} 
-                onClick={()=> history.goBack('')}></ArrowBackIosNewOutlinedIcon>
-                <Text bold>비밀번호 변경</Text>
-            </Header>
+            <GeneralHeader title="비밀번호 변경" size="h5" />
             <ChangePwdWrap>
               <Text display="block" color="#718096">변경하실 비밀번호를 입력해주세요.  :&#41;</Text>
               <input style={{width:"93%", height: "56px", borderRadius:"50px",

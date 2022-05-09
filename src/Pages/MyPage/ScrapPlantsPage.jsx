@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ScrapPicturesHeader, ScrapPicturesPostList } from '../../Components';
+import { GeneralHeader, ScrapPicturesPostList } from '../../Components';
 import { Text, Grid, Container } from '../../Elements';
 
 const ScrapPlantsPage = () => {
@@ -8,7 +8,7 @@ const ScrapPlantsPage = () => {
     return (
         <React.Fragment>
             <Container>
-                <ScrapPicturesHeader />
+                <GeneralHeader title="스크랩한 식물" size="h5" />
                 <ScrapPicturesPostList />
             </Container>
         </React.Fragment>

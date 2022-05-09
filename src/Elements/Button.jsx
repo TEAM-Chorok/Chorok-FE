@@ -154,6 +154,10 @@ const PlusButton = styled.button`
   width: 60px;
   height: 60px;
   
+  position: fixed;
+  bottom: 68px;
+  right: 20px;
+  
   border: 1px solid #aaa;
   border-radius: 60px;
 

@@ -50,14 +50,14 @@ const logInDB = (userId, password) => {
       });
   }
 };
-const signUpDb = (username, password, nickname, profileImgUrl) => {
+const signUpDB = (username, password, nickname, profileImgUrl) => {
   return function (dispatch, getState, { history }) {
     userAPI
       .signUp(username, password, nickname, profileImgUrl)
       .then((res) => {
         //회원가입후 로그인을 유지하려면 토큰필요하지 않나? 그냥 다시 로그인페이지로 돌아갈것인지? 
         sessionStorage.setItem("token", res.headers.authorization);
-        localStorage.setItem ("nickname", res.headers.authorization.split(" ")[3]);
+        localStorage.setItem ("username", res.headers.authorization.split(" ")[3]);
         dispatch(setUser({
           
         }));
@@ -72,31 +72,32 @@ const signUpDb = (username, password, nickname, profileImgUrl) => {
 }
 const kakaoLogInDB = (code) => {
   return function (dispatch, getState, {history}){
+    console.log('gg');
     userAPI
       .kakaoLogIn(code)
-      .then((response) => {
-        console.log(response);
-        sessionStorage.setItem('Token', response.data.token);
-        localStorage.setItem('username', response.data.username);
+      .then((res) => {
+        console.log(res);
+        sessionStorage.setItem('Token', res.data.token);
+        localStorage.setItem('username', res.data.email);
         dispatch(setUser({
-          username: response.data.username,
-          nickname: response.data.nickname,
-          profileImgUrl: response.data.profileImgUrl
+          username: res.data.username,
+          nickname: res.data.nickname,
+          profileImgUrl: res.data.profileImgUrl
         }))
         history.replace('/home');
       })
       .catch((error) => {
         console.log("error: ", error);
         window.alert('로그인에 실패하였습니다. ')
-        window.replace('/');
+        history.replace('/');
       })
   }
 }
 
 const logOutDB  = () => {
   return function (dispatch, getState, { history }) {
-    sessionStorage.removeItem("token");
-    localStorage.removeItem('username');
+    sessionStorage.removeItem("Token");
+    localStorage.removeItem("username");
     dispatch(logOut());
     history.replace('/');
   }
@@ -149,6 +150,7 @@ export default handleActions(
 
 const actionCreators = {
   setUser,
+  signUpDB,
   kakaoLogInDB,
   logInDB,
   logOutDB,

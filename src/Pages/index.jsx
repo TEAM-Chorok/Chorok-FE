@@ -28,6 +28,7 @@ import PlanteriorDetail from "./Search/PlanteriorDetail";
 
 import Community from "./Community/Community";
 import AddPost from "./Community/AddPost";
+import PostDetail from "./Community/PostDetail";
 
 //My Page
 import MyPage from "./MyPage/MyPage";
@@ -51,7 +52,7 @@ export { Login, SignUp, Kakao,
     AddPlants, SearchPlant,
     PlantCard,
     Search, PlanteriorDetail,
-    Community, AddPost,
+    Community, AddPost, PostDetail,
     MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage, EditPlant, MyPostsPage,
     Setting, DeactivateAccount,
     Test,
