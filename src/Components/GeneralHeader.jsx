@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
+import { MdArrowBackIos } from "react-icons/md";
 import styled from "styled-components";
 import {Text} from '../Elements';
 
@@ -9,8 +9,8 @@ const GeneralHeader = (props) => {
     return (
         <React.Fragment>
             <Header>
-                <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "0px", top:"10px" }} 
-                onClick={()=> history.goBack()}></ArrowBackIosNewOutlinedIcon>
+                <MdArrowBackIos style={{position: "absolute", left: "0px", top:"14px" }} 
+                onClick={()=> history.goBack()}></MdArrowBackIos>
                 <Text line="2.5em" size={props.size}>{props.title}</Text>
             </Header>
         </React.Fragment>
@@ -21,5 +21,6 @@ const Header = styled.div`
   height: 50px;
   text-align: center;
   position: relative; 
+  align-items: center;
 `
 export default GeneralHeader;

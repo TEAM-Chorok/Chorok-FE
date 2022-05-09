@@ -31,9 +31,10 @@ import RecommendPlant from "./Search/Planterior/RecommendPlant"
 
 import Planterior from "./Search/Planterior";
 
-
+//community
 import CommPostList from "./Community/CommPostList";
 import CommPost from "./Community/CommPost";
+import CommunityFilter from "./Community/CommunityFilter";
 
 import AddPostHeader from "./Community/AddPostHeader";
 import AddPostFooter from "./Community/AddPostFooter";
@@ -80,7 +81,7 @@ export {
     AddLocationList, AddClassList, AddPlantList, BottomSheet, 
     PlantCardProfile, PlantCardFeed, 
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, LabelingTestLink, RecommendPlant,
-    CommPost, CommPostList, AddQuestion, AddPlantDairy, AddPostHeader, AddPostFooter,
+    CommPost, CommPostList, CommunityFilter, AddQuestion, AddPlantDairy, AddPostHeader, AddPostFooter,
     MyPageHeader, MyCategoryBar, MyPagePost,
     MyPicturesPostList, ScrapPicturesPostList, 
      MyPlantsList, MyPlants, GeneralHeader,

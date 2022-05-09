@@ -4,6 +4,7 @@ import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutl
 import { Button } from "@mui/material";
 import styled from "styled-components";
 import { Text } from "../../Elements";
+import { GrClose } from 'react-icons/gr';
 
 const AddPostHeader = (props) => {
     const history = useHistory();
@@ -13,13 +14,13 @@ const AddPostHeader = (props) => {
     return ( 
         <React.Fragment>
             <Header>
-                <ArrowBackIosNewOutlinedIcon 
-                onClick={()=> history.goBack()}></ArrowBackIosNewOutlinedIcon>
-                <Text size="h5" bold margin="0px">{props.title}</Text>
+                <GrClose style={{marginRight:"36px"}}
+                onClick={()=> history.goBack()}></GrClose>
+                <Text size="base" bold margin="0px">{props.title}</Text>
                 <Button
                 onClick={()=>addPost()}
                 disabled={props.disable} 
-                style={{width:"fit-content", height:"fit-content", fontSize:"18px"}}>완료</Button>
+                style={{width:"fit-content", height:"fit-content", fontSize:"16px", padding:"0px", justifyContent:"end", color: "#0AAF42"}}>올리기</Button>
             </Header>
         </React.Fragment>
     )
@@ -27,8 +28,9 @@ const AddPostHeader = (props) => {
 const Header = styled.div`
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    align-items: center;
-    margin: 30px 0px;
+    grid-template-columns: 1fr 3fr 1fr;
+    place-items: center;
+    margin: 8px 0px;
+    padding-bottom: 4px;
 `
 export default AddPostHeader;

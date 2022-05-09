@@ -9,7 +9,7 @@ const AddPlantDairy = () => {
     const history = useHistory;
     const [diaryTitle, setDiaryTitle] = React.useState("");
     const [diaryContent, setDiaryContent] = React.useState("");
-    const [preveiw, setPreview] = React.useState(""); //preview
+    const [preview, setPreview] = React.useState(""); //preview
     const [imageUrl, setImageUrl] = React.useState(""); //보내는 image
     const [imgCount, setImgCount] =  React.useState(0);
     
@@ -45,7 +45,7 @@ const AddPlantDairy = () => {
             {imgCount === 0 ? 
             <></> :
             <ImageWrap>
-                <Image width="84px" height="84px" type="planterior" />
+                <Image width="84px" height="84px" type="planterior" imgUrl={preview} />
                 <input style={{display:"none"}} />
             </ImageWrap>
             }
@@ -74,9 +74,10 @@ const ImageWrap = styled.div`
 `
 const Textarea = styled.textarea`
     width: 100%;
-    height: fit-content;
+    height: 450px;
     border: none;
     font-size: 14px;
+    resize: none;
     &::placeholder {
         color: #DDE1E6;
         font-weight: 600;

@@ -5,7 +5,7 @@ import { AddPlantDairy, AddQuestion, AddPostBody } from '../../Components';
 const AddPost = (props) => {
     const comp = {
         0: <AddQuestion />,
-        1: <AddPlantDairy />,
+        // 1: <AddPlantDairy />,
         // 2: <AddRecommendPost />
     };
 
@@ -13,8 +13,8 @@ const AddPost = (props) => {
     // const [active, setActive] = React.useState(props.no);
     // const active = props.no;
 
-    // const active = 0;
-    const active = 1;
+    const active = 0;
+    // const active = 1;
 
     return (
         <React.Fragment>

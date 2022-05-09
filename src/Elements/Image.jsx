@@ -1,13 +1,16 @@
+import { height } from "@mui/system";
 import React from "react";
 import styled from "styled-components";
 
 const Image = (props) => {
 
-    const {type, size, imgUrl, margin, borderRadius, } = props;
+    const {type, size, imgUrl, margin, borderRadius, width, height } = props;
 
     const styles = {
         margin: margin,
         size: size,
+        width: width,
+        height: height,
         imgUrl: imgUrl,
         borderRadius: borderRadius,
     };
@@ -36,6 +39,14 @@ const Image = (props) => {
         </React.Fragment>
         );
     };
+
+    if(type==="rectangle") {
+        return(
+            <React.Fragment>
+                <Rectangle {...styles}/>
+            </React.Fragment>
+        );
+    }
 
     return(
         <React.Fragment>
@@ -80,6 +91,20 @@ const Planterior = styled.div`
     background-size: cover;
 `
 
+const Rectangle = styled.div`
+    flex: none;
+    
+    margin: ${(props) => props.margin};
+
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
+
+    border: ${(props) => props.imgUrl? "none" : "1px solid #ccc"};
+    border-radius: 10px;
+
+    background-image: url("${(props) => props.imgUrl}");
+    background-size: cover;
+`
 
 const Circle = styled.div`
     flex: none;

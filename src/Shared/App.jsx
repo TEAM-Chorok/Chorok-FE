@@ -13,7 +13,8 @@ import {
   Test,
   AddQuestion,
   AddPlantDairy,
-  AddPost
+  AddPost,
+  PostDetail
 } from '../Pages';
 
 
@@ -53,6 +54,7 @@ function App() {
 
       <Route path="/community" exact component={Community} />
       <Route path="/addpost" exact component={AddPost}/>
+      <Route path="/community/:postId" exact component={PostDetail} />
 
       <Route path="/mypage" exact component={MyPage} />
       <Route path="/myplants" exact component={MyPlantsPage} />
