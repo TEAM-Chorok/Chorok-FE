@@ -25,7 +25,7 @@ const Login = () => {
   return (
     <React.Fragment>
       <Container>
-      <Grid padding="30px 10px">
+      <Grid padding="30px 0px" width="100%" height="100vh">
         <InnerWrap>
           <InnerDiv>
             {/* 로고 */}
@@ -71,7 +71,7 @@ const Login = () => {
   
 const InnerWrap = styled.div`
   width: 100%;
-  height: 100%;
+  height: fit-content;
   margin: 0px auto;
 `
 const InnerDiv = styled.div`

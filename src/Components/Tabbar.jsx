@@ -42,7 +42,8 @@ const Tabbar = (props) => {
               <TabMenu>
                 <Text size="base">{props.tab1}</Text>
               </TabMenu>
-            </li>}
+            </li>
+          }
 
           {props.compNum === 1 ?
             <li onClick={() => { props.setCompNum(1) }}>

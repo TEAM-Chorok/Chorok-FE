@@ -13,8 +13,11 @@ const Kakao = (props) => {
     //params에 저장된 파라미터 안에서 '인가코드'가져옴
     let code = params.get("code");
 
-    React.useEffect(async () => {
-        await dispatch(userActions.kakaoLogin(code));
+    console.log("code: ",code);
+    
+    React.useEffect( () => {
+         dispatch(userActions.kakaoLogInDB(code));
+        
     }, []);
 
     return (

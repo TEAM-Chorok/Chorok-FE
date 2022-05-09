@@ -4,26 +4,17 @@ import styled from 'styled-components';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { Text, Grid} from '../../Elements';
 import { Button } from '@mui/material';
+import AddPostHeader from './AddPostHeader';
 
 const AddQuestion = () => {
     const history = useHistory();
     const [questionTitle, setQuestionTitle] = React.useState("");
     const [questionContent, setQuestionContent] = React.useState("");
-
-
-    const print = () => {
-        console.log(questionTitle);
-        console.log(questionContent);
-    }
+    
 
     return (
         <React.Fragment>
-            <Header>
-                <ArrowBackIosNewOutlinedIcon 
-                onClick={()=> history.goBack()}></ArrowBackIosNewOutlinedIcon>
-                <Text fontSize="18px" bold margin="0px">질문하기</Text>
-                <Button disabled={questionTitle === "" || questionContent === ""} style={{width:"fit-content", height:"fit-content", fontSize:"18px"}} onClick={() =>print()}>완료</Button>
-            </Header>
+            <AddPostHeader disable={questionTitle === "" || questionContent === ""} title="질문하기"/>
             <Grid padding="10px 4px" width="100%">
                 <Input type="text" placeholder='제목을 입력해주세요' onChange={(e) => {setQuestionTitle(e.target.value)}}></Input>
             </Grid>

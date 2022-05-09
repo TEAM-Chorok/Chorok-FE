@@ -35,6 +35,7 @@ import Planterior from "./Search/Planterior";
 import CommPostList from "./Community/CommPostList";
 import CommPost from "./Community/CommPost";
 
+import AddPostHeader from "./Community/AddPostHeader";
 import AddQuestion from "./Community/AddQuestion";
 import AddPlantDairy from "./Community/AddPlantDairy";
 
@@ -46,27 +47,25 @@ import MyCategoryBar from "./MyPage/MyCategoryBar";
 
 import MyPagePost from "./MyPage/MyPagePost";
 
-import MyPicturesHeader from "./MyPage/MyPictures/MyPicturesHeader";
+
 import MyPicturesPostList from "./MyPage/MyPictures/MyPicturesPostList";
 
-import ScrapPicturesHeader from "./MyPage/ScrapPicturesHeader";
 import ScrapPicturesPostList from "./MyPage/ScrapPicturesPostList";
 
 import MyPlants from "./MyPage/MyPlants";
-import MyPlantsHeader from "./MyPage/MyPlants/MyPlantsHeader";
 import MyPlantsList from "./MyPage/MyPlants/MyPlantsList";
 
 import EditPlantHeader from "./MyPage/EditPlant/EditPlantHeader";
 import EditPlantBody from "./MyPage/EditPlant/EditPlantBody";
 
-import MyPostsHeader from "./MyPage/Setting/MyPostsHeader";
 import MyPostsPostList from "./MyPage/MyPostsPostList";
 
-import SettingHeader from "./MyPage/Setting/SettingHeader";
 import DeactivationAgreement from "./MyPage/Setting/DeactivationAgreement";
 
 
 // 기타 모듈화 컴포넌트
+// 뒤로가기 버튼 + 타이틀 헤더 
+import GeneralHeader from "./GeneralHeader";
 // 타이틀 + 검색창 헤더
 import PlantSearchHeader from "./PlantSearchHeader";
 // 탭바
@@ -80,14 +79,13 @@ export {
     AddLocationList, AddClassList, AddPlantList, BottomSheet, 
     PlantCardProfile, PlantCardFeed, 
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, LabelingTestLink, RecommendPlant,
-    CommPost, CommPostList, AddQuestion, AddPlantDairy,
+    CommPost, CommPostList, AddQuestion, AddPlantDairy, AddPostHeader,
     MyPageHeader, MyCategoryBar, MyPagePost,
-    MyPicturesPostList, MyPicturesHeader, 
-    ScrapPicturesHeader, ScrapPicturesPostList, 
-    MyPlantsHeader, MyPlantsList, MyPlants, 
+    MyPicturesPostList, ScrapPicturesPostList, 
+     MyPlantsList, MyPlants, GeneralHeader,
     EditPlantHeader, EditPlantBody,
-    MyPostsHeader, MyPostsPostList,
-    SettingHeader, DeactivationAgreement,
+     MyPostsPostList,
+     DeactivationAgreement,
     PlantSearchHeader, SearchHeader, Tabbar,
 };
 

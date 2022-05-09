@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { useDispatch } from 'react-redux';
+import { GeneralHeader } from '../../Components';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
 
 
@@ -37,11 +38,7 @@ const ProfileSetting = () => {
     <React.Fragment>
       <Container>
         <Grid padding="30px 0px" width="100%">
-          <Header>
-              <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "10px", top:"58px" }}
-              onClick={()=>history.goBack()}></ArrowBackIosNewOutlinedIcon>
-              <Text bold>프로필 편집</Text>
-          </Header>
+        <GeneralHeader title="프로필 편집" size="h5" />
           <ProfileWrap>
                 {/* 프로필 이미지 미리보기 */}
                 <Grid margin="50px auto"

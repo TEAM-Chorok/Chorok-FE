@@ -4,12 +4,14 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Grid from '../../Elements/Grid';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../../Redux/Modules/User';
 //1. 회원가입 이메일 . 비밀번호 . 닉네임 정규식  > const emailCheck, passwordCheck, nicknameCheck
 //2. 프로필 이미지 용량 제한
 
 const SignUp = () => {
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const [loading, setLoading] = React.useState(false);
 
   const [nextPage, setNextPage] = React.useState(true);
@@ -65,9 +67,10 @@ const SignUp = () => {
     }
   }
 
-  const signUp = () => {
+  const signUp = (username, password, profileImgUrl, nickname) => {
     // 나중에 여기서 dispatch해서 넘겨줄것
-    console.log(username, password, passwordChk, profileImgUrl, nickname); 
+    dispatch(userActions.signUpDB(username, password, profileImgUrl, nickname));
+    console.log(username, password, profileImgUrl, nickname); 
     //환영 페이지 
     setTimeout(() => {
       setLoading(true)
