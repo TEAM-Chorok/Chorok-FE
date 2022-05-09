@@ -40,7 +40,7 @@ const Tabbar = (props) => {
             </li> :
             <li onClick={() => { props.setCompNum(0) }}>
               <TabMenu>
-                <Text size="base">{props.tab1}</Text>
+                <Text bold size="base">{props.tab1}</Text>
               </TabMenu>
             </li>}
 
@@ -52,11 +52,12 @@ const Tabbar = (props) => {
             </li> :
             <li onClick={() => { props.setCompNum(1) }}>
               <TabMenu>
-                <Text size="base">{props.tab2}</Text>
+                <Text bold size="base">{props.tab2}</Text>
               </TabMenu>
             </li>}
-
-          <Line num={props.compNum} />
+          <BackLine>
+            <Line num={props.compNum} />
+          </BackLine>
         
         </ul>
       </Tab>
@@ -97,9 +98,19 @@ const TabMenu = styled.div`
   cursor: pointer;
 `
 
-const Line = styled.div`
+const BackLine = styled.div`
   position: absolute;
   bottom: -4px;
+  
+  transition: 0.4s;
+  width: 100%;
+  
+  border-bottom: 2px solid #F4F4F4;
+`
+
+const Line = styled.div`
+  position: absolute;
+  bottom: -2px;
   ${(props) => props.num === 0 ? "left: 0" : "left: 50%"};
   
   transition: 0.4s;

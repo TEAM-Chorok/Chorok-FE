@@ -19,32 +19,44 @@ import { Grid, Image, Text } from "../Elements";
 
 const PlantProfile = (props) => {
 
-  const { checked, size, name, plant, imgUrl } = props;
+  const { size, name, plant, imgUrl, _onClick } = props;
 
-  if(size==="L") {
+  const [checked, setChecked] = React.useState(false);
+
+  const check = () => {
+    if (checked === false) {
+      setChecked(true);
+    } 
+  };
+
+  if (size === "L") {
     return (
-        <Grid margin="8px">
-          <Image type="circle" size="96px" imgUrl={imgUrl}/>
-          <Grid margin="auto" align="center">
-            <Text bold size="basic">{name}</Text>
-            <Grid margin="-2px 0">
-              <Text size="small" color="#6F6F6F">{plant}</Text>
-            </Grid>
+      <Grid margin="8px auto" _onClick={_onClick}>
+        <Image type="circle" size="96px" imgUrl={imgUrl} />
+        <Grid margin="6px auto" align="center">
+          <Text bold size="basic">{name}</Text>
+          <Grid margin="-2px 0">
+            <Text size="small" color="#6F6F6F">{plant}</Text>
           </Grid>
         </Grid>
+      </Grid>
     );
   }
 
   return (
-      <Grid margin="8px">
-        <Image type="circle" size="56px" imgUrl={imgUrl}/>
-        <Grid margin="auto" align="center">
-          <Text bold size="small">{name}</Text>
-          <Grid margin="-4px 0">
-            <Text size="xxsmall" color="#6F6F6F">{plant}</Text>
-          </Grid>
+    <Grid _onClick={check}>
+      <Grid margin="4px" _onClick={_onClick}>
+        <Grid border={checked ? "3px solid #0AAF42" : "3px solid #fff"} borderRadius="100%">
+          <Image type="circle" size="56px" imgUrl={imgUrl} />
         </Grid>
       </Grid>
+      <Grid margin="-3px auto" align="center">
+        <Text bold size="small" color={checked ? "#0AAF42" : ""}>{name}</Text>
+        <Grid margin="-4px 0">
+          <Text size="xxsmall" color="#6F6F6F">{plant}</Text>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
 

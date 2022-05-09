@@ -22,6 +22,9 @@ import PlantCard from "./PlantCard/PlantCard";
 import AddPlants from "./AddPlant/AddPlants";
 import SearchPlant from "./AddPlant/SearchPlant";
 
+// 캘린더
+import CalendarPage from "./Calendar/Calendar";
+
 // 탐색페이지
 import Search from "./Search/Search";
 import PlanteriorDetail from "./Search/PlanteriorDetail";
@@ -49,6 +52,7 @@ export { Login, SignUp, Kakao,
     Labeling, ProfileSetting,
     Home, Recommendation,
     AddPlants, SearchPlant,
+    CalendarPage,
     PlantCard,
     Search, PlanteriorDetail,
     Community, AddPost,

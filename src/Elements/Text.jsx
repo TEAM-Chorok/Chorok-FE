@@ -112,7 +112,7 @@ Text.defaultProps = {
   color: "#262626",
   display: "unset",
   line: "",
-  margin: "none",
+  margin: "0",
   wordbreak: "",
 }
 

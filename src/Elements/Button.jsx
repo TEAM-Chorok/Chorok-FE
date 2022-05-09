@@ -182,10 +182,14 @@ const FloatLongButton = styled.button`
 
 // 필터 선택 버튼
 const FilterButton = styled.button`
+  flex: none;
+
+  font-family: 'SUIT-Regular';
+  font-size: 14px;
+  letter-spacing: 0.25px;
+
   margin-right: 5px;
   padding: 4px 12px;
-  ${'' /* width: fit-content; */}
-  ${'' /* height: 25px; */}
 
   border: ${(props) => (props.checked ? "1px solid #0AAF42" : "1px solid #E0E0E0")};
   border-radius: 25px;
@@ -193,12 +197,14 @@ const FilterButton = styled.button`
   background: ${(props) => (props.checked ? "rgba(222, 251, 230, 0.5)" : "none")};
 
   &:hover {
-    background: #eee;
+    border: 1px solid #0AAF42;
+    background: rgba(222, 251, 230, 0.5);
   }
 `;
 
 // 필터 내 항목 버튼 (long)
 const FilterLongButton = styled.button`
+  
   width: 172px;
   height: 40px;
   
