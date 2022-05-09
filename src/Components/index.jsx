@@ -36,6 +36,7 @@ import CommPostList from "./Community/CommPostList";
 import CommPost from "./Community/CommPost";
 
 import AddPostHeader from "./Community/AddPostHeader";
+import AddPostFooter from "./Community/AddPostFooter";
 import AddQuestion from "./Community/AddQuestion";
 import AddPlantDairy from "./Community/AddPlantDairy";
 
@@ -79,7 +80,7 @@ export {
     AddLocationList, AddClassList, AddPlantList, BottomSheet, 
     PlantCardProfile, PlantCardFeed, 
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, LabelingTestLink, RecommendPlant,
-    CommPost, CommPostList, AddQuestion, AddPlantDairy, AddPostHeader,
+    CommPost, CommPostList, AddQuestion, AddPlantDairy, AddPostHeader, AddPostFooter,
     MyPageHeader, MyCategoryBar, MyPagePost,
     MyPicturesPostList, ScrapPicturesPostList, 
      MyPlantsList, MyPlants, GeneralHeader,
