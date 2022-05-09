@@ -11,15 +11,20 @@ const Planterior = () => {
 
   return (
     <React.Fragment>
+      <Grid width="100%" padding="0 16px">
         <Grid width="100%">
           <LabelingTestLink />
         </Grid>
         <Grid width="100%">
-          <RecommendPlant/>
+          <RecommendPlant />
         </Grid>
+      </Grid>
+      <Grid width="100%" height="12px" bg="#F7F8FA" />
+      <Grid width="100%" padding="0 16px">
         <Grid width="100%">
           <PlanteriorList />
         </Grid>
+      </Grid>
     </React.Fragment>
   )
 }

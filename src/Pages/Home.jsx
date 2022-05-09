@@ -22,12 +22,12 @@ const Home = () => {
         <Box>
           <HomeHeader />
         </Box>
-        <Container>
-          <Grid padding="90px 16px 0 16px" width="100%">
-            <Tabbar tab1="할 일" tab2="내 식물" setCompNum={setCompNum} compNum={compNum} />
+        <Grid padding="100px 16px 0 16px" width="100%">
+          <Tabbar tab1="할 일" tab2="내 식물" setCompNum={setCompNum} compNum={compNum} />
+        </Grid>
+          <Grid width="100%">
+            {comp[compNum]}
           </Grid>
-          {comp[compNum]}
-        </Container>
       </Container>
     </React.Fragment>
   );

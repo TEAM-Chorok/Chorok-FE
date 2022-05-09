@@ -16,15 +16,17 @@ const Search = () => {
   // 보여줄 컴포넌트 넘버
   const [compNum, setCompNum] = React.useState(0);
 
-  
+
   return (
     <React.Fragment>
       <Container>
         <Grid width="100%">
-          <PlantSearchHeader title="탐색" size="h5"/>
+          <PlantSearchHeader title="탐색" size="h5" />
         </Grid>
-        <Tabbar tab1="사진" tab2="식물도감" setCompNum={setCompNum} compNum={compNum}/>
-        <Grid margin="20px 0" width="100%">
+        <Tabbar tab1="사진" tab2="식물도감" setCompNum={setCompNum} compNum={compNum} />
+      </Container>
+      <Container type="np">
+        <Grid width="100%" padding={compNum===1? "0 16px" : ""}>
           {comp[compNum]}
         </Grid>
       </Container>
@@ -33,42 +35,5 @@ const Search = () => {
 }
 
 
-
-const Tab = styled.div`
-  ul {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: auto;
-    padding: 0;
-    list-style: none;
-    }
-`;
-
-const TabMenu = styled.div`
-  box-sizing: border-box;
-  padding: 4px 0;
-  margin: auto;
-
-  width: 100%;
-
-  text-align: center;
-  
-  border-bottom: ${(props) => props.line? "2px solid #24A148" : "none"};
-
-  list-style: none;
-  cursor: pointer;
-`
-
-const Line = styled.div`
-  position: absolute;
-  bottom: -4px;
-  ${(props) => props.num === 0? "left: 0" : "left: 50%"};
-  
-  transition: 0.4s;
-  width: 50%;
-  
-  border-bottom: 2px solid #24A148;
-`
 
 export default Search;

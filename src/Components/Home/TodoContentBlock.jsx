@@ -8,30 +8,41 @@ import { BiCircle, BiCheckCircle } from "react-icons/bi";
 const TodoContentBlock = (props) => {
 
   const { children, img } = props;
+
+  // 투두 컨텐츠 좌측 체크 표시용 체크/체크해제 관리
   const [ checked, setChecked ] = React.useState(false);
+  const [ unChecked, setUnChecked ] = React.useState(false);
 
   const check = () => {
     if(checked === false) {
       setChecked(true);
+      setUnChecked(false);
     } else {
       setChecked(false);
+      setUnChecked(true);
     }
   }
+
 
   return (
     <React.Fragment>
       <ContentBox checked={checked}>
         <Grid>
-          <Image type="circle" size="56px" imgUrl={checked?"img/checked.png":`${img}`} />
+          <RelativeBox>
+            <Image type="circle" size="56px" imgUrl={img} />
+            <AbsoluteBox>
+              <Image checked={checked} unChecked={unChecked} type="checkedcircle" size="56px" imgUrl="img/checked.png" />
+            </AbsoluteBox>
+          </RelativeBox>
         </Grid>
-        <Grid margin="0 20px" width="100%">
+        <Grid margin="0 10px 0 20px" width="100%">
           {children}
         </Grid>
         <Grid>
           <Button type="tran" size="20px" _onClick={() => { check(); }}>
             {checked? 
-              <BiCheckCircle size="18px" color="#0AAF42"/> :
-              <BiCircle size="18px" color="#C6C6C6"/>}
+              <BiCheckCircle size="20px" color="#0AAF42"/> :
+              <BiCircle size="20px" color="#C6C6C6"/>}
           </Button>
         </Grid>
       </ContentBox>
@@ -54,7 +65,38 @@ const ContentBox = styled.div`
   
   border-radius: 15px;
 
-  background: ${(props) => props.checked ? "#fff" : "#F4F4F4"};
+  background: #fff;
 `;
+
+const RelativeBox = styled.div`
+  position: relative;
+
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+
+
+  width: fit-content;
+  height: fit-content;
+`
+
+const AbsoluteBox = styled.div`
+  position: absolute;
+
+  margin: auto;
+
+  width: 100%;
+  height: 100%;
+  
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+
+
+  top: 0;
+  left: 0;
+`
+
+
 
 export default TodoContentBlock;

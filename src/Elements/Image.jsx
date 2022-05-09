@@ -1,10 +1,10 @@
 import { height } from "@mui/system";
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const Image = (props) => {
 
-  const { type, width, height, size, imgUrl, margin, borderRadius, } = props;
+  const { type, width, height, size, imgUrl, margin, borderRadius, checked, unChecked } = props;
 
   const styles = {
     margin: margin,
@@ -13,6 +13,9 @@ const Image = (props) => {
     height: height,
     imgUrl: imgUrl,
     borderRadius: borderRadius,
+    checked: checked,
+    unChecked: unChecked,
+    width: width,
   };
 
 
@@ -36,7 +39,9 @@ const Image = (props) => {
   if (type === "planterior") {
     return (
       <React.Fragment>
-        <Planterior {...styles} />
+        <Planterior {...styles}>
+          <Img {...styles} src={imgUrl}/>
+        </Planterior>
       </React.Fragment>
     );
   }
@@ -48,6 +53,15 @@ const Image = (props) => {
       </React.Fragment>
     );
   };
+  
+  if (type === "checkedcircle") {
+    return (
+      <React.Fragment>
+        <CheckedCircle {...styles} />
+      </React.Fragment>
+    );
+  };
+
 
   return (
     <React.Fragment>
@@ -60,21 +74,39 @@ Image.defaultProps = {
   size: "40px",
   imgUrl: "",
   margin: 0,
+  checked: false,
 }
+
 
 
 const ani = keyframes`
   0% {
-    width: 0px;
-    height: 0px;
+    transform: scale(0);
   }
-  50% {
+  10% {
+    transform: scale(0);
   }
-  100% {
-    opacity: 1;
+  20% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1);
   }
 `
-
+const ani2 = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.1);
+  }
+  20% {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(0);
+  }
+`
 
 const Square = styled.div`
     flex: none;
@@ -96,11 +128,28 @@ const Planterior = styled.div`
     
     margin: ${(props) => props.margin};
 
+    width: ${(props) => props.width};
+
+    border: ${(props) => props.imgUrl ? "none" : "1px solid #ccc"};
+`
+
+const Img = styled.img`
+  width: ${(props) => props.width};
+  border-radius: 8px;
+`
+
+
+const Circle = styled.div`
+    box-sizing: border-box;
+    flex: none;
+    
+    margin: ${(props) => props.margin};
+
     width: ${(props) => props.size};
     height: ${(props) => props.size};
 
     border: ${(props) => props.imgUrl ? "none" : "1px solid #ccc"};
-    border-radius: 5px;
+    border-radius: ${(props) => props.size};
 
     background-image: url("${(props) => props.imgUrl}");
     background-size: cover;
@@ -121,7 +170,8 @@ const Rectangle = styled.div`
     background-size: cover;
 `
 
-const Circle = styled.div`
+const CheckedCircle = styled.div`
+    box-sizing: border-box;
     flex: none;
     
     margin: ${(props) => props.margin};
@@ -135,11 +185,10 @@ const Circle = styled.div`
     background-image: url("${(props) => props.imgUrl}");
     background-size: cover;
 
-    ${'' /* transition: 0.5s; */}
-    animation-duration: 3s;
-    animation-name: ${ani};
+    ${'' /* ${(props) => props.checked? css`display: block; animation: 1s ${ani};` : css`display: block; animation: 1s ${ani2}; animation-fill-mode: forwards;` }; */}
+    ${(props) => props.checked? css`display: block; animation: 1s ${ani};` : "display: none" };
+    ${(props) => props.unChecked? css`display: block; animation: 1s ${ani2}; animation-fill-mode: forwards;` : "" };
 `
-
 
 
 export default Image;

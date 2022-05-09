@@ -20,6 +20,12 @@ const AddPlantList = () => {
   return (
     <React.Fragment>
 
+      <Grid margin="0 0 16px 0">
+
+        <BottomSheet />
+
+      </Grid>
+
       <Grid is_flex _onClick={openPlantCard} width="100%">
         <Grid margin="10px 0">
           <Image type="square" size="100px" imgUrl={"https://images.unsplash.com/photo-1618679639167-41f5df274ca9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHJvc2VtYXJ5fGVufDB8fDB8fA%3D%3D&w=1000&q=80"}/>

@@ -20,18 +20,9 @@ const RecommandPlant = () => {
   return (
     <React.Fragment>
       <Wrapper>
-        <Grid _onClick={openPlantCard}>
-          <PlantProfile />
-        </Grid>
-        <Grid _onClick={openPlantCard}>
-          <PlantProfile />
-        </Grid>
-        <Grid _onClick={openPlantCard}>
-          <PlantProfile />
-        </Grid>
-        <Grid _onClick={openPlantCard}>
-          <PlantProfile />
-        </Grid>
+          <PlantProfile size="L" name="몬스테라" _onClick={openPlantCard} />
+          <PlantProfile size="L" name="스킨답서스" _onClick={openPlantCard} />
+          <PlantProfile size="L" name="라벤더" _onClick={openPlantCard} />
       </Wrapper>
     </React.Fragment>
   )
@@ -39,11 +30,9 @@ const RecommandPlant = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  margin: 10px 0;
+  margin: 8px 0;
 
   width: 100%;
-    
-  overflow-x: scroll;
 `
 
 

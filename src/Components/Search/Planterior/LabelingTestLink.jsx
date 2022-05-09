@@ -9,24 +9,29 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const LabelingTestLink = () => {
   const history = useHistory();
-  
+
   return (
     <React.Fragment>
       <Grid margin="10px 0">
-        <Text bold>맞춤 식물 찾기</Text>
+        <Text bold size="h6">ㅇㅇ님을 위한 추천식물</Text>
       </Grid>
-      <LinkBox onClick={()=>{
+      <LinkBox onClick={() => {
         history.push("/recommend/1");
       }}>
-        <Grid margin="0 5px" width="100%">
-          <Grid>
-            <Text size="XS">CRTI</Text>
+        <Grid is_flex margin="0 5px" width="100%">
+          <Grid margin="auto 8px">
+            <Text>🌿</Text>
           </Grid>
-          <Grid>
-            <Text size="XS">나와 맞는 식물을 찾아보세요!</Text>
+          <Grid width="100%">
+            <Grid>
+              <Text bold size="xsmall" color="#24A148">어떤 식물을 키울지 고민하고 있나요?</Text>
+            </Grid>
+            <Grid>
+              <Text size="xsmall">나와 맞는 식물 찾으러 가기</Text>
+            </Grid>
           </Grid>
         </Grid>
-          <IoIosArrowForward size="20px"/>
+        <IoIosArrowForward size="18px" color="#393939" />
       </LinkBox>
     </React.Fragment>
   )
@@ -39,13 +44,13 @@ const LinkBox = styled.div`
 
   box-sizing: border-box;
 
-  padding: 10px;
+  padding: 8px 8px 8px 0;
 
   width: 100%;
   height: 60px;
 
   border-radius: 10px;
-  background: #DDE1E6;
+  background: #DEFBE6;
 `
 
 export default LabelingTestLink;

@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Route } from 'react-router-dom';
 import {
-
   Login, Home, SignUp, Kakao, ProfileSetting, Labeling,
   Recommendation, FindPwd, ChangePwd,
   AddPlants, SearchPlant, PlantCard,
   Search, PlanteriorDetail,
+  CalendarPage,
   Community, MyPage, Setting,
   MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage,
   EditPlant, MyPostsPage, DeactivateAccount,
@@ -19,8 +19,6 @@ import {
 
 
 
-// 이후 수정하게 될 파일이라 import를 따로 해놨습니다>.<! 
-import CalendarPage from '../Pages/Calendar/Calendar';
 
 function App() {
   return (

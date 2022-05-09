@@ -7,7 +7,7 @@ import { actionCreators as mainActions } from "../../Redux/Modules/Main";
 
 // 투두페이지 헤더부분 (날씨)
 
-const TodoHeader = () => {
+const HomeHeader = () => {
   const dispatch = useDispatch();
 
   // 위도, 경도, 진행상태
@@ -61,7 +61,7 @@ const Img = styled.img`
 `
 
 
-export default TodoHeader;
+export default HomeHeader;
 
 
 
