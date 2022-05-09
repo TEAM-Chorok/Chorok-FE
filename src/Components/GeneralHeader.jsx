@@ -18,7 +18,7 @@ const GeneralHeader = (props) => {
 }
 const Header = styled.div`
   width: 100%;
-  height: 50px;
+  height: fit-content;
   text-align: center;
   position: relative; 
   align-items: center;

@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Grid, Image, Text } from "../../Elements";
+import { Grid, Image, Text, Container } from "../../Elements";
 import Dimmer from "../../Components/Dimmer";
 import Home from "../Home";
 
@@ -12,9 +12,20 @@ const Recommendation = (props) => {
 
   return(
       <React.Fragment>
-        <Home />
-        <Dimmer onClick={()=>history.replace('/home')}/>
-        <Modal>
+          <Container>
+              <Grid width="100%">
+                  <InnerWrap>
+                    <Text size="base">집사님을 위한 <span style={{color:"#0AAF42"}}>추천 식물</span> 도착!</Text>
+                    <Image imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg" type="circle" size="148px" margin="20px auto 8px auto"/>
+                    <Text size="base" bold color="#262626">스킨답서스</Text>
+                  </InnerWrap>
+                  <BottomWrap>
+                        <PrimaryBtn onClick={()=>history.replace(`/plant/monstera`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
+                        <ExitBtn onClick={()=>history.replace('/home')}>종료하기</ExitBtn>
+                  </BottomWrap>
+              </Grid>
+          </Container>
+        {/* <Modal>
             <InnerWrap>
                 <Text fontSize="16px" bold>ㅇㅇ님을 위한 추천 식물</Text>
                 <Image type="circle" size="148px" margin="30px auto 20px auto"/>
@@ -26,7 +37,7 @@ const Recommendation = (props) => {
                 <Button onClick={()=>history.replace('/home')} 
                 style={{color: "black"}}  variant="text">더 둘러볼게요</Button>
             </BottomWrap>
-        </Modal>
+        </Modal> */}
       </React.Fragment>
   )
 }
@@ -45,17 +56,38 @@ bottom: 0px;
 margin: auto;
 `
 const InnerWrap = styled.div`
-width: 165px;
+width: 100%;
 height: fit-content;
-margin: 70px 50px 50px 50px;
+padding: 200px 0px 50px 0px;
 text-align: center;
 `
 const BottomWrap = styled.div`
-width: 90%;
+width: 100%;
 height: fit-content;
-display: grid;
-grid-template-columns: 1fr 1fr;
-place-items: center;
-margin: 0px auto;
+`
+const PrimaryBtn = styled.button`
+  width: 100%;
+  height: fit-content;
+  padding: 10px 70px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #0AAF42;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+`
+const ExitBtn = styled.button`
+    margin-top: 8px;
+  width: 100%;
+  height: fit-content;
+  padding: 10px 128px;
+  color: #A8A8A8;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #F7F8FA;
+  text-align: center;
+  border-radius: 8px;
+  border: none;
 `
 export default Recommendation;

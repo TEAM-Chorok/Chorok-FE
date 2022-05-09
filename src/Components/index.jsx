@@ -8,7 +8,10 @@ import HomeHeader from "./Home/HomeHeader";
 import TodoContent from "./Home/TodoContent";
 import TodoProfile from "./Home/TodoProfile";
 
-import FirstVisitHome from "./Home/FirstVisitHome";
+import Questionnaire from "./Home/Questionnaire";
+import Questionnaire2 from "./Home/Questionnaire2";
+import Questionnaire3 from "./Home/Questionnaire3";
+import Questionnaire4 from "./Home/Questionnaire4";
 
 // Add Plant
 import AddPlantList from "./AddPlant/AddPlantList";
@@ -42,6 +45,7 @@ import CalendarTodo from "./Calendar/CalendarTodo";
 import CommPostList from "./Community/CommPostList";
 import CommPost from "./Community/CommPost";
 import CommunityFilter from "./Community/CommunityFilter";
+import CommPostCommentList from "./Community/CommPostCommentList";
 
 import AddPostHeader from "./Community/AddPostHeader";
 import AddPostFooter from "./Community/AddPostFooter";
@@ -87,7 +91,7 @@ import ProgressBar from "./ProgressBar";
 
 
 export {
-    FirstVisitHome,
+    Questionnaire,Questionnaire2, Questionnaire3, Questionnaire4,
     PlantProfile,
     TodoContent, TodoProfile, HomeHeader, HomeMyplant,
     AddPlantList, BottomSheet, SelectPlace, WritePlantProfile, AddDone,
@@ -96,7 +100,7 @@ export {
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, PlanteriorWriteComp,
     LabelingTestLink, RecommendPlant,
     CommPost, CommPostList, CommunityFilter, AddQuestion, AddPlantDairy, AddPostHeader, AddPostFooter,
-    MyPageHeader, MyCategoryBar, MyPagePost,
+    MyPageHeader, MyCategoryBar, MyPagePost, CommPostCommentList,
     MyPicturesPostList, ScrapPicturesPostList, 
     MyPlantsList, MyPlants, GeneralHeader,
     EditPlantHeader, EditPlantBody,

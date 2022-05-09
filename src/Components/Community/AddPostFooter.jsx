@@ -10,7 +10,6 @@ const AddPostFooter = (props) => {
         imgRef.current.click();
     }
 
-    console.log(props);
     return (
         <React.Fragment>
             <BottomBox>
@@ -19,7 +18,7 @@ const AddPostFooter = (props) => {
                         <FaCamera style={{width: "15px", height:"20px", color:"grey"}}></FaCamera>
                     </div>
                     <input type="file" ref={imgRef}
-                    onClick={(e)=>props.setImageUrl(e.target.files[0])}
+                    onClick={(e)=>{props.setImageUrl(e.target.files[0]); props.encodeFileToBase64(e.target.files[0])}}
                     style={{display:"none"}}/>
                     <Text>{props.imgCount}/3</Text>
                 </BottomWrap>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Route } from 'react-router-dom';
+import { Questionnaire } from '../Components';
 import {
   Login, Home, SignUp, Kakao, ProfileSetting, Labeling,
   Recommendation, FindPwd, ChangePwd,
@@ -33,7 +34,7 @@ function App() {
       <Route path="/changepwd" exact component={ChangePwd} />
 
       <Route path="/profilesetting" exact component={ProfileSetting} />
-      <Route path="/labeling/:no" exact component={Labeling} />
+      <Route path="/labeling" exact component={Labeling} />
 
       <Route path="/recommendation" exact component={Recommendation} />
 
