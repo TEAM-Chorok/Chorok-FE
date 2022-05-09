@@ -5,7 +5,7 @@ import {
   Login, Home, SignUp, Kakao, ProfileSetting, Labeling,
   Recommendation, FindPwd, ChangePwd,
   AddPlants, SearchPlant, PlantCard,
-  Search, PlanteriorDetail,
+  Search, PlanteriorDetail, PlanteriorWrite,
   CalendarPage,
   Community, MyPage, Setting,
   MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage,
@@ -47,7 +47,9 @@ function App() {
         <Route path="/calendar" exact component={CalendarPage} />
 
         <Route path="/search" exact component={Search} />
-        <Route path="/photo/:photoId" exact component={PlanteriorDetail} />
+        <Route path="/planterior/write" exact component={PlanteriorWrite} />
+        <Route path="/planterior/post/:postId" exact component={PlanteriorDetail} />
+        
 
         <Route path="/test" exact component={Test} />
 

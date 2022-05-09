@@ -27,6 +27,7 @@ import PlantCardFeed from "./PlantCard/PlantCardFeed";
 import PlanteriorDetailContents from "./Search/Planterior/PlanteriorDetailContents";
 import PlanteriorDetailComments from "./Search/Planterior/PlanteriorDetailComments";
 import PlanteriorList from "./Search/Planterior/PlanteriorList";
+import PlanteriorWriteComp from "./Search/Planterior/PlanteriorWrite";
 import LabelingTestLink from "./Search/Planterior/LabelingTestLink";
 import RecommendPlant from "./Search/Planterior/RecommendPlant"
 
@@ -92,7 +93,8 @@ export {
     AddPlantList, BottomSheet, SelectPlace, WritePlantProfile, AddDone,
     PlantCardProfile, PlantCardFeed, 
     CalendarTable, CalendarMyPlant, CalendarTodo,
-    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, LabelingTestLink, RecommendPlant,
+    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, PlanteriorWriteComp,
+    LabelingTestLink, RecommendPlant,
     CommPost, CommPostList, CommunityFilter, AddQuestion, AddPlantDairy, AddPostHeader, AddPostFooter,
     MyPageHeader, MyCategoryBar, MyPagePost,
     MyPicturesPostList, ScrapPicturesPostList, 

@@ -127,12 +127,12 @@ const FilterWrapper = styled.div`
   margin: 16px 0;
   overflow-x: scroll;
 
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+//  -ms-overflow-style: none; /* IE and Edge */
+//  scrollbar-width: none; /* Firefox */
 
-&::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera*/
-}
+// &::-webkit-scrollbar {
+//   display: none; /* Chrome, Safari, Opera*/
+// }
 `
 
 export default PlaceFilter;

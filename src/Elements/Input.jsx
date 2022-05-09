@@ -57,6 +57,17 @@ const Input = (props) => {
     );
   }
 
+  if (type === "textarea") {
+    return (
+      <React.Fragment >
+        <TextArea 
+          {...styles}
+          placeholder={placeholder}
+          onChange={_onChange}/>
+      </React.Fragment>
+    );
+  }
+
   return (
     <React.Fragment>
     {label && <Text margin="5px">{label}</Text>}
@@ -154,5 +165,13 @@ const SearchInput = styled.input`
     letter-spacing: 0.25px;
   }
 `
+
+const TextArea = styled.textarea`
+  width: 100%;
+  min-height: 364px;
+  height: 692px;
+  resize: none;
+`
+
 
     export default Input;
