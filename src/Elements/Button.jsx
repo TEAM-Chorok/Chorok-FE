@@ -203,6 +203,7 @@ const FilterButton = styled.button`
   &:hover {
     border: 1px solid #0AAF42;
     background: rgba(222, 251, 230, 0.5);
+    
   }
 `;
 

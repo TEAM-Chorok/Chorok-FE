@@ -12,7 +12,7 @@ const Questionnaire2 = (props) => {
       <React.Fragment>
           <GeneralHeader />
           <Grid margin="80px 0px 24px 0px" width="100%">
-            <Text color="#262626" size="large" bold >어떤 공간에서 <br />식물을 키우고 싶으신가요?</Text>
+            <Text size="large" bold >어떤 공간에서 <br />식물을 키우고 싶으신가요?</Text>
           </Grid>
               <SelectionWrap>
                 <ImageBox>

@@ -18,20 +18,20 @@ const Questionnaire3 = (props) => {
       <React.Fragment>
         <GeneralHeader />
         <Grid margin="80px 0px 24px 0px">
-            <Text color="#262626" size="large" bold >어떤 종류의 <br />식물을 키우고 싶으신가요?</Text>
+            <Text size="large" bold >어떤 종류의 <br />식물을 키우고 싶으신가요?</Text>
           </Grid>
             <SelectWrap>
               <SelectDiv >
-                <Text size="base" color="#262626">잎이 멋있는 식물이 좋아요</Text>
+                <Text size="base">잎이 멋있는 식물이 좋아요</Text>
               </SelectDiv>
               <SelectDiv >
-                <Text size="base" color="#262626">열매가 맺히는 걸 보고싶어요</Text>
+                <Text size="base" >열매가 맺히는 걸 보고싶어요</Text>
               </SelectDiv>
               <SelectDiv>
-                <Text size="base" color="#262626">예쁜 꽃이 피는 걸 보고싶어요</Text>
+                <Text size="base">예쁜 꽃이 피는 걸 보고싶어요</Text>
               </SelectDiv>
               <SelectDiv>
-                <Text size="base" color="#262626">어디선나 잘 자라면 좋겠어요</Text>
+                <Text size="base">어디선나 잘 자라면 좋겠어요</Text>
               </SelectDiv>
             </SelectWrap>
             

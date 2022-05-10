@@ -7,7 +7,7 @@ const CommunityFilter = () => {
     return(
         <React.Fragment>
 
-            <Grid margin="15px 0">
+            <Grid margin="15px 0px 0px 0px">
                 <Button type="filter" _onClick={() => {setCategory("")}}>전체</Button>
                 <Button type="filter" _onClick={() => {setCategory("postType02")}}>질문</Button>
                 <Button type="filter" _onClick={() => {setCategory("postType03")}}>식물성장일기</Button>

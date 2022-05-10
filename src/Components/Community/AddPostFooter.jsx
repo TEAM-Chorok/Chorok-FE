@@ -17,7 +17,7 @@ const AddPostFooter = (props) => {
                     <div onClick={handleClick}>
                         <FaCamera style={{width: "15px", height:"20px", color:"grey"}}></FaCamera>
                     </div>
-                    <input type="file" ref={imgRef}
+                    <input multiple type="file" ref={imgRef}
                     onClick={(e)=>{props.setImageUrl(e.target.files[0]); props.encodeFileToBase64(e.target.files[0])}}
                     style={{display:"none"}}/>
                     <Text>{props.imgCount}/3</Text>
@@ -33,14 +33,14 @@ const BottomBox = styled.div`
     width: 100vw;
     // margin-left: calc(-50vw + 50%);
     border-top: 1px solid #DDE1E6;
-    bottom: 20px;
+    bottom: 10px;
     left: 0px;
 `
 const BottomWrap = styled.div`
     height: 30px;
-    padding: 0px 16px;
+    padding: 10px 16px;
     display: flex;
     justify-content: space-between;
-    align-items:baseline;
+    align-items: center;
 `
 export default AddPostFooter;

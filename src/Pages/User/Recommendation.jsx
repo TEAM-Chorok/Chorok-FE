@@ -17,7 +17,7 @@ const Recommendation = (props) => {
                   <InnerWrap>
                     <Text size="base">집사님을 위한 <span style={{color:"#0AAF42"}}>추천 식물</span> 도착!</Text>
                     <Image imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg" type="circle" size="148px" margin="20px auto 8px auto"/>
-                    <Text size="base" bold color="#262626">스킨답서스</Text>
+                    <Text size="base" bold>스킨답서스</Text>
                   </InnerWrap>
                   <BottomWrap>
                         <PrimaryBtn onClick={()=>history.replace(`/plant/monstera`)}>이 식물에 대해 더 알아보기</PrimaryBtn>

@@ -24,23 +24,23 @@ const Questionnaire = (props) => {
         <React.Fragment>
           <GeneralHeader />
           <Grid margin="80px 0px 32px 0px" width="100%">
-            <Text color="#262626" size="large" bold >집사님 반가워요! <br />식물에 대해 어느 정도 알고 계신가요?</Text>
+            <Text size="large" bold >집사님 반가워요! <br />식물에 대해 어느 정도 알고 계신가요?</Text>
           </Grid>
           <QuestionBox>
-            <Grid padding="20px 24px">
-              <Text margin="0px" display="block" color="#262626">아기집사</Text>
+            <Grid padding="20px 24px" value="pl01">
+              <Text margin="0px" display="block" >아기집사</Text>
               <Text margin="0px" display="block" size="XS" color="#24A148">식물을 한 번도 키워본 적이 없거나 키워도 다 실패해요</Text>
             </Grid>                
           </QuestionBox>
           <QuestionBox>
-            <Grid padding="20px 24px">
-              <Text margin="0px" display="block" color="#262626">초보집사</Text>
+            <Grid padding="20px 24px" value="pl02">
+              <Text margin="0px" display="block">초보집사</Text>
               <Text margin="0px" display="block" size="XS" color="#24A148">식물에 대해 잘 모르지만 한두 번 잘 키워봤어요!</Text>
             </Grid>   
           </QuestionBox>
           <QuestionBox>
-            <Grid padding="20px 24px">
-              <Text margin="0px" display="block" color="#262626">숙련집사</Text>
+            <Grid padding="20px 24px" value="pl03">
+              <Text margin="0px" display="block">숙련집사</Text>
               <Text margin="0px" display="block" size="XS" color="#24A148">식물에 대해 잘 알고 잘 키울 수 있어요!</Text>
             </Grid>
           </QuestionBox>
