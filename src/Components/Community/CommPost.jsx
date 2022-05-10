@@ -9,7 +9,7 @@ const CommPost = () => {
     const history = useHistory();
     return (
         <React.Fragment>
-            <Grid width="100%" padding="20px 0px" margin="0px 0px 12px 0px"
+            <Grid width="100%" padding="20px" margin="0px 0px 12px 0px"
             _onClick={()=>history.push(`/community/1`)}>
                 <Grid width="100%" >
                     <Grid><Text size="xs" color="#24A148">식물추천</Text></Grid>

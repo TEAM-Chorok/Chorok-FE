@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Container, Text, Image } from "../../Elements";
+import { Button, Container, Text, Image, Grid } from "../../Elements";
 import{ CommPostList, CommunityFilter, SearchHeader } from "../../Components";
 import Dimmer from "../../Components/Dimmer";
 import { useHistory } from "react-router-dom";
@@ -19,9 +19,11 @@ const Community = () => {
     }
     return (
         <React.Fragment>
-            <Container>
-                <SearchHeader />
-                <CommunityFilter />
+            <Container type="np">
+                <Grid padding="20px 20px 0px 20px">
+                    <SearchHeader />
+                    <CommunityFilter />
+                </Grid>
                 <CommPostList />
                 <Button type="plus" _onClick={()=>openModal()}/>
                 {open ? 
