@@ -12,6 +12,8 @@ import styled from "styled-components";
 // page/AddPlant/AddPlants.jsx를 참고해주세요!
 // 호출시 다음과 같이 count(카운트 수), max(최댓값)을 넘겨주어야 동작합니다~!
 // <ProgressBar count={compNum+1} max={Object.keys(comp).length}/>
+//
+// 궁금하신 부분은 유나에게 문의해주세요~!! >.<
 
 const ProgressBar = (props) => {
 

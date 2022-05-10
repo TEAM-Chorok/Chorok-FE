@@ -29,6 +29,8 @@ import CalendarPage from "./Calendar/Calendar";
 import Search from "./Search/Search";
 import PlanteriorDetail from "./Search/PlanteriorDetail";
 import PlanteriorWrite from "./Search/PlanteriorWrite";
+import Result from "./Search/Result"
+
 
 import Community from "./Community/Community";
 import AddPost from "./Community/AddPost";
@@ -56,7 +58,7 @@ export { Login, SignUp, Kakao,
     AddPlants, SearchPlant,
     CalendarPage,
     PlantCard,
-    Search, PlanteriorDetail, PlanteriorWrite,
+    Search, PlanteriorDetail, PlanteriorWrite, Result, 
     Community, AddPost, PostDetail,
     MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage, EditPlant, MyPostsPage,
     Setting, DeactivateAccount,

@@ -21,6 +21,9 @@ const Planterior = () => {
       </Grid>
       <Grid width="100%" height="12px" bg="#F7F8FA" />
       <Grid width="100%" padding="0 16px">
+        <Grid margin="16px 0">
+          <Text bold size="h6">플랜테리어</Text>
+        </Grid>
         <Grid width="100%">
           <PlanteriorList />
         </Grid>

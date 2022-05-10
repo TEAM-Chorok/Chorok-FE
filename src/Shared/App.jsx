@@ -7,6 +7,7 @@ import {
   Recommendation, FindPwd, ChangePwd,
   AddPlants, SearchPlant, PlantCard,
   Search, PlanteriorDetail, PlanteriorWrite,
+  Result,
   CalendarPage,
   Community, MyPage, Setting,
   MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage,
@@ -48,9 +49,9 @@ function App() {
         <Route path="/calendar" exact component={CalendarPage} />
 
         <Route path="/search" exact component={Search} />
+        <Route path="/search/:result" exact component={Result} />
         <Route path="/planterior/write" exact component={PlanteriorWrite} />
         <Route path="/planterior/post/:postId" exact component={PlanteriorDetail} />
-        
 
         <Route path="/test" exact component={Test} />
 

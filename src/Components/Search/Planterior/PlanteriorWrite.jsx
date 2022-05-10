@@ -6,6 +6,7 @@ import PlaceFilter from "../PlaceFilter";
 
 
 const PlanteriorWriteComp = () => {
+  
   const [place, setPlace] = React.useState("all");
 
   return (
@@ -14,7 +15,6 @@ const PlanteriorWriteComp = () => {
     </React.Fragment>
   )
 }
-
 
 
 export default PlanteriorWriteComp;

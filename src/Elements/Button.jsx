@@ -208,16 +208,18 @@ const FilterButton = styled.button`
 
 // 필터 내 항목 버튼 (long)
 const FilterLongButton = styled.button`
+  box-sizing: border-box;
+
+  width: 100%;
+  height: ${(props) => props.height==="60px"? "60px" : "50px"};
   
-  width: 172px;
-  height: 40px;
-  
-  border: 1px solid #45D17D;
-  border-radius: 10px;
-  background: #fff;
+  border: ${(props) => props.checked? "2px solid #0AAF42" : "1px solid #F4F4F4"};
+
+  border-radius: 8px;
+  background: ${(props) => props.checked? "rgba(222, 251, 230, 0.5)" : "#fff"};
 
   &:hover {
-    background: #ddd;
+    background: rgba(222, 251, 230, 0.5);
   }
 `;
 
@@ -242,7 +244,7 @@ const BasicGreenButton = styled.button`
   
   border: none;
   border-radius: ${(props) => props.height};
-  background: #45D17D;
+  background: #42BE65;
   
 `
 

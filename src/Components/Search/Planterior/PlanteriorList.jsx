@@ -38,9 +38,7 @@ const PlanteriorList = () => {
 
   return (
     <React.Fragment>
-      <Grid margin="16px 0">
-        <Text bold size="h6">플랜테리어</Text>
-      </Grid>
+
       <PlaceFilter setPlace={setPlace} />
       <Grid width="100%">
         <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>

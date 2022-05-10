@@ -25,7 +25,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 //              내 식물에<br/>추가하시겠습니까?
 //             </Text>
 //           </Alert> 
-
+//
+// 궁금하신 부분은 유나에게 문의해주세요~!! >.<
 
 
 const Alert = (props) => {

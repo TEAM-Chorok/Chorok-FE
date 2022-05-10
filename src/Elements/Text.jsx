@@ -275,7 +275,7 @@ const XXSMALL = styled.p`
   box-sizing: border-box;
 
   font-size: 11px;
-  font-weight: ${(props) => props.bold ? 600 : 400};
+  font-weight: ${(props) => props.bold ? 600 : 500};
   line-height: ${(props) => props.line};
   letter-spacing: 0.4px;
   color: ${(props) => props.color};

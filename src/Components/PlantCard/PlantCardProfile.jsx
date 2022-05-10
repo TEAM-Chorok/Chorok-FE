@@ -1,6 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Grid, Image, Text } from '../../Elements';
-
 
 
 // 식물카드 상단의 기본 정보부분 
@@ -15,8 +15,42 @@ const PlantCardProfile = () => {
           <Image type="circle" size="148px" />
         </Grid>
         <Grid margin="15px auto">
-          <Text bold>로즈마리</Text>
+          <Text bold size="large">로즈마리</Text>
         </Grid>
+
+        <Grid is_flex>
+          <PlantType>덩굴형</PlantType>
+          <PlantType>관엽식물</PlantType>
+        </Grid>
+
+        <GridBox>
+          <Grid is_flex align="center">
+            <Dot/>
+            <Text bold size="xsmall">난이도</Text>
+          </Grid>
+
+          <Grid margin="1px 0">
+            <Text size="xsmall">초보</Text>
+          </Grid>
+          
+          <Grid is_flex align="center">
+            <Dot/>
+            <Text bold size="xsmall">맞춤온도</Text>
+          </Grid>
+          
+          <Grid margin="1px 0">
+            <Text size="xsmall">21~25℃</Text>
+          </Grid>
+
+          <Grid is_flex align="center">
+            <Dot/>
+            <Text bold size="xsmall">배치공간</Text>
+          </Grid>
+
+          <Grid margin="1px 0">
+            <Text size="xsmall">거실, 방안, 통로, 화장실</Text>
+          </Grid>
+        </GridBox>
 
         <Grid margin="25px 0">
           <Text size="XS" color="#999">
@@ -38,11 +72,40 @@ const PlantCardProfile = () => {
           </Grid>
         </Grid>
 
-
       </Grid>
     </React.Fragment>
   );
 }
 
+const PlantType = styled.div`
+  margin-right: 4px;
+  padding: 4px 12px;
+  
+  width: fit-content;
+
+  border: 1px solid #0AAF42;
+  border-radius: 15px;
+
+  font-weight: 500;
+  font-size: 14px;
+  color: #24A148;
+
+  background: rgba(222, 251, 230, 0.5);
+`
+
+const Dot = styled.div`
+  margin: 8px 8px 8px 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #6FDC8C;
+`
+
+const GridBox = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+
+  margin: 16px 0;
+`
 
 export default PlantCardProfile;

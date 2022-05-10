@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../Elements";
-
+import { IoIosArrowForward } from "react-icons/io";
 
 
 
@@ -19,7 +19,7 @@ import { Grid, Image, Text } from "../Elements";
 
 const PlantProfile = (props) => {
 
-  const { size, name, plant, imgUrl, _onClick } = props;
+  const { list, size, name, plant, imgUrl, _onClick } = props;
 
   const [checked, setChecked] = React.useState(false);
 
@@ -41,6 +41,20 @@ const PlantProfile = (props) => {
         </Grid>
       </Grid>
     );
+  }
+
+  if (list) {
+    return (
+      <Grid width="100%" margin="16px 0" _onClick={_onClick}>
+        <Grid is_flex align="center" width="100%" height="72px">
+          <Image type="circle" size="72px" imgUrl={imgUrl}/>
+          <Grid width="100%" margin="0 16px">
+            <Text bold size="base">{plant}</Text>
+          </Grid>
+          <IoIosArrowForward size="20px" color="#393939" fontWeight="bold"/>
+        </Grid>
+      </Grid>
+    )
   }
 
   return (

@@ -5,7 +5,8 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { Button, Grid, Text } from '../../Elements';
 import { FilterLevel, FilterSpace, FilterType, FilterStyle } from "../../Components/AddPlant/Filter";
 import { actionCreators as searchActions } from '../../Redux/Modules/Search';
-
+import styled from 'styled-components';
+import { FiRotateCw } from "react-icons/fi";
 
 // 필터기능 관련 bottomsheet 컴포넌트
 // 리팩토링 예정입니다 ㅠ.ㅠ~!!
@@ -18,13 +19,13 @@ export default function BottomSheet() {
   const [state, setState] = React.useState({
     bottom: false,
   });
-  
 
   // filter 선택한 항목 데이터
   const [space, setSpace] = React.useState(null);
   const [level, setLevel] = React.useState(null);
   const [type, setType] = React.useState(null);
   const [style, setStyle] = React.useState(null);
+  
   
   const filterData = {
     plantTypeCode : type,
@@ -38,7 +39,7 @@ export default function BottomSheet() {
   const [levelText, setLevelText] = React.useState(null);
   const [typeText, setTypeText] = React.useState(null);
   const [styleText, setStyleText] = React.useState(null);
-  
+
   const filterTextData = {
     plantLevelText  : levelText,  
     plantPlaceText : spaceText,
@@ -51,10 +52,10 @@ export default function BottomSheet() {
 
   // 필터 선택에 따라 바텀시트에 출력될 컴포넌트 목록
   const comp = {
-    0: <FilterLevel setLevel={setLevel} setLevelText={setLevelText}/>,
-    1: <FilterSpace setSpace={setSpace} setSpaceText={setSpaceText}/>,
-    2: <FilterType setType={setType} setTypeText={setTypeText}/>,
-    3: <FilterStyle setStyle={setStyle} setStyleText={setStyleText}/>,
+    0: <FilterLevel setLevel={setLevel} setLevelText={setLevelText} code={level}/>,
+    1: <FilterSpace setSpace={setSpace} setSpaceText={setSpaceText} code={space}/>,
+    2: <FilterType setType={setType} setTypeText={setTypeText} code={type}/>,
+    3: <FilterStyle setStyle={setStyle} setStyleText={setStyleText} code={style}/>,
   };
 
   // 바텀시트 open/close 관련 함수 
@@ -66,45 +67,61 @@ export default function BottomSheet() {
 
   // 필터 데이터 서버로 전송 -> 필터링된 목록 조회
   const filterSubmit = () => {
+    // 필터링 값이 전부 null일 경우 그냥 전체 조회로 dispatch 해야함
     dispatch(searchActions.plantFilteringDB(filterData));
     // console.log(filterData)
   };
 
+  // 필터 선택값 초기화
+  const clear = () => {
+    setSpace(null);
+    setLevel(null);
+    setType(null);
+    setStyle(null);
+    setSpaceText(null);
+    setLevelText(null);
+    setTypeText(null);
+    setStyleText(null);
+    // + 식물 전체조회로 dispatch
+  }
+
   return (
     <React.Fragment key={'bottom'}>
+      <FilterBox>
 
-      <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
-        <Text bold size="small" color="#0AAF42">전체</Text>
-      </Button>
-      {levelText? 
-        <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
-          <Text bold size="small" color="#0AAF42">{levelText}</Text>
-        </Button> : 
-        <Button type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
-          <Text size="small">난이도</Text>
-        </Button>}
-      {spaceText?
-        <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 1)}>
-          <Text bold size="small" color="#0AAF42">{spaceText}</Text>
-        </Button> : 
-        <Button type="filter" _onClick={toggleDrawer('bottom', true, 1)}>
-          <Text size="small">공간</Text>
-        </Button>} 
-      {typeText?
-        <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 2)}>
-        <Text bold size="small" color="#0AAF42">{typeText}</Text>
-        </Button> :
-        <Button type="filter" _onClick={toggleDrawer('bottom', true, 2)}>
-          <Text size="small">종류</Text>
-        </Button>
-        }
-      {styleText?
-        <Button checked type="filter" _onClick={toggleDrawer('bottom', true, 3)}>
-          <Text bold size="small" color="#0AAF42">{styleText}</Text>
-        </Button> :
-        <Button type="filter" _onClick={toggleDrawer('bottom', true, 3)}>
-          <Text size="small">특징</Text>
-        </Button>}
+        <Button type="filter" _onClick={clear}
+          checked={levelText || spaceText || typeText || styleText ? false : true }>
+          <Text size="small"
+            bold={levelText || spaceText || typeText || styleText ? false : true }  
+            color={levelText || spaceText || typeText || styleText ? "" : "#0AAF42"}>전체</Text>
+        </Button> 
+        
+          <Button checked={levelText?true:false} type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
+            <Text bold={levelText?true:false} size="small" color={levelText?"#0AAF42":""}>
+              {levelText?levelText:"난이도"}
+            </Text>
+          </Button>
+
+          <Button 
+            checked={spaceText?true:false} type="filter" _onClick={toggleDrawer('bottom', true, 1)}>
+            <Text bold={spaceText?true:false} size="small" color={spaceText?"#0AAF42":""}>
+              {spaceText?spaceText:"공간"}
+            </Text>
+          </Button>
+
+          <Button checked={typeText?true:false} type="filter" _onClick={toggleDrawer('bottom', true, 2)}>
+            <Text bold={typeText?true:false} size="small" color={typeText?"#0AAF42":""}>
+              {typeText?typeText:"종류"}
+            </Text>
+          </Button> 
+
+          <Button checked={styleText?true:false} type="filter" _onClick={toggleDrawer('bottom', true, 3)}>
+            <Text bold={styleText?true:false} size="small" color={styleText?"#0AAF42":""}>
+              {styleText?styleText:"특징"}
+            </Text>
+          </Button>
+
+      </FilterBox>
       
 
       <SwipeableDrawer
@@ -113,38 +130,46 @@ export default function BottomSheet() {
         onClose={toggleDrawer('bottom', false)}
         onOpen={toggleDrawer('bottom', true)}
         PaperProps={{
-          style:{
-            borderRadius:'10px 10px 0 0'
+          style: {
+            borderRadius: '10px 10px 0 0'
           }
         }}
       >
-        <Grid width="100%">
+        <Grid width="100%" height="300px">
           <Grid margin="32px 24px">
-            <Button type="tran" _onClick={()=>{setCompNum(0)}}>
-              {compNum===0?<Text bold size="base" color="#45D17D">난이도</Text>:<Text bold size="base">난이도</Text>}
+            <Button type="tran" _onClick={() => { setCompNum(0) }}>
+              <Text bold size="small" color={compNum === 0 ? "#0AAF42":"#C6C6C6"}>난이도</Text>
             </Button>
-            <Button type="tran" _onClick={()=>{setCompNum(1)}}>
-              {compNum===1?<Text bold size="base" color="#45D17D">공간</Text>:<Text bold size="base">공간</Text>}
+            <Button type="tran" _onClick={() => { setCompNum(1) }}>
+              <Text bold size="small" color={compNum === 1 ? "#0AAF42":"#C6C6C6"}>공간</Text>
             </Button>
-            <Button type="tran" _onClick={()=>{setCompNum(2)}}>
-              {compNum===2?<Text bold size="base" color="#45D17D">종류</Text>:<Text bold size="base">종류</Text>}
+            <Button type="tran" _onClick={() => { setCompNum(2) }}>
+              <Text bold size="small" color={compNum === 2 ? "#0AAF42":"#C6C6C6"}>종류</Text>
             </Button>
-            <Button type="tran" _onClick={()=>{setCompNum(3)}}>
-              {compNum===3?<Text bold size="base" color="#45D17D">특징</Text>:<Text bold size="base">특징</Text>}
+            <Button type="tran" _onClick={() => { setCompNum(3) }}>
+              <Text bold size="small" color={compNum === 3 ? "#0AAF42":"#C6C6C6"}>특징</Text> 
             </Button>
-
           </Grid>
           {comp[compNum]}
+        </Grid>
+        <Grid is_flex margin="32px auto" align="center">
+          <Grid margin="0 16px 0 0" _onClick={clear}>
+            <FiRotateCw size="20px" color="#8D8D8D" />
           </Grid>
-          <Grid margin="32px auto">
-            <Button type="basic" width="124px" height="36px" _onClick={filterSubmit}>
-              <Text size="xsmall" color="#fff">적용하기</Text>
-            </Button>
-          </Grid>
+          <Button type="basic" width="200px" height="40px" _onClick={filterSubmit}>
+            <Text size="basic" color="#fff">적용하기</Text>
+          </Button>
+        </Grid>
       </SwipeableDrawer>
 
     </React.Fragment>
   );
 
   
+  
 }
+
+  const FilterBox = styled.div`
+    width: 100%;
+    line-height: 35px;
+  `
