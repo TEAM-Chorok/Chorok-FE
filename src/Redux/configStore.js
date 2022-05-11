@@ -4,8 +4,10 @@ import { createBrowserHistory } from "history";
 
 import thunk from "redux-thunk";
 
+import Label from "./Modules/Label";
 import User from "./Modules/User";
 import Main from "./Modules/Main";
+import Post from "./Modules/post"
 import Search from "./Modules/Search";
 
 export const history = createBrowserHistory();
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
     main: Main,
     user: User,
     search: Search,
+    label: Label,
+    post: Post,
     router: connectRouter(history),
 });
 

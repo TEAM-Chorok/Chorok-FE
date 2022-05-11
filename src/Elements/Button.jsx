@@ -1,7 +1,6 @@
 import React from "react";
 import { HiPlus } from "react-icons/hi";
 import styled from "styled-components";
-import Text from "./Text";
 
 const Button = (props) => {
     const {
@@ -21,6 +20,7 @@ const Button = (props) => {
         type,
         borderRadius,
         checked,
+        textAlign,
       } = props;
     
       const styles = {
@@ -36,6 +36,7 @@ const Button = (props) => {
         bold,
         borderRadius,
         checked,
+        textAlign,
       };
 
       
@@ -102,6 +103,16 @@ const Button = (props) => {
               {children}
           </TransparentButton>
         </React.Fragment>
+        )
+      }
+
+      if(type === "deledit"){
+        return (
+          <React.Fragment>
+            <ToggleInnerButton {...styles} onClick={_onClick}>
+                {children}
+            </ToggleInnerButton>
+          </React.Fragment>
         )
       }
 
@@ -260,4 +271,14 @@ const TransparentButton = styled.button`
   background: transparent;
 `
 
+//toggledrawer 삭제 수정 버튼
+const ToggleInnerButton = styled.button`
+  width: 100%;
+  height: fit-content;
+  padding: ${(props) => props.padding};
+  border: none;
+  border-bottom: 1px solid #E0E0E0;
+  background-color: transparent;
+  text-align: ${(props) => props.textAlign};;
+`
 export default Button;

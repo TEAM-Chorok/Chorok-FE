@@ -5,9 +5,11 @@ import{ CommPostList, CommunityFilter, SearchHeader } from "../../Components";
 import Dimmer from "../../Components/Dimmer";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const Community = () => {  
     const history = useHistory();
+    const dispatch = useDispatch();
 
     //+버튼 모달창
     const [open, setOpenModal] = React.useState(false);
@@ -17,14 +19,18 @@ const Community = () => {
     const closeModal = () => {
         setOpenModal(false);
     }
+
+    const [category, setCategory] = React.useState("all");
+
+
     return (
         <React.Fragment>
             <Container type="np">
-                <Grid padding="20px 20px 0px 20px">
+                <Grid padding="20px 20px 0px 20px" width="100%">
                     <SearchHeader />
-                    <CommunityFilter />
+                    <CommunityFilter setCategory={setCategory} category={category} />
                 </Grid>
-                <CommPostList />
+                <CommPostList category={category} />
                 <Button type="plus" _onClick={()=>openModal()}/>
                 {open ? 
                 <>
@@ -38,8 +44,6 @@ const Community = () => {
                             <InnerBox1><Text size="small">공간 자랑하기</Text></InnerBox1>
                             <InnerBox2 onClick={()=>history.push(`/addpost`)}><Text size="small">초록톡 글쓰기</Text></InnerBox2>
                         </InnerWrap>
-                    </Modal>
-                    <Modal onClick={e => e.stopPropagation()}>
                     </Modal>
                 </>
                  : 

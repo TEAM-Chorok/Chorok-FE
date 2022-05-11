@@ -3,7 +3,7 @@ import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { GeneralHeader } from '..';
-
+ 
 
 const Questionnaire2 = (props) => {
   const history = useHistory();
@@ -15,19 +15,19 @@ const Questionnaire2 = (props) => {
             <Text size="large" bold >어떤 공간에서 <br />식물을 키우고 싶으신가요?</Text>
           </Grid>
               <SelectionWrap>
-                <ImageBox>
+                <ImageBox onClick={()=>props.setPlace("pp03")}> 
                   <ImageWrap className='child'>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
                   </ImageWrap>
                   <TextWrap className='child'><Text>화장실</Text></TextWrap>
                 </ImageBox>
-                <ImageBox>
+                <ImageBox onClick={()=>props.setPlace("pp02")}>
                   <ImageWrap className='child'>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
                   </ImageWrap>
                   <TextWrap className='child'><Text>방안</Text></TextWrap>
                 </ImageBox>
-                <ImageBox>
+                <ImageBox onClick={()=>props.setPlace("pp01")}>
                   <ImageWrap className='child'>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
                   </ImageWrap>
@@ -36,19 +36,19 @@ const Questionnaire2 = (props) => {
               </SelectionWrap>
 
               <SelectionWrap>
-                <ImageBox>
+                <ImageBox onClick={()=>props.setPlace("pp06")}>
                   <ImageWrap className='child'>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
                   </ImageWrap>
                   <TextWrap className='child'><Text>베란다</Text></TextWrap>
                 </ImageBox>
-                <ImageBox>
+                <ImageBox onClick={()=>props.setPlace("pp05")}>
                   <ImageWrap className='child'>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
                   </ImageWrap>
                   <TextWrap className='child'><Text>창가</Text></TextWrap>
                 </ImageBox>
-                <ImageBox>
+                <ImageBox onClick={()=>props.setPlace("pp04")}>
                   <ImageWrap className='child'>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
                   </ImageWrap>
@@ -56,7 +56,7 @@ const Questionnaire2 = (props) => {
                 </ImageBox>
               </SelectionWrap>
               <Grid position="absolute" top="600px" right="100px" align="center">
-            <PrimaryBtn onClick={()=>props.setActive(3)}>다음으로</PrimaryBtn>
+            <PrimaryBtn disabled={props.place === ""} onClick={()=>props.setActive(3)}>다음으로</PrimaryBtn>
           </Grid>
       </React.Fragment>
     )
@@ -101,6 +101,10 @@ const PrimaryBtn = styled.button`
   text-align: center;
   border: none;
   border-radius: 16px;
+  &:disabled{
+    background-color: #F4F4F4;
+    color: #A8A8A8;
+  }
 `
 
 export default Questionnaire2;

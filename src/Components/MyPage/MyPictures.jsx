@@ -1,39 +1,55 @@
-import { Button } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { Button } from '@mui/material';
 import { Text, Grid, Image } from '../../Elements';
+import { actionCreators as postActions} from '../../Redux/Modules/post';
 
 const MyPictures = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
+    const myPhotoList = useSelector(state => state.post?.photoList);
+    const scrapPhotoList = useSelector(state => state.post?.scrapPhotoList);
+    useEffect(() => {
+        dispatch(postActions.getMyPhotoListDB());
+        dispatch(postActions.getScrapPhotoListDB());
+    }, [])
+    
+    if( !myPhotoList || !scrapPhotoList ) {
+        return (
+            <div></div>
+        )
+    }
     return (
         <React.Fragment>
-            <Grid padding="10px 0px" width="100%">
+            <Grid padding="10px 16px" width="100%">
                 {/* 내 사진 */}
             <TitleWrap1>
-                <Text bold fontSize="0.9em">내 사진</Text><Text line="0.8em" color="green" bold>n</Text>
+                <Text bold size="large">내 사진</Text><Text size="large" color="#0AAF42" bold>n</Text>
                 <Button variant='text' style={{color:"grey", justifyContent:"end"}}
                 onClick={()=>history.push('/mypictures')}>더 보기</Button>
             </TitleWrap1>
             <ContentWrap>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"/></Contents>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202201/19/e6fdcf26-7397-4053-9f84-904cabf7f279.jpg"/></Contents>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"/></Contents>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202201/19/e6fdcf26-7397-4053-9f84-904cabf7f279.jpg"/></Contents>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"/></Contents>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202201/19/e6fdcf26-7397-4053-9f84-904cabf7f279.jpg"/></Contents>
+                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/Rectangle2721.jpg"/>
+                <Image margin="4px 0px"  type="square" borderRadius="10px" size="104px" imgUrl="img/bedroom.webp"/>
+                <Image margin="4px 0px"  type="square" borderRadius="10px" size="104px" imgUrl="img/kitchen.jpeg"/>
+                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/living room_@.jpeg"/>
+                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/pexels-photo-2008269.jpeg"/>
+                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/terrace.jpeg"/>
+                
             </ContentWrap>
             {/* 스크랩한 사진  */}
             <TitleWrap>
-                <Text bold fontSize="0.9em">스크랩한 사진 </Text><Text line="0.8em" color="green" bold>n</Text>
+                <Text bold size="large">스크랩한 사진 </Text><Text size="large" color="#0AAF42" bold>n</Text>
                 <Button variant='text' style={{color:"grey", justifyContent:"end"}}
                 onClick={()=>history.push('/scrap-picture')}>더 보기</Button>
             </TitleWrap>
             <ContentWrap>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"/></Contents>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202201/19/e6fdcf26-7397-4053-9f84-904cabf7f279.jpg"/></Contents>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"/></Contents>
-                <Contents><Image type="square" borderRadius="10px" size="110px" imgUrl="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202201/19/e6fdcf26-7397-4053-9f84-904cabf7f279.jpg"/></Contents>
+                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/kitchen.jpeg"/>
+                <Image margin="4px 0px"  type="square" borderRadius="10px" size="104px" imgUrl="img/terrace.jpeg"/>
+                <Image margin="4px 0px"  type="square" borderRadius="10px" size="104px"  imgUrl="img/living room_@.jpeg"/>
+                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/Rectangle2721.jpg"/>
                 
             </ContentWrap>
             </Grid>
@@ -43,13 +59,15 @@ const MyPictures = () => {
 }
 const TitleWrap1 = styled.div`
     display: grid;
-    grid-template-columns: 1fr 4.5fr 1fr;
+    grid-template-columns: 1fr 3.5fr 1fr;
     width: 100%;
+    align-items: center;
 `
 const TitleWrap = styled.div`
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
+    align-items: center;
 `
 const ContentWrap = styled.div`
     display: grid;

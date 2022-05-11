@@ -8,9 +8,6 @@ import { GrClose } from 'react-icons/gr';
 
 const AddPostHeader = (props) => {
     const history = useHistory();
-    const addPost = () => {
-        
-    }
     return ( 
         <React.Fragment>
             <Header>
@@ -20,7 +17,6 @@ const AddPostHeader = (props) => {
                 {props.disable ? 
                 <Button
                 disabled={true}
-                onClick={()=>addPost()}
                 style={{
                     width:"fit-content",
                     height:"fit-content", 
@@ -29,7 +25,7 @@ const AddPostHeader = (props) => {
                     justifyContent:"end"
                 }}>올리기</Button>: 
                 <Button
-                onClick={()=>addPost()}
+                onClick={()=>props.submit()}
                 style={{
                     width:"fit-content",
                     height:"fit-content", 

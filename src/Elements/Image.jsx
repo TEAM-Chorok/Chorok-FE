@@ -4,7 +4,7 @@ import styled, { css, keyframes } from "styled-components";
 
 const Image = (props) => {
 
-  const { type, width, height, size, imgUrl, margin, borderRadius, checked, unChecked } = props;
+  const { type, width, height, size, imgUrl, margin, borderRadius, checked, unChecked, src } = props;
 
   const styles = {
     margin: margin,
@@ -62,6 +62,13 @@ const Image = (props) => {
     );
   };
 
+  if ( type === "icon" ) {
+    return (
+      <React.Fragment>
+        <Icon {...styles} src={src} />
+      </React.Fragment>
+    )
+  }
 
   return (
     <React.Fragment>
@@ -169,6 +176,14 @@ const Rectangle = styled.div`
     background-image: url("${(props) => props.imgUrl}");
     background-size: cover;
 `
+
+const Icon = styled.img`
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
+    border: none;
+    src: ${(props) => props.src};
+`
+
 
 const CheckedCircle = styled.div`
     box-sizing: border-box;

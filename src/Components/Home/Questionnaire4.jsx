@@ -8,7 +8,6 @@ import { Button } from '@mui/material';
 import { GeneralHeader } from '..';
 
 const Questionnaire4 = (props) => {
-  const params = useParams();  //params.no = 문제번호 (1~4)
   const history = useHistory();
 
     return(
@@ -18,7 +17,7 @@ const Questionnaire4 = (props) => {
             <Text color="#262626" size="large" bold >어떤 특징을 가진 식물을<br />좋아하시나요?</Text>
           </Grid>
             <SelectWrap>
-              <ImageBox>
+              <ImageBox onClick={()=>props.setAttribute2("pgs01")}>
               <ImageWrap className='child'>
                 <Image margin="0px auto" type="square" borderRadius="16px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
               </ImageWrap>
@@ -26,7 +25,7 @@ const Questionnaire4 = (props) => {
                 <Text display="block" color="#262626" size="xsmall" margin="0px">부드러운</Text>
               </TextWrap>
               </ImageBox>
-              <ImageBox>
+              <ImageBox onClick={()=>props.setAttribute2("pgs05")}>
                 <ImageWrap className='child'>
                   <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
                 </ImageWrap>
@@ -34,7 +33,7 @@ const Questionnaire4 = (props) => {
                   <Text display="block" color="#262626" size="xsmall" margin="0px">아담한</Text>
                 </TextWrap>
               </ImageBox>
-              <ImageBox>
+              <ImageBox onClick={()=>props.setAttribute2("pgs04")}>
               <ImageWrap className='child'>
                 <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
                 </ImageWrap>
@@ -44,15 +43,15 @@ const Questionnaire4 = (props) => {
               </ImageBox>
             </SelectWrap>
             <SelectWrap2>
-              <ImageBox>
+              <ImageBox onClick={()=>props.setAttribute2("pgs02")}>
               <ImageWrap className='child'>
                 <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
                 </ImageWrap>
                 <TextWrap className='child'>
-                <Text display="block" color="#262626" size="xsmall" margin="0px">뻗거나 감겨진</Text>
+                <Text display="block" color="#262626" size="xsmall" margin="0px">감겨오르는</Text>
                 </TextWrap>
               </ImageBox> 
-              <ImageBox>
+              <ImageBox onClick={()=>props.setAttribute2("pgs06")}>
               <ImageWrap className='child'>
                 <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
               </ImageWrap>
@@ -62,7 +61,7 @@ const Questionnaire4 = (props) => {
               </ImageBox>
             </SelectWrap2>
             <Grid position="absolute" top="600px" right="100px"  align="center">
-              <PrimaryBtn onClick={()=>props.submit()}>다음으로</PrimaryBtn>
+              <PrimaryBtn disabled={props.attribute2 === ""} onClick={()=>props.submit()}>다음으로</PrimaryBtn>
           </Grid>
       </React.Fragment>
     )
@@ -113,5 +112,9 @@ const PrimaryBtn = styled.button`
   text-align: center;
   border: none;
   border-radius: 16px;
+  &:disabled{
+    background-color: #F4F4F4;
+    color: #A8A8A8;
+  }
 `
 export default Questionnaire4;

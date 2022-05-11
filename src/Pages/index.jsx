@@ -35,6 +35,7 @@ import Result from "./Search/Result"
 import Community from "./Community/Community";
 import AddPost from "./Community/AddPost";
 import PostDetail from "./Community/PostDetail";
+import CommBottomSheet from "../Components/Community/CommBottomSheet";
 
 //My Page
 import MyPage from "./MyPage/MyPage";
@@ -59,7 +60,7 @@ export { Login, SignUp, Kakao,
     CalendarPage,
     PlantCard,
     Search, PlanteriorDetail, PlanteriorWrite, Result, 
-    Community, AddPost, PostDetail,
+    Community, AddPost, PostDetail, CommBottomSheet,
     MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage, EditPlant, MyPostsPage,
     Setting, DeactivateAccount,
     Test,
