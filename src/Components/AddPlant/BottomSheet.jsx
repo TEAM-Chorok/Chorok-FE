@@ -1,16 +1,17 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
+import { FilterLevel, FilterSpace, FilterType, FilterStyle } from "../../Components/AddPlant/Filter";
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { Button, Grid, Text } from '../../Elements';
-import { FilterLevel, FilterSpace, FilterType, FilterStyle } from "../../Components/AddPlant/Filter";
-import { actionCreators as searchActions } from '../../Redux/Modules/Search';
-import styled from 'styled-components';
 import { FiRotateCw } from "react-icons/fi";
+
+import { actionCreators as searchActions } from '../../Redux/Modules/Search';
+
 
 // 필터기능 관련 bottomsheet 컴포넌트
 // 리팩토링 예정입니다 ㅠ.ㅠ~!!
-
 export default function BottomSheet() {
 
   const dispatch = useDispatch();
@@ -65,13 +66,7 @@ export default function BottomSheet() {
     setCompNum(num)
   };
 
-  // 필터 데이터 서버로 전송 -> 필터링된 목록 조회
-  const filterSubmit = () => {
-    // 필터링 값이 전부 null일 경우 그냥 전체 조회로 dispatch 해야함
-    dispatch(searchActions.plantFilteringDB(filterData));
-    // console.log(filterData)
-  };
-
+  
   // 필터 선택값 초기화
   const clear = () => {
     setSpace(null);
@@ -84,6 +79,13 @@ export default function BottomSheet() {
     setStyleText(null);
     // + 식물 전체조회로 dispatch
   }
+  
+  // 필터 데이터 서버로 전송 -> 필터링된 목록 조회
+  const filterSubmit = () => {
+    // 필터링 값이 전부 null일 경우 그냥 전체 조회로 dispatch 해야함
+    dispatch(searchActions.plantFilteringDB(filterData));
+    // console.log(filterData)
+  };
 
   return (
     <React.Fragment key={'bottom'}>

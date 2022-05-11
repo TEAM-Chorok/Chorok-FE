@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../Elements";
 import PlantProfile from "../PlantProfile";
@@ -8,6 +9,8 @@ import PlantProfile from "../PlantProfile";
 // 내 식물 목록
 
 const HomeMyplant = () => {
+
+  const myPlant = useSelector((state) => state);
 
   return (
     <React.Fragment>

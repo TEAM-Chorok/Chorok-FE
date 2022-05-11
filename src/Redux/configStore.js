@@ -6,12 +6,14 @@ import thunk from "redux-thunk";
 
 import User from "./Modules/User";
 import Main from "./Modules/Main";
+import Search from "./Modules/Search";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     main: Main,
     user: User,
+    search: Search,
     router: connectRouter(history),
 });
 

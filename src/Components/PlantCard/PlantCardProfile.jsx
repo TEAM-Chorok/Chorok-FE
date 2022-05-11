@@ -1,12 +1,36 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Grid, Image, Text } from '../../Elements';
-
+import { actionCreators as searchActions } from '../../Redux/Modules/Search';
+import { useParams } from 'react-router-dom'
 
 // 식물카드 상단의 기본 정보부분 
 // 식물카드에 들어갈 내용이 어느정도 확정 된 뒤에 이어서 구현하겠습니다~!
 
 const PlantCardProfile = () => {
+  const dispatch = useDispatch();
+  const plantData = useSelector((state) => state);
+  const plantNo = useParams();
+
+  // console.log(plantNo)
+
+  React.useEffect(() => {
+    dispatch(searchActions.getPlantDetailDB(plantNo));
+  }, [plantNo])
+
+//   {
+//     plantNo       : plantNo
+//     plantName  : plantName  
+//     plantLevel   : plantLevel   
+//     plantPlace   : plantPlace   
+//     plantType   : plantType   
+//     plantTemp  : plantTemp  
+//     plantInfo    :  plantInfo    
+//     plantWaterCycle   :   plantWaterCycle   
+  
+//  }
+
   return (
     <React.Fragment>
       <Grid margin="20px 0" padding="10px">

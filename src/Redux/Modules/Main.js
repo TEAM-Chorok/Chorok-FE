@@ -5,16 +5,14 @@ import axios from "axios";
 
 
 // 메인페이지 관련 리덕스 
-// 주호님이 지속적으로 api 설계 변경하신다고 하셔서 기능구현은 뒤로 미뤄두었습니다 ㅠ.ㅠ! 
 
 // 액션 
 const GET_WEATHER = "GET_WEATHER";
-const GET_DATA = "GET_DATA"
+const GET_MY_PLANT = "GET_MY_PLANT";
 
 // 액션 생성
 const getWeather = createAction(GET_WEATHER, (weather) => ({ weather }));
-// open api test
-const getdata = createAction(GET_DATA, (data) => ({ data }))
+const getMyPlant = createAction(GET_MY_PLANT, (myplant) => ({myplant}))
 
 // 초기값
 const initialState = {
@@ -23,16 +21,22 @@ const initialState = {
 
 // 미들웨어 
 // 날씨 가져오기
-// cors때문에 서버에서 내려받기로 
-const getWeatherDB = (lat, lon) => {
+const getWeatherDB = (userLocation) => {
   return function (dispatch, getState, { history }) {
     mainAPI
-      .getWeather(lat, lon)
+      .getWeather(userLocation)
       .then((response) => {
-        // console.log("getWeatherDB : response", response);
-        dispatch(getWeather(response));
+        console.log("getWeatherDB : response", response);
+        const weatherData = {
+          weather: response.main,
+          temp: response.temp,
+          temp_min: response.temp_min,
+          temp_max: response.temp_max,
+          humidity: response.humidity,
+        }
+        dispatch(getWeather(weatherData));
       }).catch((error) => {
-        // console.log("getWeatherDB : error", error.response);
+        console.log("getWeatherDB : error", error.response);
       });
   }
 };
@@ -40,43 +44,67 @@ const getWeatherDB = (lat, lon) => {
 // 랜덤 문구 가져오기
 const getSentenceDB = () => {
   return function (dispatch, getState, { history }) {
-    
+    mainAPI
+      .getSentence()
+      .then((response) => {
+        console.log("getSentenceDB : response", response)
+      }).catch((error) => {
+        console.log("getSentenceDB : error", error.response);
+      });
   }
 }
 
 // 내 식물 목록 가져오기
 const getMyPlantDB = () => {
   return function (dispatch, getState, { history }) {
-    
+    mainAPI
+    .getMyPlant()
+    .then((response) => {
+      console.log("getMyplantDB : response", response)
+    }).catch((error) => {
+      console.log("getMyplantDB : error", error.response);
+    });
   }
 }
 
 // To-do 리스트 가져오기
 const getTodoListDB = () => {
   return function (dispatch, getState, { history }) {
-    
+    mainAPI
+    .getTodoList()
+    .then((response) => {
+      console.log("getTodoListDB : response", response)
+    }).catch((error) => {
+      console.log("getTodoListDB : error", error.response);
+    });
   }
 }
 
 // 투두 체크하기
-const todoCheckedDB = () => {
+const todoCheckDB = (todoNo) => {
   return function (dispatch, getState, { history }) {
-
+    mainAPI
+    .todoCheck(todoNo)
+    .then((response) => {
+      console.log("todoCheckDB : response", response);
+    }).catch((error) => {
+      console.log("todoCheckDB : error", error.response);
+    })
   }
 }
 
-// open api test
-const getdataDB = () => {
+const todoUnCheckDB = (todoNo) => {
   return function (dispatch, getState, { history }) {
-      axios
-          .get("https://api.instantwebtools.net/v1/passenger?page=1&size=10")
-          .then((response) => {
-              // console.log("getdata : response", response);
-          }).catch((error) => {
-              // console.log("getdataDB : error", error.response);
-          });
+    mainAPI
+    .todoUnCheck(todoNo)
+    .then((response) => {
+      console.log("todoCheckDB : response", response);
+    }).catch((error) => {
+      console.log("todoCheckDB : error", error.response);
+    })
   }
-};
+}
+
 
 // 리듀서
 export default handleActions(
@@ -85,9 +113,8 @@ export default handleActions(
       // console.log("GET_WEATHER : WEATHER", action.payload.weather)
       draft.weather = action.payload.weather;
     }),
-    [GET_DATA]: (state, action) => produce(state, (draft) => {
-      // console.log("GET_DATA : DATA", action.payload.data);
-      draft.data = action.payload.data;
+    [GET_MY_PLANT]: (state, action) => produce(state, (draft) => {
+      draft.myplant = action.payload.myplant;
     })
   }, initialState
 )
@@ -96,7 +123,11 @@ export default handleActions(
 
 const actionCreators = {
   getWeatherDB,
-  getdataDB,
+  getSentenceDB,
+  getMyPlantDB,
+  getTodoListDB,
+  todoCheckDB,
+  todoUnCheckDB,
 }
 
 export { actionCreators };

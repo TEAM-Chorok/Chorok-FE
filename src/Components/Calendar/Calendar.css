@@ -95,8 +95,7 @@
 
 .react-calendar__navigation button:disabled {
     font-family: 'SUIT-Regular';
-    color: #262525;
-    /* background-color: #f0f0f0; */
+    background-color: #f0f0f0;
 }
 
 .react-calendar__navigation button:enabled:hover,
@@ -162,7 +161,7 @@
 }
 
 .react-calendar__month-view__days button {
-    border: 1px solid #fff;
+    border-top: 1px solid #fff;
     /* border-top:none; */
 }
 

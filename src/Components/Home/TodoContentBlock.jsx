@@ -2,26 +2,34 @@ import React from "react";
 import styled from "styled-components";
 import { Button, Grid, Image, Text } from "../../Elements";
 import { BiCircle, BiCheckCircle } from "react-icons/bi";
+import { ConstructionOutlined } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { actionCreators as mainActions } from "../../Redux/Modules/Main";
+
 
 // 투두페이지 할 일 목록 
 
 const TodoContentBlock = (props) => {
-
   const { children, img } = props;
+
+  const dispatch = useDispatch();
 
   // 투두 컨텐츠 좌측 체크 표시용 체크/체크해제 관리
   const [ checked, setChecked ] = React.useState(false);
   const [ unChecked, setUnChecked ] = React.useState(false);
-
+  
   const check = () => {
     if(checked === false) {
       setChecked(true);
       setUnChecked(false);
+      dispatch(mainActions.todoCheckDB(props.todoNo));
     } else {
       setChecked(false);
       setUnChecked(true);
+      dispatch(mainActions.todoUnCheckDB(props.todoNo));
     }
   }
+  
 
 
   return (
@@ -31,7 +39,7 @@ const TodoContentBlock = (props) => {
           <RelativeBox>
             <Image type="circle" size="56px" imgUrl={img} />
             <AbsoluteBox>
-              <Image checked={checked} unChecked={unChecked} type="checkedcircle" size="56px" imgUrl="img/checked.png" />
+              <Image checked={checked} unChecked={unChecked} type="checkedcircle" size="56px" imgUrl="img/todoicon/checked.png" />
             </AbsoluteBox>
           </RelativeBox>
         </Grid>

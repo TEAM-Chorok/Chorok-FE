@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../Elements";
 import TodoContentBlock from "./TodoContentBlock";
 import TodoProfile from "./TodoProfile";
+import { actionCreators as mainActions } from "../../Redux/Modules/Main";
+import { useDispatch, useSelector } from "react-redux";
 
 // 투두페이지 할 일 목록 
 const TodoContent = () => {
+  const dispatch = useDispatch();
+
+  const myPlant = useSelector((state) => state);
+  const sentence = useSelector((state) => state);
+  const todoList = useSelector((state) => state);
+
+
+  React.useEffect(() => {
+    // dispatch(mainActions.getSentenceDB());
+    // dispatch(mainActions.getMyPlantDB());
+    // dispatch(mainActions.getTodoListDB());
+  }, [])
 
   return (
     <React.Fragment>
@@ -30,11 +44,11 @@ const TodoContent = () => {
               <Text size="small" color="#525252" margin="0">몬스테라 · 거실</Text>
             </Grid>
             <Grid margin="5px 0" width="100%">
-              <TodoContentBlock img="img/water.png">
+              <TodoContentBlock img="img/todoicon/water.png" todoNo="1">
                 <Text bold size="large">물 주기</Text><br />
                 <Text size="xsmall">마지막으로 물 준지 5일 지났어요.</Text>
               </TodoContentBlock>
-              <TodoContentBlock img="img/leaf.png">
+              <TodoContentBlock img="img/todoicon/leaf.png" todoNo="2">
                 <Text bold size="large">잎 닦기</Text><br />
                 <Text size="xsmall">잎을 닦은지 24일 지났어요.</Text>
               </TodoContentBlock>
@@ -47,7 +61,7 @@ const TodoContent = () => {
               <Text bold size="large" margin="0 8px">초록이</Text>
               <Text size="small" color="#525252" margin="0">로즈마리 · 창가</Text>
             </Grid>
-            <TodoContentBlock img="img/water.png">
+            <TodoContentBlock img="img/todoicon/water.png" todoNo="3">
               <Text bold size="large">분갈이</Text><br />
               <Text size="xsmall">분갈이한 이후 5일 지났어요.</Text>
             </TodoContentBlock>

@@ -42,7 +42,7 @@ function App() {
       <Route path="/home" exact component={Home} />
 
         <Route path="/plant" exact component={SearchPlant} />
-        <Route path="/add" exact component={AddPlants} />
+        <Route path="/add/:plantNo" exact component={AddPlants} />
 
         <Route path="/plant/:plantname" exact component={PlantCard} />
 

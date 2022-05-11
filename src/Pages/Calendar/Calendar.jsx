@@ -1,11 +1,11 @@
 import React from "react";
 import { CalendarMyPlant, CalendarTable, CalendarTodo } from "../../Components";
-import { Grid, Text } from "../../Elements";
-
+import { Container, Grid, Text } from "../../Elements";
 
 const CalendarPage = () => {
     return (
         <React.Fragment>
+
             <Text size="h5">캘린더</Text>
             <CalendarMyPlant/>
             <CalendarTable/>

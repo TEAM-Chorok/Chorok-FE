@@ -19,6 +19,7 @@ const Input = (props) => {
       border,
       name,
       defaultValue,
+      _ref,
   } = props;
   const styles = {
       width,
@@ -38,6 +39,7 @@ const Input = (props) => {
         </Grid>
         <BasicInput 
           {...styles}
+          ref={_ref}
           placeholder={placeholder}
           onChange={_onChange}
         />
