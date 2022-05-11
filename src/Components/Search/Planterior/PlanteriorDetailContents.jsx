@@ -1,12 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../../Elements";
-
+import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 
 // planterior 사진 게시글 디테일 페이지 content 컴포넌트
 
 const PhotoDetailContents = () => {
+  const dispatch = useDispatch();
 
+  React.useEffect(() => {
+    dispatch(searchActions.getPlanteriorDetailDB());
+  }, [])
 
   return (
     <React.Fragment>
