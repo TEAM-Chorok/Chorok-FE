@@ -8,6 +8,8 @@ const MyPage = () => {
         <React.Fragment>
             <Container>
                 <MyPageHeader />
+            </Container>
+            <Container type="np" >
                 <MyCategoryBar />
             </Container>
         </React.Fragment>

@@ -1,14 +1,17 @@
-import { Button } from "@mui/material";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Grid, Image, Text, Container } from "../../Elements";
-import Dimmer from "../../Components/Dimmer";
-import Home from "../Home";
 
 
 const Recommendation = (props) => {
     const history = useHistory();
+    const params = useParams();
+    const plantId = params.plantId;
+    
+    const recommendPlantName = useSelector(state => state.recommend.plantName);
+    const recommendPlantImgUrl = useSelector(state => state.recommend.imgUrl);
 
   return(
       <React.Fragment>
@@ -16,11 +19,11 @@ const Recommendation = (props) => {
               <Grid width="100%">
                   <InnerWrap>
                     <Text size="base">집사님을 위한 <span style={{color:"#0AAF42"}}>추천 식물</span> 도착!</Text>
-                    <Image imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg" type="circle" size="148px" margin="20px auto 8px auto"/>
-                    <Text size="base" bold>스킨답서스</Text>
+                    <Image imgUrl={recommendPlantImgUrl} type="circle" size="148px" margin="20px auto 8px auto"/>
+                    <Text size="base" bold>{recommendPlantName}</Text>
                   </InnerWrap>
                   <BottomWrap>
-                        <PrimaryBtn onClick={()=>history.replace(`/plant/monstera`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
+                        <PrimaryBtn onClick={()=>history.replace(`/plant/${plantId}`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
                         <ExitBtn onClick={()=>history.replace('/home')}>종료하기</ExitBtn>
                   </BottomWrap>
               </Grid>
@@ -42,23 +45,10 @@ const Recommendation = (props) => {
   )
 }
 
-const Modal = styled.div`
-width: 270px;
-height: 450px;
-border-radius: 30px;
-background-color: white;
-z-index: 200;
-position: absolute;
-top: 0px;
-right: 0px;
-left: 0px;
-bottom: 0px; 
-margin: auto;
-`
 const InnerWrap = styled.div`
 width: 100%;
 height: fit-content;
-padding: 200px 0px 50px 0px;
+padding: 160px 0px 50px 0px;
 text-align: center;
 `
 const BottomWrap = styled.div`
@@ -89,5 +79,18 @@ const ExitBtn = styled.button`
   text-align: center;
   border-radius: 8px;
   border: none;
+`
+const Modal = styled.div`
+width: 270px;
+height: 450px;
+border-radius: 30px;
+background-color: white;
+z-index: 200;
+position: absolute;
+top: 0px;
+right: 0px;
+left: 0px;
+bottom: 0px; 
+margin: auto;
 `
 export default Recommendation;

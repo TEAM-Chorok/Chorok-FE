@@ -8,11 +8,11 @@ const MyPageHeader = () => {
     const history = useHistory();
     return (
         <React.Fragment>
-            <Grid width="100%" height="45px" padding="10px 10px" position="relative">
-                <SettingsOutlinedIcon style={{width: "0.9em", position:"absolute", right: "15px"}}
+            <Grid width="100%" height="44px" padding="10px 0px" position="relative">
+                <SettingsOutlinedIcon style={{width: "20px", position:"absolute", right: "0px"}}
                 onClick={()=>history.push('/setting')}/>
             </Grid>
-            <Grid width="100%">
+            <Grid width="100%" margin="0px 0px 10px 0px">
                 <GridWrapCol width="100%" padding="10px 10px" >
                     <Grid is_flex align="center">
                         <Image src="sample.jpeg" />
@@ -31,19 +31,19 @@ const MyPageHeader = () => {
 }
 const GridWrapCol = styled.div`
     display: grid;
-    grid-template-columns: 1fr 2.5fr;
+    grid-template-columns: 1fr 3fr;
     place-items: center;
 `
 const GridWrapRow = styled.div`
     display: grid;
     grid-template-rows: 1fr 1fr; 
-    padding: 15px 0px;
+    padding: 12px 0px;
     align-items: center;
-    width: 210px;
+    width: 236px;
 `
 const Image = styled.img`
-    width: 80px;
-    height: 80px;
+    width: 68px;
+    height: 68px;
     // margin: 0px 10px;
     border-radius:50px;
 `

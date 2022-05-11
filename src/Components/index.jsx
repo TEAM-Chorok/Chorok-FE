@@ -53,7 +53,6 @@ import CommPostCommentList from "./Community/CommPostCommentList";
 
 import AddPostHeader from "./Community/AddPostHeader";
 import AddPostFooter from "./Community/AddPostFooter";
-import AddQuestion from "./Community/AddQuestion";
 import AddPlantDairy from "./Community/AddPlantDairy";
 
 import SearchHeader from "./SearchHeader";
@@ -104,7 +103,7 @@ export {
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, PlanteriorWriteComp,
     AllResult, PlanteriorResult, PlantResult, 
     LabelingTestLink, RecommendPlant,
-    CommPost, CommPostList, CommunityFilter, AddQuestion, AddPlantDairy, AddPostHeader, AddPostFooter,
+    CommPost, CommPostList, CommunityFilter, AddPlantDairy, AddPostHeader, AddPostFooter,
     MyPageHeader, MyCategoryBar, MyPagePost, CommPostCommentList,
     MyPicturesPostList, ScrapPicturesPostList, 
     MyPlantsList, MyPlants, GeneralHeader,

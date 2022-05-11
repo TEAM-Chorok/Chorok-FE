@@ -1,25 +1,14 @@
-import {Text, Grid, Image} from '../../Elements/index';
+import {Text, Grid} from '../../Elements/index';
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { useState } from 'react';
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import {Container} from '../../Elements';
-import { Button } from '@mui/material';
 import { GeneralHeader } from '../../Components';
 
 const Questionnaire = (props) => {
-  const params = useParams();  //params.no = 문제번호 (1~4)
+
   const history = useHistory();
 
 
-  const [level, setLevel] = React.useState("");
-  const [place, setPlace] = React.useState("");
-  const [attribute, setAttribute] = React.useState("");
-  const [attribute2, setAttribute2] = React.useState("");
-
-  
     return (
         <React.Fragment>
           <GeneralHeader />
@@ -27,25 +16,31 @@ const Questionnaire = (props) => {
             <Text size="large" bold >집사님 반가워요! <br />식물에 대해 어느 정도 알고 계신가요?</Text>
           </Grid>
           <QuestionBox>
-            <Grid padding="20px 24px" value="pl01">
+            <Image style={{backgroundImage:"url(img/Ellipse595.png)"}}/>
+            <ImageIcon src="img/baby.svg"/>
+            <Grid padding="20px 0px 20px 60px" _onClick={()=>props.setLevel("pl01")}>              
               <Text margin="0px" display="block" >아기집사</Text>
-              <Text margin="0px" display="block" size="XS" color="#24A148">식물을 한 번도 키워본 적이 없거나 키워도 다 실패해요</Text>
+              <Text margin="0px" display="block" size="xxsmall" color="#24A148">식물을 한 번도 키워본 적이 없거나 키워도 다 실패해요</Text>
             </Grid>                
           </QuestionBox>
           <QuestionBox>
-            <Grid padding="20px 24px" value="pl02">
+            <Image style={{backgroundImage:"url(img/Ellipse595.png)"}}/>
+            <ImageIcon src="img/leaves.svg"/>
+            <Grid padding="20px 0px 20px 60px" _onClick={()=>props.setLevel("pl02")}>
               <Text margin="0px" display="block">초보집사</Text>
-              <Text margin="0px" display="block" size="XS" color="#24A148">식물에 대해 잘 모르지만 한두 번 잘 키워봤어요!</Text>
+              <Text margin="0px" display="block" size="xxsmall" color="#24A148">식물에 대해 잘 모르지만 한두 번 잘 키워봤어요!</Text>
             </Grid>   
           </QuestionBox>
           <QuestionBox>
-            <Grid padding="20px 24px" value="pl03">
+            <Image style={{backgroundImage:"url(img/Ellipse595.png)"}}/>
+            <ImageIcon src="img/tree.svg"/>
+            <Grid padding="20px 0px 20px 60px" _onClick={()=>props.setLevel("pl03")}>
               <Text margin="0px" display="block">숙련집사</Text>
-              <Text margin="0px" display="block" size="XS" color="#24A148">식물에 대해 잘 알고 잘 키울 수 있어요!</Text>
+              <Text margin="0px" display="block" size="xxsmall" color="#24A148">식물에 대해 잘 알고 잘 키울 수 있어요!</Text>
             </Grid>
           </QuestionBox>
           <Grid position="absolute" top="600px" right="100px" align="center">
-            <PrimaryBtn onClick={()=>props.setActive(2)}>다음으로</PrimaryBtn>
+            <PrimaryBtn disabled={props.level === ""} onClick={()=>props.setActive(2)}>다음으로</PrimaryBtn>
           </Grid>
         </React.Fragment>
     )
@@ -53,6 +48,7 @@ const Questionnaire = (props) => {
 const QuestionBox = styled.div`
   width: 100%;
   height: 80px;
+  position: relative;
   border: 1px solid #F4F4F4;
   text-align: left;
   border-radius: 10px;
@@ -70,6 +66,31 @@ const PrimaryBtn = styled.button`
   text-align: center;
   border: none;
   border-radius: 16px;
+  &:disabled{
+    background-color: #F4F4F4;
+    color: #A8A8A8;
+  }
 `
-
+const Image = styled.div`
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 50px;
+  border: 1px solid #eee;
+  display: flex;
+  z-index: 100;
+`
+const ImageIcon = styled.img`
+  width: 18px;
+  height: 28px;
+  position: absolute;
+  top: 23px;
+  left: 27px;
+  border: none;
+  display: flex;
+  z-index: 200;
+  background-size: contain;
+`
 export default Questionnaire;

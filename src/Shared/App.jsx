@@ -18,6 +18,7 @@ import {
   AddPost,
   PostDetail
 } from '../Pages';
+import EditPost from '../Pages/Community/EditPost';
 
 
 
@@ -36,8 +37,7 @@ function App() {
 
       <Route path="/profilesetting" exact component={ProfileSetting} />
       <Route path="/labeling" exact component={Labeling} />
-
-      <Route path="/recommendation" exact component={Recommendation} />
+      <Route path="/recommendation/:plantId" exact component={Recommendation} />
 
       <Route path="/home" exact component={Home} />
 
@@ -55,9 +55,10 @@ function App() {
 
         <Route path="/test" exact component={Test} />
 
-      <Route path="/community" exact component={Community} />
-      <Route path="/addpost" exact component={AddPost}/>
-      <Route path="/community/:postId" exact component={PostDetail} />
+        <Route path="/community" exact component={Community} />
+        <Route path="/addpost" exact component={AddPost}/>
+        <Route path="/community/:postId" exact component={PostDetail} />
+        <Route path="/community/editpost/:postId" exact component={EditPost} />
 
         <Route path="/mypage" exact component={MyPage} />
         <Route path="/myplants" exact component={MyPlantsPage} />

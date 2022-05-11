@@ -76,6 +76,7 @@ const Tab = styled.div`
     padding: 0;
     list-style: none;
     }
+    padding: 0px 16px;
 `;
 
 const TabMenu = styled.div`

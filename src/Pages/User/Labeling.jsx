@@ -1,38 +1,36 @@
 import {Text, Grid, Image, Container} from '../../Elements/index';
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import styled from 'styled-components';
 import { GeneralHeader, Questionnaire, Questionnaire2, Questionnaire3, Questionnaire4 } from '../../Components';
+import { useDispatch } from 'react-redux';
+import { actionCreators as labelActions } from '../../Redux/Modules/Label';
 
 const Labeling = () => {
-  
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const [loading, setLoading] = React.useState(false);
+
   const [level, setLevel] = React.useState("");
   const [place, setPlace] = React.useState("");
   const [attribute, setAttribute] = React.useState("");
   const [attribute2, setAttribute2] = React.useState("");
 
   const submit = () => {
-    console.log(level, place, attribute, attribute2);
+    dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
     //로딩 페이지 
     setLoading(true);
-    setTimeout(() => {
-      history.push('/recommendation');
-    }, 3000);
   }
-
+ 
   const [active, setActive] = React.useState(0);
 
   const comp = {
-    1: <Questionnaire setActive={setActive} setLevel={setLevel} />,
-    2: <Questionnaire2 setActive={setActive} setPlace={setPlace}/>,
-    3: <Questionnaire3 setActive={setActive} setAttribute={setAttribute}/>,
-    4: <Questionnaire4 setLoading={setLoading} setAttribute2={setAttribute2} submit={submit} />,
+    1: <Questionnaire setActive={setActive} level={level} setLevel={setLevel} />,
+    2: <Questionnaire2 setActive={setActive} place={place} setPlace={setPlace}/>,
+    3: <Questionnaire3 setActive={setActive} attribute={attribute} setAttribute={setAttribute}/>,
+    4: <Questionnaire4 setLoading={setLoading} attribute2={attribute2} setAttribute2={setAttribute2} submit={submit} />,
   };
 
   
