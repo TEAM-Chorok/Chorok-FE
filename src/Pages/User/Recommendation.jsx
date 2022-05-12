@@ -7,6 +7,8 @@ import { Grid, Image, Text, Container } from "../../Elements";
 
 const Recommendation = (props) => {
     const history = useHistory();
+    const params = useParams();
+    const plantId = params.plantId;
     console.log(useSelector(state => state.recommend));
     const plantName = useSelector(state => state.recommend?.plantName);
     const plantImgUrl = useSelector(state => state.recommend?.imgUrl);
