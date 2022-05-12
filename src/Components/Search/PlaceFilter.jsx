@@ -6,7 +6,6 @@ import { Button, Grid, Text } from "../../Elements";
 
 const PlaceFilter = (props) => {
 
-
   const [checked, setChecked] = React.useState({
     all: true,
     pp01: false,
@@ -20,7 +19,10 @@ const PlaceFilter = (props) => {
   return (
     <React.Fragment>
       <FilterWrapper>
-
+        {props.none?
+        <div>
+        </div>
+        :
         <Button type="filter" checked={checked.all} _onClick={() => {
             props.setPlace("all");
             setChecked({
@@ -33,6 +35,7 @@ const PlaceFilter = (props) => {
               pp06: false,
             });
           }}>전체</Button>
+        }
 
         <Button type="filter" checked={checked.pp01} _onClick={() => {
             props.setPlace("pp01");

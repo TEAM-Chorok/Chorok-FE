@@ -182,17 +182,18 @@ const PlusButton = styled.button`
 // 식물 추가 버튼
 const FloatLongButton = styled.button`
   position: fixed;
-  left: 48px;
-  right: 48px;
+  left: 80px;
+  right: 80px;
   bottom: 28px;
 
-  height: 65px;
+  height: 56px;
 
   border: none;
   border-radius: 65px;
 
   color: #fff;
-  background: #667080;
+  background: #0AAF42;
+  box-shadow: 1px 2px 10px rgba(5, 167, 67, 0.36);
 `;
 
 // 필터 선택 버튼

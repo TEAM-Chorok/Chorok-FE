@@ -15,7 +15,7 @@ const AddPostFooter = (props) => {
             <BottomBox>
                 <BottomWrap>
                     <div onClick={handleClick}>
-                        <FaCamera style={{width: "15px", height:"20px", color:"grey"}}></FaCamera>
+                        <FaCamera style={{width: "15px", height:"20px", color:"#8F8F8F"}}></FaCamera>
                     </div>
                     <input type="file" ref={imgRef}
                     onChange={(e)=>{props.setImageUrl(e.target.files[0]); props.encodeFileToBase64(e.target.files[0])}}

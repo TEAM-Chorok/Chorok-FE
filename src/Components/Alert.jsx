@@ -45,7 +45,48 @@ const Alert = (props) => {
     }
   }, [props.open])
 
-
+  if(props.onebutton) {
+    return(
+      <React.Fragment>
+      <Modal
+        isOpen={props.open}
+        ariaHideApp={false}
+        onRequestClose={() => props.setOpen(false)} 
+        preventScroll={true}
+        style={{
+          overlay: {
+            position: 'fixed',
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0)'
+          },
+          content: {
+            position: 'absolute',
+            boxSizing: 'border-box',
+            margin: 'auto',
+            width: '260px', height: 'fit-content',
+            background: '#fff',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            border: 'none',
+            borderRadius: '30px',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.2)',
+            outline: 'none',
+          }
+        }}>
+          <ContentBox>
+            {children}
+          </ContentBox>
+          <OneButtonBox>
+            <Grid margin="auto" _onClick={() => { props.setOpen(false); }}>
+              <Button type="tran">
+                <Text size="small">{btn1}</Text>
+              </Button>
+            </Grid>
+          </OneButtonBox>
+      </Modal>
+    </React.Fragment>
+    )
+  }
 
   return (
     <React.Fragment>
@@ -103,7 +144,7 @@ const ContentBox = styled.div`
   justify-content: center;
   margin: auto;
 
-  padding: 30px 0 56px 0 ;
+  padding: 30px 0 52px 0 ;
 
   text-align: center;
 `
@@ -119,6 +160,16 @@ const ButtonBox = styled.div`
 
   display: grid;
   grid-template-columns: 1fr 1fr;
+`
+
+const OneButtonBox = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 32px;
+
+  margin: auto;
+  width: 200px;
 `
 
 export default Alert;

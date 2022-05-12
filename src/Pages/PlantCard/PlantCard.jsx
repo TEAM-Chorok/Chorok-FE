@@ -18,7 +18,7 @@ const PlantCard = () => {
         <PlantCardFeed />
 
         <Button type="longfloat" _onClick={() => {setOpen(true);}}>
-          <Text size="large" color="#fff">내 식물에 추가하기</Text>
+          <Text size="base" color="#fff">내 식물에 추가하기</Text>
         </Button>
 
         <Alert open={open} setOpen={setOpen} btn1="아니오" btn2="네" url={`/add/${plantNo}`}>

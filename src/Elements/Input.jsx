@@ -169,10 +169,26 @@ const SearchInput = styled.input`
 `
 
 const TextArea = styled.textarea`
+  font-family: 'SUIT-Regular';
+  box-sizing: border-box;
+  
   width: 100%;
-  min-height: 364px;
-  height: 692px;
+  height: 580px;
+
   resize: none;
+  
+  border: 1px solid #000;
+  outline: none;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: #262626;
+  &::placeholder {
+    color: #A8A8A8;
+  }
+  @media screen and (max-height: 400px) {
+    height: 364px;
+  }
 `
 
 

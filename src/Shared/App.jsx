@@ -26,7 +26,6 @@ import EditPost from '../Pages/Community/EditPost';
 function App() {
   return (
     <React.Fragment>
-
       <Route path="/" exact component={Login} />
       <Route path="/signup" exact component={SignUp} />
 
@@ -39,7 +38,7 @@ function App() {
       <Route path="/labeling" exact component={Labeling} />
       <Route path="/recommendation/:plantId" exact component={Recommendation} />
 
-      <Route path="/home" exact component={Home} />
+        <Route path="/home" exact component={Home} />
 
         <Route path="/plant" exact component={SearchPlant} />
         <Route path="/add/:plantNo" exact component={AddPlants} />

@@ -1,40 +1,62 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../../Elements";
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
-
+import { FaRegHeart, FaHeart, FaBookmark, FaRegComment, FaRegBookmark } from "react-icons/fa";
 // planterior 사진 게시글 디테일 페이지 content 컴포넌트
-
 const PhotoDetailContents = () => {
   const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    dispatch(searchActions.getPlanteriorDetailDB());
-  }, [])
+  const postData = useSelector((state) => state?.search?.planterior)
+  const bookmark = postData?.postBookMark;
+  const like = postData?.postLike;
 
   return (
     <React.Fragment>
-      <Text bold size="M">글 제목제목 제모옥</Text>
-      <Grid is_flex margin="20px 0 0 0">
-        <Image type="circle" size="40px" imgUrl="https://pbs.twimg.com/media/ER7b4hOVAAAfBg-.jpg:large" />
-        <Grid margin="0 10px">
-          <Text bold>닉네이이임</Text><br />
-          <Text size="XS" color="#888">1일 전</Text>
+      <Grid width="100%" margin="12px 0">
+        <Grid is_flex align="center">
+          <Image type="circle" size="32px" imgUrl={postData?.profileImgUrl} />
+          <Grid margin="0 8px">
+            <Text bold size="small">{postData?.nickname}</Text><br />
+            <Text size="xxsamll" color="#6F6F6F">{postData?.postRecentTime}</Text>
+          </Grid>
         </Grid>
+        <Grid margin="12px auto" width="100%">
+          <Image type="square" size="328px" borderRadius="8px" imgUrl={postData?.postImgUrl} />
+        </Grid>
+        <Grid margin="12px 0">
+          <Text size="small">{postData?.postContent}</Text>
+        </Grid>
+        <BookmarkBox>
+          {like ?
+          <Grid is_flex align="center">
+              <FaHeart size="20px" color="#0AAF42" />
+              <Text margin="0 8px" size="base" color="#6F6F6F">{postData?.postLike}</Text>
+            </Grid>:
+          <Grid is_flex align="center">
+              <FaRegHeart size="20px" color="#393939" />
+              <Text margin="0 8px" size="base" color="#6F6F6F">{postData?.postLike}</Text>
+            </Grid>}
+          <Grid is_flex margin="0 8px" align="center">
+            <FaRegComment size="20px" color="#393939" />
+            <Text margin="0 8px" size="base" color="#6F6F6F">{postData?.postCommentCount}</Text>
+          </Grid>
+          <Grid width="20px"/>
+          {bookmark ?
+            <FaBookmark size="20px" color="#0AAF42" />:
+            <FaRegBookmark size="20px" color="#393939" />}
+        </BookmarkBox>
       </Grid>
-      <Grid margin="20px 0" width="100%">
-        <hr />
-      </Grid>
-      <Grid margin="0 auto" width="100%">
-        <Image type="square" size="348px" imgUrl="https://www.shouse.garden/data/photo/s210823_1707462865.jpg" />
-      </Grid>
-      <Grid margin="20px 0">
-        <Text>글 내용내용 내요오오오옹 내용이에요</Text>
-      </Grid>
+      <Grid height="1px" width="100%" bg="#E0E0E0" />
     </React.Fragment>
   )
 }
+
+const BookmarkBox = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 10fr 1fr;
+`
 
 
 export default PhotoDetailContents;

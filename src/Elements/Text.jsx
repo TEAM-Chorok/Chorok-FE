@@ -226,7 +226,7 @@ const BASE = styled.p`
   box-sizing: border-box;
 
   font-size: 16px;
-  font-weight: ${(props) => props.bold ? 700 : 400};
+  font-weight: ${(props) => props.bold ? 700 : 500};
   line-height: ${(props) => props.line};
   letter-spacing: 0.15px;
   color: ${(props) => props.color};

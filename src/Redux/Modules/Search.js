@@ -237,7 +237,7 @@ export default handleActions(
     }),
     [PLANTERIOR_DETAIL]: (state, action) => produce(state, (draft) => {
       console.log("PLANTERIOR_FILTERING : planteriordetail", action.payload.planteriordetail);
-      // draft.planterior = action.payload.planteriordetail;
+      draft.planterior = action.payload.planteriordetail;
     }),
   }, initialState
 )
