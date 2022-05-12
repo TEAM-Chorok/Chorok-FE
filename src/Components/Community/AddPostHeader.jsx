@@ -11,29 +11,27 @@ const AddPostHeader = (props) => {
     return ( 
         <React.Fragment>
             <Header>
-                <GrClose style={{marginRight:"36px"}}
-                onClick={()=> history.goBack()}></GrClose>
+                <GrClose style={{ marginRight: "28px" }} color="#393939" size="16px"
+                onClick={() => history.goBack()} />
                 <Text size="base" bold margin="0px">{props.title}</Text>
-                {props.disable ? 
+                {props.disable ?
                 <Button
-                disabled={true}
-                style={{
-                    width:"fit-content",
-                    height:"fit-content", 
-                    fontSize:"16px", 
-                    padding:"0px", 
-                    justifyContent:"end"
-                }}>올리기</Button>: 
+                    disabled={true}
+                    style={{
+                    width: "fit-content",
+                    height: "fit-content",
+                    padding: "0px",
+                    }}>
+                    <Text size="base" color="#A8A8A8">올리기</Text></Button> :
                 <Button
-                onClick={()=>props.submit()}
-                style={{
-                    width:"fit-content",
-                    height:"fit-content", 
-                    fontSize:"16px", 
-                    padding:"0px", 
-                    justifyContent:"end", 
-                    color:"#24A148"}}>올리기</Button>}
-                
+                    onClick={() => props.submit()}
+                    style={{
+                    width: "fit-content",
+                    height: "fit-content",
+                    padding: "0px",
+                    }}>
+                    <Text size="base" color="#24A148">올리기</Text>
+                </Button>}
             </Header>
         </React.Fragment>
     )

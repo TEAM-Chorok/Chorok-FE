@@ -17,42 +17,42 @@ const Questionnaire2 = (props) => {
               <SelectionWrap>
                 <ImageBox onClick={()=>props.setPlace("pp03")}> 
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/pexels-photo-2008269.jpeg"></Image>
                   </ImageWrap>
-                  <TextWrap className='child'><Text>화장실</Text></TextWrap>
+                  <TextWrap className='text'><Text>화장실</Text></TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp02")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/Rectangle 2714.svg"></Image>
                   </ImageWrap>
-                  <TextWrap className='child'><Text>방안</Text></TextWrap>
+                  <TextWrap className='text'><Text>방안</Text></TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp01")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/kitchen.jpeg"></Image>
                   </ImageWrap>
-                  <TextWrap className='child'><Text>통로</Text></TextWrap>
+                  <TextWrap className='text'><Text>통로</Text></TextWrap>
                 </ImageBox>
               </SelectionWrap>
 
               <SelectionWrap>
                 <ImageBox onClick={()=>props.setPlace("pp06")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/terrace.jpeg"></Image>
                   </ImageWrap>
-                  <TextWrap className='child'><Text>베란다</Text></TextWrap>
+                  <TextWrap className='text'><Text>베란다</Text></TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp05")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/living room.jpeg"></Image>
                   </ImageWrap>
-                  <TextWrap className='child'><Text>창가</Text></TextWrap>
+                  <TextWrap className='text'><Text>창가</Text></TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp04")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/living room_@.jpeg"></Image>
                   </ImageWrap>
-                  <TextWrap className='child'><Text>거실</Text></TextWrap>
+                  <TextWrap className='text'><Text>거실</Text></TextWrap>
                 </ImageBox>
               </SelectionWrap>
               <Grid position="absolute" top="600px" right="100px" align="center">
@@ -75,7 +75,11 @@ const ImageBox = styled.div`
   height: fit-content;
   text-align: center;
   &:hover .child{
-    border: 2px solid #0AAF42;
+    border: 3px solid #0AAF42;
+    color: #0AAF42;
+  }
+  &:hover .text{
+    border: 1px solid #0AAF42;
     background-color: #DEFBE6;
     color: #0AAF42;
   }

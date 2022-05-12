@@ -11,12 +11,23 @@ const MyPictures = () => {
     const dispatch = useDispatch();
     const myPhotoList = useSelector(state => state.post?.photoList);
     const scrapPhotoList = useSelector(state => state.post?.scrapPhotoList);
+
     useEffect(() => {
         dispatch(postActions.getMyPhotoListDB());
         dispatch(postActions.getScrapPhotoListDB());
     }, [])
     
-    if( !myPhotoList || !scrapPhotoList ) {
+    const _myPhotoList=[];
+    for(let i = 0; i < 6; i++ ){
+        _myPhotoList.push(myPhotoList[i]);
+    }
+    const _scrapPhotoList=[];
+    for(let i = 0; i < 6; i++ ){
+        _scrapPhotoList.push(scrapPhotoList[i]);
+    }
+
+
+    if( !myPhotoList && !scrapPhotoList ) {
         return (
             <div></div>
         )
@@ -31,12 +42,13 @@ const MyPictures = () => {
                 onClick={()=>history.push('/mypictures')}>더 보기</Button>
             </TitleWrap1>
             <ContentWrap>
-                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/Rectangle2721.jpg"/>
-                <Image margin="4px 0px"  type="square" borderRadius="10px" size="104px" imgUrl="img/bedroom.webp"/>
-                <Image margin="4px 0px"  type="square" borderRadius="10px" size="104px" imgUrl="img/kitchen.jpeg"/>
-                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/living room_@.jpeg"/>
-                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/pexels-photo-2008269.jpeg"/>
-                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/terrace.jpeg"/>
+                {_myPhotoList && _myPhotoList.map((p) => {
+                    return (
+                    <Contents key={p.myPhotoList.planteriorNo}>
+                        <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="p.planteriorImgUrl"/>
+                    </Contents>
+                    )
+                })}
                 
             </ContentWrap>
             {/* 스크랩한 사진  */}
@@ -46,10 +58,13 @@ const MyPictures = () => {
                 onClick={()=>history.push('/scrap-picture')}>더 보기</Button>
             </TitleWrap>
             <ContentWrap>
-                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/kitchen.jpeg"/>
-                <Image margin="4px 0px"  type="square" borderRadius="10px" size="104px" imgUrl="img/terrace.jpeg"/>
-                <Image margin="4px 0px"  type="square" borderRadius="10px" size="104px"  imgUrl="img/living room_@.jpeg"/>
-                <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="img/Rectangle2721.jpg"/>
+                {_scrapPhotoList && _scrapPhotoList.map((p) => {
+                    return (
+                    <Contents key={p.planteriorNo}>
+                        <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="p.planteriorImgUrl"/>
+                    </Contents>
+                    )
+                })}
                 
             </ContentWrap>
             </Grid>

@@ -16,13 +16,14 @@ const BOOKMARK_POST = "BOOKMARK_POST";
 
 const GET_MY_PHOTO_LIST = "GET_MY_PHOTO_LIST";
 const GET_SCRAP_PHOTO_LIST = "GET_SCRAP_PHOTO_LIST";
+const GET_SCRAP_PLANT_LIST = "GET_SCRAP_PLANT_LIST";
 
 // 액션 생성
 const addPost = createAction(ADD_POST, (post) => ({post}));
 const editPost = createAction(EDIT_POST, (post) => ({post}));
 const deletePost = createAction(DELETE_POST, () => ({}));
 const getPostList = createAction(GET_ALL_POST, (postList) => ({postList}));
-const getPostDetail = createAction(GET_POST_DETAIL, (post) => ({post}));
+const getDetailPost = createAction(GET_POST_DETAIL, (post) => ({post}));
 const postSearching = createAction(POST_SEARCHING, (searchList) => ({ searchList }));
 
 const likePost = createAction(LIKE_POST, (post) => ({post}));
@@ -30,6 +31,7 @@ const bookmarkPost = createAction(BOOKMARK_POST, (post) => ({post}));
 
 const getPhotoList = createAction(GET_MY_PHOTO_LIST, (photoList) => ({photoList}));
 const getScrapPhotoList = createAction(GET_SCRAP_PHOTO_LIST, (scrapPhotoList) => ({scrapPhotoList}));
+const getScrapPlantList = createAction(GET_SCRAP_PLANT_LIST, (scrapPlant) => ({scrapPlant}))
 
 // initial State
 const initialState = {
@@ -69,18 +71,31 @@ const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
     formData.append("postContent", postContent);
     formData.append("postTypeCode", postTypeCode);
     return function (dispatch, getState, { history }){
-        postAPI
-            .addPost(formData)
-            .then((res) => {
-                console.log("response:" , res);
-                dispatch(addPost(res.data));
-                history.push(`/community/${res.data.post.postId}`);
-            }).catch((err) => {
-                console.log("error: ", err);
-                window.alert('글 작성하기에 실패하였습니다.');
-                return;
-            })
+        // postAPI
+        //     .addPost(formData)
+        //     .then((res) => {
+        //         console.log("response:" , res);
+        //         dispatch(addPost(res.data)); // 데이터 주나 안주나
+        //         history.push(`/community/${res.data.post.postId}`);
+        //     }).catch((err) => {
+        //         console.log("error: ", err);
+        //         window.alert('글 작성하기에 실패하였습니다.');
+        //         return;
+        //     })
+        const response = {
+            data:{
+                post:{
+                    postId: 0,
+                    postTitle: {postTitle},
+                    postContent: {postContent},
+                    postTypeCode: {postTypeCode}
+                }
+            }
+        }
+        history.push(`/community/${response.data.post.postId}`);
+    
     }
+    
 }
 
 //커뮤니티 글 불러오기(로그인)
@@ -138,6 +153,57 @@ const getPostListDB_non_login = (category) => {
     }
 }
 
+//게시글 디테일 조회
+const getDetailPostDB = (postId) => {
+    const _postId = parseInt(postId);
+    return function(dispatch, getState, { history }) {
+        console.log("게시글 detail 조회", _postId);
+        // postAPI
+        //     .getDetailPost(_postId)
+        //     .then((response) => {
+        //         console.log("게시글 조회 성공");
+        //         dispatch(getDetailPost());
+        //     })
+        //     .catch((err)=>{
+        //         console.log("error:" , err);
+        //         window.alert("게시글 조회를 실패하였습니다.");
+        //         return;
+        //     })
+        const response = 
+            {
+                "postId":34,
+                "nickname": "김주호",
+                "profileImgUrl": null,
+                "postTitle": "플렌테이라테스트제목",
+                "postContent": "asd",
+                "postImgUrl": "", 
+                "postType": "식물추천", 
+                "postRecentTime": "21시간 전",
+                "postLike": false,
+                "postLikeCount": 0,
+                "postBookMark": false,
+                "commentList": [ 
+             {
+                "commentId": 48,
+                "nickname": "김주호",
+                "profileImgUrl": null,
+                "commentContent": "이게 전데용?",
+                "commentRecentTime": "13초 전"
+             } ,
+             { 
+                "commentId": 49,
+                "nickname": "김주호",
+                "profileImgUrl": null,
+                "commentContent": "이게 전데용?",
+                "commentRecentTime": "13초 전"
+            } 
+             ],
+             "plantPlace":null
+             }
+             dispatch(getDetailPost(response));
+    }
+}
+
 //커뮤니티 글 삭제
 const deletePostDB = (postId) => {
     const _postId = parseInt(postId);
@@ -173,7 +239,7 @@ const editPostDB = (postId, category, postTitle, postContent, postImgUrl) => {
             .then((response) => {
                 console.log("게시글 수정 성공");
                 window.alert('게시글이 성공적으로 수정되었습니다.');
-                dispatch(getPostDetail(response.data.post));
+                dispatch(getDetailPost(response.data.post));
                 history.push(`/community/${response.data.post.postId}`);
             })
             .catch((err)=>{
@@ -221,7 +287,7 @@ const bookmarkPostDB = (postId) => {
 }
 
 
-// 커뮤니티 검색어 검색
+// 커뮤니티 검색어 검색 (+ 필터링도 가능하게 해야됨)
 const postSearchingDB = (keyword) => {
   return function (dispatch, getState, { history }) {
     console.log("postSearchingDB : ", keyword);
@@ -241,6 +307,15 @@ const postSearchingDB = (keyword) => {
 const getMyPhotoListDB = () => {
     return function (dispatch, getState, {history}){
         console.log("getMyPhotoListDB ");
+        myPageAPI
+            .getMyPhotoList()
+            .then((res)=> {
+                console.log("response : ", res);
+                dispatch(getPhotoList(res.data));
+            }).catch((error) => {
+                console.log("error: ", error);
+                window.alert('내 사진 불러오기에 실패하였습니다.');
+            });
     }
 }
 
@@ -248,6 +323,30 @@ const getMyPhotoListDB = () => {
 const getScrapPhotoListDB = () => {
     return function (dispatch, getState, {history}){
         console.log("getScrapPhotoListDB ");
+        myPageAPI
+            .getScrapPhotoList()
+            .then((res)=> {
+                console.log("response : ", res);
+                dispatch(getScrapPhotoList(res.data));
+            }).catch((error) => {
+                console.log("error: ", error);
+                window.alert('스크랩한 사진 불러오기에 실패하였습니다.');
+            });
+    }
+}
+//스크랩한 사진 리스트
+const getScrapPlantListDB = () => {
+    return function (dispatch, getState, {history}){
+        console.log("getScrapPlantListDB ");
+        myPageAPI
+            .getScrapPlantList()
+            .then((res)=> {
+                console.log("response : ", res);
+                dispatch(getScrapPlantList(res.data));
+            }).catch((error) => {
+                console.log("error: ", error);
+                window.alert('스크랩한 식물 불러오기에 실패하였습니다.');
+            });
     }
 }
 
@@ -267,6 +366,18 @@ export default handleActions(
     [POST_SEARCHING]: (state, action) => produce(state, (draft) => {
       draft.searchList = action.payload.searchList;
     }),
+    [GET_MY_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
+        draft.list = action.payload.list;
+        draft.is_loading = true;
+    }),
+    [GET_SCRAP_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
+        draft.list = action.payload.list;
+        draft.is_loading = true;
+    }),
+    [GET_SCRAP_PLANT_LIST]: (state, action) => produce(state, (draft) => {
+        draft.list = action.payload.list;
+        draft.is_loading = true;
+    }),
   }, initialState
 )
 
@@ -276,12 +387,14 @@ const actionCreators = {
     addPostDB,
     getPostListDB_login,
     getPostListDB_non_login,
+    getDetailPostDB,
     editPostDB,
     deletePostDB,
     likePostDB,
     bookmarkPostDB,
     getMyPhotoListDB,
     getScrapPhotoListDB,
+    getScrapPlantListDB,
 }
 
 export { actionCreators };

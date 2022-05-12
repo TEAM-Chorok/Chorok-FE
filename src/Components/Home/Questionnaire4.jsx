@@ -19,25 +19,25 @@ const Questionnaire4 = (props) => {
             <SelectWrap>
               <ImageBox onClick={()=>props.setAttribute2("pgs01")}>
               <ImageWrap className='child'>
-                <Image margin="0px auto" type="square" borderRadius="16px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                <Image margin="0px auto" type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/관목형.jpeg"></Image>
               </ImageWrap>
-              <TextWrap className='child'>
+              <TextWrap className='text'>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">부드러운</Text>
               </TextWrap>
               </ImageBox>
               <ImageBox onClick={()=>props.setAttribute2("pgs05")}>
                 <ImageWrap className='child'>
-                  <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                  <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="img/plantType/풀입형.png"></Image>
                 </ImageWrap>
-                <TextWrap className='child'>
+                <TextWrap className='text'>
                   <Text display="block" color="#262626" size="xsmall" margin="0px">아담한</Text>
                 </TextWrap>
               </ImageBox>
               <ImageBox onClick={()=>props.setAttribute2("pgs04")}>
               <ImageWrap className='child'>
-                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/직립형.jpeg"></Image>
                 </ImageWrap>
-                <TextWrap className='child'>
+                <TextWrap className='text'>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">쭉쭉 뻗은</Text>
                 </TextWrap>
               </ImageBox>
@@ -45,17 +45,17 @@ const Questionnaire4 = (props) => {
             <SelectWrap2>
               <ImageBox onClick={()=>props.setAttribute2("pgs02")}>
               <ImageWrap className='child'>
-                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/덩굴형.jpg"></Image>
                 </ImageWrap>
-                <TextWrap className='child'>
+                <TextWrap className='text'>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">감겨오르는</Text>
                 </TextWrap>
               </ImageBox> 
               <ImageBox onClick={()=>props.setAttribute2("pgs06")}>
               <ImageWrap className='child'>
-                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"></Image>
+                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/둥글게펼쳐진.jpeg"></Image>
               </ImageWrap>
-              <TextWrap className='child'>
+              <TextWrap className='text'>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">둥글게 펼쳐진</Text>
                 </TextWrap>
               </ImageBox>
@@ -73,7 +73,11 @@ const ImageBox = styled.div`
   text-align: center;
   margin-bottom: 20px;
   &:hover .child{
-    border: 2px solid #0AAF42;
+    border: 3px solid #0AAF42;
+    color: #0AAF42;
+  }
+  &:hover .text{
+    border: 1px solid #0AAF42;
     background-color: #DEFBE6;
     color: #0AAF42;
   }

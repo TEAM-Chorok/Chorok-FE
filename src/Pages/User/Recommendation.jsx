@@ -8,10 +8,10 @@ import { Grid, Image, Text, Container } from "../../Elements";
 const Recommendation = (props) => {
     const history = useHistory();
     const params = useParams();
+
     const plantId = params.plantId;
-    
-    const recommendPlantName = useSelector(state => state.recommend.plantName);
-    const recommendPlantImgUrl = useSelector(state => state.recommend.imgUrl);
+    const plantName = useSelector(state => state.recommend.plantName);
+    const plantImgUrl = useSelector(state => state.recommend.imgUrl);
 
   return(
       <React.Fragment>
@@ -19,8 +19,8 @@ const Recommendation = (props) => {
               <Grid width="100%">
                   <InnerWrap>
                     <Text size="base">집사님을 위한 <span style={{color:"#0AAF42"}}>추천 식물</span> 도착!</Text>
-                    <Image imgUrl={recommendPlantImgUrl} type="circle" size="148px" margin="20px auto 8px auto"/>
-                    <Text size="base" bold>{recommendPlantName}</Text>
+                    <Image imgUrl={plantName} type="circle" size="148px" margin="20px auto 8px auto"/>
+                    <Text size="base" bold>{plantImgUrl}</Text>
                   </InnerWrap>
                   <BottomWrap>
                         <PrimaryBtn onClick={()=>history.replace(`/plant/${plantId}`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
