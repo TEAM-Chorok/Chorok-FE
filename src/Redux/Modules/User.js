@@ -33,7 +33,6 @@ const initialUser = {
 // 미들웨어 
 const logInDB = (userId, password) => {
   return function (dispatch, getState, { history }) {
-
     userAPI
       .login(userId, password)
       .then((response) => {
@@ -78,7 +77,7 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
 
         ));
         setTimeout(() => {
-          history.replace('/home');
+          history.push('/home');
         }, 3000);
       }).catch((err) => {
         console.log("signUpDB : error", err.response);
@@ -93,14 +92,14 @@ const kakaoLogInDB = (code) => {
       .kakaoLogIn(code)
       .then((res) => {
         console.log(res);
-        sessionStorage.setItem('Token', res.data.token);
+        sessionStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.email);
         dispatch(setUser({
           username: res.data.username,
           nickname: res.data.nickname,
           profileImgUrl: res.data.profileImgUrl
         }))
-        history.replace('/home');
+        window.location.reload('/home');
       })
       .catch((error) => {
         console.log("error: ", error);
@@ -112,10 +111,10 @@ const kakaoLogInDB = (code) => {
 
 const logOutDB  = () => {
   return function (dispatch, getState, { history }) {
-    sessionStorage.removeItem("Token");
+    sessionStorage.removeItem("token");
     localStorage.removeItem("username");
     dispatch(logOut());
-    history.replace('/');
+    window.location.reload('/');
   }
 }
 

@@ -28,9 +28,8 @@ const AddPost = () => {
     };
 
     const submit = () => {
-        console.log(imageUrl);
-        console.log(preview);
         dispatch(postActions.addPostDB( postTitle, imageUrl, postContent, category));
+        console.log('dd')
     }
 
     return (

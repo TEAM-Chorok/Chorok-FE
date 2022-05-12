@@ -6,11 +6,12 @@ import Dimmer from "../../Components/Dimmer";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Community = () => {  
     const history = useHistory();
     const dispatch = useDispatch();
-
+    const isLogin = sessionStorage.getItem('token')? true : false;
     //+버튼 모달창
     const [open, setOpenModal] = React.useState(false);
     const openModal = () => {
@@ -22,15 +23,14 @@ const Community = () => {
 
     const [category, setCategory] = React.useState("all");
 
-
     return (
         <React.Fragment>
             <Container type="np">
                 <Grid padding="20px 20px 0px 20px" width="100%">
-                    <SearchHeader />
+                    <SearchHeader category={category}/>
                     <CommunityFilter setCategory={setCategory} category={category} />
                 </Grid>
-                <CommPostList category={category} />
+                <CommPostList category={category} isLogin={isLogin}/>
                 <Button type="plus" _onClick={()=>openModal()}/>
                 {open ? 
                 <>

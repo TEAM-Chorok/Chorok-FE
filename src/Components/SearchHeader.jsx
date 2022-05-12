@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as searchActions } from "../Redux/Modules/post";
 
 
-const SearchHeader = () => {
+const SearchHeader = (props) => {
     const dispatch = useDispatch();
     const [keyword, setKeyword] = React.useState("");
     const [barOpen, setBarOpen] = React.useState(false);
@@ -17,7 +17,7 @@ const SearchHeader = () => {
     const onKeyUp = (e) => {
         if(e.key === "Enter"){
             if(keyword!==""){
-                dispatch(searchActions.postSearchingDB(keyword));
+                dispatch(searchActions.postSearchingDB(props.category, keyword));
             }
         }
     }

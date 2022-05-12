@@ -17,14 +17,9 @@ const MyPictures = () => {
         dispatch(postActions.getScrapPhotoListDB());
     }, [])
     
-    const _myPhotoList=[];
-    for(let i = 0; i < 6; i++ ){
-        _myPhotoList.push(myPhotoList[i]);
-    }
-    const _scrapPhotoList=[];
-    for(let i = 0; i < 6; i++ ){
-        _scrapPhotoList.push(scrapPhotoList[i]);
-    }
+    const _myPhotoList=myPhotoList.slice(0, 6);
+    const _scrapPhotoList=scrapPhotoList.slice(0, 6);
+    
 
 
     if( !myPhotoList && !scrapPhotoList ) {

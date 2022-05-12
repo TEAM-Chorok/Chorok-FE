@@ -53,7 +53,7 @@ const Login = () => {
             <Button 
             href={KAKAO_AUTH_URL}
             variant='contained' 
-            style={{display:"block", margin:"10px auto", width:"282px", height: "38px", backgroundColor:"#FADE86", borderRadius:"50px", color:"#392020", boxShadow:"none"}}>KaKao 계정으로 로그인</Button>
+            style={{display:"block", margin:"10px auto", width:"282px", height: "38px", backgroundColor:"#FEE500", borderRadius:"50px", color:"#392020", boxShadow:"none"}}>KaKao 계정으로 로그인</Button>
             <Button variant='contained' 
             style={{display:"block", margin:"10px auto", width:"282px", height: "38px", backgroundColor:"#F2F4F8 ", borderRadius:"50px",  color:"#392020", boxShadow:"none"}}>Google 계정으로 로그인</Button>
           </InnerDiv>
