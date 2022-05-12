@@ -5,6 +5,7 @@ import { userAPI } from "../../Shared/api";
 
 // 액션 
 const SET_USER = "SET_USER";
+const GET_USER = "GET_USER";
 //이메일 중복체크
 //닉네임 중복체크
 //식물 맞춤 테스트
@@ -14,6 +15,7 @@ const CHANGE_PWD = "CHANGE_PWD"
 
 // 액션 생성
 const setUser = createAction(SET_USER, (user) => ({ user }));
+const getUser = createAction(GET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, () => ({ }));
 const findPassword = createAction(FIND_PWD, (user) => ({}));
 const changePassword = createAction(CHANGE_PWD, (user) => ({}));
@@ -25,7 +27,6 @@ const initialState = {
 }
 const initialUser = {
   username: "",
-  password: "",
   nickname : "",
   profileImgUrl: "",
 }
@@ -50,6 +51,21 @@ const logInDB = (userId, password) => {
       });
   }
 };
+
+const isLogin = () => {
+  return function (dispatch, getState, {history}) {
+    userAPI
+      .isLogin()
+      .then((res) => {
+        dispatch(getUser(res.data.user));
+      })
+      .catch((err) => {
+        console.log("isLogin : error", err);
+        return;
+      })
+  }
+}
+
 const signUpDB = (username, password, nickname, profileImgUrl) => {
   return function (dispatch, getState, { history }) {
     userAPI
@@ -58,9 +74,9 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
         //회원가입후 로그인을 유지하려면 토큰필요하지 않나? 그냥 다시 로그인페이지로 돌아갈것인지? 
         sessionStorage.setItem("token", res.headers.authorization);
         localStorage.setItem ("username", res.headers.authorization.split(" ")[3]);
-        dispatch(setUser({
-          
-        }));
+        dispatch(setUser((res.data.user)
+
+        ));
         setTimeout(() => {
           history.replace('/home');
         }, 3000);
@@ -89,7 +105,7 @@ const kakaoLogInDB = (code) => {
       .catch((error) => {
         console.log("error: ", error);
         window.alert('로그인에 실패하였습니다. ')
-        history.replace('/');
+        history.goBack();
       })
   }
 }
@@ -136,6 +152,10 @@ const changePwdDB = (tempPassword, password, passwordCheck) => {
 export default handleActions(
   {
     [SET_USER]: (state, action) => produce(state, (draft) => {
+      draft.user = action.payload.user;
+      draft.isLogin = true;
+    }),
+    [GET_USER]: (state, action) => produce(state, (draft) => {
       draft.user = action.payload.user;
       draft.isLogin = true;
     }),

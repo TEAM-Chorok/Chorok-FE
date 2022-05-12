@@ -5,24 +5,27 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 import CommBottomSheet from "./CommBottomSheet";
 
 const CommPostCommentList = (props) => {
-    console.log(props);
+    
     const commentList = props.commentList;
+
     return (
         <React.Fragment>
             {commentList.map((p) => {
-                <CommentWrap key={p.commentId}>
-                    <Grid>
-                        <Image type="circle" size="24px" imgUrl={p.profileImgUrl} />  
-                    </Grid>
-                    <CommentRowsBox>
+                return (
+                    <CommentWrap key={p.commentId}>
                         <Grid>
-                            <Text margin="0px 5px" size="small">{p.nickname}</Text>
-                            <Text size="xsmall" color="#6F6F6F">・ {p.commentRecentTime}</Text>
+                            <Image type="circle" size="24px" imgUrl={p.profileImgUrl} />  
                         </Grid>
-                        <Grid margin="0px 5px"><Text size="small">{p.commentContent}</Text></Grid>
-                    </CommentRowsBox>
-                    <Grid><CommBottomSheet /></Grid>
-                </CommentWrap>
+                        <CommentRowsBox>
+                            <Grid>
+                                <Text margin="0px 5px" size="small">{p.nickname}</Text>
+                                <Text size="xsmall" color="#6F6F6F">・ {p.commentRecentTime}</Text>
+                            </Grid>
+                            <Grid margin="0px 5px"><Text size="small">{p.commentContent}</Text></Grid>
+                        </CommentRowsBox>
+                        <Grid><CommBottomSheet /></Grid>
+                    </CommentWrap>
+                )
             })}
         </React.Fragment>
     )

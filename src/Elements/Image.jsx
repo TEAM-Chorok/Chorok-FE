@@ -15,7 +15,6 @@ const Image = (props) => {
     borderRadius: borderRadius,
     checked: checked,
     unChecked: unChecked,
-    width: width,
   };
 
 

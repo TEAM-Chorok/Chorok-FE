@@ -26,6 +26,11 @@ export const userAPI = {
   ),
   kakaoLogIn:(code) => api.get(`/auth/kakao/callback?code=${code}`),
   
+  isLogin: () => api.get(`/user/isLogIn`,{
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+    }
+  }),
 
   findPwd: (userName, userId) => api.post('/api/findPwd', {
     userName: userName,
@@ -143,14 +148,15 @@ export const postAPI = {
   addPost: (formData) => axios.post(`/write-posts`, {
     formData,
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "content-type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //모든 게시물 불러오기 (로그인)
   getAllPost_login: () => axios.get(`/read-posts/community`,{
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
   }),
 
@@ -160,7 +166,7 @@ export const postAPI = {
   //필터링한 게시물 불러오기 (로그인)
   getFilteredPost_login: (postTypeCode) => axios.get(`/read-posts/community/${postTypeCode}`, {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
   }),
   
@@ -174,38 +180,55 @@ export const postAPI = {
   editPost: (postId, formData) => axios.put(`/update-post/${postId}`,{
     formData,
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "content-type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //게시글 삭제
   deletePost: (postId) => axios.put(`/delete-post/${postId}`,{
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //게시글 좋아요
   likePost: (postId) => axios.post(`like-post/${postId}`, {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //게시글 북마크
-  bookmarkPost:  (postId) => axios.post(`bookmark-post/${postId}`, {
+  bookmarkPost: (postId) => axios.post(`bookmark-post/${postId}`, {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
   }),
 
 }
 export const myPageAPI = {
   //내 사진 리스트
-  getMyPhotoList: () => axios.get(``,
+  getMyPhotoList: () => axios.get(``,{
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    }
+  }
   ),
 
   //스크랩 사진 리스트
-  getScrapPhotoList: () => axios.get(``,
+  getScrapPhotoList: () => axios.get(``,{
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    }
+  }
+  ),
+  
+  //스크랩 플랜트 리스트
+  getScrapPlantList: () => axios.get(``,{
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    }
+  }
   ),
 }

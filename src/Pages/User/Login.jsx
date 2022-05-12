@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
 import { KAKAO_AUTH_URL } from '../../Shared/OAuthKaKao';
 //1. JWT토큰 const isLogin  = dispatch(isLogin(sessionStorage.getItem('token')))
-//2. 소셜 로그인 (구글 로그인, 카카오로그인)
+//2. 소셜 로그인 (구글 로그인)
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
