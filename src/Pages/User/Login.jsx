@@ -25,14 +25,31 @@ const Login = () => {
   return (
     <React.Fragment>
       <Container>
-      <Grid padding="30px 0px" width="100%" height="100vh">
+      <Grid padding="180px 0px" width="100%" height="100vh">
         <InnerWrap>
           <InnerDiv>
             {/* 로고 */}
-            <Image src="sample.jpeg" alt="logo"/>
+            <Text display="block" size="xxsmall" color="#0AAF42" >내 공간에 활기를 더해줄</Text>
+            <Image src="img/CHOROK.svg" alt="logo"/>
+          </InnerDiv>
+          
+          <InnerDiv style={{marginTop:"0px", position:"relative"}}>
+            <img src="img/kakao 1.svg" style={{position:"absolute", top: "16px", left:"80px", zIndex:"100"}}/>
+            <Button 
+            href={KAKAO_AUTH_URL}
+            variant='contained' 
+            style={{display:"block", margin:"10px auto", width:"312px", height: "48px", alignItems:"center",  backgroundColor:"#FEE500", padding:"14px", borderRadius:"6px", color:"#242424", boxShadow:"none"}}>카카오로 계속하기</Button>
+
+            <img src="img/kakao 1.svg" style={{position:"absolute", top: "72px", left:"80px", zIndex:"200"}}/>
+            <Button variant='contained' 
+            style={{display:"block", margin:"10px auto", width:"312px", height: "48px", backgroundColor:"#F0F0F0 ", borderRadius:"6px",  color:"#392020", boxShadow:"none"}}>구글로 계속하기</Button>
+
+            <Button variant='text' 
+              onClick={()=>login()}
+              style={{display:"block", margin:"10px auto", width:"312px", height: "48px", backgroundColor:"transparent", color:"black", borderRadius:"6px", border:"1px solid #E0E0E0", boxShadow:"none"}}>이메일로 계속하기</Button>
           </InnerDiv>
           <InnerDiv style={{marginBottom:"10px"}}>
-            <form>
+            {/* <form>
               <Input _onChange={(e)=>setUserEmail(e.target.value)} placeholder="이메일(아이디)" type="email" name="user_id" padding="0px 0px 0px 20px" height="52px"/>
               <Input _onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="비밀번호" name="user_pwd" padding="0px 0px 0px 20px" height="52px"/>
             </form>
@@ -43,19 +60,7 @@ const Login = () => {
               <Button variant='text' 
                 style={{display:"block", margin:"10px auto", width:"fit-content",  color:"#878D96"}} 
                 onClick={()=>history.push('/signup')}>회원가입</Button>
-            </div>
-            <Button variant='contained' 
-              onClick={()=>login()}
-              style={{display:"block", margin:"20px auto 0px auto", width:"282px", height: "38px", backgroundColor:"#5A916F", borderRadius:"50px", boxShadow:"none"}}>로그인</Button>
-          </InnerDiv>
-          
-          <InnerDiv style={{marginTop:"0px"}}>
-            <Button 
-            href={KAKAO_AUTH_URL}
-            variant='contained' 
-            style={{display:"block", margin:"10px auto", width:"282px", height: "38px", backgroundColor:"#FEE500", borderRadius:"50px", color:"#392020", boxShadow:"none"}}>KaKao 계정으로 로그인</Button>
-            <Button variant='contained' 
-            style={{display:"block", margin:"10px auto", width:"282px", height: "38px", backgroundColor:"#F2F4F8 ", borderRadius:"50px",  color:"#392020", boxShadow:"none"}}>Google 계정으로 로그인</Button>
+            </div> */}
           </InnerDiv>
           <InnerDiv>           
             <Button variant='text' 
@@ -81,9 +86,9 @@ margin: 20px auto 20px auto;
 text-align:center;
 `
 const Image = styled.img`
-width:44px;
-height: 44px;
-margin: 0px auto;
+width: 179px;
+height: fit-content;
+margin: 10px auto 56px auto;
 border-radius: 30px;
 `
 export default Login;

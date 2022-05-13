@@ -1,11 +1,11 @@
 import {Text, Grid, Image, Container} from '../../Elements/index';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
 import styled from 'styled-components';
 import { GeneralHeader, Questionnaire, Questionnaire2, Questionnaire3, Questionnaire4 } from '../../Components';
 import { useDispatch } from 'react-redux';
 import { actionCreators as labelActions } from '../../Redux/Modules/Label';
+import Recommendation from './Recommendation';
 
 const Labeling = () => {
   const dispatch = useDispatch();
@@ -19,9 +19,15 @@ const Labeling = () => {
   const [attribute2, setAttribute2] = React.useState("");
 
   const submit = () => {
-    dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
-    //로딩 페이지 
     setLoading(true);
+    dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
+    setTimeout(
+      () => setLoading(false), 2999
+    )
+    //로딩 페이지 
+    setTimeout(
+      () => setActive(5)
+    ,3000);
   }
  
   const [active, setActive] = React.useState(0);
@@ -31,6 +37,7 @@ const Labeling = () => {
     2: <Questionnaire2 setActive={setActive} place={place} setPlace={setPlace}/>,
     3: <Questionnaire3 setActive={setActive} attribute={attribute} setAttribute={setAttribute}/>,
     4: <Questionnaire4 setLoading={setLoading} attribute2={attribute2} setAttribute2={setAttribute2} submit={submit} />,
+    5: <Recommendation />
   };
 
   
@@ -49,18 +56,22 @@ const Labeling = () => {
     )
   }
 
-  if (active === 0 ) {return (
+  if (active === 0 ) {
+    return (
     <React.Fragment>
       <Container>
         <GeneralHeader />
-        <Grid margin="80px 0px" height="160px">
+        <Grid margin="100px 0px">
           <Text size="large" color="#262626" bold>반가워요!<br/>지금부터 나와 꼭 맞는 식물을<br />찾아볼까요?</Text>
         </Grid>
-        <Grid margin="262px auto 100px auto" align="center">
+        <Grid margin="0px auto">
+          <img src="img/labelingLogo.png" style={{width:"80px"}}/>
+        </Grid>
+        <Grid margin="120px auto 100px auto" align="center">
           <PrimaryBtn onClick={()=>setActive(1)}>시작할래요</PrimaryBtn>
           <GobackBtn onClick={()=>history.goBack}>다음에 할게요</GobackBtn>
         </Grid>
-    </Container>
+      </Container>
     </React.Fragment>
   );
   }
@@ -91,6 +102,7 @@ const PrimaryBtn = styled.button`
   text-align: center;
   margin-bottom: 8px;
   border: none;
+  font-weight: 700;
   border-radius: 16px;
 `
 const GobackBtn = styled.button`

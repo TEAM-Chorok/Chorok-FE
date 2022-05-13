@@ -19,7 +19,7 @@ const Questionnaire4 = (props) => {
             <SelectWrap>
               <ImageBox onClick={()=>props.setAttribute2("pgs01")}>
               <ImageWrap className='child'>
-                <Image margin="0px auto" type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/관목형.jpeg"></Image>
+                <Image margin="0px auto" type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/관목형.png"></Image>
               </ImageWrap>
               <TextWrap className='text'>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">부드러운</Text>
@@ -27,7 +27,7 @@ const Questionnaire4 = (props) => {
               </ImageBox>
               <ImageBox onClick={()=>props.setAttribute2("pgs05")}>
                 <ImageWrap className='child'>
-                  <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="img/plantType/풀입형.png"></Image>
+                  <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="img/plantType/풀잎형.png"></Image>
                 </ImageWrap>
                 <TextWrap className='text'>
                   <Text display="block" color="#262626" size="xsmall" margin="0px">아담한</Text>
@@ -35,7 +35,7 @@ const Questionnaire4 = (props) => {
               </ImageBox>
               <ImageBox onClick={()=>props.setAttribute2("pgs04")}>
               <ImageWrap className='child'>
-                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/직립형.jpeg"></Image>
+                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/직립형.png"></Image>
                 </ImageWrap>
                 <TextWrap className='text'>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">쭉쭉 뻗은</Text>
@@ -45,7 +45,7 @@ const Questionnaire4 = (props) => {
             <SelectWrap2>
               <ImageBox onClick={()=>props.setAttribute2("pgs02")}>
               <ImageWrap className='child'>
-                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/덩굴형.jpg"></Image>
+                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/덩굴형.png"></Image>
                 </ImageWrap>
                 <TextWrap className='text'>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">감겨오르는</Text>
@@ -53,7 +53,7 @@ const Questionnaire4 = (props) => {
               </ImageBox> 
               <ImageBox onClick={()=>props.setAttribute2("pgs06")}>
               <ImageWrap className='child'>
-                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/둥글게펼쳐진.jpeg"></Image>
+                <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/둥글게펼쳐진.png"></Image>
               </ImageWrap>
               <TextWrap className='text'>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">둥글게 펼쳐진</Text>

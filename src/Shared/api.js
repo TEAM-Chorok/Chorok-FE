@@ -4,8 +4,8 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://121.141.140.148:8085'
-  // baseURL: 'http://52.79.233.178',//민성님 Url
+  // baseURL: 'http://121.141.140.148:8085'
+  baseURL: 'http://52.79.233.178',//민성님 Url
 }, { withCredentials: true } //CORS error 방지
 );
 

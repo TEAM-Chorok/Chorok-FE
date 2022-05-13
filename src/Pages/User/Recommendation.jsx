@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import { Grid, Image, Text, Container } from "../../Elements";
 
@@ -9,29 +10,25 @@ const Recommendation = (props) => {
     const history = useHistory();
     const params = useParams();
     const plantId = params.plantId;
-    console.log(useSelector(state => state.recommend));
-    const plantName = useSelector(state => state.recommend?.plantName);
-    const plantImgUrl = useSelector(state => state.recommend?.imgUrl);
-  if(!plantName || !plantImgUrl){
-    return (
-      <div></div>
-    )
-  }
+    console.log(useSelector(state => state.label.recommend));
+    const plantName = useSelector(state => state.label.recommend?.plantName);
+    const plantImgUrl = useSelector(state => state.label.recommend?.plantImgUrl);
+
+  
+
   return(
       <React.Fragment>
-          <Container>
               <Grid width="100%">
                   <InnerWrap>
                     <Text size="base">집사님을 위한 <span style={{color:"#0AAF42"}}>추천 식물</span> 도착!</Text>
-                    <Image imgUrl={plantName} type="circle" size="148px" margin="20px auto 8px auto"/>
-                    <Text size="base" bold>{plantImgUrl}</Text>
+                    <Image imgUrl={plantImgUrl} type="circle" size="148px" margin="20px auto 8px auto"/>
+                    <Text size="base" bold>{plantName}</Text>
                   </InnerWrap>
                   <BottomWrap>
                         <PrimaryBtn onClick={()=>history.replace(`/plant/${plantId}`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
                         <ExitBtn onClick={()=>history.replace('/home')}>종료하기</ExitBtn>
                   </BottomWrap>
               </Grid>
-          </Container>
         {/* <Modal>
             <InnerWrap>
                 <Text fontSize="16px" bold>ㅇㅇ님을 위한 추천 식물</Text>

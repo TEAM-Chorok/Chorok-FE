@@ -16,7 +16,7 @@ const Kakao = (props) => {
     console.log("code: ",code);
     
     React.useEffect( () => {
-         dispatch(userActions.kakaoLogInDB(code));
+        dispatch(userActions.kakaoLogInDB(code));
         
     }, []);
 

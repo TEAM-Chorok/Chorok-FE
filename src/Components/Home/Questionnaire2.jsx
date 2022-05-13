@@ -17,19 +17,19 @@ const Questionnaire2 = (props) => {
               <SelectionWrap>
                 <ImageBox onClick={()=>props.setPlace("pp03")}> 
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/pexels-photo-2008269.jpeg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/bathroom.png"></Image>
                   </ImageWrap>
                   <TextWrap className='text'><Text>화장실</Text></TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp02")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/Rectangle 2714.svg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/bedroom.png"></Image>
                   </ImageWrap>
                   <TextWrap className='text'><Text>방안</Text></TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp01")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/kitchen.jpeg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/hallway.png"></Image>
                   </ImageWrap>
                   <TextWrap className='text'><Text>통로</Text></TextWrap>
                 </ImageBox>
@@ -38,19 +38,19 @@ const Questionnaire2 = (props) => {
               <SelectionWrap>
                 <ImageBox onClick={()=>props.setPlace("pp06")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/terrace.jpeg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/terrace.png"></Image>
                   </ImageWrap>
                   <TextWrap className='text'><Text>베란다</Text></TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp05")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/living room.jpeg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/windowside.png"></Image>
                   </ImageWrap>
                   <TextWrap className='text'><Text>창가</Text></TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp04")}>
                   <ImageWrap className='child'>
-                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/living room_@.jpeg"></Image>
+                    <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/livingroom.png"></Image>
                   </ImageWrap>
                   <TextWrap className='text'><Text>거실</Text></TextWrap>
                 </ImageBox>

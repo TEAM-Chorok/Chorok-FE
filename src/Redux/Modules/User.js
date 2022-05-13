@@ -95,11 +95,11 @@ const kakaoLogInDB = (code) => {
         sessionStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.email);
         dispatch(setUser({
-          username: res.data.username,
+          username: res.data.email,
           nickname: res.data.nickname,
           profileImgUrl: res.data.profileImgUrl
         }))
-        window.location.reload('/home');
+        history.push('/home');
       })
       .catch((error) => {
         console.log("error: ", error);

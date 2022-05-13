@@ -27,7 +27,7 @@ const labelingDB = (answer1, answer2, answer3, answer4) => {
         .labeling(answer1, answer2, answer3, answer4)
         .then((res) => {
           console.log("추천 식물:", res.data);
-          dispatch(labeling(res.data, false));
+          dispatch(labeling(res.data, true));
           history.replace(`/recommendation/${res.data.plantId}`);
         })
         .catch((err) => {
