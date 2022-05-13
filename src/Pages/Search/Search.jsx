@@ -3,10 +3,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { AddPlantList, AllResult, Planterior, PlantSearchHeader, SearchOnFocus, Tabbar } from "../../Components";
-import { Container, Grid, Text } from "../../Elements";
+import { Button, Container, Grid, Text } from "../../Elements";
 import { actionCreators as searchActions } from "../../Redux/Modules/Search";
 import Result from "./Result";
-
 
 // 탐색페이지
 const Search = () => {
@@ -71,6 +70,7 @@ const Search = () => {
             {comp[compNum]}
           </Grid>
         }
+        <Button type="plus"/>
       </Container>
     </React.Fragment>
   )

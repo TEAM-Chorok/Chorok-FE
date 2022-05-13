@@ -21,7 +21,9 @@ const CalendarMyPlant = (props) => {
       <PlantBox>
         {myPlant?.map((plant) => {
           return(
-          <PlantProfile key={plant.myPlantNo} name={plant?.myPlantName} plant={plant?.plantName} _onClick={() => {props.setPlantNo(plant?.myPlantNo)}}/>
+          <PlantProfile key={plant.myPlantNo} name={plant?.myPlantName} plant={plant?.plantName} 
+            imgUrl={plant.myPlantImgUrl}          
+            _onClick={() => {props.setPlantNo(plant?.myPlantNo)}}/>
           )
         })}
       </PlantBox>

@@ -44,7 +44,7 @@ const Button = (props) => {
         return (
           <React.Fragment>
             <PlusButton {...styles} onClick={_onClick}>
-              <HiPlus size="20px" color="#aaa"/>
+              <HiPlus size="25px" color="#fff"/>
             </PlusButton>
           </React.Fragment>
         );
@@ -165,18 +165,15 @@ const PlusButton = styled.button`
   width: 60px;
   height: 60px;
   
-  position: fixed;
-  bottom: 68px;
-  right: 20px;
+  position: sticky;
+  bottom: 16px;
+  left: 80%;
   
-  border: 1px solid #aaa;
+  border: none;
   border-radius: 60px;
 
-  background: none;
-
-  &: hover {
-    background: #eee;
-  }
+  background: #42BE65;
+  box-shadow: 1px 2px 10px rgba(5, 167, 67, 0.36);
 `;
 
 // 식물 추가 버튼

@@ -12,7 +12,7 @@ import PlantProfile from "../../PlantProfile";
 const RecommandPlant = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const recommendlist = useSelector((state) => state.search.recommendlist);
+  const recommendlist = useSelector((state) => state.search?.recommendlist);
 
   console.log(recommendlist);
 
@@ -28,9 +28,12 @@ const RecommandPlant = () => {
   return (
     <React.Fragment>
       <Wrapper>
-          <PlantProfile size="L" name="몬스테라" _onClick={openPlantCard} />
-          <PlantProfile size="L" name="스킨답서스" _onClick={openPlantCard} />
-          <PlantProfile size="L" name="라벤더" _onClick={openPlantCard} />
+        {recommendlist?.map((plant) => {
+          return (
+            <PlantProfile key={plant.plantId} size="L" name={plant.plantName} imgUrl={plant.plantImgUrl} />
+          );
+        })}
+
       </Wrapper>
     </React.Fragment>
   )

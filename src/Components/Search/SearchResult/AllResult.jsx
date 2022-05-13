@@ -37,7 +37,7 @@ const AllResult = (props) => {
               return (
                 <div key={result?.postId}>
                   <Grid margin="2px auto">
-                    <Image type="square" size="104px" borderRadius="4px" />
+                    <Image type="square" size="104px" borderRadius="4px" imgUrl={result.postImgUrl}/>
                   </Grid>
                 </div>
               )

@@ -62,7 +62,7 @@ const WritePlantProfile = (props) => {
         <input
           type="file"
           style={{ display: 'none' }}
-          accept='image/jpg,impge/png,image/jpeg'
+          accept='image/*'
           ref={fileRef} onChange={onChange}
         />
       </Grid>

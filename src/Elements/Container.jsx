@@ -3,7 +3,37 @@ import styled from "styled-components";
 
 const Container = (props) => {
 
-    const {children, type} = props;
+    const {children, type, app, nav, rt} = props;
+
+    if(app) {
+        return(
+            <React.Fragment>
+                <AppContainer>
+                    {children}
+                </AppContainer>
+            </React.Fragment>
+        )
+    }
+    
+    if(nav) {
+        return (
+            <React.Fragment>
+                <NavContainer>
+                    {children}
+                </NavContainer>
+            </React.Fragment>
+        )
+    }
+
+    if(rt) {
+        return (
+            <React.Fragment>
+                <RouteContainer>
+                    {children}
+                </RouteContainer>
+            </React.Fragment>
+        )
+    }
 
     if(type==="np") {
         return(
@@ -29,12 +59,41 @@ Container.defaultProps = {
     type: null,
 }
 
+const AppContainer = styled.div`
+    position: relative;
+    box-sizing: border-box;
+
+    margin: auto;
+    
+    width: 360px;
+    height: 720px;
+
+    ${'' /* border: 1px solid #000; */}
+`
+const NavContainer = styled.div`
+    width: 100%;
+    height: 80px;
+    ${'' /* border: 1px solid #000; */}
+`
+const RouteContainer = styled.div`
+    position: relative;
+    box-sizing: border-box;
+
+    margin:none;
+
+    width: 360px;
+    height: 640px;
+    overflow-y: scroll;
+
+    ${'' /* border: 1px solid #000; */}
+`
 const NonPaddingContainer = styled.div`
     position: relative;
     box-sizing: border-box;
 
+    margin: auto;
+    
     width: 360px;
-
     ${'' /* border: 1px solid #000; */}
 `
 
@@ -44,7 +103,6 @@ const ContainerBox = styled.div`
     padding: 16px;
 
     width: 360px;
-
     ${'' /* border: 1px solid #000; */}
 `;
 

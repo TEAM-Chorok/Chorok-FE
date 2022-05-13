@@ -21,6 +21,7 @@ const PlanteriorWriteComp = () => {
   const fileRef = React.useRef();
   const [file, setFile] = React.useState([]);
   const [preview, setPreview] = React.useState([]);
+  
   // alert 메세지 
   const alertMessage = {
     0: "자랑할 공간을 선택해주세요!",
@@ -70,7 +71,7 @@ const PlanteriorWriteComp = () => {
 
     for (let i = 0; i < filesLength; i++) {
       files = fileArr[i];
-    
+
       let reader = new FileReader();
       reader.onload = () => {
         fileURLs[i] = reader.result;
@@ -78,7 +79,6 @@ const PlanteriorWriteComp = () => {
       };
       reader.readAsDataURL(files);
     }
-
 
   }
   console.log(file)
@@ -105,7 +105,7 @@ const PlanteriorWriteComp = () => {
       </Grid>
 
 
-      {file?.length>0 ?
+      {file?.length > 0 ?
         <FilePreview>
           {preview ?
             preview.map((img, idx) => {

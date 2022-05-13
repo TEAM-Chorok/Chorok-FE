@@ -10,9 +10,11 @@ import { IoIosArrowForward } from "react-icons/io";
 //
 // --- props ---
 // checked : 선택되었을 경우 
+// list : 리스트형 프로필(식물도감)
+// 
 // size : L(96px) / null(56px)
-// name : 식물 닉네임
-// plant : 식물 종류
+// name : 메인으로 표시할 텍스트 ex_식물닉네임...
+// plant : 서브로 표시할 텍스트 ex_식물명...
 // imgUrl : 이미지 url
 //  
 // <PlantProfile checked size="L" name="동동이" plant="몬스테라" imgUrl="이미지 url"/>
@@ -31,8 +33,10 @@ const PlantProfile = (props) => {
 
   if (size === "L") {
     return (
-      <Grid margin="8px auto" _onClick={_onClick}>
-        <Image type="circle" size="96px" imgUrl={imgUrl} />
+      <Grid width="100px" margin="8px auto" _onClick={_onClick}>
+        <Grid margin="auto">
+          <Image type="circle" size="96px" imgUrl={imgUrl} />
+        </Grid>
         <Grid margin="6px auto" align="center">
           <Text bold size="basic">{name}</Text>
           <Grid margin="-2px 0">

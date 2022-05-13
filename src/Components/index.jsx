@@ -92,6 +92,8 @@ import Tabbar from "./Tabbar";
 import Alert from "./Alert";
 // 프로그래스바
 import ProgressBar from "./ProgressBar";
+// 네비게이션바
+import Navbar from "./Navbar";
 
 
 
@@ -112,6 +114,6 @@ export {
     EditPlantHeader, EditPlantBody,
     MyPostsPostList, 
     DeactivationAgreement,
-    PlantSearchHeader, SearchHeader, Tabbar, Alert, ProgressBar,
+    PlantSearchHeader, SearchHeader, Tabbar, Alert, ProgressBar, Navbar,
 };
 

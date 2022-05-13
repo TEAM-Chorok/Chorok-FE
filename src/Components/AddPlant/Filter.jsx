@@ -62,28 +62,28 @@ const FilterSpace = (props) => {
       <Grid margin="auto" width="312px">
         <SpaceWrapper>
           <Grid width="100%" padding="4px">
-            <Button checked={props.code === "pp01" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp01"); props.setSpaceText("거실"); }}>
-              <Text size="base" color={props.code === "pp01" ? "#0AAF42" : ""}>거실</Text>
+            <Button checked={props.code === "pp04" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp04"); props.setSpaceText("거실"); }}>
+              <Text size="base" color={props.code === "pp04" ? "#0AAF42" : ""}>거실</Text>
             </Button>
           </Grid>
           <Grid width="100%" padding="4px">
-            <Button checked={props.code === "pp02" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp02"); props.setSpaceText("창가"); }}>
-              <Text size="base" color={props.code === "pp02" ? "#0AAF42" : ""}>창가</Text>
+            <Button checked={props.code === "pp05" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp05"); props.setSpaceText("창가"); }}>
+              <Text size="base" color={props.code === "pp05" ? "#0AAF42" : ""}>창가</Text>
             </Button>
           </Grid>
           <Grid width="100%" padding="4px">
-            <Button checked={props.code === "pp03" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp03"); props.setSpaceText("방안"); }}>
-              <Text size="base" color={props.code === "pp03" ? "#0AAF42" : ""}>방안</Text>
+            <Button checked={props.code === "pp02" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp02"); props.setSpaceText("방안"); }}>
+              <Text size="base" color={props.code === "pp02" ? "#0AAF42" : ""}>방안</Text>
             </Button>
           </Grid>
           <Grid width="100%" padding="4px">
-            <Button checked={props.code === "pp05" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp05"); props.setSpaceText("통로"); }}>
-              <Text size="base" color={props.code === "pp05" ? "#0AAF42" : ""}>통로</Text>
+            <Button checked={props.code === "pp01" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp01"); props.setSpaceText("통로"); }}>
+              <Text size="base" color={props.code === "pp01" ? "#0AAF42" : ""}>통로</Text>
             </Button>
           </Grid>
           <Grid width="100%" padding="4px">
-            <Button checked={props.code === "pp04" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp04"); props.setSpaceText("화장실"); }}>
-              <Text size="base" color={props.code === "pp04" ? "#0AAF42" : ""}>화장실</Text>
+            <Button checked={props.code === "pp03" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp03"); props.setSpaceText("화장실"); }}>
+              <Text size="base" color={props.code === "pp03" ? "#0AAF42" : ""}>화장실</Text>
             </Button>
           </Grid>
           <Grid width="100%" padding="4px">

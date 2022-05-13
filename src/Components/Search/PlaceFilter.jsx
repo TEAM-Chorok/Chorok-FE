@@ -37,45 +37,6 @@ const PlaceFilter = (props) => {
           }}>전체</Button>
         }
 
-        <Button type="filter" checked={checked.pp01} _onClick={() => {
-            props.setPlace("pp01");
-            setChecked({
-              all: false,
-              pp01: true,
-              pp02: false,
-              pp03: false,
-              pp04: false,
-              pp05: false,
-              pp06: false,
-            });
-          }}>거실</Button>
-
-        <Button type="filter" checked={checked.pp02} _onClick={() => {
-            props.setPlace("pp02");
-            setChecked({
-              all: false,
-              pp01: false,
-              pp02: true,
-              pp03: false,
-              pp04: false,
-              pp05: false,
-              pp06: false,
-            });
-          }}>창가</Button>
-        
-        <Button type="filter" checked={checked.pp03} _onClick={() => {
-            props.setPlace("pp03");
-            setChecked({
-              all: false,
-              pp01: false,
-              pp02: false,
-              pp03: true,
-              pp04: false,
-              pp05: false,
-              pp06: false,
-            });
-          }}>방 안</Button>
-
         <Button type="filter" checked={checked.pp04} _onClick={() => {
             props.setPlace("pp04");
             setChecked({
@@ -87,7 +48,7 @@ const PlaceFilter = (props) => {
               pp05: false,
               pp06: false,
             });
-          }}>화장실</Button>
+          }}>거실</Button>
 
         <Button type="filter" checked={checked.pp05} _onClick={() => {
             props.setPlace("pp05");
@@ -98,6 +59,45 @@ const PlaceFilter = (props) => {
               pp03: false,
               pp04: false,
               pp05: true,
+              pp06: false,
+            });
+          }}>창가</Button>
+        
+        <Button type="filter" checked={checked.pp02} _onClick={() => {
+            props.setPlace("pp02");
+            setChecked({
+              all: false,
+              pp01: false,
+              pp02: true,
+              pp03: false,
+              pp04: false,
+              pp05: false,
+              pp06: false,
+            });
+          }}>방 안</Button>
+
+        <Button type="filter" checked={checked.pp03} _onClick={() => {
+            props.setPlace("pp03");
+            setChecked({
+              all: false,
+              pp01: false,
+              pp02: false,
+              pp03: true,
+              pp04: false,
+              pp05: false,
+              pp06: false,
+            });
+          }}>화장실</Button>
+
+        <Button type="filter" checked={checked.pp01} _onClick={() => {
+            props.setPlace("pp01");
+            setChecked({
+              all: false,
+              pp01: true,
+              pp02: false,
+              pp03: false,
+              pp04: false,
+              pp05: false,
               pp06: false,
             });
           }}>통로</Button>

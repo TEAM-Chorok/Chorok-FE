@@ -28,7 +28,7 @@ const TodoProfile = () => {
           <PlantProfile  name="전체" imgUrl="img/all.png" />
         {myPlant?.map((plant) => {
           return (
-            <PlantProfile key={plant.myPlantNo} name={plant.myPlantName} plant={plant.plantName} />
+            <PlantProfile key={plant.myPlantNo} name={plant.myPlantName} plant={plant.plantName} imgUrl={plant.myPlantImgUrl}/>
           );
         })}
           <PlantProfile  imgUrl="img/add.png" _onClick={openAddPlant}/>

@@ -22,7 +22,7 @@ const getCheckedDB = (year, month, plantNo) => {
     calendarAPI
       .getChecked(year, month, plantNo)
       .then((response) => {
-        // console.log("getCheckedDB : response", response.data);
+        console.log("getCheckedDB : response", response.data);
         const blooming = [];
         const changing = [];
         const leafcleaning = [];

@@ -13,7 +13,7 @@ const LabelingTestLink = () => {
   return (
     <React.Fragment>
       <Grid margin="10px 0">
-        <Text bold size="h6">ㅇㅇ님을 위한 추천식물</Text>
+        <Text bold size="h6">○○님을 위한 추천식물</Text>
       </Grid>
       <LinkBox onClick={() => {
         history.push("/labeling");

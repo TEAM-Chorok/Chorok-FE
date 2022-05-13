@@ -46,7 +46,9 @@ const PlanteriorList = () => {
                 <ContentWrapper key={post.postId} onClick={() => {openDetail(post.postId)}}>
                   <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
                   <Grid is_flex margin="4px 0">
-                    <Image type="circle" size="20px" />
+                    <Image type="circle" size="20px" 
+                    // imgUrl={post.profileImageUrl}
+                    />
                     <Text bold size="xsmall" margin="1px 4px">{post.nickname}</Text>
                   </Grid>
                   <TextBox>
@@ -91,7 +93,7 @@ const ContentWrapper = styled.div`
   height: fit-content;
 `
 const TextBox = styled.div`  
-  height: 40px;
+  max-height: 40px;
   
   font-size: 13px;
   line-height: 20px;
