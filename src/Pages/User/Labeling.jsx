@@ -29,8 +29,8 @@ const Labeling = () => {
     // setTimeout(
     //   () => setActive(5)
     // ,2000);
+    
     setLoading(true); //로딩화면 보여주려고 함
-  
     try {
       console.log(loading); 
       dispatch(labelActions.labelingDB(level, place, attribute, attribute2));

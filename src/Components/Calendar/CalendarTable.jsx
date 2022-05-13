@@ -16,13 +16,13 @@ const CalendarTable = (props) => {
   const checkdate = ["2022-05-03", "2022-05-06", "2022-05-15"];
   const checkdate2 = ["2022-05-01", "2022-05-04", "2022-05-20", "2022-05-27"];
 
-  const checkData = useSelector((state) => state.calendar.checkedData);
+  const checkData = useSelector((state) => state.calendar?.checkedData);
 
-  const blooming = checkData.blooming;
-  const changing = checkData.changing;
-  const leafcleaning = checkData.leafcleaning;
-  const supplements = checkData.supplements;
-  const watering = checkData.watering;
+  const blooming = checkData?.blooming;
+  const changing = checkData?.changing;
+  const leafcleaning = checkData?.leafcleaning;
+  const supplements = checkData?.supplements;
+  const watering = checkData?.watering;
 
   return (
     <React.Fragment>
@@ -41,7 +41,7 @@ const CalendarTable = (props) => {
             tileContent={({ date }) => {
               return (
                 <GridBox>
-                  {watering.find((x) => x === moment(date).format("YYYY-MM-DD"))?
+                  {watering?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
                     <Image type="square" size="13px" imgUrl="img/calendaricon/droplet.png"/>
                   </IconBox>
@@ -56,17 +56,17 @@ const CalendarTable = (props) => {
                     <Image type="square" size="12px" imgUrl="img/calendaricon/spray.png"/>
                   </IconBox>
                   : ""}
-                  {changing.find((x) => x === moment(date).format("YYYY-MM-DD"))?
+                  {changing?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
                     <Image type="square" size="12px" imgUrl="img/calendaricon/potted_plant.png"/>
                   </IconBox>
                   : ""}
-                  {supplements.find((x) => x === moment(date).format("YYYY-MM-DD"))?
+                  {supplements?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
                     <Image type="square" size="12px" imgUrl="img/calendaricon/pill.png"/>
                   </IconBox>
                   : ""}
-                  {blooming.find((x) => x === moment(date).format("YYYY-MM-DD"))?
+                  {blooming?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
                     <Image type="square" size="12px" imgUrl="img/calendaricon/tulip.png"/>
                   </IconBox>
