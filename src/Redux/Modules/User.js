@@ -115,7 +115,8 @@ const logOutDB  = () => {
     sessionStorage.removeItem("token");
     localStorage.removeItem("username");
     dispatch(logOut());
-    window.location.reload('/');
+    history.push('/');
+    window.location.reload('');
   }
 }
 
