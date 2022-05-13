@@ -14,7 +14,11 @@ const CalendarPage = () => {
   const year = moment(value).format('YYYY');
   const month = moment(value).format('MM');
 
+
   React.useEffect(() => {
+    if(!plantNo){
+      return;
+    }
     dispatch(calendarActions.getCheckedDB(year, month, plantNo));
   }, [plantNo, value])
 

@@ -5,6 +5,7 @@ import { Container, Grid, Text } from "../../Elements";
 import PlantProfile from "../PlantProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
+import { useParams } from "react-router-dom";
 
 const CalendarMyPlant = (props) => {
   const dispatch = useDispatch();

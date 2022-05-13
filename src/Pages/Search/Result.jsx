@@ -8,7 +8,7 @@ import { Container, Grid, Image, Text } from "../../Elements";
 const Result = (props) => {
   const [compNum, setCompNum] = React.useState(0);
   const [value, setValue] = React.useState(props.value)
-  console.log(value)
+  
   const comp = {
     0: <AllResult setCompNum={setCompNum}/>,
     1: <PlanteriorResult value={value}/>,
