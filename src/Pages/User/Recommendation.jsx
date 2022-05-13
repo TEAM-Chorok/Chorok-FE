@@ -8,21 +8,22 @@ import { Grid, Image, Text, Container } from "../../Elements";
 
 const Recommendation = (props) => {
     const history = useHistory();
-    const params = useParams();
-    const plantId = params.plantId;
-    console.log(useSelector(state => state.label.recommend));
-    console.log(plantId);
-    const _plantId = useSelector(state => state.label.recommend?.plantId);
-    console.log(_plantId);
-    const plantName = useSelector(state => state.label.recommend?.plantName);
-    const plantImgUrl = useSelector(state => state.label.recommend?.plantImgUrl);
+    const recommend = useSelector(state => state.label?.recommend);
+    const plantId = recommend?.plantId;
+    const plantName = recommend?.plantName;
+    const plantImgUrl = recommend?.plantImgUrl;
 
   if(!plantName || !plantImgUrl) {
     return (
       <>
         <Container>
           <Grid width="100%" height="100vh"> 
-            <div style={{textAlign:"center", width: "100%", paddingTop:"300px"}}>
+          <Grid margin="0px auto" align="center">
+          {/*추후 애니메이션 넣기*/}
+          <Img className="labelingLogo" src="img/Logo/LOGO.svg" />
+          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position:"absolute", top:"328px", left:"154px"}}/>
+        </Grid>
+            <div style={{ position: "absolute", top: "387px", right: "78px", textAlign:"center"}}>
               <Text bold color="#262626" size="large" display="block" margin="0px auto">열심히 취향 분석 중!<br />곧 맞춤 식물을 알려드릴게요!👍</Text>
             </div>
           </Grid>
@@ -40,7 +41,7 @@ const Recommendation = (props) => {
                   </InnerWrap>
                   <BottomWrap>
                         <PrimaryBtn 
-                        onClick={()=>history.replace(`/plant/${_plantId}`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
+                        onClick={()=>history.replace(`/plant/${plantId}`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
                         <ExitBtn onClick={()=>history.replace('/home')}>종료하기</ExitBtn>
                   </BottomWrap>
               </Grid>
@@ -82,6 +83,13 @@ const PrimaryBtn = styled.button`
   text-align: center;
   border: none;
   border-radius: 8px;
+`
+const Img = styled.img `
+ width: 90px;
+ display: block;
+ position: absolute;
+ top: 250px;
+ left: 125px;
 `
 const ExitBtn = styled.button`
     margin-top: 8px;

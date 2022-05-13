@@ -83,18 +83,6 @@ const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
                 window.alert('글 작성하기에 실패하였습니다.');
                 return;
             })
-        // const response = {
-        //     data:{
-        //         post:{
-        //             postId: 0,
-        //             postTitle: {postTitle},
-        //             postContent: {postContent},
-        //             postTypeCode: {postTypeCode}
-        //         }
-        //     }
-        // // }
-        // history.push(`/community/${res.data.post.postId}`);
-    
     }
     
 }
@@ -166,45 +154,13 @@ const getDetailPostDB = (postId) => {
             .getDetailPost(_postId)
             .then((response) => {
                 console.log(response);
-                dispatch(getDetailPost());
+                dispatch(getDetailPost(response.data));
             })
             .catch((err)=>{
                 console.log("error:" , err);
-                window.alert("게시글 조회를 실패하였습니다.");
+                // window.alert("게시글 조회를 실패하였습니다.");
                 return;
             })
-        // const response = 
-        //     {
-        //         "postId":34,
-        //         "nickname": "김주호",
-        //         "profileImgUrl": null,
-        //         "postTitle": "플렌테이라테스트제목",
-        //         "postContent": "asd",
-        //         "postImgUrl": "", 
-        //         "postType": "식물추천", 
-        //         "postRecentTime": "21시간 전",
-        //         "postLike": false,
-        //         "postLikeCount": 0,
-        //         "postBookMark": false,
-        //         "commentList": [ 
-        //      {
-        //         "commentId": 48,
-        //         "nickname": "김주호",
-        //         "profileImgUrl": null,
-        //         "commentContent": "이게 전데용?",
-        //         "commentRecentTime": "13초 전"
-        //      } ,
-        //      { 
-        //         "commentId": 49,
-        //         "nickname": "김주호",
-        //         "profileImgUrl": null,
-        //         "commentContent": "이게 전데용?",
-        //         "commentRecentTime": "13초 전"
-        //     } 
-        //      ],
-        //      "plantPlace":null
-        //      }
-        //      dispatch(getDetailPost(response));
     }
 }
 
@@ -253,14 +209,39 @@ const editPostDB = (postId, category, postTitle, postContent, postImgUrl) => {
     }
 }
 // 좋아요 표시하기
-const likePostDB = (postId) => {
+const likePostDB = (category, postId) => {
     const _postId = parseInt(postId);
+    console.log(_postId);
+    console.log(postId);
     return function(dispatch, getState, { history }){
         postAPI
-            .likePost(_postId)
+            .likePost(postId)
             .then((res) => {
-                console.log('좋아요 성공')
-                window.location.reload();
+                if(res.data.result === "true"){
+                    console.log('좋아요 성공');
+                }else if (res.data.result === "false"){
+                    console.log('좋아요 취소');
+                }
+                dispatch(getPostListDB_login(category));
+            })
+            .catch((err) => {
+                console.log("error:" , err);
+                window.alert("게시글 좋아요에 실패하였습니다.");
+            })
+    }
+}
+// detail페이지에서 좋아요 표시하기
+const likeDetailPostDB = (postId) => {
+    return function(dispatch, getState, { history }){
+        postAPI
+            .likePost(postId)
+            .then((res) => {
+                if(res.data.result === "true"){
+                    console.log('좋아요 성공');
+                }else if (res.data.result === "false"){
+                    console.log('좋아요 취소');
+                }
+                dispatch(getDetailPost(postId));
             })
             .catch((err) => {
                 console.log("error:" , err);
@@ -270,18 +251,18 @@ const likePostDB = (postId) => {
 }
 
 // 북마크 표시하기
-const bookmarkPostDB = (postId) => {
-    const _postId = parseInt(postId);
+const bookmarkPostDB = (category, postId) => {
     return function(dispatch, getState, { history }){
         postAPI
-        .bookmarkPost(_postId)
+        .bookmarkPost(postId)
         .then((res) => {
-            if(res.data.result === true ){
+            if(res.data.result === "true" ){
+                console.log(res.data.result);
                 window.alert("북마크로 등륵되었습니다.");
               }else {
                 window.alert("북마크를 취소하였습니다.");
               }
-              window.location.reload();
+              dispatch(getPostListDB_login(category));
         })
         .catch((err) => {
             console.log("error:" , err);
@@ -289,23 +270,43 @@ const bookmarkPostDB = (postId) => {
         })
     }
 }
-
+// detail페이지에서 북마크 표시하기
+const bookmarkDetailPostDB = (postId) => {
+    return function(dispatch, getState, { history }){
+        postAPI
+            .bookmarkPost(postId)
+            .then((res) => {
+                if(res.data.result === "true" ){
+                    console.log(res.data.result);
+                    window.alert("북마크로 등륵되었습니다.");
+                  }else {
+                    window.alert("북마크를 취소하였습니다.");
+                  }
+                  dispatch(getDetailPost(postId));
+            })
+            .catch((err) => {
+                console.log("error:" , err);
+                window.alert("게시글 좋아요에 실패하였습니다.");
+            })
+    }
+}
 
 // 커뮤니티 검색어 검색 (+ 필터링도 가능하게 해야됨)
 const postSearchingDB = (postTypeCode, keyword) => {
     if(postTypeCode === "all") {
         postTypeCode = ""
     }
-    console.log(postTypeCode, keyword)
+    console.log(postTypeCode, keyword);
   return function (dispatch, getState, { history }) {
     searchAPI
         .postSearching(postTypeCode, keyword)
         .then((res) => {
-            console.log("response : ", res);
-            dispatch(postSearching(res));
+            console.log("response : ", res.data);
+            dispatch(postSearching(res.data));
+            dispatch(getPostListDB_login(res.data));
         }).catch((error) => {
             console.log("error: ", error);
-            window.alert('글 검색하기에 실패하였습니다.');
+            // window.alert('글 검색하기에 실패하였습니다.');
         });
   }
 };
@@ -321,7 +322,7 @@ const getMyPhotoListDB = () => {
                 dispatch(getPhotoList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
-                window.alert('내 사진 불러오기에 실패하였습니다.');
+                // window.alert('내 사진 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -337,7 +338,7 @@ const getScrapPhotoListDB = () => {
                 dispatch(getScrapPhotoList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
-                window.alert('스크랩한 사진 불러오기에 실패하였습니다.');
+                // window.alert('스크랩한 사진 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -352,7 +353,7 @@ const getScrapPlantListDB = () => {
                 dispatch(getScrapPlantList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
-                window.alert('스크랩한 식물 불러오기에 실패하였습니다.');
+                // window.alert('스크랩한 식물 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -364,7 +365,6 @@ export default handleActions(
         draft.post = action.payload.post;
     }),
     [GET_ALL_POST]: (state, action) => produce(state, (draft) => {
-        console.log(action.payload.postList);
         draft.postList = action.payload.postList;
         draft.is_loading = true;
     }),
@@ -399,7 +399,9 @@ const actionCreators = {
     editPostDB,
     deletePostDB,
     likePostDB,
+    likeDetailPostDB,
     bookmarkPostDB,
+    bookmarkDetailPostDB,
     getMyPhotoListDB,
     getScrapPhotoListDB,
     getScrapPlantListDB,

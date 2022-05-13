@@ -4,8 +4,8 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://52.79.233.178',//민성님 Url
-  // baseURL: 'http://121.141.140.148:8085',
+  // baseURL: 'http://52.79.233.178',//민성님 Url
+  baseURL: 'http://121.141.140.148:8085',
   
 }, { withCredentials: true } //CORS error 방지
 );
@@ -167,23 +167,15 @@ export const searchAPI = {
   }),
 
   //검색어로 전체 검색하기  (로그인)
-  postSearching: (postTypeCode, keyword) => api.post(`/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`,  
+  postSearching: (postTypeCode, keyword) => api.get(`/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`,  
     {
       headers: {
-        "content-type": "multipart/form-data",
-        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+        Authorization: ` ${sessionStorage.getItem('token')}`,
       }
     }
   ),
-  //검색어로 전체 검색하기 (로그인)
-  postSearching_nonLogin: (postTypeCode, keyword) => api.post(`/non-login/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`,  
-    {
-      headers: {
-        "content-type": "multipart/form-data",
-        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-      }
-    }
-  )
+  //검색어로 전체 검색하기 (비로그인)
+  postSearching_nonLogin: (postTypeCode, keyword) => api.get(`/non-login/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`,  )
 }
 
 // 기타 식물 관련
@@ -224,14 +216,14 @@ export const postAPI = {
   }),
 
   //모든 게시물 불러오기 (로그인)
-  getAllPost_login: () => api.get(`/read-posts/community?postTypeCode=`,{
+  getAllPost_login: () => api.get(`/read-posts/community`,{
     headers: {
       Authorization:  ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //모든 게시물 불러오기 (비로그인) 
-  getAllPost_nonLogin: () => api.get(`/non-login/read-posts/community?postTypeCode=`),
+  getAllPost_nonLogin: () => api.get(`/non-login/read-posts/community`),
 
   //필터링한 게시물 불러오기 (로그인)
   getFilteredPost_login: (postTypeCode) => api.get(`/read-posts/community?postTypeCode=${postTypeCode}`, {
@@ -244,35 +236,40 @@ export const postAPI = {
   getFilteredPost_nonLogin:(postTypeCode) => api.get(`/non-login/read-posts/community?postTypeCode=${postTypeCode}`),
 
   //게시글 상세 조회
-  getDetailPost: (postId) => api.get(`/read-post/detail/${postId}`),
+  getDetailPost: (postId) => api.get(`/read-post/detail/${postId}`, {
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }
+  ),
 
   //게시글 수정
   editPost: (postId, formData) => api.put(`/update-post/${postId}`,{
     formData,
     headers: {
       "content-type": "multipart/form-data",
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //게시글 삭제
   deletePost: (postId) => api.put(`/delete-post/${postId}`,{
     headers: {
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //게시글 좋아요
-  likePost: (postId) => api.post(`like-post/${postId}`, {
+  likePost: (postId) => api.get(`like-post/${postId}`, {
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //게시글 북마크
-  bookmarkPost: (postId) => api.post(`bookmark-post/${postId}`, {
+  bookmarkPost: (postId) => api.get(`bookmark-post/${postId}`, {
     headers: {
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
@@ -283,7 +280,7 @@ export const myPageAPI = {
   //내 사진 리스트
   getMyPhotoList: () => api.get(``,{
     headers: {
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }
   ),
@@ -291,7 +288,7 @@ export const myPageAPI = {
   //스크랩 사진 리스트
   getScrapPhotoList: () => api.get(``,{
     headers: {
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }
   ),
@@ -299,7 +296,7 @@ export const myPageAPI = {
   //스크랩 플랜트 리스트
   getScrapPlantList: () => api.get(``,{
     headers: {
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }
   ),

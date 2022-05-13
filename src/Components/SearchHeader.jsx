@@ -3,7 +3,7 @@ import { Grid, Text } from "../Elements";
 import styled, { keyframes } from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from "react-redux";
-import { actionCreators as searchActions } from "../Redux/Modules/post";
+import { actionCreators as postActions } from "../Redux/Modules/post";
 
 
 const SearchHeader = (props) => {
@@ -14,10 +14,11 @@ const SearchHeader = (props) => {
         {barOpen? setBarOpen(false) : setBarOpen(true)};
     }
     
+
     const onKeyUp = (e) => {
         if(e.key === "Enter"){
             if(keyword!==""){
-                dispatch(searchActions.postSearchingDB(props.category, keyword));
+                dispatch(postActions.postSearchingDB(props.category, keyword));
             }
         }
     }

@@ -29,7 +29,7 @@ const Labeling = () => {
     // setTimeout(
     //   () => setActive(5)
     // ,2000);
-    
+
     setLoading(true); //로딩화면 보여주려고 함
     try {
       console.log(loading); 
@@ -77,8 +77,10 @@ const Labeling = () => {
         <Grid margin="100px 0px">
           <Text size="large" color="#262626" bold>반가워요!<br/>지금부터 나와 꼭 맞는 식물을<br />찾아볼까요?</Text>
         </Grid>
-        <Grid margin="0px auto">
-          <img src="img/labelingLogo.png" style={{width:"80px"}}/>
+        <Grid margin="0px auto" align="center">
+          {/*추후 애니메이션 넣기*/}
+          <Img className="labelingLogo" src="img/Logo/LOGO.svg" />
+          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position: "absolute", top:"368px", left: "164px"}}/>
         </Grid>
         <Grid margin="120px auto 100px auto" align="center">
           <PrimaryBtn onClick={()=>setActive(1)}>시작할래요</PrimaryBtn>
@@ -99,16 +101,13 @@ const Labeling = () => {
   }
 } 
 
-const Wrapper = styled.div`
-  padding: 15px 0;
+const Img = styled.img `
+ width: 90px;
+ display: block;
 `
-const PlantBox = styled.div`
-  margin: 5px;
-  width: 130px;
-  height: 170px;
-`
+
 const PrimaryBtn = styled.button`
-  width: 167px;
+  width: 168px;
   height: 44px;
   color: white;
   background-color: #0AAF42;
@@ -117,14 +116,20 @@ const PrimaryBtn = styled.button`
   border: none;
   font-weight: 700;
   border-radius: 16px;
+  position: absolute;
+  top: 472px;
+  right: 96px;
 `
 const GobackBtn = styled.button`
-  width: 167px;
+  width: 168px;
   height: 44px;
   color: #A8A8A8;
   background-color: #F7F8FA;
   text-align: center;
   border-radius: 16px;
   border: none;
+  position: absolute;
+  top: 522px;
+  right: 96px;
 `
 export default Labeling;

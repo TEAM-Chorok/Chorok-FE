@@ -1,4 +1,4 @@
-import { Grid, Image, Text } from "../../Elements";
+import { Grid, Image, Permit, Text } from "../../Elements";
 import React from "react";
 import styled from "styled-components";
 import { BiDotsVerticalRounded } from 'react-icons/bi';
@@ -6,8 +6,13 @@ import CommBottomSheet from "./CommBottomSheet";
 
 const CommPostCommentList = (props) => {
     
-    const commentList = props.commentList;
+    const commentList = props?.commentList;
 
+    if(!commentList){
+        return (
+            <div></div>
+        )
+    }
     return (
         <React.Fragment>
             {commentList.map((p) => {
@@ -23,7 +28,9 @@ const CommPostCommentList = (props) => {
                             </Grid>
                             <Grid margin="0px 5px"><Text size="small">{p.commentContent}</Text></Grid>
                         </CommentRowsBox>
-                        <Grid><CommBottomSheet /></Grid>
+                        <Permit>
+                            <Grid><CommBottomSheet /></Grid>
+                        </Permit>
                     </CommentWrap>
                 )
             })}

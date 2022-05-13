@@ -8,36 +8,24 @@ const MyPlant = () => {
     const history = useHistory();
     return (
         <React.Fragment>
-            <Grid padding="20px 0px">
-                <Text bold fontSize="23px">거실</Text>
+            <Grid padding="8px 0px 20px 0px" width="100%">
+                <Text bold size="large">거실</Text>
                 <PostList>
                     {/* map돌려서 장소별 list print */}
-                    <Grid _onClick={()=>history.push('/myplant/1')}>
-                        <div style={{margin:"20px 20px 10px 0px", borderRadius:"10px", backgroundImage:"url(sample.jpeg)", width:"160px", height:"160px", position:"relative"}}>
-                            <EditOutlinedIcon style={{position: "absolute", bottom:"10px", right:"10px", color:"white"}}></EditOutlinedIcon>
+                    <Grid width="100%" align="center" _onClick={()=>history.push('/myplant/1')}>
+                        <div style={{margin:"20px 5px 10px 5px", borderRadius:"96px", backgroundImage:"url(sample.jpeg)", width:"96px", height:"96px"}}>
                         </div>
-                        <Text fontSize="20px">동동이</Text><Text color="darkgrey" margin="0px 0px 0px 5px">로즈마리</Text>
-                        <Detail>
-                            <Text>Please add your </Text>
-                        </Detail>
+                        <Text display="block">동동이</Text><Text size="small" color="#6F6F6F" margin="0px 0px 0px 5px">로즈마리</Text>
                     </Grid>
-                    <Grid  _onClick={()=>history.push('/myplant/1')}>
-                        <div style={{margin:"20px 20px 10px 0px", borderRadius:"10px", backgroundImage:"url(sample.jpeg)", width:"160px", height:"160px", position:"relative"}}>
-                            <EditOutlinedIcon style={{position: "absolute", bottom:"10px", right:"10px", color:"white"}}></EditOutlinedIcon>
+                    <Grid width="100%" align="center" _onClick={()=>history.push('/myplant/1')}>
+                        <div style={{margin:"20px 5px 10px 5px", borderRadius:"96px", backgroundImage:"url(sample.jpeg)", width:"96px", height:"96px"}}>
                         </div>
-                        <Text fontSize="20px">동동이</Text><Text color="darkgrey" margin="0px 0px 0px 5px">로즈마리</Text>
-                        <Detail>
-                            <Text>Please add your </Text>
-                        </Detail>
+                        <Text display="block">동동이</Text><Text size="small" color="#6F6F6F" margin="0px 0px 0px 5px">로즈마리</Text>
                     </Grid>
-                    <Grid  _onClick={()=>history.push('/myplant/1')}>
-                        <div style={{margin:"20px 20px 10px 0px", borderRadius:"10px", backgroundImage:"url(sample.jpeg)", width:"160px", height:"160px", position:"relative"}}>
-                            <EditOutlinedIcon style={{position: "absolute", bottom:"10px", right:"10px", color:"white"}}></EditOutlinedIcon>
+                    <Grid width="100%" align="center" _onClick={()=>history.push('/myplant/1')}>
+                        <div style={{margin:"20px 5px 10px 5px", borderRadius:"96px", backgroundImage:"url(sample.jpeg)", width:"96px", height:"96px"}}>
                         </div>
-                        <Text fontSize="20px">동동이</Text><Text color="darkgrey" margin="0px 0px 0px 5px">로즈마리</Text>
-                        <Detail>
-                            <Text>Please add your </Text>
-                        </Detail>
+                        <Text display="block">동동이</Text><Text size="small" color="#6F6F6F" margin="0px 0px 0px 5px">로즈마리</Text>
                     </Grid>
                 </PostList>
             </Grid>
@@ -48,7 +36,7 @@ const PostList = styled.div`
 width: 100%;
 height: fit-content;
 display: grid;
-grid-template-columns: 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr;
 `
 const Detail = styled.div`
     margin-top: 5px;
