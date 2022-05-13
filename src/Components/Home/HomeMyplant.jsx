@@ -10,11 +10,13 @@ import PlantProfile from "../PlantProfile";
 
 const HomeMyplant = () => {
 
-  const myPlant = useSelector((state) => state);
+  const myPlant = useSelector((state) => state.main.myplant);
 
   return (
     <React.Fragment>
       <Grid margin="20px 0" padding="0 8px" width="100%">
+
+      
         <Grid margin="0 0 40px 0" width="100%">
           <Grid margin="0 12px">
             <Text bold size="large">거실</Text>

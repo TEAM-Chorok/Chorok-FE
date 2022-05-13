@@ -8,12 +8,8 @@ const SearchPlant = () => {
   return (
     <React.Fragment>
       <Container>
-      
         <PlantSearchHeader title="원하는 식물을 찾아보세요" size="large"/>
-
-
         <AddPlantList />
-
       </Container>
     </React.Fragment>
   );

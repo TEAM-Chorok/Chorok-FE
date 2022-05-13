@@ -18,14 +18,14 @@ const HomeHeader = () => {
   const [status, setStatus] = React.useState(null);
   const [cityname, setCityName] = React.useState(null);
 
+  // 날씨 관련
+  const weatherData = useSelector((state) => state?.main?.weather);
+
   // 현재 날짜
   const day = moment().day()
   const week = ["일", "월", "화", "수", "목", "금", "토"]
   const date = moment().format("YYYY" + "년 " + "MM" + "월 " + "DD" + "일 " + "(" + `${week[day]}` + ")");
 
-  const weatherData = useSelector((state) => state)
-
-  console.log(weatherData)
 
   // 현재 위치 위도 및 경도 가져오기
   const getLocation = () => {
@@ -77,9 +77,9 @@ const HomeHeader = () => {
 
             <Text size="XS" color="#999">{date}</Text>
             <br />
-            <Text bold margin="5px 0"> {cityname}, 맑음 29℃</Text>
+            <Text bold margin="5px 0"> {cityname}, {weatherData?.weather} {weatherData?.temp}℃</Text>
             <br />
-            <Text size="XS" color="#999"> 최고 22℃ 최저 11℃</Text>
+            <Text size="XS" color="#999"> 최저 {weatherData?.temp_min}℃ 최고 {weatherData?.temp_max}℃ 습도 {weatherData?.humidity}%</Text>
           </Grid>
           <Grid padding="16px">
             <Img src="img/weather/suncloud.png" />

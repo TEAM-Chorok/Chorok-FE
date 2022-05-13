@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Grid, Image, Text } from "../../Elements";
@@ -12,6 +13,8 @@ const TodoProfile = () => {
 
   const history = useHistory();
 
+  const myPlant = useSelector((state) => state?.main?.myplant);
+
   // 식물 추가 flow로 
   const openAddPlant = () => {
     history.push('/plant');
@@ -23,9 +26,12 @@ const TodoProfile = () => {
       <ProfileBox>
         <Grid is_flex>
           <PlantProfile  name="전체" imgUrl="img/all.png" />
-          <PlantProfile  name="동동이" plant="몬스테라" />
-          <PlantProfile  name="동동이" plant="몬스테라" />
-          <PlantProfile  imgUrl="img/add.png" />
+        {myPlant?.map((plant) => {
+          return (
+            <PlantProfile key={plant.myPlantNo} name={plant.myPlantName} plant={plant.plantName} />
+          );
+        })}
+          <PlantProfile  imgUrl="img/add.png" _onClick={openAddPlant}/>
         </Grid>
       </ProfileBox>
     </React.Fragment>

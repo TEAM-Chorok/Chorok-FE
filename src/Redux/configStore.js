@@ -8,7 +8,9 @@ import Label from "./Modules/Label";
 import User from "./Modules/User";
 import Main from "./Modules/Main";
 import Post from "./Modules/post"
+import Plant from "./Modules/Plant"
 import Search from "./Modules/Search";
+import Calendar from "./Modules/Calendar";
 
 export const history = createBrowserHistory();
 
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
     main: Main,
     user: User,
     search: Search,
+    calendar: Calendar,
+    plant: Plant,
     label: Label,
     post: Post,
     router: connectRouter(history),

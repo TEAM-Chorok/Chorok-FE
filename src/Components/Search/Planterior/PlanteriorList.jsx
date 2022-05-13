@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Grid, Image, Text } from "../../../Elements";
-import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 import PlaceFilter from "../PlaceFilter";
 import Masonry from '@mui/lab/Masonry';
-
+import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 
 // 탐색 - planterior
 // 사진 목록 컴포넌트
@@ -24,9 +23,6 @@ const PlanteriorList = () => {
 
   const [place, setPlace] = React.useState("all");
   const planteriorList = useSelector((state) => state?.search?.planteriorList);
-
-  console.log(planteriorList);
-
   
   React.useEffect(() => {
     // 추천식물 조회 API가 없다......
@@ -45,7 +41,7 @@ const PlanteriorList = () => {
       <Grid width="100%">
           {planteriorList ?
         <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
-            {planteriorList.map((post, idx) => {
+            {planteriorList?.map((post, idx) => {
               return (
                 <ContentWrapper key={post.postId} onClick={() => {openDetail(post.postId)}}>
                   <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />

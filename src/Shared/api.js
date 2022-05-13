@@ -4,7 +4,9 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://52.79.233.178',//민성님 Url
+  // baseURL: 'http://52.79.233.178',//민성님 Url
+  baseURL: 'http://121.141.140.148:8085',
+  
 }, { withCredentials: true } //CORS error 방지
 );
 
@@ -28,7 +30,7 @@ export const userAPI = {
   
   isLogin: () => api.get(`/user/isLogIn`,{
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
 
@@ -56,44 +58,44 @@ export const labelAPI = {
 // To-Do 관련(mainpage) API
 export const mainAPI = {
   // 날씨 정보 가져오기
-  getWeather: (userLocation) => api.get('api/weather', userLocation, {
+  getWeather: (userLocation) => api.get(`api/weather?lat=${userLocation.lat}&lon=${userLocation.lon}`, {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
 
   // 랜덤 문구 가져오기
-  getSentence: () => api.get('', {
+  getSentence: () => api.get('/random', {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
 
   // 내 식물 가져오기
   getMyPlant: () => api.get('/myplant', {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
 
   // To-Do 리스트 가져오기
   getTodoList: () => api.get('/todo', {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
 
   // To-Do 완료하기
-  todoCheck: (todoNo) => api.get(`/todo/ok/${todoNo}`, {
+  todoCheck: (todoNo) => api.patch(`/todo/ok/${todoNo}`, {},{
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
 
   // To-Do 취소하기
-  todoUnCheck: (todoNo) => api.patch(`/todo/cancle/${todoNo}`, {
+  todoUnCheck: (todoNo) => api.patch(`/todo/cancle/${todoNo}`, {},{
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
 
@@ -106,31 +108,56 @@ export const searchAPI = {
   // 식물도감 필터
   plantFiltering: (filterData) => api.post(`url`, filterData, {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
   // 플랜테리어 전체 조회
   getPlanteriorList: () => api.get('/read-posts?postTypeCode=postType01', {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
   // 플랜테리어 필터 조회
   planteriorFiltering: (placeCode) => api.get(`/read-posts?postTypeCode=postType01&plantPlaceCode=${placeCode}`, {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
-  // 식물 상세정보 조회 (식물카드)
-  getPlantDetail: (plantNo) => api.get(`/${plantNo}`, {
+  // 플랜테리어 게시글 상세조회
+  getPlanteriorDetail: (postId) => api.get(`/read-post/detail/${postId}`, {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
+  // 추천 식물 조회
+  getRecommend: () => api.get('/user/labeling/results', {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 탐색탭 키워드 검색 
+  keywordSearching: (value) => api.get(`/search-post/integrate/planterior?keyword=${value}`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 탐색탭 키워드 검색 
   
-  addPlant: (plantData) => api.get('/myplant', plantData, {
+  keywordSearchingPhoto: (value) => api.get(`/search-post/photo/planterior?keyword=${value}`, {
     headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 탐색탭 키워드 검색 (플랜테리어 위치필터)
+  // keywordSearchingPhotoPlace: (value) => api.get(`/search-post/photo/planterior?keyword=${value}`, {
+  //   headers: {
+  //     "Authorization": `${sessionStorage.getItem('token')}`,
+  //   }
+  // }),
+  // 탐색탭 키워드 검색 (식물도감)
+  keywordSearchingPlant: (value) => api.get(`/search-post/dictionary/planterior?keyword=${value}`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
   //검색어로 검색하기 
@@ -139,8 +166,33 @@ export const searchAPI = {
       keyword: keyword,
     }
   )
-
 }
+
+// 기타 식물 관련
+export const plantAPI = {
+    // 식물 상세정보 조회 (식물카드)
+    getPlantDetail: (plantNo) => api.get(`/plant/${plantNo}`, {
+      headers: {
+        "Authorization": `${sessionStorage.getItem('token')}`,
+      }
+    }),
+    // 식물 추가
+    addPlant: (plantData) => api.post('/myplant', plantData, {
+      headers: {
+        "content-type": "multipart/form-data",
+        "Authorization": `${sessionStorage.getItem('token')}`,
+      }
+    }),
+}
+
+export const calendarAPI = {
+  getChecked: (year, month, plantNo) => api.get(`/calendar/${year}${month}/${plantNo}`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+}
+
 
 // 커뮤니티 페이지 관련 API
 export const postAPI = { 
@@ -149,7 +201,7 @@ export const postAPI = {
     formData,
     headers: {
       "content-type": "multipart/form-data",
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: `${sessionStorage.getItem('token')}`,
     }
   }),
 
@@ -207,6 +259,8 @@ export const postAPI = {
   }),
 
 }
+
+
 export const myPageAPI = {
   //내 사진 리스트
   getMyPhotoList: () => axios.get(``,{

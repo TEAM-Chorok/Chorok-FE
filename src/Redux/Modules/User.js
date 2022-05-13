@@ -93,7 +93,7 @@ const kakaoLogInDB = (code) => {
       .kakaoLogIn(code)
       .then((res) => {
         console.log(res);
-        sessionStorage.setItem('Token', res.data.token);
+        sessionStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.email);
         dispatch(setUser({
           username: res.data.username,
@@ -112,7 +112,7 @@ const kakaoLogInDB = (code) => {
 
 const logOutDB  = () => {
   return function (dispatch, getState, { history }) {
-    sessionStorage.removeItem("Token");
+    sessionStorage.removeItem("token");
     localStorage.removeItem("username");
     dispatch(logOut());
     history.replace('/');

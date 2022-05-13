@@ -10,6 +10,7 @@ const PhotoDetailContents = () => {
   const postData = useSelector((state) => state?.search?.planterior)
   const bookmark = postData?.postBookMark;
   const like = postData?.postLike;
+  console.log(postData)
 
   return (
     <React.Fragment>

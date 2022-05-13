@@ -5,23 +5,26 @@ import { AllResult, PlanteriorResult, PlantResult, PlantSearchHeader, Tabbar } f
 import { Container, Grid, Image, Text } from "../../Elements";
 
 // planterior 디테일 페이지 
-const Result = () => {
-
+const Result = (props) => {
+  const [compNum, setCompNum] = React.useState(0);
+  const [value, setValue] = React.useState(props.value)
+  console.log(value)
   const comp = {
-    0: <AllResult />,
-    1: <PlanteriorResult />,
+    0: <AllResult setCompNum={setCompNum}/>,
+    1: <PlanteriorResult value={value}/>,
     2: <PlantResult />
   };
-
-  const [compNum, setCompNum] = React.useState(0);
-
+  
   return (
     <React.Fragment>
-      <Grid width="100%" padding="16px 16px 0 16px">
-        <PlantSearchHeader title="탐색" size="h5" />
-        <Tabbar type="3" tab1="전체" tab2="사진" tab3="식물도감" setCompNum={setCompNum} compNum={compNum} />
-      </Grid>
-        {comp[compNum]}
+      <Container type="np">
+        <Grid padding="0 16px" width="100%">
+          <Tabbar type="3" tab1="전체" tab2="사진" tab3="식물도감" setCompNum={setCompNum} compNum={compNum} />
+        </Grid>
+        <Grid padding="0 16px" width="100%">
+          {comp[compNum]}
+        </Grid>
+      </Container>
     </React.Fragment>
   )
 }

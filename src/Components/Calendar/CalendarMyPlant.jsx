@@ -3,21 +3,26 @@ import './Calendar.css';
 import styled from "styled-components";
 import { Container, Grid, Text } from "../../Elements";
 import PlantProfile from "../PlantProfile";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as mainActions } from "../../Redux/Modules/Main";
+
+const CalendarMyPlant = (props) => {
+  const dispatch = useDispatch();
+  const myPlant = useSelector((state) => state.main?.myplant);
 
 
-
-// 캘린더 테스트 
-// 현재는 선택한 날짜 출력만 되게 해놓은 상태
-// css 오버라이딩으로 스타일 처리 했습니다 ㅠ.ㅠ~! 
-
-const CalendarMyPlant = () => {
+  React.useEffect(() => {
+    dispatch(mainActions.getMyPlantDB());
+  }, [])
 
   return (
     <React.Fragment>
       <PlantBox>
-        <PlantProfile name="동동이" plant="몬스테라"/>
-        <PlantProfile name="초록이" plant="로즈마리"/>
-        <PlantProfile name="무럭이" plant="테이블야자"/>
+        {myPlant?.map((plant) => {
+          return(
+          <PlantProfile key={plant.myPlantNo} name={plant?.myPlantName} plant={plant?.plantName} _onClick={() => {props.setPlantNo(plant?.myPlantNo)}}/>
+          )
+        })}
       </PlantBox>
     </React.Fragment>
   )

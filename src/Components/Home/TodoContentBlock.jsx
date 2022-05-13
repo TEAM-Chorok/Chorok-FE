@@ -3,35 +3,34 @@ import styled from "styled-components";
 import { Button, Grid, Image, Text } from "../../Elements";
 import { BiCircle, BiCheckCircle } from "react-icons/bi";
 import { ConstructionOutlined } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
 
 
 // 투두페이지 할 일 목록 
 
 const TodoContentBlock = (props) => {
-  const { children, img } = props;
+  const { children, img, num, status } = props;
 
   const dispatch = useDispatch();
 
   // 투두 컨텐츠 좌측 체크 표시용 체크/체크해제 관리
-  const [ checked, setChecked ] = React.useState(false);
+  const [ checked, setChecked ] = React.useState(status);
   const [ unChecked, setUnChecked ] = React.useState(false);
   
+
   const check = () => {
     if(checked === false) {
       setChecked(true);
       setUnChecked(false);
-      dispatch(mainActions.todoCheckDB(props.todoNo));
+      dispatch(mainActions.todoCheckDB(num));
     } else {
       setChecked(false);
       setUnChecked(true);
-      dispatch(mainActions.todoUnCheckDB(props.todoNo));
+      dispatch(mainActions.todoUnCheckDB(num));
     }
   }
   
-
-
   return (
     <React.Fragment>
       <ContentBox checked={checked}>

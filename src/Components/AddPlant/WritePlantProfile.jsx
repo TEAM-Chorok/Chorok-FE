@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Grid, Image, Input, Text } from "../../Elements";
-import { actionCreators as searchActions } from "../../Redux/Modules/Search";
 import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
+import { actionCreators as plantActions } from "../../Redux/Modules/Plant";
 
 const WritePlantProfile = (props) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const WritePlantProfile = (props) => {
   const nameRef = React.useRef(null);
   const myPlantName = nameRef?.current?.value;
   const myPlantPlace = props.place;
-
+  
   // 파일 관련
   const fileRef = React.useRef();
   const [file, setFile] = React.useState("");
@@ -39,14 +39,15 @@ const WritePlantProfile = (props) => {
   }
   
   const addPlant = () => {
+    const plantName = nameRef?.current?.value;
     const formData = new FormData();
     formData.append('plantNo', plantNo);
-    formData.append('myPlantPlace', myPlantPlace);
+    formData.append('myPlantPlaceCode', myPlantPlace);
     formData.append('myPlantImgUrl', file);
-    formData.append('myPlantName', myPlantName);
+    formData.append('myPlantName', plantName);
     console.log(plantNo, myPlantPlace, file, myPlantName);
     
-    dispatch(searchActions.addPlantDB(formData));
+    dispatch(plantActions.addPlantDB(formData));
   }
 
   return (

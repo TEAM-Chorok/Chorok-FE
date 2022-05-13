@@ -25,6 +25,7 @@ import AddDone from "./AddPlant/AddDone";
 import PlantCardProfile from "./PlantCard/PlantCardProfile";
 import PlantCardFeed from "./PlantCard/PlantCardFeed";
 
+
 // Search(planterior)
 // 식물도감탭은 식물 추가 flow의 AddPlant 페이지로 처리했습니다!
 import PlanteriorDetailContents from "./Search/Planterior/PlanteriorDetailContents";
@@ -34,6 +35,7 @@ import PlanteriorWriteComp from "./Search/Planterior/PlanteriorWrite";
 import LabelingTestLink from "./Search/Planterior/LabelingTestLink";
 import RecommendPlant from "./Search/Planterior/RecommendPlant"
 
+import SearchOnFocus from "./Search/SearchOnFocus";
 import AllResult from "./Search/SearchResult/AllResult";
 import PlanteriorResult from "./Search/SearchResult/PlanteriorResult";
 import PlantResult from "./Search/SearchResult/PlantResult";
@@ -101,7 +103,7 @@ export {
     PlantCardProfile, PlantCardFeed, 
     CalendarTable, CalendarMyPlant, CalendarTodo,
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, PlanteriorWriteComp,
-    AllResult, PlanteriorResult, PlantResult, 
+    SearchOnFocus, AllResult, PlanteriorResult, PlantResult, 
     LabelingTestLink, RecommendPlant,
     CommPost, CommPostList, CommunityFilter, AddPlantDairy, AddPostHeader, AddPostFooter,
     MyPageHeader, MyCategoryBar, MyPagePost, CommPostCommentList,

@@ -16,7 +16,7 @@ const LabelingTestLink = () => {
         <Text bold size="h6">ㅇㅇ님을 위한 추천식물</Text>
       </Grid>
       <LinkBox onClick={() => {
-        history.push("/recommend/1");
+        history.push("/labeling");
       }}>
         <Grid is_flex margin="0 5px" width="100%">
           <Grid margin="auto 8px">

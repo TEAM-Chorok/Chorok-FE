@@ -6,29 +6,32 @@ import Text from "./Text";
 
 const Input = (props) => {
   const {
+      defaultValue,
+      borderRadius,
+      placeholder,
+      padding,
+      display,
+      border,
+      margin,
+      height,
+      width,
       label,
       type,
-      placeholder,
-      _onChange,
-      borderRadius,
-      width,
-      height,
-      display,
-      margin,
-      padding,
-      border,
       name,
-      defaultValue,
+      _onChange,
+      _onFocus,
+      _onBlur,
       _ref,
   } = props;
+
   const styles = {
-      width,
-      height,
-      display,
-      margin,
-      border,
-      padding,
       borderRadius,
+      display,
+      padding,
+      border,
+      margin,
+      height,
+      width,
   }
 
   if (type === "basic") {
@@ -46,7 +49,7 @@ const Input = (props) => {
       </React.Fragment>
     );
   }
-
+  
   if (type === "search") {
     return (
       <React.Fragment>
@@ -54,6 +57,8 @@ const Input = (props) => {
           {...styles}
           placeholder={placeholder}
           onChange={_onChange}
+          onFocus={_onFocus}
+          onBlur={_onBlur}
         />
       </React.Fragment>
     );

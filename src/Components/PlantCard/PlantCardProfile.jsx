@@ -2,21 +2,22 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Grid, Image, Text } from '../../Elements';
-import { actionCreators as searchActions } from '../../Redux/Modules/Search';
 import { useParams } from 'react-router-dom'
+import { actionCreators as plantActions } from '../../Redux/Modules/Plant';
 
 // 식물카드 상단의 기본 정보부분 
 // 식물카드에 들어갈 내용이 어느정도 확정 된 뒤에 이어서 구현하겠습니다~!
 
 const PlantCardProfile = () => {
   const dispatch = useDispatch();
-  const plantData = useSelector((state) => state);
-  const plantNo = useParams();
+  const plantData = useSelector((state) => state.plant.plantData);
+  const param = useParams();
+  const plantNo = param.plantname;
 
-  // console.log(plantNo)
+  console.log(plantData)
 
   React.useEffect(() => {
-    dispatch(searchActions.getPlantDetailDB(plantNo));
+    dispatch(plantActions.getPlantDetailDB(plantNo));
   }, [plantNo])
 
 //   {
@@ -36,7 +37,7 @@ const PlantCardProfile = () => {
       <Grid margin="20px 0" padding="10px">
 
         <Grid margin="auto">
-          <Image type="circle" size="148px" />
+          <Image type="circle" size="148px" imgUrl="https://img.marieclairekorea.com/2021/04/mck_60657bd4d3c01.jpg"/>
         </Grid>
         <Grid margin="15px auto">
           <Text bold size="large">로즈마리</Text>
