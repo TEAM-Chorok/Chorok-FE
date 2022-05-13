@@ -2,18 +2,16 @@ import React, { useEffect } from "react";
 import { Text, Grid, Image } from "../../Elements";
 import styled from "styled-components";
 import { FaRegHeart, FaHeart, FaBookmark, FaRegComment, FaRegBookmark } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { actionCreators as postActions } from "../../Redux/Modules/post";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 
-const CommPost = (props) => {   
+const DetailCommPost = (props) => {   
     const dispatch = useDispatch();
     const history = useHistory();
-    // const category = useSelector(state => state.post?.category);
+    const postId = useParams().postId;
     const isLogin = sessionStorage.getItem('token');
     const post = props?.postList;
-
     const postLike = post?.postLike;
     const bookmarked = post?.postBookMark;
 
@@ -24,30 +22,41 @@ const CommPost = (props) => {
         if (like === false && isLogin) {
         setLike(true);
         console.log(like);
-        dispatch(postActions.likePostDB(props.category, post.postId));
+        dispatch(postActions.likeDetailPostDB(postId));
         } else {
         setLike(false);
-        dispatch(postActions.likePostDB(props.category, post.postId));
+        console.log(like);
+        dispatch(postActions.likeDetailPostDB(postId));
         }
     };
     const toggleBookmark = () => {
         if (bookmark === false && isLogin) {
         setBookmark(true);
-        dispatch(postActions.bookmarkPostDB(props.category, post.postId));
+        dispatch(postActions.bookmarkDetailPostDB(postId));
         } else {
         setBookmark(false);
-        dispatch(postActions.bookmarkPostDB(props.category, post.postId));
+        dispatch(postActions.bookmarkDetailPostDB(postId));
         }
     };
 
+    useEffect(() => {
+        dispatch(postActions.getDetailPostDB(postId));
+        setLike(postLike);
+        setBookmark(bookmarked);
+    }, [post.postId, like, bookmark]);
 
+if(!post) {
+    return (
+        <div></div>
+    )
+}
     return (
         <React.Fragment>
             <Grid width="100%" padding="20px" margin="0px 0px 12px 0px">
                 <Grid width="100%" >
                     <Grid><Text size="xs" color="#24A148">{post?.postType}</Text></Grid>
                 </Grid>
-                <Grid width="100%" _onClick={()=>history.push(`/community/${post.postId}`)}>
+                <Grid width="100%" >
                     <Grid>
                         <Text size="large">{post?.postTitle}</Text>
                     </Grid>
@@ -65,15 +74,16 @@ const CommPost = (props) => {
                 {/* bottom part - 좋아요, 댓글, 북마크 */}
                 <Grid width="100%" margin="20px 0px" position="relative">
                     <Grid is_flex >
-                        {like? 
-                            <FaHeart onClick={()=>{console.log('하트'); toggleLike()}} style={{width:"20px", height:"fit-content", color:"#FA4D56"}}/> : 
+                        {like===true? 
+                            <FaHeart 
+                            onClick={()=> toggleLike()} style={{width:"20px", height:"fit-content", color:"#FA4D56"}}/> : 
                             <FaRegHeart onClick={()=>toggleLike()} style={{width:"20px", height:"fit-content"}}/>
                         }
                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{post?.postLikeCount}</Text>
                         <FaRegComment  style={{width: "20px", height:"fit-content"}} /><Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
                     </Grid>
                     <Grid position="absolute" top="0px" right="0px" >
-                        {bookmark? 
+                        {bookmark===true? 
                             <FaBookmark onClick={()=>toggleBookmark()} style={{width: "20px", height:"fit-content", color:"#0AAF42"}}/> : 
                             <FaRegBookmark  onClick={()=>toggleBookmark()}style={{width: "20px", height:"fit-content"}} />
                         }
@@ -85,4 +95,4 @@ const CommPost = (props) => {
     )
 }
 
-export default CommPost;
+export default DetailCommPost;

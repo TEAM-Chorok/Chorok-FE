@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 const CommPostList = (props) => {
     const dispatch = useDispatch();
     const postList = useSelector(state => state.post?.postList);
+    const category = props.category;
     React.useEffect(() => {
         {props.isLogin? 
             dispatch(postActions.getPostListDB_login(props.category)) :
@@ -23,7 +24,7 @@ const CommPostList = (props) => {
             {postList.map((p) =>{
                 return (
                     <React.Fragment  key={p.postId}>
-                    <CommPost postList={p}/>
+                    <CommPost category={category} postList={p}/>
                     <Grid width="100%" height="12px" bg="#F7F8FA" />
                     </React.Fragment>
                 )
