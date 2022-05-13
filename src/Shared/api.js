@@ -4,8 +4,8 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  // baseURL: 'http://52.79.233.178',//민성님 Url
-  baseURL: 'http://121.141.140.148:8085',
+  baseURL: 'http://52.79.233.178',//민성님 Url
+  // baseURL: 'http://121.141.140.148:8085',
   
 }, { withCredentials: true } //CORS error 방지
 );
@@ -13,7 +13,7 @@ const api = axios.create({
 
 // 유저정보 관련 API
 export const userAPI = {
-  login: (username, password) => api.post('/api/login', {
+  login: (username, password) => api.post('/auth/logIn', {
     username: username,
     password: password,
   }
@@ -51,7 +51,12 @@ export const labelAPI = {
     answer2: answer2, 
     answer3: answer3, 
     answer4: answer4
-  })
+  },{
+    headers: {
+      "Authorization": ` ${sessionStorage.getItem('token')}`,
+    }
+  }
+  )
 }
 
 
@@ -160,10 +165,23 @@ export const searchAPI = {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
-  //검색어로 검색하기 
-  postSearching: (keyword) => axios.post(`url`,  
+
+  //검색어로 전체 검색하기  (로그인)
+  postSearching: (postTypeCode, keyword) => api.post(`/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`,  
     {
-      keyword: keyword,
+      headers: {
+        "content-type": "multipart/form-data",
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      }
+    }
+  ),
+  //검색어로 전체 검색하기 (로그인)
+  postSearching_nonLogin: (postTypeCode, keyword) => api.post(`/non-login/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`,  
+    {
+      headers: {
+        "content-type": "multipart/form-data",
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      }
     }
   )
 }
@@ -197,7 +215,7 @@ export const calendarAPI = {
 // 커뮤니티 페이지 관련 API
 export const postAPI = { 
   //게시글 작성
-  addPost: (formData) => axios.post(`/write-posts`, {
+  addPost: (formData) => api.post(`/write-post`, {
     formData,
     headers: {
       "content-type": "multipart/form-data",
@@ -206,30 +224,30 @@ export const postAPI = {
   }),
 
   //모든 게시물 불러오기 (로그인)
-  getAllPost_login: () => axios.get(`/read-posts/community`,{
+  getAllPost_login: () => api.get(`/read-posts/community?postTypeCode=`,{
     headers: {
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization:  ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //모든 게시물 불러오기 (비로그인) 
-  getAllPost_nonLogin: () => axios.get(`/non-login/read-posts/community`),
+  getAllPost_nonLogin: () => api.get(`/non-login/read-posts/community?postTypeCode=`),
 
   //필터링한 게시물 불러오기 (로그인)
-  getFilteredPost_login: (postTypeCode) => axios.get(`/read-posts/community/${postTypeCode}`, {
+  getFilteredPost_login: (postTypeCode) => api.get(`/read-posts/community?postTypeCode=${postTypeCode}`, {
     headers: {
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }),
   
   //필터링한 게시물 불러오기 (비로그인)
-  getFilteredPost_nonLogin:(postTypeCode) => axios.get(`/read-posts/community/${postTypeCode}`),
+  getFilteredPost_nonLogin:(postTypeCode) => api.get(`/non-login/read-posts/community?postTypeCode=${postTypeCode}`),
 
   //게시글 상세 조회
-  getDetailPost: (postId) => axios.get(`/read-post/detail/${postId}`),
+  getDetailPost: (postId) => api.get(`/read-post/detail/${postId}`),
 
   //게시글 수정
-  editPost: (postId, formData) => axios.put(`/update-post/${postId}`,{
+  editPost: (postId, formData) => api.put(`/update-post/${postId}`,{
     formData,
     headers: {
       "content-type": "multipart/form-data",
@@ -238,21 +256,21 @@ export const postAPI = {
   }),
 
   //게시글 삭제
-  deletePost: (postId) => axios.put(`/delete-post/${postId}`,{
+  deletePost: (postId) => api.put(`/delete-post/${postId}`,{
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //게시글 좋아요
-  likePost: (postId) => axios.post(`like-post/${postId}`, {
+  likePost: (postId) => api.post(`like-post/${postId}`, {
     headers: {
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //게시글 북마크
-  bookmarkPost: (postId) => axios.post(`bookmark-post/${postId}`, {
+  bookmarkPost: (postId) => api.post(`bookmark-post/${postId}`, {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
@@ -263,7 +281,7 @@ export const postAPI = {
 
 export const myPageAPI = {
   //내 사진 리스트
-  getMyPhotoList: () => axios.get(``,{
+  getMyPhotoList: () => api.get(``,{
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
@@ -271,7 +289,7 @@ export const myPageAPI = {
   ),
 
   //스크랩 사진 리스트
-  getScrapPhotoList: () => axios.get(``,{
+  getScrapPhotoList: () => api.get(``,{
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }
@@ -279,7 +297,7 @@ export const myPageAPI = {
   ),
   
   //스크랩 플랜트 리스트
-  getScrapPlantList: () => axios.get(``,{
+  getScrapPlantList: () => api.get(``,{
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     }

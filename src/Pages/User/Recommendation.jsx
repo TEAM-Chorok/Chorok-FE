@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import { Grid, Image, Text, Container } from "../../Elements";
 
@@ -8,26 +9,37 @@ import { Grid, Image, Text, Container } from "../../Elements";
 const Recommendation = (props) => {
     const history = useHistory();
     const params = useParams();
-
     const plantId = params.plantId;
-    const plantName = useSelector(state => state.recommend.plantName);
-    const plantImgUrl = useSelector(state => state.recommend.imgUrl);
+    console.log(useSelector(state => state.label.recommend));
+    const plantName = useSelector(state => state.label.recommend?.plantName);
+    const plantImgUrl = useSelector(state => state.label.recommend?.plantImgUrl);
 
-  return(
+  if(!plantName || !plantImgUrl) {
+    return (
+      <>
+        <Container>
+          <Grid width="100%" height="100vh"> 
+            <div style={{textAlign:"center", width: "100%", paddingTop:"300px"}}>
+              <Text bold color="#262626" size="large" display="block" margin="0px auto">열심히 취향 분석 중!<br />곧 맞춤 식물을 알려드릴게요!👍</Text>
+            </div>
+          </Grid>
+        </Container>
+      </>
+    )
+  }
+    return(
       <React.Fragment>
-          <Container>
               <Grid width="100%">
                   <InnerWrap>
                     <Text size="base">집사님을 위한 <span style={{color:"#0AAF42"}}>추천 식물</span> 도착!</Text>
-                    <Image imgUrl={plantName} type="circle" size="148px" margin="20px auto 8px auto"/>
-                    <Text size="base" bold>{plantImgUrl}</Text>
+                    <Image imgUrl={plantImgUrl} type="circle" size="148px" margin="20px auto 8px auto"/>
+                    <Text size="base" bold>{plantName}</Text>
                   </InnerWrap>
                   <BottomWrap>
                         <PrimaryBtn onClick={()=>history.replace(`/plant/${plantId}`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
                         <ExitBtn onClick={()=>history.replace('/home')}>종료하기</ExitBtn>
                   </BottomWrap>
               </Grid>
-          </Container>
         {/* <Modal>
             <InnerWrap>
                 <Text fontSize="16px" bold>ㅇㅇ님을 위한 추천 식물</Text>

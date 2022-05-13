@@ -65,34 +65,35 @@ const initialState = {
 // 미들웨어 
 // 커뮤니티 글 작성
 const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
+    console.log("dd")
     const formData = new FormData();
     formData.append("postTitle", postTitle);
     formData.append("postImgUrl", postImgUrl);
     formData.append("postContent", postContent);
     formData.append("postTypeCode", postTypeCode);
     return function (dispatch, getState, { history }){
-        // postAPI
-        //     .addPost(formData)
-        //     .then((res) => {
-        //         console.log("response:" , res);
-        //         dispatch(addPost(res.data)); // 데이터 주나 안주나
-        //         history.push(`/community/${res.data.post.postId}`);
-        //     }).catch((err) => {
-        //         console.log("error: ", err);
-        //         window.alert('글 작성하기에 실패하였습니다.');
-        //         return;
-        //     })
-        const response = {
-            data:{
-                post:{
-                    postId: 0,
-                    postTitle: {postTitle},
-                    postContent: {postContent},
-                    postTypeCode: {postTypeCode}
-                }
-            }
-        }
-        history.push(`/community/${response.data.post.postId}`);
+        postAPI
+            .addPost(formData)
+            .then((res) => {
+                console.log("response:" , res);
+                dispatch(addPost(res)); // 데이터 주나 안주나
+                history.push(`/community/${res.data.post.postId}`);
+            }).catch((err) => {
+                console.log("error: ", err);
+                window.alert('글 작성하기에 실패하였습니다.');
+                return;
+            })
+        // const response = {
+        //     data:{
+        //         post:{
+        //             postId: 0,
+        //             postTitle: {postTitle},
+        //             postContent: {postContent},
+        //             postTypeCode: {postTypeCode}
+        //         }
+        //     }
+        // // }
+        // history.push(`/community/${res.data.post.postId}`);
     
     }
     
@@ -101,10 +102,12 @@ const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
 //커뮤니티 글 불러오기(로그인)
 const getPostListDB_login = (category) => {
     return function (dispatch, getState, { history }){
+        console.log(category);
         if(category === "all") {
             postAPI
             .getAllPost_login()
             .then((res) => {
+                console.log(res.data);
                 dispatch(getPostList(res.data));
             })
             .catch((error) => {
@@ -156,51 +159,52 @@ const getPostListDB_non_login = (category) => {
 //게시글 디테일 조회
 const getDetailPostDB = (postId) => {
     const _postId = parseInt(postId);
+    console.log(_postId);
     return function(dispatch, getState, { history }) {
         console.log("게시글 detail 조회", _postId);
-        // postAPI
-        //     .getDetailPost(_postId)
-        //     .then((response) => {
-        //         console.log("게시글 조회 성공");
-        //         dispatch(getDetailPost());
-        //     })
-        //     .catch((err)=>{
-        //         console.log("error:" , err);
-        //         window.alert("게시글 조회를 실패하였습니다.");
-        //         return;
-        //     })
-        const response = 
-            {
-                "postId":34,
-                "nickname": "김주호",
-                "profileImgUrl": null,
-                "postTitle": "플렌테이라테스트제목",
-                "postContent": "asd",
-                "postImgUrl": "", 
-                "postType": "식물추천", 
-                "postRecentTime": "21시간 전",
-                "postLike": false,
-                "postLikeCount": 0,
-                "postBookMark": false,
-                "commentList": [ 
-             {
-                "commentId": 48,
-                "nickname": "김주호",
-                "profileImgUrl": null,
-                "commentContent": "이게 전데용?",
-                "commentRecentTime": "13초 전"
-             } ,
-             { 
-                "commentId": 49,
-                "nickname": "김주호",
-                "profileImgUrl": null,
-                "commentContent": "이게 전데용?",
-                "commentRecentTime": "13초 전"
-            } 
-             ],
-             "plantPlace":null
-             }
-             dispatch(getDetailPost(response));
+        postAPI
+            .getDetailPost(_postId)
+            .then((response) => {
+                console.log(response);
+                dispatch(getDetailPost());
+            })
+            .catch((err)=>{
+                console.log("error:" , err);
+                window.alert("게시글 조회를 실패하였습니다.");
+                return;
+            })
+        // const response = 
+        //     {
+        //         "postId":34,
+        //         "nickname": "김주호",
+        //         "profileImgUrl": null,
+        //         "postTitle": "플렌테이라테스트제목",
+        //         "postContent": "asd",
+        //         "postImgUrl": "", 
+        //         "postType": "식물추천", 
+        //         "postRecentTime": "21시간 전",
+        //         "postLike": false,
+        //         "postLikeCount": 0,
+        //         "postBookMark": false,
+        //         "commentList": [ 
+        //      {
+        //         "commentId": 48,
+        //         "nickname": "김주호",
+        //         "profileImgUrl": null,
+        //         "commentContent": "이게 전데용?",
+        //         "commentRecentTime": "13초 전"
+        //      } ,
+        //      { 
+        //         "commentId": 49,
+        //         "nickname": "김주호",
+        //         "profileImgUrl": null,
+        //         "commentContent": "이게 전데용?",
+        //         "commentRecentTime": "13초 전"
+        //     } 
+        //      ],
+        //      "plantPlace":null
+        //      }
+        //      dispatch(getDetailPost(response));
     }
 }
 
@@ -288,11 +292,14 @@ const bookmarkPostDB = (postId) => {
 
 
 // 커뮤니티 검색어 검색 (+ 필터링도 가능하게 해야됨)
-const postSearchingDB = (keyword) => {
+const postSearchingDB = (postTypeCode, keyword) => {
+    if(postTypeCode === "all") {
+        postTypeCode = ""
+    }
+    console.log(postTypeCode, keyword)
   return function (dispatch, getState, { history }) {
-    console.log("postSearchingDB : ", keyword);
     searchAPI
-        .postSearching(keyword)
+        .postSearching(postTypeCode, keyword)
         .then((res) => {
             console.log("response : ", res);
             dispatch(postSearching(res));
@@ -357,7 +364,8 @@ export default handleActions(
         draft.post = action.payload.post;
     }),
     [GET_ALL_POST]: (state, action) => produce(state, (draft) => {
-        draft.list = action.payload.list;
+        console.log(action.payload.postList);
+        draft.postList = action.payload.postList;
         draft.is_loading = true;
     }),
     [GET_POST_DETAIL]: (state, action) => produce(state, (draft) => {

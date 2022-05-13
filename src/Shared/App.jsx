@@ -13,8 +13,6 @@ import {
   MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage,
   EditPlant, MyPostsPage, DeactivateAccount,
   Test,
-  AddQuestion,
-  AddPlantDairy,
   AddPost,
   PostDetail
 } from '../Pages';

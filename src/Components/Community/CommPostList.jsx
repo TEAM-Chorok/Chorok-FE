@@ -7,24 +7,26 @@ import { useDispatch } from "react-redux";
 
 const CommPostList = (props) => {
     const dispatch = useDispatch();
-    const postList = useSelector(state => state.list?.postList);
-    console.log(postList);
-
+    const postList = useSelector(state => state.post?.postList);
     React.useEffect(() => {
-        dispatch(postActions.getPostListDB_non_login(props.category));
+        {props.isLogin? 
+            dispatch(postActions.getPostListDB_login(props.category)) :
+            dispatch(postActions.getPostListDB_non_login(props.category))
+        }
     }, [props.category]);
 
     if (!postList) {
         return <div></div>;
     }
-
     return (
         <React.Fragment>
             {postList.map((p) =>{
-                <>
-                <CommPost key={p.postId} postList={p.postList}/>
-                <Grid width="100%" height="12px" bg="#F7F8FA" />
-                </>
+                return (
+                    <React.Fragment  key={p.postId}>
+                    <CommPost postList={p}/>
+                    <Grid width="100%" height="12px" bg="#F7F8FA" />
+                    </React.Fragment>
+                )
             })}
         </React.Fragment>
     )
