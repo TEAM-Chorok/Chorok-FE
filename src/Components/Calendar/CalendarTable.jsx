@@ -16,8 +16,7 @@ const CalendarTable = (props) => {
   const checkdate = ["2022-05-03", "2022-05-06", "2022-05-15"];
   const checkdate2 = ["2022-05-01", "2022-05-04", "2022-05-20", "2022-05-27"];
 
-  const checkData = useSelector((state) => state?.calendar.checkedData);
-
+  const checkData = useSelector((state) => state.calendar?.checkedData);
   const blooming = checkData?.blooming;
   const changing = checkData?.changing;
   const leafcleaning = checkData?.leafcleaning;

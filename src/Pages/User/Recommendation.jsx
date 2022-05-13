@@ -11,6 +11,9 @@ const Recommendation = (props) => {
     const params = useParams();
     const plantId = params.plantId;
     console.log(useSelector(state => state.label.recommend));
+    console.log(plantId);
+    const _plantId = useSelector(state => state.label.recommend?.plantId);
+    console.log(_plantId);
     const plantName = useSelector(state => state.label.recommend?.plantName);
     const plantImgUrl = useSelector(state => state.label.recommend?.plantImgUrl);
 
@@ -36,7 +39,8 @@ const Recommendation = (props) => {
                     <Text size="base" bold>{plantName}</Text>
                   </InnerWrap>
                   <BottomWrap>
-                        <PrimaryBtn onClick={()=>history.replace(`/plant/${plantId}`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
+                        <PrimaryBtn 
+                        onClick={()=>history.replace(`/plant/${_plantId}`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
                         <ExitBtn onClick={()=>history.replace('/home')}>종료하기</ExitBtn>
                   </BottomWrap>
               </Grid>
