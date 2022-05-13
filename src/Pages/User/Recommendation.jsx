@@ -14,9 +14,20 @@ const Recommendation = (props) => {
     const plantName = useSelector(state => state.label.recommend?.plantName);
     const plantImgUrl = useSelector(state => state.label.recommend?.plantImgUrl);
 
-  
-
-  return(
+  if(!plantName || !plantImgUrl) {
+    return (
+      <>
+        <Container>
+          <Grid width="100%" height="100vh"> 
+            <div style={{textAlign:"center", width: "100%", paddingTop:"300px"}}>
+              <Text bold color="#262626" size="large" display="block" margin="0px auto">열심히 취향 분석 중!<br />곧 맞춤 식물을 알려드릴게요!👍</Text>
+            </div>
+          </Grid>
+        </Container>
+      </>
+    )
+  }
+    return(
       <React.Fragment>
               <Grid width="100%">
                   <InnerWrap>

@@ -17,8 +17,8 @@ const MyPictures = () => {
         dispatch(postActions.getScrapPhotoListDB());
     }, [])
     
-    const _myPhotoList=myPhotoList.slice(0, 6);
-    const _scrapPhotoList=scrapPhotoList.slice(0, 6);
+    // const _myPhotoList=myPhotoList.slice(0, 6);
+    // const _scrapPhotoList=scrapPhotoList.slice(0, 6);
     
 
 
@@ -37,7 +37,7 @@ const MyPictures = () => {
                 onClick={()=>history.push('/mypictures')}>더 보기</Button>
             </TitleWrap1>
             <ContentWrap>
-                {_myPhotoList && _myPhotoList.map((p) => {
+                {myPhotoList && myPhotoList.map((p) => {
                     return (
                     <Contents key={p.myPhotoList.planteriorNo}>
                         <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="p.planteriorImgUrl"/>
@@ -53,7 +53,7 @@ const MyPictures = () => {
                 onClick={()=>history.push('/scrap-picture')}>더 보기</Button>
             </TitleWrap>
             <ContentWrap>
-                {_scrapPhotoList && _scrapPhotoList.map((p) => {
+                {scrapPhotoList && scrapPhotoList.map((p) => {
                     return (
                     <Contents key={p.planteriorNo}>
                         <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="p.planteriorImgUrl"/>

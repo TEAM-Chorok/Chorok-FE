@@ -19,15 +19,28 @@ const Labeling = () => {
   const [attribute2, setAttribute2] = React.useState("");
 
   const submit = () => {
-    setLoading(true);
-    dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
-    setTimeout(
-      () => setLoading(false), 2999
-    )
-    //로딩 페이지 
-    setTimeout(
-      () => setActive(5)
-    ,3000);
+    //밑에 해결 안되면 아래 코드로 할고양
+    // setLoading(true);
+    // dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
+    // setTimeout(
+    //   () => setLoading(false), 1999
+    // )
+    // //로딩 페이지 
+    // setTimeout(
+    //   () => setActive(5)
+    // ,2000);
+    setLoading(true); //로딩화면 보여주려고 함
+  
+    try {
+      console.log(loading); 
+      dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
+      setLoading(false);
+      console.log(loading);
+      setActive(5);
+    }catch(err){
+      console.log(err);
+    }
+      
   }
  
   const [active, setActive] = React.useState(0);
@@ -42,19 +55,19 @@ const Labeling = () => {
 
   
   //로딩 페이지 return
-  if(loading === true) {
-    return (
-      <>
-        <Container>
-          <Grid width="100%" height="100vh"> 
-            <div style={{textAlign:"center", width: "100%", paddingTop:"300px"}}>
-              <Text bold color="#262626" size="large" display="block" margin="0px auto">열심히 취향 분석 중!<br />곧 맞춤 식물을 알려드릴게요!👍</Text>
-            </div>
-          </Grid>
-        </Container>
-      </>
-    )
-  }
+  // if(loading === true) {
+  //   return (
+  //     <>
+  //       <Container>
+  //         <Grid width="100%" height="100vh"> 
+  //           <div style={{textAlign:"center", width: "100%", paddingTop:"300px"}}>
+  //             <Text bold color="#262626" size="large" display="block" margin="0px auto">열심히 취향 분석 중!<br />곧 맞춤 식물을 알려드릴게요!👍</Text>
+  //           </div>
+  //         </Grid>
+  //       </Container>
+  //     </>
+  //   )
+  // }
 
   if (active === 0 ) {
     return (

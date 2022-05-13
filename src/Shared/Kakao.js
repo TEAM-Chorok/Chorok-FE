@@ -17,7 +17,6 @@ const Kakao = (props) => {
     
     React.useEffect( () => {
         dispatch(userActions.kakaoLogInDB(code));
-        
     }, []);
 
     return (
