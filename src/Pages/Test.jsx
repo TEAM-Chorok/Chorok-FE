@@ -17,7 +17,7 @@ const dispatch = useDispatch();
                 <Text bold size="h5">test page</Text>
                 <Text bold size="base"> - 사용 폰트 suit</Text>
                 <Grid height="100px"/>
-                <Text size="h5">23px H5 헤더5 700 </Text><br/>
+                <Text size="h5" color={({theme})=>theme.colors.primary}>23px H5 헤더5 700 </Text><br/>
                 <Text bold size="h5">23px 헤더5는 기본적으로 Bold</Text><br/>
                 <br/>
                 <Text size="h6">20px H6 헤더6 400 </Text><br/>
@@ -42,6 +42,7 @@ const dispatch = useDispatch();
         </React.Fragment>
     );
 }
+
 
 
 
