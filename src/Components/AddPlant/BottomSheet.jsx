@@ -155,6 +155,7 @@ export default function BottomSheet() {
           <Button type="basic" width="200px" height="40px" 
             _onClick={() => {
               filterSubmit();
+              
               }}>
             <Text size="basic" color="#fff">적용하기</Text>
           </Button>
