@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Grid = (props) => {
 
-  const { is_flex, width, margin, padding, bg, children, align, height, _onClick, position, left, right, top, bottom, key, border, borderRadius, display, } = props;
+  const { is_flex, width, margin, padding, bg, children, align, height, _onClick, position, left, right, top, bottom, key, border, borderRadius, display } = props;
 
   const styles = {
     is_flex: is_flex,
