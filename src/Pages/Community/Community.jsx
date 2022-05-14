@@ -46,7 +46,7 @@ const Community = () => {
                         </InnerWrap>
                     </Modal>
                 </>
-                 : 
+                : 
                 null}
             </Container>
         </React.Fragment>

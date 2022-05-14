@@ -17,8 +17,8 @@ const RecommandPlant = () => {
   console.log(recommendlist);
 
   // 식물카드 페이지로 
-  const openPlantCard = () => {
-    history.push("/plant/rosemary");
+  const openPlantCard = (plantid) => {
+    history.push(`/plant/${plantid}`);
   }
   
   React.useEffect(() => {
@@ -30,7 +30,8 @@ const RecommandPlant = () => {
       <Wrapper>
         {recommendlist?.map((plant) => {
           return (
-            <PlantProfile key={plant.plantId} size="L" name={plant.plantName} imgUrl={plant.plantImgUrl} />
+            <PlantProfile key={plant.plantId} size="L" name={plant.plantName} 
+              imgUrl={plant.plantImgUrl} _onClick={() => {openPlantCard(plant.plantId)}}/>
           );
         })}
 

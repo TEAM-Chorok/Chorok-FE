@@ -36,9 +36,6 @@ const Navbar = (props) => {
     }
   }, [url])
 
-  console.log("여긴 어딘가용", check);
-
-
   return (
     <React.Fragment>
       <NavBox>

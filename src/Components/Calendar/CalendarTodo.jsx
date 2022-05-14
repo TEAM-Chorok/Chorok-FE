@@ -26,7 +26,7 @@ const CalendarTodo = () => {
   return (
     <React.Fragment>
       <Grid>
-        <Text bold size="large">동동이</Text>
+        {/* <Text bold size="large">동동이</Text> */}
       </Grid>
         <CalendarTodoBlock workType={workType.w1} />
         <CalendarTodoBlock workType={workType.w2} />

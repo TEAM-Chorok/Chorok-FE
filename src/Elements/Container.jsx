@@ -63,12 +63,15 @@ const AppContainer = styled.div`
     position: relative;
     box-sizing: border-box;
 
+    ${'' /* margin: 200px auto; */}
     margin: auto;
     
     width: 360px;
     height: 720px;
 
-    ${'' /* border: 1px solid #000; */}
+    ${'' /* border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.36); */}
 `
 const NavContainer = styled.div`
     width: 100%;

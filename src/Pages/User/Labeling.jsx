@@ -84,7 +84,7 @@ const Labeling = () => {
         </Grid>
         <Grid margin="120px auto 100px auto" align="center">
           <PrimaryBtn onClick={()=>setActive(1)}>시작할래요</PrimaryBtn>
-          <GobackBtn onClick={()=>history.goBack}>다음에 할게요</GobackBtn>
+          <GobackBtn onClick={()=>history.goBack()}>다음에 할게요</GobackBtn>
         </Grid>
       </Container>
     </React.Fragment>

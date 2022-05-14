@@ -23,7 +23,8 @@ const CalendarMyPlant = (props) => {
           return(
           <PlantProfile key={plant.myPlantNo} name={plant?.myPlantName} plant={plant?.plantName} 
             imgUrl={plant.myPlantImgUrl}          
-            _onClick={() => {props.setPlantNo(plant?.myPlantNo)}}/>
+            _onClick={() => {props.setPlantNo(plant?.myPlantNo)}}
+            />
           )
         })}
       </PlantBox>
@@ -39,7 +40,6 @@ const PlantBox = styled.div`
   width: 100%;
   height: 110px;
 
-  border-bottom: 1px solid #E0E0E0;
 
   overflow-x: scroll;
 `

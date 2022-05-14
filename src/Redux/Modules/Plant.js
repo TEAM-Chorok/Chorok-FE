@@ -43,6 +43,8 @@ const addPlantDB = (plantData) => {
   }
 };
 
+
+
 // 리듀서
 export default handleActions(
   {
@@ -58,6 +60,7 @@ export default handleActions(
 const actionCreators = {
   getPlantDetailDB,
   addPlantDB,
+
 }
 
 export { actionCreators };

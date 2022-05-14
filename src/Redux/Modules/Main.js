@@ -11,12 +11,14 @@ const GET_WEATHER = "GET_WEATHER";
 const GET_MY_PLANT = "GET_MY_PLANT";
 const GET_TODO_LIST = "GET_TODO_LIST";
 const GET_SENTENCE = "GET_SENTENCE";
+const GET_MY_PLANT_PAGE = "GET_MY_PLANT_PAGE";
 
 // 액션 생성
 const getWeather = createAction(GET_WEATHER, (weather) => ({ weather }));
 const getMyPlant = createAction(GET_MY_PLANT, (myplant) => ({ myplant }));
 const getTodoList = createAction(GET_TODO_LIST, (todolist) => ({ todolist }));
 const getSentence = createAction(GET_SENTENCE, (sentence) => ({ sentence }));
+const getMyPlantPage = createAction(GET_MY_PLANT_PAGE, (myplantlist) => ({ myplantlist }));
 
 // 초기값
 const initialState = {
@@ -33,8 +35,8 @@ const getWeatherDB = (userLocation) => {
         // console.log("getWeatherDB : response", response.data);
         // 날씨 데이터 한글 변환
         let weather = '';
-        let arr = [['Clear', 'Clouds', 'Rain', 'Snow', 'Mist', 'Thunderstorm', 'Drizzle', 
-        'Fog', 'Haze', 'Dust', 'Sand', 'Ash', 'Smoke', 'Squall', 'Tornado'],
+        let arr = [['Clear', 'Clouds', 'Rain', 'Snow', 'Mist', 'Thunderstorm', 'Drizzle',
+          'Fog', 'Haze', 'Dust', 'Sand', 'Ash', 'Smoke', 'Squall', 'Tornado'],
         ['맑음', '흐림', '비', '눈', '안개', '천둥', '비', '안개', '먼지', '황사', '재', '연기', '스콜', '폭풍']];
 
         for (let i = 0; i < arr[0].length; i++) {
@@ -94,7 +96,7 @@ const getTodoListDB = () => {
     mainAPI
       .getTodoList()
       .then((response) => {
-        console.log("getTodoListDB : response", response.data);
+        // console.log("getTodoListDB : response", response.data);
         dispatch(getTodoList(response.data));
       }).catch((error) => {
         console.log("getTodoListDB : error", error.response);
@@ -109,7 +111,8 @@ const todoCheckDB = (todoNo) => {
     mainAPI
       .todoCheck(todoNo)
       .then((response) => {
-        console.log("todoCheckDB : response", response);
+        // console.log("todoCheckDB : response", response);
+        dispatch(getTodoListDB());
       }).catch((error) => {
         console.log("todoCheckDB : error", error.response);
       })
@@ -121,19 +124,34 @@ const todoUnCheckDB = (todoNo) => {
     mainAPI
       .todoUnCheck(todoNo)
       .then((response) => {
-        console.log("todoCheckDB : response", response);
+        // console.log("todoCheckDB : response", response);
+        dispatch(getTodoListDB());
       }).catch((error) => {
         console.log("todoCheckDB : error", error.response);
       })
   }
 }
 
+const getMyPlantPageDB = () => {
+  return function (dispatch, getState, {history}) {
+    mainAPI
+    .getMyPlantPage()
+    .then((response) => {
+      // console.log("getMyPlantPageDB : response", response);
+      dispatch(getMyPlantPage(response.data));
+    }).catch((error) => {
+      console.log("getMyPlantPageDB : error", error.response);
+    })
+  }
+}
+
+
+
 
 // 리듀서
 export default handleActions(
   {
     [GET_WEATHER]: (state, action) => produce(state, (draft) => {
-      // console.log("GET_WEATHER : WEATHER", action.payload.weather)
       draft.weather = action.payload.weather;
     }),
     [GET_MY_PLANT]: (state, action) => produce(state, (draft) => {
@@ -144,6 +162,9 @@ export default handleActions(
     }),
     [GET_SENTENCE]: (state, action) => produce(state, (draft) => {
       draft.sentence = action.payload.sentence;
+    }),
+    [GET_MY_PLANT_PAGE]: (state, action) => produce(state, (draft) => {
+      draft.myplantlist = action.payload.myplantlist;
     })
   }, initialState
 )
@@ -157,6 +178,7 @@ const actionCreators = {
   getTodoListDB,
   todoCheckDB,
   todoUnCheckDB,
+  getMyPlantPageDB,
 }
 
 export { actionCreators };

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { HomeMyplant, TodoContent, HomeHeader, Tabbar } from "../Components";
-import { Grid } from "../Elements";
+import { Button, Grid } from "../Elements";
 import { Container, Text } from "../Elements";
 
 // 메인 페이지 
@@ -28,6 +28,7 @@ const Home = () => {
           <Grid width="100%">
             {comp[compNum]}
           </Grid>
+          <Button type="plus" />
       </Container>
     </React.Fragment>
   );

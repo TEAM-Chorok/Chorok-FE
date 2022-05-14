@@ -7,6 +7,13 @@
 
 * {
   font-family: ‘SUIT’, sans-serif;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+display: none; /* Chrome, Safari, Opera*/
 }
 
 body {
@@ -39,3 +46,4 @@ code {
     0% {padding-top: 0px;}
 	100% {padding-top: 10px;}
   }
+

@@ -21,14 +21,17 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const PlantProfile = (props) => {
 
-  const { list, size, name, plant, imgUrl, _onClick } = props;
+  const { list, size, name, plant, imgUrl, _onClick, _onBlur } = props;
 
   const [checked, setChecked] = React.useState(false);
 
   const check = () => {
-    if (checked === false) {
-      setChecked(true);
-    } 
+    // if (checked === false) {
+    //   setChecked(true);
+    // } 
+    // if (checked === true) {
+    //   setChecked(false);
+    // }
   };
 
   if (size === "L") {
@@ -62,7 +65,7 @@ const PlantProfile = (props) => {
   }
 
   return (
-    <Grid _onClick={check}>
+    <Grid _onClick={check} >
       <Grid margin="4px" _onClick={_onClick}>
         <Grid border={checked ? "3px solid #0AAF42" : "3px solid #fff"} borderRadius="100%">
           <Image type="circle" size="56px" imgUrl={imgUrl} />

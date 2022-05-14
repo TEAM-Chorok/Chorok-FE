@@ -13,6 +13,8 @@ const KEYWORD_SEARCHING = "KEYWORD_SEARCHING";
 const KEYWORD_SEARCHING_PHOTO = "KEYWORD_SEARCHING_PHOTO";
 const KEYWORD_SEARCHING_PHOTO_PLACE = "KEYWORD_SEARCHING_PHOTO_PLACE";
 const KEYWORD_SEARCHING_PLANT = "KEYWORD_SEARCHING_PLANT";
+const GET_PLANT_DICT = "GET_PLANT_DICT";
+
 
 // 액션 생성
 const plantFiltering = createAction(PLANT_FILTERING, (searchlist) => ({ searchlist }));
@@ -24,6 +26,8 @@ const keywordSearching = createAction(KEYWORD_SEARCHING, (searchingdata) => ({ s
 const keywordSearchingPhoto = createAction(KEYWORD_SEARCHING_PHOTO, (searchingdata) => ({ searchingdata }))
 const keywordSearchingPhotoPlace = createAction(KEYWORD_SEARCHING_PHOTO_PLACE, (searchingdata) => ({ searchingdata }))
 const keywordSearchingPlant = createAction(KEYWORD_SEARCHING_PLANT, (searchingdata) => ({ searchingdata }))
+const getPlantDict = createAction(GET_PLANT_DICT, (plantlist) => ({plantlist}));
+
 
 // 초기값
 const initialState = {
@@ -38,8 +42,8 @@ const plantFilteringDB = (filterData) => {
     searchAPI
     .plantFiltering(filterData)
     .then((response) => {
-      // console.log("plantFilteringDB : response", response);
-      dispatch(plantFiltering(response));
+      // console.log("plantFilteringDB : response", response.data.plantList);
+      dispatch(plantFiltering(response.data.plantList));
     }).catch((error) => {
       console.log("plantFilteringDB : error", error.response);
     });
@@ -95,7 +99,7 @@ const keywordSearchingDB = (value) => {
     searchAPI
     .keywordSearching(value)
     .then((response) => {
-      console.log("keywordSearchingDB : searching", response.data);
+      // console.log("keywordSearchingDB : searching", response.data);
       dispatch(keywordSearching(response.data))
     }).catch((error) => {
       console.log("keywordSearchingDB : error", error.response);
@@ -108,7 +112,7 @@ const keywordSearchingPhotoDB = (value) => {
     searchAPI
     .keywordSearchingPhoto(value)
     .then((response) => {
-      console.log("keywordSearchingPhotoDB : searching", response.data);
+      // console.log("keywordSearchingPhotoDB : searching", response.data);
       dispatch(keywordSearchingPhoto(response.data))
     }).catch((error) => {
       console.log("keywordSearchingPhotoDB : error", error.response);
@@ -121,7 +125,7 @@ const keywordSearchingPhotoPlaceDB = (value) => {
     searchAPI
     .keywordSearchingPhotoPlace(value)
     .then((response) => {
-      console.log("keywordSearchingPhotoPlaceDB : searching", response.data);
+      // console.log("keywordSearchingPhotoPlaceDB : searching", response.data);
       dispatch(keywordSearchingPhotoPlace(response.data))
     }).catch((error) => {
       console.log("keywordSearchingPhotoPlaceDB : error", error.response);
@@ -134,8 +138,8 @@ const keywordSearchingPlantDB = (value) => {
     searchAPI
     .keywordSearchingPlant(value)
     .then((response) => {
-      console.log("keywordSearchingPlantDB : searching", response.data);
-      dispatch(keywordSearchingPlant(response.data))
+      // console.log("keywordSearchingPlantDB : searching", response.data.plantList);
+      dispatch(keywordSearchingPlant(response.data.plantList))
     }).catch((error) => {
       console.log("keywordSearchingPlantDB : error", error.response);
     })
@@ -149,7 +153,7 @@ const getRecommendDB = () => {
     searchAPI
     .getRecommend()
     .then((response) => {
-      console.log("getRecommendDB : recommend", response);
+      // console.log("getRecommendDB : recommend", response);
       dispatch(getRecommend(response.data));
     }).catch((error) => {
       console.log("getRecommendDB : error", error.response);
@@ -157,6 +161,19 @@ const getRecommendDB = () => {
   }
 }
 
+// 식물도감 전체조회
+const getPlantDictDB = () => {
+  return function (dispatch, getState, {history}) {
+    searchAPI
+    .getPlantDict()
+    .then((response) => {
+      // console.log("getPlantDictDB : response", response.data);
+      dispatch(getPlantDict(response.data.plantList))
+    }).catch((error) => {
+      console.log("getPlantDictDB : error", error.response);
+    })
+  }
+}
 
 
 // 리듀서
@@ -164,7 +181,7 @@ export default handleActions(
   {
     [PLANT_FILTERING]: (state, action) => produce(state, (draft) => {
       // console.log("PLANT_FILTERING : searchList", action.payload.searchList);
-      // draft.searchList = action.payload.searchList;
+      draft.plantDictList = action.payload.searchlist;
     }),
     [GET_PLANTERIORLIST]: (state, action) => produce(state, (draft) => {
       // console.log("GET_PLANTERIORLIST : planteriorList", action.payload.planteriorlist);
@@ -194,6 +211,10 @@ export default handleActions(
       console.log("KEYWORD_SEARCHING_Plant : searchingdata", action.payload.searchingdata);
       draft.resultPlant = action.payload.searchingdata;
     }),
+    [GET_PLANT_DICT]: (state, action) => produce(state, (draft) => {
+      // console.log("GET_PLANT_DICT : plantlist", action.payload.plantlist);
+      draft.plantDictList = action.payload.plantlist;
+    }),
   }, initialState
 )
 
@@ -208,6 +229,7 @@ const actionCreators = {
   keywordSearchingPhotoDB,
   keywordSearchingPhotoPlaceDB,
   keywordSearchingPlantDB,
+  getPlantDictDB,
 }
 
 export { actionCreators };

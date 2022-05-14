@@ -75,7 +75,7 @@ function App() {
           <Route path="/setting/deactivation" exact component={DeactivateAccount} />
         </Container>
 
-          <Navbar />
+        <Navbar />
 
       </Container>
 

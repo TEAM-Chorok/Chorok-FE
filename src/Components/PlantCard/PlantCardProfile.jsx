@@ -10,42 +10,49 @@ import { actionCreators as plantActions } from '../../Redux/Modules/Plant';
 
 const PlantCardProfile = () => {
   const dispatch = useDispatch();
-  const plantData = useSelector((state) => state.plant.plantData);
+  
   const param = useParams();
   const plantNo = param.plantname;
-
-  console.log(plantData)
+  
+  const plant = useSelector((state) => state.plant?.plantData);
+  
+  console.log(param)
+  console.log(plant)
 
   React.useEffect(() => {
     dispatch(plantActions.getPlantDetailDB(plantNo));
   }, [plantNo])
 
-//   {
-//     plantNo       : plantNo
-//     plantName  : plantName  
-//     plantLevel   : plantLevel   
-//     plantPlace   : plantPlace   
-//     plantType   : plantType   
-//     plantTemp  : plantTemp  
-//     plantInfo    :  plantInfo    
-//     plantWaterCycle   :   plantWaterCycle   
-  
-//  }
+  // {
+  //   "plantNo": 12956,
+  //   "plantName": "후피향나무",
+  //   "plantImgUrl": "https://www.nongsaro.go.kr/cms_contents/301/12956_MF_ATTACH_01.jpg",
+  //   "plantLevel": "초보집사",
+  //   "plantPlace": "베란다,발코니",
+  //   "plantType": "관엽식물",
+  //   "plantTemp": "16~20℃",
+  //   "plantHumid": "40 ~ 70%",
+  //   "plantInfo": "설명 블라블라.",
+  //   "springWaterCycle": "토양 표면이 말랐을때 충분히 관수함",
+  //   "summerWaterCycle": "토양 표면이 말랐을때 충분히 관수함",
+  //   "fallWaterCycle": "토양 표면이 말랐을때 충분히 관수함",
+  //   "winterWaterCycle": "화분 흙 대부분 말랐을때 충분히 관수함"
+  // }
 
   return (
     <React.Fragment>
       <Grid margin="20px 0" padding="10px">
 
         <Grid margin="auto">
-          <Image type="circle" size="148px" imgUrl="https://img.marieclairekorea.com/2021/04/mck_60657bd4d3c01.jpg"/>
+          <Image type="circle" size="148px" imgUrl={plant?.plantImgUrl}/>
         </Grid>
         <Grid margin="15px auto">
-          <Text bold size="large">로즈마리</Text>
+          <Text bold size="large">{plant?.plantName}</Text>
         </Grid>
 
         <Grid is_flex>
-          <PlantType>덩굴형</PlantType>
-          <PlantType>관엽식물</PlantType>
+          <PlantType>{plant?.plantGrowthShape}</PlantType>
+          <PlantType>{plant?.plantType}</PlantType>
         </Grid>
 
         <GridBox>
@@ -55,7 +62,7 @@ const PlantCardProfile = () => {
           </Grid>
 
           <Grid margin="1px 0">
-            <Text size="xsmall">초보</Text>
+            <Text size="xsmall">{plant?.plantLevel}</Text>
           </Grid>
           
           <Grid is_flex align="center">
@@ -64,7 +71,7 @@ const PlantCardProfile = () => {
           </Grid>
           
           <Grid margin="1px 0">
-            <Text size="xsmall">21~25℃</Text>
+            <Text size="xsmall">{plant?.plantTemp}</Text>
           </Grid>
 
           <Grid is_flex align="center">
@@ -73,29 +80,16 @@ const PlantCardProfile = () => {
           </Grid>
 
           <Grid margin="1px 0">
-            <Text size="xsmall">거실, 방안, 통로, 화장실</Text>
+            <Text size="xsmall">{plant?.plantPlace}</Text>
           </Grid>
         </GridBox>
 
         <Grid margin="25px 0">
           <Text size="XS" color="#999">
-            로즈마리는 바늘 같은 잎을 가진 여러해살이 식물로,
-            민트와 같은 과에 속한다. 지중해 연안이 원산지인 허브이며 푸른 잎과 특유의 향을 가졌다.
-            로즈마리라는 이름은 라틴어로 '바다(marinus)의 이슬(ros)'이라는 뜻의 '로즈마리누스(rosmarinus)'에서 왔다.
-            꽃은 겨울과 봄에 피며 색깔은 흰색, 분홍색, 자주색, 푸른색 등이 있다.
+            {plant?.plantInfo}
           </Text>
         </Grid>
 
-        <Grid>
-        <Grid padding="5px 0">
-            <Text bold>난이도</Text>
-            <Text margin="0 40px" size="XS">초보</Text>
-          </Grid>
-          <Grid padding="5px 0">
-            <Text bold>맞춤 온도</Text>
-            <Text size="XS" margin="0 22px">16~20℃</Text>
-          </Grid>
-        </Grid>
 
       </Grid>
     </React.Fragment>

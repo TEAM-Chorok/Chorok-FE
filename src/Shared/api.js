@@ -98,20 +98,33 @@ export const mainAPI = {
   }),
 
   // To-Do 취소하기
-  todoUnCheck: (todoNo) => api.patch(`/todo/cancle/${todoNo}`, {},{
+  todoUnCheck: (todoNo) => api.patch(`/todo/cancel/${todoNo}`, {},{
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
-
   // 내 식물 
+  getMyPlantPage: () => api.get('myplant/place', {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
 
 }
 
 // 탐색페이지 관련 API
 export const searchAPI = {
   // 식물도감 필터
-  plantFiltering: (filterData) => api.post(`url`, filterData, {
+
+  // 검색키워드 private String keyword; 
+// 식물 관리 레벨 private String plantLevelCode; 
+// 식물 장소 private String plantPlaceCode; 
+// 식물 종류 private String plantTypeCode; 
+// 생육 형태 private String plantGrowthShapeCode;
+// /search-post/dictionary/planterior?keyword=플
+  plantFiltering: (d) => api.get(
+    `/search-post/dictionary/planterior?keyword=&plantLevelCode=${d.plantLevelCode}&plantPlaceCode=${d.plantPlaceCode}&plantTypeCode=${d.plantTypeCode}&plantGrowthShapeCode=${d.plantGrowthShapeCode}`
+    , {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
@@ -174,6 +187,11 @@ export const searchAPI = {
       }
     }
   ),
+  getPlantDict: () => api.get('/search-post/dictionary/planterior?keyword=', {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
   //검색어로 전체 검색하기 (비로그인)
   postSearching_nonLogin: (postTypeCode, keyword) => api.get(`/non-login/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`,  )
 }
@@ -195,6 +213,7 @@ export const plantAPI = {
     }),
 }
 
+// 달력 관련
 export const calendarAPI = {
   getChecked: (year, month, plantNo) => api.get(`/calendar/${year}${month}/${plantNo}`, {
     headers: {

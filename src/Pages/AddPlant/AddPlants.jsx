@@ -34,7 +34,7 @@ const AddPlants = () => {
                             <Button type="tran" _onClick={() => {history.push("/home")}}>
                                 <Text size="base">괜찮아요 :)</Text>
                             </Button>
-                            <Button type="tran" _onClick={() => {history.push("/myplants");}}>
+                            <Button type="tran" _onClick={() => {history.push("/home");}}>
                                 <Text size="base">지금 확인할게요!</Text>
                             </Button>
                         </Grid>

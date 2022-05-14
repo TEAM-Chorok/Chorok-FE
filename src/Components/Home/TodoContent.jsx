@@ -5,11 +5,12 @@ import TodoContentBlock from "./TodoContentBlock";
 import TodoProfile from "./TodoProfile";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 // 투두페이지 할 일 목록 
 const TodoContent = () => {
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const myPlant = useSelector((state) => state);
   const sentence = useSelector((state) => state.main.sentence);
   const todoList = useSelector((state) => state?.main?.todo);
@@ -73,9 +74,10 @@ const TitleBox = styled.div`
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  padding: 26px 16px;
+  padding: 26px 16px 500px 16px;
 
   width: 100%;
+  ${'' /* height: 500px; */}
 
   background: #F7F8FA;
 `

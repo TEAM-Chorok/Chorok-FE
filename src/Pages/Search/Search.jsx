@@ -1,14 +1,16 @@
 import { debounce } from "lodash";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { AddPlantList, AllResult, Planterior, PlantSearchHeader, SearchOnFocus, Tabbar } from "../../Components";
+import { AddPlantList, Planterior, PlantSearchHeader, SearchOnFocus, Tabbar } from "../../Components";
 import { Button, Container, Grid, Text } from "../../Elements";
 import { actionCreators as searchActions } from "../../Redux/Modules/Search";
 import Result from "./Result";
 
 // 탐색페이지
 const Search = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const pattern = /\s/g; 
   // 탭 선택에 따라 보여줄 컴포넌트 목록

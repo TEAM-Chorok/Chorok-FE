@@ -105,10 +105,10 @@ const FilterType = (props) => {
       <TypeWrapper>
         <Grid margin="auto" width="312px">
           <Grid margin="4px 0" width="100%">
-            <Button checked={props.code === "pl01" ? true : false} type="filterlong" _onClick={() => { props.setType("pl01"); props.setTypeText("초보레벨") }}>
+            <Button checked={props.code === "pt01" ? true : false} type="filterlong" _onClick={() => { props.setType("pt01"); props.setTypeText("관엽식물") }}>
               <Grid is_flex width="100%">
                 <ButtonTextWrapped>
-                  <Text margin="0 8px 0 24px" size="base" color={props.code === "pl01" ? "#0AAF42" : ""}>관엽식물</Text>
+                  <Text margin="0 8px 0 24px" size="base" color={props.code === "pt01" ? "#0AAF42" : ""}>관엽식물</Text>
                   <Text size="xxsmall" color="#8D8D8D">잎이 매력적인 관상용 식물</Text>
                 </ButtonTextWrapped>
               </Grid>

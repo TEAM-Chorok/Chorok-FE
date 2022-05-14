@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
-import { Button, Grid, Text } from "../Elements";
+import { Button, Container, Grid, Text } from "../Elements";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
@@ -90,6 +90,8 @@ const Alert = (props) => {
 
   return (
     <React.Fragment>
+      <Container>
+
       <Modal
         isOpen={props.open}
         ariaHideApp={false}
@@ -103,6 +105,7 @@ const Alert = (props) => {
           },
           content: {
             position: 'absolute',
+            bottom: '50%',
             boxSizing: 'border-box',
             margin: 'auto',
             width: '260px', height: 'fit-content',
@@ -131,6 +134,7 @@ const Alert = (props) => {
             </Grid>
           </ButtonBox>
       </Modal>
+      </Container>
     </React.Fragment>
   )
 }

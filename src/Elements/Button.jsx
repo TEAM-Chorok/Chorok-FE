@@ -178,11 +178,12 @@ const PlusButton = styled.button`
 
 // 식물 추가 버튼
 const FloatLongButton = styled.button`
-  position: fixed;
+  position: sticky;
+  bottom: 28px;
   left: 80px;
   right: 80px;
-  bottom: 28px;
 
+  width: 200px;
   height: 56px;
 
   border: none;

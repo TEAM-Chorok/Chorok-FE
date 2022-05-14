@@ -22,10 +22,10 @@ export default function BottomSheet() {
   });
 
   // filter 선택한 항목 데이터
-  const [space, setSpace] = React.useState(null);
-  const [level, setLevel] = React.useState(null);
-  const [type, setType] = React.useState(null);
-  const [style, setStyle] = React.useState(null);
+  const [space, setSpace] = React.useState("");
+  const [level, setLevel] = React.useState("");
+  const [type, setType] = React.useState("");
+  const [style, setStyle] = React.useState("");
   
   
   const filterData = {
@@ -41,13 +41,7 @@ export default function BottomSheet() {
   const [typeText, setTypeText] = React.useState(null);
   const [styleText, setStyleText] = React.useState(null);
 
-  const filterTextData = {
-    plantLevelText  : levelText,  
-    plantPlaceText : spaceText,
-    plantTypeText : typeText,
-    plantGrowthShapeText : styleText, 
-  };
-  
+
   // 바텀시트에서 보여줄 컴포넌트 세팅
   const [compNum, setCompNum] = React.useState(0);
 
@@ -158,7 +152,10 @@ export default function BottomSheet() {
           <Grid margin="0 16px 0 0" _onClick={clear}>
             <FiRotateCw size="20px" color="#8D8D8D" />
           </Grid>
-          <Button type="basic" width="200px" height="40px" _onClick={filterSubmit}>
+          <Button type="basic" width="200px" height="40px" 
+            _onClick={() => {
+              filterSubmit();
+              }}>
             <Text size="basic" color="#fff">적용하기</Text>
           </Button>
         </Grid>
