@@ -10,27 +10,33 @@ const Setting = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const signOut = () => {
+    const logOut = () => {
         dispatch(userActions.logOutDB());
-        console.log("로그아웃 시도");
     }
     return (
         <React.Fragment>
             <Container>
-                <Grid width="100%"  padding="30px 0px">
-                    <GeneralHeader title="설정" size="h5" />
+                <Grid width="100%"  >
+                    <GeneralHeader title="설정" size="base" />
+                </Grid>
+            </Container>
+            <Container type="np">
+                <Grid width="100%">
+                    <hr style={{border:"1px solid #E0E0E0", margin: "0px", padding: "0px"}} />
                     <ScrapSettingWrap>
                         <SettingUpperDiv onClick={()=>history.push('/setting/myposts')}>내가 쓴 글</SettingUpperDiv>
                         <SettingUpperDiv onClick={()=>history.push('/setting/profile')}>프로필 편집</SettingUpperDiv>
                         <SettingLowerDiv onClick={()=>history.push('/setting/changepwd')}>비밀번호 변경</SettingLowerDiv>
                     </ScrapSettingWrap>
+                    <Border></Border>
                     <TeamInfoWrap>
-                        <SettingUpperDiv>Our Team</SettingUpperDiv>
-                        <SettingLowerDiv>FAQ / 문의사항</SettingLowerDiv>
+                        <SettingUpperDiv><a href="https://github.com/TEAM-Chorok">Our Team</a></SettingUpperDiv>
+                        <SettingLowerDiv style={{color: "#C6C6C6"}}>FAQ / 문의사항</SettingLowerDiv>
                     </TeamInfoWrap>
+                    <Border></Border>
                     <UserInfoEdit>
-                        <SettingUpperDiv onClick={()=>signOut()}>로그아웃</SettingUpperDiv>
-                        <SettingLowerDiv onClick={()=>history.push('/setting/deactivation')}>계정 비활성화</SettingLowerDiv>
+                        <SettingUpperDiv onClick={()=>logOut()}>로그아웃</SettingUpperDiv>
+                        <SettingLowerDiv onClick={()=>history.push('/setting/deactivation')}>회원 탈퇴</SettingLowerDiv>
                     </UserInfoEdit>
                 </Grid>
             </Container>
@@ -40,12 +46,12 @@ const Setting = () => {
 const ScrapSettingWrap = styled.div`
 width: 100%;
 height: fit-content;
-margin: 30px 0px 10px 0px;
+margin: 0px;
 `
 const TeamInfoWrap = styled.div`
 width: 100%;
 height: fit-content;
-margin: 0px 0px 10px 0px;
+margin: 0px;
 `
 const UserInfoEdit = styled.div`
 width: 100%;
@@ -54,14 +60,20 @@ height: fit-content;
 const SettingUpperDiv = styled.div`
 width: 100%;
 height: 60px;
-padding: 15px 10px;
+padding: 16px;
 box-sizing: border-box;
 border-bottom: 1px solid lightgrey;
 `
 const SettingLowerDiv = styled.div`
 width: 100%;
 height: 60px;
-padding: 15px 10px;
+padding: 16px;
 box-sizing: border-box;
+`
+const Border = styled.div`
+    width: 100%;
+    height: 12px;
+    background-color: #F7F8FA;
+    border: none;
 `
 export default Setting; 

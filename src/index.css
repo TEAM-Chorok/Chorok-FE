@@ -47,3 +47,7 @@ code {
 	100% {padding-top: 10px;}
   }
 
+a {
+  text-decoration: none;
+  color: inherit; 
+}

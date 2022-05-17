@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Container, Text, Image, Grid } from "../../Elements";
+import { Button, Container, Text, Grid } from "../../Elements";
 import { CommPostList, CommunityFilter, SearchHeader } from "../../Components";
 import Dimmer from "../../Components/Dimmer";
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 
 const Community = () => {
     const history = useHistory();

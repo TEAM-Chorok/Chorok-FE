@@ -60,6 +60,9 @@ const AddPost = () => {
                         <input style={{display:"none"}} />
                     </ImageWrap>
                 }
+
+            </Container>
+            <Container type="np">
                 {/* bottom */}
                 <AddPostFooter encodeFileToBase64={encodeFileToBase64} setImageUrl={setImageUrl}/>
             </Container>
@@ -78,6 +81,9 @@ const Input = styled.input`
         color: #DDE1E6;
         font-weight: 600;
     }
+    &:focus {
+        outline: none;
+    }
 `
 const ImageWrap = styled.div`
     width: 100vw;
@@ -94,6 +100,9 @@ const Textarea = styled.textarea`
     &::placeholder {
         color: #DDE1E6;
         font-weight: 600;
+    }
+    &:focus {
+        outline:none;
     }
 `
 const HR = styled.hr`

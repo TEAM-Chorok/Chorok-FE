@@ -95,7 +95,8 @@ import Alert from "./Alert";
 import ProgressBar from "./ProgressBar";
 // 네비게이션바
 import Navbar from "./Navbar";
-
+//그림자 
+import Dimmer from "./Dimmer";
 
 
 export {
@@ -115,6 +116,6 @@ export {
     EditPlantHeader, EditPlantBody,
     MyPostsPostList, 
     DeactivationAgreement,
-    PlantSearchHeader, SearchHeader, Tabbar, Alert, ProgressBar, Navbar,
+    PlantSearchHeader, SearchHeader, Tabbar, Alert, ProgressBar, Navbar, Dimmer,
 };
 

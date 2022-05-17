@@ -18,6 +18,10 @@ const Input = (props) => {
       label,
       type,
       name,
+      position,
+      top,
+      right,
+      bottom,
       _onChange,
       _onFocus,
       _onBlur,
@@ -32,6 +36,10 @@ const Input = (props) => {
       margin,
       height,
       width,
+      position,
+      top,
+      right,
+      bottom,
   }
 
   if (type === "basic") {
@@ -114,8 +122,12 @@ const Inputs = styled.input`
     margin: ${(props) => props.margin};
     padding:${(props) => props.padding};
     &:focus {
-        outline: 1px solid #24A148;
+        outline: 1px solid #0AAF42;
     }
+    position: ${(props) => props.position};
+    top: ${(props) => props.top};
+    right: ${(props) => props.right};
+    bottom: ${(props) => props.bottom};
     defaultValue: ${(props) => props.defaultValue};
 `
 
@@ -141,7 +153,7 @@ const BasicInput = styled.input`
   
   &::placeholder {
     color: #6F6F6F;
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 0.25px;
   }
 `

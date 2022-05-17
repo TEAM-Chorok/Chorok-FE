@@ -2,6 +2,7 @@
 // user
 import Login from "./User/Login";
 import SignUp from "./User/SignUp";
+import LogInEmail from "./User/LogInEmail";
 
 import Kakao from "../Shared/Kakao";
 
@@ -52,7 +53,7 @@ import DeactivateAccount from "./User/DeactivateAccount";
 // test
 import Test from "./Test";
 
-export { Login, SignUp, Kakao,
+export { Login, SignUp, Kakao, LogInEmail,
     FindPwd, ChangePwd, 
     Labeling, ProfileSetting,
     Home, Recommendation,

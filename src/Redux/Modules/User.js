@@ -31,32 +31,31 @@ const initialUser = {
   profileImgUrl: "",
 }
 // 미들웨어 
-const logInDB = (userId, password) => {
+const logInDB = (username, password) => {
   return function (dispatch, getState, { history }) {
     userAPI
-      .login(userId, password)
+      .login(username, password)
       .then((response) => {
+
+        console.log(response);
         //sessionStorage에 토큰 저장
         sessionStorage.setItem ("token", response.headers.authorization);
-        //몇번째에 nickname이 딸려올려나
-        localStorage.setItem ("nickname", response.headers.authorization.split(" ")[3]);
-        dispatch(setUser({
-
-        })); //reducer에서 state 변경
+        dispatch(isLoginDB());
         history.replace('/home');
       }).catch((error) => {
         console.log("logInDB : error", error.response);
-        window.alert("아이디와 비밀번호를 다시 확인해주세요.")
+        window.alert("이메일 혹은 비밀번호를 다시 확인해주세요.")
+        return;
       });
   }
 };
 
-const isLogin = () => {
+const isLoginDB = () => {
   return function (dispatch, getState, {history}) {
     userAPI
       .isLogin()
       .then((res) => {
-        dispatch(getUser(res.data.user));
+        dispatch(getUser(res.data));
       })
       .catch((err) => {
         console.log("isLogin : error", err);
@@ -65,20 +64,22 @@ const isLogin = () => {
   }
 }
 
+
+//signUp 폼데이터로 보내기
 const signUpDB = (username, password, nickname, profileImgUrl) => {
+  console.log(username, password, nickname, profileImgUrl)
+  const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("nickname", nickname);
+    formData.append("profileImgUrl", profileImgUrl);
   return function (dispatch, getState, { history }) {
     userAPI
-      .signUp(username, password, nickname, profileImgUrl)
+      .signUp(formData)
       .then((res) => {
-        //회원가입후 로그인을 유지하려면 토큰필요하지 않나? 그냥 다시 로그인페이지로 돌아갈것인지? 
-        sessionStorage.setItem("token", res.headers.authorization);
-        localStorage.setItem ("username", res.headers.authorization.split(" ")[3]);
-        dispatch(setUser((res.data.user)
-
-        ));
-        setTimeout(() => {
-          history.push('/home');
-        }, 3000);
+        console.log(res);
+        window.alert("회원가입되었습니다. 다시 로그인해주세요.");
+        history.push('/'); 
       }).catch((err) => {
         console.log("signUpDB : error", err.response);
         window.alert("회원가입에 실패하였습니다. 다시 시도하여주세요.")
@@ -87,20 +88,17 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
 }
 const kakaoLogInDB = (code) => {
   return function (dispatch, getState, {history}){
-    console.log('gg');
     userAPI
       .kakaoLogIn(code)
       .then((res) => {
-        console.log(res);
         sessionStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.email);
         dispatch(setUser({
-          username: res.data.email,
-          nickname: res.data.nickname,
-          profileImgUrl: res.data.profileImgUrl
-        }))
+          username: res.data.email
+        }
+        ))
         history.push('/home');
-        // window.location.reload();
+        window.location.reload();
       })
       .catch((error) => {
         console.log("error: ", error);
@@ -110,15 +108,26 @@ const kakaoLogInDB = (code) => {
   }
 }
 
-const logOutDB  = () => {
+const logOutDB = () => {
+  const token = sessionStorage.getItem('token');
   return function (dispatch, getState, { history }) {
-    sessionStorage.removeItem("token");
-    localStorage.removeItem("username");
-    dispatch(logOut());
-    history.push('/');
-    window.location.reload('');
+    userAPI
+      .logOut(token)
+      .then((res) => {
+        console.log("logOut : response", res);
+        sessionStorage.removeItem("token");
+        localStorage.removeItem("username");
+        dispatch(logOut());
+       history.push('/');  
+        window.location.reload('');
+      }
+      ).catch((error) => {
+        console.log("logOut : error", error.response);
+      });
   }
+
 }
+
 
 const findPwdDB = (userName, userId) => {
   return function( dispatch, getState, {history} ) {
@@ -171,12 +180,13 @@ export default handleActions(
 
 const actionCreators = {
   setUser,
+  isLoginDB,
   signUpDB,
   kakaoLogInDB,
   logInDB,
-  logOutDB,
   findPwdDB,
   changePwdDB,
+  logOutDB,
 }
 
 export { actionCreators };
