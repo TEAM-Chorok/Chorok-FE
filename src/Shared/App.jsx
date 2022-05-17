@@ -16,6 +16,7 @@ import {
   Test,
   AddPost,
   PostDetail,
+  LogInEmail,
 } from '../Pages';
 import EditPost from '../Pages/Community/EditPost';
 import theme from './theme';
@@ -30,8 +31,9 @@ function App() {
         <Container app>
           <Container rt>
 
-            <Route path="/" exact component={Login} />
-            <Route path="/signup" exact component={SignUp} />
+          <Route path="/" exact component={Login} />
+          <Route path="/logIn" exact component={LogInEmail} />
+          <Route path="/signup" exact component={SignUp} />
 
             <Route path="/auth/kakao/callback" component={Kakao} />
 

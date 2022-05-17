@@ -13,25 +13,44 @@ const api = axios.create({
 
 // 유저정보 관련 API
 export const userAPI = {
+
+  //일반 로그인
   login: (username, password) => api.post('/auth/logIn', {
     username: username,
-    password: password,
+    password: password
   }
   ),
 
-  signUp: (username, password, nickname, profileImgUrl) => api.post('/auth/signUp', {
-    username: username,
-    password: password,
-    nickname: nickname,
-    profileImgUrl:  profileImgUrl, 
+  //일반 회원가입
+  signUp: (formData) => api.post('/auth/signUp',formData, {
+    
+    headers: {
+      "Content-Type": "multipart/form-data",
+    }
   }
   ),
+
+  //카카오 로그인
   kakaoLogIn:(code) => api.get(`/auth/kakao/callback?code=${code}`),
   
+  //isLogin
   isLogin: () => api.get(`/user/isLogIn`,{
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
+  }),
+
+  //userEmail 중복확인
+  userEmailCheck: (username) => api.post(`/auth/emailCheck`, {username}),
+  
+  //nickname 중복확인
+  nicknameCheck: (nickname) => api.post(`/auth/nicknameCheck`, {nickname}),
+
+  //전체 로그아웃
+  logOut: () => api.get(`user/allLogOut`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    },
   }),
 
   findPwd: (userName, userId) => api.post('/api/findPwd', {

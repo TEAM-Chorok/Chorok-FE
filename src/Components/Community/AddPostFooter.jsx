@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Text } from "../../Elements";
-import { FaCamera } from 'react-icons/fa'
+import { IoCamera } from 'react-icons/io5';
 import { useRef } from "react";
 
 const AddPostFooter = (props) => {
@@ -15,9 +15,9 @@ const AddPostFooter = (props) => {
             <BottomBox>
                 <BottomWrap>
                     <div onClick={handleClick}>
-                        <FaCamera style={{width: "15px", height:"20px", color:"#8F8F8F"}}></FaCamera>
+                        <IoCamera size="25px" color="#8F8F8F"></IoCamera>
                     </div>
-                    <input type="file" ref={imgRef}
+                    <input accept='image/*' type="file" ref={imgRef}
                     onChange={(e)=>{props.setImageUrl(e.target.files[0]); props.encodeFileToBase64(e.target.files[0])}}
                     style={{display:"none"}}/>
                 </BottomWrap>
@@ -27,7 +27,7 @@ const AddPostFooter = (props) => {
 
 }
 const BottomBox = styled.div`
-    position: fixed;
+    // position: fixed;
     width: 100vw;
     border-top: 1px solid #DDE1E6;
     bottom: 50px;

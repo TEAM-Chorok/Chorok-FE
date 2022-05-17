@@ -9,8 +9,8 @@ const GeneralHeader = (props) => {
   return (
     <React.Fragment>
       <Header>
-        <MdArrowBackIos style={{ position: "absolute", left: "0px", top: "14px" }}
-          onClick={() => history.goBack()}></MdArrowBackIos>
+        <img src="img/goBackIcon.svg" style={{ position: "absolute", left: "0px", top: "14px" }} 
+        onClick={() => history.goBack()}/>
         <Text line="2.5em" size={props.size}>{props.title}</Text>
       </Header>
     </React.Fragment>
