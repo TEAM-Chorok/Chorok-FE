@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Grid, Input, Text } from "../../../Elements";
 import PlantProfile from "../../PlantProfile";
@@ -7,6 +8,7 @@ import PlantProfile from "../../PlantProfile";
 
 const PlantResult = () => {
 
+  const plantList = useSelector((state) => state.search?.resultPlant);
 
   return (
     <React.Fragment>
@@ -16,8 +18,14 @@ const PlantResult = () => {
           <Text bold margin="0 8px" size="small" color="#0AAF42">6</Text>
         </Grid>
         <Grid width="100%">
-          <PlantProfile list plant="스킨답서스" />
-          <PlantProfile list plant="형광스킨답서스" />
+          {plantList?.map((plant) => {
+            return (
+              <PlantProfile list 
+                key={plant.plantNo}
+                plant={plant.plantName} 
+                imgUrl={plant.plantImgUrl}/>
+            )
+          })}
         </Grid>
       </Grid>
     </React.Fragment>

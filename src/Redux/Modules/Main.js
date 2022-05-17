@@ -96,7 +96,7 @@ const getTodoListDB = () => {
     mainAPI
       .getTodoList()
       .then((response) => {
-        // console.log("getTodoListDB : response", response.data);
+        console.log("getTodoListDB : response", response.data);
         dispatch(getTodoList(response.data));
       }).catch((error) => {
         console.log("getTodoListDB : error", error.response);
@@ -119,6 +119,7 @@ const todoCheckDB = (todoNo) => {
   }
 }
 
+// 투두 체크 취소
 const todoUnCheckDB = (todoNo) => {
   return function (dispatch, getState, { history }) {
     mainAPI
@@ -132,6 +133,7 @@ const todoUnCheckDB = (todoNo) => {
   }
 }
 
+// 내 식물 탭 전용 식물데이터 
 const getMyPlantPageDB = () => {
   return function (dispatch, getState, {history}) {
     mainAPI

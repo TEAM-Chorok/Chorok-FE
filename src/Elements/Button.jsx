@@ -132,7 +132,7 @@ Button.defaultProps = {
     padding: "10px",
     borderRadius: "0px",
     size: "14px",
-    color: "black",
+    color: "#0AAF42",
     backgroundColor: "transparent",
     bold: false,
     border: null,
@@ -251,11 +251,11 @@ const FilterSizingButton = styled.button`
 // 기본 녹색 버튼 
 const BasicGreenButton = styled.button`
   width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  height: 44px;
   
   border: none;
-  border-radius: ${(props) => props.height};
-  background: #42BE65;
+  border-radius: 16px;
+  background: ${(props) => props.color};
   
 `
 

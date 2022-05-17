@@ -19,7 +19,7 @@ const HomeMyplant = () => {
 
   return (
     <React.Fragment>
-      <Grid margin="20px 0" padding="0 8px" width="100%">
+      <Grid padding="20px 8px" width="100%" bg="#fff">
 
         {myPlant?.pp04?.length ?
           <Grid margin="0 0 40px 0" width="100%">
@@ -29,7 +29,10 @@ const HomeMyplant = () => {
             <GridBox>
               {myPlant?.pp04?.map((plant, idx) => {
                 return (
-                  <PlantProfile key={idx} size="L" name={plant.myPlantName} plant={plant.plantName} imgUrl={plant.myPlantImgUrl} />
+                  <PlantProfile key={idx} size="L"
+                    name={plant.myPlantName}
+                    plant={plant.plantName}
+                    imgUrl={plant.myPlantImgUrl} />
                 )
               })}
             </GridBox>
@@ -46,7 +49,10 @@ const HomeMyplant = () => {
             <GridBox>
               {myPlant?.pp05?.map((plant, idx) => {
                 return (
-                  <PlantProfile key={idx} size="L" name={plant.myPlantName} plant={plant.plantName} imgUrl={plant.myPlantImgUrl} />
+                  <PlantProfile key={idx} size="L"
+                    name={plant.myPlantName}
+                    plant={plant.plantName}
+                    imgUrl={plant.myPlantImgUrl} />
                 )
               })}
             </GridBox>
@@ -63,7 +69,10 @@ const HomeMyplant = () => {
             <GridBox>
               {myPlant?.pp02.map((plant, idx) => {
                 return (
-                  <PlantProfile key={idx} size="L" name={plant.myPlantName} plant={plant.plantName} imgUrl={plant.myPlantImgUrl} />
+                  <PlantProfile key={idx} size="L"
+                    name={plant.myPlantName}
+                    plant={plant.plantName}
+                    imgUrl={plant.myPlantImgUrl} />
                 )
               })}
             </GridBox>
@@ -80,7 +89,10 @@ const HomeMyplant = () => {
             <GridBox>
               {myPlant?.pp03?.map((plant, idx) => {
                 return (
-                  <PlantProfile key={idx} size="L" name={plant.myPlantName} plant={plant.plantName} imgUrl={plant.myPlantImgUrl} />
+                  <PlantProfile key={idx} size="L"
+                    name={plant.myPlantName}
+                    plant={plant.plantName}
+                    imgUrl={plant.myPlantImgUrl} />
                 )
               })}
             </GridBox>
@@ -97,7 +109,10 @@ const HomeMyplant = () => {
             <GridBox>
               {myPlant?.pp01?.map((plant, idx) => {
                 return (
-                  <PlantProfile key={idx} size="L" name={plant.myPlantName} plant={plant.plantName} imgUrl={plant.myPlantImgUrl} />
+                  <PlantProfile key={idx} size="L"
+                    name={plant.myPlantName}
+                    plant={plant.plantName}
+                    imgUrl={plant.myPlantImgUrl} />
                 )
               })}
             </GridBox>
@@ -114,7 +129,10 @@ const HomeMyplant = () => {
             <GridBox>
               {myPlant?.pp06?.map((plant, idx) => {
                 return (
-                  <PlantProfile key={idx} size="L" name={plant.myPlantName} plant={plant.plantName} imgUrl={plant.myPlantImgUrl} />
+                  <PlantProfile key={idx} size="L"
+                    name={plant.myPlantName}
+                    plant={plant.plantName}
+                    imgUrl={plant.myPlantImgUrl} />
                 )
               })}
             </GridBox>

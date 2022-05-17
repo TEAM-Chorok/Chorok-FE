@@ -13,8 +13,6 @@ import { useSelector } from "react-redux";
 // css 오버라이딩으로 스타일 처리 했습니다 ㅠ.ㅠ~! 
 
 const CalendarTable = (props) => {
-  const checkdate = ["2022-05-03", "2022-05-06", "2022-05-13", "2022-05-15"];
-  const checkdate2 = ["2022-05-01", "2022-05-04", "2022-05-13", "2022-05-20", "2022-05-27", ];
 
   const checkData = useSelector((state) => state.calendar?.checkedData);
   const blooming = checkData?.blooming;
@@ -43,32 +41,27 @@ const CalendarTable = (props) => {
                 <GridBox>
                   {watering?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="13px" imgUrl="img/calendaricon/droplet.png"/>
+                    <Image type="square" size="11px" imgUrl="img/calendaricon/water.svg"/>
                   </IconBox>
                   : ""}
-                  {/* {checkdate2.find((x) => x === moment(date).format("YYYY-MM-DD"))?
+                  {leafcleaning?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="12px" imgUrl="img/calendaricon/wind.png"/>
+                    <Image type="square" size="11px" imgUrl="img/calendaricon/leaf.svg"/>
                   </IconBox>
-                  : ""} */}
-                  {/* {checkdate.find((x) => x === moment(date).format("YYYY-MM-DD"))?
-                  <IconBox>
-                    <Image type="square" size="12px" imgUrl="img/calendaricon/spray.png"/>
-                  </IconBox>
-                  : ""} */}
+                  : ""}
                   {changing?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="12px" imgUrl="img/calendaricon/potted_plant.png"/>
+                    <Image type="square" size="11px" imgUrl="img/calendaricon/pottedplant.svg"/>
                   </IconBox>
                   : ""}
                   {supplements?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="12px" imgUrl="img/calendaricon/pill.png"/>
+                    <Image type="square" size="11px" imgUrl="img/calendaricon/pill.svg"/>
                   </IconBox>
                   : ""}
                   {blooming?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="12px" imgUrl="img/calendaricon/tulip.png"/>
+                    <Image type="square" size="11px" imgUrl="img/calendaricon/flower.svg"/>
                   </IconBox>
                   : ""}
                 </GridBox>
@@ -96,14 +89,14 @@ const GridBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   
-  margin: 4px auto;
-
-  width: 40px;
+  margin: 2px auto;
+  width: 38px;
   height: 35px;
 
 `
 const IconBox = styled.div`
   flex: none;
+  margin: 0 auto;
 `
 
 export default CalendarTable;

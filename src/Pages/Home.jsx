@@ -18,17 +18,17 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <Container type="np">
+      <Container type="np" bg={({theme}) => theme.colors.gray5}>
         <Box>
           <HomeHeader />
         </Box>
-        <Grid padding="100px 16px 0 16px" width="100%">
+        <Grid padding="100px 16px 0 16px" width="100%" bg="#fff">
           <Tabbar tab1="할 일" tab2="내 식물" setCompNum={setCompNum} compNum={compNum} />
         </Grid>
-          <Grid width="100%">
+          <Grid width="100%" bg="#fff">
             {comp[compNum]}
           </Grid>
-          <Button type="plus" />
+          <Button type="plus"/>
       </Container>
     </React.Fragment>
   );
@@ -38,6 +38,7 @@ const Box = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
+  background: #fff;
 `
 
 

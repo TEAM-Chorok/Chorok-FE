@@ -2,14 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Grid, Image, Text } from "../../Elements";
+import { Grid } from "../../Elements";
 import PlantProfile from "../PlantProfile";
-
 
 
 // 투두페이지 상단 내 식물 원형 프로필 
 
-const TodoProfile = () => {
+const TodoProfile = (props) => {
 
   const history = useHistory();
 
@@ -25,13 +24,25 @@ const TodoProfile = () => {
     <React.Fragment>
       <ProfileBox>
         <Grid is_flex>
-          <PlantProfile  name="전체" imgUrl="img/all.png" />
+          <PlantProfile 
+            checked={props.plantName? false : true } 
+            name="전체" 
+            imgUrl="img/todoIcons/all.svg" 
+            _onClick={() => {props.setPlantName(null)}}
+            />
+
         {myPlant?.map((plant) => {
           return (
-            <PlantProfile key={plant.myPlantNo} name={plant.myPlantName} plant={plant.plantName} imgUrl={plant.myPlantImgUrl}/>
+            <PlantProfile key={plant.myPlantNo} 
+              checked={plant.myPlantName === props.plantName? true : false}
+              name={plant.myPlantName} 
+              plant={plant.plantName.length < 6? plant.plantName : plant.plantName.slice(0, 5)+'...'} 
+              imgUrl={plant.myPlantImgUrl}
+              _onClick={() => {props.setPlantName(plant.myPlantName)}}
+              />
           );
         })}
-          <PlantProfile  imgUrl="img/add.png" _onClick={openAddPlant}/>
+          <PlantProfile imgUrl="img/todoIcons/plus.svg" _onClick={openAddPlant}/>
         </Grid>
       </ProfileBox>
     </React.Fragment>

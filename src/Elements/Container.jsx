@@ -3,12 +3,16 @@ import styled from "styled-components";
 
 const Container = (props) => {
 
-    const {children, type, app, nav, rt} = props;
+    const {children, type, app, nav, rt, bg} = props;
+
+    const styles = {
+        bg: bg,
+    }
 
     if(app) {
         return(
             <React.Fragment>
-                <AppContainer>
+                <AppContainer {...styles}>
                     {children}
                 </AppContainer>
             </React.Fragment>
@@ -18,7 +22,7 @@ const Container = (props) => {
     if(nav) {
         return (
             <React.Fragment>
-                <NavContainer>
+                <NavContainer {...styles}>
                     {children}
                 </NavContainer>
             </React.Fragment>
@@ -28,7 +32,7 @@ const Container = (props) => {
     if(rt) {
         return (
             <React.Fragment>
-                <RouteContainer>
+                <RouteContainer {...styles}>
                     {children}
                 </RouteContainer>
             </React.Fragment>
@@ -38,7 +42,7 @@ const Container = (props) => {
     if(type==="np") {
         return(
             <React.Fragment>
-                <NonPaddingContainer>
+                <NonPaddingContainer {...styles}>
                     {children}
                 </NonPaddingContainer>
             </React.Fragment>
@@ -47,7 +51,7 @@ const Container = (props) => {
 
     return (
         <React.Fragment>
-            <ContainerBox>
+            <ContainerBox {...styles}>
                 {children}
             </ContainerBox>
         </React.Fragment>
@@ -57,26 +61,23 @@ const Container = (props) => {
 Container.defaultProps = {
     children: null,
     type: null,
+    bg: 'transparent',
 }
 
 const AppContainer = styled.div`
     position: relative;
     box-sizing: border-box;
 
-    ${'' /* margin: 200px auto; */}
     margin: auto;
     
     width: 360px;
     height: 720px;
-
-    ${'' /* border: 1px solid #eee;
-    border-radius: 20px;
-    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.36); */}
+    background: ${(props) => props.bg};
 `
 const NavContainer = styled.div`
     width: 100%;
     height: 80px;
-    ${'' /* border: 1px solid #000; */}
+    background: ${(props) => props.bg};
 `
 const RouteContainer = styled.div`
     position: relative;
@@ -87,8 +88,7 @@ const RouteContainer = styled.div`
     width: 360px;
     height: 640px;
     overflow-y: scroll;
-
-    ${'' /* border: 1px solid #000; */}
+    background: ${(props) => props.bg};
 `
 const NonPaddingContainer = styled.div`
     position: relative;
@@ -97,7 +97,7 @@ const NonPaddingContainer = styled.div`
     margin: auto;
     
     width: 360px;
-    ${'' /* border: 1px solid #000; */}
+    background: ${(props) => props.bg};
 `
 
 const ContainerBox = styled.div`
@@ -106,7 +106,7 @@ const ContainerBox = styled.div`
     padding: 16px;
 
     width: 360px;
-    ${'' /* border: 1px solid #000; */}
+    background: ${(props) => props.bg};
 `;
 
 export default Container;

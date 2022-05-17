@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Route } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Navbar, Questionnaire } from '../Components';
 import { Container } from '../Elements';
@@ -24,6 +23,7 @@ import theme from './theme';
 
 function App() {
 
+  
   return (
     <React.Fragment>
       <ThemeProvider theme={theme} >

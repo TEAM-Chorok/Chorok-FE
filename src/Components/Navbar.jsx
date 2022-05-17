@@ -2,7 +2,11 @@ import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../Elements";
-
+import { ReactComponent as HomeIcon } from '../Assets/img/navbarIcons/home.svg'
+import { ReactComponent as SearchIcon } from '../Assets/img/navbarIcons/search.svg'
+import { ReactComponent as CalendarIcon } from '../Assets/img/navbarIcons/calendar.svg'
+import { ReactComponent as CommunityIcon } from '../Assets/img/navbarIcons/community.svg'
+import { ReactComponent as UserIcon } from '../Assets/img/navbarIcons/user.svg'
 
 const Navbar = (props) => {
   const history = useHistory();
@@ -21,17 +25,13 @@ const Navbar = (props) => {
   React.useEffect(() => {
     if(url === 'home') {
       setCheck({home:true, search:false, calendar:false, community:false, mypage:false,});
-    }
-    if(url === 'search') {
+    } else if(url === 'search') {
       setCheck({home:false, search:true, calendar:false, community:false, mypage:false,});
-    }
-    if(url === 'calendar') {
+    } else if(url === 'calendar') {
       setCheck({home:false, search:false, calendar:true, community:false, mypage:false,});
-    }
-    if(url === 'community') {
+    } else if(url === 'community') {
       setCheck({home:false, search:false, calendar:false, community:true, mypage:false,});
-    }
-    if(url === 'mypage') {
+    } else if(url === 'mypage') {
       setCheck({home:false, search:false, calendar:false, community:false, mypage:true,});
     }
   }, [url])
@@ -46,8 +46,7 @@ const Navbar = (props) => {
           }}>
             <Grid width="100%" height="100%">
               <Grid margin="auto">
-                <Image type="square" size="20px" 
-                  imgUrl={check.home?"img/navbaricon/home_check.svg":"img/navbaricon/home.svg"}/>
+                  <HomeIcon fill={check.home?"#0AAF42":"#A8A8A8"}/>
               </Grid>
               <Grid margin="auto">
               {check.home?
@@ -62,8 +61,7 @@ const Navbar = (props) => {
           }}>
             <Grid width="100%" height="100%">
               <Grid margin="auto">
-                <Image type="square" size="20px" 
-                  imgUrl={check.search?"img/navbaricon/search_check.svg":"img/navbaricon/search.svg"}/>
+                  <SearchIcon fill={check.search?"#0AAF42":"#A8A8A8"} stroke={check.search?"#0AAF42":"#A8A8A8"}/>
               </Grid>
               <Grid margin="auto">
               {check.search?
@@ -78,8 +76,7 @@ const Navbar = (props) => {
           }}>
             <Grid width="100%" height="100%">
               <Grid margin="auto">
-                <Image type="square" size="20px" 
-                  imgUrl={check.calendar?"img/navbaricon/calendar_check.svg":"img/navbaricon/calendar.svg"}/>
+                  <CalendarIcon fill={check.calendar?"#0AAF42":"#A8A8A8"}/>
               </Grid>
               <Grid margin="auto">
               {check.calendar?
@@ -94,8 +91,7 @@ const Navbar = (props) => {
           }}>
             <Grid width="100%" height="100%">
               <Grid margin="auto">
-                <Image type="square" size="20px" 
-                  imgUrl={check.community?"img/navbaricon/community_check.svg":"img/navbaricon/community.svg"}/>
+                  <CommunityIcon fill={check.community?"#0AAF42":"#A8A8A8"} stroke={check.community?"#0AAF42":"#A8A8A8"}/>
               </Grid>
               <Grid margin="auto">
               {check.community?
@@ -110,8 +106,7 @@ const Navbar = (props) => {
           }}>
             <Grid width="100%" height="100%">
               <Grid margin="auto">
-                <Image type="square" size="20px" 
-                  imgUrl={check.mypage?"img/navbaricon/user_check.svg":"img/navbaricon/user.svg"}/>
+                  <UserIcon fill={check.mypage?"#0AAF42":"#A8A8A8"} stroke={check.mypage?"#0AAF42":"#A8A8A8"}/>
               </Grid>
               <Grid margin="auto">
               {check.mypage?

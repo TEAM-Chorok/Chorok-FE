@@ -11,23 +11,22 @@ import PlanteriorList from "../Planterior/PlanteriorList";
 const PlanteriorResult = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const result = useSelector((state) => state.search);
+  const result = useSelector((state) => state.search?.resultPhoto);
+  const list = result?.postList;
+
+  console.log("요ㅕ요",result, list)
 
   const openDetail = (postId) => {
     history.push(`/planterior/post/${postId}`);
   }
 
-  React.useEffect(() => {
-    dispatch(searchActions.keywordSearchingPhotoDB(props.value))
-  }, [props.value])
-
   return (
     <React.Fragment>
-      {/* <Grid width="100%">
+      <Grid width="100%" margin="16px 0">
         <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
-          {result.plantriaSearchList?.map((post, idx) => {
+          {list?.map((post, idx) => {
             return (
-              <ContentWrapper key={post.postId} onClick={() => { openDetail(result.postId); }}>
+              <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId); }}>
                 <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
                 <Grid is_flex margin="4px 0">
                   <Image type="circle" size="20px" />
@@ -44,7 +43,7 @@ const PlanteriorResult = (props) => {
             )
           })}
         </Masonry>
-      </Grid> */}
+      </Grid>
     </React.Fragment>
   )
 }

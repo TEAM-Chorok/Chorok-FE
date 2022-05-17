@@ -22,7 +22,7 @@ const getCheckedDB = (year, month, plantNo) => {
     calendarAPI
       .getChecked(year, month, plantNo)
       .then((response) => {
-        console.log("getCheckedDB : response", response.data);
+        console.log("getCheckedDB : response", response);
         const blooming = [];
         const changing = [];
         const leafcleaning = [];
@@ -56,6 +56,20 @@ const getCheckedDB = (year, month, plantNo) => {
   }
 };
 
+const postBloomingDB = (plantNo, data) => {
+  return function (dispatch, getState, {history}) {
+    calendarAPI
+    .postBlooming(plantNo, data) 
+    .then((response) => {
+      console.log("postBloomingDB : response", response.data);
+    }).catch((error) => {
+      console.log("postBloomingDB : response", error.response);
+    })
+  }
+}
+
+
+
 // 리듀서
 export default handleActions(
   {
@@ -70,6 +84,7 @@ export default handleActions(
 
 const actionCreators = {
     getCheckedDB,
+    postBloomingDB,
 }
 
 export { actionCreators };

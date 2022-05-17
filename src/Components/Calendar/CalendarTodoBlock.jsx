@@ -1,24 +1,20 @@
 import React from "react";
 import './Calendar.css';
 import styled from "styled-components";
-import { Container, Grid, Text } from "../../Elements";
-
+import { Grid } from "../../Elements";
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox } from "react-icons/md";
 
 
 const CalendarTodoBlock = (props) => {
-    const {workType} = props;
-
+    const {workType, _onClick} = props;
 	const [checked, setChecked] = React.useState(false)
 
 	const check = () => {
-
 		if (checked === false) {
 			setChecked(true);
 		} else {
 			setChecked(false);
 		};
-
 	};
 
 	return (
@@ -29,7 +25,7 @@ const CalendarTodoBlock = (props) => {
 						{workType}
 					</Grid>
 					<Grid _onClick={check}>
-						{checked ? <MdOutlineCheckBox color="#0AAF42" size="20px"/> : <MdOutlineCheckBoxOutlineBlank size="20px"/>}
+						{checked ? <MdOutlineCheckBox color="#0AAF42" size="20px"/> : <MdOutlineCheckBoxOutlineBlank size="20px" color="#C6C6C6" />}
 					</Grid>
 				</Grid>
 			</TodoBox>
@@ -46,7 +42,7 @@ height: 52px;
 display: flex;
 align-items: center;
 
-border-bottom: 1px solid #F4F4F4;
+${'' /* border-bottom: 1px solid #F4F4F4; */}
 `
 
 export default CalendarTodoBlock;

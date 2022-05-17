@@ -5,8 +5,9 @@
     height: fit-content;
     font-family: 'SUIT-Regular';
     line-height: 1.125em;
-    background: #F7F8FA;
+    background: #fff;
     border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
 }
 
 .react-calendar--doubleView {
@@ -68,7 +69,7 @@
     min-height: 50px;
     border: 0;
     outline: none;
-    background: #F7F8FA;
+    background: #fff;
 }
 
 .react-calendar button:enabled:hover {
@@ -81,7 +82,7 @@
     display: flex;
 
     width: 300px;
-    margin: auto;
+    margin: 8px auto;
 }
 
 .react-calendar__navigation button {
@@ -110,6 +111,7 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.75em;
+    color: #A8A8A8;
 }
 
 .react-calendar__month-view__weekdays__weekday {
@@ -125,6 +127,12 @@
     font-size: 0.75em;
     font-weight: bold;
 }
+
+.react-calendar__month-view__days__day {
+    padding: 0;
+    margin: 0;
+}
+
 
 .react-calendar__month-view__days__day--weekend {
     font-family: 'SUIT-Regular';
@@ -153,7 +161,8 @@
     font-family: 'SUIT-Regular';
     width: 100%;
     height: 64px;
-    text-align: left;
+    text-align: center;
+    font-weight: 700;
     padding: none;
 }
 
@@ -172,20 +181,20 @@
 }
 
 .react-calendar__tile--now {
-    border-top: 2px solid #15AE21 !important;
+    /* border-top: 2px solid #15AE21 !important; */
 }
 
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
     font-family: 'SUIT-Regular';
-    font-weight: 600;
-    border-top: 2px solid #A8A8A8;
+    font-weight: 700;
+    /* border-top: 2px solid #A8A8A8; */
 }
 
 
 .react-calendar__tile--now abbr {
     font-family: 'SUIT-Regular';
-    font-weight: 600;
+    font-weight: 700;
     background: #15AE21;
     padding: 0 4px;
     border-radius: 10px;

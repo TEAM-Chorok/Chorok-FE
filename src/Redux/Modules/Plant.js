@@ -6,9 +6,11 @@ import { plantAPI } from "../../Shared/api";
 
 // 액션 
 const PLANT_DETAIL = "PLANT_DETAIL";
+const PLANT_PLACE = "PLANT_PLACE";
 
 // 액션 생성
 const getPlantDetail = createAction(PLANT_DETAIL, (plantData) => ({plantData}));
+const getPlantPlace = createAction(PLANT_PLACE, (placelist) => ({placelist}));
 
 // 초기값
 const initialState = {
@@ -43,6 +45,20 @@ const addPlantDB = (plantData) => {
   }
 };
 
+// 식물 위치 목록
+const getPlantPlaceDB = () => {
+  return function (dispatch, getState, { history }) {
+  plantAPI
+  .getPlantPlace()
+  .then((response) => {
+    console.log("getPlantPlaceDB : response", response.data);
+    dispatch(getPlantPlace(response.data));
+  }).catch((error) => {
+    console.log("getPlantPlaceDB : error", error.response);
+  })
+  }
+};
+
 
 
 // 리듀서
@@ -52,6 +68,9 @@ export default handleActions(
       // console.log("PLANT_DETAIL : plantdata", action.payload.plantdata);
       draft.plantData = action.payload.plantData;
     }),
+    [PLANT_PLACE]: (state, action) => produce(state, (draft) => {
+      draft.place = action.payload.placelist;
+    }),
   }, initialState
 )
 
@@ -60,7 +79,7 @@ export default handleActions(
 const actionCreators = {
   getPlantDetailDB,
   addPlantDB,
-
+  getPlantPlaceDB,
 }
 
 export { actionCreators };

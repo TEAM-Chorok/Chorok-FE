@@ -8,16 +8,18 @@ import configStore from "./Redux/configStore";
 
 import App from './Shared/App';
 import './index.css';
+import ScrollToTop from './Shared/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const history = createBrowserHistory();
 
 root.render(
-    <Provider store={configStore}>  
-      <ConnectedRouter history={history}>
-        <App /> 
-      </ConnectedRouter>
-    </Provider>
+  <Provider store={configStore}>
+    <ConnectedRouter history={history}>
+      <ScrollToTop/>
+      <App />
+    </ConnectedRouter>
+  </Provider>
 );
 

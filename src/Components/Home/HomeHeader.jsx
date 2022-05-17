@@ -71,8 +71,9 @@ const HomeHeader = () => {
 
   return (
     <React.Fragment>
+    <Grid width="100%" bg="#fff">
       {navigator.geolocation ?
-        <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F4F7 68.85%, rgba(242, 244, 248, 0) 88.45%)">
+        <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F4F7 60%, rgba(242, 244, 248, 0) 88%)">
           <Grid width="100%" padding="16px">
 
             <Text size="XS" color="#999">{date}</Text>
@@ -92,6 +93,7 @@ const HomeHeader = () => {
           </Grid>
         </Grid>
       }
+      </Grid>
     </React.Fragment>
   );
 }

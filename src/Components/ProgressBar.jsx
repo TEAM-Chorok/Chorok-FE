@@ -35,7 +35,7 @@ const Background = styled.div`
 
   Background: #fff;
   
-  border: 1px solid #C1C7CD;
+  border: 1px solid ${({theme}) => theme.colors.primary};
   border-radius: 8px;  
 `
 
@@ -43,7 +43,9 @@ const Progress = styled.div`
   width: ${(props) => props.width};
   height: 100%;
 
-  Background: #C1C7CD;
+  Background: ${({theme}) => theme.colors.primary};
+
+  transition: 0.7s;
 `
 
 

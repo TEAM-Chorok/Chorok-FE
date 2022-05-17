@@ -1,8 +1,10 @@
 import React from "react";
-import { Button, Grid, Image, Input, Text } from "../../Elements";
+import { Button, Container, Grid, Image, Input, Text } from "../../Elements";
 import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { actionCreators as plantActions } from "../../Redux/Modules/Plant";
+import styled from "styled-components";
+import Alert from "../Alert";
 
 const WritePlantProfile = (props) => {
   const dispatch = useDispatch();
@@ -12,12 +14,14 @@ const WritePlantProfile = (props) => {
   const nameRef = React.useRef(null);
   const myPlantName = nameRef?.current?.value;
   const myPlantPlace = props.place;
-  
+
   // 파일 관련
   const fileRef = React.useRef();
-  const [file, setFile] = React.useState("");
-  const [preview, setPreview] = React.useState("/img/add_large.png");
-  
+  const [file, setFile] = React.useState("/img/plantProfile.svg");
+  const [preview, setPreview] = React.useState("/img/add.svg");
+  const [message, setMessage] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+
   // 업로드한 파일 가져오기
   const onChange = (e) => {
     if (e.target.files[0]) {
@@ -25,7 +29,7 @@ const WritePlantProfile = (props) => {
       setFile(e.target.files[0]);
     } else {
       // 업로드 취소
-      setPreview("/img/add_large.png")
+      setPreview("/img/add.svg")
       return
     }
     // 미리보기
@@ -37,8 +41,21 @@ const WritePlantProfile = (props) => {
     }
     reader.readAsDataURL(e.target.files[0])
   }
-  
+
   const addPlant = () => {
+    if (nameRef.current.value.length === 0) {
+      setMessage("식물 이름을 입력해주세요.");
+      setOpen(true);
+      return;
+    }
+    if (nameRef.current.value.length > 6) {
+      setMessage("식물 이름을 6글자 이내로 지어주세요.");
+      setOpen(true);
+      return;
+    }
+
+    console.log("오오오이",myPlantName.length);
+
     const plantName = nameRef?.current?.value;
     const formData = new FormData();
     formData.append('plantNo', plantNo);
@@ -46,36 +63,66 @@ const WritePlantProfile = (props) => {
     formData.append('myPlantImgUrl', file);
     formData.append('myPlantName', plantName);
     console.log(plantNo, myPlantPlace, file, myPlantName);
-    
+    props.setCompNum(2); 
     dispatch(plantActions.addPlantDB(formData));
   }
 
+
   return (
     <React.Fragment>
-      <Text bold size="base">
-        식물의 이름과 정보를<br />알려주세요
-      </Text>
-      <Grid margin="auto">
-        <Grid _onClick={() => { fileRef.current.click() }}>
-          <Image type="circle" size="100px" imgUrl={preview} />
+      <Container>
+        <Grid margin="28px 4px">
+          <Grid>
+            <Text bold size="large">식물의 별명과 사진을</Text>
+          </Grid>
+          <Grid margin="4px 0">
+            <Text bold size="large">추가해주세요</Text>
+          </Grid>
         </Grid>
-        <input
-          type="file"
-          style={{ display: 'none' }}
-          accept='image/*'
-          ref={fileRef} onChange={onChange}
-        />
-      </Grid>
-      <Grid width="100%">
-        <Input type="basic" label="닉네임" width="100%" _ref={nameRef} />
-      </Grid>
-      <Button type="basic" width="184px" _onClick={() => {props.setCompNum(2); addPlant();}}>
-        <Text size="base" color="#fff">다음</Text>
-      </Button>
+        <Grid margin="24px auto">
+          <Grid _onClick={() => { fileRef.current.click() }}>
+            <Image type="circle" size="120px" imgUrl={preview} />
+          </Grid>
+          <input
+            type="file"
+            style={{ display: 'none' }}
+            accept='image/*'
+            ref={fileRef} onChange={onChange}
+          />
+        </Grid>
+      </Container>
+
+      <Grid width="100%" height="1px" bg="#E0E0E0" />
+
+      <Container>
+
+        <Grid width="100%" margin="16px auto">
+          <Input type="square" label={"닉네임"} width="100%" placeholder="식물의 별명을 지어주세요.(최대 6글자)" _ref={nameRef} />
+        </Grid>
+
+        <ButtonBox>
+          <Button type="basic" width="168px" 
+            _onClick={() => { addPlant(); }}>
+            <Text size="base" color="#fff">다음으로</Text>
+          </Button>
+        </ButtonBox>
+      </Container>
+
+      <Alert onebutton open={open} setOpen={setOpen} btn1="확인">
+        <Text bold size="small">
+          {message}
+        </Text>
+      </Alert>
+
+
 
     </React.Fragment>
   )
 }
 
+const ButtonBox = styled.div`
+    width: fit-content;
+    margin: 83px auto 0 auto;
+`
 
 export default WritePlantProfile;

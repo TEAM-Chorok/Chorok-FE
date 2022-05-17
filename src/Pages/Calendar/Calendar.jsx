@@ -5,9 +5,11 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { actionCreators as calendarActions } from "../../Redux/Modules/Calendar";
 
+
 const CalendarPage = () => {
   const dispatch = useDispatch();
-  const [plantNo, setPlantNo] = React.useState(31);
+  const [plantNo, setPlantNo] = React.useState(null);
+  const [plantName, setPlantName] = React.useState(null);
   const [value, setValue] = React.useState(new Date());
 
   const year = moment(value).format('YYYY');
@@ -19,7 +21,7 @@ const CalendarPage = () => {
       return;
     }
     dispatch(calendarActions.getCheckedDB(year, month, plantNo));
-  }, [plantNo, value])
+  }, [dispatch, plantNo, month, year])
 
 
   return (
@@ -27,11 +29,16 @@ const CalendarPage = () => {
       <Container type="np">
       <Container>
         <Text size="h5">캘린더</Text>
-        <CalendarMyPlant setPlantNo={setPlantNo} />
+        <CalendarMyPlant setPlantNo={setPlantNo} setPlantName={setPlantName} plantName={plantName}/>
       </Container>
         <CalendarTable setValue={setValue} value={value} />
       <Container>
-        <CalendarTodo />
+        {plantNo?
+        <CalendarTodo plantNo={plantNo} plantName={plantName}/>:
+        <Grid margin="24px auto">
+          <Text bold size="small">식물을 선택해주세요</Text>
+        </Grid>
+        }
       </Container>
         <Button type="plus"/>
       </Container>
