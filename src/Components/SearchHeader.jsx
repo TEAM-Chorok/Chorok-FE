@@ -4,16 +4,20 @@ import styled, { keyframes } from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../Redux/Modules/post";
+import { useRef } from "react";
 
 
 const SearchHeader = (props) => {
     const dispatch = useDispatch();
     const [keyword, setKeyword] = React.useState("");
     const [barOpen, setBarOpen] = React.useState(false);
+
     const openBar = () => {
-        {barOpen? setBarOpen(false) : setBarOpen(true)};
+      {barOpen?
+        setTimeout(setBarOpen(false) , 1000)  :
+        setBarOpen(true)
+      }
     }
-    
 
     const onKeyUp = (e) => {
         if(e.key === "Enter"){
@@ -26,10 +30,11 @@ const SearchHeader = (props) => {
         <React.Fragment>
             <Grid width="100%" position="relative" >
                 <Text size="h5">초록톡</Text>
-                <SearchIcon onClick={()=>openBar()} style={{position:"absolute", top:"5px", right:"0px", width:"20px", height:"20px", color:"#393939"}}/>
-                {barOpen? 
-                <Div><Input type="search" width="100%"  onChange={(e)=>setKeyword(e.target.value)} onKeyUp={onKeyUp}/></Div> : 
-                null}
+                <SearchIcon  onClick={()=>openBar()} style={{position:"absolute", top:"5px", right:"0px", width:"20px", height:"20px", color:"#393939"}}/>
+                {barOpen && 
+                  <Div>
+                    <Input onChange={(e)=>setKeyword(e.target.value)} onKeyUp={onKeyUp}/>
+                  </Div>}
             </Grid>
         </React.Fragment>
     )
@@ -44,16 +49,23 @@ const animation = keyframes`
     opacity: 100%;
     transform: none;
   }
-  0% {
-    opacity: 0%;
-    transform: translateY(-20px);
-  }
 `;
 const Div = styled.div`
     width: 100%;
     margin: 10px 0px 0px 0px;
     animation: ${animation} 1s;
 `
+const slideOut = keyframes `
+  from {
+    opacity: 100%;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+`
+
 const Input = styled.input`
   font-family: 'SUIT-Regular';
   font-size: 14px;
@@ -63,7 +75,7 @@ const Input = styled.input`
   box-sizing: border-box;
   padding: 0 16px 0 32px;
   
-  width: ${(props) => props.width};
+  width: 100%;
   height: 40px;
   
   border: none;

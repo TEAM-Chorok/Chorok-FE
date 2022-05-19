@@ -22,6 +22,7 @@ const Input = (props) => {
       top,
       right,
       bottom,
+      focusOutline,
       _onChange,
       _onFocus,
       _onBlur,
@@ -40,6 +41,7 @@ const Input = (props) => {
       top,
       right,
       bottom,
+      focusOutline,
   }
 
   if (type === "basic") {
@@ -124,6 +126,7 @@ Input.defaultProps = {
   border: "1px solid darkgrey",
   borderRadius: "50px",
   name: "",
+  focusOutline: "1px solid #0AAF42",
   defaultValue: null,
 }
 
@@ -138,13 +141,19 @@ const Inputs = styled.input`
     margin: ${(props) => props.margin};
     padding:${(props) => props.padding};
     &:focus {
-        outline: 1px solid #0AAF42;
+        outline: ${(props) => props.focusOutline};
     }
     position: ${(props) => props.position};
     top: ${(props) => props.top};
     right: ${(props) => props.right};
     bottom: ${(props) => props.bottom};
     defaultValue: ${(props) => props.defaultValue};
+    &::placeholder {
+      color: #C6C6C6;
+      font-size: 16px;
+      letter-spacing: 0.25px;
+    }
+    font-size: 16px;
 `
 
 const BasicInput = styled.input`

@@ -1,78 +1,114 @@
 import React, {useRef} from 'react';
 import styled from 'styled-components';
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
-import { Input, Grid, Image} from '../../../Elements/index';
+import { Input, Grid, Image, Text } from '../../../Elements/index';
 import { useHistory } from "react-router-dom";
 import { useEffect } from 'react';
+import { Button } from '@mui/material';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import EditPlantBottomSheet from './EditPlantBottomSheet';
+import Modal from 'react-modal';
+import { actionCreators as myActions} from '../../../Redux/Modules/MyPage';
+import { useDispatch } from 'react-redux';
 
+Modal.setAppElement('#root')
 
-
-const EditPlantBody = () => {
+const EditPlantBody = (props) => {
     const history = useHistory();
-    const [profileImg, setProfileImg] = React.useState("가져오는이미지.jpeg");
-    const [previewImg, setPreviewImg] = React.useState("sample.jpeg");
-    const [nickname, setNickname] = React.useState("가져오는 nickname");
-    const [place, setPlace] = React.useState("가져오는 place");
-    const [btnAble, setBtnAble] = React.useState(true);
+    const dispatch = useDispatch();
 
     //이미지 미리보기 부분 클릭시 input클릭되게 연동
     const profileImgRef = useRef("");
     const handleClick = () => {
         profileImgRef.current.click();
     }
-    useEffect(() => {
-        if(profileImg !== "" && previewImg !== "" && nickname !== "" && place !== "") {
-            setBtnAble(false);
-        }
-    }, []);
-
-    // Base64로 인코딩하여 미리보기 이미지 출력
-    const reader = new FileReader();
-    const encodeFileToBase64 = (fileBlob) => {
-        reader.readAsDataURL(fileBlob);
-        return new Promise((reseolve) => {
-        reader.onload = () => {
-            setPreviewImg(reader.result);
-        }
-        })
+    
+    //modal 열고 닫는 것을 useState로 관리
+    const [openModal, setOpenModal] = React.useState(false);
+    
+    //내 식물 삭제하기
+    const deletePlant = (props) => {
+        // dispatch(myActions.)
     }
 
     return (
         
         <React.Fragment>
-            <Grid padding="40px 0px" margin="0px auto" 
-                _onClick={handleClick}>
-                    {profileImg && (
-                <Image
-                    type="square"  
-                    imgUrl={previewImg}
-                    alt="preview-img"
-                    size="150px" borderRadius="10px"/>
-              )}
-                <input ref = {profileImgRef} 
+            <Grid padding="12px 0px" margin="0px auto" align="center">
+                {props.preview? 
+                    <Image
+                        margin="10px auto"
+                        type="circle"  
+                        imgUrl={props.preview}
+                        alt="preview-img"
+                        size="120px"/> : 
+                    (props.plantImgUrl !== "" ? 
+                        <Image
+                            margin="10px auto"
+                            type="circle"  
+                            imgUrl={props.plantImgUrl}
+                            alt="preview-img"
+                            size="120px"/> :
+                        <Image
+                            margin="10px auto"
+                            type="circle"  
+                            imgUrl="/img/basicPlantImg.png"
+                            alt="preview-img"
+                            size="120px"/>
+                        // <Img src="/img/NoProfileImgUser.svg"/>
+
+                    )
+                }
+                <input ref={profileImgRef} 
                 style={{display:"none"}} type="file"
-                onChange={(e)=>{setProfileImg(e.target.value); 
-                    encodeFileToBase64(e.target.files[0]);}} />
+                onChange={(e)=>{ 
+                    props.encodeFileToBase64(e.target.files[0]);
+                    props.setPlantImgUrl(e.target.files[0]); }} />
+                <Button style={{display:"block", color:"#0AAF42", margin: "0px auto", fontWeight:"700"}} 
+                        onClick={handleClick}> 사진 바꾸기 </Button>
             </Grid>
-            <Grid width="100%">
-                <label htmlFor='nickname'>닉네임</label>
-                <Input id="nickname" defaultValue="동동이" width="100%" height="53px"/>
-                <div><label htmlFor='place'>공간</label></div>
-                
-                <Select id="place" defaultChecked="">
-                    <option value="">--공간--</option>
-                    <option value="거실">거실</option>
-                    <option value="베란다">베란다</option>
-                    <option value="방안">방안</option>
-                    <option value="통로">통로</option>
-                    <option value="창가">창가</option>
-                    <option value="화장실">화장실</option>
-                    <option value="야외">야외</option>
-                </Select>
+            <Hr />
+            <Grid width="100%" padding="16px" position="relative">
+                <Text display="block" size="small" color="#0AAF42" >로즈마리</Text>
+                <Text display="block" size="large">{props.previousPlantName}</Text>
+                <img 
+                    // onClick={()=>history.push(`/plant/${plantNo}`)}
+                    onClick={()=>history.push(`/plant/1`)}
+                    src="/img/arrowToRight.svg" 
+                    style={{position:"absolute", right:"20px", bottom:"28px"}}/>
             </Grid>
-            <Grid margin="120px auto">
-                <Button disabled={btnAble}>저장하기</Button>
+            <Hr />
+            <Grid width="100%" padding="16px">
+                <label htmlFor='nickname'>별명</label>
+                <Input 
+                    _onChange={(e)=>props.setMyPlantName(e.target.value)}
+                    id="nickname" defaultValue={props.previousPlantName} placeholder="별명" 
+                    width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />
+
+                <EditPlantBottomSheet setPlaceValue={props.setPlaceValue} placeValue={props.placeValue} plantId={props.myPlantId} place={props.place} setPlace={props.setPlace}/>
+                <Grid position="relative" width="100%">
+                    <Button 
+                        onClick={()=>{setOpenModal(true)}}    
+                        style={{ position:"absolute", right:"0px", color:"#0AAF42"}}>식물 삭제하기</Button>
+                </Grid>
+                <Modal 
+                    isOpen={openModal}
+                    style={modalStyle}
+                    onRequestClose={()=>setOpenModal(false)}
+                    ariaHideApp={false}>
+                    <Grid display="block" position="inherit" padding="16px 16px 0px 0px" right="0px">
+                        <img src="/img/cancel_s.svg" onClick={()=>setOpenModal(false)}/>
+                    </Grid>
+                    <Text margin="32px 24px 24px 24px" size="xsmall" display="block">정말 삭제하시겠습니까?<br />삭제된 식물은 복구할 수 없습니다.</Text>
+                    <Grid margin="0px 0px 0px 24px">
+                        <Button 
+                            onClick={()=>setOpenModal(false)}
+                            style={{fontSize:"14px", fontWeight:"700", borderRadius:"8px", border:"none", backgroundColor:"#F7F8FA", color:"#262626", marginRight:"8px", width:"116px", height:"36px"}}>취소하기</Button>
+                        <Button 
+                            onClick={()=>deletePlant()}
+                            style={{fontSize:"14px", fontWeight:"700", borderRadius:"8px", border:"none", backgroundColor:"#F7F8FA", color:"#FA4D56", width:"116px", height:"36px"}}>삭제하기</Button>
+                    </Grid>
+                    
+                </Modal>
             </Grid>
         </React.Fragment>
     )
@@ -84,14 +120,38 @@ const Select = styled.select`
     margin: 10px 0px;
     padding: 0px 10px;
 `
-const Button = styled.button`
-    border-radius: 30px;
-    padding: 0.7em 4em;
-    border: none;
-    width: fit-content;
-    font-size: 16px;
-    height: fit-content;
-    color: #878D96;
-    background-color: #DDE1E6;
+const Hr = styled.hr`
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid #E0E0E0;
 `
+const Img = styled.img`
+    width: 120px;
+    height: 120px;
+    border-radius: 120px;
+`
+const modalStyle = {
+    overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.50)',
+    },
+    content: {
+        position: 'absolute',
+        top: "260px",
+		left: "36px",
+		right: "36px",
+		bottom: "392px",
+        width: "288px",
+        height: "148px",
+        padding: "none",
+        overflow: 'auto',
+        WebkitOverflowScrolling: 'touch',
+        borderRadius: '16px',
+        outline: 'none',
+    }
+}
 export default EditPlantBody;

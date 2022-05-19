@@ -3,13 +3,15 @@ import { useHistory } from "react-router-dom";
 import { MdArrowBackIos } from "react-icons/md";
 import styled from "styled-components";
 import { Text } from '../Elements';
+import { ReactComponent as GoBackIcon } from "../Assets/img/Icons/goBackIcon.svg"
+
 
 const GeneralHeader = (props) => {
   const history = useHistory();
   return (
     <React.Fragment>
       <Header>
-        <img src="img/goBackIcon.svg" style={{ position: "absolute", left: "0px", top: "14px" }} 
+        <GoBackIcon style={{ position: "absolute", left: "0px", top: "14px" }} 
         onClick={() => history.goBack()}/>
         <Text line="2.5em" size={props.size}>{props.title}</Text>
       </Header>

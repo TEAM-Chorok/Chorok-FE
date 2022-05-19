@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Container, Grid, Text } from "../Elements";
-import { actionCreators as userActions} from "../Redux/Modules/User";
+import { Container, Grid, Text } from "../../Elements";
+import { actionCreators as userActions} from "../../Redux/Modules/User";
 
 const Kakao = (props) => {
     const dispatch = useDispatch();

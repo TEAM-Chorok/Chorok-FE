@@ -27,6 +27,11 @@ code {
   font-family: 'SUIT-Regular';
 }
 
+a {
+  text-decoration: none;
+  color: inherit; 
+}
+
 .Dimmer{
   position: absolute;
   top: 0;
@@ -34,20 +39,32 @@ code {
   right: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   opacity: 70%;
   background-color: rgb(38, 38, 38);
   z-index: 100;
 }
+
 .labelingLogo{
-  animation: motion 0.3s linear 0s infinite alternate; 
+  animation: motion 0.6s linear 0s infinite alternate; 
 }
+
 @keyframes motion {
     0% {padding-top: 0px;}
 	100% {padding-top: 10px;}
-  }
+} 
 
-a {
-  text-decoration: none;
-  color: inherit; 
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.close {
+  animation: slideOut 1s;
 }

@@ -14,10 +14,6 @@ const POST_SEARCHING = "POST_SEARCHING";
 const LIKE_POST = "LIKE_POST";
 const BOOKMARK_POST = "BOOKMARK_POST";
 
-const GET_MY_PHOTO_LIST = "GET_MY_PHOTO_LIST";
-const GET_SCRAP_PHOTO_LIST = "GET_SCRAP_PHOTO_LIST";
-const GET_SCRAP_PLANT_LIST = "GET_SCRAP_PLANT_LIST";
-
 // 액션 생성
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 const editPost = createAction(EDIT_POST, (post) => ({ post }));
@@ -29,9 +25,6 @@ const postSearching = createAction(POST_SEARCHING, (searchList) => ({ searchList
 const likePost = createAction(LIKE_POST, (post) => ({ post }));
 const bookmarkPost = createAction(BOOKMARK_POST, (post) => ({ post }));
 
-const getPhotoList = createAction(GET_MY_PHOTO_LIST, (photoList) => ({ photoList }));
-const getScrapPhotoList = createAction(GET_SCRAP_PHOTO_LIST, (scrapPhotoList) => ({ scrapPhotoList }));
-const getScrapPlantList = createAction(GET_SCRAP_PLANT_LIST, (scrapPlant) => ({ scrapPlant }))
 
 // initial State
 const initialState = {
@@ -65,26 +58,27 @@ const initialState = {
 // 미들웨어 
 // 커뮤니티 글 작성
 const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
-  console.log("dd")
-  const formData = new FormData();
-  formData.append("postTitle", postTitle);
-  formData.append("postImgUrl", postImgUrl);
-  formData.append("postContent", postContent);
-  formData.append("postTypeCode", postTypeCode);
-  return function (dispatch, getState, { history }) {
-    postAPI
-      .addPost(formData)
-      .then((res) => {
-        console.log("response:", res);
-        dispatch(addPost(res)); // 데이터 주나 안주나
-        history.push(`/community/${res.data.post.postId}`);
-      }).catch((err) => {
-        console.log("error: ", err);
-        window.alert('글 작성하기에 실패하였습니다.');
-        return;
-      })
-  }
-
+    console.log(postTitle, postImgUrl, postContent, postTypeCode)
+    const formData = new FormData();
+    formData.append("postTitle", postTitle);
+    formData.append("postContent", postContent);
+    formData.append("postTypeCode", postTypeCode);
+    formData.append("postImgUrl", postImgUrl);
+    return function (dispatch, getState, { history }){
+        postAPI
+            .addPost(formData)
+            .then((res) => {
+                console.log("response:" , res);
+                dispatch(addPost(res)); // 데이터 주나 안주나
+                history.push(`/community/${res.data.postId}`);
+                window.location.reload();
+            }).catch((err) => {
+                console.log("error: ", err);
+                window.alert('글 작성하기에 실패하였습니다.');
+                return;
+            })
+    }
+    
 }
 
 //커뮤니티 글 불러오기(로그인)
@@ -166,22 +160,21 @@ const getDetailPostDB = (postId) => {
 
 //커뮤니티 글 삭제
 const deletePostDB = (postId) => {
-  const _postId = parseInt(postId);
-  return function (dispatch, getState, { history }) {
-    console.log("게시글 삭제요청", _postId);
-    postAPI
-      .deletePost(_postId)
-      .then((response) => {
-        console.log("게시글 삭제 성공");
-        dispatch(deletePost());
-        window.alert('게시글이 성공적으로 삭제되었습니다.');
-        history.push('/community');
-      })
-      .catch((err) => {
-        console.log("error:", err);
-        window.alert("게시글 삭제를 실패하였습니다.");
-      })
-  }
+    return function(dispatch, getState, { history }) {
+        console.log("게시글 삭제요청", postId);
+        postAPI
+            .deletePost(postId)
+            .then((response) => {
+                console.log("게시글 삭제 성공");
+                dispatch(deletePost());
+                window.alert('게시글이 성공적으로 삭제되었습니다.');
+                history.push('/community');
+            })
+            .catch((err)=>{
+                console.log("error:" , err);
+                window.alert("게시글 삭제를 실패하였습니다.");
+            })
+    }
 }
 
 //커뮤니티 글 수정
@@ -311,52 +304,6 @@ const postSearchingDB = (postTypeCode, keyword) => {
   }
 };
 
-//내 사진 리스트
-const getMyPhotoListDB = () => {
-  return function (dispatch, getState, { history }) {
-    console.log("getMyPhotoListDB ");
-    myPageAPI
-      .getMyPhotoList()
-      .then((res) => {
-        console.log("response : ", res);
-        dispatch(getPhotoList(res.data));
-      }).catch((error) => {
-        console.log("error: ", error);
-        // window.alert('내 사진 불러오기에 실패하였습니다.');
-      });
-  }
-}
-
-//스크랩한 사진 리스트
-const getScrapPhotoListDB = () => {
-  return function (dispatch, getState, { history }) {
-    console.log("getScrapPhotoListDB ");
-    myPageAPI
-      .getScrapPhotoList()
-      .then((res) => {
-        console.log("response : ", res);
-        dispatch(getScrapPhotoList(res.data));
-      }).catch((error) => {
-        console.log("error: ", error);
-        // window.alert('스크랩한 사진 불러오기에 실패하였습니다.');
-      });
-  }
-}
-//스크랩한 사진 리스트
-const getScrapPlantListDB = () => {
-  return function (dispatch, getState, { history }) {
-    console.log("getScrapPlantListDB ");
-    myPageAPI
-      .getScrapPlantList()
-      .then((res) => {
-        console.log("response : ", res);
-        dispatch(getScrapPlantList(res.data));
-      }).catch((error) => {
-        console.log("error: ", error);
-        // window.alert('스크랩한 식물 불러오기에 실패하였습니다.');
-      });
-  }
-}
 
 // Reducer
 export default handleActions(
@@ -374,37 +321,23 @@ export default handleActions(
     [POST_SEARCHING]: (state, action) => produce(state, (draft) => {
       draft.searchList = action.payload.searchList;
     }),
-    [GET_MY_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
-      draft.list = action.payload.list;
-      draft.is_loading = true;
-    }),
-    [GET_SCRAP_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
-      draft.list = action.payload.list;
-      draft.is_loading = true;
-    }),
-    [GET_SCRAP_PLANT_LIST]: (state, action) => produce(state, (draft) => {
-      draft.list = action.payload.list;
-      draft.is_loading = true;
-    }),
+    
   }, initialState
 )
 
 
 const actionCreators = {
-  postSearchingDB,
-  addPostDB,
-  getPostListDB_login,
-  getPostListDB_non_login,
-  getDetailPostDB,
-  editPostDB,
-  deletePostDB,
-  likePostDB,
-  likeDetailPostDB,
-  bookmarkPostDB,
-  bookmarkDetailPostDB,
-  getMyPhotoListDB,
-  getScrapPhotoListDB,
-  getScrapPlantListDB,
+    postSearchingDB,
+    addPostDB,
+    getPostListDB_login,
+    getPostListDB_non_login,
+    getDetailPostDB,
+    editPostDB,
+    deletePostDB,
+    likePostDB,
+    likeDetailPostDB,
+    bookmarkPostDB,
+    bookmarkDetailPostDB,
 }
 
 export { actionCreators };

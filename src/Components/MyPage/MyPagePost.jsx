@@ -9,7 +9,7 @@ const MyPagePost = () => {
 
     return (
         <React.Fragment>
-            <Grid width="100%" padding="15px 0px 15px 0px" >
+            <Grid width="100%" >
                 <PostHeader>
                     <Grid><Image imgUrl="sample.jpeg" type="circle" /></Grid>
                     <PostHeaderInfo>

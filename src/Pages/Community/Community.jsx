@@ -10,6 +10,7 @@ const Community = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const isLogin = sessionStorage.getItem('token') ? true : false;
+    
     //+버튼 모달창
     const [open, setOpenModal] = React.useState(false);
     const openModal = () => {
@@ -35,13 +36,17 @@ const Community = () => {
                         <>
                             <Dimmer setOpenModal={setOpenModal} onClick={() => closeModal()} />
                             <Modal onClick={e => e.stopPropagation()}>
-                                <InnerWrap onClick={() => history.push('/add')}>
+                                <InnerWrap onClick={() => history.push('/search')}>
                                     <Text size="small" >식물 추가하기</Text>
                                 </InnerWrap>
 
                                 <InnerWrap>
-                                    <InnerBox1><Text size="small">공간 자랑하기</Text></InnerBox1>
-                                    <InnerBox2 onClick={() => history.push(`/addpost`)}><Text size="small">초록톡 글쓰기</Text></InnerBox2>
+                                    <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
+                                        <Text size="small">공간 자랑하기</Text>
+                                    </InnerBox1>
+                                    <InnerBox2 onClick={() => history.push(`/addpost`)}>
+                                        <Text size="small">초록톡 글쓰기</Text>
+                                    </InnerBox2>
                                 </InnerWrap>
                             </Modal>
                         </>
