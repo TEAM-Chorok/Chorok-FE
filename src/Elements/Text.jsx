@@ -212,7 +212,7 @@ const LARGE = styled.p`
   box-sizing: border-box;
 
   font-size: 18px;
-  font-weight: ${(props) => props.bold ? 700 : 400};
+  font-weight: ${(props) => props.bold ? 700 : 500};
   line-height: ${(props) => props.line};
   color: ${(props) => props.color};
 `

@@ -78,7 +78,86 @@ const planteriorFilteringDB = (placeCode) => {
   }
 };
 
-// 플랜테리어 상세
+// 플랜테리어 게시글 작성
+const writePlanteriorPostDB = (postdata) => {
+  return function (dispatch, getState, { history }) {
+    searchAPI
+    .writePlanteriorPost(postdata)
+    .then((response) => {
+      console.log("writePlanteriorPostDB : response", response);
+    }).catch((error) => {
+      console.log("writePlanteriorPostDB : error", error.response);
+    })
+  }
+}
+
+// 플랜테리어 게시글 수정
+const editPlanteriorPostDB = (postdata, postId) => {
+  return function (dispatch, getState, { history }) {
+    searchAPI
+    .editPlanteriorPost(postdata, postId)
+    .then((response) => {
+      console.log("editPlanteriorPostDB : response", response);
+    }).catch((error) => {
+      console.log("editPlanteriorPostDB : error", error.response);
+    })
+  }
+}
+
+// 플랜테리어 게시글 삭제
+const deletePlanteriorPostDB = (postId) => {
+  return function (dispatch, getState, { history }) {
+    searchAPI
+    .deletePlanteriorPost(postId)
+    .then((response) => {
+      console.log("deletePlanteriorPostDB : response", response);
+    }).catch((error) => {
+      console.log("deletePlanteriorPostDB : error", error.response);
+    })
+  }
+}
+
+// 플랜테리어 댓글 작성
+const writePlanteriorCommentDB = (commentdata) => {
+  return function (dispatch, getState, { history }) {
+    searchAPI
+    .writePlanteriorComment(commentdata)
+    .then((response) => {
+      console.log("writePlanteriorCommentDB : response", response);
+    }).catch((error) => {
+      console.log("writePlanteriorCommentDB : error", error.response);
+    })
+  }
+}
+
+// 플랜테리어 댓글 수정
+const editPlanteriorCommentDB = (commentdata) => {
+  return function (dispatch, getState, { history }) {
+    searchAPI
+    .editPlanteriorComment(commentdata)
+    .then((response) => {
+      console.log("editPlanteriorCommentDB : response", response);
+    }).catch((error) => {
+      console.log("editPlanteriorCommentDB : error", error.response);
+    })
+  }
+}
+
+// 플랜테리어 댓글 삭제
+const deletePlanteriorCommentDB = (commentId) => {
+  return function (dispatch, getState, { history }) {
+    searchAPI
+    .deletePlanteriorComment(commentId)
+    .then((response) => {
+      console.log("deletePlanteriorCommentDB : response", response);
+    }).catch((error) => {
+      console.log("deletePlanteriorCommentDB : error", error.response);
+    })
+  }
+}
+
+
+// 플랜테리어 게시글 상세조회
 const getPlanteriorDetailDB = (postId) => {
   return function (dispatch, getState, { history }) {
     searchAPI
@@ -92,7 +171,7 @@ const getPlanteriorDetailDB = (postId) => {
   }
 }
 
-// 탐색탭 키워드 검색
+// 탐색탭 키워드 검색 - 전체탭
 const keywordSearchingDB = (value) => {
   return function (dispatch, getState, {history}) {
     console.log("걍", value);
@@ -106,6 +185,8 @@ const keywordSearchingDB = (value) => {
     })
   }
 }
+
+// 탐색탭 키워드 검색 - 사진(플랜테리어)탭
 const keywordSearchingPhotoDB = (value) => {
   return function (dispatch, getState, {history}) {
     console.log("파라미터", value);
@@ -119,6 +200,8 @@ const keywordSearchingPhotoDB = (value) => {
     })
   }
 }
+
+// 탐색탭 키워드 검색 - 사진(플랜테리어)탭 장소 필터링
 const keywordSearchingPhotoPlaceDB = (value) => {
   return function (dispatch, getState, {history}) {
     console.log("위치", value);
@@ -133,6 +216,7 @@ const keywordSearchingPhotoPlaceDB = (value) => {
   }
 }
 
+// 탐색탭 키워드 검색 - 식물도감
 const keywordSearchingPlantDB = (value) => {
   return function (dispatch, getState, {history}) {
     searchAPI
@@ -145,7 +229,6 @@ const keywordSearchingPlantDB = (value) => {
     })
   }
 }
-
 
 // 추천식물 조회
 const getRecommendDB = () => {
@@ -230,6 +313,8 @@ const actionCreators = {
   keywordSearchingPhotoPlaceDB,
   keywordSearchingPlantDB,
   getPlantDictDB,
+  writePlanteriorPostDB,
+
 }
 
 export { actionCreators };

@@ -12,13 +12,14 @@ const PlantCard = () => {
 
   return (
     <React.Fragment>
-      <Container>
+      <Grid width="100%" bg="#F7F8FA">
+
 
         <PlantCardProfile />
         <PlantCardFeed />
-            <Button type="longfloat" _onClick={() => { setOpen(true); }}>
-              <Text size="base" color="#fff">내 식물에 추가하기</Text>
-            </Button>
+        <Button type="longfloat" _onClick={() => { setOpen(true); }}>
+          <Text size="base" color="#fff">내 식물에 추가하기</Text>
+        </Button>
 
 
         <Alert open={open} setOpen={setOpen} btn1="아니오" btn2="네" url={`/add/${plantNo}`}>
@@ -26,8 +27,7 @@ const PlantCard = () => {
             내 식물에 <br /> 추가하시겠습니까?
           </Text>
         </Alert>
-
-      </Container>
+      </Grid>
     </React.Fragment>
   );
 }

@@ -32,7 +32,7 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl} />
+                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}/>
                 )
               })}
             </GridBox>
@@ -52,7 +52,7 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl} />
+                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
                 )
               })}
             </GridBox>
@@ -72,7 +72,7 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl} />
+                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}/>
                 )
               })}
             </GridBox>
@@ -92,7 +92,7 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl} />
+                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
                 )
               })}
             </GridBox>
@@ -112,7 +112,7 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl} />
+                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}/>
                 )
               })}
             </GridBox>
@@ -132,7 +132,7 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl} />
+                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}/>
                 )
               })}
             </GridBox>

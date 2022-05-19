@@ -17,13 +17,13 @@ const AddDone = () => {
                 </Text>
                 <Grid margin="180px auto">
                     <Grid margin="8px 0">
-                        <Button type="basic" width="168px" _onClick={() => { history.push("/home"); }}>
+                        <Button type="basic" width="168px" _onClick={() => { history.push("/myplants"); }}>
                             <Text size="small" color="#fff">지금 확인할게요</Text>
                         </Button>
                     </Grid>
                     <Grid>
                         <Button type="basic" width="168px" color="#F7F8FA" _onClick={() => { history.push("/home") }}>
-                            <Text size="small" color={({ theme }) => theme.colors.gray40}>괜찮아요</Text>
+                            <Text size="small" color="#A8A8A8">괜찮아요</Text>
                         </Button>
                     </Grid>
                 </Grid>

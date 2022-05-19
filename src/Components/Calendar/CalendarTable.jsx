@@ -20,6 +20,7 @@ const CalendarTable = (props) => {
   const leafcleaning = checkData?.leafcleaning;
   const supplements = checkData?.supplements;
   const watering = checkData?.watering;
+  const refreshing = checkData?.refreshing;
 
 
   return (
@@ -47,6 +48,11 @@ const CalendarTable = (props) => {
                   {leafcleaning?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
                     <Image type="square" size="11px" imgUrl="img/calendaricon/leaf.svg"/>
+                  </IconBox>
+                  : ""}
+                  {refreshing?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
+                  <IconBox>
+                    <Image type="square" size="11px" imgUrl="img/calendaricon/wind.svg"/>
                   </IconBox>
                   : ""}
                   {changing?.find((x) => x === moment(date).format("YYYY-MM-DD"))?

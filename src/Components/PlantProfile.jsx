@@ -21,17 +21,19 @@ import styled from "styled-components";
 
 const PlantProfile = (props) => {
 
-  const { list, size, name, plant, imgUrl, _onClick, _onBlur, checked, square} = props;
+  const { list, size, name, plant, imgUrl, _onClick, _onBlur, checked, square } = props;
 
 
   if (size === "L") {
     return (
-      <Grid width="100px" margin="8px auto" _onClick={_onClick} _onBlur={_onBlur}>
+      <Grid width="100%" margin="8px auto" _onClick={_onClick} _onBlur={_onBlur}>
         <Grid margin="auto">
           <Image type="circle" size="96px" imgUrl={imgUrl} />
         </Grid>
-        <Grid margin="6px auto" align="center">
-          <Text bold size="basic">{name}</Text>
+        <Grid margin="6px auto" width="100%" align="center">
+          <Grid margin="auto" align="center">
+            <Text bold size="basic">{name}</Text>
+          </Grid>
           <Grid margin="-2px auto">
             <Text size="small" color="#6F6F6F">{plant}</Text>
           </Grid>
@@ -77,7 +79,7 @@ const PlantProfile = (props) => {
   }
 
   return (
-    <Grid >
+    <Grid>
       <Grid margin="4px" _onClick={_onClick} _onBlur={_onBlur}>
         <Grid border={checked ? "3px solid #0AAF42" : "3px solid #fff"} borderRadius="100%">
           <Image type="circle" size="56px" imgUrl={imgUrl} />
@@ -85,7 +87,7 @@ const PlantProfile = (props) => {
       </Grid>
       <Grid margin="-3px auto" align="center">
         <Text bold size="small" color={checked ? "#0AAF42" : ""}>{name}</Text>
-        <Grid margin="-4px 0">
+        <Grid margin="-4px auto">
           <Text size="xxsmall" color="#6F6F6F">{plant}</Text>
         </Grid>
       </Grid>

@@ -6,6 +6,8 @@ axios.defaults.withCredentials = true;
 const api = axios.create({
   baseURL: 'http://52.79.233.178',//민성님 Url
   // baseURL: 'http://121.141.140.148:8085',
+  // baseURL: 'http://13.209.87.69:8080', // 은아님
+  // baseURL: ' http://chorok.shop', // 은아님
   
 }, { withCredentials: true } //CORS error 방지
 );
@@ -134,7 +136,6 @@ export const mainAPI = {
 // 탐색페이지 관련 API
 export const searchAPI = {
   // 식물도감 필터
-
   plantFiltering: (d) => api.get(
     `/search-post/dictionary/planterior?keyword=&plantLevelCode=${d.plantLevelCode}&plantPlaceCode=${d.plantPlaceCode}&plantTypeCode=${d.plantTypeCode}&plantGrowthShapeCode=${d.plantGrowthShapeCode}`
     , {
@@ -150,6 +151,42 @@ export const searchAPI = {
   }),
   // 플랜테리어 필터 조회
   planteriorFiltering: (placeCode) => api.get(`/read-posts?postTypeCode=postType01&plantPlaceCode=${placeCode}`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 플랜테리어 게시글 작성
+  writePlanteriorPost: (postdata) => api.post(`/write-post`, postdata, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 플랜테리어 게시글 수정
+  editPlanteriorPost: (postdata, postId) => api.put(`/update-post/${postId}`, postdata, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 플랜테리어 게시글 삭제
+  deletePlanteriorPost: (postId) => api.delete(`/delete-post/${postId}`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 플랜테리어 댓글 작성
+  writePlanteriorComment: (commentdata) => api.post(`/write-comment`, commentdata, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 플랜테리어 댓글 수정
+  editPlanteriorComment: (commentdata) => api.put(`/update-comment`, commentdata, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 플랜테리어 댓글 삭제
+  deletePlanteriorComment: (commentId) => api.put(`/delete-comment/${commentId}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
@@ -206,7 +243,8 @@ export const searchAPI = {
     }
   }),
   //검색어로 전체 검색하기 (비로그인)
-  postSearching_nonLogin: (postTypeCode, keyword) => api.get(`/non-login/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`,  )
+  postSearching_nonLogin: (postTypeCode, keyword) => api.get(`/non-login/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`, 
+  ),
 }
 
 // 기타 식물 관련

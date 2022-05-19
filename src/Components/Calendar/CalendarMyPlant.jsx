@@ -19,10 +19,10 @@ const CalendarMyPlant = (props) => {
         {myPlant?.map((plant) => {
           return(
           <PlantProfile key={plant.myPlantNo}
-            checked={props.plantName === plant.myPlantName? true : false}  
-            name={plant?.myPlantName} 
+            checked={props.plantName === plant.myPlantName ? true : false}  
+            name={plant?.myPlantName.length<6? plant.myPlantName : plant.myPlantName.slice(0,4)+'...'} 
             plant={plant?.plantName.length<6? plant.plantName : plant.plantName.slice(0,5)+'...'} 
-            imgUrl={plant.myPlantImgUrl}          
+            imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}          
             _onClick={() => {
               props.setPlantNo(plant?.myPlantNo);
               props.setPlantName(plant?.myPlantName);}} />

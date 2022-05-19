@@ -30,13 +30,7 @@ const PlanteriorWriteComp = () => {
     3: "이미지는 최대 3장까지 업로드 가능합니다."
   }
 
-  // 올리기 버튼 클릭시 실행되는 함수
-  const submit = () => {
-    if (place === null) {
-      setMessage(0);
-      setOpen(true);
-    }
-  }
+
 
   // 업로드한 파일 가져오기
   const onChange = (e) => {
@@ -93,6 +87,14 @@ const PlanteriorWriteComp = () => {
 
   //   dispatch(searchActions.addPlantDB(formData));
   // }
+
+    // 올리기 버튼 클릭시 실행되는 함수
+    const submit = () => {
+      if (place === null) {
+        setMessage(0);
+        setOpen(true);
+      }
+    }
 
   return (
     <React.Fragment>

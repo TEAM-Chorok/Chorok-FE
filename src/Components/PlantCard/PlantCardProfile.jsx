@@ -10,14 +10,19 @@ import { actionCreators as plantActions } from '../../Redux/Modules/Plant';
 
 const PlantCardProfile = () => {
   const dispatch = useDispatch();
-  
-  const param = useParams();
-  const plantNo = param.plantname;
-  
+
+  const plantNo = useParams().plantname;
   const plant = useSelector((state) => state.plant?.plantData);
-  
-  console.log(param)
-  console.log(plant)
+  const plantLevel = plant.plantLevel;
+  const plantTemp = plant.plantTemp;
+  const plantPlace = plant.plantPlace;
+
+
+  const item = [
+    ['난이도',plantLevel],
+    ['맞춤온도',plantTemp],
+    ['배치공간',plantPlace]
+  ]
 
   React.useEffect(() => {
     dispatch(plantActions.getPlantDetailDB(plantNo));
@@ -41,12 +46,13 @@ const PlantCardProfile = () => {
 
   return (
     <React.Fragment>
-      <Grid margin="20px 0" padding="10px">
+      <Wrapper>
+      <Grid width="100%" padding="16px">
 
         <Grid margin="auto">
-          <Image type="circle" size="148px" imgUrl={plant?.plantImgUrl}/>
+          <Image type="circle" size="148px" imgUrl={plant?.plantImgUrl} />
         </Grid>
-        <Grid margin="15px auto">
+        <Grid margin="15px auto 32px auto">
           <Text bold size="large">{plant?.plantName}</Text>
         </Grid>
 
@@ -55,34 +61,22 @@ const PlantCardProfile = () => {
           <PlantType>{plant?.plantType}</PlantType>
         </Grid>
 
-        <GridBox>
-          <Grid is_flex align="center">
-            <Dot/>
-            <Text bold size="xsmall">난이도</Text>
-          </Grid>
+        <Grid width="100%" margin="16px 0">
+          {item.map((item) => {
+            return (
+              <GridBox>
+                <Grid is_flex align="center">
+                  <Dot />
+                  <Text bold size="xsmall">{item[0]}</Text>
+                </Grid>
 
-          <Grid margin="1px 0">
-            <Text size="xsmall">{plant?.plantLevel}</Text>
-          </Grid>
-          
-          <Grid is_flex align="center">
-            <Dot/>
-            <Text bold size="xsmall">맞춤온도</Text>
-          </Grid>
-          
-          <Grid margin="1px 0">
-            <Text size="xsmall">{plant?.plantTemp}</Text>
-          </Grid>
-
-          <Grid is_flex align="center">
-            <Dot/>
-            <Text bold size="xsmall">배치공간</Text>
-          </Grid>
-
-          <Grid margin="1px 0">
-            <Text size="xsmall">{plant?.plantPlace}</Text>
-          </Grid>
-        </GridBox>
+                <Grid margin="1px 0">
+                  <Text size="xsmall">{item[1]}</Text>
+                </Grid>
+              </GridBox>
+            )
+          })}
+        </Grid>
 
         <Grid margin="25px 0">
           <Text size="XS" color="#999">
@@ -90,11 +84,18 @@ const PlantCardProfile = () => {
           </Text>
         </Grid>
 
-
       </Grid>
+      </Wrapper>
     </React.Fragment>
   );
 }
+
+
+const Wrapper = styled.div`
+  width: 100%;
+  border-bottom: 1px solid ${({theme}) => theme.colors.gray20};
+  background: ${({theme}) => theme.colors.white};
+`
 
 const PlantType = styled.div`
   margin-right: 4px;
@@ -122,9 +123,9 @@ const Dot = styled.div`
 
 const GridBox = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr;
-
-  margin: 16px 0;
+  grid-template-columns: 0.9fr 3fr;
+  width: 100%;
+  margin-bottom: 4px;
 `
 
 export default PlantCardProfile;

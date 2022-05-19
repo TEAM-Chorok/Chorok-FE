@@ -14,10 +14,10 @@ const WritePlantProfile = (props) => {
   const nameRef = React.useRef(null);
   const myPlantName = nameRef?.current?.value;
   const myPlantPlace = props.place;
-
+  
   // 파일 관련
   const fileRef = React.useRef();
-  const [file, setFile] = React.useState("/img/plantProfile.svg");
+  const [file, setFile] = React.useState(null);
   const [preview, setPreview] = React.useState("/img/add.svg");
   const [message, setMessage] = React.useState(null);
   const [open, setOpen] = React.useState(false);
@@ -42,19 +42,24 @@ const WritePlantProfile = (props) => {
     reader.readAsDataURL(e.target.files[0])
   }
 
+  const pattern = /\s/g; 
+
   const addPlant = () => {
     if (nameRef.current.value.length === 0) {
       setMessage("식물 이름을 입력해주세요.");
       setOpen(true);
       return;
-    }
-    if (nameRef.current.value.length > 6) {
-      setMessage("식물 이름을 6글자 이내로 지어주세요.");
+    } else if(nameRef.current.value.match(pattern)){
+      setMessage("식물 이름을 공백 없이 입력해주세요.");
+      setOpen(true);
+      return;
+    } else if (nameRef.current.value.length > 7) {
+      setMessage("식물 이름을 7글자 이내로 지어주세요.");
       setOpen(true);
       return;
     }
 
-    console.log("오오오이",myPlantName.length);
+    console.log(file)
 
     const plantName = nameRef?.current?.value;
     const formData = new FormData();
@@ -62,7 +67,7 @@ const WritePlantProfile = (props) => {
     formData.append('myPlantPlaceCode', myPlantPlace);
     formData.append('myPlantImgUrl', file);
     formData.append('myPlantName', plantName);
-    console.log(plantNo, myPlantPlace, file, myPlantName);
+    console.log(plantNo, myPlantPlace, file, plantName);
     props.setCompNum(2); 
     dispatch(plantActions.addPlantDB(formData));
   }
@@ -86,7 +91,7 @@ const WritePlantProfile = (props) => {
           <input
             type="file"
             style={{ display: 'none' }}
-            accept='image/*'
+            accept='image/jpg, image/jpeg, image/png'
             ref={fileRef} onChange={onChange}
           />
         </Grid>
@@ -97,13 +102,13 @@ const WritePlantProfile = (props) => {
       <Container>
 
         <Grid width="100%" margin="16px auto">
-          <Input type="square" label={"닉네임"} width="100%" placeholder="식물의 별명을 지어주세요.(최대 6글자)" _ref={nameRef} />
+          <Input type="square" label={"닉네임"} width="100%" placeholder="식물의 별명을 지어주세요.(최대 7글자)" _ref={nameRef} />
         </Grid>
 
         <ButtonBox>
           <Button type="basic" width="168px" 
             _onClick={() => { addPlant(); }}>
-            <Text size="base" color="#fff">다음으로</Text>
+            <Text size="base" color={({theme}) => theme.colors.white}>다음으로</Text>
           </Button>
         </ButtonBox>
       </Container>
