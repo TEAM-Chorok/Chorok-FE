@@ -11,6 +11,7 @@ import Post from "./Modules/post"
 import Plant from "./Modules/Plant"
 import Search from "./Modules/Search";
 import Calendar from "./Modules/Calendar";
+import MyPage from "./Modules/MyPage";
 
 export const history = createBrowserHistory();
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     plant: Plant,
     label: Label,
     post: Post,
+    mypage: MyPage,
     router: connectRouter(history),
 });
 

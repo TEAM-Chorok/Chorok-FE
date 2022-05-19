@@ -28,18 +28,19 @@ const LogInEmail = () => {
     }
 
     useEffect(() => {
-        if(userEmail !== "" && password !== "") {
-            setDisable(false);
-        }
-        if(userEmail === "" || password === "") {
-            setDisable(true);
-        }
-    }, [userEmail, password]);
-
-    if(isLogin && isToken) {
-        history.push('/home');
-    }
+      if(isLogin && isToken) {
+        history.replace('/home');
+      }
     
+      if(userEmail !== "" && password !== "") {
+          setDisable(false);
+      }
+      if(userEmail === "" || password === "") {
+          setDisable(true);
+      }
+    }, [userEmail, password, isLogin]);
+
+
   return (
     <React.Fragment>
       <Container>
@@ -51,14 +52,16 @@ const LogInEmail = () => {
                 { !idCheck(userEmail) && userEmail !== "" ? 
                <Input _onChange={(e)=>{setUserEmail(e.target.value); 
                                         idCheck(e.target.value)}} 
-               borderRadius="6px" placeholder="이메일" type="email" name="user_id" padding="0px 0px 0px 20px" height="52px" width="100%" border="1px solid #FA4D56"/> :
+                type="email" borderRadius="6px" placeholder="이메일" name="user_id" padding="0px 0px 0px 20px" height="52px" width="100%" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56"/> :
                 <Input _onChange={(e)=>{setUserEmail(e.target.value);
                                         idCheck(e.target.value)}}  
-              borderRadius="6px" placeholder="이메일" type="email" name="user_id" padding="0px 0px 0px 20px" height="52px" width="100%"/>
+                borderRadius="6px" type="email" placeholder="이메일" name="user_id" padding="0px 0px 0px 20px" height="52px" width="100%" />
                 }
-                  {!idCheck(userEmail) && userEmail !== "" ? (
-              <Text margin="0px 0px 0px 10px" color="#FA4D56" size="xsmall"> 이메일의 형식이 올바르지 않습니다.</Text>) : 
-              null}
+                {
+                  !idCheck(userEmail) && userEmail !== "" ? 
+                  <Text margin="0px 0px 0px 10px" color="#FA4D56" size="xsmall"> 이메일의 형식이 올바르지 않습니다.</Text> : 
+                  null
+                }
               
               <Grid position="relative" width="100%">
                   <Input _onChange={(e)=>setPassword(e.target.value)} 

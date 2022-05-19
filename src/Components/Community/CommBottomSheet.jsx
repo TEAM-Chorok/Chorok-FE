@@ -6,9 +6,9 @@ import { Button, Grid, Text } from '../../Elements';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
-import { BiDotsVerticalRounded } from 'react-icons/bi';
+import { ReactComponent as MoreIcon } from "../../Assets/img/Icons/moreIcon.svg";
 import { actionCreators as postActions } from '../../Redux/Modules/post';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 
 //community 게시글 및 댓글 삭제 수정 bottom sheet
 
@@ -26,6 +26,7 @@ export default function CommBottomSheet( props ) {
     setState({ ...state, [anchor]: open });
   };
 
+
     const deleteOne = (postId) => {
       dispatch(postActions.deletePostDB(postId));
     }
@@ -37,12 +38,12 @@ export default function CommBottomSheet( props ) {
     <React.Fragment key={'bottom'}>
         {type === "post"? 
         <FilterBox>
-            <BiDotsVerticalRounded style={{position:"absolute", right:"20px", top:"32px"}}
+            <MoreIcon style={{position:"absolute", right:"20px", top:"32px"}}
             onClick={toggleDrawer('bottom', true)}/>
         </FilterBox>
       :
       <FilterBox>
-            <BiDotsVerticalRounded style={{right:"20px"}}
+            <MoreIcon style={{right:"20px"}}
             onClick={toggleDrawer('bottom', true)}/>
         </FilterBox>
       }
@@ -60,15 +61,15 @@ export default function CommBottomSheet( props ) {
       >
         <Grid width="100%" height="167px">
           <Grid margin="32px 0px" width="100%">
-            <Button type="deledit" padding="12px 20px" textAlign="left" _onClick={() => { deleteOne() }}>
+            <Button type="drawerBtn" padding="12px 20px" textAlign="left" _onClick={() => { deleteOne(props.postId) }}>
                 <HiOutlinePencil style={{width: "16px", height: "16px", color:"#393939", marginRight:"28px"}}/>
               <Text bold size="base" color="#393939">삭제하기</Text>
             </Button>
-            <Button type="deledit" padding="12px 20px" textAlign="left"_onClick={() => { editOne() }}>
+            <Button type="drawerBtn" padding="12px 20px" textAlign="left"_onClick={() => { editOne(props.postId) }}>
                 <FaRegTrashAlt style={{width: "16px", height: "16px", color:"#393939", marginRight:"28px"}} />
               <Text bold size="base" color="#393939">수정하기</Text>
             </Button>
-            <Button type="deledit"padding="12px 20px" textAlign="left" _onClick={() => { setState(false) }}>
+            <Button type="drawerBtn"padding="12px 20px" textAlign="left" _onClick={() => { setState(false) }}>
                 <IoMdClose style={{width: "16px", height: "16px", color:"#393939", marginRight:"28px"}}/>
               <Text bold size="base" color="#393939">닫기</Text>
             </Button>

@@ -97,7 +97,8 @@ import ProgressBar from "./ProgressBar";
 import Navbar from "./Navbar";
 //그림자 
 import Dimmer from "./Dimmer";
-
+//모달버튼
+import SideButton from "./SideButton";
 
 export {
     Questionnaire,Questionnaire2, Questionnaire3, Questionnaire4,
@@ -116,6 +117,6 @@ export {
     EditPlantHeader, EditPlantBody,
     MyPostsPostList, 
     DeactivationAgreement,
-    PlantSearchHeader, SearchHeader, Tabbar, Alert, ProgressBar, Navbar, Dimmer,
+    PlantSearchHeader, SearchHeader, Tabbar, Alert, ProgressBar, Navbar, Dimmer, SideButton,
 };
 

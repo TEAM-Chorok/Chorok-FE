@@ -31,10 +31,10 @@ const PostDetail = () => {
     if(!post){
         return (
             <React.Fragment>
-            <Container>
-                <GeneralHeader />
-            </Container>
-        </React.Fragment>
+                <Container>
+                    <GeneralHeader />
+                </Container>
+            </React.Fragment>
         )
     }
     return (

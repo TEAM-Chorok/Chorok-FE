@@ -1,4 +1,4 @@
-import { Input, Text, Grid, Container} from '../../Elements';
+import { Input, Text, Grid, Container, Image} from '../../Elements';
 import { Button } from '@mui/material';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -7,6 +7,8 @@ import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutl
 import { useDispatch } from 'react-redux';
 import { GeneralHeader } from '../../Components';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
+import { ReactComponent as GoBackIcon } from "../../Assets/img/Icons/goBackIcon.svg"
+import { userAPI } from '../../Shared/api';
 
 
 // 프로필 편집
@@ -14,10 +16,14 @@ const ProfileSetting = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [preview, setPreview] = React.useState("https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg");
+  const [nickname, setNickname] = React.useState("");
+  const [profileImgUrl, setProfileImgUrl] = React.useState("");
+  const [preview, setPreview] = React.useState("");
+  const [describeSelf, setDescribeSelf] = React.useState("");
 
-  const nicknameRef = React.useRef("닉네임");
-  const profileRef = React.useRef("https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg");
+  const [openResult, setOpenResult] = React.useState("");
+  const [duplicatedNickname, setDuplicatedNickname] = React.useState("");
+  const profileRef = React.useRef("");
   //이미지 미리보기 부분 클릭시 input클릭되게 연동
   const handleClick = () => {
     profileRef.current.click();
@@ -33,64 +39,134 @@ const ProfileSetting = () => {
       }
     })
   }
+  const [disable, setDisable] = React.useState(true);
 
+  const checkDuplicatedNickname = (nickname) => {
+    userAPI
+    .nicknameCheck(nickname)
+    .then((res) => {
+      setDuplicatedNickname(false);
+    })
+    .catch((error) => {
+      console.log(error);
+      setDuplicatedNickname(true);
+    })
+  }
+
+  React.useEffect(() => {
+      if(nickname !== "") {
+          setDisable(false);
+      }else {
+          setDisable(true);
+      }
+  }, [preview, nickname])
+  
+  
   return (
     <React.Fragment>
       <Container>
-        <Grid padding="30px 0px" width="100%">
-        <GeneralHeader title="프로필 편집" size="h5" />
+        <Header>
+          <GoBackIcon style={{ position: "absolute",  left: "0px", top:"12px"}} 
+              onClick={() => history.goBack()}/>
+          <Text line="2.5em">프로필 편집</Text>
+          {disable || duplicatedNickname ? 
+              <Button 
+                  disabled={disable || duplicatedNickname}
+                  style={{fontSize:"16px", position: "absolute", right: "0px", top:"0px"}}>완료</Button> : 
+              <Button
+                  onClick={()=>{}}
+                  style={{color: "#24A148", fontSize:"16px", position: "absolute", right: "0px", top:"0px"}}>완료</Button>
+          }
+        </Header>
+      </Container>
+      <Container type="np">
+          <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
+      </Container>
+      <Container>
+         <Grid width="100%">
           <ProfileWrap>
                 {/* 프로필 이미지 미리보기 */}
-                <Grid margin="50px auto"
-                _onClick={handleClick}>
-                  {preview && (
+                {preview? 
                     <Image
-                      src={preview}
-                      alt="preview-img"/>
-                  )}  
-                </Grid>
-                
+                        margin="10px auto"
+                        type="circle"  
+                        imgUrl={preview}
+                        alt="preview-img"
+                        size="120px"/> : 
+                    (profileImgUrl !== "" ? 
+                        <Image
+                            margin="10px auto"
+                            type="circle"  
+                            imgUrl={profileImgUrl}
+                            alt="preview-img"
+                            size="120px"/> :
+                        <Image
+                            margin="10px auto"
+                            type="circle"  
+                            imgUrl="/img/basicPlantImg.png"
+                            alt="preview-img"
+                            size="120px"/>
+
+                    )
+                }
                 {/* <Image size="134px" imgUrl="sample.jpeg" type="circle" margin="50px auto 40px auto"/> */}
                 {/* 미리보기 클릭하면 input type=file 오픈하기 */}
-              <input 
-              ref={profileRef}
-              type="file" 
-              onChange={(e)=>{ 
-                encodeFileToBase64(e.target.files[0]);}}
-              style={{margin:"20px auto", display:"none" }} name="edit_profile_img"></input>
-              <input 
-              ref={nicknameRef}
-              display="inline-block" defaultValue="닉네임"  name="signup_profile_nickname"
-              style={{margin:"10px auto 5px auto", width: "312px", height: "56px", borderRadius:"50px", padding:"0px 20px", border:"1px solid #D5D8DB"}}></input>
-              <Button style={{position:"absolute", top:"56%", right:"25px", color:"#0AAF42", fontSize:"12px", height:"40px"}} variant='text' onClick={()=>dispatch(userActions.logIn())} >중복확인</Button>
-              {/* 중복확인 후에 아래 텍스트 출력 */}
-              <Text display="none" color="#0AAF42">사용가능한 닉네임입니다.</Text>
-              <Text display="none" color="red">이미 존재하는 닉네임입니다.</Text>
-              <Button
-              onClick={()=>console.log(nicknameRef.current.value, profileRef.current.value)}
-              style={{display:"block", margin:"160px auto auto auto", width:"148px", height:"38px", color:"white", backgroundColor:"#C1C7CD", borderRadius:"20px"}}variant='text' name="signup_submit">회원가입</Button>
-          </ProfileWrap>
-        </Grid>
+                <input ref={profileRef} 
+                style={{display:"none"}} type="file"
+                onChange={(e)=>{ 
+                    encodeFileToBase64(e.target.files[0]);
+                    setProfileImgUrl(e.target.files[0]); }} />
+                <Button style={{display:"block", color:"#0AAF42", margin: "0px auto", fontWeight:"700"}} 
+                        onClick={handleClick}> 사진 바꾸기 </Button>
+              </ProfileWrap>
+              </Grid>
+              </Container>
+              <Container type="np">
+                  <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
+              </Container>
+              <Container>
+              <label htmlFor='nickname'>사용자 닉네임</label>
+                <Input 
+                  type="square"
+                  _onChange={(e)=>setNickname(e.target.value)}
+                  id="nickname" defaultValue={nickname} placeholder="별명" 
+                  width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />
+                  <Grid width="100%" position="relative" height="44px" display="flex" align="center">
+                  {/* 중복확인 후에 아래 텍스트 출력 */}
+                  {openResult? 
+                    <Grid  margin="0px 0px 0px 10px">
+                      {duplicatedNickname  ? 
+                        <Text size="xsmall" color="#FA4D56">이미 존재하는 닉네임입니다.</Text> : 
+                        <Text size="xsmall" color="#0AAF42">사용하실 수 있는 닉네임입니다.</Text> 
+                      }
+                    </Grid>: 
+                    null
+                  }
+                    <Button 
+                    disabled={!nickname}
+                    onClick={()=>{checkDuplicatedNickname(nickname); setOpenResult(true);}}
+                    style={{position:"absolute", top:"0px", right:"0px", color:"#6F6F6F", size:"xsmall", height:"40px"}} variant='text' >중복확인</Button>
+                  </Grid>
+              <label htmlFor='describe'>소개</label>
+                <Input 
+                  type="square"
+                  _onChange={(e)=>setDescribeSelf(e.target.value)}
+                  id="describe" defaultValue={describeSelf} placeholder="소개" 
+                  width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />
+              
       </Container>
     </React.Fragment>
     );
 }
-  const Header = styled.div`
-  width: 100%;
-  height: 20%;
-  text-align: center;
-  margin: 10px auto;
+const Header = styled.div`      
+    position: relative; 
+    width: 100%;
+    text-align: center;
 `
 const ProfileWrap = styled.div`
 width: 100%;
-height: 80%;
 text-align: center;
-margin: 30px auto;
+margin: 0px auto;
 position: relative;
-`
-const Image = styled.img`
-width: 134px;
-height: 134px;
-border-radius: 100px;
 `
 export default ProfileSetting;

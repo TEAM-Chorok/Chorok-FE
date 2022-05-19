@@ -5,6 +5,8 @@ import { Text, Grid, Image, Button, Container } from '../../Elements';
 import { AddPostHeader, AddPostFooter } from '../../Components';
 import { useDispatch } from 'react-redux';
 import { actionCreators as postActions } from '../../Redux/Modules/post';
+import { TiDelete } from "react-icons/ti";
+import imageCompression from 'browser-image-compression';
 
 
 const AddPost = () => {
@@ -21,15 +23,40 @@ const AddPost = () => {
     const encodeFileToBase64 = (fileBlob) => {
         reader.readAsDataURL(fileBlob);
         return new Promise((resolve) => {
-        reader.onload = () => {
-            setPreview(reader.result);
-        };
+            reader.onload = () => {
+                setPreview(reader.result);
+            };
         });
     };
 
+    //이미지 re-sizing 
+    // const handleFileOnChange = async (e) => {
+    //     let file = e.target.files[0];	// 입력받은 file객체
+        
+    //     // 이미지 resize 옵션 설정 (최대 width을 100px로 지정)
+    //     const options = { 
+    //         maxSizeMB: 2, 
+    //         maxWidthOrHeight: 100
+    //     }
+        
+    //     try {
+    //       const compressedFile = await imageCompression(file, options);
+    //       setFile(compressedFile);
+          
+    //       // resize된 이미지의 url을 받아 fileUrl에 저장
+    //       const promise = imageCompression.getDataUrlFromFile(compressedFile);
+    //       promise.then(result => {
+    //           setFileUrl(result);
+    //       })
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //   }
+
+
+
     const submit = () => {
         dispatch(postActions.addPostDB( postTitle, imageUrl, postContent, category));
-        console.log('dd')
     }
 
     return (
@@ -50,19 +77,29 @@ const AddPost = () => {
                     <Textarea placeholder='이웃집사들과 다양한 이야기를 나누어보세요' 
                     onChange={(e) => {setPostContent(e.target.value)}}></Textarea>
                 </Grid>
+            </Container>
+            <Container type="np">
                 {imageUrl === "" ? 
                     <ImageWrap style={{visibility:"hidden"}}>
                         <Image width="84px" height="84px" type="planterior" />
-                        <input style={{display:"none"}} />
+                        <IconBox>
+                                <TiDelete
+                                size="25px" style={{ flex: "none", marginLeft: "-6.5px" }} color="#5F6060" />
+                            </IconBox>
                     </ImageWrap> :
-                    <ImageWrap>
-                        <Image width="84px" height="84px" type="planterior" imgUrl={preview} />
-                        <input style={{display:"none"}} />
-                    </ImageWrap>
+                    <>
+                        <ImageWrap>
+                            <Image width="84px" height="84px" type="planterior" imgUrl={preview} />
+                            <IconBox>
+                                <TiDelete
+                                size="25px" style={{ flex: "none", marginLeft: "-6.5px" }} color="#5F6060"
+                                onClick={() => { setImageUrl(""); setPreview(""); }} />
+                            </IconBox>
+
+                        </ImageWrap>
+                    </>
                 }
 
-            </Container>
-            <Container type="np">
                 {/* bottom */}
                 <AddPostFooter encodeFileToBase64={encodeFileToBase64} setImageUrl={setImageUrl}/>
             </Container>
@@ -86,14 +123,29 @@ const Input = styled.input`
     }
 `
 const ImageWrap = styled.div`
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    padding: 15px 6px 15px 16px;
-    background-color: #F4F4F4;
+    width: fit-content;
+    position: relative;
+    margin: 12px 8px 12px 16px;
 `
+const IconBox = styled.div`
+  position: absolute;
+  top: -5px;
+  right: -4px;
+
+  display: flex;
+  align-items: center;
+
+  width: 12px;
+  height: 12px;
+
+  border: 1px solid #000;
+  border-radius: 12px;
+  background: #fff;
+`
+
 const Textarea = styled.textarea`
     width: 100%;
-    height: 350px;
+    height: 240px;
     border: none;
     font-size: 14px;
     resize: none;

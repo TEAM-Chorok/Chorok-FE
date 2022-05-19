@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { Navbar, Questionnaire } from '../Components';
+import { Navbar, Questionnaire, SideButton } from '../Components';
 import { Container } from '../Elements';
 import {
-  Login, Home, SignUp, Kakao, ProfileSetting, Labeling,
+  Login, Home, SignUp, Kakao, Google, ProfileSetting, Labeling,
   Recommendation, FindPwd, ChangePwd,
   AddPlants, SearchPlant, PlantCard,
   Search, PlanteriorDetail, PlanteriorWrite,
@@ -36,6 +36,7 @@ function App() {
           <Route path="/signup" exact component={SignUp} />
 
             <Route path="/auth/kakao/callback" component={Kakao} />
+            <Route path="/auth/google/callback" exact component={Google} />
 
             <Route path="/findpwd" exact component={FindPwd} />
             <Route path="/changepwd" exact component={ChangePwd} />
@@ -78,7 +79,7 @@ function App() {
             <Route path="/setting/changepwd" exact component={ChangePwd} />
             <Route path="/setting/deactivation" exact component={DeactivateAccount} />
           </Container>
-
+          
           <Navbar />
         </Container>
       </ThemeProvider>

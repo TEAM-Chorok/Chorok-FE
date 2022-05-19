@@ -7,9 +7,12 @@ const MyPostsPage = () => {
     return (
         <React.Fragment>
             <Container>
-                <GeneralHeader title="내가 쓴 글" size="h5"/>
-                <MyPostsPostList />
+                <GeneralHeader title="내가 쓴 글" size="base"/>
             </Container>
+            <Container type="np">
+                <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
+            </Container>
+            <MyPostsPostList />
         </React.Fragment>
     )
 }

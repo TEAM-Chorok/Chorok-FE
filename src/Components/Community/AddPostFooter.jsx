@@ -10,6 +10,7 @@ const AddPostFooter = (props) => {
         imgRef.current.click();
     }
 
+    //업로드 후 미리보기에서 삭제후 다시 업로드 하려고 하면 안됨 와이₩? 
     return (
         <React.Fragment>
             <BottomBox>
@@ -18,7 +19,8 @@ const AddPostFooter = (props) => {
                         <IoCamera size="25px" color="#8F8F8F"></IoCamera>
                     </div>
                     <input accept='image/*' type="file" ref={imgRef}
-                    onChange={(e)=>{props.setImageUrl(e.target.files[0]); props.encodeFileToBase64(e.target.files[0])}}
+                    onChange={(e)=>{props.setImageUrl(e.target.files[0]);
+                                props.encodeFileToBase64(e.target.files[0])}}
                     style={{display:"none"}}/>
                 </BottomWrap>
             </BottomBox>

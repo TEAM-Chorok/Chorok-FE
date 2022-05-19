@@ -4,9 +4,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { KAKAO_AUTH_URL } from '../../Shared/OAuthKaKao';
-//1. JWT토큰 const isLogin  = dispatch(isLogin(sessionStorage.getItem('token')))
+import { KAKAO_AUTH_URL } from '../../Shared/OAuthKaKao.js';
+import { GOOGLE_AUTH_URL } from '../../Shared/OAuthGoogle.js';
+
 //2. 소셜 로그인 (구글 로그인)
+
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -38,11 +40,13 @@ const Login = () => {
             style={{display:"block", margin:"10px auto", width:"312px", height: "48px", alignItems:"center",  fontWeight:"700", backgroundColor:"#FEE500", padding:"14px", borderRadius:"6px", color:"#242424", boxShadow:"none"}}>카카오로 계속하기</Button>
 
             <img src="img/logo_google.svg" style={{position:"absolute", top: "72px", left:"88px", zIndex:"200"}}/>
-            <Button variant='contained' 
-            style={{display:"block", margin:"10px auto", width:"312px", fontWeight:"700",height: "48px", backgroundColor:"#F0F0F0 ", borderRadius:"6px",  color:"#392020", boxShadow:"none"}}>구글로 계속하기</Button>
+            <Button 
+            href={GOOGLE_AUTH_URL}
+            variant='contained' 
+            style={{display:"block", margin:"10px auto", width:"312px", fontWeight:"700",height: "48px", backgroundColor:"#FFFFFF ", borderRadius:"6px",  color:"#392020", boxShadow:"none"}}>구글로 계속하기</Button>
 
             <Button variant='text' 
-              style={{display:"block", margin:"10px auto", width:"312px", height: "48px", backgroundColor:"transparent", color:"black", fontWeight:"700", borderRadius:"6px", border:"1px solid #E0E0E0", boxShadow:"none"}}
+              style={{display:"block", margin:"10px auto", width:"312px", height: "48px", backgroundColor:"#E0E0E0", color:"black", fontWeight:"700", borderRadius:"6px", border:"1px solid #E0E0E0", boxShadow:"none"}}
               onClick={()=>history.push('/logIn')}>이메일로 계속하기</Button>
           </InnerDiv>
           <InnerDiv style={{marginBottom:"10px"}}>
@@ -61,10 +65,10 @@ const Login = () => {
           </InnerDiv>
           <InnerDiv style={{display:"flex"}}>           
             <Button variant='text' 
-                style={{display:"flex", margin:"10px 12px 10px 80px", width:"fit-content",  color:"#878D96"}} 
+                style={{display:"flex", margin:"10px 12px 10px 80px", width:"fit-content",  color:"#878D96", fontSize:"14px", fontWeight:"700"}} 
                 onClick={()=>history.push('/signup')}>회원가입</Button>
             <Button variant='text' 
-                style={{display:"flex", margin:"10px 80px 10px 12px", width:"fit-content",  color:"#878D96"}} 
+                style={{display:"flex", margin:"10px 80px 10px 12px", width:"fit-content",  color:"#878D96", fontSize:"14px", fontWeight:"700"}} 
                 onClick={()=>history.push('/home')}>둘러보기</Button>
           </InnerDiv>
         </InnerWrap>

@@ -4,44 +4,47 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Text, Grid, Image } from '../../Elements';
 import { useHistory } from 'react-router-dom';
-import { actionCreators as MainActions } from '../../Redux/Modules/Main';
+import { actionCreators as MyActions } from '../../Redux/Modules/MyPage';
 
 
 const MyPlants = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const myPlantList = useSelector(state => state.main?.myplant);
-    const scrapPlantList = useSelector(state => state.main?.scrapPlantList);
-    // useEffect(() => {
-        // dispatch(MainActions.getMyPlantDB());
+    const myPlantList = useSelector(state => state.mypage?.plantList);
+    const myPlantCount = useSelector(state => state.mypage?.myPlantCount);
+    // const scrapPlantList = useSelector(state => state.main?.scrapPlantList);
+
+
+    useEffect(() => {
+        dispatch(MyActions.getMySixPlantsDB());
         // dispatch(MainActions.getScrapPlantListDB());
-    // }, [])
+    }, [])
     
     // if( !myPlantList || !scrapPlantList ) {
-    //     return (
-    //         <div></div>
-    //     )
-    // }
+    if( !myPlantList ) {    
+        return (
+            <div></div>
+        )
+    }
     return (
         <React.Fragment>
             <Grid padding="0px 16px" width="100%">
                 {/* 내 식물 */}
             <TitleWrap>
-                <Text bold size="large">내 식물</Text><Text size="large" color="#0AAF42" bold>n</Text>
+                <Text bold size="large">내 식물</Text><Text size="large" color="#0AAF42" bold>{myPlantCount}</Text>
                 <Button variant='text' style={{color:"grey", justifyContent:"end"}}
                 onClick={()=>history.push('/myplants')}>더 보기</Button>
             </TitleWrap>
             <ContentWrap>
-                <Contents>
-                    <Image margin="4px 0px" type="circle" borderRadius="10px" size="104px" imgUrl="img/Rectangle2721.jpg"/>
-                    <Text display="block">myPlantName</Text>
-                    <Text size="small" color="#6F6F6F" display="block">plantName</Text>
-                </Contents>
-                <Contents>
-                    <Image margin="4px 0px"  type="circle" borderRadius="10px" size="104px" imgUrl="img/bedroom.webp"/>
-                    <Text display="block">myPlantName</Text>
-                    <Text size="small" color="#6F6F6F" display="block">plantName</Text>
-                </Contents>
+                {myPlantList?.map((p, index) => {
+                    return (
+                        <Contents key={index}>
+                            <Image margin="4px 0px" type="circle" size="96px" imgUrl={p.myPlantImgUrl}/>
+                            <Text display="block">{p.myPlantName}</Text>
+                            <Text size="small" color="#6F6F6F" display="block">{p.plantName}</Text>
+                        </Contents>
+                    )
+                })}
             </ContentWrap>
             {/* 스크랩한 식물 */}
             <TitleWrap style={{height: "36.5px" , gridTemplateColumns:"1fr 2fr"}}>
@@ -70,7 +73,7 @@ const ContentWrap = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
     place-items: center;
-    margin-bottom: 65px;
+    margin-bottom: 40px;
 `
 const ScrapContentWrap = styled.div`
     display: grid;
@@ -81,7 +84,7 @@ const ScrapContentWrap = styled.div`
 `
 const Contents = styled.div`
     width: 95%;
-    height: 110px;
+    height: 146px;
     margin: 4px;
     border-radius: 5px;
     text-align: center;

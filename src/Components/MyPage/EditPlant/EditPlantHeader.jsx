@@ -4,25 +4,43 @@ import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutl
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import { Input, Text, Grid} from '../../../Elements';
 import { useHistory } from "react-router-dom";
+import { Button } from '@mui/material';
+import { ReactComponent as GoBackIcon } from "../../../Assets/img/Icons/goBackIcon.svg"
 
-const EditPlantHeader = () => {
+const EditPlantHeader = (props) => {
     const history = useHistory();
+    const [disable, setDisable] = React.useState(true);
+
+    React.useEffect(() => {
+        if(props.preview !== "" || props.myPlantName !== "" || props.place !== props.previousPlace) {
+            setDisable(false);
+        }else {
+            setDisable(true);
+        }
+    }, [props.plantImgUrl, props.myPlantName, props.place])
+    
     return (
         <React.Fragment>
             <Header>
-                <ArrowBackIosNewOutlinedIcon style={{position: "absolute", left: "0px", top:"10px" }} 
-                onClick={()=> history.goBack()}></ArrowBackIosNewOutlinedIcon>
-                <Text line="2.5em">내 식물 편집</Text>
-                <MoreVertOutlinedIcon style={{position: "absolute", right: "0px", top:"10px" }} 
-                onClick={()=> history.goBack()}></MoreVertOutlinedIcon>
+                <GoBackIcon style={{ position: "absolute",  left: "20px", top:"24px"}} 
+                    onClick={() => history.goBack()}/>
+                <Text line="2.5em">내 식물 수정</Text>
+                {disable? 
+                    <Button 
+                        disabled={disable}
+                        style={{fontSize:"16px", position: "absolute", right: "20px", top:"12px"}}>완료</Button> : 
+                    <Button
+                        onClick={()=>{props.editMyPlant()}}
+                        style={{color: "#24A148", fontSize:"16px", position: "absolute", right: "0px", top:"12px"}}>완료</Button>
+                }
             </Header>
         </React.Fragment>
     )
 }
-const Header = styled.div`
-  width: 100%;
-  height: 50px;
-  text-align: center;
-  position: relative; 
+const Header = styled.div`      
+    position: relative; 
+    padding: 12px 0px 8px 0px;
+    width: 100%;
+    text-align: center;
 `
 export default EditPlantHeader;

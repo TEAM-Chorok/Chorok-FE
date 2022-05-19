@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Text, Grid, Image } from "../../Elements";
-import styled from "styled-components";
-import { FaRegHeart, FaHeart, FaBookmark, FaRegComment, FaRegBookmark } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import { actionCreators as postActions } from "../../Redux/Modules/post";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { ReactComponent as FavoriteIcon} from "../../Assets/img/likeBookmarkIcons/favorite.svg";
+import { ReactComponent as FavoriteSelectedIcon } from "../../Assets/img/likeBookmarkIcons/favorite_selected.svg";
+import { ReactComponent as BookmarkIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark.svg";
+import { ReactComponent as BookmarkSelectedIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark_selected.svg";
+import { ReactComponent as CommentIcon } from "../../Assets/img/likeBookmarkIcons/Comment.svg";
 
 const CommPost = (props) => {   
     const dispatch = useDispatch();
@@ -52,7 +54,11 @@ const CommPost = (props) => {
                         <Text size="large">{post?.postTitle}</Text>
                     </Grid>
                     <Grid is_flex align="center" margin="5px 0px 0px 0px">
-                        <Image type="circle" size="24px" imgUrl={post?.profileImgUrl}/>
+                        {post?.profileImgUrl===''?
+                            <Image type="circle" size="24px" imgUrl="img/noProfileImgSmall.svg"/> :
+                            <Image type="circle" size="24px" imgUrl={post?.profileImgUrl}/>
+                        }
+                        
                         <Text margin="0px 5px" size="small">{post?.nickname}</Text>
                         <Grid><Text size="xsmall" color="#6F6F6F">・ {post?.postRecentTime}</Text></Grid>
                     </Grid>
@@ -64,18 +70,28 @@ const CommPost = (props) => {
                 </Grid>
                 {/* bottom part - 좋아요, 댓글, 북마크 */}
                 <Grid width="100%" margin="20px 0px" position="relative">
-                    <Grid is_flex >
+                    <Grid is_flex align="center" >
                         {like? 
-                            <FaHeart onClick={()=>{console.log('하트'); toggleLike()}} style={{width:"20px", height:"fit-content", color:"#FA4D56"}}/> : 
-                            <FaRegHeart onClick={()=>toggleLike()} style={{width:"20px", height:"fit-content"}}/>
+                            <FavoriteSelectedIcon
+                                onClick={()=>{toggleLike()}} 
+                                style={{width:"24px", height:"fit-content"}}/> : 
+                            <FavoriteIcon
+                                onClick={()=>toggleLike()} 
+                                style={{width:"24px", height:"fit-content"}}/>
                         }
                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{post?.postLikeCount}</Text>
-                        <FaRegComment  style={{width: "20px", height:"fit-content"}} /><Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
+                        <CommentIcon 
+                            style={{width: "20px", height:"fit-content"}} />
+                        <Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
                     </Grid>
                     <Grid position="absolute" top="0px" right="0px" >
                         {bookmark? 
-                            <FaBookmark onClick={()=>toggleBookmark()} style={{width: "20px", height:"fit-content", color:"#0AAF42"}}/> : 
-                            <FaRegBookmark  onClick={()=>toggleBookmark()}style={{width: "20px", height:"fit-content"}} />
+                            <BookmarkSelectedIcon
+                                onClick={()=>toggleBookmark()} 
+                                style={{width: "24px", height:"fit-content"}}/> : 
+                            <BookmarkIcon
+                                onClick={()=>toggleBookmark()}
+                                style={{width: "24px", height:"fit-content"}} />
                         }
                     </Grid>
                 </Grid>

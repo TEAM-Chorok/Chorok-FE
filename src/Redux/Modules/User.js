@@ -36,8 +36,6 @@ const logInDB = (username, password) => {
     userAPI
       .login(username, password)
       .then((response) => {
-
-        console.log(response);
         //sessionStorage에 토큰 저장
         sessionStorage.setItem ("token", response.headers.authorization);
         dispatch(isLoginDB());
@@ -56,6 +54,7 @@ const isLoginDB = () => {
       .isLogin()
       .then((res) => {
         dispatch(getUser(res.data));
+        localStorage.setItem('nickname', res.data.nickname)
       })
       .catch((err) => {
         console.log("isLogin : error", err);
@@ -107,7 +106,26 @@ const kakaoLogInDB = (code) => {
       })
   }
 }
-
+const googleLogInDB = (code) => {
+  return function (dispatch, getState, {history}) {
+    userAPI
+      .googleLogIn(code)
+      .then((res) => {
+        sessionStorage.setItem('token', res.data.token);
+        dispatch(setUser({
+          username: res.data.username
+        }))
+        history.push('/home');
+        window.location.reload();
+      }
+      ).catch((error) => {
+        console.log("error: ", error);
+        window.alert('로그인에 실패하였습니다. ');
+        return;
+        // history.goBack();
+      })
+  }
+}
 const logOutDB = () => {
   const token = sessionStorage.getItem('token');
   return function (dispatch, getState, { history }) {
@@ -183,6 +201,7 @@ const actionCreators = {
   isLoginDB,
   signUpDB,
   kakaoLogInDB,
+  googleLogInDB,
   logInDB,
   findPwdDB,
   changePwdDB,

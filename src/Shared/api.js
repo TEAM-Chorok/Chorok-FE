@@ -4,8 +4,8 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://52.79.233.178',//민성님 Url
-  // baseURL: 'http://121.141.140.148:8085',
+  // baseURL: 'http://52.79.233.178',//민성님 Url
+  baseURL: 'http://121.141.140.148:8085',
   
 }, { withCredentials: true } //CORS error 방지
 );
@@ -32,6 +32,9 @@ export const userAPI = {
 
   //카카오 로그인
   kakaoLogIn:(code) => api.get(`/auth/kakao/callback?code=${code}`),
+
+  //google 로그인
+  googleLogIn:(code) => api.get(`/auth/google/callback?code=${code}`),
   
   //isLogin
   isLogin: () => api.get(`/user/isLogIn`,{
@@ -53,10 +56,12 @@ export const userAPI = {
     },
   }),
 
+  //비밀번호 찾기
   findPwd: (userName, userId) => api.post('/api/findPwd', {
     userName: userName,
     userId: userId,
   }),
+  //비밀번호 변경
   changePwd: (tempPassword, password, passwordCheck) => api.put('/api/changePwd', {
     tempPassword: tempPassword,
     password: password,
@@ -64,6 +69,7 @@ export const userAPI = {
   }),
 }
 
+//Labeling API
 export const labelAPI = {
   labeling: (answer1, answer2, answer3, answer4) => api.put(`/user/labeling`, {
     answer1: answer1, 
@@ -192,6 +198,8 @@ export const searchAPI = {
     }
   }),
 
+  //커뮤니티 관련 API
+
   //검색어로 전체 검색하기  (로그인)
   postSearching: (postTypeCode, keyword) => api.get(`/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`,  
     {
@@ -249,8 +257,8 @@ export const calendarAPI = {
 // 커뮤니티 페이지 관련 API
 export const postAPI = { 
   //게시글 작성
-  addPost: (formData) => api.post(`/write-post`, {
-    formData,
+  addPost: (formData) => api.post(`/write-post`, formData, {
+    
     headers: {
       "content-type": "multipart/form-data",
       Authorization: `${sessionStorage.getItem('token')}`,
@@ -286,8 +294,8 @@ export const postAPI = {
   ),
 
   //게시글 수정
-  editPost: (postId, formData) => api.put(`/update-post/${postId}`,{
-    formData,
+  editPost: (postId, formData) => api.put(`/update-post/${postId}`, formData, {
+    
     headers: {
       "content-type": "multipart/form-data",
       Authorization: ` ${sessionStorage.getItem('token')}`,
@@ -319,27 +327,68 @@ export const postAPI = {
 
 
 export const myPageAPI = {
-  //내 사진 리스트
-  getMyPhotoList: () => api.get(``,{
+  //내 사진, 스크랩한 사진 리스트 (최대6장까지)
+  getMyPhotoScrapPhotoList: () => api.get(`/mypage/post/planterior`,{
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }
   ),
 
-  //스크랩 사진 리스트
-  getScrapPhotoList: () => api.get(``,{
+  //내가 작성한 글 전체 리스트
+  getMyPostList: () => api.get(`/mypage/post`,{
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }
+  ),
+
+  //내 사진 전체 리스트
+
+  //스크랩 사진 전체 리스트
+  getScrapPhotoList: () => api.get(`/mypage/bookmark/post`,{
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }
   ),
   
-  //스크랩 플랜트 리스트
-  getScrapPlantList: () => api.get(``,{
+  //내 식물 리스트
+  getMyPlantList: () => api.get(`/mypage/myplant`, {
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }),
+
+  //스크랩 식물 리스트
+  getScrapPlantList: () => api.get(`/mypage/bookmark/plant`,{
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }
   ),
+
+  //내 식물 detail 가져오기
+  getMyDetailPlant : (myPlantNo) => api.get(`/myplant/plant/${myPlantNo}`,
+  {
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }),
+
+  //내 식물 삭제 
+  deleteMyPlant: (myPlantNo) => api.delete(`/myplant/delete/${myPlantNo}`,
+  {
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }),
+
+  //내 식물 수정
+  editMyPlant: (myPlantNo, formData) => api.patch(`/myplant/update/${myPlantNo}`, formData, {
+    headers: {
+      "content-type": "multipart/form-data",
+      Authorization: ` ${sessionStorage.getItem('token')}`,      
+    }
+  }),
 }

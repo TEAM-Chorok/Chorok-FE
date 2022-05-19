@@ -4,7 +4,8 @@ import Login from "./User/Login";
 import SignUp from "./User/SignUp";
 import LogInEmail from "./User/LogInEmail";
 
-import Kakao from "../Shared/Kakao";
+import Kakao from "./User/Kakao";
+import Google from "./User/Google";
 
 import FindPwd from "./User/FindPwd";
 import ChangePwd from "./User/ChangePwd";
@@ -53,7 +54,7 @@ import DeactivateAccount from "./User/DeactivateAccount";
 // test
 import Test from "./Test";
 
-export { Login, SignUp, Kakao, LogInEmail,
+export { Login, SignUp, Kakao, Google, LogInEmail,
     FindPwd, ChangePwd, 
     Labeling, ProfileSetting,
     Home, Recommendation,

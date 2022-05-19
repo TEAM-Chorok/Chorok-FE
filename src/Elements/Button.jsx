@@ -106,7 +106,7 @@ const Button = (props) => {
         )
       }
 
-      if(type === "deledit"){
+      if(type === "drawerBtn"){
         return (
           <React.Fragment>
             <ToggleInnerButton {...styles} onClick={_onClick}>

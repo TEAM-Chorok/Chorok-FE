@@ -4,23 +4,20 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '@mui/material';
 import { Text, Grid, Image } from '../../Elements';
-import { actionCreators as postActions} from '../../Redux/Modules/post';
+import { actionCreators as MyActions } from '../../Redux/Modules/MyPage';
 
 const MyPictures = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const myPhotoList = useSelector(state => state.post?.photoList);
-    const scrapPhotoList = useSelector(state => state.post?.scrapPhotoList);
+    const myPhotoList = useSelector(state => state.mypage?.myPlanteriorList);
+    const myPlanteriorBookMarkCount = useSelector(state => state.mypage?.myPlanteriorBookMarkCount)
+    const myPlanteriorCount = useSelector(state => state.mypage?.myPlanteriorCount)
+    const scrapPhotoList = useSelector(state => state.mypage?.myPlanteriorBookMarKList);
+
 
     useEffect(() => {
-        dispatch(postActions.getMyPhotoListDB());
-        dispatch(postActions.getScrapPhotoListDB());
+        dispatch(MyActions.getMyScrapedPhotoListDB());
     }, [])
-    
-    // const _myPhotoList=myPhotoList.slice(0, 6);
-    // const _scrapPhotoList=scrapPhotoList.slice(0, 6);
-    
-
 
     if( !myPhotoList && !scrapPhotoList ) {
         return (
@@ -32,7 +29,7 @@ const MyPictures = () => {
             <Grid padding="10px 16px" width="100%">
                 {/* 내 사진 */}
             <TitleWrap1>
-                <Text bold size="large">내 사진</Text><Text size="large" color="#0AAF42" bold>n</Text>
+                <Text bold size="large">내 사진</Text><Text size="large" color="#0AAF42" bold>{myPlanteriorCount}</Text>
                 <Button variant='text' style={{color:"grey", justifyContent:"end"}}
                 onClick={()=>history.push('/mypictures')}>더 보기</Button>
             </TitleWrap1>
@@ -48,7 +45,7 @@ const MyPictures = () => {
             </ContentWrap>
             {/* 스크랩한 사진  */}
             <TitleWrap>
-                <Text bold size="large">스크랩한 사진 </Text><Text size="large" color="#0AAF42" bold>n</Text>
+                <Text bold size="large">스크랩한 사진 </Text><Text size="large" color="#0AAF42" bold>{myPlanteriorBookMarkCount}</Text>
                 <Button variant='text' style={{color:"grey", justifyContent:"end"}}
                 onClick={()=>history.push('/scrap-picture')}>더 보기</Button>
             </TitleWrap>
