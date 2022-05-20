@@ -9,20 +9,28 @@ import { GeneralHeader } from '../../Components';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
 import { ReactComponent as GoBackIcon } from "../../Assets/img/Icons/goBackIcon.svg"
 import { userAPI } from '../../Shared/api';
+import { useSelector } from 'react-redux';
 
 
-// 프로필 편집
+// 프로필 편집  --- 이미지 수정 안됨
 const ProfileSetting = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [nickname, setNickname] = React.useState("");
+  const user = useSelector(state=>state.user?.user);
+
+  const previousImgUrl = user?.profileImgUrl;
+  const previousNickname = user?.nickname;
+  const previousProfileMsg= user?.profileMsg;
+
+  const [nickname, setNickname] = React.useState();
   const [profileImgUrl, setProfileImgUrl] = React.useState("");
   const [preview, setPreview] = React.useState("");
-  const [describeSelf, setDescribeSelf] = React.useState("");
+  const [describeSelf, setDescribeSelf] = React.useState();
 
   const [openResult, setOpenResult] = React.useState("");
   const [duplicatedNickname, setDuplicatedNickname] = React.useState("");
+
   const profileRef = React.useRef("");
   //이미지 미리보기 부분 클릭시 input클릭되게 연동
   const handleClick = () => {
@@ -54,14 +62,17 @@ const ProfileSetting = () => {
   }
 
   React.useEffect(() => {
-      if(nickname !== "") {
-          setDisable(false);
-      }else {
+      if(nickname === "" && profileImgUrl === "" && describeSelf === "") {
           setDisable(true);
+      }else {
+          setDisable(false);
       }
-  }, [preview, nickname])
+  }, [preview, nickname, describeSelf])
   
-  
+  const editProfile = () => {
+    dispatch(userActions.editProfileDB(nickname, describeSelf));
+  }
+
   return (
     <React.Fragment>
       <Container>
@@ -74,7 +85,7 @@ const ProfileSetting = () => {
                   disabled={disable || duplicatedNickname}
                   style={{fontSize:"16px", position: "absolute", right: "0px", top:"0px"}}>완료</Button> : 
               <Button
-                  onClick={()=>{}}
+                  onClick={()=>{editProfile()}}
                   style={{color: "#24A148", fontSize:"16px", position: "absolute", right: "0px", top:"0px"}}>완료</Button>
           }
         </Header>
@@ -93,11 +104,11 @@ const ProfileSetting = () => {
                         imgUrl={preview}
                         alt="preview-img"
                         size="120px"/> : 
-                    (profileImgUrl !== "" ? 
+                    (previousImgUrl !== "" ? 
                         <Image
                             margin="10px auto"
                             type="circle"  
-                            imgUrl={profileImgUrl}
+                            imgUrl={previousImgUrl}
                             alt="preview-img"
                             size="120px"/> :
                         <Image
@@ -129,7 +140,7 @@ const ProfileSetting = () => {
                 <Input 
                   type="square"
                   _onChange={(e)=>setNickname(e.target.value)}
-                  id="nickname" defaultValue={nickname} placeholder="별명" 
+                  id="nickname" defaultValue={previousNickname} placeholder="별명" 
                   width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />
                   <Grid width="100%" position="relative" height="44px" display="flex" align="center">
                   {/* 중복확인 후에 아래 텍스트 출력 */}
@@ -145,13 +156,13 @@ const ProfileSetting = () => {
                     <Button 
                     disabled={!nickname}
                     onClick={()=>{checkDuplicatedNickname(nickname); setOpenResult(true);}}
-                    style={{position:"absolute", top:"0px", right:"0px", color:"#6F6F6F", size:"xsmall", height:"40px"}} variant='text' >중복확인</Button>
+                    style={{position:"absolute", top:"0px", right:"0px", color:"#0AAF42", size:"xsmall", height:"40px"}} variant='text' >중복확인</Button>
                   </Grid>
               <label htmlFor='describe'>소개</label>
                 <Input 
                   type="square"
                   _onChange={(e)=>setDescribeSelf(e.target.value)}
-                  id="describe" defaultValue={describeSelf} placeholder="소개" 
+                  id="describe" defaultValue={previousProfileMsg} placeholder="소개" 
                   width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />
               
       </Container>
