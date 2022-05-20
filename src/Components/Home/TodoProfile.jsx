@@ -34,11 +34,11 @@ const TodoProfile = (props) => {
         {myPlant?.map((plant) => {
           return (
             <PlantProfile key={plant.myPlantNo} 
-              checked={plant.myPlantName === props.plantName? true : false}
+              checked={plant.myPlantNo === props.plantNo? true : false}
               name={plant?.myPlantName.length<6? plant.myPlantName : plant.myPlantName.slice(0,4)+'...'} 
               plant={plant.plantName.length < 6? plant.plantName : plant.plantName.slice(0, 5)+'...'} 
               imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : "/img/plantProfile.svg" }
-              _onClick={() => {props.setPlantName(plant.myPlantName)}}
+              _onClick={() => {props.setPlantNo(plant.myPlantNo)}}
               />
           );
         })}

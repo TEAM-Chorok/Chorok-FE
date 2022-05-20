@@ -1,9 +1,9 @@
-import { debounce } from "lodash";
 import React from "react";
+import { debounce } from "lodash";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { AddPlantList, Planterior, PlantSearchHeader, SearchOnFocus, Tabbar } from "../../Components";
+import { AddPlantList, Planterior, PlantSearchHeader, SearchOnFocus, SideButton, Tabbar } from "../../Components";
 import { Button, Container, Grid, Text } from "../../Elements";
 import { actionCreators as searchActions } from "../../Redux/Modules/Search";
 import Result from "./Result";
@@ -12,19 +12,21 @@ import Result from "./Result";
 const Search = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const pattern = /\s/g; 
-  // 탭 선택에 따라 보여줄 컴포넌트 목록
+  const pattern = /\s/g;
+
   // 보여줄 컴포넌트 넘버
   const [compNum, setCompNum] = React.useState(0);
   const [value, setValue] = React.useState("");
 
+  const [open, setOpen] = React.useState(false);
+
+  // 탭 선택, 검색에 따라 보여줄 컴포넌트 목록
   const comp = {
     0: <Planterior />,
     1: <AddPlantList />,
     2: <SearchOnFocus />,
-    3: <Result value={value}/>,
+    3: <Result value={value} />,
   };
-
 
   const search = (e) => {
     const text = e.target.value;
@@ -34,7 +36,7 @@ const Search = () => {
     debouncing(text);
   }
   const debouncing = debounce((text) => {
-    if(text.match(pattern) || text === ""){
+    if (text.match(pattern) || text === "") {
       console.log("검색어가없당");
       return;
     } else {
@@ -49,7 +51,7 @@ const Search = () => {
 
   return (
     <React.Fragment>
-      <Container type="np">
+      <Wrapper open={open}>
         <Container>
           <Grid width="100%">
             <PlantSearchHeader title="탐색" size="h5"
@@ -72,11 +74,18 @@ const Search = () => {
             {comp[compNum]}
           </Grid>
         }
-        <Button type="plus"/>
-      </Container>
+        {/* <Button type="plus"/> */}
+        <SideButton open={open} setOpen={setOpen} />
+      </Wrapper>
     </React.Fragment>
   )
 }
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: ${(props) => props.open? "hidden" : "auto" };
+`
 
 const ResultBox = styled.div`
   padding: 0 16px;

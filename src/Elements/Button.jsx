@@ -174,6 +174,14 @@ const PlusButton = styled.button`
 
   background: #42BE65;
   box-shadow: 1px 2px 10px rgba(5, 167, 67, 0.36);
+
+  z-index: 300;
+
+  transition: 0.2s;
+  &:active {
+    bottom: 14px;
+    transform: scale(0.97);
+  }
 `;
 
 // 식물 추가 버튼
@@ -192,6 +200,9 @@ const FloatLongButton = styled.button`
   color: #fff;
   background: #0AAF42;
   box-shadow: 1px 2px 10px rgba(5, 167, 67, 0.36);
+
+  z-index: 300;
+  transition: 0.5s;
 `;
 
 // 필터 선택 버튼
@@ -201,6 +212,7 @@ const FilterButton = styled.button`
   font-family: 'SUIT-Regular';
   font-size: 14px;
   letter-spacing: 0.25px;
+  color: #262626;
 
   margin-right: 5px;
   padding: 4px 12px;

@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { Grid, Input, Text } from "../Elements";
-import { IoSearch } from "react-icons/io5";
-import { debounce } from "lodash";
+import { ReactComponent as SearchIcon } from '../Assets/img/search.svg'
+
 
 // 검색창이 포함된 헤더 컴포넌트
 // 호출시 다음과 같이 작성해주시면 됩니다!
@@ -12,7 +12,6 @@ import { debounce } from "lodash";
 const PlantSearchHeader = (props) => {
 
   const { _onFocus, _onBlur, _onClick, _onChange } = props;
-
 
 
   return (
@@ -29,7 +28,7 @@ const PlantSearchHeader = (props) => {
           _onBlur={_onBlur}
           />
         <IconWrapper>
-          <IoSearch size="24px" color="#262626" onClick={_onClick}/>
+          <SearchIcon onClick={_onClick}/>
         </IconWrapper>
       </InputWrapper>
     </Grid>

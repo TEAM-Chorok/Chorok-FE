@@ -15,7 +15,7 @@ const FilterLevel = (props) => {
         <Grid is_flex align="center" margin="auto" width="312px">
           <Grid width="100%">
 
-            <Grid margin="12px 0" width="100%">
+            <Grid width="100%" margin="0 0 4px 0">
               <Button checked={props.code === "pl01" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl01"); props.setLevelText("초보레벨") }}>
                 <Grid is_flex width="100%">
                   <ButtonTextWrapped>
@@ -26,7 +26,7 @@ const FilterLevel = (props) => {
               </Button>
             </Grid>
 
-            <Grid margin="12px 0" width="100%">
+            <Grid width="100%" margin="0 0 4px 0">
               <Button checked={props.code === "pl02" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl02"); props.setLevelText("경력레벨") }}>
                 <Grid is_flex width="100%">
                   <ButtonTextWrapped>
@@ -37,7 +37,7 @@ const FilterLevel = (props) => {
               </Button>
             </Grid>
 
-            <Grid margin="12px 0" width="100%">
+            <Grid width="100%" margin="0 0 4px 0">
               <Button checked={props.code === "pl03" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl03"); props.setLevelText("숙련레벨") }}>
                 <Grid is_flex width="100%">
                   <ButtonTextWrapped>
@@ -61,32 +61,32 @@ const FilterSpace = (props) => {
     <React.Fragment>
       <Grid margin="auto" width="312px">
         <SpaceWrapper>
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="0 2px 2px 0">
             <Button checked={props.code === "pp04" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp04"); props.setSpaceText("거실"); }}>
               <Text size="base" color={props.code === "pp04" ? "#0AAF42" : ""}>거실</Text>
             </Button>
           </Grid>
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="0 0 2px 2px">
             <Button checked={props.code === "pp05" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp05"); props.setSpaceText("창가"); }}>
               <Text size="base" color={props.code === "pp05" ? "#0AAF42" : ""}>창가</Text>
             </Button>
           </Grid>
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="2px 2px 2px 0">
             <Button checked={props.code === "pp02" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp02"); props.setSpaceText("방안"); }}>
               <Text size="base" color={props.code === "pp02" ? "#0AAF42" : ""}>방안</Text>
             </Button>
           </Grid>
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="2px 0 2px 2px">
             <Button checked={props.code === "pp01" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp01"); props.setSpaceText("통로"); }}>
               <Text size="base" color={props.code === "pp01" ? "#0AAF42" : ""}>통로</Text>
             </Button>
           </Grid>
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="2px 2px 0 0">
             <Button checked={props.code === "pp03" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp03"); props.setSpaceText("화장실"); }}>
               <Text size="base" color={props.code === "pp03" ? "#0AAF42" : ""}>화장실</Text>
             </Button>
           </Grid>
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="2px 0 0 2px">
             <Button checked={props.code === "pp06" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp06"); props.setSpaceText("베란다/발코니"); }}>
               <Text size="base" color={props.code === "pp06" ? "#0AAF42" : ""}>베란다/발코니</Text>
             </Button>
@@ -104,7 +104,7 @@ const FilterType = (props) => {
     <React.Fragment>
       <TypeWrapper>
         <Grid margin="auto" width="312px">
-          <Grid margin="4px 0" width="100%">
+          <Grid width="100%" margin="0 0 4px 0">
             <Button checked={props.code === "pt01" ? true : false} type="filterlong" _onClick={() => { props.setType("pt01"); props.setTypeText("관엽식물") }}>
               <Grid is_flex width="100%">
                 <ButtonTextWrapped>
@@ -115,7 +115,7 @@ const FilterType = (props) => {
             </Button>
           </Grid>
 
-          <Grid margin="4px 0" width="100%">
+          <Grid width="100%" margin="0 0 4px 0">
             <Button checked={props.code === "pt02" ? true : false} type="filterlong" _onClick={() => { props.setType("pt02"); props.setTypeText("개화식물") }}>
               <Grid is_flex width="100%">
                 <ButtonTextWrapped>
@@ -126,7 +126,7 @@ const FilterType = (props) => {
             </Button>
           </Grid>
 
-          <Grid margin="4px 0" width="100%">
+          <Grid width="100%" margin="0 0 4px 0">
           <Button checked={props.code === "pt04" ? true : false} type="filterlong" _onClick={() => { props.setType("pt04"); props.setTypeText("열매식물") }}>
             <Grid is_flex width="100%">
               <ButtonTextWrapped>
@@ -137,7 +137,7 @@ const FilterType = (props) => {
           </Button>
           </Grid>
 
-          <Grid margin="4px 0" width="100%">
+          <Grid width="100%">
             <Button checked={props.code === "pt03" ? true : false} type="filterlong" _onClick={() => { props.setType("pt03"); props.setTypeText("선인장/다육식물") }}>
               <Grid is_flex width="100%">
                 <ButtonTextWrapped>
@@ -162,7 +162,7 @@ const FilterStyle = (props) => {
       <Grid width="312px" margin="auto">
         <StyleWrapper>
           
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="0 2px 2px 0">
             <Button type="filterlong" height="60px" checked={props.code === "pgs03" ? true : false} _onClick={() => { props.setStyle("pgs03"); props.setStyleText("관목형") }}> 
               <Grid is_flex width="100%" align="center">
                 <Grid width="100%" align="center">
@@ -173,7 +173,7 @@ const FilterStyle = (props) => {
             </Button>
           </Grid>
 
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="0 0 2px 2px">
             <Button type="filterlong" height="60px" checked={props.code === "pgs04" ? true : false} _onClick={() => { props.setStyle("pgs04"); props.setStyleText("직립형") }}> 
               <Grid is_flex width="100%" align="center">
                 <Grid width="100%" align="center">
@@ -184,7 +184,7 @@ const FilterStyle = (props) => {
             </Button>
           </Grid>
 
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="2px 2px 2px 0">
             <Button type="filterlong" height="60px" checked={props.code === "pgs01" ? true : false} _onClick={() => { props.setStyle("pgs01"); props.setStyleText("풀잎형") }}> 
               <Grid is_flex width="100%" align="center">
                 <Grid width="100%" align="center">
@@ -195,7 +195,7 @@ const FilterStyle = (props) => {
             </Button>
           </Grid>
 
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="2px 0 2px 2px">
             <Button type="filterlong" height="60px" checked={props.code === "pgs02" ? true : false} _onClick={() => { props.setStyle("pgs02"); props.setStyleText("덩굴형") }}> 
               <Grid is_flex width="100%" align="center">
                 <Grid width="100%" align="center">
@@ -208,7 +208,7 @@ const FilterStyle = (props) => {
 
         </StyleWrapper>
 
-          <Grid width="100%" padding="4px">
+          <Grid width="100%" padding="2px 0 0 0">
             <Button type="filterlong" height="60px" checked={props.code === "pgs06" ? true : false} _onClick={() => { props.setStyle("pgs06"); props.setStyleText("로제트형") }}> 
               <Grid is_flex width="100%" align="center">
                 <Grid width="100%" align="center">

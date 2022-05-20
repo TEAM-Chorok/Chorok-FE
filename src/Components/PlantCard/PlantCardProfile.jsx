@@ -6,43 +6,23 @@ import { useParams } from 'react-router-dom'
 import { actionCreators as plantActions } from '../../Redux/Modules/Plant';
 
 // 식물카드 상단의 기본 정보부분 
-// 식물카드에 들어갈 내용이 어느정도 확정 된 뒤에 이어서 구현하겠습니다~!
 
 const PlantCardProfile = () => {
   const dispatch = useDispatch();
 
   const plantNo = useParams().plantname;
   const plant = useSelector((state) => state.plant?.plantData);
-  const plantLevel = plant.plantLevel;
-  const plantTemp = plant.plantTemp;
-  const plantPlace = plant.plantPlace;
-
 
   const item = [
-    ['난이도',plantLevel],
-    ['맞춤온도',plantTemp],
-    ['배치공간',plantPlace]
+    ['난이도',plant?.plantLevel],
+    ['맞춤온도',plant?.plantTemp],
+    ['배치공간',plant?.plantPlace],
   ]
 
   React.useEffect(() => {
     dispatch(plantActions.getPlantDetailDB(plantNo));
   }, [plantNo])
 
-  // {
-  //   "plantNo": 12956,
-  //   "plantName": "후피향나무",
-  //   "plantImgUrl": "https://www.nongsaro.go.kr/cms_contents/301/12956_MF_ATTACH_01.jpg",
-  //   "plantLevel": "초보집사",
-  //   "plantPlace": "베란다,발코니",
-  //   "plantType": "관엽식물",
-  //   "plantTemp": "16~20℃",
-  //   "plantHumid": "40 ~ 70%",
-  //   "plantInfo": "설명 블라블라.",
-  //   "springWaterCycle": "토양 표면이 말랐을때 충분히 관수함",
-  //   "summerWaterCycle": "토양 표면이 말랐을때 충분히 관수함",
-  //   "fallWaterCycle": "토양 표면이 말랐을때 충분히 관수함",
-  //   "winterWaterCycle": "화분 흙 대부분 말랐을때 충분히 관수함"
-  // }
 
   return (
     <React.Fragment>
@@ -62,9 +42,9 @@ const PlantCardProfile = () => {
         </Grid>
 
         <Grid width="100%" margin="16px 0">
-          {item.map((item) => {
+          {item.map((item, idx) => {
             return (
-              <GridBox>
+              <GridBox key={idx}>
                 <Grid is_flex align="center">
                   <Dot />
                   <Text bold size="xsmall">{item[0]}</Text>
@@ -77,13 +57,6 @@ const PlantCardProfile = () => {
             )
           })}
         </Grid>
-
-        <Grid margin="25px 0">
-          <Text size="XS" color="#999">
-            {plant?.plantInfo}
-          </Text>
-        </Grid>
-
       </Grid>
       </Wrapper>
     </React.Fragment>

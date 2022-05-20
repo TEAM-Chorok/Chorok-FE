@@ -9,6 +9,7 @@ import { ReactComponent as PotIcon } from '../../Assets/img/plantCardIcons/large
 
 
 const PlantCardTodo = () => {
+
   return (
     <React.Fragment>
       <Grid width="100%">

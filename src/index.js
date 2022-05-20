@@ -1,3 +1,4 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -7,7 +8,6 @@ import { createBrowserHistory } from 'history';
 import configStore from "./Redux/configStore";
 
 import App from './Shared/App';
-import './index.css';
 import ScrollToTop from './Shared/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

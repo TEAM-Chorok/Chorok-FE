@@ -1,20 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Button, Grid, Image, Text } from '../../Elements';
+
 import PlantCardEnv from './PlantCardEnv';
 import PlantCardTodo from './PlantCardTodo';
 import PlantCardWaterCycle from './PlantCardWaterCycle';
-import { ReactComponent as LeafIcon } from '../../Assets/img/leafIcon.svg'
 import PlantCardInfo from './PlantCardInfo';
 
+import { Grid, Text } from '../../Elements';
+import { ReactComponent as LeafIcon } from '../../Assets/img/leafIcon.svg'
 
 
 const PlantCardFeed = () => {
   return (
     <React.Fragment>
-      <Grid width="100%" height="1200px">
+      <Grid width="100%">
 
-        <Grid height="40px" />
+        <Grid height="30px" />
 
         <Grid width="100%" padding="0 16px 24px 16px">
           <Grid margin="12px 2px">
@@ -40,7 +40,14 @@ const PlantCardFeed = () => {
           <PlantCardEnv />
         </Grid>
 
-        <PlantCardWaterCycle />
+        <Grid width="100%" padding="0 16px 24px 16px">
+          <Grid margin="12px 2px">
+            <LeafIcon />
+            <Text bold size="large" margin="0 8px">계절에 따라 적절히 물을 주세요</Text>
+          </Grid>
+          <PlantCardWaterCycle />
+        </Grid>
+
       </Grid>
     </React.Fragment>
   );

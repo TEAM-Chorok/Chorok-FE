@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux';
 
 import { FilterLevel, FilterSpace, FilterType, FilterStyle } from "../../Components/AddPlant/Filter";
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import { Button, Container, Grid, Text } from '../../Elements';
+import { Button, Grid, Text } from '../../Elements';
 import { FiRotateCw } from "react-icons/fi";
+
+import { ReactComponent as CloseIcon } from '../../Assets/img/cancel_s.svg' 
 
 import { actionCreators as searchActions } from '../../Redux/Modules/Search';
 
@@ -63,115 +65,134 @@ export default function BottomSheet() {
 
   // 필터 선택값 초기화
   const clear = () => {
-    setSpace(null);
-    setLevel(null);
-    setType(null);
-    setStyle(null);
+    setSpace("");
+    setLevel("");
+    setType("");
+    setStyle("");
     setSpaceText(null);
     setLevelText(null);
     setTypeText(null);
     setStyleText(null);
-    // + 식물 전체조회로 dispatch
+    dispatch(searchActions.getPlantDictDB());
   }
 
   // 필터 데이터 서버로 전송 -> 필터링된 목록 조회
   const filterSubmit = () => {
+    if( !level && !space && !type && !style ) {
+      setState({...state, bottom:false})
+      return;
+    }
     // 필터링 값이 전부 null일 경우 그냥 전체 조회로 dispatch 해야함
     dispatch(searchActions.plantFilteringDB(filterData));
     // console.log(filterData)
+    setState({...state, bottom:false})
   };
 
 
   return (
     <React.Fragment key={'bottom'}>
-        <FilterBox>
+      <FilterBox>
 
-          <Button type="filter" _onClick={clear}
-            checked={levelText || spaceText || typeText || styleText ? false : true}>
-            <Text size="small"
-              bold={levelText || spaceText || typeText || styleText ? false : true}
-              color={levelText || spaceText || typeText || styleText ? "" : "#0AAF42"}>전체</Text>
-          </Button>
+        <Button type="filter" _onClick={clear}
+          checked={levelText || spaceText || typeText || styleText ? false : true}>
+          <Text size="small"
+            bold={levelText || spaceText || typeText || styleText ? false : true}
+            color={levelText || spaceText || typeText || styleText ? "" : "#0AAF42"}>전체</Text>
+        </Button>
 
-          <Button checked={levelText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
-            <Text bold={levelText ? true : false} size="small" color={levelText ? "#0AAF42" : ""}>
-              {levelText ? levelText : "난이도"}
-            </Text>
-          </Button>
+        <Button checked={levelText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
+          <Text bold={levelText ? true : false} size="small" color={levelText ? "#0AAF42" : ""}>
+            {levelText ? levelText : "난이도"}
+          </Text>
+        </Button>
 
-          <Button
-            checked={spaceText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 1)}>
-            <Text bold={spaceText ? true : false} size="small" color={spaceText ? "#0AAF42" : ""}>
-              {spaceText ? spaceText : "공간"}
-            </Text>
-          </Button>
+        <Button
+          checked={spaceText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 1)}>
+          <Text bold={spaceText ? true : false} size="small" color={spaceText ? "#0AAF42" : ""}>
+            {spaceText ? spaceText : "공간"}
+          </Text>
+        </Button>
 
-          <Button checked={typeText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 2)}>
-            <Text bold={typeText ? true : false} size="small" color={typeText ? "#0AAF42" : ""}>
-              {typeText ? typeText : "종류"}
-            </Text>
-          </Button>
+        <Button checked={typeText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 2)}>
+          <Text bold={typeText ? true : false} size="small" color={typeText ? "#0AAF42" : ""}>
+            {typeText ? typeText : "종류"}
+          </Text>
+        </Button>
 
-          <Button checked={styleText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 3)}>
-            <Text bold={styleText ? true : false} size="small" color={styleText ? "#0AAF42" : ""}>
-              {styleText ? styleText : "특징"}
-            </Text>
-          </Button>
+        <Button checked={styleText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 3)}>
+          <Text bold={styleText ? true : false} size="small" color={styleText ? "#0AAF42" : ""}>
+            {styleText ? styleText : "특징"}
+          </Text>
+        </Button>
 
-        </FilterBox>
+      </FilterBox>
 
 
-        <SwipeableDrawer
-          anchor={'bottom'}
-          open={state['bottom']}
-          onClose={toggleDrawer('bottom', false)}
-          onOpen={toggleDrawer('bottom', true)}
-          PaperProps={{
-            style: {
-              borderRadius: '10px 10px 0 0'
-            }
-          }}
-          sx={{
-            position: 'absolute',
-            bottom: 0,
-          }}
+      <SwipeableDrawer
+        anchor={'bottom'}
+        open={state['bottom']}
+        onClose={toggleDrawer('bottom', false)}
+        onOpen={toggleDrawer('bottom', true)}
+        disableSwipeToOpen="false"
+        PaperProps={{
+          style: {
+            borderRadius: '10px 10px 0 0',
+            margin: 'auto',
+            width: '360px',
+          }
+        }}
+      >
+        <Grid width="100%" height="300px">
+          <Grid is_flex margin="32px 24px">
 
-        >
-          <Grid width="100%" height="300px">
-            <Grid margin="32px 24px">
+            <RelativeBox>
               <Button type="tran" _onClick={() => { setCompNum(0) }}>
                 <Text bold size="small" color={compNum === 0 ? "#0AAF42" : "#C6C6C6"}>난이도</Text>
               </Button>
+              <Dot color={level ? "#0AAF42" : "#fff"} />
+            </RelativeBox>
+
+            <RelativeBox>
               <Button type="tran" _onClick={() => { setCompNum(1) }}>
                 <Text bold size="small" color={compNum === 1 ? "#0AAF42" : "#C6C6C6"}>공간</Text>
               </Button>
+              <Dot color={space ? "#0AAF42" : "#fff"} />
+            </RelativeBox>
+
+            <RelativeBox>
               <Button type="tran" _onClick={() => { setCompNum(2) }}>
                 <Text bold size="small" color={compNum === 2 ? "#0AAF42" : "#C6C6C6"}>종류</Text>
               </Button>
+              <Dot color={type ? "#0AAF42" : "#fff"} />
+            </RelativeBox>
+
+            <RelativeBox>
               <Button type="tran" _onClick={() => { setCompNum(3) }}>
                 <Text bold size="small" color={compNum === 3 ? "#0AAF42" : "#C6C6C6"}>특징</Text>
               </Button>
-              <Button type="tran">
-              <ButtonBox>
-                <Text bold size="small" color="#A8A8A8">×</Text>
-              </ButtonBox>
-              </Button>
-            </Grid>
-            {comp[compNum]}
-          </Grid>
-          <Grid is_flex margin="32px auto" align="center">
-            <Grid margin="0 16px 0 0" _onClick={clear}>
-              <FiRotateCw size="20px" color="#8D8D8D" />
-            </Grid>
-            <Button type="basic" width="200px" height="40px"
-              _onClick={() => {
-                filterSubmit();
+              <Dot color={style ? "#0AAF42" : "#fff"} />
+            </RelativeBox>
 
-              }}>
-              <Text size="basic" color="#fff">적용하기</Text>
-            </Button>
+            <ButtonBox>
+              <CloseIcon onClick={() => { 
+                setState({...state, bottom:false}); }}/>
+            </ButtonBox>
+
           </Grid>
-        </SwipeableDrawer>
+          {comp[compNum]}
+        </Grid>
+        <Grid is_flex margin="32px auto" align="center">
+          <Grid margin="0 16px 0 0" _onClick={clear}>
+            <FiRotateCw size="20px" color="#8D8D8D" />
+          </Grid>
+          <Button type="basic" width="200px" height="40px"
+            _onClick={() => {
+              filterSubmit();
+            }}>
+            <Text size="basic" color="#fff">적용하기</Text>
+          </Button>
+        </Grid>
+      </SwipeableDrawer>
     </React.Fragment>
   );
 
@@ -186,6 +207,27 @@ const FilterBox = styled.div`
 
 const ButtonBox = styled.div`
   position: absolute;
-  top: 32px;
+  top: 34px;
   right: 32px;
+`
+const Dot = styled.div`
+  position: absolute;
+  
+  top: 0;
+  right: 0;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 5px;
+
+  background: ${(props)=>props.color};
+`
+
+const RelativeBox = styled.div`
+  position: relative;
+  margin-right: 8px;
+  
+  width: fit-content;
+  height: fit-content;
 `

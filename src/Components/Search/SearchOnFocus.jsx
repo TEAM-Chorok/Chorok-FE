@@ -8,23 +8,22 @@ const SearchOnFocus = () => {
 
   return (
     <React.Fragment>
-      {/* <Text size="base">검색창 포커스</Text> */}
       <Wrapper>
-      <Grid>
-        <Button type="filter">몬스테라</Button>
-      </Grid>
-      <Grid>
-        <Button type="filter">공작야자</Button>
-      </Grid>
-      <Grid>
-        <Button type="filter">로즈마리</Button>
-      </Grid>
-      <Grid>
-        <Button type="filter">베란다</Button>
-      </Grid>
-      <Grid>
-        <Button type="filter">거실</Button>
-      </Grid>
+        <Grid>
+          <Button type="filter">몬스테라</Button>
+        </Grid>
+        <Grid>
+          <Button type="filter">공작야자</Button>
+        </Grid>
+        <Grid>
+          <Button type="filter">로즈마리</Button>
+        </Grid>
+        <Grid>
+          <Button type="filter">베란다</Button>
+        </Grid>
+        <Grid>
+          <Button type="filter">거실</Button>
+        </Grid>
       </Wrapper>
     </React.Fragment>
   )

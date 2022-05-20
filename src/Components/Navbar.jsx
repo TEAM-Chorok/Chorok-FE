@@ -48,7 +48,7 @@ const Navbar = (props) => {
               <Grid margin="auto">
                   <HomeIcon fill={check.home?"#0AAF42":"#A8A8A8"}/>
               </Grid>
-              <Grid margin="auto">
+              <Grid margin="-6px auto">
               {check.home?
                 <Text bold size="xxsmall" color="#0AAF42">홈</Text>:
                 <Text size="xxsmall" color="#6F6F6F">홈</Text>}
@@ -63,7 +63,7 @@ const Navbar = (props) => {
               <Grid margin="auto">
                   <SearchIcon fill={check.search?"#0AAF42":"#A8A8A8"} stroke={check.search?"#0AAF42":"#A8A8A8"}/>
               </Grid>
-              <Grid margin="auto">
+              <Grid margin="-6px auto">
               {check.search?
                 <Text bold size="xxsmall" color="#0AAF42">탐색</Text>:
                 <Text size="xxsmall" color="#6F6F6F">탐색</Text>}
@@ -78,7 +78,7 @@ const Navbar = (props) => {
               <Grid margin="auto">
                   <CalendarIcon fill={check.calendar?"#0AAF42":"#A8A8A8"}/>
               </Grid>
-              <Grid margin="auto">
+              <Grid margin="-6px auto">
               {check.calendar?
                 <Text bold size="xxsmall" color="#0AAF42">캘린더</Text>:
                 <Text size="xxsmall" color="#6F6F6F">캘린더</Text>}
@@ -93,7 +93,7 @@ const Navbar = (props) => {
               <Grid margin="auto">
                   <CommunityIcon fill={check.community?"#0AAF42":"#A8A8A8"} stroke={check.community?"#0AAF42":"#A8A8A8"}/>
               </Grid>
-              <Grid margin="auto">
+              <Grid margin="-6px auto">
               {check.community?
                 <Text bold size="xxsmall" color="#0AAF42">초록톡</Text>:
                 <Text size="xxsmall" color="#6F6F6F">초록톡</Text>}
@@ -108,7 +108,7 @@ const Navbar = (props) => {
               <Grid margin="auto">
                   <UserIcon fill={check.mypage?"#0AAF42":"#A8A8A8"} stroke={check.mypage?"#0AAF42":"#A8A8A8"}/>
               </Grid>
-              <Grid margin="auto">
+              <Grid margin="-6px auto">
               {check.mypage?
                 <Text bold size="xxsmall" color="#0AAF42">마이페이지</Text>:
                 <Text size="xxsmall" color="#6F6F6F">마이페이지</Text>}
@@ -123,20 +123,24 @@ const Navbar = (props) => {
 }
 
 const NavBox = styled.div`
+  position: sticky;
+  bottom: 0;
+  box-sizing: border-box;
+
   width: 100%;
-  height: 80px;
+  height: 56px;
 
   border-top: 1px solid #E0E0E0;
   background: #fff;
+  
 `
 
 const InnerBox = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  margin:auto;
+  margin: 8px auto;
   align-items:center;
   width: 342px;
-  height: 100%;
 `
 
 const ItemBox = styled.div`

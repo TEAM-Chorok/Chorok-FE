@@ -34,7 +34,7 @@ const CalendarPage = () => {
       <Container type="np">
       <Container>
         <Text size="h5">캘린더</Text>
-        <CalendarMyPlant setPlantNo={setPlantNo} setPlantName={setPlantName} plantName={plantName}/>
+        <CalendarMyPlant setPlantNo={setPlantNo} setPlantName={setPlantName} plantNo={plantNo}/>
       </Container>
         <CalendarTable setValue={setValue} value={value} />
       <Container>

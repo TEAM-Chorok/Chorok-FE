@@ -42,7 +42,7 @@ const AddPost = () => {
     //     try {
     //       const compressedFile = await imageCompression(file, options);
     //       setFile(compressedFile);
-          
+    
     //       // resize된 이미지의 url을 받아 fileUrl에 저장
     //       const promise = imageCompression.getDataUrlFromFile(compressedFile);
     //       promise.then(result => {

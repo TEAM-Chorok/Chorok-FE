@@ -30,20 +30,22 @@ const RecommandPlant = () => {
       <Wrapper>
         {recommendlist?.map((plant) => {
           return (
-            <PlantProfile key={plant.plantId} size="L" name={plant.plantName} 
-              imgUrl={plant.plantImgUrl} _onClick={() => {openPlantCard(plant.plantId)}}/>
+                <PlantProfile key={plant.plantId} size="L" name={plant.plantName} 
+                  imgUrl={plant.plantImgUrl} _onClick={() => {openPlantCard(plant.plantId)}}/>
           );
         })}
-
       </Wrapper>
     </React.Fragment>
   )
 }
 
 const Wrapper = styled.div`
-  display: flex;
   margin: 8px 0;
 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 8px;
+  
   width: 100%;
 `
 

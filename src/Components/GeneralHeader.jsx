@@ -1,28 +1,33 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { MdArrowBackIos } from "react-icons/md";
 import styled from "styled-components";
-import { Text } from '../Elements';
+import { Grid, Text } from '../Elements';
 import { ReactComponent as GoBackIcon } from "../Assets/img/Icons/goBackIcon.svg"
-
 
 const GeneralHeader = (props) => {
   const history = useHistory();
+
   return (
-    <React.Fragment>
       <Header>
-        <GoBackIcon style={{ position: "absolute", left: "0px", top: "14px" }} 
-        onClick={() => history.goBack()}/>
-        <Text line="2.5em" size={props.size}>{props.title}</Text>
+          <GoBackIcon 
+            style={{ position: 'absolute', left: 0 }}
+            onClick={() => history.goBack()}/>
+          <Text line="2.5em" bold size={props.size}>{props.title}</Text>
       </Header>
-    </React.Fragment>
   )
 }
 const Header = styled.div`
-  width: 100%;
-  height: fit-content;
+  position: relative;
+  display: flex;
+
   text-align: center;
-  position: relative; 
   align-items: center;
+  justify-content:center;
+
+  width: 100%;
+  height: 40px;
+
+  background: #fff;
 `
+
 export default GeneralHeader;

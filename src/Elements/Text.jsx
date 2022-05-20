@@ -97,7 +97,7 @@ const Text = (props) => {
       </React.Fragment>
     );
   }
-
+  
   return (
     <React.Fragment>
       <P {...styles}>{children}</P>
@@ -127,7 +127,7 @@ const P_L = styled.p`
   font-size: 2rem;
   font-weight: ${(props) => props.bold ? 800 : 600};
   line-height: ${(props) => props.line};
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
 `
 
 const P_M = styled.p`
@@ -141,7 +141,7 @@ const P_M = styled.p`
   font-size: 1.2rem;
   font-weight: ${(props) => props.bold ? 800 : 600};
   line-height: ${(props) => props.line};
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
 `
 
 const P = styled.p`
@@ -158,7 +158,7 @@ const P = styled.p`
   line-height: ${(props) => props.line};
   font-weight: ${(props) => props.bold ? 800 : 500};
   ${(props) => props.align ? `text-align: ${props.align};` : ""};
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
 `
 
 const P_XS = styled.p`
@@ -172,7 +172,7 @@ const P_XS = styled.p`
   font-size: 0.8rem;
   font-weight: ${(props) => props.bold ? 800 : 400};
   line-height: ${(props) => props.line};
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
 `
 
 const H5 = styled.p`
@@ -186,7 +186,7 @@ const H5 = styled.p`
   font-size: 23px;
   font-weight: 600;
   line-height: ${(props) => props.line};
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
 `
 
 const H6 = styled.p`
@@ -200,7 +200,7 @@ const H6 = styled.p`
   font-size: 20px;
   font-weight: ${(props) => props.bold ? 600 : 400};
   line-height: ${(props) => props.line};
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
 `
 
 const LARGE = styled.p`
@@ -214,7 +214,7 @@ const LARGE = styled.p`
   font-size: 18px;
   font-weight: ${(props) => props.bold ? 700 : 500};
   line-height: ${(props) => props.line};
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
 `
 
 const BASE = styled.p`
@@ -225,11 +225,13 @@ const BASE = styled.p`
   padding: none;
   box-sizing: border-box;
 
+  word-break: keep-all;
+
   font-size: 16px;
   font-weight: ${(props) => props.bold ? 700 : 500};
   line-height: ${(props) => props.line};
   letter-spacing: 0.15px;
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
 
   transition: 0.2s;
 `
@@ -247,7 +249,7 @@ const SMALL = styled.p`
   font-size: 14px;
   font-weight: ${(props) => props.bold ? 700 : 400};
   line-height: ${(props) => props.line};
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
   letter-spacing: 0.25px;
 `
 
@@ -262,8 +264,9 @@ const XSMALL = styled.p`
   font-size: 13px;
   font-weight: ${(props) => props.bold ? 600 : 400};
   line-height: ${(props) => props.line};
-  letter-spacing: 0.25px;
-  color: ${(props) => props.color};
+  letter-spacing: 0.25px;  
+  color: ${(props) => props.color? props.color : "#262626" };
+
 `
 
 const XXSMALL = styled.p`
@@ -278,7 +281,7 @@ const XXSMALL = styled.p`
   font-weight: ${(props) => props.bold ? 600 : 500};
   line-height: ${(props) => props.line};
   letter-spacing: 0.4px;
-  color: ${(props) => props.color};
+  color: ${(props) => props.color? props.color : "#262626" };
 `
 
 

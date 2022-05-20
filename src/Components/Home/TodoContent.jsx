@@ -13,7 +13,7 @@ const TodoContent = () => {
   const sentence = useSelector((state) => state.main.sentence);
   const todoList = useSelector((state) => state?.main?.todo);
 
-  const [plantName, setPlantName] = React.useState(null);
+  const [plantNo, setPlantNo] = React.useState(null);
 
   React.useEffect(() => {
     dispatch(mainActions.getSentenceDB());
@@ -33,7 +33,7 @@ const TodoContent = () => {
             </SentenceBox>
           </Grid>
           <Grid width="100%" margin="16px 0">
-            <TodoProfile plantName={plantName} setPlantName={setPlantName}/>
+            <TodoProfile plantNo={plantNo} setPlantNo={setPlantNo}/>
           </Grid>
         </TitleBox>
 
