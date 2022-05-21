@@ -314,10 +314,11 @@ const postSearchingDB = (postTypeCode, keyword) => {
 
 
 //댓글 달기
-const addCommentDB = (postId, comment) => {
+const addCommentDB = (postId, commentContent) => {
+  const commentdata = {postId, commentContent };
   return function (dispatch, getState, { history }){
     postAPI
-      .addComment(postId, comment)
+      .addComment(commentdata)
       .then((res) => {
         console.log("response : ", res.data);
         dispatch(getDetailPostDB(postId));

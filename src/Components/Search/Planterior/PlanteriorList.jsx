@@ -47,7 +47,7 @@ const PlanteriorList = () => {
                   <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
                   <Grid is_flex margin="4px 0">
                     <Image type="circle" size="20px"
-                    // imgUrl={post.profileImageUrl}
+                    imgUrl={post.profileImageUrl}
                     />
                     <Text bold size="xsmall" margin="1px 4px">{post.nickname}</Text>
                   </Grid>

@@ -386,19 +386,17 @@ export const postAPI = {
   }),
 
   //커뮤니티 댓글 작성
-  addComment: (postNo, commentContent) => api.post(`/write-comment`, {
-    postNo : postNo,
-    commentContent : commentContent,
-
+  addComment: (commentdata) => api.post(`/write-comment`,commentdata,
+   {
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //커뮤니티 댓글 수정
-  editComment: (commentNo, commentContent) => api.put(`/update-comment`, {
+  editComment: (commentNo, commentdata) => api.put(`/update-comment`, {
     commentNo :commentNo,
-    commentContent : commentContent,
+    commentdata: commentdata,
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
@@ -431,7 +429,11 @@ export const myPageAPI = {
   ),
 
   //내 사진 전체 리스트
-
+  getMyPhotoList: () => api.get(`/mypage/post?postTypeCode=postType01`, {
+    headers:{
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }),
   //스크랩 사진 전체 리스트
   getScrapPhotoList: () => api.get(`/mypage/bookmark/post`,{
     headers: {
