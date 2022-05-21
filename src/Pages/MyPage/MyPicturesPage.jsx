@@ -12,9 +12,8 @@ const MyPicturesPage = () => {
             </Container>
             <Container type="np">
                 <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
-            </Container>
-            <Container>
                 <MyPicturesPostList />
+                <div style={{height:"60px", width:"100%"}}></div>
             </Container>
         </React.Fragment>
     )

@@ -12,17 +12,18 @@ const MyPicturesPostList = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const myPictureList = useSelector(state => state.mypage?.photoList);
-
+    
     useEffect(() => {
         dispatch(MyActions.getMyPhotoListDB());
     },[]);
 
     return (
         <React.Fragment>
-            <Grid width="100%" >
                  {myPictureList?.map((p) => {
                      return(
-                        <Grid key={p.postId} width="100%" >
+                         <React.Fragment  key={p.postId}>
+                        <Container>
+                        <Grid width="100%" _onClick={()=>history.push(`/community/${p.postId}`)}>
                             <Grid is_flex align="center" margin="5px 0px 16px 0px">
                                 {p?.profileImgUrl===null?
                                     <Image type="circle" size="32px" imgUrl="/img/noProfileImgSmall.svg"/> :
@@ -59,16 +60,20 @@ const MyPicturesPostList = () => {
                                     <Text margin="0px 8px" size="base" color="#6F6F6F">{p?.commentCount}</Text>
                                 </Grid>
                                 <Grid position="absolute" top="0px" right="0px" >
-                                    <BookmarkIcon
+                                    <BookmarkIcon fill="transparent" stroke="#393939"
                                     // onClick={()=>toggleBookmark()}
                                     style={{width: "24px", height:"fit-content"}} />
                                 </Grid>
                             </Grid>
                         </Grid>
+                        </Container>
+                        <Container type="np">
+                            <div style={{height:"12px", width:"100%", backgroundColor:"#F7F8FA"}}></div>
+                        </Container>
+                        </React.Fragment>
                      )
                  })}
                     
-            </Grid>
         </React.Fragment>
     )
 }

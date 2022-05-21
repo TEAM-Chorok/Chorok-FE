@@ -15,8 +15,10 @@ const MyPictures = () => {
     const scrapPhotoList = useSelector(state => state.mypage?.myPlanteriorBookMarKList);
 
 
+    console.log(myPhotoList);
+
     useEffect(() => {
-        dispatch(MyActions.getMyScrapedPhotoListDB());
+        dispatch(MyActions.getMyPhotoScrapedPhotoListDB());
     }, [])
 
     if( !myPhotoList && !scrapPhotoList ) {
@@ -34,10 +36,13 @@ const MyPictures = () => {
                 onClick={()=>history.push('/mypictures')}>더 보기</Button>
             </TitleWrap1>
             <ContentWrap>
-                {myPhotoList && myPhotoList.map((p) => {
+                {myPhotoList && myPhotoList?.map((p, idx) => {
                     return (
-                    <Contents key={p.myPhotoList.planteriorNo}>
-                        <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="p.planteriorImgUrl"/>
+                    <Contents key={idx}>
+                        <Image margin="4px auto" type="square" borderRadius="10px" size="104px" imgUrl={p.postImgUrl}/>
+                        <Grid borderRadius="20px" padding="2px 8px" bg="rgb(0,0,0,0.5)" position="absolute" bottom="6px" left="40px">
+                            <Text color="#ffffff" size="xxsmall">{p.plantPlace}</Text>
+                        </Grid>
                     </Contents>
                     )
                 })}
@@ -50,11 +55,11 @@ const MyPictures = () => {
                 onClick={()=>history.push('/scrap-picture')}>더 보기</Button>
             </TitleWrap>
             <ContentWrap>
-                {scrapPhotoList && scrapPhotoList.map((p) => {
+                {scrapPhotoList && scrapPhotoList.map((p, idx) => {
                     
                     return (
-                    <Contents key={p.planteriorNo}>
-                        <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="p.planteriorImgUrl"/>
+                    <Contents key={idx}>
+                        <Image margin="4px auto" type="square" borderRadius="10px" size="104px" imgUrl={p.postImgUrl}/>
                     </Contents>
                     )
                 })}
@@ -85,9 +90,10 @@ const ContentWrap = styled.div`
     margin-bottom: 35px;
 `
 const Contents = styled.div`
-    width: 95%;
+    width: 100%;
     height: 110px;
     margin: 3px;
     border-radius: 5px;
+    position: relative;
 `
 export default MyPictures;

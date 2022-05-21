@@ -36,6 +36,8 @@ const initialState = {
 }
 
 //middleWare 
+
+//내 식물 불러오기 (6개)
 const getMySixPlantsDB = () => {
     return function ( dispatch, getState, {history}) {
         myPageAPI
@@ -50,6 +52,7 @@ const getMySixPlantsDB = () => {
             })
     }
 }
+// 내 식물 상세정보
 const getMyPlantDetailDB = (myPlantNo) => {
     return function (dispatch, getState, {history}){
         myPageAPI
@@ -102,7 +105,7 @@ const editMyPlantDB = () => {
 }
 
 //내 사진 + 스크랩한 사진 리스트 (최대6개)
-const getMyScrapedPhotoListDB = () => {
+const getMyPhotoScrapedPhotoListDB = () => {
     return function (dispatch, getState, {history}){
         myPageAPI
             .getMyPhotoScrapPhotoList()
@@ -119,14 +122,15 @@ const getMyScrapedPhotoListDB = () => {
 //내 사진 전체 리스트
 const getMyPhotoListDB = () => {
     return function (dispatch, getState, {history}){
-        // myPageAPI
-        //     .getMyPhotoList()
-        //     .then((res)=> {
-        //         dispatch(getPhotoList(res.data));
-        //     }).catch((error) => {
-        //         console.log("error: ", error);
-        //         // window.alert('내 사진 불러오기에 실패하였습니다.');
-        //     });
+        myPageAPI
+            .getMyPhotoList()
+            .then((res)=> {
+                console.log(res.data.content)
+                dispatch(getPhotoList(res.data.content));
+            }).catch((error) => {
+                console.log("error: ", error);
+                // window.alert('내 사진 불러오기에 실패하였습니다.');
+            });
     }
 }
 
@@ -136,6 +140,7 @@ const getScrapPhotoListDB = () => {
         myPageAPI
             .getScrapPhotoList()
             .then((res)=> {
+                console.log(res.data);
                 dispatch(getScrapPhotoList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
@@ -191,7 +196,6 @@ export default handleActions(
         }),
         [GET_MY_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
             draft.photoList = action.payload.photoList;
-
         }),
         [GET_SCRAP_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
             draft.list = action.payload.list;
@@ -212,7 +216,7 @@ const actionCreators = {
     deleteMyPlantDB,
     editMyPlantDB,
     getMySixPlantsDB,
-    getMyScrapedPhotoListDB,
+    getMyPhotoScrapedPhotoListDB,
     getMyPhotoListDB,
     getScrapPhotoListDB,
     getScrapPlantListDB,
