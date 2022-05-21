@@ -24,6 +24,7 @@ const Result = (props) => {
         <Grid padding="0 16px" width="100%">
           {comp[compNum]}
         </Grid>
+        <Grid height="50px"/>
       </Container>
     </React.Fragment>
   )

@@ -70,10 +70,9 @@ const AppContainer = styled.div`
 
     margin: auto;
     
+    width: 100%;    
     min-width: 360px;
-    width: 428px;
-    min-height: 640px;
-    height: 926px;
+
     background: ${(props) => props.bg};
 
 `
@@ -89,11 +88,9 @@ const RouteContainer = styled.div`
 
     margin:none;
 
+    width: 100%;    
     min-width: 360px;
-    width: 428px;
-    min-height: 640px;
-    height: 926px;  
-    overflow-y: scroll;
+
     background: ${(props) => props.bg};
 `
 const NonPaddingContainer = styled.div`
@@ -102,7 +99,7 @@ const NonPaddingContainer = styled.div`
 
     margin: auto;
     
-    width: 428px;
+    width: 100%;    
     min-width: 360px;
     
     background: ${(props) => props.bg};
@@ -113,8 +110,9 @@ const ContainerBox = styled.div`
     box-sizing: border-box;
     padding: 16px;
 
+    width: 100%;
     min-width: 360px;
-    width: 428px;
+
     background: ${(props) => props.bg};
 `;
 

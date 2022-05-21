@@ -12,6 +12,7 @@ const PlanteriorWrite = () => {
     <React.Fragment>
       <Container type="np">
         <PlanteriorWriteComp />
+        <Grid height="50px"/>
       </Container>
     </React.Fragment>
   )

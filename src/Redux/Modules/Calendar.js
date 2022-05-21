@@ -67,14 +67,29 @@ const getCheckedDB = (year, month, plantNo) => {
   }
 };
 
-const postBloomingDB = (plantNo, data) => {
+const postBloomingDB = (plantNo, data, year, month) => {
   return function (dispatch, getState, { history }) {
     calendarAPI
-      .postBlooming(plantNo, data)
+    .postBlooming(plantNo, data)
+    .then((response) => {
+      console.log("postBloomingDB : response", response.data);
+      dispatch(getCheckedDB(year, month, plantNo));
+    }).catch((error) => {
+      console.log("postBloomingDB : response", error.response);
+      })
+    }
+}
+
+const checkCalendarDB = (date, plantNo, workType, year, month) => {
+  console.log(`/calendar/${date}/${plantNo}/${workType}`);
+  return function (dispatch, getState, { history }) {
+    calendarAPI
+      .checkCalendar(plantNo, date, workType)
       .then((response) => {
-        console.log("postBloomingDB : response", response.data);
+        console.log("checkCalendarDB : response", response.data);
+        dispatch(getCheckedDB(year, month, plantNo));
       }).catch((error) => {
-        console.log("postBloomingDB : response", error.response);
+        console.log("checkCalendarDB : response", error.response);
       })
   }
 }
@@ -96,6 +111,7 @@ export default handleActions(
 const actionCreators = {
   getCheckedDB,
   postBloomingDB,
+  checkCalendarDB,
 }
 
 export { actionCreators };

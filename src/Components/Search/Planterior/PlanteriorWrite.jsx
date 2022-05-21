@@ -1,16 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-import Alert from "../../Alert";
+import Alert2 from "../../Alert2";
 import PlaceFilter from "../PlaceFilter";
 import AddPostHeader from "../../Community/AddPostHeader";
+
+import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 
 import { Grid, Image, Input, Text } from "../../../Elements";
 import { IoCamera } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
+import { useDispatch } from "react-redux";
+
 
 
 const PlanteriorWriteComp = () => {
+  const dispatch = useDispatch();
 
   // alert 모달 open/close
   const [open, setOpen] = React.useState(false);
@@ -19,6 +24,7 @@ const PlanteriorWriteComp = () => {
   const [message, setMessage] = React.useState(null);
 
   const fileRef = React.useRef();
+  const contentRef = React.useRef();
   const [file, setFile] = React.useState([]);
   const [preview, setPreview] = React.useState([]);
   
@@ -27,14 +33,20 @@ const PlanteriorWriteComp = () => {
     0: "자랑할 공간을 선택해주세요!",
     1: "내용이 비어있습니다!",
     2: "이미지를 업로드해주세요!",
-    3: "이미지는 최대 3장까지 업로드 가능합니다."
+    3: "이미지는 최대 3장까지 업로드 가능합니다.",
+    4: "초록은 아직 1장의 이미지만 업로드 가능합니다😭"
   }
 
 
 
   // 업로드한 파일 가져오기
   const onChange = (e) => {
-    if (file.length === 3 || e.target.files.length > 3) {
+    if (file.length === 2 || e.target.files.length > 1) {
+      setMessage(4);
+      setOpen(true);
+      return;
+    }
+    if (file.length === 4 || e.target.files.length > 3) {
       setMessage(3);
       setOpen(true);
       return;
@@ -77,24 +89,30 @@ const PlanteriorWriteComp = () => {
   }
   console.log(file)
   console.log(preview);
-  // const addPlant = () => {
-  //   const formData = new FormData();
-  //   formData.append('plantNo', plantNo);
-  //   formData.append('myPlantPlace', myPlantPlace);
-  //   formData.append('myPlantImgUrl', file);
-  //   formData.append('myPlantName', myPlantName);
-  //   console.log(plantNo, myPlantPlace, file, myPlantName);
-
-  //   dispatch(searchActions.addPlantDB(formData));
-  // }
-
-    // 올리기 버튼 클릭시 실행되는 함수
-    const submit = () => {
-      if (place === null) {
-        setMessage(0);
-        setOpen(true);
-      }
+  
+  const submit = () => {
+    if (place === null) {
+      setMessage(0);
+      setOpen(true);
     }
+
+  
+
+    const formData = new FormData();
+
+    formData.append('postTitle', 'title');
+    formData.append('postImgUrl', file[0]);
+    formData.append('postContent', contentRef.current.value);
+    formData.append('plantPlaceNo', place);
+    formData.append('postTypeCode', 'postType01');
+
+    for (let value of formData.values()) {
+      console.log("폼데이터", value);
+}
+    console.log(file, contentRef.current.value, place);
+    dispatch(searchActions.writePlanteriorPostDB(formData));
+  }
+
 
   return (
     <React.Fragment>
@@ -103,7 +121,7 @@ const PlanteriorWriteComp = () => {
         <PlaceFilter none setPlace={setPlace} />
       </Grid>
       <Grid width="100%" padding="0 16px">
-        <Input type="textarea" placeholder="사진에 대해 설명해 주세요." />
+        <Input type="textarea" placeholder="사진에 대해 설명해 주세요." _ref={contentRef}/>
       </Grid>
 
 
@@ -144,15 +162,15 @@ const PlanteriorWriteComp = () => {
         <Grid width="100%" />
         <Grid margin="auto">
           <Text bold size="base" color="#24A148">{file?.length ? file.length : "0"}</Text>
-          <Text size="base" color="#6F6F6F">/3</Text>
+          <Text size="base" color="#6F6F6F">/1</Text>
         </Grid>
       </UploadArea>
 
-      <Alert onebutton open={open} setOpen={setOpen} btn1="계속 작성하기">
+      <Alert2 onebutton open={open} setOpen={setOpen} btn1="계속 작성하기">
         <Text bold wordbreak size="small">
           {alertMessage[message]}
         </Text>
-      </Alert>
+      </Alert2>
     </React.Fragment>
   )
 }

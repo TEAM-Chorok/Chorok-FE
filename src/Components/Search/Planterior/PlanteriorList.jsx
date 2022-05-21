@@ -22,7 +22,7 @@ const PlanteriorList = () => {
   }
 
   const [place, setPlace] = React.useState("all");
-  const planteriorList = useSelector((state) => state?.search?.planteriorList);
+  const planteriorList = useSelector((state) => state?.search?.planteriorList?.content);
   
   React.useEffect(() => {
     // 추천식물 조회 API가 없다......
@@ -39,14 +39,14 @@ const PlanteriorList = () => {
 
       <PlaceFilter setPlace={setPlace} />
       <Grid width="100%">
-          {planteriorList ?
-        <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
+        {planteriorList ?
+          <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
             {planteriorList?.map((post, idx) => {
               return (
-                <ContentWrapper key={post.postId} onClick={() => {openDetail(post.postId)}}>
+                <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId) }}>
                   <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
                   <Grid is_flex margin="4px 0">
-                    <Image type="circle" size="20px" 
+                    <Image type="circle" size="20px"
                     // imgUrl={post.profileImageUrl}
                     />
                     <Text bold size="xsmall" margin="1px 4px">{post.nickname}</Text>
@@ -61,11 +61,11 @@ const PlanteriorList = () => {
                 </ContentWrapper>
               )
             })}
-        </Masonry>
-            :
-            <GridBox>
+          </Masonry>
+          :
+          <GridBox>
             {height.map((height, idx) => {
-              return(
+              return (
                 <ContentWrapper key={idx} _onClick={openDetail}>
                   <Grid width="150px" height={height} bg="#ddd" borderRadius="8px" />
                   <Grid is_flex margin="4px 0" align="center">

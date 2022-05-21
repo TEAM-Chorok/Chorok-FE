@@ -40,6 +40,7 @@ const HomeHeader = () => {
           lon: position.coords.longitude,
         }
         setStatus(`현재 위치 ${userLocation.lat} - ${userLocation.lon}`);
+        console.log(userLocation);
         // 조회한 위치정보로 날씨 api 요청
         dispatch(mainActions.getWeatherDB(userLocation));
         // 조회한 위치정보 한글로 출력
@@ -67,7 +68,11 @@ const HomeHeader = () => {
 
   React.useEffect(() => {
     getLocation();
+    console.log("실행?")
   }, [])
+
+  console.log(cityname, weatherData);
+  console.log(status);
 
   return (
     <React.Fragment>
@@ -82,8 +87,8 @@ const HomeHeader = () => {
             <br />
             <Text size="XS" color="#999"> 최저 {weatherData?.temp_min}℃ 최고 {weatherData?.temp_max}℃ 습도 {weatherData?.humidity}%</Text>
           </Grid>
-          <Grid padding="16px">
-            <Img src="img/weather/suncloud.png" />
+          <Grid>
+            <Img src="/img/weather/slight_touch_happyday.svg" />
           </Grid>
         </Grid>
         :

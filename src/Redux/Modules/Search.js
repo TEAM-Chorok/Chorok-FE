@@ -85,6 +85,8 @@ const writePlanteriorPostDB = (postdata) => {
     .writePlanteriorPost(postdata)
     .then((response) => {
       console.log("writePlanteriorPostDB : response", response);
+      history.push(`/planterior/post/${response.data.postId}`);
+      window.location.reload();
     }).catch((error) => {
       console.log("writePlanteriorPostDB : error", error.response);
     })
@@ -124,6 +126,7 @@ const writePlanteriorCommentDB = (commentdata) => {
     .writePlanteriorComment(commentdata)
     .then((response) => {
       console.log("writePlanteriorCommentDB : response", response);
+      dispatch(getPlanteriorDetailDB(commentdata.postId));
     }).catch((error) => {
       console.log("writePlanteriorCommentDB : error", error.response);
     })
@@ -174,7 +177,6 @@ const getPlanteriorDetailDB = (postId) => {
 // 탐색탭 키워드 검색 - 전체탭
 const keywordSearchingDB = (value) => {
   return function (dispatch, getState, {history}) {
-    console.log("걍", value);
     searchAPI
     .keywordSearching(value)
     .then((response) => {
@@ -189,7 +191,6 @@ const keywordSearchingDB = (value) => {
 // 탐색탭 키워드 검색 - 사진(플랜테리어)탭
 const keywordSearchingPhotoDB = (value) => {
   return function (dispatch, getState, {history}) {
-    console.log("파라미터", value);
     searchAPI
     .keywordSearchingPhoto(value)
     .then((response) => {
@@ -204,7 +205,6 @@ const keywordSearchingPhotoDB = (value) => {
 // 탐색탭 키워드 검색 - 사진(플랜테리어)탭 장소 필터링
 const keywordSearchingPhotoPlaceDB = (value) => {
   return function (dispatch, getState, {history}) {
-    console.log("위치", value);
     searchAPI
     .keywordSearchingPhotoPlace(value)
     .then((response) => {
@@ -314,7 +314,12 @@ const actionCreators = {
   keywordSearchingPlantDB,
   getPlantDictDB,
   writePlanteriorPostDB,
+  editPlanteriorPostDB,
+  deletePlanteriorPostDB,
+  writePlanteriorCommentDB,
+  editPlanteriorCommentDB,
+  deletePlanteriorCommentDB,
 
-}
+  }
 
 export { actionCreators };

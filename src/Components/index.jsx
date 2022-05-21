@@ -32,6 +32,7 @@ import PlanteriorDetailContents from "./Search/Planterior/PlanteriorDetailConten
 import PlanteriorDetailComments from "./Search/Planterior/PlanteriorDetailComments";
 import PlanteriorList from "./Search/Planterior/PlanteriorList";
 import PlanteriorWriteComp from "./Search/Planterior/PlanteriorWrite";
+import PlanteriorCommentWrite from "./Search/Planterior/PlanteriorCommentWrite";
 import LabelingTestLink from "./Search/Planterior/LabelingTestLink";
 import RecommendPlant from "./Search/Planterior/RecommendPlant"
 
@@ -107,7 +108,7 @@ export {
     AddPlantList, BottomSheet, SelectPlace, WritePlantProfile, AddDone,
     PlantCardProfile, PlantCardFeed, 
     CalendarTable, CalendarMyPlant, CalendarTodo,
-    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, PlanteriorWriteComp,
+    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, PlanteriorWriteComp, PlanteriorCommentWrite,
     SearchOnFocus, AllResult, PlanteriorResult, PlantResult, 
     LabelingTestLink, RecommendPlant,
     CommPost, CommPostList, CommunityFilter, DetailCommPost, AddPlantDairy, AddPostHeader, AddPostFooter,

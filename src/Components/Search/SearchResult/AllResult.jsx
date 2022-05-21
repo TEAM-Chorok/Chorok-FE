@@ -36,7 +36,8 @@ const AllResult = (props) => {
             {result?.plantriaSearchList?.map((result, idx) => {
               return (
                 <div key={result?.postId}>
-                  <Grid margin="2px auto">
+                  <Grid margin="2px auto"
+                    _onClick={() => { history.push(`/planterior/post/${result.postId}`); }}>
                     <Image type="square" size="104px" borderRadius="4px" imgUrl={result.postImgUrl}/>
                   </Grid>
                 </div>

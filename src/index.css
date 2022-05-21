@@ -54,6 +54,7 @@ button {
   opacity: 60%;
   background-color: rgb(38, 38, 38);
   z-index: 100;
+  overflow: hidden;
 }
 
 .labelingLogo{

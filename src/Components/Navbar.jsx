@@ -123,7 +123,7 @@ const Navbar = (props) => {
 }
 
 const NavBox = styled.div`
-  position: sticky;
+  position: fixed;
   bottom: 0;
   box-sizing: border-box;
 

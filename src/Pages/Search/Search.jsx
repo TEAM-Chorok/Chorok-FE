@@ -52,7 +52,8 @@ const Search = () => {
   return (
     <React.Fragment>
       <Wrapper open={open}>
-        <Container>
+      <SideButton open={open} setOpen={setOpen} />
+        <Grid width="100%" padding="16px">
           <Grid width="100%">
             <PlantSearchHeader title="탐색" size="h5"
               _onChange={(e) => { search(e) }}
@@ -64,7 +65,7 @@ const Search = () => {
             <div></div> :
             <Tabbar tab1="사진" tab2="식물도감" setCompNum={setCompNum} compNum={compNum} />
           }
-        </Container>
+        </Grid>
         {compNum > 1 ?
           <Grid margin="-16px 0 0 0" width="100%">
             {comp[compNum]}
@@ -75,7 +76,7 @@ const Search = () => {
           </Grid>
         }
         {/* <Button type="plus"/> */}
-        <SideButton open={open} setOpen={setOpen} />
+        <Grid height="50px"/>
       </Wrapper>
     </React.Fragment>
   )
@@ -84,7 +85,7 @@ const Search = () => {
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  overflow: ${(props) => props.open? "hidden" : "auto" };
+  overflow: ${(props) => props.open ? "hidden" : "auto"};
 `
 
 const ResultBox = styled.div`

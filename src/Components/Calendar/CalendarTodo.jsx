@@ -16,19 +16,16 @@ import moment from "moment";
 const CalendarTodo = (props) => {
   const dispatch = useDispatch();
 
-  const workType = {
-    w1: <TodoIcons workType="물주기" img="img/calendaricon/water.svg" />,
-    w2: <TodoIcons workType="잎닦기" img="img/calendaricon/leaf.svg" />,
-    w3: <TodoIcons workType="환기하기" img="img/calendaricon/wind.svg" />,
-    w4: <TodoIcons workType="분갈이" img="img/calendaricon/pottedplant.svg" />,
-    w5: <TodoIcons workType="영양제" img="img/calendaricon/pill.svg" />,
-    w6: <TodoIcons workType="꽃 핀 날" img="img/calendaricon/flower.svg" />,
+  const content = {
+    w1: <TodoIcons content="물주기" img="img/calendaricon/water.svg" />,
+    w2: <TodoIcons content="잎닦기" img="img/calendaricon/leaf.svg" />,
+    w3: <TodoIcons content="환기하기" img="img/calendaricon/wind.svg" />,
+    w4: <TodoIcons content="분갈이" img="img/calendaricon/pottedplant.svg" />,
+    w5: <TodoIcons content="영양제" img="img/calendaricon/pill.svg" />,
+    w6: <TodoIcons content="꽃 핀 날" img="img/calendaricon/flower.svg" />,
   }
 
-  const date = moment(new Date()).format('YYYY-MM-DD');
-  const data = {
-    bloomingday: date
-  }
+
   const [checked, setChecked] = React.useState(false)
 
 
@@ -39,21 +36,20 @@ const CalendarTodo = (props) => {
       setChecked(false);
 		};
 	};
-  const bloomingcheck = () => {
-    dispatch(calendarActions.postBloomingDB(props.plantNo, data));
-  }
-  
+
+
   return (
     <React.Fragment>
       <Grid margin="8px 0">
         <Text bold size="large">{props.plantName}</Text>
       </Grid>
-        <CalendarTodoBlock workType={workType.w1} _onClick={() => { check() }}/>
-        <CalendarTodoBlock workType={workType.w2} _onClick={() => { check() }}/>
-        <CalendarTodoBlock workType={workType.w3} _onClick={() => { check() }}/>
-        <CalendarTodoBlock workType={workType.w4} _onClick={() => { check() }}/>
-        <CalendarTodoBlock workType={workType.w5} _onClick={() => { check() }}/>
-        <CalendarTodoBlock workType={workType.w6} _onClick={() => { check() }}/>
+        
+        <CalendarTodoBlock content={content.w1} workType="물주기" plantNo={props.plantNo} _onClick={() => { check() }}/>
+        <CalendarTodoBlock content={content.w2} workType="잎닦기" plantNo={props.plantNo} _onClick={() => { check() }}/>
+        <CalendarTodoBlock content={content.w3} workType="환기" plantNo={props.plantNo} _onClick={() => { check() }}/>
+        <CalendarTodoBlock content={content.w4} workType="분갈이" plantNo={props.plantNo} _onClick={() => { check() }}/>
+        <CalendarTodoBlock content={content.w5} workType="영양제" plantNo={props.plantNo} _onClick={() => { check() }}/>
+        <CalendarTodoBlock content={content.w6} workType="꽃핀날" plantNo={props.plantNo} _onClick={() => { check() }}/>
     </React.Fragment>
   )
 };
@@ -63,7 +59,7 @@ const TodoIcons = (props) => {
   return (
     <TodoBox>
       <Image type="square" size="15px" imgUrl={props.img} />
-      <Text margin="0 8px" size="small">{props.workType}</Text>
+      <Text margin="0 8px" size="small">{props.content}</Text>
     </TodoBox>
     );
 }

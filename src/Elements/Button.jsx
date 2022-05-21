@@ -161,13 +161,13 @@ const BasicButton = styled.button`
 `;
 
 const PlusButton = styled.button`
-  margin: 10px 0;
+  margin: 0;
   width: 60px;
   height: 60px;
   
-  position: sticky;
-  bottom: 16px;
-  left: 80%;
+  position: fixed;
+  bottom: 82px;
+  right: 32px;
   
   border: none;
   border-radius: 60px;
@@ -179,17 +179,16 @@ const PlusButton = styled.button`
 
   transition: 0.2s;
   &:active {
-    bottom: 14px;
+    bottom: 80px;
     transform: scale(0.97);
   }
 `;
 
 // 식물 추가 버튼
 const FloatLongButton = styled.button`
-  position: sticky;
-  bottom: 28px;
-  left: 80px;
-  right: 80px;
+  position: fixed;
+  left: 95px;
+  bottom: 76px;
 
   width: 200px;
   height: 56px;

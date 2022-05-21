@@ -96,7 +96,22 @@ const Input = (props) => {
         <TextArea 
           {...styles}
           placeholder={placeholder}
-          onChange={_onChange}/>
+          onChange={_onChange}
+          ref={_ref}
+          />
+      </React.Fragment>
+    );
+  }
+
+  if (type === "comment") {
+    return (
+      <React.Fragment >
+        <CommentTextArea 
+          {...styles}
+          placeholder={placeholder}
+          onChange={_onChange}
+          ref={_ref}
+          />
       </React.Fragment>
     );
   }
@@ -242,11 +257,13 @@ const TextArea = styled.textarea`
   box-sizing: border-box;
   
   width: 100%;
-  height: 580px;
+  ${'' /* height: 40vh; */}
+  height: 66vh;
 
   resize: none;
   
-  border: 1px solid #000;
+  ${'' /* border: 1px solid red; */}
+  border: none;
   outline: none;
 
   font-size: 14px;
@@ -255,6 +272,33 @@ const TextArea = styled.textarea`
   &::placeholder {
     color: #A8A8A8;
   }
+  @media screen and (max-height: 400px) {
+    height: 364px;
+  }
+`
+
+const CommentTextArea = styled.textarea`
+  font-family: 'SUIT-Regular';
+  box-sizing: border-box;
+  padding: 10px 44px 0 12px;
+
+  width: 100%;
+  height: 40px;
+
+  resize: none;
+  
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  outline: none;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: #262626;
+
+  &::placeholder {
+    color: #A8A8A8;
+  }
+
   @media screen and (max-height: 400px) {
     height: 364px;
   }

@@ -5,15 +5,17 @@ import { useParams, useHistory } from 'react-router-dom'
 import styled from 'styled-components';
 import { ReactComponent as BookMarkIcon } from '../../Assets/img/likeBookmarkIcons/Bookmark.svg'
 import Alert2 from '../../Components/Alert2';
-
+import { useDispatch } from 'react-redux';
+import { actionCreators as plantActions } from '../../Redux/Modules/Plant';
 
 
 // 식물카드 페이지
 
 const PlantCard = () => {
   const history = useHistory();
-  const plantNo = useParams().plantname;
+  const dispatch = useDispatch();
 
+  const plantNo = useParams().plantname;
 
   const [open, setOpen] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -21,14 +23,15 @@ const PlantCard = () => {
   const check = () => {
     if (checked === true) {
       setChecked(false);
+      dispatch(plantActions.plantMarkingDB(plantNo));
     } else {
       setChecked(true);
+      dispatch(plantActions.plantMarkingDB(plantNo));
     }
-
   }
 
   React.useEffect(() => {
-    if(open) {
+    if (open) {
       document.body.style.overflowY = "hidden";
     } else {
       document.body.style.overflowY = "hidden";
@@ -37,45 +40,50 @@ const PlantCard = () => {
 
 
 
+
   return (
     <React.Fragment>
       <Wrapper open={open}>
-        <HeaderBox>
-          <GeneralHeader />
-          {checked ?
-            <BookMarkIcon
-              className='bookmark'
-              fill="#6FDC8C"
-              stroke="#0AAF42"
-              onClick={check}
-            />
-            :
-            <BookMarkIcon
-              className='bookmark'
-              fill="none"
-              stroke="#393939"
-              onClick={check}
-            />
-          }
-        </HeaderBox>
+        <Container type="np" >
 
-        <Grid width="100%" bg="#F7F8FA">
+          <HeaderBox>
+            <GeneralHeader />
+            {checked ?
+              <BookMarkIcon
+                className='bookmark'
+                fill="#6FDC8C"
+                stroke="#0AAF42"
+                onClick={check}
+              />
+              :
+              <BookMarkIcon
+                className='bookmark'
+                fill="none"
+                stroke="#393939"
+                onClick={check}
+              />
+            }
+          </HeaderBox>
 
-          <PlantCardProfile />
-          <PlantCardFeed />
+          <Grid width="100%" bg="#F7F8FA">
 
-          <Button type="longfloat" _onClick={() => { setOpen(true); }}>
-            <Text size="base" color="#fff">내 식물에 추가하기</Text>
-          </Button>
+            <PlantCardProfile />
+            <PlantCardFeed />
+
+            <Button type="longfloat" _onClick={() => { setOpen(true); }}>
+              <Text size="base" color="#fff">내 식물에 추가하기</Text>
+            </Button>
 
 
-          <Alert2 open={open} setOpen={setOpen} btn1="아니오" btn2="네" url={`/add/${plantNo}`}>
-            <Text bold size="small">
-              내 식물에 <br /> 추가하시겠습니까?
-            </Text>
-          </Alert2>
+            <Alert2 open={open} setOpen={setOpen} btn1="아니오" btn2="네" url={`/add/${plantNo}`}>
+              <Text bold size="small">
+                내 식물에 <br /> 추가하시겠습니까?
+              </Text>
+            </Alert2>
 
-        </Grid>
+            <Grid height="130px"/>
+          </Grid>
+        </Container>
       </Wrapper>
     </React.Fragment>
   );
@@ -85,7 +93,7 @@ const PlantCard = () => {
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  overflow: ${(props) => props.open? "hidden" : "auto" };
+  overflow: ${(props) => props.open ? "hidden" : "auto"};
 `
 
 const HeaderBox = styled.div`

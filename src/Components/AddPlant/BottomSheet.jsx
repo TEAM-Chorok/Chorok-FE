@@ -136,12 +136,15 @@ export default function BottomSheet() {
         disableSwipeToOpen="false"
         PaperProps={{
           style: {
+            position: 'absolute',
             borderRadius: '10px 10px 0 0',
             margin: 'auto',
             width: '360px',
           }
         }}
       >
+
+
         <Grid width="100%" height="300px">
           <Grid is_flex margin="32px 24px">
 

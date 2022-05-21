@@ -7,6 +7,17 @@ import Dimmer from "./Dimmer";
 
 // 호출한 부모 컴포넌트에서 모달 open/close에 관여하는 state를 관리해야합니다!
 // const [open, setOpen] = React.useState(false);
+//
+//
+// 전체 목록을 감싸는 div를 하나 만들어주고 속성을 다음과 같이 지정해주세요!
+// 그래야 모달 오픈시 스크롤이 되지 않습니다 ~!  
+// <Wrapper open={open}>
+//
+// const Wrapper = styled.div`
+// width: 100%;
+// height: 100%;
+// overflow: ${(props) => props.open? "hidden" : "auto" };
+// `
 
 const SideButton = (props) => {
   const history = useHistory();
@@ -54,9 +65,9 @@ const Modal = styled.div`
 width: fit-content;
 height: fit-content;
 z-index: 200;
-position: sticky;
-left: 180px;
-bottom: 92px; 
+position: fixed;
+right: 32px;
+bottom: 144px; 
 `
 const InnerWrap = styled.div`
 margin: 12px 0;

@@ -32,7 +32,7 @@ const getWeatherDB = (userLocation) => {
     mainAPI
       .getWeather(userLocation)
       .then((response) => {
-        // console.log("getWeatherDB : response", response.data);
+        console.log("getWeatherDB : response", response.data);
         // 날씨 데이터 한글 변환
         let weather = '';
         let arr = [['Clear', 'Clouds', 'Rain', 'Snow', 'Mist', 'Thunderstorm', 'Drizzle',

@@ -32,6 +32,21 @@ const getPlantDetailDB = (plantNo) => {
   }
 };
 
+const plantMarkingDB = (plantNo) => {
+  return function (dispatch, getState, {history}) {
+    plantAPI
+    .plantMarking(plantNo)
+    .then((response) => {
+      console.log("plantMarkingDB : response ", response);
+      dispatch(getPlantDetailDB(plantNo));
+    }).catch((error) => {
+      console.log("plantMarkingDB : error ", error.response);
+    })
+  }
+}
+
+
+
 // 식물 추가하기
 const addPlantDB = (plantData) => {
   return function (dispatch, getState, { history }) {
@@ -80,6 +95,7 @@ const actionCreators = {
   getPlantDetailDB,
   addPlantDB,
   getPlantPlaceDB,
+  plantMarkingDB,
 }
 
 export { actionCreators };

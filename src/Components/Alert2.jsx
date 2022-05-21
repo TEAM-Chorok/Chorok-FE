@@ -26,7 +26,7 @@ const Alert2 = (props) => {
           <Dimmer setOpenModal={props.setOpen} onClick={() => { props.setOpen(false); }} />
           <Modal onClick={e => e.stopPropagation()}>
             <InnerWrap>
-              <Grid align="center" margin="auto">
+              <Grid align="center" width="200px" margin="auto">
                 {children}
               </Grid>
               <Grid is_flex margin="24px auto 0 auto" align="center">
@@ -37,13 +37,17 @@ const Alert2 = (props) => {
                     </Text>
                   </Button>
                 </Grid>
-                <Grid margin="0 16px">
-                  <Button type="tran" _onClick={() => { history.replace(`${url}`); }}>
-                    <Text size="small">
-                      {btn2}
-                    </Text>
-                  </Button>
-                </Grid>
+                {btn2 ?
+                  <Grid margin="0 16px">
+                    <Button type="tran" _onClick={() => { history.replace(`${url}`); }}>
+                      <Text size="small">
+                        {btn2}
+                      </Text>
+                    </Button>
+                  </Grid>
+                  :
+                  <></>
+                }
               </Grid>
             </InnerWrap>
           </Modal>

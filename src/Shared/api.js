@@ -4,9 +4,9 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://52.79.233.178',//민성님 Url
-  // baseURL: 'http://121.141.140.148:8085',
-  // baseURL: 'http://13.209.87.69:8080', // 은아님
+  // baseURL: 'http://52.79.233.178',//민성님 Url
+  // baseURL: 'http://121.141.140.148:8085', // 주호님
+  baseURL: 'http://13.209.87.69:8080', // 은아님
   // baseURL: ' http://chorok.shop', // 은아님
   
 }, { withCredentials: true } //CORS error 방지
@@ -217,7 +217,7 @@ export const searchAPI = {
   }),
   // 탐색탭 키워드 검색 
   
-  keywordSearchingPhoto: (value) => api.get(`/search-post/photo/planterior?keyword=${value}`, {
+  keywordSearchingPhoto: (value, pagenum) => api.get(`/search-post/photo/planterior?keyword=${value}&page=${pagenum?pagenum:0}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
@@ -263,6 +263,12 @@ export const plantAPI = {
         "Authorization": `${sessionStorage.getItem('token')}`,
       }
     }),
+    // 식물 북마크
+    plantMarking: (plantNo) => api.get(`/plantBookMark/${plantNo}`, {
+      headers: {
+        "Authorization": `${sessionStorage.getItem('token')}`,
+      }
+    }),
     // 식물 추가
     addPlant: (plantData) => api.post('/myplant', plantData, {
       headers: {
@@ -270,6 +276,7 @@ export const plantAPI = {
         "Authorization": `${sessionStorage.getItem('token')}`,
       }
     }),
+    // 장소 리스트 (필터목록용)
     getPlantPlace: () => api.get('/filter/plant-place', {
       headers: {
         "Authorization": `${sessionStorage.getItem('token')}`,
@@ -284,7 +291,12 @@ export const calendarAPI = {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
-  postBlooming: (plantNo, data) => api.get(`/blooming/${plantNo}`, data, {
+  postBlooming: (plantNo, data) => api.post(`/blooming/${plantNo}`, data, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  checkCalendar: (plantNo, date, workType) => api.patch(`/calendar/${date}/${plantNo}/${workType}`, {}, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
