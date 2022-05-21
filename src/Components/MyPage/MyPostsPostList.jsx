@@ -11,12 +11,19 @@ import { ReactComponent as CommentIcon } from "../../Assets/img/likeBookmarkIcon
 const MyPostsPostList= () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const myPostList = useSelector(state => state.mypage?.postList);
+    const myPostList = useSelector(state => state.mypage?.postList.content);
 
     useEffect(() => {
       dispatch(MyActions.getMyPostListDB());
     }, [])
 
+    if(!myPostList || myPostList.length === 0){
+        return (
+            <React.Fragment>
+                <div></div>
+            </React.Fragment>
+        )
+    }
     return (
         <React.Fragment>        
             {myPostList?.map((p) => {

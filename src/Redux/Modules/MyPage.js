@@ -66,12 +66,14 @@ const getMyPlantDetailDB = (myPlantNo) => {
     }
 }
 const deleteMyPlantDB = (myPlantNo) => {
+    console.log(myPlantNo);
     return function (dispatch, getState, {history}){
         myPageAPI
             .deleteMyPlant(myPlantNo)
             .then((res) => {
                 console.log(res.data);
                 history.push('/myplants');
+                window.location.reload();
             })
             .catch((err) => {
                 console.log("error:" , err);
@@ -80,6 +82,7 @@ const deleteMyPlantDB = (myPlantNo) => {
             })
     }
 }
+//나의 식물 수정 on process...
 const editMyPlantDB = () => {
     const formData = new FormData();
     formData.append();

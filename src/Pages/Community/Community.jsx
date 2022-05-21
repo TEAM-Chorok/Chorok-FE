@@ -25,7 +25,7 @@ const Community = () => {
     return (
         <React.Fragment>
             <Container type="np">
-                <Grid width="100%">
+                <Grid width="100%" position={open? 'fixed': 'nonset'}>
                     <Grid padding="20px 20px 0px 20px" width="100%">
                         <SearchHeader category={category} />
                         <CommunityFilter setCategory={setCategory} category={category} />
@@ -37,15 +37,15 @@ const Community = () => {
                             <Dimmer setOpenModal={setOpenModal} onClick={() => closeModal()} />
                             <Modal onClick={e => e.stopPropagation()}>
                                 <InnerWrap onClick={() => history.push('/search')}>
-                                    <Text size="small" >식물 추가하기</Text>
+                                    <Text size="small" >🌱 식물 추가하기</Text>
                                 </InnerWrap>
 
                                 <InnerWrap>
                                     <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
-                                        <Text size="small">공간 자랑하기</Text>
+                                        <Text size="small">🏡 공간 자랑하기</Text>
                                     </InnerBox1>
                                     <InnerBox2 onClick={() => history.push(`/addpost`)}>
-                                        <Text size="small">초록톡 글쓰기</Text>
+                                        <Text size="small">💬 초록톡 글쓰기</Text>
                                     </InnerBox2>
                                 </InnerWrap>
                             </Modal>
@@ -68,18 +68,19 @@ bottom: 140px;
 margin: auto;
 `
 const InnerWrap = styled.div`
-width: 167px;
+margin: 12px 0;
+padding: 12px 16px;
+
+width: 136px;
 height: fit-content;
-text-align: center;
-background-color: white;
-margin: 8px 0px;
-padding: 12px;
 border-radius: 16px;
+
+background-color: white;
 `
 const InnerBox1 = styled.div`
-padding: 0px 0px 6px 0px;
+padding-bottom: 10px;
 `
 const InnerBox2 = styled.div`
-padding: 6px 0px 0px 0px;
+padding-top: 10px;
 `
 export default Community;

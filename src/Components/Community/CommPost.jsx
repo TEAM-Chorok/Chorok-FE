@@ -42,7 +42,7 @@ const CommPost = (props) => {
         }
     };
 
-
+    
     return (
         <React.Fragment>
             <Grid width="100%" padding="20px" margin="0px 0px 12px 0px">
@@ -54,7 +54,7 @@ const CommPost = (props) => {
                         <Text size="large">{post?.postTitle}</Text>
                     </Grid>
                     <Grid is_flex align="center" margin="5px 0px 0px 0px">
-                        {post?.profileImgUrl===''?
+                        {post?.profileImgUrl==='' || post?.profileImgUrl === null?
                             <Image type="circle" size="24px" imgUrl="img/noProfileImgSmall.svg"/> :
                             <Image type="circle" size="24px" imgUrl={post?.profileImgUrl}/>
                         }
@@ -80,8 +80,7 @@ const CommPost = (props) => {
                                 style={{width:"24px", height:"fit-content"}}/>
                         }
                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{post?.postLikeCount}</Text>
-                        <CommentIcon 
-                            style={{width: "20px", height:"fit-content"}} />
+                        <CommentIcon />
                         <Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
                     </Grid>
                     <Grid position="absolute" top="0px" right="0px" >
@@ -89,7 +88,7 @@ const CommPost = (props) => {
                             <BookmarkSelectedIcon
                                 onClick={()=>toggleBookmark()} 
                                 style={{width: "24px", height:"fit-content"}}/> : 
-                            <BookmarkIcon
+                            <BookmarkIcon fill="transparent" stroke="#262626"
                                 onClick={()=>toggleBookmark()}
                                 style={{width: "24px", height:"fit-content"}} />
                         }

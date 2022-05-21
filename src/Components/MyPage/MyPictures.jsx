@@ -51,6 +51,7 @@ const MyPictures = () => {
             </TitleWrap>
             <ContentWrap>
                 {scrapPhotoList && scrapPhotoList.map((p) => {
+                    
                     return (
                     <Contents key={p.planteriorNo}>
                         <Image margin="4px 0px" type="square" borderRadius="10px" size="104px" imgUrl="p.planteriorImgUrl"/>

@@ -4,8 +4,8 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://52.79.233.178',//민성님 Url
-  // baseURL: 'http://121.141.140.148:8085',
+  // baseURL: 'http://52.79.233.178',//민성님 Url
+  baseURL: 'http://121.141.140.148:8085',
   // baseURL: 'http://13.209.87.69:8080', // 은아님
   // baseURL: ' http://chorok.shop', // 은아님
   
@@ -57,6 +57,18 @@ export const userAPI = {
       "Authorization": `${sessionStorage.getItem('token')}`,
     },
   }),
+
+  //프로필 수정
+  editProfile: (nickname, profileMsg) => api.patch(`/user/update/profile`, 
+  {
+    nickname: nickname, 
+    profileMsg: profileMsg,
+  }, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    },
+  }
+  ),
 
   //비밀번호 찾기
   findPwd: (userName, userId) => api.post('/api/findPwd', {
@@ -361,6 +373,31 @@ export const postAPI = {
     }
   }),
 
+  //커뮤니티 댓글 작성
+  addComment: (postNo, commentContent) => api.post(`/write-comment`, {
+    postNo : postNo,
+    commentContent : commentContent,
+
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }),
+
+  //커뮤니티 댓글 수정
+  editComment: (commentNo, commentContent) => api.put(`/update-comment`, {
+    commentNo :commentNo,
+    commentContent : commentContent,
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }),
+
+  //커뮤니티 댓글 삭제
+  deleteComment: (commentId) => api.get(`/delete-comment/${commentId}`, {
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }),
 }
 
 
@@ -415,7 +452,7 @@ export const myPageAPI = {
   }),
 
   //내 식물 삭제 
-  deleteMyPlant: (myPlantNo) => api.delete(`/myplant/delete/${myPlantNo}`,
+  deleteMyPlant: (myPlantNo) => api.delete(`/myplant/${myPlantNo}`,
   {
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,

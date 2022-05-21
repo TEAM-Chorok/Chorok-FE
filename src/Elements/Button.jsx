@@ -166,7 +166,7 @@ const PlusButton = styled.button`
   height: 60px;
   
   position: sticky;
-  bottom: 16px;
+  bottom: 8%;
   left: 80%;
   
   border: none;
@@ -179,7 +179,7 @@ const PlusButton = styled.button`
 
   transition: 0.2s;
   &:active {
-    bottom: 14px;
+    bottom: 8%;
     transform: scale(0.97);
   }
 `;

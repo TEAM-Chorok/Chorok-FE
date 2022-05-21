@@ -22,7 +22,7 @@ const PlanteriorList = () => {
   }
 
   const [place, setPlace] = React.useState("all");
-  const planteriorList = useSelector((state) => state?.search?.planteriorList);
+  const planteriorList = useSelector((state) => state?.search?.planteriorList?.content);
   
   React.useEffect(() => {
     // 추천식물 조회 API가 없다......

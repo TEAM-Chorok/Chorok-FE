@@ -1,4 +1,4 @@
-import { Grid, Image, Permit, Text } from "../../Elements";
+import { Grid, Image, Permit, Text, Container } from "../../Elements";
 import React from "react";
 import styled from "styled-components";
 import { BiDotsVerticalRounded } from 'react-icons/bi';
@@ -19,7 +19,7 @@ const CommPostCommentList = (props) => {
                 return (
                     <CommentWrap key={p.commentId}>
                         <Grid>
-                            <Image type="circle" size="24px" imgUrl={p.profileImgUrl} />  
+                            <Image type="circle" size="24px" imgUrl={p.profileImgUrl !=="" ? p.profileImgUrl : '/img/noProfileImgSmall.svg'} />  
                         </Grid>
                         <CommentRowsBox>
                             <Grid>
@@ -28,9 +28,12 @@ const CommPostCommentList = (props) => {
                             </Grid>
                             <Grid margin="0px 5px"><Text size="small">{p.commentContent}</Text></Grid>
                         </CommentRowsBox>
+                        {props.nickname === p.nickname ? 
                         <Permit>
-                            <Grid><CommBottomSheet /></Grid>
-                        </Permit>
+                            <Grid><CommBottomSheet postWriter={p.nickname}/></Grid>
+                        </Permit> :
+                        null}
+                        
                     </CommentWrap>
                 )
             })}
@@ -41,8 +44,8 @@ const CommPostCommentList = (props) => {
 const CommentWrap = styled.div`
     height: fit-content;
     display: grid;
-    grid-template-columns: 1fr 10fr 1fr;
-    padding: 12px 20px;
+    grid-template-columns: 1fr 10fr 0.3fr;
+    padding: 12px 0px;
     border-bottom: 1px solid #E0E0E0;
 `
 const CommentRowsBox = styled.div`

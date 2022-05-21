@@ -79,7 +79,7 @@ const AddPost = () => {
                 </Grid>
             </Container>
             <Container type="np">
-                {imageUrl === "" ? 
+                {imageUrl === "" || imageUrl === null ? 
                     <ImageWrap style={{visibility:"hidden"}}>
                         <Image width="84px" height="84px" type="planterior" />
                         <IconBox>

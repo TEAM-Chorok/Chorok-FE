@@ -39,20 +39,26 @@ const MyPlants = () => {
                 {myPlantList?.map((p, index) => {
                     return (
                         <Contents key={index}>
-                            <Image margin="4px 0px" type="circle" size="96px" imgUrl={p.myPlantImgUrl}/>
-                            <Text display="block">{p.myPlantName}</Text>
-                            <Text size="small" color="#6F6F6F" display="block">{p.plantName}</Text>
+                            <Image margin="4px auto" type="circle" size="96px" 
+                                imgUrl={p.myPlantImgUrl? p.myPlantImgUrl : '/img/plantProfile.svg'}/>
+                            <Text display="block">
+                                {p?.myPlantName.length<6? p.myPlantName : p.myPlantName.slice(0,4)+'...'}</Text>
+                            <Text size="small" color="#6F6F6F" display="block">
+                                {p.plantName.length < 6? p.plantName : p.plantName.slice(0, 5)+'...'}</Text>
                         </Contents>
                     )
                 })}
             </ContentWrap>
             {/* 스크랩한 식물 */}
-            <TitleWrap style={{height: "36.5px" , gridTemplateColumns:"1fr 2fr"}}>
+            <TitleWrap style={{height: "36.5px" , gridTemplateColumns:"1fr 2.5fr"}}>
                 <Text bold size="large">스크랩한 식물 </Text><Text size="large" color="#0AAF42" bold>n</Text>
             </TitleWrap>
             <ScrapContentWrap>
                 <Contents key="plantname/plantId" onClick={()=>history.push(`/plant/plantname`)}>
-                    <Image type="circle" size="104px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"/>
+                    <Image margin="8px auto" type="circle" size="96px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"/>
+                    {/* <Text size="small" color="#6F6F6F" display="block">
+                                {p.plantName.length < 6? p.plantName : p.plantName.slice(0, 5)+'...'}</Text> */}
+                    <Text size="small" color="#6F6F6F" display="block">장미</Text>
                 </Contents>
                 
             </ScrapContentWrap>
@@ -64,7 +70,7 @@ const MyPlants = () => {
 
 const TitleWrap = styled.div`
     display: grid;
-    grid-template-columns: 1fr 3.5fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
     width: 100%;
     align-items: center;
 `

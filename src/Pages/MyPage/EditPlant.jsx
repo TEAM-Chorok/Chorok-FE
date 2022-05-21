@@ -11,10 +11,14 @@ import { actionCreators as myActions } from '../../Redux/Modules/MyPage';
 
 Modal.setAppElement('#root')
 
+//나의 식물 수정 -- 작업중 
+//나의 식물 삭제 -- 작업 완료
 const EditPlant = () => {
+
     const history = useHistory();
     const dispatch = useDispatch();
     const params = useParams();
+    const myPlantId = params.id;
     const myPlant = useSelector(state => state.mypage?.plant);
     
     const previousPlantName = myPlant.myPlantName;  //식물 기존 이름 
@@ -47,12 +51,12 @@ const EditPlant = () => {
 
     //내 식물 수정하기
     const editMyPlant = () => {
-        console.log(params.id, );
+        console.log(myPlantId,",", myPlantName,",", plantImgUrl,",", place);
     }
 
     //내 식물 삭제하기
     const deleteMyPlant = () => {
-        console.log(params.id);
+        dispatch(myActions.deleteMyPlantDB(myPlantId));
     }
 
     //내 식물 정보 불러오기
@@ -83,7 +87,7 @@ const EditPlant = () => {
                         <Image
                             margin="10px auto"
                             type="circle"  
-                            imgUrl="/img/basicPlantImg.png"
+                            imgUrl="/img/plantProfile.svg"
                             alt="preview-img"
                             size="120px"/>
 
@@ -175,8 +179,8 @@ const modalStyle = {
     content: {
         position: 'absolute',
         top: "260px",
-		left: "36px",
-		right: "36px",
+		left: "70px",
+		right: "70px",
 		bottom: "392px",
         width: "288px",
         height: "148px",

@@ -63,7 +63,7 @@ const DetailCommPost = (props) => {
                         <Text size="large">{post?.postTitle}</Text>
                     </Grid>
                     <Grid is_flex align="center" margin="5px 0px 0px 0px">
-                        {post?.profileImgUrl===''?
+                        {post?.profileImgUrl==='' || post?.profileImgUrl === null?
                             <Image type="circle" size="24px" imgUrl="/img/noProfileImgSmall.svg"/> :
                             <Image type="circle" size="24px" imgUrl={post?.profileImgUrl}/>
                         }
@@ -97,7 +97,7 @@ const DetailCommPost = (props) => {
                             <BookmarkSelectedIcon
                             onClick={()=>toggleBookmark()} 
                             style={{width: "24px", height:"fit-content"}}/> : 
-                            <BookmarkIcon
+                            <BookmarkIcon fill="transparent" stroke="#262626"
                             onClick={()=>toggleBookmark()}
                             style={{width: "24px", height:"fit-content"}} />
                         }

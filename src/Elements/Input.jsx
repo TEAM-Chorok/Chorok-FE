@@ -71,6 +71,7 @@ const Input = (props) => {
           ref={_ref}
           placeholder={placeholder}
           onChange={_onChange}
+          defaultValue={defaultValue}
         />
       </React.Fragment>
     );
@@ -190,7 +191,7 @@ const SquareInput = styled.input`
   color: #262626;
 
   box-sizing: border-box;
-  padding: 0 16px;
+  padding: 0 60px 0 16px;
   
   width: ${(props) => props.width};
   height: 40px;

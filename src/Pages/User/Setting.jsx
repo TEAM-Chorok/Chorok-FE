@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GeneralHeader } from "../../Components";
-import { Container, Grid } from "../../Elements";
+import { Container, Grid, Permit } from "../../Elements";
 import { actionCreators as userActions } from "../../Redux/Modules/User";
 
 const Setting = () => {
@@ -15,6 +15,7 @@ const Setting = () => {
     }
     return (
         <React.Fragment>
+            <Permit>
             <Container>
                 <Grid width="100%"  >
                     <GeneralHeader title="설정" size="base" />
@@ -25,8 +26,8 @@ const Setting = () => {
                     <hr style={{border:"1px solid #E0E0E0", margin: "0px", padding: "0px"}} />
                     <ScrapSettingWrap>
                         <SettingUpperDiv onClick={()=>history.push('/setting/myposts')}>내가 쓴 글</SettingUpperDiv>
-                        <SettingUpperDiv onClick={()=>history.push('/setting/profile')}>프로필 편집</SettingUpperDiv>
-                        <SettingLowerDiv onClick={()=>history.push('/setting/changepwd')}>비밀번호 변경</SettingLowerDiv>
+                        <SettingUpperDiv onClick={()=>history.push('/setting/profile')}>프로필 편집-작업 중</SettingUpperDiv>
+                        <SettingLowerDiv onClick={()=>history.push('/setting/changepwd')}>비밀번호 변경-작업 중</SettingLowerDiv>
                     </ScrapSettingWrap>
                     <Border></Border>
                     <TeamInfoWrap>
@@ -36,10 +37,11 @@ const Setting = () => {
                     <Border></Border>
                     <UserInfoEdit>
                         <SettingUpperDiv onClick={()=>logOut()}>로그아웃</SettingUpperDiv>
-                        <SettingLowerDiv onClick={()=>history.push('/setting/deactivation')}>회원 탈퇴</SettingLowerDiv>
+                        <SettingLowerDiv onClick={()=>history.push('/setting/deactivation')}>회원 탈퇴-작업 중</SettingLowerDiv>
                     </UserInfoEdit>
                 </Grid>
             </Container>
+            </Permit>
         </React.Fragment>
     )
 }
