@@ -119,6 +119,34 @@ const deletePlanteriorPostDB = (postId) => {
   }
 }
 
+// 플랜테리어 게시글 좋아요
+const likePlanteriorPostDB = (postId) => {
+  return function (dispatch, getState, { history }) {
+    searchAPI
+    .likePlanteriorPost(postId)
+    .then((response) => {
+      console.log("likePlanteriorPostDB : response", response);
+      dispatch(getPlanteriorDetailDB(postId));
+    }).catch((error) => {
+      console.log("likePlanteriorPostDB : error", error.response);
+    })
+  }
+}
+
+// 플랜테리어 게시글 북마크
+const bookMarkPlanteriorPostDB = (postId) => {
+  return function (dispatch, getState, { history }) {
+    searchAPI
+    .bookMarkPlanteriorPost(postId)
+    .then((response) => {
+      console.log("bookMarkPlanteriorPostDB : response", response);
+      dispatch(getPlanteriorDetailDB(postId));
+    }).catch((error) => {
+      console.log("bookMarkPlanteriorPostDB : error", error.response);
+    })
+  }
+}
+
 // 플랜테리어 댓글 작성
 const writePlanteriorCommentDB = (commentdata) => {
   return function (dispatch, getState, { history }) {
@@ -319,7 +347,8 @@ const actionCreators = {
   writePlanteriorCommentDB,
   editPlanteriorCommentDB,
   deletePlanteriorCommentDB,
-
+  likePlanteriorPostDB,
+  bookMarkPlanteriorPostDB,
   }
 
 export { actionCreators };

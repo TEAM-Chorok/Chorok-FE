@@ -39,6 +39,8 @@ const AddPlantList = () => {
         )
       })}
       </Grid>
+      <Grid height="50px"/>
+
     </React.Fragment>
   );
 }

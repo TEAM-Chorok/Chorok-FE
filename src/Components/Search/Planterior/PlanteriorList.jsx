@@ -47,7 +47,7 @@ const PlanteriorList = () => {
                   <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
                   <Grid is_flex margin="4px 0">
                     <Image type="circle" size="20px"
-                    // imgUrl={post.profileImageUrl}
+                      imgUrl={post.profileImageUrl ? post.profileImageUrl : "/img/noProfileImgSmall.svg"}
                     />
                     <Text bold size="xsmall" margin="1px 4px">{post.nickname}</Text>
                   </Grid>
@@ -79,8 +79,9 @@ const PlanteriorList = () => {
                 </ContentWrapper>
               )
             })}
-            </GridBox>
-          }
+          </GridBox>
+        }
+        <Grid height="50px" />
       </Grid>
     </React.Fragment>
   )

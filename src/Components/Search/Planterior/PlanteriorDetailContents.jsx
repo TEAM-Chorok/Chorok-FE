@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Container, Grid, Image, Text } from "../../../Elements";
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
-import { FaRegHeart, FaHeart, FaBookmark, FaRegComment, FaRegBookmark } from "react-icons/fa";
 import { ReactComponent as BookMarkIcon } from '../../../Assets/img/likeBookmarkIcons/Bookmark.svg'
 import { ReactComponent as CommentIcon } from '../../../Assets/img/likeBookmarkIcons/Comment.svg'
 import { ReactComponent as FavoriteIcon } from '../../../Assets/img/likeBookmarkIcons/favorite.svg'
-
+import { ReactComponent as CheckedFavoriteIcon } from '../../../Assets/img/likeBookmarkIcons/favorite_selected.svg'
 
 
 
@@ -17,7 +16,16 @@ const PhotoDetailContents = () => {
   const postData = useSelector((state) => state?.search?.planterior)
   const bookmark = postData?.postBookMark;
   const like = postData?.postLike;
-  console.log(postData)
+  const postId = postData?.postId;
+
+  const likePost = () => {
+    dispatch(searchActions.likePlanteriorPostDB(postId));
+  }
+
+  const bookmarkPost = () => {
+    dispatch(searchActions.bookMarkPlanteriorPostDB(postId));
+  }
+
 
   return (
     <React.Fragment>
@@ -25,7 +33,7 @@ const PhotoDetailContents = () => {
         <Grid width="100%" padding="0 16px">
 
           <Grid is_flex align="center">
-            <Image type="circle" size="32px" imgUrl={postData?.profileImgUrl} />
+            <Image type="circle" size="32px" imgUrl={postData?.profileImgUrl ? postData.profileImgUrl : "/img/noProfileImgSmall.svg"} />
             <Grid margin="0 8px">
               <Text bold size="small">{postData?.nickname}</Text><br />
               <Text size="xxsamll" color="#6F6F6F">{postData?.postRecentTime}</Text>
@@ -38,15 +46,14 @@ const PhotoDetailContents = () => {
             <Text size="small">{postData?.postContent}</Text>
           </Grid>
           <BookmarkBox>
-            {like ?
-              <Grid is_flex align="center">
-                <FavoriteIcon fill="#0AAF42" />
-                <Text margin="0 8px" size="base" color="#6F6F6F">{postData?.postLikeCount}</Text>
-              </Grid> :
-              <Grid is_flex align="center" margin="auto">
-                <FavoriteIcon fill="#393939" />
-                <Text margin="0 8px" size="base" color="#6F6F6F">{postData?.postLikeCount}</Text>
-              </Grid>}
+
+            <Grid is_flex align="center" margin="auto">
+              {like ?
+                <CheckedFavoriteIcon onClick={() => { likePost(); }} /> :
+                <FavoriteIcon fill="#393939" onClick={() => { likePost(); }} /> }
+              <Text margin="0 8px" size="base" color="#6F6F6F">{postData?.postLikeCount}</Text>
+            </Grid>
+
             <Grid is_flex margin="3px 8px" align="center">
               <CommentIcon fill="#656565" />
               <Text margin="0 8px" size="base" color="#6F6F6F">{postData?.commentCount}</Text>
@@ -59,14 +66,14 @@ const PhotoDetailContents = () => {
                   className='bookmark'
                   fill="#6FDC8C"
                   stroke="#0AAF42"
-                // onClick={check}
+                  onClick={() => { bookmarkPost(); }}
                 />
                 :
                 <BookMarkIcon
                   className='bookmark'
                   fill="none"
                   stroke="#393939"
-                // onClick={check}
+                  onClick={() => { bookmarkPost(); }}
                 />
               }
             </Grid>

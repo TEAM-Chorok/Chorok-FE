@@ -7,12 +7,13 @@ import { Grid, Image, Text } from "../../../Elements";
 
 const PhotoDetailComments = (props) => {
     
-    const { key, content, name, time, img } = props;
+    const { content, name, time, img } = props;
 
 
 
     return (
-            <Grid width="100%" key={key}>
+            <Grid width="100%">
+            <Grid width="100%" padding="12px 16px">
                 <CommentWrapper>
                     <ProfileBox>
                         <Image type="circle" size="24px" imgUrl={img} />
@@ -25,13 +26,13 @@ const PhotoDetailComments = (props) => {
                         <Text size="small">{content}</Text>
                     </Grid>
                 </CommentWrapper>
+            </Grid>
                 <Grid height="1px" width="100%" bg="#E0E0E0" />
             </Grid>
     )
 }
 
 const CommentWrapper = styled.div`
-    padding: 12px 0;
     width: 100%;
     min-height: 52px;
 `

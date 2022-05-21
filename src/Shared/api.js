@@ -4,9 +4,9 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  // baseURL: 'http://52.79.233.178',//민성님 Url
+  baseURL: 'http://52.79.233.178',//민성님 Url
   // baseURL: 'http://121.141.140.148:8085', // 주호님
-  baseURL: 'http://13.209.87.69:8080', // 은아님
+  // baseURL: 'http://13.209.87.69:8080', // 은아님
   // baseURL: ' http://chorok.shop', // 은아님
   
 }, { withCredentials: true } //CORS error 방지
@@ -191,6 +191,18 @@ export const searchAPI = {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
+  // 플랜테리어 게시글 좋아요
+  likePlanteriorPost: (postId) => api.get(`like-post/${postId}`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 플랜테리어 게시글 북마크
+  bookMarkPlanteriorPost: (postId) => api.get(`bookmark-post/${postId}`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
   // 플랜테리어 댓글 작성
   writePlanteriorComment: (commentdata) => api.post(`/write-comment`, commentdata, {
     headers: {
@@ -298,16 +310,19 @@ export const plantAPI = {
 
 // 달력 관련
 export const calendarAPI = {
+  // 체크된 항목 조회
   getChecked: (year, month, plantNo) => api.get(`/calendar/${year}${month}/${plantNo}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
+  // 개화 체크
   postBlooming: (plantNo, data) => api.post(`/blooming/${plantNo}`, data, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
+  // 개화 외 목록 체크
   checkCalendar: (plantNo, date, workType) => api.patch(`/calendar/${date}/${plantNo}/${workType}`, {}, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,

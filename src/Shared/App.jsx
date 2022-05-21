@@ -24,69 +24,63 @@ import theme from './theme';
 
 function App() {
 
-  
+
   return (
     <React.Fragment>
       <ThemeProvider theme={theme} >
-      <Wrap>
+        <Wrap>
+          <MobileFrame className="MobileFramePage">
 
-        <MobileFrame className="MobileFramePage">
+            <Route path="/" exact component={Login} />
+            <Route path="/logIn" exact component={LogInEmail} />
+            <Route path="/signup" exact component={SignUp} />
 
-          {/* <Container app>
-            <Container rt> */}
+            <Route path="/auth/kakao/callback" component={Kakao} />
+            <Route path="/auth/google/callback" exact component={Google} />
 
-              <Route path="/" exact component={Login} />
-              <Route path="/logIn" exact component={LogInEmail} />
-              <Route path="/signup" exact component={SignUp} />
+            <Route path="/findpwd" exact component={FindPwd} />
+            <Route path="/changepwd" exact component={ChangePwd} />
 
-              <Route path="/auth/kakao/callback" component={Kakao} />
-              <Route path="/auth/google/callback" exact component={Google} />
+            <Route path="/profilesetting" exact component={ProfileSetting} />
+            <Route path="/labeling" exact component={Labeling} />
+            <Route path="/recommendation/:plantId" exact component={Recommendation} />
 
-              <Route path="/findpwd" exact component={FindPwd} />
-              <Route path="/changepwd" exact component={ChangePwd} />
+            <Route path="/home" exact component={Home} />
 
-              <Route path="/profilesetting" exact component={ProfileSetting} />
-              <Route path="/labeling" exact component={Labeling} />
-              <Route path="/recommendation/:plantId" exact component={Recommendation} />
+            <Route path="/plant" exact component={SearchPlant} />
+            <Route path="/add/:plantNo" exact component={AddPlants} />
 
-              <Route path="/home" exact component={Home} />
+            <Route path="/plant/:plantname" exact component={PlantCard} />
 
-              <Route path="/plant" exact component={SearchPlant} />
-              <Route path="/add/:plantNo" exact component={AddPlants} />
+            <Route path="/calendar" exact component={CalendarPage} />
 
-              <Route path="/plant/:plantname" exact component={PlantCard} />
+            <Route path="/search" exact component={Search} />
+            <Route path="/search/:result" exact component={Result} />
+            <Route path="/planterior/write" exact component={PlanteriorWrite} />
+            <Route path="/planterior/post/:postId" exact component={PlanteriorDetail} />
 
-              <Route path="/calendar" exact component={CalendarPage} />
+            <Route path="/test" exact component={Test} />
 
-              <Route path="/search" exact component={Search} />
-              <Route path="/search/:result" exact component={Result} />
-              <Route path="/planterior/write" exact component={PlanteriorWrite} />
-              <Route path="/planterior/post/:postId" exact component={PlanteriorDetail} />
+            <Route path="/community" exact component={Community} />
+            <Route path="/addpost" exact component={AddPost} />
+            <Route path="/community/:postId" exact component={PostDetail} />
+            <Route path="/community/editpost/:postId" exact component={EditPost} />
 
-              <Route path="/test" exact component={Test} />
+            <Route path="/mypage" exact component={MyPage} />
+            <Route path="/myplants" exact component={MyPlantsPage} />
+            <Route path="/myplant/:id" exact component={EditPlant} />
+            <Route path="/mypictures" exact component={MyPicturesPage} />
+            <Route path="/scrap-plant" exact component={ScrapPlantsPage} />
+            <Route path="/scrap-picture" exact component={ScrapPicturesPage} />
 
-              <Route path="/community" exact component={Community} />
-              <Route path="/addpost" exact component={AddPost} />
-              <Route path="/community/:postId" exact component={PostDetail} />
-              <Route path="/community/editpost/:postId" exact component={EditPost} />
-
-              <Route path="/mypage" exact component={MyPage} />
-              <Route path="/myplants" exact component={MyPlantsPage} />
-              <Route path="/myplant/:id" exact component={EditPlant} />
-              <Route path="/mypictures" exact component={MyPicturesPage} />
-              <Route path="/scrap-plant" exact component={ScrapPlantsPage} />
-              <Route path="/scrap-picture" exact component={ScrapPicturesPage} />
-
-              <Route path="/setting" exact component={Setting} />
-              <Route path="/setting/myposts" exact component={MyPostsPage} />
-              <Route path="/setting/profile" exact component={ProfileSetting} />
-              <Route path="/setting/changepwd" exact component={ChangePwd} />
-              <Route path="/setting/deactivation" exact component={DeactivateAccount} />
-            {/* </Container> */}
+            <Route path="/setting" exact component={Setting} />
+            <Route path="/setting/myposts" exact component={MyPostsPage} />
+            <Route path="/setting/profile" exact component={ProfileSetting} />
+            <Route path="/setting/changepwd" exact component={ChangePwd} />
+            <Route path="/setting/deactivation" exact component={DeactivateAccount} />
             <Navbar />
-          {/* </Container> */}
-        </MobileFrame>
-      </Wrap>
+          </MobileFrame>
+        </Wrap>
       </ThemeProvider>
     </React.Fragment>
   );
@@ -96,7 +90,10 @@ function App() {
 const Wrap = styled.div`
   width: 100vw;
   height: 100vh;
-  background: green;
+  ${'' /* background: green; */}
+  background-image: url('https://c.pxhere.com/images/9a/68/748df45f2ad062b3ec284837a002-1628442.jpg!d');
+  background-repeat: no-repeat;
+  background-size: cover;
   .MobileFramePage {
     z-index: 999;
   }

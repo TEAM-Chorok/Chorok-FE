@@ -140,7 +140,7 @@ const HomeMyplant = () => {
           :
           <div></div>
         }
-
+        <Grid height="100px"/>
       </Grid>
     </React.Fragment>
   );

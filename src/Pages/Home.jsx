@@ -32,7 +32,6 @@ const Home = () => {
           </Grid>
           <SideButton open={open} setOpen={setOpen} />
         </Container>
-        <Grid height="50px"/>
       </Wrapper>
     </React.Fragment>
   );

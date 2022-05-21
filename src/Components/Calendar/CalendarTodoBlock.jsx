@@ -17,9 +17,9 @@ const CalendarTodoBlock = (props) => {
   const date = moment(new Date()).format('YYYYMMDD');
   const year = moment(new Date()).format('YYYY');
   const month = moment(new Date()).format('MM');
-  const bloomingday = moment(new Date()).format('YYYY-MM-DD');
+  const bloomingDay = moment(new Date()).format('YYYY-MM-DD');
   const data = {
-    bloomingday: bloomingday
+    bloomingDay: bloomingDay
   }
 
 

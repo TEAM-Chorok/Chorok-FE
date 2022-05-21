@@ -29,7 +29,7 @@ const getCheckedDB = (year, month, plantNo) => {
       .getChecked(year, month, plantNo)
       .then((response) => {
 
-        // console.log("getCheckedDB : response", response);
+        console.log("getCheckedDB : response", response);
         const blooming = [];
         const changing = [];
         const leafcleaning = [];
@@ -38,7 +38,7 @@ const getCheckedDB = (year, month, plantNo) => {
         const refreshing = [];
 
         for (let i = 0; i < response.data.bloomingDays.length; i++) {
-          blooming.push(response.data.bloomingDays[i].toDoTime);
+          blooming.push(response.data.bloomingDays[i].bloomingDay);
         }
         for (let i = 0; i < response.data.changing.length; i++) {
           changing.push(response.data.changing[i].toDoTime);
@@ -67,6 +67,7 @@ const getCheckedDB = (year, month, plantNo) => {
   }
 };
 
+// 개화 체크
 const postBloomingDB = (plantNo, data, year, month) => {
   return function (dispatch, getState, { history }) {
     calendarAPI
@@ -75,11 +76,12 @@ const postBloomingDB = (plantNo, data, year, month) => {
       console.log("postBloomingDB : response", response.data);
       dispatch(getCheckedDB(year, month, plantNo));
     }).catch((error) => {
-      console.log("postBloomingDB : response", error.response);
+      console.log("postBloomingDB : error", error.response);
       })
     }
 }
 
+// 개화 외 목록 체크
 const checkCalendarDB = (date, plantNo, workType, year, month) => {
   console.log(`/calendar/${date}/${plantNo}/${workType}`);
   return function (dispatch, getState, { history }) {

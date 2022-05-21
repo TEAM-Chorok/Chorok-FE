@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import styled from 'styled-components';
 import { ReactComponent as BookMarkIcon } from '../../Assets/img/likeBookmarkIcons/Bookmark.svg'
 import Alert2 from '../../Components/Alert2';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as plantActions } from '../../Redux/Modules/Plant';
 
 
@@ -16,6 +16,8 @@ const PlantCard = () => {
   const dispatch = useDispatch();
 
   const plantNo = useParams().plantname;
+  const plantName = useSelector((state) => state.plant?.plantData?.plantName);
+
 
   const [open, setOpen] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -44,10 +46,10 @@ const PlantCard = () => {
   return (
     <React.Fragment>
       <Wrapper open={open}>
-        <Container type="np" >
 
           <HeaderBox>
-            <GeneralHeader />
+            {/* <GeneralHeader title="식물카드" size="base" /> */}
+            <GeneralHeader title={plantName} size="base" />
             {checked ?
               <BookMarkIcon
                 className='bookmark'
@@ -69,10 +71,14 @@ const PlantCard = () => {
 
             <PlantCardProfile />
             <PlantCardFeed />
-
-            <Button type="longfloat" _onClick={() => { setOpen(true); }}>
-              <Text size="base" color="#fff">내 식물에 추가하기</Text>
-            </Button>
+            
+            <Grid width="100%">
+              <Grid margin="auto" width="200px">
+                <Button type="longfloat" _onClick={() => { setOpen(true); }}>
+                  <Text size="base" color="#fff">내 식물에 추가하기</Text>
+                </Button>
+              </Grid>
+            </Grid>
 
 
             <Alert2 open={open} setOpen={setOpen} btn1="아니오" btn2="네" url={`/add/${plantNo}`}>
@@ -83,7 +89,6 @@ const PlantCard = () => {
 
             <Grid height="130px"/>
           </Grid>
-        </Container>
       </Wrapper>
     </React.Fragment>
   );
@@ -99,12 +104,6 @@ const Wrapper = styled.div`
 const HeaderBox = styled.div`
   position: sticky;
   top: 0;
-
-  padding: 0 16px;
-
-  height: 40px;
-
-  background: #fff;
 
   .bookmark {
     position: absolute;

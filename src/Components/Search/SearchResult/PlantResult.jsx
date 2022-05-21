@@ -32,6 +32,7 @@ const PlantResult = () => {
           })}
         </Grid>
       </Grid>
+
     </React.Fragment>
   )
 }

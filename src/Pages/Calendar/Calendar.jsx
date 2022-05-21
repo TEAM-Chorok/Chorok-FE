@@ -46,6 +46,7 @@ const CalendarPage = () => {
               <Text bold size="small">식물을 선택해주세요</Text>
             </Grid>
           }
+        <Grid height="132px" width="100%"/>
         </Grid>
         <SideButton open={open} setOpen={setOpen} />
       </Wrapper>

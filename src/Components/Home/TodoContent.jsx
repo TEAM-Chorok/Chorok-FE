@@ -33,7 +33,7 @@ const TodoContent = () => {
             </SentenceBox>
           </Grid>
           <Grid width="100%" margin="16px 0">
-            <TodoProfile plantNo={plantNo} setPlantNo={setPlantNo}/>
+            <TodoProfile plantNo={plantNo} setPlantNo={setPlantNo} />
           </Grid>
         </TitleBox>
 
@@ -60,7 +60,13 @@ const TodoContent = () => {
                           status={todo?.status}
                           img={'img/todoIcons/' + todo.workType + '.svg'}>
                           <Text bold size="large">{todo.workType}</Text><br />
-                          <Text size="xsmall">마지막 작업 이후 {todo.days}일 지났어요.</Text>
+                          {todo.days === 0 && todo.status === true ?
+                            <Text size="xsmall">작업을 완료했어요!</Text> :
+                            <div>
+                              {todo.days === 0 ? <Text size="xsmall">{plant.myPlantName}(이)와의 첫 날입니다!</Text> :
+                                <Text size="xsmall">마지막 작업 이후 {todo.days}일 지났어요.</Text>}
+                            </div>
+                          }
                         </TodoContentBlock>
                       )
                     })}
@@ -70,7 +76,7 @@ const TodoContent = () => {
               </TodoBox>
             )
           })}
-
+          <Grid height="100px" />
         </Wrapper>
       </Grid>
     </React.Fragment>

@@ -167,7 +167,7 @@ const PlusButton = styled.button`
   
   position: fixed;
   bottom: 82px;
-  right: 32px;
+  right: 28px;
   
   border: none;
   border-radius: 60px;
@@ -187,7 +187,6 @@ const PlusButton = styled.button`
 // 식물 추가 버튼
 const FloatLongButton = styled.button`
   position: fixed;
-  left: 95px;
   bottom: 76px;
 
   width: 200px;
