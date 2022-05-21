@@ -22,12 +22,12 @@ const MyPageHeader = (props) => {
             </Permit>
             <Grid width="100%" margin="0px">
                 <GridWrapCol width="100%" padding="10px 10px" >
-                    <Grid is_flex align="center">
-                        <Image src="img/NoProfileImgUser.svg" />
+                    <Grid is_flex align="center" >
+                        <Image src={user.profileImgUrl? user.profileImgUrl : "img/NoProfileImgUser.svg"} />
                     </Grid>
                     <GridWrapRow>
                         <Grid><Text size="M">{user.nickname}</Text></Grid>
-                        <Grid><Text fontSize="0.9em" >{myPlantList?.length} 그루</Text></Grid>
+                        <Grid><Text fontSize="0.9em" >{user?.profileMsg}</Text></Grid>
                     </GridWrapRow>
                 </GridWrapCol>
             </Grid>
@@ -44,7 +44,7 @@ const GridWrapRow = styled.div`
     grid-template-rows: 1fr 1fr; 
     padding: 12px 0px;
     align-items: center;
-    width: 236px;
+    width: 100%;
 `
 const Image = styled.img`
     width: 80px;

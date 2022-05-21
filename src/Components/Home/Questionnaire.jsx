@@ -19,7 +19,7 @@ const Questionnaire = (props) => {
             <Image style={{backgroundImage:"url(img/Ellipse595.png)"}}/>
             <ImageIcon src="img/baby.svg"/>
             <Grid padding="20px 0px 20px 60px" _onClick={()=>props.setLevel("pl01")}>              
-              <Text margin="0px" display="block" >아기집사</Text>
+              <Text margin="0px" display="block" >새싹집사</Text>
               <Text margin="0px" display="block" size="xxsmall" color="#24A148">식물을 한 번도 키워본 적이 없거나 키워도 다 실패해요</Text>
             </Grid>                
           </QuestionBox>
@@ -27,7 +27,7 @@ const Questionnaire = (props) => {
             <Image style={{backgroundImage:"url(img/Ellipse595.png)"}}/>
             <ImageIcon src="img/leaves.svg"/>
             <Grid padding="20px 0px 20px 60px" _onClick={()=>props.setLevel("pl02")}>
-              <Text margin="0px" display="block">초보집사</Text>
+              <Text margin="0px" display="block">입문집사</Text>
               <Text margin="0px" display="block" size="xxsmall" color="#24A148">식물에 대해 잘 모르지만 한두 번 잘 키워봤어요!</Text>
             </Grid>   
           </QuestionBox>
@@ -35,7 +35,7 @@ const Questionnaire = (props) => {
             <Image style={{backgroundImage:"url(img/Ellipse595.png)"}}/>
             <ImageIcon src="img/tree.svg"/>
             <Grid padding="20px 0px 20px 60px" _onClick={()=>props.setLevel("pl03")}>
-              <Text margin="0px" display="block">숙련집사</Text>
+              <Text margin="0px" display="block">경력집사</Text>
               <Text margin="0px" display="block" size="xxsmall" color="#24A148">식물에 대해 잘 알고 잘 키울 수 있어요!</Text>
             </Grid>
           </QuestionBox>

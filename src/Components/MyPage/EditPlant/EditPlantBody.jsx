@@ -1,3 +1,6 @@
+
+//안쓰는 파일 
+
 import React, {useRef} from 'react';
 import styled from 'styled-components';
 import { Input, Grid, Image, Text } from '../../../Elements/index';
@@ -11,7 +14,6 @@ import { actionCreators as myActions} from '../../../Redux/Modules/MyPage';
 import { useDispatch } from 'react-redux';
 
 Modal.setAppElement('#root')
-
 const EditPlantBody = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -26,8 +28,9 @@ const EditPlantBody = (props) => {
     const [openModal, setOpenModal] = React.useState(false);
     
     //내 식물 삭제하기
-    const deletePlant = (props) => {
-        // dispatch(myActions.)
+    const myPlantNo = props.myPlantNo;
+    const deletePlant = () => {
+        dispatch(myActions.deleteMyPlantDB(myPlantNo));
     }
 
     return (
@@ -142,8 +145,8 @@ const modalStyle = {
     content: {
         position: 'absolute',
         top: "260px",
-		left: "36px",
-		right: "36px",
+		left: "70px",
+		right: "70px",
 		bottom: "392px",
         width: "288px",
         height: "148px",

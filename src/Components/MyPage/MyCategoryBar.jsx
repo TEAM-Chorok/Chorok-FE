@@ -41,8 +41,9 @@ const MyCategoryBar = (props) => {
                         <Text size="base">식물도감</Text>
                     </TabMenu>
                     </li>}
-    
-                    <Line num={active}/>
+                    <BackLine>
+                        <Line num={active}/>
+                    </BackLine>
                 
                 </ul>
             </Tab>
@@ -104,5 +105,13 @@ const Line = styled.div`
   
   border-bottom: 2px solid #24A148;
 `
-
+const BackLine = styled.div`
+  position: absolute;
+  bottom: -4px;
+  
+  transition: 0.4s;
+  width: 100%;
+  
+  border-bottom: 2px solid #F4F4F4;
+`
 export default MyCategoryBar;

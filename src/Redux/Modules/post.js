@@ -14,6 +14,10 @@ const POST_SEARCHING = "POST_SEARCHING";
 const LIKE_POST = "LIKE_POST";
 const BOOKMARK_POST = "BOOKMARK_POST";
 
+const ADD_COMMENT = "ADD_COMMENT";
+const EDIT_COMMENT = "EDIT_COMMENT";
+const DELETE_COMMENT = "DELETE_COMMENT";
+
 // 액션 생성
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 const editPost = createAction(EDIT_POST, (post) => ({ post }));
@@ -24,6 +28,10 @@ const postSearching = createAction(POST_SEARCHING, (searchList) => ({ searchList
 
 const likePost = createAction(LIKE_POST, (post) => ({ post }));
 const bookmarkPost = createAction(BOOKMARK_POST, (post) => ({ post }));
+
+const addComment = createAction(ADD_COMMENT, () => ({ }));
+const editComment = createAction(EDIT_COMMENT, () => ({}));
+const deleteComment = createAction(DELETE_COMMENT, () => ({}));
 
 
 // initial State
@@ -90,7 +98,7 @@ const getPostListDB_login = (category) => {
         .getAllPost_login()
         .then((res) => {
           console.log(res.data);
-          dispatch(getPostList(res.data));
+          dispatch(getPostList(res.data.content));
         })
         .catch((error) => {
           console.log('error: ', error);
@@ -305,6 +313,55 @@ const postSearchingDB = (postTypeCode, keyword) => {
 };
 
 
+//댓글 달기
+const addCommentDB = (postId, comment) => {
+  return function (dispatch, getState, { history }){
+    postAPI
+      .addComment(postId, comment)
+      .then((res) => {
+        console.log("response : ", res.data);
+        dispatch(getDetailPostDB(postId));
+      }).catch((error) => {
+        console.log("error: ", error);
+        // window.alert('댓글 작성하기를 실패하였습니다.');
+      });
+  }
+}
+
+//댓글 수정 (postId는 필요하지 않은지?)
+const editCommentDb = (postId, commentId, comment) => {
+  return function (dispatch, getState, { history }){
+    return function (dispatch, getState, { history }){
+      postAPI
+        .editComment(commentId, comment)
+        .then((res) => {
+          console.log("response : ", res.data);
+          dispatch(getDetailPostDB(postId));
+        }).catch((error) => {
+          console.log("error: ", error);
+          // window.alert('댓글 수정하기를 실패하였습니다.');
+        });
+    }
+  }
+}
+
+//댓글 삭제
+const deleteCommentDB = (postId, commentId) => {
+  return function (dispatch, getState, { history }){
+    return function (dispatch, getState, { history }){
+      postAPI
+        .deleteComment(commentId)
+        .then((res) => {
+          console.log("response : ", res.data);
+          dispatch(getDetailPostDB(postId));
+        }).catch((error) => {
+          console.log("error: ", error);
+          // window.alert('댓글 삭제하기를 실패하였습니다.');
+        });
+    }
+  }
+}
+
 // Reducer
 export default handleActions(
   {
@@ -338,6 +395,9 @@ const actionCreators = {
     likeDetailPostDB,
     bookmarkPostDB,
     bookmarkDetailPostDB,
+    addCommentDB,
+    editCommentDb,
+    deleteCommentDB,
 }
 
 export { actionCreators };

@@ -16,13 +16,7 @@ const Permit = (props) => {
     },[]);
     const is_login = useSelector((state) => state.user.isLogin);
 
-    if (is_login && is_session) {
-    return (
-            <React.Fragment>
-                {props.children}
-            </React.Fragment>
-        )
-    }else {
+    if (!is_login || !is_session) {
         return (
             <React.Fragment>
                 <Container>
@@ -31,6 +25,13 @@ const Permit = (props) => {
                         <Button onClick={()=> history.push('/')}style={{color: "black"}}>로그인 하러 가기</Button>
                     </Grid>
                 </Container>
+            </React.Fragment>
+            
+        )
+    }else {
+        return (
+            <React.Fragment>
+                {props.children}
             </React.Fragment>
         )
     }

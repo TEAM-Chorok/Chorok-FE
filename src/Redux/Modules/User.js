@@ -6,9 +6,6 @@ import { userAPI } from "../../Shared/api";
 // 액션 
 const SET_USER = "SET_USER";
 const GET_USER = "GET_USER";
-//이메일 중복체크
-//닉네임 중복체크
-//식물 맞춤 테스트
 const LOG_OUT = "LOG_OUT";
 const FIND_PWD = "FIND_PWD";
 const CHANGE_PWD = "CHANGE_PWD"
@@ -85,6 +82,7 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
       })
   }
 }
+//카카오로그인
 const kakaoLogInDB = (code) => {
   return function (dispatch, getState, {history}){
     userAPI
@@ -106,6 +104,7 @@ const kakaoLogInDB = (code) => {
       })
   }
 }
+//구글 로그인
 const googleLogInDB = (code) => {
   return function (dispatch, getState, {history}) {
     userAPI
@@ -126,6 +125,7 @@ const googleLogInDB = (code) => {
       })
   }
 }
+//전체 로그아웃
 const logOutDB = () => {
   const token = sessionStorage.getItem('token');
   return function (dispatch, getState, { history }) {
@@ -136,8 +136,8 @@ const logOutDB = () => {
         sessionStorage.removeItem("token");
         localStorage.removeItem("username");
         dispatch(logOut());
-       history.push('/');  
-        window.location.reload('');
+        history.push('/');  
+        window.location.reload();
       }
       ).catch((error) => {
         console.log("logOut : error", error.response);
@@ -146,6 +146,21 @@ const logOutDB = () => {
 
 }
 
+//프로필 수정
+const editProfileDB = (nickname, profileMsg) => {
+  return function (dispatch, getState, {history}) {
+    userAPI
+      .editProfile(nickname, profileMsg)
+      .then((response) => {
+        console.log(response.data);
+        dispatch(isLoginDB());
+        history.push('/mypage');
+        window.location.reload();
+      }).catch((error) => {
+        console.log("editProfile : error", error.response);
+      });
+  }
+}
 
 const findPwdDB = (userName, userId) => {
   return function( dispatch, getState, {history} ) {
@@ -206,6 +221,7 @@ const actionCreators = {
   findPwdDB,
   changePwdDB,
   logOutDB,
+  editProfileDB,
 }
 
 export { actionCreators };
