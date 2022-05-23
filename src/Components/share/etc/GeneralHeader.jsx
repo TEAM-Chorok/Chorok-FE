@@ -30,7 +30,7 @@ const Header = styled.div`
   height: 40px;
 
   background: #fff;
-  border-bottom: 1px solid #E0E0E0;
+  // border-bottom: 1px solid #E0E0E0;
 `
 
 export default GeneralHeader;

@@ -11,19 +11,15 @@ const DeactivateAccount = () => {
     return (
         <React.Fragment>
             <Container>
-                <Grid width="100%" margin="40px auto">
-                    <GeneralHeader title="계정 비활성화" size="h5" />
-                    <DeactivationAgreement />
+                <Grid width="100%">
+                    <GeneralHeader title="회원탈퇴" size="base" />
                 </Grid>
             </Container>
+            <Container type="np">
+                <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
+                <DeactivationAgreement />
+            </Container>    
         </React.Fragment>
     )
 }
-const Header = styled.div`
-  width: 100%;
-  height: 50px;
-  text-align: center;
-  align-items: center;
-  position: relative; 
-`
 export default DeactivateAccount;

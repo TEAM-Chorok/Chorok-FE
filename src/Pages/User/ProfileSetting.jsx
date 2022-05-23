@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 
 
 // 프로필 편집  --- 이미지 수정 안됨
+//나눠서 api 짜고 dispatch 두가 걸깅
 const ProfileSetting = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -23,13 +24,13 @@ const ProfileSetting = () => {
   const previousNickname = user?.nickname;
   const previousProfileMsg= user?.profileMsg;
 
-  const [nickname, setNickname] = React.useState();
+  const [nickname, setNickname] = React.useState(previousNickname);
   const [profileImgUrl, setProfileImgUrl] = React.useState("");
   const [preview, setPreview] = React.useState("");
   const [describeSelf, setDescribeSelf] = React.useState();
 
-  const [openResult, setOpenResult] = React.useState("");
-  const [duplicatedNickname, setDuplicatedNickname] = React.useState("");
+  const [openResult, setOpenResult] = React.useState();
+  const [duplicatedNickname, setDuplicatedNickname] = React.useState();
 
   const profileRef = React.useRef("");
   //이미지 미리보기 부분 클릭시 input클릭되게 연동
@@ -49,6 +50,7 @@ const ProfileSetting = () => {
   }
   const [disable, setDisable] = React.useState(true);
 
+  //닉네임 중복 확인
   const checkDuplicatedNickname = (nickname) => {
     userAPI
     .nicknameCheck(nickname)
@@ -62,15 +64,32 @@ const ProfileSetting = () => {
   }
 
   React.useEffect(() => {
-      if(nickname === "" && profileImgUrl === "" && describeSelf === "") {
-          setDisable(true);
-      }else {
+      if(nickname === previousNickname){
+        { profileImgUrl === "" ? 
+          setDisable(true) : 
           setDisable(false);
+        }
+      }else {
+        { duplicatedNickname !== true && duplicatedNickname !== false ? 
+          setDisable(true):
+          setDisable(false);
+        }
       }
-  }, [preview, nickname, describeSelf])
+  }, [preview, nickname, describeSelf, duplicatedNickname])
   
+
+  //프로필 수정 dispatch 요청
   const editProfile = () => {
-    dispatch(userActions.editProfileDB(nickname, describeSelf));
+
+    {profileImgUrl === "" ? 
+
+      dispatch(userActions.editProfileDB(nickname, describeSelf))  : 
+
+      dispatch(userActions.editProfileDB(nickname, describeSelf));
+      // dispatch(userActions.editProfileImgDB(profileImgUrl));
+
+    }
+    
   }
 
   return (

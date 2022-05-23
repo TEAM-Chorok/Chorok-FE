@@ -13,6 +13,8 @@ const GET_MY_PHOTO_LIST = "GET_MY_PHOTO_LIST";
 const GET_SCRAP_PHOTO_LIST = "GET_SCRAP_PHOTO_LIST";
 const GET_SCRAP_PLANT_LIST = "GET_SCRAP_PLANT_LIST";
 const GET_MY_POST_LIST = "GET_MY_POST_LIST";
+const GET_SCRAP_SIX_POST_LIST = "GET_SCRAP_SIX_POST_LIST";
+const GET_SCRAP_POST_LIST = "GET_SCRAP_POST_LIST";
 
 //action creators
 const getMyPlantList = createAction(GET_MY_PLANT_LIST, (myPlantCount, plantList) => ({myPlantCount, plantList}))
@@ -25,6 +27,8 @@ const getPhotoList = createAction(GET_MY_PHOTO_LIST, (photoList) => ({photoList}
 const getScrapPhotoList = createAction(GET_SCRAP_PHOTO_LIST, (scrapPhotoList) => ({scrapPhotoList}));
 const getScrapPlantList = createAction(GET_SCRAP_PLANT_LIST, (scrapPlant) => ({scrapPlant}));
 const getMyPostList = createAction(GET_MY_POST_LIST, (postList) => ({postList}));
+const getScrapSixPlantList = createAction(GET_SCRAP_SIX_POST_LIST, (scrapPlantCount, scrapPlantList) => ({scrapPlantCount, scrapPlantList}));
+const getScrapPostList = createAction(GET_SCRAP_POST_LIST, (scrapPostList) => ({scrapPostList}));
 
 //initial state
 const initialState = {
@@ -68,6 +72,7 @@ const getMyPlantDetailDB = (myPlantNo) => {
             })
     }
 }
+//내 식물 삭제하기
 const deleteMyPlantDB = (myPlantNo) => {
     console.log(myPlantNo);
     return function (dispatch, getState, {history}){
@@ -125,7 +130,7 @@ const getMyPhotoListDB = () => {
         myPageAPI
             .getMyPhotoList()
             .then((res)=> {
-                console.log(res.data.content)
+                console.log(res.data.content);
                 dispatch(getPhotoList(res.data.content));
             }).catch((error) => {
                 console.log("error: ", error);
@@ -140,23 +145,34 @@ const getScrapPhotoListDB = () => {
         myPageAPI
             .getScrapPhotoList()
             .then((res)=> {
-                console.log(res.data);
-                dispatch(getScrapPhotoList(res.data));
+                dispatch(getScrapPhotoList(res.data.content));
             }).catch((error) => {
                 console.log("error: ", error);
                 // window.alert('스크랩한 사진 불러오기에 실패하였습니다.');
             });
     }
 }
+//스크랩한 식물 리스트 (최대 6개)
+const getScrapSixPlantListDB = () => {
+    return function (dispatch, getState, {history}) {
+        myPageAPI
+            .getScrapSixPlantList()
+            .then((res)=> {
+                dispatch(getScrapSixPlantList(res.data.count, res.data.myBookMarkPlant));
+            }).catch((error) => {
+                console.log("error: ", error);
+                // window.alert('스크랩한 사진 불러오기에 실패하였습니다.');
+            });
+    }
+}
+
 //스크랩한 식물 리스트
 const getScrapPlantListDB = () => {
     return function (dispatch, getState, {history}){
-        console.log("getScrapPlantListDB ");
         myPageAPI
             .getScrapPlantList()
             .then((res)=> {
-                console.log("response : ", res);
-                dispatch(getScrapPlantList(res.data));
+                dispatch(getScrapPlantList(res.data.content));
             }).catch((error) => {
                 console.log("error: ", error);
                 // window.alert('스크랩한 식물 불러오기에 실패하였습니다.');
@@ -170,7 +186,7 @@ const getMyPostListDB = () => {
         myPageAPI
             .getMyPostList()
             .then((res)=> {
-                dispatch(getMyPostList(res.data));
+                dispatch(getMyPostList(res.data.content));
             }).catch((error) => {
                 console.log("error: ", error);
                 // window.alert('내 글 불러오기에 실패하였습니다.');
@@ -178,6 +194,20 @@ const getMyPostListDB = () => {
     }
 }
 
+//스크랩한 글 전체 리스트
+const getScrapPostListDB = () => {
+    return function (dispatch, getState, {history}) {
+        myPageAPI
+            .getScrapPostList()
+            .then((res)=> {
+                console.log(res.data.content)
+                dispatch(getScrapPostList(res.data.content));
+            }).catch((error) => {
+                console.log("error: ", error);
+                // window.alert('내 글 불러오기에 실패하였습니다.');
+            });
+    }
+}
 //reducer
 export default handleActions(
     {
@@ -198,15 +228,23 @@ export default handleActions(
             draft.photoList = action.payload.photoList;
         }),
         [GET_SCRAP_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
-            draft.list = action.payload.list;
-            draft.is_loading = true;
+
+            draft.photoList = action.payload.scrapPhotoList;
         }),
         [GET_SCRAP_PLANT_LIST]: (state, action) => produce(state, (draft) => {
-            draft.list = action.payload.list;
-            draft.is_loading = true;
+
+            draft.scrapPlant = action.payload.scrapPlant;
         }),
         [GET_MY_POST_LIST]: (state, action) => produce(state, (draft) => {
             draft.postList = action.payload.postList;
+        }),
+        [GET_SCRAP_SIX_POST_LIST]: (state, action) => produce(state, (draft) => {
+            console.log(action.payload);
+            draft.scrapPlantList = action.payload.scrapPlantList;
+            draft.scrapPlantCount = action.payload.scrapPlantCount;
+        }),
+        [GET_SCRAP_POST_LIST]: (state, action) => produce(state, (draft) => {
+            draft.scrapPostList = action.payload.scrapPostList;
         }),
     }, initialState
 )
@@ -221,6 +259,8 @@ const actionCreators = {
     getScrapPhotoListDB,
     getScrapPlantListDB,
     getMyPostListDB,
+    getScrapSixPlantListDB,
+    getScrapPostListDB,
 }
 
 export { actionCreators };

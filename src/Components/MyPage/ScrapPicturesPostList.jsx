@@ -5,13 +5,16 @@ import styled from 'styled-components';
 import { Text, Grid, Image } from '../../Elements';
 import { actionCreators as MyActions } from '../../Redux/Modules/MyPage';
 import { ReactComponent as FavoriteIcon} from "../../Assets/img/likeBookmarkIcons/favorite.svg"
+import { ReactComponent as FavoriteSelectedIcon} from '../../Assets/img/likeBookmarkIcons/favorite_selected.svg';
 import { ReactComponent as BookmarkIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark.svg";
+import { ReactComponent as BookmarkSelectedIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark_selected.svg";
 import { ReactComponent as CommentIcon } from "../../Assets/img/likeBookmarkIcons/Comment.svg";
 
 const ScrapPicturesPostList = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const scrapPictureList = useSelector(state => state.mypage?.photoList);
+    console.log(scrapPictureList);
 
     useEffect(() => {
         dispatch(MyActions.getScrapPhotoListDB());
@@ -25,7 +28,8 @@ const ScrapPicturesPostList = () => {
                     return(
                         <Grid key={p.postId} width="100%" >
                             <Grid is_flex align="center" margin="5px 0px 16px 0px">
-                                {p?.profileImgUrl===null?
+                                {/* <Text size="xsmall" color="#24A148">{p.place}</Text> */}
+                                {p?.profileImgUrl===null || p?.profileImgUrl === ""?
                                     <Image type="circle" size="32px" imgUrl="/img/noProfileImgSmall.svg"/> :
                                     <Image type="circle" size="32px" imgUrl={p?.profileImgUrl}/>
                                 }
@@ -35,7 +39,7 @@ const ScrapPicturesPostList = () => {
                             
                             {p?.postImgUrl? 
                                 <Grid width="100%" >
-                                    <Image type="rectangle" borderRadius="8px" imgUrl={p.postImgUrl} width="100%" height="328px"/>
+                                    <Image type="planterior" borderRadius="8px" imgUrl={p.postImgUrl} width="100%"/>
                                 </Grid>: 
                                 null
                             }
@@ -43,34 +47,30 @@ const ScrapPicturesPostList = () => {
                             {/* bottom part - 좋아요, 댓글, 북마크  */}
                             <Grid width="100%" margin="20px 0px" position="relative">
                                 <Grid is_flex align="center">
-                                    {/* {like? 
+                                    {p.postLike? 
                                         <FavoriteSelectedIcon 
                                         // onClick={()=> toggleLike()} 
                                         style={{width:"24px", height:"fit-content"}}/> : 
                                         <FavoriteIcon 
                                         // onClick={()=>toggleLike()} 
                                         style={{width:"24px", height:"fit-content"}}/>
-                                    } */}
-                                        <FavoriteIcon 
-                                        // onClick={()=>toggleLike()} 
-                                        style={{width:"24px", height:"fit-content"}}/>
+                                    }
+                                        
                                     <Text margin="0px 8px" size="base"  color="#6F6F6F">{p?.postLikeCount}</Text>
                                     <CommentIcon 
                                         style={{width: "20px", height:"fit-content"}} />
                                     <Text margin="0px 8px" size="base" color="#6F6F6F">{p?.commentCount}</Text>
                                 </Grid>
                                 <Grid position="absolute" top="0px" right="0px" >
-                                    <BookmarkIcon
-                                    // onClick={()=>toggleBookmark()}
-                                    style={{width: "24px", height:"fit-content"}} />
-                                    {/* {bookmark? 
+                                    
+                                    {p.postBookMark? 
                                         <BookmarkSelectedIcon
-                                        onClick={()=>toggleBookmark()} 
+                                        // onClick={()=>toggleBookmark()} 
                                         style={{width: "24px", height:"fit-content"}}/> : 
-                                        <BookmarkIcon
-                                        onClick={()=>toggleBookmark()}
+                                        <BookmarkIcon fill="transparent" stroke="#393939"
+                                        // onClick={()=>toggleBookmark()}
                                         style={{width: "24px", height:"fit-content"}} />
-                                    } */}
+                                    }
                                 </Grid>
                             </Grid>
                         </Grid>

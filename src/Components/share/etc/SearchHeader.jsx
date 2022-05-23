@@ -29,11 +29,11 @@ const SearchHeader = (props) => {
         <React.Fragment>
             <Grid width="100%" position="relative" >
                 <Text size="h5">초록톡</Text>
-                <SearchIcon  onClick={()=>openBar()} style={{position:"absolute", top:"5px", right:"0px", width:"20px", height:"20px", color:"#393939"}}/>
+                {/* <SearchIcon  onClick={()=>openBar()} style={{position:"absolute", top:"5px", right:"0px", width:"20px", height:"20px", color:"#393939"}}/>
                 {barOpen && 
                   <Div>
                     <Input onChange={(e)=>setKeyword(e.target.value)} onKeyUp={onKeyUp}/>
-                  </Div>}
+                  </Div>} */}
             </Grid>
         </React.Fragment>
     )

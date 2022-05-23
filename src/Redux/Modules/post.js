@@ -109,7 +109,7 @@ const getPostListDB_login = (category) => {
       postAPI
         .getFilteredPost_login(category)
         .then((res) => {
-          dispatch(getPostList(res.data));
+          dispatch(getPostList(res.data.content));
         })
         .catch((error) => {
           console.log('error: ', error);
@@ -136,7 +136,7 @@ const getPostListDB_non_login = (category) => {
       postAPI
         .getFilteredPost_nonLogin(category)
         .then((res) => {
-          dispatch(getPostList(res.data));
+          dispatch(getPostList(res.data.content));
         })
         .catch((error) => {
           console.log('error: ', error);
@@ -177,6 +177,7 @@ const deletePostDB = (postId) => {
                 dispatch(deletePost());
                 window.alert('게시글이 성공적으로 삭제되었습니다.');
                 history.push('/community');
+                window.location.reload();
             })
             .catch((err)=>{
                 console.log("error:" , err);
@@ -292,6 +293,7 @@ const bookmarkDetailPostDB = (postId) => {
   }
 }
 
+//검색 보류보류
 // 커뮤니티 검색어 검색 (+ 필터링도 가능하게 해야됨)
 const postSearchingDB = (postTypeCode, keyword) => {
   if (postTypeCode === "all") {
@@ -320,7 +322,6 @@ const addCommentDB = (postId, commentContent) => {
     postAPI
       .addComment(commentdata)
       .then((res) => {
-        console.log("response : ", res.data);
         dispatch(getDetailPostDB(postId));
       }).catch((error) => {
         console.log("error: ", error);

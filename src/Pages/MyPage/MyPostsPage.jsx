@@ -13,6 +13,7 @@ const MyPostsPage = () => {
                 <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
             </Container>
             <MyPostsPostList />
+                <div style={{height:"60px", width:"100%"}}></div>
         </React.Fragment>
     )
 }

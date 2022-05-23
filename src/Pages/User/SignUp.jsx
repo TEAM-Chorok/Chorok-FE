@@ -38,15 +38,17 @@ const SignUp = () => {
     }
 
     // Base64로 인코딩하여 미리보기 이미지 출력
-    const reader = new FileReader();
+    const reader = new FileReader(); //FileReader의 인스턴스 reader을 생성한다.
     const encodeFileToBase64 = (fileBlob) => {
-      reader.readAsDataURL(fileBlob);
+      reader.readAsDataURL(fileBlob); //인자로 받은 fileBlob을 base64로 인코딩한다.
       return new Promise(() => {
         reader.onload = () => {
-          setPreview(reader.result);
+          setPreview(reader.result);  //reader가 인코딩을 성공했다면 reader.result 안에 담긴 문자열을 imageSrc로 세팅해준다.
         }
       })
     }
+    
+
     //email 중복확인
     const checkDuplicated = (userEmail) => {
       userAPI
@@ -161,7 +163,7 @@ const SignUp = () => {
                 <Input 
                 _onChange={(e)=>{setPassword(e.target.value); 
                                 pwdCheck(e.target.value)}} 
-                placeholder="비밀번호" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"
+                placeholder="비밀번호(영문 대소문자, 숫자를 포함한 8~20자)" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"
                 margin="0px"></Input>
                 <Input 
                 _onChange={(e)=>{setPasswordChk(e.target.value); 
@@ -173,7 +175,7 @@ const SignUp = () => {
                 <Input 
                 _onChange={(e)=>{setPassword(e.target.value); 
                                 pwdCheck(e.target.value)}} 
-                placeholder="비밀번호" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56" borderRadius="6px"
+                placeholder="비밀번호(영문 대소문자, 숫자를 포함한 8~20자)" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56" borderRadius="6px"
                 margin="0px"></Input>
                 <Input 
                 _onChange={(e)=>{setPasswordChk(e.target.value); 

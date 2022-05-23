@@ -146,18 +146,42 @@ const logOutDB = () => {
 
 }
 
-//프로필 수정
+//프로필 수정 ( 닉네임, 자기소개 메시지 )
 const editProfileDB = (nickname, profileMsg) => {
   return function (dispatch, getState, {history}) {
     userAPI
       .editProfile(nickname, profileMsg)
       .then((response) => {
-        console.log(response.data);
         dispatch(isLoginDB());
         history.push('/mypage');
         window.location.reload();
       }).catch((error) => {
         console.log("editProfile : error", error.response);
+      });
+  }
+}
+
+//프로필 수정 ( 이미지 수정 )
+const editProfileImgDB = (profileImgUrl) => {
+  return function (dispatch, getState, {history}) {
+    
+  }
+}
+
+//회원 탈퇴
+const deactivateUserDB = () => {
+  return function (dispatch, getState, {history}) {
+    userAPI
+      .deactivateUser()
+      .then((response) => {
+        window.alert('정상적으로 회원탈퇴 되었습니다.');
+        dispatch(logOutDB());
+        history.push('/');
+        window.location.reload();
+      }).catch((error) => {
+        console.log("editProfile : error", error.response);
+        window.alert('회원탈퇴를 실패하였습니다.');
+
       });
   }
 }
@@ -218,9 +242,10 @@ const actionCreators = {
   kakaoLogInDB,
   googleLogInDB,
   logInDB,
+  deactivateUserDB,
+  logOutDB,
   findPwdDB,
   changePwdDB,
-  logOutDB,
   editProfileDB,
 }
 

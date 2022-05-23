@@ -25,7 +25,8 @@ const Setting = () => {
                 <Grid width="100%">
                     <hr style={{border:"1px solid #E0E0E0", margin: "0px", padding: "0px"}} />
                     <ScrapSettingWrap>
-                        <SettingUpperDiv onClick={()=>history.push('/setting/myposts')}>내가 쓴 글</SettingUpperDiv>
+                        <SettingUpperDiv onClick={()=>history.push('/setting/myposts')}>내가 쓴 초록톡</SettingUpperDiv>
+                        <SettingUpperDiv onClick={()=>history.push('/setting/scrap-posts')}>스크랩한 초록톡</SettingUpperDiv>
                         <SettingUpperDiv onClick={()=>history.push('/setting/profile')}>프로필 편집-작업 중</SettingUpperDiv>
                         <SettingLowerDiv onClick={()=>history.push('/setting/changepwd')}>비밀번호 변경-작업 중</SettingLowerDiv>
                     </ScrapSettingWrap>
