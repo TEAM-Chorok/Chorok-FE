@@ -65,7 +65,7 @@ const CommPost = (props) => {
                     <Grid margin="8px 0px 16px 0px"><Text color="#262626" size="small">{post?.postContent}</Text></Grid>
                     {post?.postImgUrl? 
                     <Grid width="100%" >
-                        <Image type="rectangle" imgUrl={post.postImgUrl} width="100%" height="240px"/>
+                        <Image type="planterior" imgUrl={post.postImgUrl} width="100%"/>
                     </Grid>: null}
                 </Grid>
                 {/* bottom part - 좋아요, 댓글, 북마크 */}

@@ -15,6 +15,7 @@ const ScrapPicturesPage = () => {
             </Container>
             <Container>
                 <ScrapPicturesPostList />
+                <div style={{height:"60px", width:"100%"}}></div>
             </Container>
         </React.Fragment>
     )

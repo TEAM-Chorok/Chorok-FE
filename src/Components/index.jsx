@@ -71,7 +71,7 @@ import MyPagePost from "./MyPage/MyPagePost";
 import MyPicturesPostList from "./MyPage/MyPictures/MyPicturesPostList";
 
 import ScrapPicturesPostList from "./MyPage/ScrapPicturesPostList";
-
+import ScrapPlantList from "./MyPage/ScrapPlantList";
 import MyPlants from "./MyPage/MyPlants";
 import MyPlantsList from "./MyPage/MyPlants/MyPlantsList";
 
@@ -79,6 +79,7 @@ import EditPlantHeader from "./MyPage/EditPlant/EditPlantHeader";
 import EditPlantBody from "./MyPage/EditPlant/EditPlantBody";
 
 import MyPostsPostList from "./MyPage/MyPostsPostList";
+import ScrapPostsList from "./MyPage/Setting/ScrapPostsList";
 
 import DeactivationAgreement from "./MyPage/Setting/DeactivationAgreement";
 
@@ -113,10 +114,10 @@ export {
     LabelingTestLink, RecommendPlant,
     CommPost, CommPostList, CommunityFilter, DetailCommPost, AddPlantDairy, AddPostHeader, AddPostFooter,
     MyPageHeader, MyCategoryBar, MyPagePost, CommPostCommentList,
-    MyPicturesPostList, ScrapPicturesPostList, 
+    MyPicturesPostList, ScrapPicturesPostList, ScrapPlantList,
     MyPlantsList, MyPlants, GeneralHeader,
     EditPlantHeader, EditPlantBody,
-    MyPostsPostList, 
+    MyPostsPostList, ScrapPostsList,
     DeactivationAgreement,
     PlantSearchHeader, SearchHeader, Tabbar, Alert, ProgressBar, Navbar, Dimmer, SideButton,
 };

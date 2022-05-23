@@ -36,7 +36,7 @@ const MyPageHeader = (props) => {
 }
 const GridWrapCol = styled.div`
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 2.5fr;
     place-items: center;
 `
 const GridWrapRow = styled.div`

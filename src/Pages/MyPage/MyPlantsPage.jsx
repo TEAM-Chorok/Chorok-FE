@@ -13,6 +13,7 @@ const MyPlantsPage = () => {
             <Hr />
             <Container>
                 <MyPlantsList />
+                <div style={{height:"60px", width:"100%"}}></div>
             </Container>
                 
         </React.Fragment>

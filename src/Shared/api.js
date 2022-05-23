@@ -4,8 +4,8 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://52.79.233.178',//민성님 Url
-  // baseURL: 'http://121.141.140.148:8085', // 주호님
+  // baseURL: 'http://52.79.233.178',//민성님 Url
+  baseURL: 'http://121.141.140.148:8085', // 주호님
   // baseURL: 'http://13.209.87.69:8080', // 은아님
   // baseURL: ' http://chorok.shop', // 은아님
   
@@ -69,6 +69,13 @@ export const userAPI = {
     },
   }
   ),
+
+  //회원탈퇴
+  deactivateUser: () => api.patch(`/user/update/accountStatus`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
 
   //비밀번호 찾기
   findPwd: (userName, userId) => api.post('/api/findPwd', {
@@ -380,7 +387,7 @@ export const postAPI = {
   }),
 
   //게시글 삭제
-  deletePost: (postId) => api.put(`/delete-post/${postId}`,{
+  deletePost: (postId) => api.delete(`/delete-post/${postId}`,{
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
@@ -409,9 +416,12 @@ export const postAPI = {
   }),
 
   //커뮤니티 댓글 수정
-  editComment: (commentNo, commentdata) => api.put(`/update-comment`, {
+  editComment: (commentNo, commentdata) => api.put(`/update-comment`, 
+  {    
     commentNo :commentNo,
-    commentdata: commentdata,
+    commentdata: commentdata
+  } ,
+  {
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
@@ -427,6 +437,7 @@ export const postAPI = {
 
 
 export const myPageAPI = {
+
   //내 사진, 스크랩한 사진 리스트 (최대6장까지)
   getMyPhotoScrapPhotoList: () => api.get(`/mypage/post/planterior`,{
     headers: {
@@ -435,6 +446,8 @@ export const myPageAPI = {
   }
   ),
 
+
+
   //내가 작성한 글 전체 리스트
   getMyPostList: () => api.get(`/mypage/post`,{
     headers: {
@@ -442,6 +455,12 @@ export const myPageAPI = {
     }
   }
   ),
+  //스크랩한 글 전체 리스트
+  getScrapPostList: () => api.get(`/mypage/bookmark/post/community`,{
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }) ,
 
   //내 사진 전체 리스트
   getMyPhotoList: () => api.get(`/mypage/post?postTypeCode=postType01`, {
@@ -450,7 +469,7 @@ export const myPageAPI = {
     }
   }),
   //스크랩 사진 전체 리스트
-  getScrapPhotoList: () => api.get(`/mypage/bookmark/post`,{
+  getScrapPhotoList: () => api.get(`/mypage/bookmark/post?postTypeCode=postType01`,{
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
@@ -459,6 +478,13 @@ export const myPageAPI = {
   
   //내 식물 리스트
   getMyPlantList: () => api.get(`/mypage/myplant`, {
+    headers: {
+      Authorization: ` ${sessionStorage.getItem('token')}`,
+    }
+  }),
+
+  //스크랩한 식물 리스트 ( 최대6개까지)
+  getScrapSixPlantList: () => api.get(`/mypage/bookmark/myplant`, {
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
@@ -489,10 +515,13 @@ export const myPageAPI = {
   }),
 
   //내 식물 수정
-  editMyPlant: (myPlantNo, formData) => api.patch(`/myplant/update/${myPlantNo}`, formData, {
-    headers: {
-      "content-type": "multipart/form-data",
-      Authorization: ` ${sessionStorage.getItem('token')}`,      
+  editMyPlant: (myPlantNo, formData) => api.patch(`/myplant/update/${myPlantNo}`, 
+    formData, 
+    {
+      headers: {
+        "content-type": "multipart/form-data",
+        Authorization: ` ${sessionStorage.getItem('token')}`,      
+      }
     }
-  }),
+  ),
 }

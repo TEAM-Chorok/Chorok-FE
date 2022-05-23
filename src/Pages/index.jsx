@@ -47,6 +47,7 @@ import ScrapPlantsPage from "./MyPage/ScrapPlantsPage";
 import ScrapPicturesPage from "./MyPage/ScrapPicturesPage";
 import EditPlant from "./MyPage/EditPlant";
 import MyPostsPage from "./MyPage/MyPostsPage";
+import ScrapPostsPage from "./MyPage/ScrapPostsPage";
 
 import Setting from "../Pages/User/Setting";
 import DeactivateAccount from "./User/DeactivateAccount";
@@ -63,7 +64,8 @@ export { Login, SignUp, Kakao, Google, LogInEmail,
     PlantCard,
     Search, PlanteriorDetail, PlanteriorWrite, Result, 
     Community, AddPost, PostDetail, CommBottomSheet, 
-    MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage, EditPlant, MyPostsPage,
+    MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage, 
+    EditPlant, MyPostsPage, ScrapPostsPage,
     Setting, DeactivateAccount,
     Test,
 };

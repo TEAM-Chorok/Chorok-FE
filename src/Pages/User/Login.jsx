@@ -22,21 +22,40 @@ const Login = () => {
           
           <InnerDiv style={{marginTop:"148px"}}>
             
-            <Grid width="100%" margin="8px 0px 0px 0px" position="relative">
-              <img src="img/kakao 1.svg" style={{position:"absolute", top: "16px", left:"28%", zIndex:"100"}}/>
-              <Button 
+            {/* <Grid width="100%" margin="8px 0px 0px 0px"> */}
+              {/* <Button 
                 href={KAKAO_AUTH_URL}
                 variant='contained' 
-                style={{textAlign:"center", display:"block", width:"100%", height: "48px", alignItems:"center",  fontWeight:"700", backgroundColor:"#FEE500", padding:"14px", borderRadius:"6px", color:"#242424", boxShadow:"none", boxSizing:"border-box"}}>카카오로 계속하기</Button>
+                style={{textAlign:"center", display:"block", width:"100%", height: "48px", alignItems:"center",  fontWeight:"700", backgroundColor:"#FEE500", padding:"14px", borderRadius:"6px", color:"#242424", boxShadow:"none", boxSizing:"border-box"}}>
+                  <img src="img/kakao 1.svg" style={{margin:"0px 4px"}} /> 
+                  <Text size="small">카카오로 계속하기</Text></Button>
+            </Grid> */}
+
+            <Grid width="100%" margin="8px 0px 0px 0px">
+              <a href={KAKAO_AUTH_URL}><div 
+              style={{placeItems:"self-start", display:"grid", gridTemplateColumns:"0.3fr 0.15fr 0.8fr", width:"100%", fontWeight:"500",height: "48px", alignItems:"center", backgroundColor:"#FEE500 ", padding:"14px", borderRadius:"6px",  color:"#242424", boxShadow:"none", boxSizing:"border-box"}}>
+                <div></div>
+                <img src="img/kakao 1.svg" style={{margin:"0px 4px"}} /> 
+                <Text size="small" bold>카카오로 계속하기</Text>
+              </div></a>
             </Grid>
-            
-            <Grid width="100%" margin="8px 0px 0px 0px" position="relative">
-              <img src="img/logo_google.svg" style={{position:"absolute", top: "16px", left:"30%", zIndex:"200"}}/>
+            <Grid width="100%" margin="8px 0px 0px 0px">
+              <a href={GOOGLE_AUTH_URL}><div 
+              style={{placeItems:"self-start", display:"grid", gridTemplateColumns:"0.35fr 0.15fr 0.8fr", width:"100%", fontWeight:"500",height: "48px", alignItems:"center", backgroundColor:"#FFFFFF ", padding:"14px", borderRadius:"6px",  color:"#392020", boxShadow:"none", boxSizing:"border-box"}}>
+                <div></div>
+                <img src="img/logo_google.svg" style={{margin:"0px 4px"}}/>
+                <Text size="small" bold>구글로 계속하기</Text>
+              </div></a>
+            </Grid>
+
+            {/* <Grid width="100%" margin="8px 0px 0px 0px">
               <Button 
                 href={GOOGLE_AUTH_URL}
                 variant='contained' 
-                style={{textAlign:"center", display:"block", width:"100%", fontWeight:"700",height: "48px", alignItems:"center", backgroundColor:"#FFFFFF ", padding:"14px", borderRadius:"6px",  color:"#392020", boxShadow:"none", boxSizing:"border-box"}}>구글로 계속하기</Button>
-            </Grid>
+                style={{textAlign:"center", display:"block", width:"100%", fontWeight:"700",height: "48px", alignItems:"center", backgroundColor:"#FFFFFF ", padding:"14px", borderRadius:"6px",  color:"#392020", boxShadow:"none", boxSizing:"border-box"}}>
+                  <img src="img/logo_google.svg" style={{margin:"0px 4px"}}/>
+                   구글로 계속하기</Button>
+            </Grid> */}
 
             <Grid width="100%" margin="8px 0px 0px 0px">
               <Button variant='text' 

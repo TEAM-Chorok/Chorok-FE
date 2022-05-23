@@ -8,7 +8,7 @@ const MyPicturesPage = () => {
     return (
         <React.Fragment>
             <Container>
-                <GeneralHeader title="내 사진" size="base"/>
+                <GeneralHeader title="내 식물공간" size="base"/>
             </Container>
             <Container type="np">
                 <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />

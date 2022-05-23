@@ -18,6 +18,7 @@ import {
   AddPost,
   PostDetail,
   LogInEmail,
+  ScrapPostsPage,
 } from '../Pages';
 import EditPost from '../Pages/Community/EditPost';
 import theme from './theme';
@@ -75,6 +76,7 @@ function App() {
 
             <Route path="/setting" exact component={Setting} />
             <Route path="/setting/myposts" exact component={MyPostsPage} />
+            <Route path="/setting/scrap-posts" exact component={ScrapPostsPage} />
             <Route path="/setting/profile" exact component={ProfileSetting} />
             <Route path="/setting/changepwd" exact component={ChangePwd} />
             <Route path="/setting/deactivation" exact component={DeactivateAccount} />

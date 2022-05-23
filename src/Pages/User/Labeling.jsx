@@ -19,17 +19,7 @@ const Labeling = () => {
   const [attribute2, setAttribute2] = React.useState("");
 
   const submit = () => {
-    //밑에 해결 안되면 아래 코드로 할고양
-    // setLoading(true);
-    // dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
-    // setTimeout(
-    //   () => setLoading(false), 1999
-    // )
-    // //로딩 페이지 
-    // setTimeout(
-    //   () => setActive(5)
-    // ,2000);
-
+    
     setLoading(true); //로딩화면 보여주려고 함
     try {
       console.log(loading); 
@@ -54,21 +44,6 @@ const Labeling = () => {
   };
 
   
-  //로딩 페이지 return
-  // if(loading === true) {
-  //   return (
-  //     <>
-  //       <Container>
-  //         <Grid width="100%" height="100vh"> 
-  //           <div style={{textAlign:"center", width: "100%", paddingTop:"300px"}}>
-  //             <Text bold color="#262626" size="large" display="block" margin="0px auto">열심히 취향 분석 중!<br />곧 맞춤 식물을 알려드릴게요!👍</Text>
-  //           </div>
-  //         </Grid>
-  //       </Container>
-  //     </>
-  //   )
-  // }
-
   if (active === 0 ) {
     return (
     <React.Fragment>
@@ -80,7 +55,7 @@ const Labeling = () => {
         <Grid margin="0px auto" align="center">
           {/*추후 애니메이션 넣기*/}
           <Img className="labelingLogo" src="img/Logo/LOGO.svg" />
-          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position: "absolute", top:"368px", left: "164px"}}/>
+          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position: "absolute", top:"404px", left: "180px"}}/>
         </Grid>
         <Grid margin="120px auto 100px auto" align="center">
           <PrimaryBtn onClick={()=>setActive(1)}>시작할래요</PrimaryBtn>

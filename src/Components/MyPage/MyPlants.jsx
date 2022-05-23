@@ -12,16 +12,17 @@ const MyPlants = () => {
     const dispatch = useDispatch();
     const myPlantList = useSelector(state => state.mypage?.plantList);
     const myPlantCount = useSelector(state => state.mypage?.myPlantCount);
-    // const scrapPlantList = useSelector(state => state.main?.scrapPlantList);
+    const scrapPlantList = useSelector(state => state.mypage?.scrapPlantList);
+    const scrapPlantCount = useSelector(state => state.mypage?.scrapPlantCount);
 
-
+    console.log(scrapPlantList);
+    
     useEffect(() => {
         dispatch(MyActions.getMySixPlantsDB());
-        // dispatch(MainActions.getScrapPlantListDB());
+        dispatch(MyActions.getScrapSixPlantListDB());
     }, [])
     
-    // if( !myPlantList || !scrapPlantList ) {
-    if( !myPlantList ) {    
+    if( !myPlantList || !scrapPlantList ) {
         return (
             <div></div>
         )
@@ -50,16 +51,23 @@ const MyPlants = () => {
                 })}
             </ContentWrap>
             {/* 스크랩한 식물 */}
-            <TitleWrap style={{height: "36.5px" , gridTemplateColumns:"1fr 2.5fr"}}>
-                <Text bold size="large">스크랩한 식물 </Text><Text size="large" color="#0AAF42" bold>n</Text>
+            <TitleWrap style={{ gridTemplateColumns:"1fr 1fr 1fr"}}>
+                <Text bold size="large">스크랩한 식물 </Text><Text size="large" color="#0AAF42" bold>{scrapPlantCount}</Text>
+                <Button variant='text' style={{color:"grey", justifyContent:"end"}}
+                onClick={()=>history.push('/scrap-plant')}>더 보기</Button>
             </TitleWrap>
             <ScrapContentWrap>
-                <Contents key="plantname/plantId" onClick={()=>history.push(`/plant/plantname`)}>
-                    <Image margin="8px auto" type="circle" size="96px" imgUrl="https://ar.haenselblatt.com/img/images_1/how-to-grow-rosemary-indoors.jpg"/>
-                    {/* <Text size="small" color="#6F6F6F" display="block">
-                                {p.plantName.length < 6? p.plantName : p.plantName.slice(0, 5)+'...'}</Text> */}
-                    <Text size="small" color="#6F6F6F" display="block">장미</Text>
-                </Contents>
+                {scrapPlantList?.map((p, idx) => {
+                    return (
+                    <Contents key={idx} onClick={()=>history.push(`/plant/${p.plantNo}`)}>
+                        <Image margin="8px auto" type="circle" size="96px" imgUrl={p.plantImgUrl}/>
+                        <Text size="small" color="#6F6F6F" display="block">
+                                    {p.plantName.length < 6? p.plantName : p.plantName.slice(0, 5)+'...'}</Text>
+                        {/* <Text size="small" color="#6F6F6F" display="block">장미</Text> */}
+                    </Contents>
+                    )
+                })}
+                
                 
             </ScrapContentWrap>
             </Grid>
