@@ -2,8 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Grid, Text } from "../../../Elements";
-import PlantProfile from "../../PlantProfile";
-
+import PlantProfile from "../../share/etc/PlantProfile";
 
 
 const PlantResult = () => {

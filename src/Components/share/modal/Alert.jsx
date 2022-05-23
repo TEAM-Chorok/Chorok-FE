@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
-import { Button, Container, Grid, Text } from "../Elements";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Button, Container, Grid, Text } from "../../../Elements";
+import { useHistory } from "react-router-dom";
 
 
 

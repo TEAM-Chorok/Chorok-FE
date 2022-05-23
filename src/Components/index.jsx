@@ -1,7 +1,4 @@
 
-// 혹시 몰라서 만든 내 식물 페이지 식물 프로필 comp...
-import PlantProfile from "./PlantProfile";
-
 // Home
 import HomeMyplant from "./Home/HomeMyplant";
 import HomeHeader from "./Home/HomeHeader";
@@ -32,7 +29,6 @@ import PlanteriorDetailContents from "./Search/Planterior/PlanteriorDetailConten
 import PlanteriorDetailComments from "./Search/Planterior/PlanteriorDetailComments";
 import PlanteriorList from "./Search/Planterior/PlanteriorList";
 import PlanteriorWriteComp from "./Search/Planterior/PlanteriorWrite";
-import PlanteriorCommentWrite from "./Search/Planterior/PlanteriorCommentWrite";
 import LabelingTestLink from "./Search/Planterior/LabelingTestLink";
 import RecommendPlant from "./Search/Planterior/RecommendPlant"
 
@@ -59,7 +55,6 @@ import AddPostHeader from "./Community/AddPostHeader";
 import AddPostFooter from "./Community/AddPostFooter";
 import AddPlantDairy from "./Community/AddPlantDairy";
 
-import SearchHeader from "./SearchHeader";
 
 // My Page
 import MyPageHeader from "./MyPage/MyPageHeader";
@@ -85,30 +80,40 @@ import DeactivationAgreement from "./MyPage/Setting/DeactivationAgreement";
 
 // 기타 모듈화 컴포넌트
 // 뒤로가기 버튼 + 타이틀 헤더 
-import GeneralHeader from "./GeneralHeader";
+import GeneralHeader from "./share/etc/GeneralHeader";
 // 타이틀 + 검색창 헤더
-import PlantSearchHeader from "./PlantSearchHeader";
+import PlantSearchHeader from "./share/etc/PlantSearchHeader";
+// 커뮤니티탭 검색창 헤더
+import SearchHeader from "./share/etc/SearchHeader";
 // 탭바
-import Tabbar from "./Tabbar";
+import Tabbar from "./share/etc/Tabbar";
 // alert 모달
-import Alert from "./Alert";
+import Alert from "./share/modal/Alert";
+// alert 모달 2
+import Alert2 from "./share/modal/Alert2";
 // 프로그래스바
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "./share/etc/ProgressBar";
 // 네비게이션바
-import Navbar from "./Navbar";
-//그림자 
-import Dimmer from "./Dimmer";
-//모달버튼
-import SideButton from "./SideButton";
+import Navbar from "./share/etc/Navbar";
+// 글 작성 관련 모달 플로팅 버튼
+import SideButton from "./share/posting/SideButton";
+// 모달 배경(그림자)
+import Dimmer from "./share/modal/Dimmer";
+// 코멘트 인풋창
+import CommentWrite from "./share/posting/CommentWrite";
+// 포스트 디테일뷰 추가메뉴 바텀시트
+import MoreContentSheet from "./share/posting/MoreContentSheet";
+// 식물 프로필
+import PlantProfile from "./share/etc/PlantProfile";
+
 
 export {
     Questionnaire,Questionnaire2, Questionnaire3, Questionnaire4,
-    PlantProfile,
     TodoContent, TodoProfile, HomeHeader, HomeMyplant,
     AddPlantList, BottomSheet, SelectPlace, WritePlantProfile, AddDone,
     PlantCardProfile, PlantCardFeed, 
     CalendarTable, CalendarMyPlant, CalendarTodo,
-    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, PlanteriorWriteComp, PlanteriorCommentWrite,
+    Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, PlanteriorWriteComp,
     SearchOnFocus, AllResult, PlanteriorResult, PlantResult, 
     LabelingTestLink, RecommendPlant,
     CommPost, CommPostList, CommunityFilter, DetailCommPost, AddPlantDairy, AddPostHeader, AddPostFooter,
@@ -118,6 +123,9 @@ export {
     EditPlantHeader, EditPlantBody,
     MyPostsPostList, 
     DeactivationAgreement,
-    PlantSearchHeader, SearchHeader, Tabbar, Alert, ProgressBar, Navbar, Dimmer, SideButton,
+    Alert, Alert2, Dimmer,
+    SideButton, MoreContentSheet, CommentWrite,  
+    PlantProfile, PlantSearchHeader, 
+    SearchHeader, Tabbar, ProgressBar, Navbar, 
 };
 

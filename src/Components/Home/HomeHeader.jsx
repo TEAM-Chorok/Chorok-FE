@@ -20,6 +20,8 @@ const HomeHeader = () => {
 
   // 날씨 관련
   const weatherData = useSelector((state) => state?.main?.weather);
+  const weather = weatherData?.weather;
+  const [color, setColor] = React.useState('linear-gradient(180deg, #E7F4F7 60%, rgba(242, 244, 248, 0) 88%)');
 
   // 현재 날짜
   const day = moment().day()
@@ -68,7 +70,22 @@ const HomeHeader = () => {
 
   React.useEffect(() => {
     getLocation();
-    console.log("실행?")
+    if(weather === '맑음') {
+      setColor('linear-gradient(180deg, #E7F4F7 60%, rgba(242, 244, 248, 0) 88%)');
+      return;
+    } else if(weather === '흐림') {
+      setColor('linear-gradient(180deg, #EEEEEE 60%, rgba(242, 244, 248, 0) 88%)');
+      return;
+    } else if(weather === '안개' || weather === '눈') {
+      setColor('linear-gradient(180deg, #EBF0F2 60%, rgba(242, 244, 248, 0) 88%)');
+      return;
+    } else if(weather === '황사' || weather === '먼지') {
+      setColor('linear-gradient(180deg, #F9F4ED 60%, rgba(242, 244, 248, 0) 88%)');
+      return;
+    } else if(weather === '천둥' || weather === '폭풍' || weather === '비' || weather === '스콜' ) {
+      setColor('linear-gradient(180deg, #ced5e6 60%, rgba(242, 244, 248, 0) 88%)');
+      return;
+    }
   }, [])
 
   console.log(cityname, weatherData);
@@ -76,39 +93,43 @@ const HomeHeader = () => {
 
   return (
     <React.Fragment>
-    <Grid width="100%" bg="#fff">
-      {navigator.geolocation ?
-        <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F4F7 60%, rgba(242, 244, 248, 0) 88%)">
-          <Grid width="100%" padding="16px">
-
-            <Text size="XS" color="#999">{date}</Text>
-            <br />
-            <Text bold margin="5px 0"> {cityname}, {weatherData?.weather} {weatherData?.temp}℃</Text>
-            <br />
-            <Text size="XS" color="#999"> 최저 {weatherData?.temp_min}℃ 최고 {weatherData?.temp_max}℃ 습도 {weatherData?.humidity}%</Text>
+      <Grid width="100%" bg="#fff">
+        {navigator.geolocation ?
+          <GridBox bg={color}>
+            <Grid width="100%" padding="16px">
+              <Text size="XS" color="#999">{date}</Text>
+              <br />
+              <Text bold margin="5px 0"> {cityname}, {weatherData?.weather} {weatherData?.temp}℃</Text>
+              <br />
+              <Text size="XS" color="#999"> 최저 {weatherData?.temp_min}℃ 최고 {weatherData?.temp_max}℃ 습도 {weatherData?.humidity}%</Text>
+            </Grid>
+            <Grid>
+              <Img src={`/img/weather/${weatherData?.weather}.svg`} />
+            </Grid>
+          </GridBox>
+          :
+          <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F4F7 68.85%, rgba(242, 244, 248, 0) 88.45%)">
+            <Grid margin="20px auto" padding="16px">
+              <Text bold size="xsmall">💬 {status}</Text>
+            </Grid>
           </Grid>
-          <Grid>
-            <Img src="/img/weather/slight_touch_happyday.svg" />
-          </Grid>
-        </Grid>
-        :
-        <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F4F7 68.85%, rgba(242, 244, 248, 0) 88.45%)">
-          <Grid margin="20px auto" padding="16px">
-            <Text bold size="xsmall">💬 {status}</Text>
-          </Grid>
-        </Grid>
-      }
+        }
       </Grid>
     </React.Fragment>
   );
 }
 
 const Img = styled.img`
+  margin-top: 4px;
   height: 100px;
 `
 
-const Logo = styled.img`
-  width: 100px;
+const GridBox = styled.div`
+  width: 100%;
+  height: 120px;
+  background: ${(props) => props.bg};
+  display: grid;
+  grid-template-columns: 3fr 1fr;  
 `
 
 export default HomeHeader;

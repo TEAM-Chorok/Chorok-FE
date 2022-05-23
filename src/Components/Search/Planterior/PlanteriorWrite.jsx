@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Alert2 from "../../Alert2";
+import Alert2 from "../../share/etc/Alert2";
 import PlaceFilter from "../PlaceFilter";
 import AddPostHeader from "../../Community/AddPostHeader";
 
@@ -10,12 +10,19 @@ import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 import { Grid, Image, Input, Text } from "../../../Elements";
 import { IoCamera } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 
 
 const PlanteriorWriteComp = () => {
   const dispatch = useDispatch();
+  const location = useLocation().pathname.split('/')[2];
+  const postId = useParams();
+  
+  // const postdata = useSelector((state) => state.post.post);
+  const planteriordata = useSelector((state) => state.search?.planterior);
 
   // alert 모달 open/close
   const [open, setOpen] = React.useState(false);
@@ -23,11 +30,11 @@ const PlanteriorWriteComp = () => {
   const [place, setPlace] = React.useState(null);
   const [message, setMessage] = React.useState(null);
 
-  const fileRef = React.useRef();
-  const contentRef = React.useRef();
+  const fileRef = React.useRef(null);
+  const contentRef = React.useRef(null);
   const [file, setFile] = React.useState([]);
   const [preview, setPreview] = React.useState([]);
-  
+
   // alert 메세지 
   const alertMessage = {
     0: "자랑할 공간을 선택해주세요!",
@@ -38,39 +45,26 @@ const PlanteriorWriteComp = () => {
   }
 
 
-
-  // 업로드한 파일 가져오기
+  // 업로드한 파일 가져오기 
+  // 이후 업로드 여러장 가능할 경우 첫번째 조건문 해제
   const onChange = (e) => {
     if (file.length === 2 || e.target.files.length > 1) {
       setMessage(4);
       setOpen(true);
       return;
-    }
-    if (file.length === 4 || e.target.files.length > 3) {
+    } else if (file.length === 4 || e.target.files.length > 3) {
       setMessage(3);
       setOpen(true);
       return;
-    }
-    if (e.target.files) {
+    } else if (e.target.files) {
       setFile([...file, ...e.target.files]);
     } else {
       // 업로드 취소
       setFile([])
       return;
     }
-    // const length = file?.length;
-    // // 미리보기
-    // for (let i = 0; i < length+1; i++) {
-    //   const reader = new FileReader();
-    //   reader.onload = () => {
-    //     if (reader.readyState === 2) {
-    //       setPreview([...preview, reader.result]);
-    //     }
-    //   }
-    //   reader.readAsDataURL(e.target.files[i]);
-    // }
-    const fileArr = e.target.files;
 
+    const fileArr = e.target.files;
     let fileURLs = [];
     let filesLength = fileArr.length > 10 ? 10 : fileArr.length;
     let files;
@@ -87,45 +81,66 @@ const PlanteriorWriteComp = () => {
     }
 
   }
-  console.log(file)
-  console.log(preview);
-  
+
+
+  // 게시글 등록
   const submit = () => {
+
     if (place === null) {
       setMessage(0);
       setOpen(true);
+      return;
+    } else if (!contentRef) {
+      setMessage(1);
+      setOpen(true);
+      return;
+    } else if (!file) {
+      setMessage(2);
+      setOpen(true);
+      return;
+    } else if (file.length > 1) {
+      setMessage(4);
+      setOpen(true);
+      return;
     }
-
-  
 
     const formData = new FormData();
 
-    formData.append('postTitle', 'title');
+    formData.append('postTitle', null);
     formData.append('postImgUrl', file[0]);
     formData.append('postContent', contentRef.current.value);
-    formData.append('plantPlaceNo', place);
+    formData.append('plantPlaceCode', place);
     formData.append('postTypeCode', 'postType01');
 
-    for (let value of formData.values()) {
-      console.log("폼데이터", value);
-}
-    console.log(file, contentRef.current.value, place);
+    if(location === 'edit') {
+      dispatch(searchActions.editPlanteriorPostDB(formData, postId.postId));
+      return;
+    }
     dispatch(searchActions.writePlanteriorPostDB(formData));
   }
+
+  
+  React.useEffect(() => {
+    if(location === 'edit') {
+      contentRef.current.value=planteriordata?.postContent;
+      setPreview([planteriordata?.postImgUrl]);
+      setFile([planteriordata?.postImgUrl]);
+    }
+  }, [location, planteriordata])
 
 
   return (
     <React.Fragment>
-      <AddPostHeader title="공간 자랑하기" submit={submit} />
+      <AddPostHeader edit title={ location === 'edit' ? "글 수정하기" : "공간 자랑하기" } submit={submit} />
       <Grid width="100%" padding="0 16px">
         <PlaceFilter none setPlace={setPlace} />
       </Grid>
       <Grid width="100%" padding="0 16px">
-        <Input type="textarea" placeholder="사진에 대해 설명해 주세요." _ref={contentRef}/>
+        <Input type="textarea" placeholder="사진에 대해 설명해 주세요." _ref={contentRef} />
       </Grid>
 
 
-      {file?.length > 0 ?
+      { file?.length > 0 || preview.length > 0 ?
         <FilePreview>
           {preview ?
             preview.map((img, idx) => {

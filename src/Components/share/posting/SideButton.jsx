@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Text, Button, Container } from "../Elements";
-import Dimmer from "./Dimmer";
+import { Text, Button } from "../../../Elements";
+import Dimmer from "../modal/Dimmer";
 
 
 // 호출한 부모 컴포넌트에서 모달 open/close에 관여하는 state를 관리해야합니다!

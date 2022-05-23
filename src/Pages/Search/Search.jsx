@@ -88,11 +88,6 @@ const Wrapper = styled.div`
   overflow: ${(props) => props.open ? "hidden" : "auto"};
 `
 
-const ResultBox = styled.div`
-  padding: 0 16px;
-  width: 100%;
-  
-`
 
 
 export default Search;

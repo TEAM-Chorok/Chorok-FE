@@ -7,6 +7,8 @@ import { GrClose } from 'react-icons/gr';
 
 
 const AddPostHeader = (props) => {
+  const { edit } = props;
+
   const history = useHistory();
   return (
     <React.Fragment>
@@ -22,7 +24,7 @@ const AddPostHeader = (props) => {
               height: "fit-content",
               padding: "0px",
             }}>
-            <Text size="base" color="#A8A8A8">올리기</Text></Button> :
+            <Text size="base" color="#A8A8A8">{ edit ? "완료" : "올리기" }</Text></Button> :
           <Button
             onClick={() => props.submit()}
             style={{
@@ -30,7 +32,7 @@ const AddPostHeader = (props) => {
               height: "fit-content",
               padding: "0px",
             }}>
-            <Text size="base" color="#24A148">올리기</Text>
+            <Text size="base" color="#24A148">{ edit ? "완료" : "올리기" }</Text>
           </Button>}
       </Header>
     </React.Fragment>

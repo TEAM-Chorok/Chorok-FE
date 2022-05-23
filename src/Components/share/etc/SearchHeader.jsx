@@ -1,10 +1,9 @@
 import React from "react";
-import { Grid, Text } from "../Elements";
+import { Grid, Text } from "../../../Elements";
 import styled, { keyframes } from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from "react-redux";
-import { actionCreators as postActions } from "../Redux/Modules/post";
-import { useRef } from "react";
+import { actionCreators as postActions } from "../../../Redux/Modules/post";
 
 
 const SearchHeader = (props) => {

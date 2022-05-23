@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Grid, Image, Text } from "../../../Elements";
+import { Grid, Image, Text } from "../../../Elements";
 import PlaceFilter from "../PlaceFilter";
 import Masonry from '@mui/lab/Masonry';
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
@@ -32,11 +32,10 @@ const PlanteriorList = () => {
       console.log("위치필터링", place)
       dispatch(searchActions.planteriorFilteringDB(place));
     }
-  }, [place])
+  }, [place, dispatch])
 
   return (
     <React.Fragment>
-
       <PlaceFilter setPlace={setPlace} />
       <Grid width="100%">
         {planteriorList ?
@@ -44,7 +43,7 @@ const PlanteriorList = () => {
             {planteriorList?.map((post, idx) => {
               return (
                 <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId) }}>
-                  <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
+                  <Image type="planterior" width="100%" imgUrl={post.postImgUrl} />
                   <Grid is_flex margin="4px 0">
                     <Image type="circle" size="20px"
                       imgUrl={post.profileImageUrl ? post.profileImageUrl : "/img/noProfileImgSmall.svg"}

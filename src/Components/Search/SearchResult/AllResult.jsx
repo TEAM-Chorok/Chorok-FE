@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Grid, Image, Input, Text } from "../../../Elements";
-import PlantProfile from "../../PlantProfile";
+import PlantProfile from "../../share/etc/PlantProfile";
 
 
 const AllResult = (props) => {

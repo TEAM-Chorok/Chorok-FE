@@ -8,39 +8,51 @@ import moment from 'moment';
 import { useDispatch } from "react-redux";
 
 const CalendarTodoBlock = (props) => {
-  const { workType, content, plantNo, _onClick } = props;
-  
-  const dispatch = useDispatch(); 
+  const { workType, content, plantNo, arr } = props;
+
+  const dispatch = useDispatch();
 
   const [checked, setChecked] = React.useState(false)
 
   const date = moment(new Date()).format('YYYYMMDD');
   const year = moment(new Date()).format('YYYY');
   const month = moment(new Date()).format('MM');
-  const bloomingDay = moment(new Date()).format('YYYY-MM-DD');
+  const date2 = moment(new Date()).format('YYYY-MM-DD');
   const data = {
-    bloomingDay: bloomingDay
+    bloomingDay: date2,
   }
 
 
   const check = () => {
     if (checked === false) {
       setChecked(true);
-      if(workType === "꽃핀날") {
+      if (workType === "꽃핀날") {
         dispatch(calendarActions.postBloomingDB(plantNo, data, year, month));
       } else {
         dispatch(calendarActions.checkCalendarDB(date, plantNo, workType, year, month));
       }
     } else {
       setChecked(false);
-      if(workType === "꽃핀날") {
-        dispatch(calendarActions.postBloomingDB(plantNo, date, year, month));
+      if (workType === "꽃핀날") {
+        dispatch(calendarActions.deleteBloomingDB(plantNo, date, year, month));
       } else {
-        dispatch(calendarActions.checkCalendarDB(date, plantNo, workType, year, month));
+        dispatch(calendarActions.unCheckCalendarDB(date, plantNo, workType, year, month));
       }
     };
   };
 
+
+  React.useEffect(() => {
+    if(arr) {
+      if (date2 === arr[arr.length-1]) {
+        setChecked(true);
+        return;
+      } else {
+        setChecked(false);
+        return;
+      }
+    }
+  }, [date2, arr])
 
 
   return (
@@ -51,18 +63,18 @@ const CalendarTodoBlock = (props) => {
             {content}
           </Grid>
           <Grid>
-						{checked ? 
+            {checked ?
               <MdOutlineCheckBox color="#0AAF42" size="20px"
                 onClick={() => { check(); }}
-              /> : 
-              <MdOutlineCheckBoxOutlineBlank size="20px" color="#C6C6C6" 
+              /> :
+              <MdOutlineCheckBoxOutlineBlank size="20px" color="#C6C6C6"
                 onClick={() => { check(); }}
               />}
-					</Grid>
-				</Grid>
-			</TodoBox>
-		</React.Fragment>
-	)
+          </Grid>
+        </Grid>
+      </TodoBox>
+    </React.Fragment>
+  )
 };
 
 

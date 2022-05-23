@@ -1,12 +1,12 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { Grid, Image, Text } from "../Elements";
-import { ReactComponent as HomeIcon } from '../Assets/img/navbarIcons/home.svg'
-import { ReactComponent as SearchIcon } from '../Assets/img/navbarIcons/search.svg'
-import { ReactComponent as CalendarIcon } from '../Assets/img/navbarIcons/calendar.svg'
-import { ReactComponent as CommunityIcon } from '../Assets/img/navbarIcons/community.svg'
-import { ReactComponent as UserIcon } from '../Assets/img/navbarIcons/user.svg'
+import { Grid, Text } from "../../../Elements";
+import { ReactComponent as HomeIcon } from '../../../Assets/img/navbarIcons/home.svg'
+import { ReactComponent as SearchIcon } from '../../../Assets/img/navbarIcons/search.svg'
+import { ReactComponent as CalendarIcon } from '../../../Assets/img/navbarIcons/calendar.svg'
+import { ReactComponent as CommunityIcon } from '../../../Assets/img/navbarIcons/community.svg'
+import { ReactComponent as UserIcon } from '../../../Assets/img/navbarIcons/user.svg'
 
 const Navbar = (props) => {
   const history = useHistory();
@@ -133,6 +133,7 @@ const NavBox = styled.div`
   border-top: 1px solid #E0E0E0;
   background: #fff;
   
+  z-index: 50;
 `
 
 const InnerBox = styled.div`

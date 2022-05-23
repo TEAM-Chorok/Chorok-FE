@@ -176,12 +176,14 @@ export const searchAPI = {
   // 플랜테리어 게시글 작성
   writePlanteriorPost: (postdata) => api.post(`/write-post`, postdata, {
     headers: {
+      "content-type": "multipart/form-data",
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
   // 플랜테리어 게시글 수정
   editPlanteriorPost: (postdata, postId) => api.put(`/update-post/${postId}`, postdata, {
     headers: {
+      "content-type": "multipart/form-data",
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
@@ -322,8 +324,20 @@ export const calendarAPI = {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
+  // 개화 체크 해제
+    deleteBlooming: (plantNo, date) => api.delete(`/blooming/${plantNo}/${date}`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
   // 개화 외 목록 체크
   checkCalendar: (plantNo, date, workType) => api.patch(`/calendar/${date}/${plantNo}/${workType}`, {}, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 개화 외 목록 체크해제
+  unCheckCalendar: (plantNo, date, workType) => api.patch(`/calendar/cancel/${date}/${plantNo}/${workType}`, {}, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }

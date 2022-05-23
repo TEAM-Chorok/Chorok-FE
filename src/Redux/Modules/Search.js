@@ -43,7 +43,7 @@ const plantFilteringDB = (filterData) => {
     .plantFiltering(filterData)
     .then((response) => {
       // console.log("plantFilteringDB : response", response.data.plantList);
-      dispatch(plantFiltering(response.data.plantList));
+      dispatch(plantFiltering(response.data.content));
     }).catch((error) => {
       console.log("plantFilteringDB : error", error.response);
     });
@@ -85,7 +85,7 @@ const writePlanteriorPostDB = (postdata) => {
     .writePlanteriorPost(postdata)
     .then((response) => {
       console.log("writePlanteriorPostDB : response", response);
-      history.push(`/planterior/post/${response.data.postId}`);
+      history.replace(`/planterior/post/${response.data.postId}`);
       window.location.reload();
     }).catch((error) => {
       console.log("writePlanteriorPostDB : error", error.response);
@@ -100,6 +100,7 @@ const editPlanteriorPostDB = (postdata, postId) => {
     .editPlanteriorPost(postdata, postId)
     .then((response) => {
       console.log("editPlanteriorPostDB : response", response);
+      dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("editPlanteriorPostDB : error", error.response);
     })
@@ -113,6 +114,8 @@ const deletePlanteriorPostDB = (postId) => {
     .deletePlanteriorPost(postId)
     .then((response) => {
       console.log("deletePlanteriorPostDB : response", response);
+      history.replace('/search');
+      window.location.reload();
     }).catch((error) => {
       console.log("deletePlanteriorPostDB : error", error.response);
     })
@@ -162,12 +165,13 @@ const writePlanteriorCommentDB = (commentdata) => {
 }
 
 // 플랜테리어 댓글 수정
-const editPlanteriorCommentDB = (commentdata) => {
+const editPlanteriorCommentDB = (editdata, postId) => {
   return function (dispatch, getState, { history }) {
     searchAPI
-    .editPlanteriorComment(commentdata)
+    .editPlanteriorComment(editdata)
     .then((response) => {
       console.log("editPlanteriorCommentDB : response", response);
+      dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("editPlanteriorCommentDB : error", error.response);
     })
@@ -175,12 +179,13 @@ const editPlanteriorCommentDB = (commentdata) => {
 }
 
 // 플랜테리어 댓글 삭제
-const deletePlanteriorCommentDB = (commentId) => {
+const deletePlanteriorCommentDB = (commentId, postId) => {
   return function (dispatch, getState, { history }) {
     searchAPI
     .deletePlanteriorComment(commentId)
     .then((response) => {
       console.log("deletePlanteriorCommentDB : response", response);
+      dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("deletePlanteriorCommentDB : error", error.response);
     })
@@ -194,7 +199,7 @@ const getPlanteriorDetailDB = (postId) => {
     searchAPI
       .getPlanteriorDetail(postId)
       .then((response) => {
-        // console.log("getPlanteriorDB : response", response.data);
+        console.log("getPlanteriorDB : response", response.data);
         dispatch(getPlanteriorDetail(response.data));
       }).catch((error) => {
         console.log("getPlanteriorDetailDB : error", error.response);
@@ -223,7 +228,7 @@ const keywordSearchingPhotoDB = (value) => {
     .keywordSearchingPhoto(value)
     .then((response) => {
       // console.log("keywordSearchingPhotoDB : searching", response.data);
-      dispatch(keywordSearchingPhoto(response.data))
+      dispatch(keywordSearchingPhoto(response.data.content))
     }).catch((error) => {
       console.log("keywordSearchingPhotoDB : error", error.response);
     })
@@ -236,8 +241,8 @@ const keywordSearchingPhotoPlaceDB = (value) => {
     searchAPI
     .keywordSearchingPhotoPlace(value)
     .then((response) => {
-      // console.log("keywordSearchingPhotoPlaceDB : searching", response.data);
-      dispatch(keywordSearchingPhotoPlace(response.data))
+      console.log("keywordSearchingPhotoPlaceDB : searching", response.data.content);
+      dispatch(keywordSearchingPhotoPlace(response.data.content))
     }).catch((error) => {
       console.log("keywordSearchingPhotoPlaceDB : error", error.response);
     })
@@ -251,7 +256,7 @@ const keywordSearchingPlantDB = (value) => {
     .keywordSearchingPlant(value)
     .then((response) => {
       // console.log("keywordSearchingPlantDB : searching", response.data.plantList);
-      dispatch(keywordSearchingPlant(response.data.plantList))
+      dispatch(keywordSearchingPlant(response.data.content))
     }).catch((error) => {
       console.log("keywordSearchingPlantDB : error", error.response);
     })
@@ -279,7 +284,7 @@ const getPlantDictDB = () => {
     .getPlantDict()
     .then((response) => {
       // console.log("getPlantDictDB : response", response.data);
-      dispatch(getPlantDict(response.data.plantList))
+      dispatch(getPlantDict(response.data.content))
     }).catch((error) => {
       console.log("getPlantDictDB : error", error.response);
     })

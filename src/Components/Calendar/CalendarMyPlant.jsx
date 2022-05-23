@@ -1,9 +1,9 @@
 import React from "react";
 import './Calendar.css';
 import styled from "styled-components";
-import PlantProfile from "../PlantProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
+import PlantProfile from "../share/etc/PlantProfile";
 
 const CalendarMyPlant = (props) => {
   const dispatch = useDispatch();

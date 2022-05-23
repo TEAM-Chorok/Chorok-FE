@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button, Container, Text, Grid } from "../../Elements";
-import { CommPostList, CommunityFilter, SearchHeader } from "../../Components";
-import Dimmer from "../../Components/Dimmer";
+import { CommPostList, CommunityFilter, Dimmer, SearchHeader } from "../../Components";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 

@@ -1,8 +1,6 @@
 import React from "react";
-import { Grid, Image, Text } from "../Elements";
+import { Grid, Image, Text } from "../../../Elements";
 import { IoIosArrowForward } from "react-icons/io";
-import styled from "styled-components";
-
 
 
 // 식물 프로필 컴포넌트입니다!

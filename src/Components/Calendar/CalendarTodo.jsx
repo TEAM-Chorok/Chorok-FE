@@ -5,16 +5,23 @@ import { Container, Grid, Image, Text } from "../../Elements";
 
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox } from "react-icons/md";
 import CalendarTodoBlock from "./CalendarTodoBlock";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as calendarActions } from "../../Redux/Modules/Calendar";
 import moment from "moment";
 
 
-// 캘린더 테스트 
-// 현재는 선택한 날짜 출력만 되게 해놓은 상태
+// 캘린더 페이지 투두항목 관리
 
 const CalendarTodo = (props) => {
-  const dispatch = useDispatch();
+
+  const checkData = useSelector((state) => state.calendar?.checkedData);
+  const blooming = checkData?.blooming;
+  const changing = checkData?.changing;
+  const leafcleaning = checkData?.leafcleaning;
+  const supplements = checkData?.supplements;
+  const watering = checkData?.watering;
+  const refreshing = checkData?.refreshing;
+
 
   const content = {
     w1: <TodoIcons content="물주기" img="img/calendaricon/water.svg" />,
@@ -25,31 +32,18 @@ const CalendarTodo = (props) => {
     w6: <TodoIcons content="꽃 핀 날" img="img/calendaricon/flower.svg" />,
   }
 
-
-  const [checked, setChecked] = React.useState(false)
-
-
-	const check = () => {
-		if (checked === false) {
-			setChecked(true);
-    } else {
-      setChecked(false);
-		};
-	};
-
-
   return (
     <React.Fragment>
       <Grid margin="8px 0">
         <Text bold size="large">{props.plantName}</Text>
       </Grid>
         
-        <CalendarTodoBlock content={content.w1} workType="물주기" plantNo={props.plantNo} _onClick={() => { check() }}/>
-        <CalendarTodoBlock content={content.w2} workType="잎닦기" plantNo={props.plantNo} _onClick={() => { check() }}/>
-        <CalendarTodoBlock content={content.w3} workType="환기" plantNo={props.plantNo} _onClick={() => { check() }}/>
-        <CalendarTodoBlock content={content.w4} workType="분갈이" plantNo={props.plantNo} _onClick={() => { check() }}/>
-        <CalendarTodoBlock content={content.w5} workType="영양제" plantNo={props.plantNo} _onClick={() => { check() }}/>
-        <CalendarTodoBlock content={content.w6} workType="꽃핀날" plantNo={props.plantNo} _onClick={() => { check() }}/>
+        <CalendarTodoBlock content={content.w1} workType="물주기" arr={watering} plantNo={props.plantNo}/>
+        <CalendarTodoBlock content={content.w2} workType="잎닦기" arr={leafcleaning} plantNo={props.plantNo}/>
+        <CalendarTodoBlock content={content.w3} workType="환기" arr={refreshing} plantNo={props.plantNo}/>
+        <CalendarTodoBlock content={content.w4} workType="분갈이" arr={changing} plantNo={props.plantNo}/>
+        <CalendarTodoBlock content={content.w5} workType="영양제" arr={supplements} plantNo={props.plantNo}/>
+        <CalendarTodoBlock content={content.w6} workType="꽃핀날" arr={blooming} plantNo={props.plantNo}/>
     </React.Fragment>
   )
 };

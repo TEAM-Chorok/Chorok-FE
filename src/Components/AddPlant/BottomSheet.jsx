@@ -133,13 +133,14 @@ export default function BottomSheet() {
         open={state['bottom']}
         onClose={toggleDrawer('bottom', false)}
         onOpen={toggleDrawer('bottom', true)}
-        disableSwipeToOpen="false"
+        disableSwipeToOpen={false}
         PaperProps={{
           style: {
             position: 'absolute',
             borderRadius: '10px 10px 0 0',
             margin: 'auto',
-            width: '360px',
+            width: '100%',
+            maxWidth: '390px',
           }
         }}
       >

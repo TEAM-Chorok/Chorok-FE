@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Button, Grid, Image, Text } from "../../Elements";
 import { actionCreators as plantActions } from "../../Redux/Modules/Plant";
-import PlantProfile from "../PlantProfile";
+import PlantProfile from "../share/etc/PlantProfile";
 
 const SelectPlace = (props) => {
   const dispatch = useDispatch();

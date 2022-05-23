@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Text } from "../Elements";
+import { Text } from "../../../Elements";
 
 
 // 탭 전환 컴포넌트입니다!

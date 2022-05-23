@@ -1,14 +1,9 @@
 import {Text, Grid, Image} from '../../Elements/index';
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { useState } from 'react';
 import styled from 'styled-components';
-import {Container} from '../../Elements';
-import { Button } from '@mui/material';
 import { GeneralHeader } from '..';
 
 const Questionnaire4 = (props) => {
-  const history = useHistory();
 
     return(
       <React.Fragment>

@@ -37,7 +37,7 @@ const getWeatherDB = (userLocation) => {
         let weather = '';
         let arr = [['Clear', 'Clouds', 'Rain', 'Snow', 'Mist', 'Thunderstorm', 'Drizzle',
           'Fog', 'Haze', 'Dust', 'Sand', 'Ash', 'Smoke', 'Squall', 'Tornado'],
-        ['맑음', '흐림', '비', '눈', '안개', '천둥', '비', '안개', '먼지', '황사', '재', '연기', '스콜', '폭풍']];
+        ['맑음', '흐림', '비', '눈', '안개', '천둥', '비', '안개', '먼지', '황사', '먼지', '흐림', '스콜', '폭풍']];
 
         for (let i = 0; i < arr[0].length; i++) {
           if (arr[0][i] === response.data.weather[0].main) {

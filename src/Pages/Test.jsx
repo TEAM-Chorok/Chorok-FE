@@ -1,14 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import Tabbar from "../Components/Tabbar";
-import { Container, Grid, Image, Text } from "../Elements";
-import { actionCreators as mainActions } from "../Redux/Modules/Main";
+import { Container, Grid, Text } from "../Elements";
 
 // open api test components
 const Test = () => {
-
-const dispatch = useDispatch();
 
     return (
         <React.Fragment>

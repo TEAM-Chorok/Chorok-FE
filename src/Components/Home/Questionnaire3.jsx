@@ -1,18 +1,11 @@
 import {Text, Grid} from '../../Elements/index';
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { useState } from 'react';
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import styled from 'styled-components';
-import {Container} from '../../Elements';
-import { Button } from '@mui/material';
 import { GeneralHeader } from '..';
 
 
 
 const Questionnaire3 = (props) => {
-  const history = useHistory();
 
     return(
       <React.Fragment>

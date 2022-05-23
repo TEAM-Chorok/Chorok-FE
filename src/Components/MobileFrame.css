@@ -27,12 +27,36 @@
   z-index: 999;
 }
 
+.frame { 
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  vertical-align: middle;
+  top: 2px;
+  transform: scale(1.13, 4);
+  width: 360px;
+  height: 100%;
+  margin: 0 auto;
+  z-index: 2000;
+}
+
 @media screen and (max-width: 500px) {
   .MobileFullFrame {
     position: inherit;
     width: 100%;
     height: 100vh;
     min-width: 340px;
+  }
+  .frame {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .frame {
+    display: none;
   }
 }
 
@@ -56,6 +80,7 @@
     top: 50%;
     transform: translate(-5%, -50%);
   }
+
 }
 
 @media screen and (min-width: 1700px) {
@@ -63,6 +88,7 @@
     top: 50%;
     transform: translate(30%, -50%);
   }
+
 }
 
 @media screen and (min-width: 2000px) {
@@ -70,6 +96,7 @@
     top: 50%;
     transform: translate(50%, -50%);
   }
+
 }
 
 .Container {

@@ -1,13 +1,11 @@
 import React from 'react';
-import { Alert, GeneralHeader, PlantCardFeed, PlantCardProfile } from '../../Components';
-import { Button, Container, Grid, Text } from '../../Elements';
+import { Alert2, GeneralHeader, PlantCardFeed, PlantCardProfile } from '../../Components';
+import { Button, Grid, Text } from '../../Elements';
 import { useParams, useHistory } from 'react-router-dom'
 import styled from 'styled-components';
 import { ReactComponent as BookMarkIcon } from '../../Assets/img/likeBookmarkIcons/Bookmark.svg'
-import Alert2 from '../../Components/Alert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as plantActions } from '../../Redux/Modules/Plant';
-
 
 // 식물카드 페이지
 
@@ -17,7 +15,7 @@ const PlantCard = () => {
 
   const plantNo = useParams().plantname;
   const plantName = useSelector((state) => state.plant?.plantData?.plantName);
-
+  const bookmark = useSelector((state) => state.plant?.plantData?.plantBookMark);
 
   const [open, setOpen] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -50,7 +48,7 @@ const PlantCard = () => {
           <HeaderBox>
             {/* <GeneralHeader title="식물카드" size="base" /> */}
             <GeneralHeader title={plantName} size="base" />
-            {checked ?
+            {bookmark ?
               <BookMarkIcon
                 className='bookmark'
                 fill="#6FDC8C"

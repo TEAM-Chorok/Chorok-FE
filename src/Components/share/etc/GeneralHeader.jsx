@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Grid, Text } from '../Elements';
-import { ReactComponent as GoBackIcon } from "../Assets/img/Icons/goBackIcon.svg"
+import { Text } from '../../../Elements';
+import { ReactComponent as GoBackIcon } from "../../../Assets/img/Icons/goBackIcon.svg"
 
 const GeneralHeader = (props) => {
   const history = useHistory();

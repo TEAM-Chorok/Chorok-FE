@@ -81,12 +81,40 @@ const postBloomingDB = (plantNo, data, year, month) => {
     }
 }
 
+// 개화 체크 해제
+const deleteBloomingDB = (plantNo, date, year, month) => {
+  return function (dispatch, getState, { history }) {
+    calendarAPI
+    .deleteBlooming(plantNo,date)
+    .then((response) => {
+      console.log("postBloomingDB : response", response.data);
+      dispatch(getCheckedDB(year, month, plantNo));
+    }).catch((error) => {
+      console.log("postBloomingDB : error", error.response);
+      })
+    }
+}
+
 // 개화 외 목록 체크
 const checkCalendarDB = (date, plantNo, workType, year, month) => {
   console.log(`/calendar/${date}/${plantNo}/${workType}`);
   return function (dispatch, getState, { history }) {
     calendarAPI
       .checkCalendar(plantNo, date, workType)
+      .then((response) => {
+        console.log("checkCalendarDB : response", response.data);
+        dispatch(getCheckedDB(year, month, plantNo));
+      }).catch((error) => {
+        console.log("checkCalendarDB : response", error.response);
+      })
+  }
+}
+
+const unCheckCalendarDB = (date, plantNo, workType, year, month) => {
+  console.log(`/calendar/${date}/${plantNo}/${workType}`);
+  return function (dispatch, getState, { history }) {
+    calendarAPI
+      .unCheckCalendar(plantNo, date, workType)
       .then((response) => {
         console.log("checkCalendarDB : response", response.data);
         dispatch(getCheckedDB(year, month, plantNo));
@@ -113,7 +141,9 @@ export default handleActions(
 const actionCreators = {
   getCheckedDB,
   postBloomingDB,
+  deleteBloomingDB,
   checkCalendarDB,
+  unCheckCalendarDB,
 }
 
 export { actionCreators };

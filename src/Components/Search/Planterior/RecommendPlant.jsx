@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Grid, Text } from "../../../Elements";
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
-import PlantProfile from "../../PlantProfile";
+import PlantProfile from "../../share/etc/PlantProfile";
 
 // 탐색 - planterior의 추천식물 목록 
 

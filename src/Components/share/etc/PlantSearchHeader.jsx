@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Grid, Input, Text } from "../Elements";
-import { ReactComponent as SearchIcon } from '../Assets/img/search.svg'
+import { Grid, Input, Text } from "../../../Elements";
+import { ReactComponent as SearchIcon } from '../../../Assets/img/search.svg'
 
 
 // 검색창이 포함된 헤더 컴포넌트

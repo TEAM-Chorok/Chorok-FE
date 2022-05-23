@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Grid, Image, Text } from "../../Elements";
+import { Grid, Text } from "../../Elements";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
-import PlantProfile from "../PlantProfile";
+import PlantProfile from "../share/etc/PlantProfile";
 
 
 // 내 식물 목록

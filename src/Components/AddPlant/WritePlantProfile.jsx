@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { actionCreators as plantActions } from "../../Redux/Modules/Plant";
 import styled from "styled-components";
-import Alert from "../Alert";
+import Alert2 from "../share/etc/Alert2";
 
 const WritePlantProfile = (props) => {
   const dispatch = useDispatch();
@@ -108,16 +108,16 @@ const WritePlantProfile = (props) => {
         <ButtonBox>
           <Button type="basic" width="168px" 
             _onClick={() => { addPlant(); }}>
-            <Text size="base" color={({theme}) => theme.colors.white}>다음으로</Text>
+            <Text size="base" color="#fff">다음으로</Text>
           </Button>
         </ButtonBox>
       </Container>
 
-      <Alert onebutton open={open} setOpen={setOpen} btn1="확인">
+      <Alert2 onebutton open={open} setOpen={setOpen} btn1="확인">
         <Text bold size="small">
           {message}
         </Text>
-      </Alert>
+      </Alert2>
 
 
 

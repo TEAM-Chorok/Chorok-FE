@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Grid } from "../../Elements";
-import PlantProfile from "../PlantProfile";
+import PlantProfile from "../share/etc/PlantProfile";
 
 
 // 투두페이지 상단 내 식물 원형 프로필 

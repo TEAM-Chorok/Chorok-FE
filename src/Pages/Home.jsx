@@ -37,10 +37,11 @@ const Home = () => {
   );
 }
 
+
 const Wrapper = styled.div`
-  width: 100%;
-  background: #F7F8FA;
-  overflow: ${(props) => props.open ? "hidden" : "auto"};
+width: 100%;
+height: 100%;
+overflow: ${(props) => props.open ? "hidden" : "auto"};
 `
 
 const Box = styled.div`

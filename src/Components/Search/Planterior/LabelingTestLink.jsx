@@ -3,17 +3,24 @@ import styled from "styled-components";
 import { Grid, Text } from "../../../Elements";
 import { IoIosArrowForward } from "react-icons/io";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../../../Redux/Modules/User";
 
 // 탐색 - planterior 상단의 레이블링 테스트 링크 컴포넌트  
 
 const LabelingTestLink = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const username = useSelector((state) => state.user?.user?.nickname);
+
+  React.useEffect(() => {
+    dispatch(userActions.isLoginDB());
+  },[])
 
   return (
     <React.Fragment>
-      <Grid margin="10px 0">
-        <Text bold size="h6">○○님을 위한 추천식물</Text>
+      <Grid margin="10px 2px">
+        <Text bold size="h6">{username}님을 위한 추천식물</Text>
       </Grid>
       <LinkBox onClick={() => {
         history.push("/labeling");

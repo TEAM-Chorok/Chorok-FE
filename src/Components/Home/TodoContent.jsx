@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../Elements";
 import TodoContentBlock from "./TodoContentBlock";
@@ -63,7 +63,7 @@ const TodoContent = () => {
                           {todo.days === 0 && todo.status === true ?
                             <Text size="xsmall">작업을 완료했어요!</Text> :
                             <div>
-                              {todo.days === 0 ? <Text size="xsmall">{plant.myPlantName}(이)와의 첫 날입니다!</Text> :
+                              {todo.days === 0 ? <Text size="xsmall">{plant.myPlantName}(이)의 첫 {todo.workType}!</Text> :
                                 <Text size="xsmall">마지막 작업 이후 {todo.days}일 지났어요.</Text>}
                             </div>
                           }
@@ -72,7 +72,6 @@ const TodoContent = () => {
                     })}
                   </Grid>
                 }
-
               </TodoBox>
             )
           })}
