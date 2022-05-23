@@ -117,6 +117,19 @@ const Input = (props) => {
     );
   }
 
+  if(type === "password") { 
+    return (
+      <React.Fragment >
+        <PasswordInput 
+          {...styles}
+          placeholder={placeholder}
+          onChange={_onChange}
+          ref={_ref}
+          />
+      </React.Fragment>
+    )
+  }
+
   return (
     <React.Fragment>
     {label && <Text margin="5px">{label}</Text>}
@@ -304,6 +317,26 @@ const CommentTextArea = styled.textarea`
     height: 364px;
   }
 `
+const PasswordInput = styled.input`
+  font-family: 'SUIT-Regular';
+  box-sizing: border-box;
+  font-size: 16px;
+  letter-spacing: 0.25px;
+  color: #262626;
 
+  width: 100%;
+  height: 52px;
+  padding: 0px 0px 0px 20px; 
+  border: 1px solid #D5D8DB; 
+  border-radius: 6px;
+  margin: 0px;
+
+  &::placeholder {
+    color: #6F6F6F;
+    font-size: 16px;
+    letter-spacing: 0.25px;
+  }
+
+`
 
     export default Input;
