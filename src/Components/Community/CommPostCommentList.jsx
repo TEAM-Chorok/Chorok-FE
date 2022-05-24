@@ -1,51 +1,103 @@
-import { Grid, Image, Permit, Text, Container } from "../../Elements";
+import { Button, Grid, Image, Input, Permit, Text } from "../../Elements";
 import React from "react";
 import styled from "styled-components";
-import { BiDotsVerticalRounded } from 'react-icons/bi';
 import CommBottomSheet from "./CommBottomSheet";
+import CommentWrite from "../share/posting/CommentWrite";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../../Redux/Modules/post";
 
 const CommPostCommentList = (props) => {
-    
-    const commentList = props?.commentList;
+    const { content, name, time, img, commentId } = props;
+    const dispatch = useDispatch();
+    const user = localStorage.getItem('nickname');   
+    const [ edit, setEdit ] = React.useState(false);
 
-    if(!commentList){
-        return (
-            <div></div>
-        )
+    const postId = useParams().postId;
+    const contentRef = React.useRef();
+
+    const editComment = () => {
+        if (!contentRef.current.value.replace(/\s/g, '').length) {
+            props.setMessage("댓글 내용을 입력해주세요!")
+            props.setOpen(true);
+            return;
+          }
+        const editdata = {
+            commentId : commentId,
+            commentContent : contentRef.current.value,
+        }
+        dispatch(postActions.editCommentDB(postId, editdata));
+        contentRef.current.value = null;
+        props.setEdit(false);
+        return;
     }
-    return (
-        <React.Fragment>
-            {commentList.map((p) => {
-                return (
-                    <CommentWrap key={p.commentId}>
+
+    React.useEffect(() => {
+        if(content) {
+          contentRef.current.value = content;
+        }
+      }, [content])
+
+    return  (
+            <Grid width="100%">
+                {edit? 
+                <React.Fragment>
+                    <Wrapper>
+                        <CommentBox>
+                            <Input type="comment" placeholder="수정할 내용을 입력해주세요"  _ref={contentRef} >
+                                <Button  type="tran" _onClick={() => { editComment(); }}>
+                                    <Text>수정</Text>
+                                </Button>
+                            </Input>
+                        </CommentBox>
+                    </Wrapper>
+                </React.Fragment>
+                :
+                <CommentWrap key={props.commentId}>
+                    <Grid>
+                        <Image type="circle" size="24px" imgUrl={img} />  
+                    </Grid>
+                    <CommentRowsBox>
                         <Grid>
-                            <Image type="circle" size="24px" imgUrl={p.profileImgUrl !=="" ? p.profileImgUrl : '/img/noProfileImgSmall.svg'} />  
+                            <Text margin="0px 5px" size="small">{name}</Text>
+                            <Text size="xsmall" color="#6F6F6F">・ {time}</Text>
                         </Grid>
-                        <CommentRowsBox>
-                            <Grid>
-                                <Text margin="0px 5px" size="small">{p.nickname}</Text>
-                                <Text size="xsmall" color="#6F6F6F">・ {p.commentRecentTime}</Text>
-                            </Grid>
-                            <Grid margin="0px 5px"><Text size="small">{p.commentContent}</Text></Grid>
-                        </CommentRowsBox>
-                        {props.nickname === p.nickname ? 
-                        <Permit>
-                            <Grid><CommBottomSheet postWriter={p.nickname}/></Grid>
-                        </Permit> :
-                        null}
-                        
-                    </CommentWrap>
-                )
-            })}
-        </React.Fragment>
-    )
+                        <Grid margin="0px 5px"><Text size="small">{content}</Text></Grid>
+                    </CommentRowsBox>
+                    { user === name ? 
+                    <Permit>
+                        <Grid><CommBottomSheet postId={props.postId}
+                        setEdit={setEdit} commentedit
+                        type="comment"  writer={name} commentId={commentId}/></Grid>
+                    </Permit> :
+                    null}
+                    
+                </CommentWrap>
+            }
+            </Grid>
+            )
 
 }
+const Wrapper = styled.div`
+  width: 100%;
+  background: #F7F8FA;
+  overflow: hidden;
+`
+const CommentBox = styled.div`
+  position: relative;
+  box-sizing: border-box;
+
+  padding: 18px 16px 16px 16px;
+  width: 100%;
+
+  background: #fff;
+
+`
 const CommentWrap = styled.div`
     height: fit-content;
     display: grid;
     grid-template-columns: 1fr 10fr 0.3fr;
-    padding: 12px 0px;
+    padding: 12px 16px;
     border-bottom: 1px solid #E0E0E0;
 `
 const CommentRowsBox = styled.div`

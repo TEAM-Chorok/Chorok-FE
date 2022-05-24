@@ -66,19 +66,20 @@ const initialState = {
 // 미들웨어 
 // 커뮤니티 글 작성
 const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
-    console.log(postTitle, postImgUrl, postContent, postTypeCode)
     const formData = new FormData();
     formData.append("postTitle", postTitle);
     formData.append("postContent", postContent);
     formData.append("postTypeCode", postTypeCode);
-    formData.append("postImgUrl", postImgUrl);
+    if(postImgUrl !== ""){
+      formData.append("postImgUrl", postImgUrl);
+    }
     return function (dispatch, getState, { history }){
         postAPI
             .addPost(formData)
             .then((res) => {
                 console.log("response:" , res);
                 dispatch(addPost(res)); // 데이터 주나 안주나
-                history.push(`/community/${res.data.postId}`);
+                history.push(`/community`);
                 window.location.reload();
             }).catch((err) => {
                 console.log("error: ", err);
@@ -331,7 +332,7 @@ const addCommentDB = (postId, commentContent) => {
 }
 
 //댓글 수정 (postId는 필요하지 않은지?)
-const editCommentDb = (postId, commentId, comment) => {
+const editCommentDB = (postId, commentId, comment) => {
   return function (dispatch, getState, { history }){
     return function (dispatch, getState, { history }){
       postAPI
@@ -349,7 +350,7 @@ const editCommentDb = (postId, commentId, comment) => {
 
 //댓글 삭제
 const deleteCommentDB = (postId, commentId) => {
-  return function (dispatch, getState, { history }){
+  
     return function (dispatch, getState, { history }){
       postAPI
         .deleteComment(commentId)
@@ -360,7 +361,7 @@ const deleteCommentDB = (postId, commentId) => {
           console.log("error: ", error);
           // window.alert('댓글 삭제하기를 실패하였습니다.');
         });
-    }
+    
   }
 }
 
@@ -398,7 +399,7 @@ const actionCreators = {
     bookmarkPostDB,
     bookmarkDetailPostDB,
     addCommentDB,
-    editCommentDb,
+    editCommentDB,
     deleteCommentDB,
 }
 

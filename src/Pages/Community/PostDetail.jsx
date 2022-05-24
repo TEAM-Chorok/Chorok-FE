@@ -8,9 +8,10 @@ import CommBottomSheet from "../../Components/Community/CommBottomSheet";
 import { Container, Input, Permit, Grid, Text} from "../../Elements";
 import { actionCreators as postActions } from "../../Redux/Modules/post";
 import { actionCreators as userActions } from "../../Redux/Modules/User";
-import Alert2 from "../../Components/Alert2";
+import Alert2 from "../../Components/share/modal/Alert2";
 
 const PostDetail = () => {
+
     const history = useHistory();
     const postId = useParams().postId;
 
@@ -18,6 +19,8 @@ const PostDetail = () => {
     const post = useSelector(state => state.post?.post);
     const nickname = localStorage.getItem('nickname');
     const commentList = post?.commentList;
+    const contentRef = React.useRef();
+
     const [comment, setComment] = React.useState("");
 
     const [message, setMessage] = React.useState();
@@ -33,10 +36,11 @@ const PostDetail = () => {
             setMessage("댓글 내용을 입력해주세요!");
             setOpen(true);
             return;
-        }else {
-            dispatch(postActions.addCommentDB(postId, comment));
         }
-
+        else {
+            dispatch(postActions.addCommentDB(postId, comment));
+            contentRef.current.value = null;
+        }
     }
 
     const is_session = sessionStorage.getItem('token') ? true : false;
@@ -64,19 +68,30 @@ const PostDetail = () => {
             <Container type="np">
                 <HR />
                 <DetailCommPost postList={post}/>
-            </Container>
-            <Container>
-                <CommPostCommentList commentList={commentList} nickname={nickname}/>
+                {commentList?.map((cmt) => {
+                    return(
+                        <CommPostCommentList 
+                        key={cmt?.commentId}
+                        postId={post?.postId}
+                        commentId={cmt?.commentId}
+                        content={cmt?.commentContent}
+                        name={cmt?.nickname}
+                        time={cmt?.commentRecentTime}
+                        img={cmt?.profileImgUrl ? cmt.profileImgUrl : "/img/noProfileImgSmall.svg"}
+                        setMessage={setMessage}
+                        setOpen={setOpen}/>
+                    )
+                })}
             </Container>
             <Container type="np">
                 <HR style={{marginTop:"60px"}}/>
             </Container>
             {/* <Container> */}
                 <Wrapper> 
-                    <CommentBox>
+                    <CommentBox >
                         <Input 
                             _onChange={(e) => setComment(e.target.value)}
-                            type="comment" placeholder="댓글을 입력해주세요"  />
+                            type="comment" placeholder="댓글을 입력해주세요" _ref={contentRef} />
                             <ButtonBox>
                                 <Button 
                                     onClick={()=>{addComment()}}
@@ -108,8 +123,11 @@ const CommentBox = styled.div`
   position: relative;
   box-sizing: border-box;
 
-  padding: 16px;
+  padding: 18px 16px 16px 16px;
   width: 100%;
+
+  background: ${(props) => props.edit? "#fff" : "#F7F8FA" };
+
 `
 const ButtonBox = styled.div`
   position: absolute;

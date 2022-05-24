@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Alert2 from "../../share/etc/Alert2";
+import Alert2 from "../../share/modal/Alert2";
 import PlaceFilter from "../PlaceFilter";
 import AddPostHeader from "../../Community/AddPostHeader";
 

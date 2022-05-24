@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { actionCreators as plantActions } from "../../Redux/Modules/Plant";
 import styled from "styled-components";
-import Alert2 from "../share/etc/Alert2";
+import Alert2 from "../share/modal/Alert2";
 
 const WritePlantProfile = (props) => {
   const dispatch = useDispatch();

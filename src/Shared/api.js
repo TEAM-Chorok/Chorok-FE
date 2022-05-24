@@ -225,7 +225,7 @@ export const searchAPI = {
     }
   }),
   // 플랜테리어 댓글 삭제
-  deletePlanteriorComment: (commentId) => api.put(`/delete-comment/${commentId}`, {
+  deletePlanteriorComment: (commentId) => api.delete(`/delete-comment/${commentId}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
@@ -354,9 +354,12 @@ export const calendarAPI = {
 
 // 커뮤니티 페이지 관련 API
 export const postAPI = { 
+
+  
   //게시글 작성
-  addPost: (formData) => api.post(`/write-post`, formData, {
-    
+  addPost: (formData) => api.post(`/write-post`, 
+    formData, 
+  {
     headers: {
       "content-type": "multipart/form-data",
       Authorization: `${sessionStorage.getItem('token')}`,
@@ -437,14 +440,14 @@ export const postAPI = {
   } ,
   {
     headers: {
-      Authorization: ` ${sessionStorage.getItem('token')}`,
+      "Authorization": ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //커뮤니티 댓글 삭제
-  deleteComment: (commentId) => api.get(`/delete-comment/${commentId}`, {
+  deleteComment: (commentId) => api.delete(`/delete-comment/${commentId}`, {
     headers: {
-      Authorization: ` ${sessionStorage.getItem('token')}`,
+      "Authorization": ` ${sessionStorage.getItem('token')}`,
     }
   }),
 }

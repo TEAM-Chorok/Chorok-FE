@@ -82,10 +82,7 @@ const AddPost = () => {
                 {imageUrl === "" || imageUrl === null ? 
                     <ImageWrap style={{visibility:"hidden"}}>
                         <Image width="84px" height="84px" type="planterior" />
-                        <IconBox>
-                                <TiDelete
-                                size="25px" style={{ flex: "none", marginLeft: "-6.5px" }} color="#5F6060" />
-                            </IconBox>
+
                     </ImageWrap> :
                     <>
                         <ImageWrap>
