@@ -44,7 +44,7 @@ const MyPictures = () => {
                             <Text color="#ffffff" size="xxsmall">{p.plantPlace}</Text>
                         </Grid>
                     </Contents>
-                    )
+                    ) 
                 })}
                 
             </ContentWrap>
