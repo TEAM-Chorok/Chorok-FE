@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "./Button";
 import Grid from "./Grid";
 import Text from "./Text";
 
@@ -121,12 +122,28 @@ const Input = (props) => {
   if(type === "password") { 
     return (
       <React.Fragment >
-        <PasswordInput 
-          {...styles}
-          placeholder={placeholder}
-          onChange={_onChange}
-          ref={_ref}
-          />
+        <Grid width="100%">
+          <PasswordInput type="password"
+            {...styles}
+            placeholder={placeholder}
+            onChange={_onChange}
+            ref={_ref}
+            />
+        </Grid>
+      </React.Fragment>
+    )
+  }
+  if(type === "shownPassword") { 
+    return (
+      <React.Fragment >
+        <Grid width="100%">
+          <PasswordInput type="text"
+            {...styles}
+            placeholder={placeholder}
+            onChange={_onChange}
+            ref={_ref}
+            />
+        </Grid>
       </React.Fragment>
     )
   }
@@ -325,17 +342,20 @@ const PasswordInput = styled.input`
 
   width: 100%;
   height: 52px;
-  padding: 0px 0px 0px 20px; 
-  border: 1px solid #D5D8DB; 
+  padding: 0px 0px 0px 16px; 
+  border: ${(props) => props.border};
   border-radius: 6px;
   margin: ${(props) => props.margin};
 
   &::placeholder {
     color: #6F6F6F;
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 0.25px;
   }
-
+ &:focus {
+    outline: none;
+  }
+  
 `
 
     export default Input;

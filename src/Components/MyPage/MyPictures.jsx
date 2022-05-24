@@ -40,7 +40,7 @@ const MyPictures = () => {
                     return (
                     <Contents key={idx}>
                         <Image margin="4px auto" type="square" borderRadius="10px" size="104px" imgUrl={p.postImgUrl}/>
-                        <Grid borderRadius="20px" padding="2px 8px" bg="rgb(0,0,0,0.5)" position="absolute" bottom="6px" left="40px">
+                        <Grid borderRadius="20px" padding="2px 8px" bg="rgb(0,0,0,0.5)" position="absolute" bottom="6px" >
                             <Text color="#ffffff" size="xxsmall">{p.plantPlace}</Text>
                         </Grid>
                     </Contents>
@@ -90,6 +90,8 @@ const ContentWrap = styled.div`
     margin-bottom: 35px;
 `
 const Contents = styled.div`
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 110px;
     margin: 3px;

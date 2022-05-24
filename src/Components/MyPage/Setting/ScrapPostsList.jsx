@@ -15,7 +15,14 @@ const ScrapPostsList = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const scrapPostList = useSelector(state => state.mypage?.scrapPostList);
-    console.log(scrapPostList);
+    
+    const likePost = (page, postId) => {
+        dispatch(MyActions.likePostDB(page, postId));
+      }
+    
+    const bookmarkPost = (page, postId) => {
+    dispatch(MyActions.bookmarkPostDB(page, postId));
+    }
 
     useEffect(() => {
       dispatch(MyActions.getScrapPostListDB());
@@ -66,29 +73,26 @@ const ScrapPostsList = () => {
                                     <Grid is_flex align="center">
                                         {p.postLike? 
                                             <FavoriteSelectedIcon 
-                                            // onClick={()=> toggleLike()} 
-                                            style={{width:"24px", height:"fit-content"}}/> : 
+                                            onClick={()=> likePost("scrap-posts", p.postId)} /> : 
                                             <FavoriteIcon 
-                                            // onClick={()=>toggleLike()} 
-                                            style={{width:"24px", height:"fit-content"}}/>
+                                            onClick={()=>likePost("mypictures", p.postId)} />
                                         }
                                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{p?.postLikeCount}</Text>
                                         <CommentIcon 
                                             style={{width: "20px", height:"fit-content"}} />
                                         <Text margin="0px 8px" size="base" color="#6F6F6F">{p?.commentCount}</Text>
                                     </Grid>
+                                    <Grid position="absolute" top="0px" right="0px" >
                                     {p.postBookMark? 
-                                        <Grid position="absolute" top="0px" right="0px" >
-                                            <BookmarkedIcon fill="#0AAF42" stroke="#0AAF42"
-                                            // onClick={()=>toggleBookmark()}
-                                            style={{width: "24px", height:"fit-content"}} />
-                                        </Grid> :
-                                        <Grid position="absolute" top="0px" right="0px" >
-                                            <BookmarkIcon fill="transparent" stroke="#393939"
-                                            // onClick={()=>toggleBookmark()}
-                                            style={{width: "24px", height:"fit-content"}} />
-                                        </Grid> 
+                                        <BookmarkIcon fill="#0AAF42" stroke="#0AAF42"
+                                        onClick={()=>bookmarkPost("scrap-posts", p.postId)}
+                                        />
+                                        :
+                                        <BookmarkIcon fill="transparent" stroke="#393939"
+                                        onClick={()=>bookmarkPost("scrap-posts", p.postId)}
+                                        />
                                     }
+                                    </Grid>
                                    
                                 </Grid>
                             </Grid>

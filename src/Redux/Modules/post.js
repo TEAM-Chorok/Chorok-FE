@@ -186,17 +186,11 @@ const deletePostDB = (postId) => {
 }
 
 //커뮤니티 글 수정
-const editPostDB = (postId, category, postTitle, postContent, postImgUrl) => {
-  const _postId = parseInt(postId);
-  const formData = new FormData();
-  formData.append("postTitle", postTitle);
-  formData.append("postImgUrl", postImgUrl);
-  formData.append("postContent", postContent);
-  formData.append("postTypeCode", category);
+const editPostDB = (formData, postId) => {
+
   return function (dispatch, getState, { history }) {
-    console.log("게시글 수정 요청");
     postAPI
-      .editPost(_postId, formData)
+      .editPost(formData, postId)
       .then((response) => {
         console.log("게시글 수정 성공");
         window.alert('게시글이 성공적으로 수정되었습니다.');
@@ -212,7 +206,6 @@ const editPostDB = (postId, category, postTitle, postContent, postImgUrl) => {
 // 좋아요 표시하기
 const likePostDB = (category, postId) => {
   const _postId = parseInt(postId);
-  console.log(_postId);
   console.log(postId);
   return function (dispatch, getState, { history }) {
     postAPI
@@ -223,7 +216,6 @@ const likePostDB = (category, postId) => {
         } else if (res.data.result === "false") {
           console.log('좋아요 취소');
         }
-        dispatch(getPostListDB_login(category));
       })
       .catch((err) => {
         console.log("error:", err);

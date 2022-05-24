@@ -1,14 +1,15 @@
-import { Input, Text} from '../../Elements/index';
+import { Input, Text,Container } from '../../Elements/index';
 import { Button } from '@mui/material';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Grid from '../../Elements/Grid';
 import { useHistory } from 'react-router-dom';
-import Container from '../../Elements/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
 import { GeneralHeader } from '../../Components';
 import { idCheck, pwdCheck } from '../../Shared/RegEx';
+import { ReactComponent as HideIcon } from '../../Assets/img/hidePassword.svg';
+import { ReactComponent as ShowIcon } from '../../Assets/img/showPassword.svg';
 
 //1. JWT토큰 const isLogin  = dispatch(isLogin(sessionStorage.getItem('token')))
 
@@ -64,12 +65,12 @@ const LogInEmail = () => {
                 }
               
               <Grid position="relative" width="100%">
-                  <Input _onChange={(e)=>setPassword(e.target.value)} 
-              borderRadius="6px" type={showPwd? "text" : "password"} placeholder="비밀번호" name="user_pwd" padding="0px 0px 0px 20px" width="100%" height="52px"/>
+                  <Input 
+                  _onChange={(e)=>setPassword(e.target.value)} 
+                  borderRadius="6px" type={showPwd? "shownPassword" : "password"} placeholder="비밀번호"/>
               {showPwd? 
-              <img onClick={()=>setShowPwd(false)} 
-              src="img/showPassword.svg" style={{position: "absolute", top: "18px", right:"16px"}} />: 
-              <img onClick={()=>setShowPwd(true)} src="img/hidePassword.svg" style={{ position: "absolute", top: "16px", right:"16px"}}/> }
+              <ShowIcon style={{position:"absolute", top:"44%", right:"16px"}} onClick={()=>setShowPwd(false)} />  : 
+              <HideIcon style={{position:"absolute", top:"41%", right:"16px"}} onClick={()=>setShowPwd(true)}/> }
               </Grid>
               
               

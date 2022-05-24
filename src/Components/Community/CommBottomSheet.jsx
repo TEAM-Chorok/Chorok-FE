@@ -63,11 +63,15 @@ export default function CommBottomSheet( props ) {
             onOpen={toggleDrawer('bottom', true)}
             PaperProps={{
               style: {
-                borderRadius: '10px 10px 0 0'
+                position: 'absolute',
+                borderRadius: '10px 10px 0 0',
+                margin: 'auto',
+                width: '100%',
+                maxWidth: '390px',
               }
             }}
           >
-            <Grid width="100%" height="167px">
+            <Grid width="100%">
               <Grid margin="32px 0px" width="100%">
                 <Button type="drawerBtn" padding="12px 20px" textAlign="left" _onClick={() => { editOne(props.postId) }}>
                   <PencilIcon />
@@ -75,11 +79,11 @@ export default function CommBottomSheet( props ) {
                 </Button>
                 <Button type="drawerBtn" padding="12px 20px" textAlign="left"_onClick={() => { deleteOne(props.postId) }}>
                     <DeleteIcon />
-                  <Text bold size="base" color="#393939">삭제하기</Text>
+                  <Text margin="0 16px">삭제하기</Text>
                 </Button>
                 <Button type="drawerBtn"padding="12px 20px" textAlign="left" _onClick={() => { setState(false) }}>
                     <CancelIcon/>
-                  <Text bold size="base" color="#393939">닫기</Text>
+                  <Text margin="0 16px">닫기</Text>
                 </Button>
               </Grid>
             </Grid>

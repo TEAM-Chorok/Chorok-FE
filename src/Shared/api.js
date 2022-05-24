@@ -4,8 +4,8 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  // baseURL: 'http://52.79.233.178',//민성님 Url
-  baseURL: 'http://121.141.140.148:8085', // 주호님
+  baseURL: 'http://52.79.233.178',//민성님 Url
+  // baseURL: 'http://121.141.140.148:8085', // 주호님
   // baseURL: 'http://13.209.87.69:8080', // 은아님
   // baseURL: ' http://chorok.shop', // 은아님
   
@@ -78,16 +78,19 @@ export const userAPI = {
   }),
 
   //비밀번호 찾기
-  findPwd: (userName, userId) => api.post('/api/findPwd', {
-    userName: userName,
-    userId: userId,
-  }),
+  // findPwd: (userName, userId) => api.post('/api/findPwd', {
+  //   userName: userName,
+  //   userId: userId,
+  // }),
+
   //비밀번호 변경
-  changePwd: (tempPassword, password, passwordCheck) => api.put('/api/changePwd', {
-    tempPassword: tempPassword,
-    password: password,
-    passwordCheck: passwordCheck,
-  }),
+  changePwd: (password) => api.patch('/user/update/password', 
+    {password: password}, 
+    {
+      headers: {
+        "Authorization": `${sessionStorage.getItem('token')}`,
+      }
+    }),
 }
 
 //Labeling API
@@ -395,7 +398,7 @@ export const postAPI = {
   ),
 
   //게시글 수정
-  editPost: (postId, formData) => api.put(`/update-post/${postId}`, formData, {
+  editPost: (formData, postId) => api.put(`/update-post/${postId}`, formData, {
     
     headers: {
       "content-type": "multipart/form-data",

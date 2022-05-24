@@ -21,15 +21,6 @@ const Login = () => {
           </InnerDiv>
           
           <InnerDiv style={{marginTop:"148px"}}>
-            
-            {/* <Grid width="100%" margin="8px 0px 0px 0px"> */}
-              {/* <Button 
-                href={KAKAO_AUTH_URL}
-                variant='contained' 
-                style={{textAlign:"center", display:"block", width:"100%", height: "48px", alignItems:"center",  fontWeight:"700", backgroundColor:"#FEE500", padding:"14px", borderRadius:"6px", color:"#242424", boxShadow:"none", boxSizing:"border-box"}}>
-                  <img src="img/kakao 1.svg" style={{margin:"0px 4px"}} /> 
-                  <Text size="small">카카오로 계속하기</Text></Button>
-            </Grid> */}
 
             <Grid width="100%" margin="8px 0px 0px 0px">
               <a href={KAKAO_AUTH_URL}><div 

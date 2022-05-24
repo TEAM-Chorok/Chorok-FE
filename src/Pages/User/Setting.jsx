@@ -28,7 +28,7 @@ const Setting = () => {
                         <SettingUpperDiv onClick={()=>history.push('/setting/myposts')}>내가 쓴 초록톡</SettingUpperDiv>
                         <SettingUpperDiv onClick={()=>history.push('/setting/scrap-posts')}>스크랩한 초록톡</SettingUpperDiv>
                         <SettingUpperDiv onClick={()=>history.push('/setting/profile')}>프로필 편집-작업 중</SettingUpperDiv>
-                        <SettingLowerDiv onClick={()=>history.push('/setting/changepwd')}>비밀번호 변경-작업 중</SettingLowerDiv>
+                        <SettingLowerDiv onClick={()=>history.push('/setting/changepwd')}>비밀번호 변경</SettingLowerDiv>
                     </ScrapSettingWrap>
                     <Border></Border>
                     <TeamInfoWrap>
