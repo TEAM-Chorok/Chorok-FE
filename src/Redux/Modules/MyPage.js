@@ -125,13 +125,12 @@ const getMyPhotoScrapedPhotoListDB = () => {
 
 
 //내 사진 전체 리스트
-const getMyPhotoListDB = () => {
+const getMyPhotoListDB = (page) => {
     return function (dispatch, getState, {history}){
         myPageAPI
-            .getMyPhotoList()
+            .getMyPhotoList(page)
             .then((res)=> {
-                console.log(res.data.content);
-                dispatch(getPhotoList(res.data.content));
+                dispatch(getPhotoList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
                 // window.alert('내 사진 불러오기에 실패하였습니다.');
@@ -140,12 +139,12 @@ const getMyPhotoListDB = () => {
 }
 
 //스크랩한 사진 전체 리스트
-const getScrapPhotoListDB = () => {
+const getScrapPhotoListDB = (page) => {
     return function (dispatch, getState, {history}){
         myPageAPI
-            .getScrapPhotoList()
+            .getScrapPhotoList(page)
             .then((res)=> {
-                dispatch(getScrapPhotoList(res.data.content));
+                dispatch(getScrapPhotoList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
                 // window.alert('스크랩한 사진 불러오기에 실패하였습니다.');
@@ -167,12 +166,12 @@ const getScrapSixPlantListDB = () => {
 }
 
 //스크랩한 식물 리스트
-const getScrapPlantListDB = () => {
+const getScrapPlantListDB = (page) => {
     return function (dispatch, getState, {history}){
         myPageAPI
-            .getScrapPlantList()
+            .getScrapPlantList(page)
             .then((res)=> {
-                dispatch(getScrapPlantList(res.data.content));
+                dispatch(getScrapPlantList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
                 // window.alert('스크랩한 식물 불러오기에 실패하였습니다.');
@@ -181,12 +180,12 @@ const getScrapPlantListDB = () => {
 }
 
 //내가 쓴 글 전체 리스트
-const getMyPostListDB = () => {
+const getMyPostListDB = (page) => {
     return function (dispatch, getState, {history}) {
         myPageAPI
-            .getMyPostList()
+            .getMyPostList(page)
             .then((res)=> {
-                dispatch(getMyPostList(res.data.content));
+                dispatch(getMyPostList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
                 // window.alert('내 글 불러오기에 실패하였습니다.');
@@ -195,13 +194,13 @@ const getMyPostListDB = () => {
 }
 
 //스크랩한 글 전체 리스트
-const getScrapPostListDB = () => {
+const getScrapPostListDB = (page) => {
     return function (dispatch, getState, {history}) {
         myPageAPI
-            .getScrapPostList()
+            .getScrapPostList(page)
             .then((res)=> {
-                console.log(res.data.content)
-                dispatch(getScrapPostList(res.data.content));
+                console.log(res.data);
+                dispatch(getScrapPostList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
                 // window.alert('내 글 불러오기에 실패하였습니다.');
@@ -217,17 +216,16 @@ const likePostDB = (page, postId) => {
             .then((res) => {
                 console.log(res.data);
                 if(page === "mypictures"){
-                    dispatch(getMyPhotoListDB());
+                    dispatch(getMyPhotoListDB(0));
                 }
                 else if(page === "scrap-picture"){
-                    console.log("dld");
-                    dispatch(getScrapPhotoListDB());
+                    dispatch(getScrapPhotoListDB(0));
                 }
                 else if(page === "myposts"){
-                    dispatch(getMyPostListDB());
+                    dispatch(getMyPostListDB(0));
                 }
                 else if(page === "scrap-posts"){
-                    dispatch(getScrapPostListDB());
+                    dispatch(getScrapPostListDB(0));
                 }
             })
             .catch((error) => {
@@ -245,16 +243,16 @@ const bookmarkPostDB = (page, postId) => {
             .then((res) => {
                 console.log(res.data);
                 if(page === "mypictures"){
-                    dispatch(getMyPhotoListDB());
+                    dispatch(getMyPhotoListDB(0));
                 }
                 else if(page === "scrap-picture"){
-                    dispatch(getScrapPhotoListDB());
+                    dispatch(getScrapPhotoListDB(0));
                 }
                 else if(page === "myposts"){
-                    dispatch(getMyPostListDB());
+                    dispatch(getMyPostListDB(0));
                 }
                 else if(page === "scrap-posts"){
-                    dispatch(getScrapPostListDB());
+                    dispatch(getScrapPostListDB(0));
                 }
             })
             .catch((error) => {
@@ -280,19 +278,33 @@ export default handleActions(
             draft.myPlanteriorCount = action.payload.list. myPlanteriorCount;
             draft.myPlanteriorList = action.payload.list.myPlanteriorList;
         }),
-        [GET_MY_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
-            draft.photoList = action.payload.photoList;
+        [GET_MY_PHOTO_LIST]: (state, action) => produce(state, (draft) => {            
+            if(action.payload.photoList.page > 0){
+                draft.photoList.content.push(...action.payload.photoList.content);
+            }else {
+                draft.photoList = action.payload.photoList;
+              }
+              draft.photoList.page = action.payload.photoList.page;
         }),
         [GET_SCRAP_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
-
-            draft.photoList = action.payload.scrapPhotoList;
+            if(action.payload.scrapPhotoList.page > 0){
+                draft.scrapPhotoList.content.push(...action.payload.scrapPhotoList.content);
+            }else {
+                draft.scrapPhotoList = action.payload.scrapPhotoList;
+              }
+              draft.scrapPhotoList.totalPage = action.payload.scrapPhotoList.totalPage;
+              draft.scrapPhotoList.page = action.payload.scrapPhotoList.page;
         }),
         [GET_SCRAP_PLANT_LIST]: (state, action) => produce(state, (draft) => {
-
             draft.scrapPlant = action.payload.scrapPlant;
         }),
         [GET_MY_POST_LIST]: (state, action) => produce(state, (draft) => {
-            draft.postList = action.payload.postList;
+            if(action.payload.postList.page > 0){
+                draft.postList.content.push(...action.payload.postList.content);
+            }else {
+                draft.postList = action.payload.postList;
+            }
+            draft.postList.page = action.payload.postList.page;
         }),
         [GET_SCRAP_SIX_POST_LIST]: (state, action) => produce(state, (draft) => {
             console.log(action.payload);
@@ -300,7 +312,12 @@ export default handleActions(
             draft.scrapPlantCount = action.payload.scrapPlantCount;
         }),
         [GET_SCRAP_POST_LIST]: (state, action) => produce(state, (draft) => {
-            draft.scrapPostList = action.payload.scrapPostList;
+            if(action.payload.scrapPostList.page > 0){
+                draft.scrapPostList.content.push(...action.payload.scrapPostList.content);
+            }else {
+                draft.scrapPostList = action.payload.scrapPostList;
+            }
+            draft.scrapPostList.page = action.payload.scrapPostList.page;
         }),
     }, initialState
 )

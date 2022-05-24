@@ -91,15 +91,14 @@ const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
 }
 
 //커뮤니티 글 불러오기(로그인)
-const getPostListDB_login = (category) => {
+const getPostListDB_login = (category, page) => {
   return function (dispatch, getState, { history }) {
-    console.log(category);
     if (category === "all") {
       postAPI
-        .getAllPost_login()
+        .getAllPost_login(page)
         .then((res) => {
           console.log(res.data);
-          dispatch(getPostList(res.data.content));
+          dispatch(getPostList(res.data));
         })
         .catch((error) => {
           console.log('error: ', error);
@@ -108,9 +107,9 @@ const getPostListDB_login = (category) => {
     }
     if (category !== "all") {
       postAPI
-        .getFilteredPost_login(category)
+        .getFilteredPost_login(category, page)
         .then((res) => {
-          dispatch(getPostList(res.data.content));
+          dispatch(getPostList(res.data));
         })
         .catch((error) => {
           console.log('error: ', error);
@@ -120,11 +119,11 @@ const getPostListDB_login = (category) => {
   }
 }
 //커뮤니티 글 불러오기(non-로그인)
-const getPostListDB_non_login = (category) => {
+const getPostListDB_non_login = (category, page) => {
   return function (dispatch, getState, { history }) {
     if (category === "all") {
       postAPI
-        .getAllPost_nonLogin()
+        .getAllPost_nonLogin(page)
         .then((res) => {
           dispatch(getPostList(res.data));
         })
@@ -135,9 +134,9 @@ const getPostListDB_non_login = (category) => {
     }
     if (category !== "all") {
       postAPI
-        .getFilteredPost_nonLogin(category)
+        .getFilteredPost_nonLogin(category, page)
         .then((res) => {
-          dispatch(getPostList(res.data.content));
+          dispatch(getPostList(res.data));
         })
         .catch((error) => {
           console.log('error: ', error);
@@ -206,7 +205,6 @@ const editPostDB = (formData, postId) => {
 // 좋아요 표시하기
 const likePostDB = (category, postId) => {
   const _postId = parseInt(postId);
-  console.log(postId);
   return function (dispatch, getState, { history }) {
     postAPI
       .likePost(postId)
@@ -216,6 +214,7 @@ const likePostDB = (category, postId) => {
         } else if (res.data.result === "false") {
           console.log('좋아요 취소');
         }
+        dispatch(getPostListDB_login(category, 0));
       })
       .catch((err) => {
         console.log("error:", err);
@@ -255,7 +254,7 @@ const bookmarkPostDB = (category, postId) => {
         } else {
           window.alert("북마크를 취소하였습니다.");
         }
-        dispatch(getPostListDB_login(category));
+        dispatch(getPostListDB_login(category, 0));
       })
       .catch((err) => {
         console.log("error:", err);
@@ -361,8 +360,12 @@ export default handleActions(
       draft.post = action.payload.post;
     }),
     [GET_ALL_POST]: (state, action) => produce(state, (draft) => {
-      draft.postList = action.payload.postList;
-      draft.is_loading = true;
+      if(action.payload.postList.page > 0) {
+        draft.postList.content.push(...action.payload.postList.content);
+      }else {
+        draft.postList = action.payload.postList;
+      }
+      draft.postList.page = action.payload.postList.page;
     }),
     [GET_POST_DETAIL]: (state, action) => produce(state, (draft) => {
       draft.post = action.payload.post;

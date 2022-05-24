@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true;
 const api = axios.create({
   baseURL: 'http://52.79.233.178',//민성님 Url
   // baseURL: 'http://121.141.140.148:8085', // 주호님
-  // baseURL: 'http://13.209.87.69:8080', // 은아님
+  // baseURL: 'http://54.180.90.176:8080', // 은아님
   // baseURL: ' http://chorok.shop', // 은아님
   
 }, { withCredentials: true } //CORS error 방지
@@ -370,24 +370,24 @@ export const postAPI = {
   }),
 
   //모든 게시물 불러오기 (로그인)
-  getAllPost_login: () => api.get(`/read-posts/community`,{
+  getAllPost_login: (page) => api.get(`/read-posts/community?page=${page}`,{
     headers: {
       Authorization:  ` ${sessionStorage.getItem('token')}`,
     }
   }),
 
   //모든 게시물 불러오기 (비로그인) 
-  getAllPost_nonLogin: () => api.get(`/non-login/read-posts/community`),
+  getAllPost_nonLogin: (page) => api.get(`/non-login/read-posts/community?page=${page}`),
 
   //필터링한 게시물 불러오기 (로그인)
-  getFilteredPost_login: (postTypeCode) => api.get(`/read-posts/community?postTypeCode=${postTypeCode}`, {
+  getFilteredPost_login: (postTypeCode, page) => api.get(`/read-posts/community?postTypeCode=${postTypeCode}&page=${page}`, {
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }),
   
   //필터링한 게시물 불러오기 (비로그인)
-  getFilteredPost_nonLogin:(postTypeCode) => api.get(`/non-login/read-posts/community?postTypeCode=${postTypeCode}`),
+  getFilteredPost_nonLogin:(postTypeCode, page) => api.get(`/non-login/read-posts/community?postTypeCode=${postTypeCode}&page=${page}`),
 
   //게시글 상세 조회
   getDetailPost: (postId) => api.get(`/read-post/detail/${postId}`, {
@@ -466,27 +466,27 @@ export const myPageAPI = {
 
 
   //내가 작성한 글 전체 리스트
-  getMyPostList: () => api.get(`/mypage/post`,{
+  getMyPostList: (page) => api.get(`/mypage/bookmark/community?page=${page}`,{
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }
   ),
   //스크랩한 글 전체 리스트
-  getScrapPostList: () => api.get(`/mypage/bookmark/post/community`,{
+  getScrapPostList: (page) => api.get(`/mypage/bookmark/post/community?page=${page}`,{
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }) ,
 
   //내 사진 전체 리스트
-  getMyPhotoList: () => api.get(`/mypage/post?postTypeCode=postType01`, {
+  getMyPhotoList: (page) => api.get(`/mypage/post?postTypeCode=postType01&page=${page}`, {
     headers:{
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }
   }),
   //스크랩 사진 전체 리스트
-  getScrapPhotoList: () => api.get(`/mypage/bookmark/post?postTypeCode=postType01`,{
+  getScrapPhotoList: (page) => api.get(`/mypage/bookmark/post?postTypeCode=postType01&page=${page}`,{
     headers: {
       Authorization: ` ${sessionStorage.getItem('token')}`,
     }

@@ -8,6 +8,7 @@ import { ReactComponent as FavoriteSelectedIcon } from "../../Assets/img/likeBoo
 import { ReactComponent as BookmarkIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark.svg";
 import { ReactComponent as BookmarkSelectedIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark_selected.svg";
 import { ReactComponent as CommentIcon } from "../../Assets/img/likeBookmarkIcons/Comment.svg";
+import { useEffect } from "react";
 
 const CommPost = (props) => {   
     const dispatch = useDispatch();
@@ -41,8 +42,6 @@ const CommPost = (props) => {
         dispatch(postActions.bookmarkPostDB(props.category, post.postId));
         }
     };
-
-    
     return (
         <React.Fragment>
             <Grid width="100%" padding="20px" margin="0px 0px 12px 0px">
@@ -74,18 +73,24 @@ const CommPost = (props) => {
                         {like? 
                             <FavoriteSelectedIcon
                                 onClick={()=>{toggleLike()}} /> : 
-                            <FavoriteIcon
+                            <FavoriteIcon  fill="#393939"
                                 onClick={()=>toggleLike()} />
                         }
                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{post?.postLikeCount}</Text>
-                        <CommentIcon />
+                        <CommentIcon fill="#656565"/>
                         <Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
                     </Grid>
                     <Grid position="absolute" top="0px" right="0px" >
                         {bookmark? 
-                            <BookmarkSelectedIcon
+                            <BookmarkIcon  
+                            className='bookmark'
+                            fill="#0AAF42"
+                            stroke="#0AAF42"
                                 onClick={()=>toggleBookmark()} /> : 
-                            <BookmarkIcon fill="transparent" stroke="#262626"
+                            <BookmarkIcon 
+                            className='bookmark'
+                            fill="none"
+                            stroke="#6F6F6F"
                                 onClick={()=>toggleBookmark()} />
                         }
                     </Grid>

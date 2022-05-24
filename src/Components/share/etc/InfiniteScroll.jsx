@@ -17,30 +17,104 @@ import { Grid, Text } from "../../../Elements";
 
 const InfiniteScroll = (props) => {
   const {children, page, callback, isLoading} = props;
-  
+
   const [target, setTarget] = React.useState(null);
   const totalPage = useSelector((state) => state.search?.planteriorList?.totalPage);
 
+  //커뮤니티 totalPage
+  const communityTotalPage = useSelector((state) => state.post?.postList?.totalPage); 
+
+  //내 식물공간 totalPage
+  const myPicturesTotalPage = useSelector((state) => state.mypage?.photoList?.totalPage); 
+  //스크랩한 식물공간 totalPage
+  const scrapPicturesTotalPage = useSelector((state) => state.mypage?.scrapPhotoList?.totalPage); 
+  //내가 쓴 초록톡 totalPage
+  const myPostTotalPage = useSelector((state) => state.mypage?.postList?.totalPage); 
+  //스크랩한 초록톡 totalPage
+  const scrapPostTotalPage = useSelector((state) => state.mypage?.scrapPostList?.totalPage); 
+  
   React.useEffect(() => {
     let observer;
     if (target) {
-      observer = new IntersectionObserver(callback, { threshold: 0.1 });
-      observer.observe(target);
+      observer = new IntersectionObserver(callback, { threshold: 0.7 });
+      observer.observe(target);//관찰 시작
     }
-    return () => observer && observer.disconnect();
+    return () => observer && observer.disconnect();//관찰 있으면 관찰 멈추기
   }, [target]);
 
-  return (
-  <React.Fragment>
-    {children}
-    {isLoading ?
-      <Grid margin="auto">
-        <Text bold size="base">로딩중</Text>
-      </Grid>
-      : null}
-    {totalPage > page ? <Box ref={setTarget}> </Box> : null}
-  </React.Fragment>
-  );
+  if(totalPage){
+    return (
+      <React.Fragment>
+        {children}
+        {isLoading ?
+          <Grid margin="auto">
+            <Text bold size="base">로딩중</Text>
+          </Grid>
+          : null}
+        {totalPage > page ? <Box ref={setTarget}> </Box> : null}
+      </React.Fragment>
+      );
+  }
+  if(communityTotalPage > page) {
+    return (
+      <React.Fragment>
+        {children}
+        {isLoading &&
+          <Grid margin="auto">
+            <Text bold size="base">로딩중</Text>
+          </Grid> }
+        {communityTotalPage > (page+1) ? <Box ref={setTarget}> </Box> : null}
+      </React.Fragment>
+      );
+  }
+  if(myPicturesTotalPage > page) {
+    return (
+      <React.Fragment>
+        {children}
+        {isLoading &&
+          <Grid margin="auto">
+            <Text bold size="base">로딩중</Text>
+          </Grid> }
+        {myPicturesTotalPage > (page+1)? <Box ref={setTarget}> </Box> : null}
+      </React.Fragment>
+      );
+  }
+  if(scrapPicturesTotalPage > page) {
+    return (
+      <React.Fragment>
+        {children}
+        {isLoading &&
+          <Grid margin="auto">
+            <Text bold size="base">로딩중</Text>
+          </Grid> }
+        {scrapPicturesTotalPage > (page+1)? <Box ref={setTarget}> </Box> : null}
+      </React.Fragment>
+      );
+  }
+  if(myPostTotalPage > page) {
+    return (
+      <React.Fragment>
+        {children}
+        {isLoading &&
+          <Grid margin="auto">
+            <Text bold size="base">로딩중</Text>
+          </Grid> }
+        {myPostTotalPage > (page+1)? <Box ref={setTarget}> </Box> : null}
+      </React.Fragment>
+      );
+  }
+  if(scrapPostTotalPage > page) {
+    return (
+      <React.Fragment>
+        {children}
+        {isLoading &&
+          <Grid margin="auto">
+            <Text bold size="base">로딩중</Text>
+          </Grid> }
+        {scrapPostTotalPage > (page+1)? <Box ref={setTarget}> </Box> : null}
+      </React.Fragment>
+      );
+  }
 
 };
 

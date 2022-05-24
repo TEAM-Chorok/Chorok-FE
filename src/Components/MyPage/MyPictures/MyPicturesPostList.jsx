@@ -10,13 +10,17 @@ import { ReactComponent as BookmarkIcon} from "../../../Assets/img/likeBookmarkI
 import { ReactComponent as BookmarkSelectedIcon} from "../../../Assets/img/likeBookmarkIcons/Bookmark_selected.svg";
 import { ReactComponent as CommentIcon } from "../../../Assets/img/likeBookmarkIcons/Comment.svg";
 import { actionCreators as postActions } from '../../../Redux/Modules/post';
+import InfiniteScroll from '../../share/etc/InfiniteScroll';
 
 const MyPicturesPostList = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const myPictureList = useSelector(state => state.mypage?.photoList);
-
+    const myPictureList = useSelector(state => state.mypage?.photoList.content);
     
+    // 무한스크롤 관련 state
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [page, setPage] = React.useState(0);
+
     const likePost = (page, postId) => {
         dispatch(MyActions.likePostDB(page, postId));
       }
@@ -24,14 +28,34 @@ const MyPicturesPostList = () => {
     const bookmarkPost = (page, postId) => {
     dispatch(MyActions.bookmarkPostDB(page, postId));
     }
+    
     useEffect(() => {
-        dispatch(MyActions.getMyPhotoListDB());
-    },[]);
+        dispatch(MyActions.getMyPhotoListDB(page));
+    },[page]);
+
+    //infinite scroll 실행 함수
+    const callback = async ([entry], observer) => {
+        if(entry.isIntersecting && !isLoading) {
+            observer.unobserve(entry.target); //관찰 종료
+            setIsLoading(true);
+                await new Promise ((resolve) => {
+                setTimeout(resolve, 2000);
+            });
+            setPage((pre) => pre + 1);
+            setIsLoading(false);
+            observer.observe(entry.target);
+        }   
+    }
 
     return (
         <React.Fragment>
-                 {myPictureList?.map((p) => {
-                     return(
+            {myPictureList? 
+            <InfiniteScroll
+                page={page} 
+                callback={callback} 
+                isLoading={isLoading}>
+                {myPictureList?.map((p) => {
+                    return(
                          <React.Fragment  key={p.postId}>
                         <Container>
                         <Grid width="100%">
@@ -85,10 +109,42 @@ const MyPicturesPostList = () => {
                             <div style={{height:"12px", width:"100%", backgroundColor:"#F7F8FA"}}></div>
                         </Container>
                         </React.Fragment>
-                     )
-                 })}
+                    )
+                })}
+            </InfiniteScroll> :
+
+            <RelativeBox>
+                <FloatBox>
+                <Grid margin="auto">
+                    <Text bold size="base" margin="auto">데이터를 불러오고 있습니다💬</Text>
+                </Grid>
+                </FloatBox>
+            </RelativeBox>
+            }   
+                 
                     
         </React.Fragment>
     )
 }
+
+const RelativeBox = styled.div`
+  position: relative;
+  width: 100%;
+`
+
+const FloatBox = styled.div`
+  position: absolute;
+  top: 0;
+
+  display:flex;
+  align-items: center;
+  
+  margin: auto;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+`
 export default MyPicturesPostList;
