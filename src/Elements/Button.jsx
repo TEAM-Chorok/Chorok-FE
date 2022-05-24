@@ -160,6 +160,7 @@ const BasicButton = styled.button`
   }
 `;
 
+// 사이드 버튼
 const PlusButton = styled.button`
   margin: 0;
   width: 60px;
@@ -290,4 +291,5 @@ const ToggleInnerButton = styled.button`
   background-color: transparent;
   text-align: ${(props) => props.textAlign};;
 `
+
 export default Button;

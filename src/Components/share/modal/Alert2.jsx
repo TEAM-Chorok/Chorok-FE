@@ -31,7 +31,13 @@ const Alert2 = (props) => {
               </Grid>
               <Grid is_flex margin="24px auto 0 auto" align="center">
                 <Grid margin="0 16px">
-                  <Button type="tran" _onClick={() => { props.setOpen(false) }}>
+                  <Button type="tran" _onClick={() => {
+                    if (url) {
+                      history.push(url);
+                    } else {
+                      props.setOpen(false)
+                    }
+                  }}>
                     <Text size="small">
                       {btn1}
                     </Text>
@@ -66,7 +72,8 @@ z-index: 200;
 position: sticky;
 bottom: 40%;
 margin: auto;
-
+border-radius: 10px;
+box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
 `
 const InnerWrap = styled.div`
 width: 240px;

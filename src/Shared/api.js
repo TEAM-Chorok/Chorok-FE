@@ -242,27 +242,32 @@ export const searchAPI = {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
-  // 탐색탭 키워드 검색 
+  // 식물 전체 조회 (식물도감)
+  getPlantDict: (page) => api.get(`/search-post/dictionary/planterior?keyword=&page=${page}`, {
+    headers: {
+      "Authorization": `${sessionStorage.getItem('token')}`,
+    }
+  }),
+  // 탐색탭 키워드 검색 (전체)
   keywordSearching: (value) => api.get(`/search-post/integrate/planterior?keyword=${value}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
-  // 탐색탭 키워드 검색 
-  
-  keywordSearchingPhoto: (value, pagenum) => api.get(`/search-post/photo/planterior?keyword=${value}&page=${pagenum?pagenum:0}`, {
+  // 탐색탭 키워드 검색 (사진)
+  keywordSearchingPhoto: (value, page) => api.get(`/search-post/photo/planterior?keyword=${value}&page=${page}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
   // 탐색탭 키워드 검색 (플랜테리어 위치필터)
-  // keywordSearchingPhotoPlace: (value) => api.get(`/search-post/photo/planterior?keyword=${value}`, {
+  // keywordSearchingPhotoPlace: (value, page) => api.get(`/search-post/photo/planterior?keyword=${value}&page={page}`, {
   //   headers: {
   //     "Authorization": `${sessionStorage.getItem('token')}`,
   //   }
   // }),
   // 탐색탭 키워드 검색 (식물도감)
-  keywordSearchingPlant: (value) => api.get(`/search-post/dictionary/planterior?keyword=${value}`, {
+  keywordSearchingPlant: (value, page) => api.get(`/search-post/dictionary/planterior?keyword=${value}&page=${page}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
@@ -278,11 +283,6 @@ export const searchAPI = {
       }
     }
   ),
-  getPlantDict: () => api.get('/search-post/dictionary/planterior?keyword=', {
-    headers: {
-      "Authorization": `${sessionStorage.getItem('token')}`,
-    }
-  }),
   //검색어로 전체 검색하기 (비로그인)
   postSearching_nonLogin: (postTypeCode, keyword) => api.get(`/non-login/read-posts/community?postTypeCode=${postTypeCode}&keyword=${keyword}`, 
   ),

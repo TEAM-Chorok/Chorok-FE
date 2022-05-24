@@ -1,4 +1,4 @@
-import { Input, Text, Grid, Container} from '../../Elements/index';
+import { Input, Text, Grid, Container } from '../../Elements/index';
 import { Button } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
@@ -13,16 +13,16 @@ const Login = () => {
   return (
     <React.Fragment>
       <Container type="np">
-      <Div>
-        <Container>
-          <InnerDiv>
-            {/* 로고 */}
-            <Text display="block" fontSize="26px" bold color="#ffffff" >내 공간에 <br />활기를 더해줄,<br />초록</Text>
-          </InnerDiv>
-          
-          <InnerDiv style={{marginTop:"148px"}}>
-            
-            {/* <Grid width="100%" margin="8px 0px 0px 0px"> */}
+        <Div>
+          <Container>
+            <InnerDiv>
+              {/* 로고 */}
+              <Text display="block" fontSize="26px" bold color="#ffffff" >내 공간에 <br />활기를 더해줄,<br />초록</Text>
+            </InnerDiv>
+
+            <InnerDiv style={{ marginTop: "148px" }}>
+
+              {/* <Grid width="100%" margin="8px 0px 0px 0px"> */}
               {/* <Button 
                 href={KAKAO_AUTH_URL}
                 variant='contained' 
@@ -31,24 +31,24 @@ const Login = () => {
                   <Text size="small">카카오로 계속하기</Text></Button>
             </Grid> */}
 
-            <Grid width="100%" margin="8px 0px 0px 0px">
-              <a href={KAKAO_AUTH_URL}><div 
-              style={{placeItems:"self-start", display:"grid", gridTemplateColumns:"0.3fr 0.15fr 0.8fr", width:"100%", fontWeight:"500",height: "48px", alignItems:"center", backgroundColor:"#FEE500 ", padding:"14px", borderRadius:"6px",  color:"#242424", boxShadow:"none", boxSizing:"border-box"}}>
-                <div></div>
-                <img src="img/kakao 1.svg" style={{margin:"0px 4px"}} /> 
-                <Text size="small" bold>카카오로 계속하기</Text>
-              </div></a>
-            </Grid>
-            <Grid width="100%" margin="8px 0px 0px 0px">
-              <a href={GOOGLE_AUTH_URL}><div 
-              style={{placeItems:"self-start", display:"grid", gridTemplateColumns:"0.35fr 0.15fr 0.8fr", width:"100%", fontWeight:"500",height: "48px", alignItems:"center", backgroundColor:"#FFFFFF ", padding:"14px", borderRadius:"6px",  color:"#392020", boxShadow:"none", boxSizing:"border-box"}}>
-                <div></div>
-                <img src="img/logo_google.svg" style={{margin:"0px 4px"}}/>
-                <Text size="small" bold>구글로 계속하기</Text>
-              </div></a>
-            </Grid>
+              <Grid width="100%" margin="8px 0px 0px 0px">
+                <a href={KAKAO_AUTH_URL}><div
+                  style={{ placeItems: "self-start", display: "grid", gridTemplateColumns: "0.3fr 0.15fr 0.8fr", width: "100%", fontWeight: "500", height: "48px", alignItems: "center", backgroundColor: "#FEE500 ", padding: "14px", borderRadius: "6px", color: "#242424", boxShadow: "none", boxSizing: "border-box" }}>
+                  <div></div>
+                  <img src="img/kakao 1.svg" style={{ margin: "0px 4px" }} />
+                  <Text size="small" bold>카카오로 계속하기</Text>
+                </div></a>
+              </Grid>
+              <Grid width="100%" margin="8px 0px 0px 0px">
+                <a href={GOOGLE_AUTH_URL}><div
+                  style={{ placeItems: "self-start", display: "grid", gridTemplateColumns: "0.35fr 0.15fr 0.8fr", width: "100%", fontWeight: "500", height: "48px", alignItems: "center", backgroundColor: "#FFFFFF ", padding: "14px", borderRadius: "6px", color: "#392020", boxShadow: "none", boxSizing: "border-box" }}>
+                  <div></div>
+                  <img src="img/logo_google.svg" style={{ margin: "0px 4px" }} />
+                  <Text size="small" bold>구글로 계속하기</Text>
+                </div></a>
+              </Grid>
 
-            {/* <Grid width="100%" margin="8px 0px 0px 0px">
+              {/* <Grid width="100%" margin="8px 0px 0px 0px">
               <Button 
                 href={GOOGLE_AUTH_URL}
                 variant='contained' 
@@ -57,29 +57,33 @@ const Login = () => {
                    구글로 계속하기</Button>
             </Grid> */}
 
-            <Grid width="100%" margin="8px 0px 0px 0px">
-              <Button variant='text' 
-                style={{textAlign:"center", display:"block", width:"100%", height: "48px", backgroundColor:"#E0E0E0", color:"black", fontWeight:"700", borderRadius:"6px", border:"1px solid #E0E0E0", boxShadow:"none", boxSizing:"border-box"}}
-                onClick={()=>history.push('/logIn')}>이메일로 계속하기</Button>
-            </Grid>
-          </InnerDiv>
+              <Grid width="100%" margin="8px 0px 0px 0px">
+                <Button variant='text'
+                  style={{ textAlign: "center", display: "block", width: "100%", height: "48px", backgroundColor: "#E0E0E0", color: "black", fontWeight: "700", borderRadius: "6px", border: "1px solid #E0E0E0", boxShadow: "none", boxSizing: "border-box" }}
+                  onClick={() => history.push('/logIn')}>이메일로 계속하기</Button>
+              </Grid>
+            </InnerDiv>
 
 
-          <GridBox>           
-            <Button variant='text' 
-                style={{paddingLeft:"100px", color:"#ffffff", fontSize:"14px", fontWeight:"700"}} 
-                onClick={()=>history.push('/signup')}>회원가입</Button>
-            <Button variant='text' 
-                style={{paddingRight:"100px", color:"#ffffff", fontSize:"14px", fontWeight:"700"}} 
-                onClick={()=>history.push('/home')}>둘러보기</Button>
-          </GridBox>
-        </Container>
-      </Div>
+            <GridBox>
+              <Button variant='text'
+                style={{ paddingLeft: "100px", color: "#ffffff", fontSize: "14px", fontWeight: "700" }}
+                onClick={() => history.push('/signup')}>
+                <Text bold color="#fff">회원가입</Text>
+              </Button>
+              <Button variant='text'
+                style={{ paddingRight: "100px", color: "#ffffff", fontSize: "14px", fontWeight: "700" }}
+                onClick={() => history.push('/home')}>
+                <Text bold color="#fff">둘러보기</Text>
+                </Button>
+            </GridBox>
+          </Container>
+        </Div>
       </Container>
     </React.Fragment>
-    );
-  }
-  
+  );
+}
+
 const InnerDiv = styled.div`
 // width: 100%;
 // height: 100%;,

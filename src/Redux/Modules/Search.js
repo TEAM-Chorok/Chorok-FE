@@ -43,7 +43,7 @@ const plantFilteringDB = (filterData) => {
     .plantFiltering(filterData)
     .then((response) => {
       // console.log("plantFilteringDB : response", response.data.plantList);
-      dispatch(plantFiltering(response.data.content));
+      dispatch(plantFiltering(response.data));
     }).catch((error) => {
       console.log("plantFilteringDB : error", error.response);
     });
@@ -99,8 +99,9 @@ const editPlanteriorPostDB = (postdata, postId) => {
     searchAPI
     .editPlanteriorPost(postdata, postId)
     .then((response) => {
-      console.log("editPlanteriorPostDB : response", response);
+      // console.log("editPlanteriorPostDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
+      window.location.reload()
     }).catch((error) => {
       console.log("editPlanteriorPostDB : error", error.response);
     })
@@ -222,10 +223,10 @@ const keywordSearchingDB = (value) => {
 }
 
 // 탐색탭 키워드 검색 - 사진(플랜테리어)탭
-const keywordSearchingPhotoDB = (value) => {
+const keywordSearchingPhotoDB = (value, page) => {
   return function (dispatch, getState, {history}) {
     searchAPI
-    .keywordSearchingPhoto(value)
+    .keywordSearchingPhoto(value, page)
     .then((response) => {
       // console.log("keywordSearchingPhotoDB : searching", response.data);
       dispatch(keywordSearchingPhoto(response.data.content))
@@ -236,10 +237,10 @@ const keywordSearchingPhotoDB = (value) => {
 }
 
 // 탐색탭 키워드 검색 - 사진(플랜테리어)탭 장소 필터링
-const keywordSearchingPhotoPlaceDB = (value) => {
+const keywordSearchingPhotoPlaceDB = (value, page) => {
   return function (dispatch, getState, {history}) {
     searchAPI
-    .keywordSearchingPhotoPlace(value)
+    .keywordSearchingPhotoPlace(value, page)
     .then((response) => {
       console.log("keywordSearchingPhotoPlaceDB : searching", response.data.content);
       dispatch(keywordSearchingPhotoPlace(response.data.content))
@@ -250,13 +251,13 @@ const keywordSearchingPhotoPlaceDB = (value) => {
 }
 
 // 탐색탭 키워드 검색 - 식물도감
-const keywordSearchingPlantDB = (value) => {
+const keywordSearchingPlantDB = (value, page) => {
   return function (dispatch, getState, {history}) {
     searchAPI
-    .keywordSearchingPlant(value)
+    .keywordSearchingPlant(value, page)
     .then((response) => {
       // console.log("keywordSearchingPlantDB : searching", response.data.plantList);
-      dispatch(keywordSearchingPlant(response.data.content))
+      dispatch(keywordSearchingPlant(response.data))
     }).catch((error) => {
       console.log("keywordSearchingPlantDB : error", error.response);
     })
@@ -278,13 +279,13 @@ const getRecommendDB = () => {
 }
 
 // 식물도감 전체조회
-const getPlantDictDB = () => {
+const getPlantDictDB = (page) => {
   return function (dispatch, getState, {history}) {
     searchAPI
-    .getPlantDict()
+    .getPlantDict(page)
     .then((response) => {
       // console.log("getPlantDictDB : response", response.data);
-      dispatch(getPlantDict(response.data.content))
+      dispatch(getPlantDict(response.data))
     }).catch((error) => {
       console.log("getPlantDictDB : error", error.response);
     })
@@ -297,7 +298,12 @@ export default handleActions(
   {
     [PLANT_FILTERING]: (state, action) => produce(state, (draft) => {
       // console.log("PLANT_FILTERING : searchList", action.payload.searchList);
-      draft.plantDictList = action.payload.searchlist;
+      if (action.payload.searchlist.page > 0) {
+        draft.plantDictList.content.push(...action.payload.searchlist.content);
+      } else {
+        draft.plantDictList = action.payload.searchlist;
+      }
+      draft.plantDictList.page = action.payload.searchlist.page;
     }),
     [GET_PLANTERIORLIST]: (state, action) => produce(state, (draft) => {
       // console.log("GET_PLANTERIORLIST : planteriorList", action.payload.planteriorlist);
@@ -309,8 +315,8 @@ export default handleActions(
       draft.planteriorList.page = action.payload.planteriorlist.page;
     }),
     [PLANTERIOR_FILTERING]: (state, action) => produce(state, (draft) => {
-      console.log("PLANTERIOR_FILTERING : planteriorList", action.payload.filteringdata);
-      if(action.payload.filteringdata.page > 0) {
+      // console.log("PLANTERIOR_FILTERING : planteriorList", action.payload.filteringdata);
+      if (action.payload.filteringdata.page > 0) {
         draft.planteriorList.content.push(...action.payload.filteringdata.content);
       } else {
         draft.planteriorList = action.payload.filteringdata;
@@ -330,16 +336,26 @@ export default handleActions(
       draft.result = action.payload.searchingdata;
     }),
     [KEYWORD_SEARCHING_PHOTO]: (state, action) => produce(state, (draft) => {
-      console.log("KEYWORD_SEARCHING_Photo : searchingdata", action.payload.searchingdata);
+      // console.log("KEYWORD_SEARCHING_Photo : searchingdata", action.payload.searchingdata);
       draft.resultPhoto = action.payload.searchingdata;
     }),
     [KEYWORD_SEARCHING_PLANT]: (state, action) => produce(state, (draft) => {
-      console.log("KEYWORD_SEARCHING_Plant : searchingdata", action.payload.searchingdata);
-      draft.resultPlant = action.payload.searchingdata;
+      // console.log("KEYWORD_SEARCHING_Plant : searchingdata", action.payload.searchingdata);
+      if (action.payload.searchingdata.page > 0) {
+        draft.resultPlant.content.push(...action.payload.searchingdata.content);
+      } else {
+        draft.resultPlant = action.payload.searchingdata;
+      }
+      draft.resultPlant.page = action.payload.searchingdata.page;
     }),
     [GET_PLANT_DICT]: (state, action) => produce(state, (draft) => {
       // console.log("GET_PLANT_DICT : plantlist", action.payload.plantlist);
-      draft.plantDictList = action.payload.plantlist;
+      if (action.payload.plantlist.page > 0) {
+        draft.plantDictList.content.push(...action.payload.plantlist.content);
+      } else {
+        draft.plantDictList = action.payload.plantlist;
+      }
+      draft.plantDictList.page = action.payload.plantlist.page;
     }),
   }, initialState
 )

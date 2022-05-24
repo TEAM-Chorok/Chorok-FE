@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Grid } from "../../Elements";
 import PlantProfile from "../share/etc/PlantProfile";
+import XdragScroll from "../share/etc/XdragScroll";
 
 
 // 투두페이지 상단 내 식물 원형 프로필 
@@ -22,7 +23,9 @@ const TodoProfile = (props) => {
 
   return (
     <React.Fragment>
-      <ProfileBox>
+      {/* <ProfileBox> */}
+      <XdragScroll>
+
         <Grid is_flex>
           <PlantProfile 
             checked={props.plantName? false : true } 
@@ -44,7 +47,10 @@ const TodoProfile = (props) => {
         })}
           <PlantProfile imgUrl="img/todoIcons/plus.svg" _onClick={openAddPlant}/>
         </Grid>
-      </ProfileBox>
+
+      </XdragScroll>
+      {/* </ProfileBox> */}
+
     </React.Fragment>
   );
 }

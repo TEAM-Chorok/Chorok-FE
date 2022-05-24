@@ -103,6 +103,7 @@ const TodoBox = styled.div`
 `;
 
 const SentenceBox = styled.div`
+  margin: 4px;
   width: 210px;
   word-break: keep-all;
 `

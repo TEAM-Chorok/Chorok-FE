@@ -43,7 +43,8 @@ const PlanteriorWriteComp = () => {
     1: "내용이 비어있습니다!",
     2: "이미지를 업로드해주세요!",
     3: "이미지는 최대 3장까지 업로드 가능합니다.",
-    4: "초록은 아직 1장의 이미지만 업로드 가능합니다😭"
+    4: "초록은 아직 1장의 이미지만 업로드 가능합니다😭",
+    5: "문제가 발생하여 목록으로 돌아갑니다.",
   }
 
   // 업로드한 파일 가져오기 
@@ -118,7 +119,7 @@ const PlanteriorWriteComp = () => {
     formData.append('postTypeCode', 'postType01');
     // 글 수정 루트일 경우
     if (location === 'edit') {
-      if(file.length>0) {
+      if (file.length > 0) {
         // 파일을 수정했을 경우
         formData.append('postImgUrl', file[0]);
         // formData.append('originalUrl', null);
@@ -142,8 +143,13 @@ const PlanteriorWriteComp = () => {
 
 
   React.useEffect(() => {
-    // 글 수정 루트일 경우 
-    if (location === 'edit') {
+    if (!planteriordata?.postContent) {
+      // 글 내용을 찾지 못한 경우
+      setMessage(5);
+      setOpen(true);
+      return
+    } else if (location === 'edit') {
+      // 글 수정 루트일 경우 
       contentRef.current.value = planteriordata?.postContent;
       setPreview([planteriordata?.postImgUrl]);
     }
@@ -152,10 +158,11 @@ const PlanteriorWriteComp = () => {
 
   return (
     <React.Fragment>
+
       <Wrapper>
         <AddPostHeader edit title={location === 'edit' ? "글 수정하기" : "공간 자랑하기"} submit={submit} />
         <Grid width="100%" padding="0 16px">
-          <PlaceFilter none setPlace={setPlace} setPage={setPage}/>
+          <PlaceFilter none setPlace={setPlace} setPage={setPage} />
         </Grid>
         <Grid width="100%" heigth="100%" padding="0 16px">
           <Input type="textarea" placeholder="사진에 대해 설명해 주세요." _ref={contentRef} />
@@ -199,14 +206,14 @@ const PlanteriorWriteComp = () => {
               <Text size="base" color="#6F6F6F">/1</Text>
             </Grid>
           </UploadArea>
-        </FileWrapper>
 
-        <Alert2 onebutton open={open} setOpen={setOpen} btn1="계속 작성하기">
-          <Text bold wordbreak size="small">
-            {alertMessage[message]}
-          </Text>
-        </Alert2>
+        </FileWrapper>
       </Wrapper>
+        <Alert2 open={open} setOpen={setOpen} btn1={message === 5 ? "확인" : "계속 작성하기"} url={message === 5 ? '/search' : null}>
+        <Text bold wordbreak size="small">
+          {alertMessage[message]}
+        </Text>
+      </Alert2>
     </React.Fragment>
   )
 }
@@ -215,6 +222,7 @@ const Wrapper = styled.div`
   position:relative;
   width: 100%;
   height: 100%;
+  overflow: ${(props) => props.open? 'hidden' : 'auto'};
 `
 
 const FileWrapper = styled.div`

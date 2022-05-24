@@ -1,30 +1,29 @@
 
-// Home
+// ---------------------- Home ---------------------- //
 import HomeMyplant from "./Home/HomeMyplant";
 import HomeHeader from "./Home/HomeHeader";
 import TodoContent from "./Home/TodoContent";
 import TodoProfile from "./Home/TodoProfile";
 
-import Questionnaire from "./Home/Questionnaire";
-import Questionnaire2 from "./Home/Questionnaire2";
-import Questionnaire3 from "./Home/Questionnaire3";
-import Questionnaire4 from "./Home/Questionnaire4";
+// ------------------ labeling test ----------------- //
+import Questionnaire from "./Labeling/Questionnaire";
+import Questionnaire2 from "./Labeling/Questionnaire2";
+import Questionnaire3 from "./Labeling/Questionnaire3";
+import Questionnaire4 from "./Labeling/Questionnaire4";
 
-// Add Plant
+// ------------------- Add Plant -------------------- //
 import AddPlantList from "./AddPlant/AddPlantList";
 import BottomSheet from "./AddPlant/BottomSheet";
 import SelectPlace from "./AddPlant/SelectPlace";
 import WritePlantProfile from "./AddPlant/WritePlantProfile";
 import AddDone from "./AddPlant/AddDone";
 
-
-// Plant Card
+// ------------------ Plant Card ------------------- //
 import PlantCardProfile from "./PlantCard/PlantCardProfile";
 import PlantCardFeed from "./PlantCard/PlantCardFeed";
 
-
-// Search(planterior)
-// 식물도감탭은 식물 추가 flow의 AddPlant 페이지로 처리했습니다!
+// -------------- Search(planterior) --------------- //
+// 식물도감탭은 식물 추가 flow의 AddPlant 페이지로 처리
 import PlanteriorDetailContents from "./Search/Planterior/PlanteriorDetailContents";
 import PlanteriorDetailComments from "./Search/Planterior/PlanteriorDetailComments";
 import PlanteriorList from "./Search/Planterior/PlanteriorList";
@@ -39,12 +38,12 @@ import PlantResult from "./Search/SearchResult/PlantResult";
 
 import Planterior from "./Search/Planterior";
 
-// Calendar
+// ------------------- Calendar -------------------- //
 import CalendarTable from "./Calendar/CalendarTable";
 import CalendarMyPlant from "./Calendar/CalendarMyPlant";
 import CalendarTodo from "./Calendar/CalendarTodo";
 
-//community
+// ------------------- community ------------------- //
 import CommPostList from "./Community/CommPostList";
 import CommPost from "./Community/CommPost";
 import CommunityFilter from "./Community/CommunityFilter";
@@ -55,13 +54,11 @@ import AddPostHeader from "./Community/AddPostHeader";
 import AddPostFooter from "./Community/AddPostFooter";
 import AddPlantDairy from "./Community/AddPlantDairy";
 
-
-// My Page
+// -------------------- My Page -------------------- //
 import MyPageHeader from "./MyPage/MyPageHeader";
 import MyCategoryBar from "./MyPage/MyCategoryBar";
 
 import MyPagePost from "./MyPage/MyPagePost";
-
 
 import MyPicturesPostList from "./MyPage/MyPictures/MyPicturesPostList";
 
@@ -75,11 +72,10 @@ import EditPlantBody from "./MyPage/EditPlant/EditPlantBody";
 
 import MyPostsPostList from "./MyPage/MyPostsPostList";
 import ScrapPostsList from "./MyPage/Setting/ScrapPostsList";
-
 import DeactivationAgreement from "./MyPage/Setting/DeactivationAgreement";
 
 
-// 기타 모듈화 컴포넌트
+// -------------------- shared --------------------- //
 // 뒤로가기 버튼 + 타이틀 헤더 
 import GeneralHeader from "./share/etc/GeneralHeader";
 // 타이틀 + 검색창 헤더
@@ -106,6 +102,8 @@ import CommentWrite from "./share/posting/CommentWrite";
 import MoreContentSheet from "./share/posting/MoreContentSheet";
 // 식물 프로필
 import PlantProfile from "./share/etc/PlantProfile";
+// 무한 스크롤
+import InfiniteScroll from "./share/etc/InfiniteScroll";
 
 
 export {
@@ -124,9 +122,9 @@ export {
     EditPlantHeader, EditPlantBody,
     MyPostsPostList, ScrapPostsList,
     DeactivationAgreement,
-    Alert, Alert2, Dimmer,
+    Alert, Alert2, Dimmer, 
     SideButton, MoreContentSheet, CommentWrite,  
     PlantProfile, PlantSearchHeader, 
-    SearchHeader, Tabbar, ProgressBar, Navbar, 
+    SearchHeader, Tabbar, ProgressBar, Navbar, InfiniteScroll
 };
 

@@ -11,8 +11,8 @@ const Result = (props) => {
   
   const comp = {
     0: <AllResult setCompNum={setCompNum}/>,
-    1: <PlanteriorResult value={value}/>,
-    2: <PlantResult />
+    1: <PlanteriorResult value={value} />,
+    2: <PlantResult value={value} />
   };
   
   return (

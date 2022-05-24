@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
 import PlantProfile from "../share/etc/PlantProfile";
+import XdragScroll from "../share/etc/XdragScroll";
 
 const CalendarMyPlant = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const CalendarMyPlant = (props) => {
 
   return (
     <React.Fragment>
-      <PlantBox>
+      <XdragScroll>
         {myPlant?.map((plant) => {
           return(
           <PlantProfile key={plant.myPlantNo}
@@ -28,7 +29,7 @@ const CalendarMyPlant = (props) => {
               props.setPlantName(plant?.myPlantName);}} />
           )
         })}
-      </PlantBox>
+      </XdragScroll>
     </React.Fragment>
   )
 };

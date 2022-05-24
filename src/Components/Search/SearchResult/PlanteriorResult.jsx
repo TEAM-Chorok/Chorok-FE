@@ -12,9 +12,8 @@ const PlanteriorResult = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const result = useSelector((state) => state.search?.resultPhoto);
-  const list = result?.postList;
 
-  console.log("요ㅕ요",result, list)
+  console.log("요ㅕ요",result)
 
   const openDetail = (postId) => {
     history.push(`/planterior/post/${postId}`);
@@ -24,7 +23,7 @@ const PlanteriorResult = (props) => {
     <React.Fragment>
       <Grid width="100%" margin="16px 0">
         <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
-          {list?.map((post, idx) => {
+          {result?.map((post, idx) => {
             return (
               <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId); }}>
                 <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
