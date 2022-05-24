@@ -73,11 +73,9 @@ const CommPost = (props) => {
                     <Grid is_flex align="center" >
                         {like? 
                             <FavoriteSelectedIcon
-                                onClick={()=>{toggleLike()}} 
-                                style={{width:"24px", height:"fit-content"}}/> : 
+                                onClick={()=>{toggleLike()}} /> : 
                             <FavoriteIcon
-                                onClick={()=>toggleLike()} 
-                                style={{width:"24px", height:"fit-content"}}/>
+                                onClick={()=>toggleLike()} />
                         }
                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{post?.postLikeCount}</Text>
                         <CommentIcon />
@@ -86,11 +84,9 @@ const CommPost = (props) => {
                     <Grid position="absolute" top="0px" right="0px" >
                         {bookmark? 
                             <BookmarkSelectedIcon
-                                onClick={()=>toggleBookmark()} 
-                                style={{width: "24px", height:"fit-content"}}/> : 
+                                onClick={()=>toggleBookmark()} /> : 
                             <BookmarkIcon fill="transparent" stroke="#262626"
-                                onClick={()=>toggleBookmark()}
-                                style={{width: "24px", height:"fit-content"}} />
+                                onClick={()=>toggleBookmark()} />
                         }
                     </Grid>
                 </Grid>

@@ -28,10 +28,10 @@ const MyPictures = () => {
     }
     return (
         <React.Fragment>
-            <Grid padding="10px 16px" width="100%">
+            <Grid padding="0px 16px" width="100%">
                 {/* 내 사진 */}
             <TitleWrap1>
-                <Text bold size="large">내 식물공간</Text><Text size="large" color="#0AAF42" bold>{myPlanteriorCount}</Text>
+                <Text bold size="large">내 식물공간 <span style={{color:"#0AAF42"}}>{myPlanteriorCount}</span></Text>
                 <Button variant='text' style={{color:"grey", justifyContent:"end"}}
                 onClick={()=>history.push('/mypictures')}>더 보기</Button>
             </TitleWrap1>
@@ -44,13 +44,13 @@ const MyPictures = () => {
                             <Text color="#ffffff" size="xxsmall">{p.plantPlace}</Text>
                         </Grid>
                     </Contents>
-                    )
+                    ) 
                 })}
                 
             </ContentWrap>
             {/* 스크랩한 사진  */}
             <TitleWrap>
-                <Text bold size="large">스크랩한 식물공간 </Text><Text size="large" color="#0AAF42" bold>{myPlanteriorBookMarkCount}</Text>
+                <Text bold size="large">스크랩한 식물공간 <span style={{color:"#0AAF42"}}>{myPlanteriorBookMarkCount}</span></Text>
                 <Button variant='text' style={{color:"grey", justifyContent:"end"}}
                 onClick={()=>history.push('/scrap-picture')}>더 보기</Button>
             </TitleWrap>
@@ -72,13 +72,13 @@ const MyPictures = () => {
 }
 const TitleWrap1 = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1.8fr 1fr;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
     align-items: center;
 `
 const TitleWrap = styled.div`
     display: grid;
-    grid-template-columns:1.6fr 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
     align-items: center;
 `

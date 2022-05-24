@@ -66,19 +66,20 @@ const initialState = {
 // 미들웨어 
 // 커뮤니티 글 작성
 const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
-    console.log(postTitle, postImgUrl, postContent, postTypeCode)
     const formData = new FormData();
     formData.append("postTitle", postTitle);
     formData.append("postContent", postContent);
     formData.append("postTypeCode", postTypeCode);
-    formData.append("postImgUrl", postImgUrl);
+    if(postImgUrl !== ""){
+      formData.append("postImgUrl", postImgUrl);
+    }
     return function (dispatch, getState, { history }){
         postAPI
             .addPost(formData)
             .then((res) => {
                 console.log("response:" , res);
                 dispatch(addPost(res)); // 데이터 주나 안주나
-                history.push(`/community/${res.data.postId}`);
+                history.push(`/community`);
                 window.location.reload();
             }).catch((err) => {
                 console.log("error: ", err);
@@ -149,13 +150,11 @@ const getPostListDB_non_login = (category) => {
 //게시글 디테일 조회
 const getDetailPostDB = (postId) => {
   const _postId = parseInt(postId);
-  console.log(_postId);
   return function (dispatch, getState, { history }) {
     console.log("게시글 detail 조회", _postId);
     postAPI
       .getDetailPost(_postId)
       .then((response) => {
-        console.log(response);
         dispatch(getDetailPost(response.data));
       })
       .catch((err) => {
@@ -331,11 +330,11 @@ const addCommentDB = (postId, commentContent) => {
 }
 
 //댓글 수정 (postId는 필요하지 않은지?)
-const editCommentDb = (postId, commentId, comment) => {
-  return function (dispatch, getState, { history }){
+const editCommentDB = (postId, editdata) => {
+
     return function (dispatch, getState, { history }){
       postAPI
-        .editComment(commentId, comment)
+        .editComment(editdata)
         .then((res) => {
           console.log("response : ", res.data);
           dispatch(getDetailPostDB(postId));
@@ -344,12 +343,11 @@ const editCommentDb = (postId, commentId, comment) => {
           // window.alert('댓글 수정하기를 실패하였습니다.');
         });
     }
-  }
 }
 
 //댓글 삭제
 const deleteCommentDB = (postId, commentId) => {
-  return function (dispatch, getState, { history }){
+  
     return function (dispatch, getState, { history }){
       postAPI
         .deleteComment(commentId)
@@ -360,7 +358,7 @@ const deleteCommentDB = (postId, commentId) => {
           console.log("error: ", error);
           // window.alert('댓글 삭제하기를 실패하였습니다.');
         });
-    }
+    
   }
 }
 
@@ -398,7 +396,7 @@ const actionCreators = {
     bookmarkPostDB,
     bookmarkDetailPostDB,
     addCommentDB,
-    editCommentDb,
+    editCommentDB,
     deleteCommentDB,
 }
 

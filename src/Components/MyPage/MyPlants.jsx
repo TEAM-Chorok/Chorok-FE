@@ -32,7 +32,7 @@ const MyPlants = () => {
             <Grid padding="0px 16px" width="100%">
                 {/* 내 식물 */}
             <TitleWrap>
-                <Text bold size="large">내 식물</Text><Text size="large" color="#0AAF42" bold>{myPlantCount}</Text>
+                <Text bold size="large">내 식물 <span style={{color:"#0AAF42"}}>{myPlantCount}</span></Text>
                 <Button variant='text' style={{color:"grey", justifyContent:"end"}}
                 onClick={()=>history.push('/myplants')}>더 보기</Button>
             </TitleWrap>
@@ -51,8 +51,8 @@ const MyPlants = () => {
                 })}
             </ContentWrap>
             {/* 스크랩한 식물 */}
-            <TitleWrap style={{ gridTemplateColumns:"1fr 1fr 1fr"}}>
-                <Text bold size="large">스크랩한 식물 </Text><Text size="large" color="#0AAF42" bold>{scrapPlantCount}</Text>
+            <TitleWrap style={{ gridTemplateColumns:"1fr 1fr"}}>
+                <Text bold size="large">스크랩한 식물 <span style={{color:"#0AAF42"}}>{scrapPlantCount}</span></Text>
                 <Button variant='text' style={{color:"grey", justifyContent:"end"}}
                 onClick={()=>history.push('/scrap-plant')}>더 보기</Button>
             </TitleWrap>
@@ -78,7 +78,7 @@ const MyPlants = () => {
 
 const TitleWrap = styled.div`
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
     align-items: center;
 `

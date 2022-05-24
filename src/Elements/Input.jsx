@@ -111,6 +111,7 @@ const Input = (props) => {
           {...styles}
           placeholder={placeholder}
           onChange={_onChange}
+          defaultValue={defaultValue}
           ref={_ref}
           />
       </React.Fragment>
@@ -327,7 +328,7 @@ const PasswordInput = styled.input`
   padding: 0px 0px 0px 20px; 
   border: 1px solid #D5D8DB; 
   border-radius: 6px;
-  margin: 0px;
+  margin: ${(props) => props.margin};
 
   &::placeholder {
     color: #6F6F6F;
