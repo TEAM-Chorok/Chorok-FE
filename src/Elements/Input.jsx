@@ -111,6 +111,7 @@ const Input = (props) => {
           {...styles}
           placeholder={placeholder}
           onChange={_onChange}
+          defaultValue={defaultValue}
           ref={_ref}
           />
       </React.Fragment>

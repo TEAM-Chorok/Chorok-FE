@@ -433,11 +433,8 @@ export const postAPI = {
   }),
 
   //커뮤니티 댓글 수정
-  editComment: (commentNo, commentdata) => api.put(`/update-comment`, 
-  {    
-    commentNo :commentNo,
-    commentdata: commentdata
-  } ,
+  editComment: (editdata) => api.put(`/update-comment`, 
+  editdata,
   {
     headers: {
       "Authorization": ` ${sessionStorage.getItem('token')}`,

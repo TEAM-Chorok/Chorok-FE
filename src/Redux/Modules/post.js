@@ -150,13 +150,11 @@ const getPostListDB_non_login = (category) => {
 //게시글 디테일 조회
 const getDetailPostDB = (postId) => {
   const _postId = parseInt(postId);
-  console.log(_postId);
   return function (dispatch, getState, { history }) {
     console.log("게시글 detail 조회", _postId);
     postAPI
       .getDetailPost(_postId)
       .then((response) => {
-        console.log(response);
         dispatch(getDetailPost(response.data));
       })
       .catch((err) => {
@@ -332,11 +330,11 @@ const addCommentDB = (postId, commentContent) => {
 }
 
 //댓글 수정 (postId는 필요하지 않은지?)
-const editCommentDB = (postId, commentId, comment) => {
-  return function (dispatch, getState, { history }){
+const editCommentDB = (postId, editdata) => {
+
     return function (dispatch, getState, { history }){
       postAPI
-        .editComment(commentId, comment)
+        .editComment(editdata)
         .then((res) => {
           console.log("response : ", res.data);
           dispatch(getDetailPostDB(postId));
@@ -345,7 +343,6 @@ const editCommentDB = (postId, commentId, comment) => {
           // window.alert('댓글 수정하기를 실패하였습니다.');
         });
     }
-  }
 }
 
 //댓글 삭제

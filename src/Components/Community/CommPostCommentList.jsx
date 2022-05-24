@@ -6,12 +6,15 @@ import CommentWrite from "../share/posting/CommentWrite";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../../Redux/Modules/post";
+import { useEffect } from "react";
 
 const CommPostCommentList = (props) => {
     const { content, name, time, img, commentId } = props;
+
     const dispatch = useDispatch();
     const user = localStorage.getItem('nickname');   
     const [ edit, setEdit ] = React.useState(false);
+    const [comment, setComment] = React.useState("");
 
     const postId = useParams().postId;
     const contentRef = React.useRef();
@@ -28,15 +31,16 @@ const CommPostCommentList = (props) => {
         }
         dispatch(postActions.editCommentDB(postId, editdata));
         contentRef.current.value = null;
-        props.setEdit(false);
+        setEdit(false);
         return;
     }
 
-    React.useEffect(() => {
-        if(content) {
-          contentRef.current.value = content;
+    useEffect(() => {
+        if(content){
+            setComment(content);
         }
-      }, [content])
+    }, [content]);
+
 
     return  (
             <Grid width="100%">
@@ -44,11 +48,13 @@ const CommPostCommentList = (props) => {
                 <React.Fragment>
                     <Wrapper>
                         <CommentBox>
-                            <Input type="comment" placeholder="수정할 내용을 입력해주세요"  _ref={contentRef} >
+                            <Input type="comment" placeholder="수정할 내용을 입력해주세요" defaultValue={content} 
+                            _ref={contentRef} />
+                            <ButtonBox>
                                 <Button  type="tran" _onClick={() => { editComment(); }}>
-                                    <Text>수정</Text>
+                                    <Text size="small" color="#24A148">수정</Text>
                                 </Button>
-                            </Input>
+                            </ButtonBox>
                         </CommentBox>
                     </Wrapper>
                 </React.Fragment>
@@ -93,6 +99,12 @@ const CommentBox = styled.div`
   background: #fff;
 
 `
+const ButtonBox = styled.div`
+  position: absolute;
+  top: 26px;
+  right: 24px;
+`
+
 const CommentWrap = styled.div`
     height: fit-content;
     display: grid;

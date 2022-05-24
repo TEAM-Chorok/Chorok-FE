@@ -14,7 +14,6 @@ const PostDetail = () => {
 
     const history = useHistory();
     const postId = useParams().postId;
-
     const dispatch = useDispatch();
     const post = useSelector(state => state.post?.post);
     const nickname = localStorage.getItem('nickname');
