@@ -55,7 +55,8 @@ const TodoContent = () => {
                   <Grid margin="5px 0" width="100%">
                     {plant?.todos?.map((todo, idx) => {
                       return (
-                        <TodoContentBlock key={todo.todoNo}
+                        <TodoContentBlock 
+                          key={todo.todoNo}
                           num={todo.todoNo}
                           status={todo?.status}
                           img={'img/todoIcons/' + todo.workType + '.svg'}>

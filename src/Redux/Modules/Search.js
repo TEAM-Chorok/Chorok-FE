@@ -51,10 +51,10 @@ const plantFilteringDB = (filterData) => {
 };
 
 // 플랜테리어 전체 목록
-const getPlanteriorListDB = () => {
+const getPlanteriorListDB = (page) => {
   return function (dispatch, getState, { history }) {
   searchAPI
-  .getPlanteriorList()
+  .getPlanteriorList(page)
   .then((response) => {
     // console.log("getPlanterior : response", response.data);
     dispatch(getPlanterior(response.data))
@@ -65,10 +65,10 @@ const getPlanteriorListDB = () => {
 };
 
 // 플랜테리어 필터링 목록
-const planteriorFilteringDB = (placeCode) => {
+const planteriorFilteringDB = (placeCode, page) => {
   return function (dispatch, getState, { history }) {
     searchAPI
-    .planteriorFiltering(placeCode)
+    .planteriorFiltering(placeCode, page)
     .then((response) => {
       // console.log("planteriorFiltering : response", response.data);
       dispatch(planteriorFiltering(response.data))
@@ -301,11 +301,21 @@ export default handleActions(
     }),
     [GET_PLANTERIORLIST]: (state, action) => produce(state, (draft) => {
       // console.log("GET_PLANTERIORLIST : planteriorList", action.payload.planteriorlist);
-      draft.planteriorList = action.payload.planteriorlist;
+      if(action.payload.planteriorlist.page > 0) {
+        draft.planteriorList.content.push(...action.payload.planteriorlist.content);
+      } else {
+        draft.planteriorList = action.payload.planteriorlist;
+      }
+      draft.planteriorList.page = action.payload.planteriorlist.page;
     }),
     [PLANTERIOR_FILTERING]: (state, action) => produce(state, (draft) => {
-      // console.log("PLANTERIOR_FILTERING : planteriorList", action.payload.filteringdata);
-      draft.planteriorList = action.payload.filteringdata;
+      console.log("PLANTERIOR_FILTERING : planteriorList", action.payload.filteringdata);
+      if(action.payload.filteringdata.page > 0) {
+        draft.planteriorList.content.push(...action.payload.filteringdata.content);
+      } else {
+        draft.planteriorList = action.payload.filteringdata;
+      }
+      draft.planteriorList.page = action.payload.filteringdata.page;
     }),
     [PLANTERIOR_DETAIL]: (state, action) => produce(state, (draft) => {
       // console.log("PLANTERIOR_DETAIL : planteriordetail", action.payload.planteriordetail);

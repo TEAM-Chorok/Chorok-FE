@@ -25,6 +25,7 @@ const PlaceFilter = (props) => {
         :
         <Button type="filter" checked={checked.all} _onClick={() => {
             props.setPlace("all");
+            props.setPage(0);
             setChecked({
               all: true,
               pp01: false,
@@ -39,6 +40,7 @@ const PlaceFilter = (props) => {
 
         <Button type="filter" checked={checked.pp04} _onClick={() => {
             props.setPlace("pp04");
+            props.setPage(0);
             setChecked({
               all: false,
               pp01: false,
@@ -52,6 +54,7 @@ const PlaceFilter = (props) => {
 
         <Button type="filter" checked={checked.pp05} _onClick={() => {
             props.setPlace("pp05");
+            props.setPage(0);
             setChecked({
               all: false,
               pp01: false,
@@ -65,6 +68,7 @@ const PlaceFilter = (props) => {
         
         <Button type="filter" checked={checked.pp02} _onClick={() => {
             props.setPlace("pp02");
+            props.setPage(0);
             setChecked({
               all: false,
               pp01: false,
@@ -78,6 +82,7 @@ const PlaceFilter = (props) => {
 
         <Button type="filter" checked={checked.pp03} _onClick={() => {
             props.setPlace("pp03");
+            props.setPage(0);
             setChecked({
               all: false,
               pp01: false,
@@ -91,6 +96,7 @@ const PlaceFilter = (props) => {
 
         <Button type="filter" checked={checked.pp01} _onClick={() => {
             props.setPlace("pp01");
+            props.setPage(0);
             setChecked({
               all: false,
               pp01: true,
@@ -104,6 +110,7 @@ const PlaceFilter = (props) => {
 
         <Button type="filter" checked={checked.pp06} _onClick={() => {
             props.setPlace("pp06");
+            props.setPage(0);
             setChecked({
               all: false,
               pp01: false,

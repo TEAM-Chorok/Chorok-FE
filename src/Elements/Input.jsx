@@ -269,10 +269,8 @@ const SearchInput = styled.input`
 const TextArea = styled.textarea`
   font-family: 'SUIT-Regular';
   box-sizing: border-box;
-  
   width: 100%;
-  ${'' /* height: 40vh; */}
-  height: 66vh;
+  height: 48vh;
 
   resize: none;
   

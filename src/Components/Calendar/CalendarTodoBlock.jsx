@@ -7,13 +7,16 @@ import { actionCreators as calendarActions } from "../../Redux/Modules/Calendar"
 import moment from 'moment';
 import { useDispatch } from "react-redux";
 
+// 캘린더 페이지 투두 항목 세부
+
 const CalendarTodoBlock = (props) => {
   const { workType, content, plantNo, arr } = props;
-
   const dispatch = useDispatch();
 
+  // 체크여부 관리
   const [checked, setChecked] = React.useState(false)
 
+  // 날짜 관련
   const date = moment(new Date()).format('YYYYMMDD');
   const year = moment(new Date()).format('YYYY');
   const month = moment(new Date()).format('MM');
@@ -21,7 +24,6 @@ const CalendarTodoBlock = (props) => {
   const data = {
     bloomingDay: date2,
   }
-
 
   const check = () => {
     if (checked === false) {

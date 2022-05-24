@@ -27,25 +27,29 @@ const PlantCardProfile = () => {
   return (
     <React.Fragment>
       <Wrapper>
-      <Grid width="100%" padding="16px">
+        <Grid width="100%" padding="16px">
 
-        <Grid margin="auto">
-          <Image type="circle" size="148px" imgUrl={plant?.plantImgUrl} />
-        </Grid>
-        <Grid margin="15px auto 32px auto">
-          <Text bold size="large">{plant?.plantName}</Text>
-        </Grid>
+          <Grid margin="auto">
+            <Image type="circle" size="148px" imgUrl={plant?.plantImgUrl} />
+          </Grid>
+          <Grid margin="15px auto 32px auto">
+            <Text bold size="large">{plant?.plantName}</Text>
+          </Grid>
 
-        <Grid is_flex>
-          <PlantType>{plant?.plantGrowthShape}</PlantType>
-          <PlantType>{plant?.plantType}</PlantType>
-        </Grid>
+          <Grid is_flex>
+            <PlantType>
+              <Text size="small" color="#24A148">{plant?.plantGrowthShape}</Text>
+            </PlantType>
+            <PlantType>
+              <Text size="small" color="#24A148">{plant?.plantType}</Text>
+            </PlantType>
+          </Grid>
 
-        <Grid width="100%" margin="16px 0">
-          {item.map((item, idx) => {
-            return (
-              <GridBox key={idx}>
-                <Grid is_flex align="center">
+          <Grid width="100%" margin="16px 0">
+            {item.map((item, idx) => {
+              return (
+                <GridBox key={idx}>
+                  <Grid is_flex align="center">
                   <Dot />
                   <Text bold size="xsmall">{item[0]}</Text>
                 </Grid>
@@ -72,16 +76,12 @@ const Wrapper = styled.div`
 
 const PlantType = styled.div`
   margin-right: 4px;
-  padding: 4px 12px;
+  padding: 1px 12px 4px 12px;
   
   width: fit-content;
 
   border: 1px solid #0AAF42;
   border-radius: 15px;
-
-  font-weight: 500;
-  font-size: 14px;
-  color: #24A148;
 
   background: rgba(222, 251, 230, 0.5);
 `

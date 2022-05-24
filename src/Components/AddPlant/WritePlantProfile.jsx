@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { actionCreators as plantActions } from "../../Redux/Modules/Plant";
 import styled from "styled-components";
-import Alert2 from "../share/etc/Alert2";
+import Alert2 from "../share/modal/Alert2";
+import GeneralHeader from "../share/etc/GeneralHeader";
 
 const WritePlantProfile = (props) => {
   const dispatch = useDispatch();
@@ -12,15 +13,13 @@ const WritePlantProfile = (props) => {
   // 내 식물 등록할 정보
   const plantNo = useParams().plantNo;
   const nameRef = React.useRef(null);
-  const myPlantName = nameRef?.current?.value;
   const myPlantPlace = props.place;
   
   // 파일 관련
   const fileRef = React.useRef();
   const [file, setFile] = React.useState(null);
   const [preview, setPreview] = React.useState("/img/add.svg");
-  const [message, setMessage] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+
 
   // 업로드한 파일 가져오기
   const onChange = (e) => {
@@ -46,20 +45,18 @@ const WritePlantProfile = (props) => {
 
   const addPlant = () => {
     if (nameRef.current.value.length === 0) {
-      setMessage("식물 이름을 입력해주세요.");
-      setOpen(true);
+      props.setMessage("식물 이름을 입력해주세요.");
+      props.setOpen(true);
       return;
     } else if(nameRef.current.value.match(pattern)){
-      setMessage("식물 이름을 공백 없이 입력해주세요.");
-      setOpen(true);
+      props.setMessage("식물 이름을 공백 없이 입력해주세요.");
+      props.setOpen(true);
       return;
     } else if (nameRef.current.value.length > 7) {
-      setMessage("식물 이름을 7글자 이내로 지어주세요.");
-      setOpen(true);
+      props.setMessage("식물 이름을 7글자 이내로 지어주세요.");
+      props.setOpen(true);
       return;
     }
-
-    console.log(file)
 
     const plantName = nameRef?.current?.value;
     const formData = new FormData();
@@ -72,9 +69,9 @@ const WritePlantProfile = (props) => {
     dispatch(plantActions.addPlantDB(formData));
   }
 
-
   return (
     <React.Fragment>
+      <GeneralHeader _onClick={() => {props.setCompNum(props.compNum-1);}}/>
       <Container>
         <Grid margin="28px 4px">
           <Grid>
@@ -112,14 +109,6 @@ const WritePlantProfile = (props) => {
           </Button>
         </ButtonBox>
       </Container>
-
-      <Alert2 onebutton open={open} setOpen={setOpen} btn1="확인">
-        <Text bold size="small">
-          {message}
-        </Text>
-      </Alert2>
-
-
 
     </React.Fragment>
   )

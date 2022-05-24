@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Grid, Image, Input, Text } from "../../../Elements";
+import { Grid, Image, Text } from "../../../Elements";
 import PlantProfile from "../../share/etc/PlantProfile";
 
 

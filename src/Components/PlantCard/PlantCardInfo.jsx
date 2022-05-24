@@ -13,7 +13,7 @@ const PlantCardInfo = () => {
     <React.Fragment>
       <InfoBox>
         {plantInfo ?
-          <Text size="xxsmall" color="#525252">
+          <Text size="xsmall" color="#525252">
             {plantInfo}
           </Text>
           :
@@ -28,7 +28,7 @@ const PlantCardInfo = () => {
 
 const InfoBox = styled.div`
   margin: auto;
-  padding: 20px 24px;
+  padding: 20px 24px 22px 24px;
 
   border: 1px solid ${({ theme }) => theme.colors.gray20};
   border-radius: 16px;

@@ -19,7 +19,6 @@ const CommentWrite = (props) => {
   const postId = useParams().postId;
   const contentRef = React.useRef();
 
-  
   const addComment = () => {
     if (!contentRef.current.value.replace(/\s/g, '').length) {
       props.setMessage("댓글 내용을 입력해주세요!")
@@ -43,6 +42,7 @@ const CommentWrite = (props) => {
     dispatch(searchActions.writePlanteriorCommentDB(commentdata));
     contentRef.current.value = null;
   }
+  
 
   React.useEffect(() => {
     if(content) {

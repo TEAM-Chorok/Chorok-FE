@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
-import { Button, Grid, Image, Text } from "../../Elements";
+import { Button, Grid, Text } from "../../Elements";
 
 
 const AddDone = () => {
@@ -17,12 +16,12 @@ const AddDone = () => {
                 </Text>
                 <Grid margin="180px auto">
                     <Grid margin="8px 0">
-                        <Button type="basic" width="168px" _onClick={() => { history.push("/myplants"); }}>
+                        <Button type="basic" width="168px" _onClick={() => { history.replace("/myplants"); }}>
                             <Text size="small" color="#fff">지금 확인할게요</Text>
                         </Button>
                     </Grid>
                     <Grid>
-                        <Button type="basic" width="168px" color="#F7F8FA" _onClick={() => { history.push("/home") }}>
+                        <Button type="basic" width="168px" color="#F7F8FA" _onClick={() => { history.replace("/home") }}>
                             <Text size="small" color="#A8A8A8">괜찮아요</Text>
                         </Button>
                     </Grid>

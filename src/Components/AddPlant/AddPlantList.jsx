@@ -21,7 +21,7 @@ const AddPlantList = () => {
 
   React.useEffect(() => {
     dispatch(searchActions.getPlantDictDB());
-  }, [])
+  }, [dispatch])
   
   return (
     <React.Fragment>

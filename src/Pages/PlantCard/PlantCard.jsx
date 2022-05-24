@@ -51,7 +51,7 @@ const PlantCard = () => {
             {bookmark ?
               <BookMarkIcon
                 className='bookmark'
-                fill="#6FDC8C"
+                fill="#0AAF42"
                 stroke="#0AAF42"
                 onClick={check}
               />
@@ -102,10 +102,11 @@ const Wrapper = styled.div`
 const HeaderBox = styled.div`
   position: sticky;
   top: 0;
+  border-bottom: 1px solid #E0E0E0;
 
   .bookmark {
     position: absolute;
-    top: 8px;
+    top: 10px;
     right: 8px;
   }
 `

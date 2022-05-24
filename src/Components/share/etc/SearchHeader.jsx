@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid, Text } from "../../../Elements";
 import styled, { keyframes } from "styled-components";
-import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../../../Redux/Modules/post";
 

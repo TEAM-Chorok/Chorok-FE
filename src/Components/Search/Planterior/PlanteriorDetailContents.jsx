@@ -46,7 +46,7 @@ const PhotoDetailContents = () => {
             </Grid>
           </Grid>
           <Grid margin="12px auto">
-            <Image type="planterior" width="330px" imgUrl={postData?.postImgUrl} />
+            <Image type="planterior" width="100%" imgUrl={postData?.postImgUrl} />
           </Grid>
           <Grid margin="12px 0">
             <Text size="small">{postData?.postContent}</Text>
@@ -66,7 +66,7 @@ const PhotoDetailContents = () => {
             </Grid>
             <Grid width="20px" />
 
-            <Grid is_flex margin="4px 8px" align="center">
+            <Grid is_flex margin="4px auto 0 auto" align="center">
               {bookmark ?
                 <BookMarkIcon
                   className='bookmark'

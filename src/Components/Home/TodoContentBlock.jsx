@@ -32,7 +32,7 @@ const TodoContentBlock = (props) => {
   
   return (
     <React.Fragment>
-      <ContentBox checked={checked}>
+      <ContentBox checked={checked} onClick={() => { check(); }}>
         <Grid>
           <RelativeBox>
             <Image type="circle" size="56px" imgUrl={img} />
@@ -45,7 +45,7 @@ const TodoContentBlock = (props) => {
           {children}
         </Grid>
         <Grid>
-          <Button type="tran" size="20px" _onClick={() => { check(); }}>
+          <Button type="tran" size="20px">
             {checked? 
               <BiCheckCircle size="20px" color="#0AAF42"/> :
               <BiCircle size="20px" color="#C6C6C6"/>}

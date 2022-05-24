@@ -25,7 +25,7 @@ const PlanteriorDetail = () => {
   return (
     <React.Fragment>
       <HeaderBox>
-        <GeneralHeader />
+        <GeneralHeader title="식물 공간"/>
         {writer === user ?
           <MoreContentSheet planterior url={`/planterior/edit/${postId}`} postId={postId}/> :
           <></>}
@@ -61,6 +61,7 @@ const PlanteriorDetail = () => {
 const HeaderBox = styled.div`
   position: sticky; 
   top: 0;
+  border-bottom: 1px solid #E0E0E0;
 `
 
 const FixWrapper = styled.div`

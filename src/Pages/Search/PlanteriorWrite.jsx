@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { PlanteriorWriteComp } from "../../Components";
 
 import { Container, Grid, Image, Text } from "../../Elements";

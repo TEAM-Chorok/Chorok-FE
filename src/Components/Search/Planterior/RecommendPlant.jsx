@@ -20,7 +20,7 @@ const RecommandPlant = () => {
 
   React.useEffect(() => {
     dispatch(searchActions.getRecommendDB());
-  }, [])
+  }, [dispatch])
 
   return (
     <React.Fragment>

@@ -15,7 +15,7 @@ const HomeMyplant = () => {
 
   React.useEffect(() => {
     dispatch(mainActions.getMyPlantPageDB());
-  }, [])
+  }, [dispatch])
 
   return (
     <React.Fragment>

@@ -1,8 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-import { LabelingTestLink, PlanteriorList, RecommendPlant, SearchHeader } from "..";
+import { LabelingTestLink, PlanteriorList, RecommendPlant } from "..";
 
-import { Container, Grid, Text } from "../../Elements";
+import { Grid, Text } from "../../Elements";
 
 
 // planterior 페이지 관련 하위 컴포넌트들을 여기서 미리 합쳐서 가져갑니다.
@@ -22,7 +21,7 @@ const Planterior = () => {
       <Grid width="100%" height="12px" bg="#F7F8FA" />
       <Grid width="100%" padding="0 16px">
         <Grid margin="16px 0">
-          <Text bold size="h6">플랜테리어</Text>
+          <Text bold size="h6">식물 공간</Text>
         </Grid>
         <Grid width="100%">
           <PlanteriorList />

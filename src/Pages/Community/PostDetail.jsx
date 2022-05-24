@@ -3,12 +3,12 @@ import React, { useEffect }  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { DetailCommPost, CommPost, GeneralHeader, CommPostCommentList } from "../../Components";
+import { DetailCommPost, CommPost, GeneralHeader, CommPostCommentList, Alert2 } from "../../Components";
 import CommBottomSheet from "../../Components/Community/CommBottomSheet";
 import { Container, Input, Permit, Grid, Text} from "../../Elements";
 import { actionCreators as postActions } from "../../Redux/Modules/post";
 import { actionCreators as userActions } from "../../Redux/Modules/User";
-import Alert2 from "../../Components/Alert2";
+
 
 const PostDetail = () => {
     const history = useHistory();

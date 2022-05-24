@@ -169,13 +169,13 @@ export const searchAPI = {
     }
   }),
   // 플랜테리어 전체 조회
-  getPlanteriorList: () => api.get('/read-posts?postTypeCode=postType01', {
+  getPlanteriorList: (page) => api.get(`/read-posts?postTypeCode=postType01&page=${page}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
   }),
   // 플랜테리어 필터 조회
-  planteriorFiltering: (placeCode) => api.get(`/read-posts?postTypeCode=postType01&plantPlaceCode=${placeCode}`, {
+  planteriorFiltering: (placeCode, page) => api.get(`/read-posts?postTypeCode=postType01&plantPlaceCode=${placeCode}&page=${page}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
@@ -188,7 +188,7 @@ export const searchAPI = {
     }
   }),
   // 플랜테리어 게시글 수정
-  editPlanteriorPost: (postdata, postId) => api.put(`/update-post/${postId}`, postdata, {
+  editPlanteriorPost: (postdata, postId) => api.post(`/update-post/${postId}`, postdata, {
     headers: {
       "content-type": "multipart/form-data",
       "Authorization": `${sessionStorage.getItem('token')}`,
@@ -225,7 +225,7 @@ export const searchAPI = {
     }
   }),
   // 플랜테리어 댓글 삭제
-  deletePlanteriorComment: (commentId) => api.put(`/delete-comment/${commentId}`, {
+  deletePlanteriorComment: (commentId) => api.delete(`/delete-comment/${commentId}`, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }
