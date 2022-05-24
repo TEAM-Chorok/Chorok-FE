@@ -6,7 +6,7 @@ import { Grid, Image, Text } from "../../../Elements";
 import PlaceFilter from "../PlaceFilter";
 import Masonry from '@mui/lab/Masonry';
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
-import InfiniteScroll from "../../share/etc/InfiniteScroll";
+import InfiniteScroll from "../../share/etc/InfiniteScroll"
 
 // 탐색 - planterior
 // 사진 목록 컴포넌트
