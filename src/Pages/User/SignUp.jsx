@@ -157,7 +157,7 @@ const SignUp = () => {
                 style={{position:"absolute", top:"0px", right:"0px", color:"#6F6F6F", size:"xsmall", height:"40px"}} variant='text'>중복확인</Button>
               </Grid>
               
-              
+              {/* 비밀번호 */}
               {passwordMatch(password, passwordChk) || passwordChk === ""?
               <>
                 <Input 

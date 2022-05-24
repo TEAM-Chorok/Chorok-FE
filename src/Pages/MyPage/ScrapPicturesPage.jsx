@@ -12,8 +12,6 @@ const ScrapPicturesPage = () => {
             </Container>
             <Container type="np">
                 <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
-            </Container>
-            <Container>
                 <ScrapPicturesPostList />
                 <div style={{height:"60px", width:"100%"}}></div>
             </Container>

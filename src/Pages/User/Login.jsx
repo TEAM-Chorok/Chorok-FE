@@ -13,23 +13,14 @@ const Login = () => {
   return (
     <React.Fragment>
       <Container type="np">
-        <Div>
-          <Container>
-            <InnerDiv>
-              {/* 로고 */}
-              <Text display="block" fontSize="26px" bold color="#ffffff" >내 공간에 <br />활기를 더해줄,<br />초록</Text>
-            </InnerDiv>
-
-            <InnerDiv style={{ marginTop: "148px" }}>
-
-              {/* <Grid width="100%" margin="8px 0px 0px 0px"> */}
-              {/* <Button 
-                href={KAKAO_AUTH_URL}
-                variant='contained' 
-                style={{textAlign:"center", display:"block", width:"100%", height: "48px", alignItems:"center",  fontWeight:"700", backgroundColor:"#FEE500", padding:"14px", borderRadius:"6px", color:"#242424", boxShadow:"none", boxSizing:"border-box"}}>
-                  <img src="img/kakao 1.svg" style={{margin:"0px 4px"}} /> 
-                  <Text size="small">카카오로 계속하기</Text></Button>
-            </Grid> */}
+      <Div>
+        <Container>
+          <InnerDiv>
+            {/* 로고 */}
+            <Text display="block" fontSize="26px" bold color="#ffffff" >내 공간에 <br />활기를 더해줄,<br />초록</Text>
+          </InnerDiv>
+          
+          <InnerDiv style={{marginTop:"148px"}}>
 
               <Grid width="100%" margin="8px 0px 0px 0px">
                 <a href={KAKAO_AUTH_URL}><div

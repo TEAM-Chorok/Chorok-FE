@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { myPageAPI } from "../../Shared/api";
+import { myPageAPI, postAPI } from "../../Shared/api";
 
 //actions
 const GET_MY_PLANT_LIST = 'GET_MY_PLANT_LIST';
@@ -208,6 +208,62 @@ const getScrapPostListDB = () => {
             });
     }
 }
+
+//좋아요 및 조회
+const likePostDB = (page, postId) => {
+    return function (dispatch, getState, {history}) {
+        postAPI 
+            .likePost(postId)
+            .then((res) => {
+                console.log(res.data);
+                if(page === "mypictures"){
+                    dispatch(getMyPhotoListDB());
+                }
+                else if(page === "scrap-picture"){
+                    console.log("dld");
+                    dispatch(getScrapPhotoListDB());
+                }
+                else if(page === "myposts"){
+                    dispatch(getMyPostListDB());
+                }
+                else if(page === "scrap-posts"){
+                    dispatch(getScrapPostListDB());
+                }
+            })
+            .catch((error) => {
+                console.log("error: ", error);
+                return;
+            })
+    }
+}
+
+//북마크 및 조회
+const bookmarkPostDB = (page, postId) => {
+    return function (dispatch, getState, {history}) {
+        postAPI
+            .bookmarkPost(postId)
+            .then((res) => {
+                console.log(res.data);
+                if(page === "mypictures"){
+                    dispatch(getMyPhotoListDB());
+                }
+                else if(page === "scrap-picture"){
+                    dispatch(getScrapPhotoListDB());
+                }
+                else if(page === "myposts"){
+                    dispatch(getMyPostListDB());
+                }
+                else if(page === "scrap-posts"){
+                    dispatch(getScrapPostListDB());
+                }
+            })
+            .catch((error) => {
+                console.log("error: ", error);
+                return;
+            })
+    }
+}
+
 //reducer
 export default handleActions(
     {
@@ -261,6 +317,8 @@ const actionCreators = {
     getMyPostListDB,
     getScrapSixPlantListDB,
     getScrapPostListDB,
+    likePostDB,
+    bookmarkPostDB,
 }
 
 export { actionCreators };

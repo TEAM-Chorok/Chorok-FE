@@ -200,18 +200,20 @@ const findPwdDB = (userName, userId) => {
       });
   }
 }
-const changePwdDB = (tempPassword, password, passwordCheck) => {
+const changePwdDB = (password) => {
   return function( dispatch, getState, {history} ) {
-    
+    const formData = new FormData();
+    formData.append("password", password);
     userAPI
-      .changePwd(tempPassword, password, passwordCheck)
+      .changePwd(password)
       .then(() => {
-        window.alert('고객님의 비밀번호가 정상적으로 변경되었습니다. 다시 로그인해주세요.');
-        history.replace('/');
+        window.alert('고객님의 비밀번호가 정상적으로 변경되었습니다.');
+        history.replace('/home');
+        window.location.reload();
       })
       .catch((error) => {
         console.log("logInDB : error", error.response);
-        alert("임시 비밀번호와 비밀번호를 다시 확인해주세요.")
+        alert("비밀번호를 다시 확인해주세요.")
       });
   }
 }
