@@ -14,6 +14,7 @@ const CommPostList = (props) => {
     // 무한스크롤 관련 state
     const [isLoading, setIsLoading] = React.useState(false);
 
+    const community = useSelector(state => state.post?.postList);
     const postList = useSelector(state => state.post?.postList?.content);
     const category = props.category;
 
@@ -29,6 +30,7 @@ const CommPostList = (props) => {
     const callback = async ([entry], observer) => {
         
         if(entry.isIntersecting && !isLoading) {
+            if(community.totalPage > props.page + 1){
             observer.unobserve(entry.target); //관찰 종료
             setIsLoading(true);
                 await new Promise ((resolve) => {
@@ -37,6 +39,7 @@ const CommPostList = (props) => {
             props.setPage((pre) => pre + 1);
             setIsLoading(false);
             observer.observe(entry.target);
+            }
         }
         
         

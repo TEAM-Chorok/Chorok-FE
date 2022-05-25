@@ -15,7 +15,8 @@ import InfiniteScroll from '../../share/etc/InfiniteScroll';
 const MyPicturesPostList = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const myPictureList = useSelector(state => state.mypage?.photoList.content);
+    const myPictures =  useSelector(state => state.mypage?.photoList);
+    const myPictureList = useSelector(state => state.mypage?.photoList?.content);
     
     // 무한스크롤 관련 state
     const [isLoading, setIsLoading] = React.useState(false);
@@ -36,14 +37,16 @@ const MyPicturesPostList = () => {
     //infinite scroll 실행 함수
     const callback = async ([entry], observer) => {
         if(entry.isIntersecting && !isLoading) {
-            observer.unobserve(entry.target); //관찰 종료
-            setIsLoading(true);
-                await new Promise ((resolve) => {
-                setTimeout(resolve, 2000);
-            });
-            setPage((pre) => pre + 1);
-            setIsLoading(false);
-            observer.observe(entry.target);
+            if(myPictures.totalPage > page + 1){
+                observer.unobserve(entry.target); //관찰 종료
+                setIsLoading(true);
+                    await new Promise ((resolve) => {
+                    setTimeout(resolve, 2000);
+                });
+                setPage((pre) => pre + 1);
+                setIsLoading(false);
+                observer.observe(entry.target);
+            }   
         }   
     }
 

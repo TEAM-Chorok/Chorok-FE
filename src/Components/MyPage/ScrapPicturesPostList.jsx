@@ -15,9 +15,13 @@ const ScrapPicturesPostList = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const scrapPictures = useSelector(state => state.mypage?.scrapPhotoList);
     const scrapPictureList = useSelector(state => state.mypage?.scrapPhotoList?.content);
 
+    console.log(scrapPictures);
+
     // 무한스크롤 관련 state
+    const [target, setTarget] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
     const [page, setPage] = React.useState(0);
 
@@ -31,30 +35,43 @@ const ScrapPicturesPostList = () => {
 
     useEffect(() => {
         dispatch(MyActions.getScrapPhotoListDB(page));
+        console.log(scrapPictures);
+        console.log(page);
     },[page]);
 
+    React.useEffect(() => {
+        let observer;
+        if (target) {
+          observer = new IntersectionObserver(callback, { threshold: 0.7 });
+          observer.observe(target);
+        }
+        return () => observer && observer.disconnect(); 
+        
+      }, [target]);
 
     //infinite scroll 실행 함수
     const callback = async ([entry], observer) => {
-        if(entry.isIntersecting && !isLoading) {
-            observer.unobserve(entry.target); //관찰 종료
-            setIsLoading(true);
-                await new Promise ((resolve) => {
-                setTimeout(resolve, 2000);
-            });
-            setPage((pre) => pre + 1);
-            setIsLoading(false);
-            observer.observe(entry.target);
-        }   
+            if(entry.isIntersecting && !isLoading) {
+                if(scrapPictures.totalPage > (scrapPictures.page + 1)){
+                    observer.unobserve(entry.target); //관찰 종료
+                    setIsLoading(true);
+                        await new Promise ((resolve) => {
+                        setTimeout(resolve, 2000);
+                    });
+                    setPage((pre) => pre + 1);
+                    setIsLoading(false);
+                    observer.observe(entry.target);
+                }
+            }  
+        
     }
-
-    return (
-        <React.Fragment>
-            {scrapPictureList? 
-                <InfiniteScroll 
-                    page={page} 
-                    callback={callback} 
-                    isLoading={isLoading}>
+          
+      
+    if(scrapPictures?.totalPage){
+        return (
+            <React.Fragment>
+            
+                
                     {scrapPictureList?.map((p, idx) => {
                         return(
                         <React.Fragment key={idx}>
@@ -114,7 +131,13 @@ const ScrapPicturesPostList = () => {
                         
                     )
                 })}
-                </InfiniteScroll> : 
+                <React.Fragment>
+                    {scrapPictures?.totalPage > (page+1)? <Box ref={setTarget}> </Box> : null}
+                    {isLoading &&
+                    <Grid margin="auto">
+                        <Text bold size="base">로딩중</Text>
+                    </Grid> }
+                </React.Fragment> : 
                 <RelativeBox>
                     <FloatBox>
                     <Grid margin="auto">
@@ -122,11 +145,12 @@ const ScrapPicturesPostList = () => {
                     </Grid>
                     </FloatBox>
                 </RelativeBox>
-                }
+                
                 
                     
-        </React.Fragment>
-    )
+            </React.Fragment>
+        )
+    }
 }
 
 const RelativeBox = styled.div`
@@ -148,5 +172,11 @@ const FloatBox = styled.div`
 
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
+`
+
+
+const Box = styled.div`
+width: 100%;
+height: 100px;
 `
 export default ScrapPicturesPostList;

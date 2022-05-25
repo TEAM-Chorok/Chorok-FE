@@ -32,11 +32,7 @@ const getScrapPostList = createAction(GET_SCRAP_POST_LIST, (scrapPostList) => ({
 
 //initial state
 const initialState = {
-    plantList: [],
-    plant : {},
-    myPlantCount: 0,
-    photoList: [],
-    postList: [],
+    list: []
 }
 
 //middleWare 
@@ -91,15 +87,25 @@ const deleteMyPlantDB = (myPlantNo) => {
     }
 }
 //나의 식물 수정 on process...
-const editMyPlantDB = () => {
+const editMyPlantDB = (myPlantId, myPlantName, myPlantPlaceCode, myPlantImgUrl, originalUrl) => {
     const formData = new FormData();
-    formData.append();
+    if(myPlantImgUrl === null){
+        formData.append("myPlantName", myPlantName);
+        formData.append("myPlantPlaceCode", myPlantPlaceCode);
+        formData.append("originalUrl", originalUrl);
+    }else{
+        formData.append("myPlantName", myPlantName);
+        formData.append("myPlantPlaceCode", myPlantPlaceCode);
+        formData.append("myPlantImgUrl", myPlantImgUrl);
+    }
+    
     return function (dispatch, getState, {history}){
         myPageAPI
-            .getMyDetailPlant(formData)
+            .editMyPlant(myPlantId, formData)
             .then((res) => {
                 console.log(res.data);
                 history.push('/myplants');
+                window.location.reload();
             })
             .catch((err) => {
                 console.log("error:" , err);

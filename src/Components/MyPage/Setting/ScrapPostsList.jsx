@@ -15,8 +15,10 @@ import InfiniteScroll from '../../share/etc/InfiniteScroll';
 const ScrapPostsList = () => {
     const history = useHistory();
     const dispatch = useDispatch();
+
+    const scrapPosts =  useSelector(state => state.mypage?.scrapPostList);
     const scrapPostList = useSelector(state => state.mypage?.scrapPostList?.content);
-    console.log(scrapPostList);
+
     // 무한스크롤 관련 state
     const [isLoading, setIsLoading] = React.useState(false);
     const [page, setPage] = React.useState(0);
@@ -38,14 +40,16 @@ const ScrapPostsList = () => {
     //infinite scroll 실행 함수
     const callback = async ([entry], observer) => {
         if(entry.isIntersecting && !isLoading) {
-            observer.unobserve(entry.target); //관찰 종료
-            setIsLoading(true);
-                await new Promise ((resolve) => {
-                setTimeout(resolve, 2000);
-            });
-            setPage((pre) => pre + 1);
-            setIsLoading(false);
-            observer.observe(entry.target);
+            if(scrapPosts.totalPage > page + 1) {
+                observer.unobserve(entry.target); //관찰 종료
+                setIsLoading(true);
+                    await new Promise ((resolve) => {
+                    setTimeout(resolve, 2000);
+                });
+                setPage((pre) => pre + 1);
+                setIsLoading(false);
+                observer.observe(entry.target);
+            }
         }   
     }
 

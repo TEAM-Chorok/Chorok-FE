@@ -13,6 +13,8 @@ import InfiniteScroll from '../share/etc/InfiniteScroll';
 const MyPostsPostList= () => {
     const history = useHistory();
     const dispatch = useDispatch();
+    
+    const myPosts = useSelector(state => state.mypage?.postList);
     const myPostList = useSelector(state => state.mypage?.postList?.content);
 
     // 무한스크롤 관련 state
@@ -35,14 +37,16 @@ const MyPostsPostList= () => {
     //infinite scroll 실행 함수
     const callback = async ([entry], observer) => {
         if(entry.isIntersecting && !isLoading) {
-            observer.unobserve(entry.target); //관찰 종료
-            setIsLoading(true);
-                await new Promise ((resolve) => {
-                setTimeout(resolve, 2000);
-            });
-            setPage((pre) => pre + 1);
-            setIsLoading(false);
-            observer.observe(entry.target);
+            if(myPosts.totalPage > page + 1){
+                observer.unobserve(entry.target); //관찰 종료
+                setIsLoading(true);
+                    await new Promise ((resolve) => {
+                    setTimeout(resolve, 2000);
+                });
+                setPage((pre) => pre + 1);
+                setIsLoading(false);
+                observer.observe(entry.target);
+            }
         }   
     }
 

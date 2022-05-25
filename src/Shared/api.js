@@ -532,7 +532,7 @@ export const myPageAPI = {
   }),
 
   //내 식물 수정
-  editMyPlant: (myPlantNo, formData) => api.patch(`/myplant/update/${myPlantNo}`, 
+  editMyPlant: (myPlantNo, formData) => api.post(`/myplant/update/${myPlantNo}`, 
     formData, 
     {
       headers: {

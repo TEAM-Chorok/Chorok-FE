@@ -37,9 +37,10 @@ const InfiniteScroll = (props) => {
     let observer;
     if (target) {
       observer = new IntersectionObserver(callback, { threshold: 0.7 });
-      observer.observe(target);//관찰 시작
+      observer.observe(target);
     }
-    return () => observer && observer.disconnect();//관찰 있으면 관찰 멈추기
+    return () => observer && observer.disconnect(); 
+    
   }, [target]);
 
   if(totalPage){
@@ -55,7 +56,7 @@ const InfiniteScroll = (props) => {
       </React.Fragment>
       );
   }
-  if(communityTotalPage > page) {
+  if(communityTotalPage) {
     return (
       <React.Fragment>
         {children}
@@ -67,31 +68,33 @@ const InfiniteScroll = (props) => {
       </React.Fragment>
       );
   }
-  if(myPicturesTotalPage > page) {
+  if(myPicturesTotalPage) {
     return (
       <React.Fragment>
         {children}
-        {isLoading &&
-          <Grid margin="auto">
-            <Text bold size="base">로딩중</Text>
-          </Grid> }
+        
         {myPicturesTotalPage > (page+1)? <Box ref={setTarget}> </Box> : null}
-      </React.Fragment>
-      );
-  }
-  if(scrapPicturesTotalPage > page) {
-    return (
-      <React.Fragment>
-        {children}
         {isLoading &&
           <Grid margin="auto">
             <Text bold size="base">로딩중</Text>
           </Grid> }
-        {scrapPicturesTotalPage > (page+1)? <Box ref={setTarget}> </Box> : null}
       </React.Fragment>
       );
   }
-  if(myPostTotalPage > page) {
+  if(scrapPicturesTotalPage > props.page) {
+    return (
+      <React.Fragment>
+        {children}
+        
+        {scrapPicturesTotalPage > (props.page+1)? <Box ref={setTarget}> </Box> : null}
+        {isLoading &&
+          <Grid margin="auto">
+            <Text bold size="base">로딩중</Text>
+          </Grid> }
+      </React.Fragment>
+      );
+  }
+  if(myPostTotalPage) {
     return (
       <React.Fragment>
         {children}
@@ -103,7 +106,7 @@ const InfiniteScroll = (props) => {
       </React.Fragment>
       );
   }
-  if(scrapPostTotalPage > page) {
+  if(scrapPostTotalPage) {
     return (
       <React.Fragment>
         {children}
