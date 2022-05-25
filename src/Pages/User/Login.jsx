@@ -26,7 +26,7 @@ const Login = () => {
                 <a href={KAKAO_AUTH_URL}><div
                   style={{ placeItems: "self-start", display: "grid", gridTemplateColumns: "0.3fr 0.15fr 0.8fr", width: "100%", fontWeight: "500", height: "48px", alignItems: "center", backgroundColor: "#FEE500 ", padding: "14px", borderRadius: "6px", color: "#242424", boxShadow: "none", boxSizing: "border-box" }}>
                   <div></div>
-                  <img src="img/kakao 1.svg" style={{ margin: "0px 4px" }} />
+                  <img src="img/socialLoginLogo/kakao 1.svg" style={{ margin: "0px 4px" }} />
                   <Text size="small" bold>카카오로 계속하기</Text>
                 </div></a>
               </Grid>
@@ -34,7 +34,7 @@ const Login = () => {
                 <a href={GOOGLE_AUTH_URL}><div
                   style={{ placeItems: "self-start", display: "grid", gridTemplateColumns: "0.35fr 0.15fr 0.8fr", width: "100%", fontWeight: "500", height: "48px", alignItems: "center", backgroundColor: "#FFFFFF ", padding: "14px", borderRadius: "6px", color: "#392020", boxShadow: "none", boxSizing: "border-box" }}>
                   <div></div>
-                  <img src="img/logo_google.svg" style={{ margin: "0px 4px" }} />
+                  <img src="img/socialLoginLogo/logo_google.svg" style={{ margin: "0px 4px" }} />
                   <Text size="small" bold>구글로 계속하기</Text>
                 </div></a>
               </Grid>

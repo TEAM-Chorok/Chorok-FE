@@ -14,7 +14,8 @@ const CommPostList = (props) => {
     // 무한스크롤 관련 state
     const [isLoading, setIsLoading] = React.useState(false);
 
-    const community = useSelector(state => state.post?.postList);
+    const totalPage = useSelector(state => state.post?.postList?.totalPage);
+    console.log(totalPage);
     const postList = useSelector(state => state.post?.postList?.content);
     const category = props.category;
 
@@ -30,7 +31,7 @@ const CommPostList = (props) => {
     const callback = async ([entry], observer) => {
         
         if(entry.isIntersecting && !isLoading) {
-            if(community.totalPage > props.page + 1){
+            if(totalPage > props.page + 1){
             observer.unobserve(entry.target); //관찰 종료
             setIsLoading(true);
                 await new Promise ((resolve) => {
@@ -52,7 +53,8 @@ const CommPostList = (props) => {
                 <InfiniteScroll 
                     page={props.page} 
                     callback={callback} 
-                    isLoading={isLoading}>
+                    isLoading={isLoading}
+                    totalPage={totalPage}>
                     {postList.map((p,idx) =>{
                         return (
                             <React.Fragment  key={idx}>

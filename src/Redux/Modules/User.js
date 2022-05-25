@@ -14,7 +14,6 @@ const CHANGE_PWD = "CHANGE_PWD"
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, () => ({ }));
-const findPassword = createAction(FIND_PWD, (user) => ({}));
 const changePassword = createAction(CHANGE_PWD, (user) => ({}));
 
 // 초기값
@@ -147,10 +146,21 @@ const logOutDB = () => {
 }
 
 //프로필 수정 ( 닉네임, 자기소개 메시지 )
-const editProfileDB = (nickname, profileMsg) => {
+const editProfileDB = (nickname, profileImgUrl, preview, profileMsg) => {
+  const formData = new FormData();
+  
+  if(profileImgUrl === ""){
+    formData.append("nickname", nickname);
+    formData.append("profileMsg", profileMsg);
+    formData.append("originalUrl", preview);
+  }else {
+    formData.append("nickname", nickname);
+    formData.append("profileImgUrl", profileImgUrl);
+    formData.append("profileMsg", profileMsg);
+  }
   return function (dispatch, getState, {history}) {
     userAPI
-      .editProfile(nickname, profileMsg)
+      .editProfile(formData)
       .then((response) => {
         dispatch(isLoginDB());
         history.push('/mypage');
@@ -179,7 +189,7 @@ const deactivateUserDB = () => {
         history.push('/');
         window.location.reload();
       }).catch((error) => {
-        console.log("editProfile : error", error.response);
+        console.log("deactivate : error", error.response);
         window.alert('회원탈퇴를 실패하였습니다.');
 
       });

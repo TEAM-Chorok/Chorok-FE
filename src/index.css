@@ -65,18 +65,3 @@ button {
     0% {padding-top: 0px;}
 	100% {padding-top: 10px;}
 } 
-
-
-@keyframes slideOut {
-  from {
-    transform: translateY(0%);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
-.close {
-  animation: slideOut 1s;
-}

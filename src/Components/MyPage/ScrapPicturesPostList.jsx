@@ -15,13 +15,11 @@ const ScrapPicturesPostList = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const scrapPictures = useSelector(state => state.mypage?.scrapPhotoList);
+    const totalPage = useSelector(state => state.mypage?.scrapPhotoList?.totalPage);
     const scrapPictureList = useSelector(state => state.mypage?.scrapPhotoList?.content);
 
-    console.log(scrapPictures);
 
     // 무한스크롤 관련 state
-    const [target, setTarget] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
     const [page, setPage] = React.useState(0);
 
@@ -35,24 +33,12 @@ const ScrapPicturesPostList = () => {
 
     useEffect(() => {
         dispatch(MyActions.getScrapPhotoListDB(page));
-        console.log(scrapPictures);
-        console.log(page);
     },[page]);
-
-    React.useEffect(() => {
-        let observer;
-        if (target) {
-          observer = new IntersectionObserver(callback, { threshold: 0.7 });
-          observer.observe(target);
-        }
-        return () => observer && observer.disconnect(); 
-        
-      }, [target]);
 
     //infinite scroll 실행 함수
     const callback = async ([entry], observer) => {
             if(entry.isIntersecting && !isLoading) {
-                if(scrapPictures.totalPage > (scrapPictures.page + 1)){
+                if(totalPage > (page + 1)){
                     observer.unobserve(entry.target); //관찰 종료
                     setIsLoading(true);
                         await new Promise ((resolve) => {
@@ -67,90 +53,88 @@ const ScrapPicturesPostList = () => {
     }
           
       
-    if(scrapPictures?.totalPage){
-        return (
-            <React.Fragment>
-            
-                
-                    {scrapPictureList?.map((p, idx) => {
-                        return(
-                        <React.Fragment key={idx}>
-                            <Container>
-                                <Grid width="100%" >
-                                    <Text size="xsmall" color="#24A148">{p.plantPlace}</Text>
-                                    <Grid is_flex align="center" margin="5px 0px 16px 0px">
-                                        {p?.profileImgUrl===null || p?.profileImgUrl === ""?
-                                            <Image type="circle" size="32px" imgUrl="/img/noProfileImgSmall.svg"/> :
-                                            <Image type="circle" size="32px" imgUrl={p?.profileImgUrl}/>
-                                        }
-                                        <Text margin="0px 8px" size="small">{p?.nickname}</Text>
-                                        <Text size="xsmall" color="#6F6F6F">・ {p?.postRecentTime}</Text>
-                                    </Grid>
-                                    
-                                    {p?.postImgUrl? 
-                                        <Grid width="100%" _onClick={()=>history.push(`/planterior/post/${p.postId}`)}>
-                                            <Image type="planterior" borderRadius="8px" imgUrl={p.postImgUrl} width="100%"/>
-                                        </Grid>: 
-                                        null
+    
+    return (
+        <React.Fragment>
+            {scrapPictureList? 
+            <InfiniteScroll
+                page={page} 
+                callback={callback} 
+                isLoading={isLoading}
+                totalPage={totalPage}>
+                {scrapPictureList?.map((p, idx) => {
+                return(
+                <React.Fragment key={idx}>
+                    <Container>
+                        <Grid width="100%" >
+                            <Text size="xsmall" color="#24A148">{p.plantPlace}</Text>
+                            <Grid is_flex align="center" margin="5px 0px 16px 0px">
+                                {p?.profileImgUrl===null || p?.profileImgUrl === ""?
+                                    <Image type="circle" size="32px" imgUrl="/img/noProfileImgSmall.svg"/> :
+                                    <Image type="circle" size="32px" imgUrl={p?.profileImgUrl}/>
+                                }
+                                <Text margin="0px 8px" size="small">{p?.nickname}</Text>
+                                <Text size="xsmall" color="#6F6F6F">・ {p?.postRecentTime}</Text>
+                            </Grid>
+                            
+                            {p?.postImgUrl? 
+                                <Grid width="100%" _onClick={()=>history.push(`/planterior/post/${p.postId}`)}>
+                                    <Image type="planterior" borderRadius="8px" imgUrl={p.postImgUrl} width="100%"/>
+                                </Grid>: 
+                                null
+                            }
+                            <Grid margin="12px 0px 16px 0px"><Text color="#262626" size="small">{p?.postContent}</Text></Grid>
+                            {/* bottom part - 좋아요, 댓글, 북마크  */}
+                            <Grid width="100%" margin="20px 0px" position="relative">
+                                <Grid is_flex align="center">
+                                    {p.postLike? 
+                                        <FavoriteSelectedIcon 
+                                        onClick={()=> likePost("scrap-picture", p.postId)} /> : 
+                                        <FavoriteIcon 
+                                        onClick={()=>likePost("scrap-picture", p.postId)} />
                                     }
-                                    <Grid margin="12px 0px 16px 0px"><Text color="#262626" size="small">{p?.postContent}</Text></Grid>
-                                    {/* bottom part - 좋아요, 댓글, 북마크  */}
-                                    <Grid width="100%" margin="20px 0px" position="relative">
-                                        <Grid is_flex align="center">
-                                            {p.postLike? 
-                                                <FavoriteSelectedIcon 
-                                                onClick={()=> likePost("scrap-picture", p.postId)} /> : 
-                                                <FavoriteIcon 
-                                                onClick={()=>likePost("scrap-picture", p.postId)} />
-                                            }
-                                                
-                                            <Text margin="0px 8px" size="base"  color="#6F6F6F">{p?.postLikeCount}</Text>
-                                            <CommentIcon 
-                                                style={{width: "20px", height:"fit-content"}} />
-                                            <Text margin="0px 8px" size="base" color="#6F6F6F">{p?.commentCount}</Text>
-                                        </Grid>
-                                        <Grid position="absolute" top="0px" right="0px" >
-                                            
-                                            {p.postBookMark? 
-                                            <BookmarkIcon fill="#0AAF42" stroke="#0AAF42"
-                                            onClick={()=>bookmarkPost("scrap-picture", p.postId)}
-                                            />
-                                            :
-                                            <BookmarkIcon fill="transparent" stroke="#393939"
-                                            onClick={()=>bookmarkPost("scrap-picture", p.postId)}
-                                            />
-                                            }
-                                        </Grid>
-                                    </Grid>
+                                        
+                                    <Text margin="0px 8px" size="base"  color="#6F6F6F">{p?.postLikeCount}</Text>
+                                    <CommentIcon 
+                                        style={{width: "20px", height:"fit-content"}} />
+                                    <Text margin="0px 8px" size="base" color="#6F6F6F">{p?.commentCount}</Text>
                                 </Grid>
-                            </Container>
-                            <Container type="np">
-                                <div style={{height:"12px", width:"100%", backgroundColor:"#F7F8FA"}}></div>
-                            </Container>
-                        </React.Fragment>
-                        
-                    )
-                })}
-                <React.Fragment>
-                    {scrapPictures?.totalPage > (page+1)? <Box ref={setTarget}> </Box> : null}
-                    {isLoading &&
-                    <Grid margin="auto">
-                        <Text bold size="base">로딩중</Text>
-                    </Grid> }
-                </React.Fragment> : 
+                                <Grid position="absolute" top="0px" right="0px" >
+                                    
+                                    {p.postBookMark? 
+                                    <BookmarkIcon fill="#0AAF42" stroke="#0AAF42"
+                                    onClick={()=>bookmarkPost("scrap-picture", p.postId)}
+                                    />
+                                    :
+                                    <BookmarkIcon fill="transparent" stroke="#393939"
+                                    onClick={()=>bookmarkPost("scrap-picture", p.postId)}
+                                    />
+                                    }
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Container>
+                    <Container type="np">
+                        <div style={{height:"12px", width:"100%", backgroundColor:"#F7F8FA"}}></div>
+                    </Container>
+                </React.Fragment>
+                
+            
+                )})}
+                </InfiniteScroll> :
                 <RelativeBox>
                     <FloatBox>
-                    <Grid margin="auto">
-                        <Text bold size="base" margin="auto">데이터를 불러오고 있습니다💬</Text>
-                    </Grid>
+                        <Grid margin="auto">
+                            <Text bold size="base" margin="auto">데이터를 불러오고 있습니다💬</Text>
+                        </Grid>
                     </FloatBox>
                 </RelativeBox>
-                
-                
-                    
-            </React.Fragment>
-        )
-    }
+        }
+        </React.Fragment>
+        
+    
+    )
+    
 }
 
 const RelativeBox = styled.div`

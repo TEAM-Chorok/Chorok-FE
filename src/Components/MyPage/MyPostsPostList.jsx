@@ -14,7 +14,7 @@ const MyPostsPostList= () => {
     const history = useHistory();
     const dispatch = useDispatch();
     
-    const myPosts = useSelector(state => state.mypage?.postList);
+    const totalPage = useSelector(state => state.mypage?.postList?.totalPage);
     const myPostList = useSelector(state => state.mypage?.postList?.content);
 
     // 무한스크롤 관련 state
@@ -37,7 +37,7 @@ const MyPostsPostList= () => {
     //infinite scroll 실행 함수
     const callback = async ([entry], observer) => {
         if(entry.isIntersecting && !isLoading) {
-            if(myPosts.totalPage > page + 1){
+            if(totalPage > page + 1){
                 observer.unobserve(entry.target); //관찰 종료
                 setIsLoading(true);
                     await new Promise ((resolve) => {
@@ -63,7 +63,8 @@ const MyPostsPostList= () => {
             <InfiniteScroll
                 page={page} 
                 callback={callback} 
-                isLoading={isLoading}>
+                isLoading={isLoading}
+                totalPage={totalPage}>
                 {myPostList?.map((p) => {
                     return(
                         <Grid  key={p.postId} width="100%">

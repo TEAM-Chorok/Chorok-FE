@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Grid, Image, Text } from '../../../Elements';
 import { useHistory } from "react-router-dom";
 import { actionCreators as mainActions } from '../../../Redux/Modules/Main'; 
+import { actionCreators as myActions } from '../../../Redux/Modules/MyPage';
 import MyPlant from './MyPlant';
 
 
@@ -14,6 +15,7 @@ const MyPlantsList = () => {
 
     React.useEffect(() => {
         dispatch(mainActions.getMyPlantPageDB());
+        dispatch(myActions.initialMyPlantDetail());
     }, [])
 
     return (

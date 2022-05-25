@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid, Permit, Text } from "../../Elements";
 import styled from 'styled-components';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
+import {ReactComponent as SettingIcon} from  '../../Assets/img/Icons/settingIcon.svg'
 
 const MyPageHeader = (props) => {
     const dispatch = useDispatch();
@@ -15,9 +15,9 @@ const MyPageHeader = (props) => {
     return (
         <React.Fragment>
             <Permit>
-                <Grid width="100%" height="44px" padding="10px 0px" position="relative">
-                        <img src="img/setting.svg" style={{width: "20px", position:"absolute", right: "4px"}}
-                                        onClick={()=>history.push('/setting')}/>
+                <Grid width="100%" height="24px" position="relative">
+                    <SettingIcon stroke="none" fill="#393939" style={{position:"absolute", right:"8px"}}
+                            onClick={()=>history.push('/setting')}/>
                 </Grid>
             </Permit>
             <Grid width="100%" margin="0px">

@@ -50,6 +50,7 @@ const MyCategoryBar = (props) => {
             <Grid margin="20px 0" width="100%">
                 {comp[active]}
             </Grid>
+            <Grid width="100%" height="60px"></Grid>
       </React.Fragment>
     )
 }

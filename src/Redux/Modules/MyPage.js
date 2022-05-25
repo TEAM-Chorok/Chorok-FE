@@ -5,6 +5,7 @@ import { myPageAPI, postAPI } from "../../Shared/api";
 //actions
 const GET_MY_PLANT_LIST = 'GET_MY_PLANT_LIST';
 const GET_MY_PLANT_DETAIL = 'GET_MY_PLANT_DETAIL';
+const INITIAL_MY_PLANT_DETAIL = 'INITIAL_MY_PLANT_DETAIL';
 const DELETE_MY_PLANT = 'DELETE_MY_PLANT';
 const EDIT_MY_PLANT = 'EDIT_MY_PLANT';
 
@@ -19,6 +20,7 @@ const GET_SCRAP_POST_LIST = "GET_SCRAP_POST_LIST";
 //action creators
 const getMyPlantList = createAction(GET_MY_PLANT_LIST, (myPlantCount, plantList) => ({myPlantCount, plantList}))
 const getMyPlantDetail = createAction(GET_MY_PLANT_DETAIL, (myPlant) => ({myPlant}));
+const initialMyPlantDetail = createAction(INITIAL_MY_PLANT_DETAIL, () => ({}));
 const deleteMyPlant = createAction(DELETE_MY_PLANT, () => ({}));
 const editMyPlant = createAction(EDIT_MY_PLANT, () => ({}));
 
@@ -58,7 +60,6 @@ const getMyPlantDetailDB = (myPlantNo) => {
         myPageAPI
             .getMyDetailPlant(myPlantNo)
             .then((res) => {
-                console.log(res.data);
                 dispatch(getMyPlantDetail(res.data));
             })
             .catch((err) => {
@@ -278,6 +279,9 @@ export default handleActions(
             draft.plantList = action.payload.plantList;
             draft.myPlantCount = action.payload.myPlantCount;
         }),
+        [INITIAL_MY_PLANT_DETAIL]: (state, action) => produce(state, (draft) => {
+            draft.plant = null;
+        }),
         [GET_MY_PHOTO_SCRAP_PHOTO_LIST]: (state, action) => produce(state, (draft) => {
             draft.myPlanteriorBookMarKList = action.payload.list.myPlanteriorBookMarKList;
             draft.myPlanteriorBookMarkCount = action.payload.list.myPlanteriorBookMarkCount;
@@ -342,6 +346,7 @@ const actionCreators = {
     getScrapPostListDB,
     likePostDB,
     bookmarkPostDB,
+    initialMyPlantDetail,
 }
 
 export { actionCreators };
