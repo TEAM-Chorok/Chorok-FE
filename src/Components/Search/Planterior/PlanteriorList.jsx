@@ -14,14 +14,16 @@ import InfiniteScroll from "../../share/etc/InfiniteScroll";
 const PlanteriorList = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
+  
+  // 공간 게시글 데이터
+  const data = useSelector((state) => state?.search?.planteriorList);
+  const planteriorList = data?.content;
   // 무한스크롤 관련 state
   const [page, setPage] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(false);
+  const totalPage = data?.totalPage;
   // 공간 필터 선택 state
   const [place, setPlace] = React.useState("all");
-  // 공간 게시글 리스트
-  const planteriorList = useSelector((state) => state?.search?.planteriorList?.content);
   // skeleton
   const height = ["100px", "130px", "150px", "200px", "200px", "120px"]
 
@@ -64,6 +66,7 @@ const PlanteriorList = () => {
           <InfiniteScroll
             page={page}
             callback={callback}
+            totalPage={totalPage}
             isLoading={isLoading}>
             <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
               {planteriorList?.map((post, idx) => {

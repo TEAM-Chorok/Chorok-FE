@@ -33,12 +33,12 @@ const MyCategoryBar = (props) => {
                 {active === 1 ?
                     <li onClick={() => { setActive(1) }}>
                     <TabMenu>
-                        <Text bold size="base" color="#24A148">식물도감</Text>
+                        <Text bold size="base" color="#24A148">식물</Text>
                     </TabMenu>
                     </li> :
                     <li onClick={() => { setActive(1) }}>
                     <TabMenu>
-                        <Text size="base">식물도감</Text>
+                        <Text size="base">식물</Text>
                     </TabMenu>
                     </li>}
                     <BackLine>

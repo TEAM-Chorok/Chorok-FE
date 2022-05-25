@@ -9,13 +9,21 @@ import { ReactComponent as FavoriteSelectedIcon} from "../../../Assets/img/likeB
 import { ReactComponent as BookmarkIcon} from "../../../Assets/img/likeBookmarkIcons/Bookmark.svg";
 import { ReactComponent as BookmarkedIcon} from "../../../Assets/img/likeBookmarkIcons/Bookmark_selected.svg";
 import { ReactComponent as CommentIcon } from "../../../Assets/img/likeBookmarkIcons/Comment.svg";
+import InfiniteScroll from '../../share/etc/InfiniteScroll';
 
 
 const ScrapPostsList = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const scrapPostList = useSelector(state => state.mypage?.scrapPostList);
-    
+
+    const scrapPosts =  useSelector(state => state.mypage?.scrapPostList);
+    const scrapPostList = useSelector(state => state.mypage?.scrapPostList?.content);
+
+    // 무한스크롤 관련 state
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [page, setPage] = React.useState(0);
+
+
     const likePost = (page, postId) => {
         dispatch(MyActions.likePostDB(page, postId));
       }
@@ -25,8 +33,25 @@ const ScrapPostsList = () => {
     }
 
     useEffect(() => {
-      dispatch(MyActions.getScrapPostListDB());
-    }, [])
+      dispatch(MyActions.getScrapPostListDB(page));
+    }, [page])
+
+
+    //infinite scroll 실행 함수
+    const callback = async ([entry], observer) => {
+        if(entry.isIntersecting && !isLoading) {
+            if(scrapPosts.totalPage > page + 1) {
+                observer.unobserve(entry.target); //관찰 종료
+                setIsLoading(true);
+                    await new Promise ((resolve) => {
+                    setTimeout(resolve, 2000);
+                });
+                setPage((pre) => pre + 1);
+                setIsLoading(false);
+                observer.observe(entry.target);
+            }
+        }   
+    }
 
     if(!scrapPostList || scrapPostList.length === 0){
         return (
@@ -37,7 +62,12 @@ const ScrapPostsList = () => {
     }
     return (
         <React.Fragment>        
-            {scrapPostList?.map((p) => {
+            {scrapPostList? 
+            <InfiniteScroll
+                page={page} 
+                callback={callback} 
+                isLoading={isLoading}>
+                {scrapPostList?.map((p) => {
                     return(
                         <Grid  key={p.postId} width="100%">
                         <Container>
@@ -103,8 +133,39 @@ const ScrapPostsList = () => {
                         </Grid>
                     )
                 })}
+            </InfiniteScroll>   : 
+
+            <RelativeBox>
+            <FloatBox>
+            <Grid margin="auto">
+                <Text bold size="base" margin="auto">데이터를 불러오고 있습니다💬</Text>
+            </Grid>
+            </FloatBox>
+            </RelativeBox>
+            }
+            
         </React.Fragment>
     )
 }
 
+const RelativeBox = styled.div`
+  position: relative;
+  width: 100%;
+`
+
+const FloatBox = styled.div`
+  position: absolute;
+  top: 0;
+
+  display:flex;
+  align-items: center;
+  
+  margin: auto;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+`
 export default ScrapPostsList;

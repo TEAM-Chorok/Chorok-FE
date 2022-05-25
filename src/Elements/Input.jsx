@@ -118,7 +118,20 @@ const Input = (props) => {
       </React.Fragment>
     );
   }
-
+  if(type === "email") {
+    return (
+      <React.Fragment >
+        <Grid width="100%">
+          <PasswordInput type="email"
+            {...styles}
+            placeholder={placeholder}
+            onChange={_onChange}
+            ref={_ref}
+            />
+        </Grid>
+      </React.Fragment>
+    )
+  }
   if(type === "password") { 
     return (
       <React.Fragment >

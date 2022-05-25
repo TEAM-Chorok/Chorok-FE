@@ -82,18 +82,24 @@ const DetailCommPost = (props) => {
                         {like? 
                             <FavoriteSelectedIcon 
                             onClick={()=> toggleLike()} /> : 
-                            <FavoriteIcon 
+                            <FavoriteIcon  fill="#393939"
                             onClick={()=>toggleLike()} />
                         }
                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{post?.postLikeCount}</Text>
-                        <CommentIcon  />
+                        <CommentIcon  fill="#656565"/>
                         <Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
                     </Grid>
                     <Grid position="absolute" top="0px" right="0px" >
                         {bookmark? 
                             <BookmarkSelectedIcon
+                            className='bookmark'
+                            fill="#0AAF42"
+                            stroke="#0AAF42"
                             onClick={()=>toggleBookmark()} /> : 
-                            <BookmarkIcon fill="transparent" stroke="#262626"
+                            <BookmarkIcon 
+                            className='bookmark'
+                            fill="none"
+                            stroke="#6F6F6F"
                             onClick={()=>toggleBookmark()} />
                         }
                     </Grid>

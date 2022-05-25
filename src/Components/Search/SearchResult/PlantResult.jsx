@@ -10,10 +10,11 @@ import PlantProfile from "../../share/etc/PlantProfile";
 const PlantResult = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const plantList = useSelector((state) => state.search?.resultPlant.content);
+  const plantList = useSelector((state) => state.search?.resultPlant?.content);
   const count = useSelector((state) => state.search?.result?.plantDictionaryCount);
 
   // 무한스크롤 관련 state
+  const totalPage = plantList?.totalPage;
   const [page, setPage] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -43,7 +44,7 @@ const PlantResult = (props) => {
           <Text bold margin="0 8px" size="small" color="#0AAF42">{count}</Text>
         </Grid>
         <Grid width="100%">
-        <InfiniteScroll page={page} callback={callback} isLoading={isLoading}>
+        <InfiniteScroll page={page} totalPage={totalPage} callback={callback} isLoading={isLoading}>
           {plantList?.map((plant) => {
             return (
               <PlantProfile list 

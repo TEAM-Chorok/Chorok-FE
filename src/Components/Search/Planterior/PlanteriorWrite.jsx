@@ -86,9 +86,10 @@ const PlanteriorWriteComp = () => {
       reader.readAsDataURL(files);
     }
   }
-
+  
   // 게시글 등록
   const submit = () => {
+    console.log("글작성!!!!!!!!")
     // 데이터 유효성 
     if (place === null) {
       // 장소 설정하지 않았을 경우
@@ -122,13 +123,11 @@ const PlanteriorWriteComp = () => {
       if (file.length > 0) {
         // 파일을 수정했을 경우
         formData.append('postImgUrl', file[0]);
-        // formData.append('originalUrl', null);
         console.log(file)
         dispatch(searchActions.editPlanteriorPostDB(formData, postId.postId));
         return;
       } else {
         // 파일 수정하지 않았을 경우
-        // formData.append('postImgUrl', null);
         formData.append('originalUrl', preview[0]);
         console.log(preview[0]);
         dispatch(searchActions.editPlanteriorPostDB(formData, postId.postId));
@@ -137,7 +136,6 @@ const PlanteriorWriteComp = () => {
     }
     // 글 작성 루트일 경우
     formData.append('postImgUrl', file[0]);
-    // formData.append('originalUrl', null);
     dispatch(searchActions.writePlanteriorPostDB(formData));
   }
 

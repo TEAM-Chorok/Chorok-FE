@@ -142,7 +142,7 @@ const IconBox = styled.div`
 
 const Textarea = styled.textarea`
     width: 100%;
-    height: 392px;
+    height: 300px;
     border: none;
     font-size: 14px;
     resize: none;

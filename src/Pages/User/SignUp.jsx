@@ -108,16 +108,17 @@ const SignUp = () => {
                 </Grid>
               )}
             {nextPage === 1 ? 
-            <Grid padding="30px 0px" width="100%">
+            <Grid padding="30px 12px" width="100%">
               <SingUpPage>
-              <Text margin="36px 0px 24px 12px" size="large" display="block" bold>반가워요! <br /> 사용하실 이메일과  <br />비밀번호를 입력해주세요. 😀</Text>
+              <Text margin="36px 0px 24px 0px" size="large" display="block" bold>반가워요! <br /> 사용하실 이메일과  <br />비밀번호를 입력해주세요. 😀</Text>
+              <Grid width="100%" >
               {userEmail === ""? 
                 // 정상 input
                 <Input 
                 _onChange={(e)=>{setUserEmail(e.target.value); 
                                 idCheck(e.target.value); setOpenResult(false);}} 
-                placeholder="이메일" name="signup_id" type="email" 
-                display="inline-block"  margin="0px" height="48px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"></Input>
+                placeholder="이메일" type="email" 
+                width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB"></Input>
                 :
                 ( duplicated || !idCheck(userEmail) ? 
                   // 오류 input
@@ -125,18 +126,19 @@ const SignUp = () => {
                   _onChange={(e)=>{setUserEmail(e.target.value); 
                                   idCheck(e.target.value); setOpenResult(false);}} 
                   placeholder="이메일" name="signup_id" type="email" 
-                  display="inline-block"  margin="0px" height="48px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" borderRadius="6px" focusOutline="1px solid #FA4D56"></Input> 
+                  display="inline-block" height="48px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" borderRadius="6px" focusOutline="1px solid #FA4D56"></Input> 
                   : 
                   // 정상 input
                   <Input 
                     _onChange={(e)=>{setUserEmail(e.target.value); 
                                     idCheck(e.target.value); setOpenResult(false);}} 
                     placeholder="이메일" name="signup_id" type="email" 
-                    display="inline-block"  margin="0px" height="48px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"></Input>
+                    display="inline-block" height="48px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"></Input>
                 )
               }
+              </Grid>
 
-              <Grid position="relative" width="100%" height="44px" display="flex" align="center">
+              <Grid position="relative" width="100%" height="44px" display="flex" align="center"  margin="0px 0px 10px 0px">
               <Grid  margin="0px 0px 0px 10px">
                 { userEmail !== "" && !idCheck(userEmail) ? 
                       <Text size="xsmall" color="#FA4D56">이메일 형식이 올바르지 않습니다.</Text> : ""
@@ -154,7 +156,7 @@ const SignUp = () => {
               }
               <Button disabled={!idCheck(userEmail)}
                 onClick={()=> {checkDuplicated(userEmail); setOpenResult(true);}}
-                style={{position:"absolute", top:"0px", right:"0px", color:"#6F6F6F", size:"xsmall", height:"40px"}} variant='text'>중복확인</Button>
+                style={{position:"absolute", right:"0px", color:"#6F6F6F", fontSize:"13px"}} variant='text'>중복확인</Button>
               </Grid>
               
               {/* 비밀번호 */}
@@ -164,11 +166,11 @@ const SignUp = () => {
                 _onChange={(e)=>{setPassword(e.target.value); 
                                 pwdCheck(e.target.value)}} 
                 placeholder="비밀번호(영문 대소문자, 숫자를 포함한 8~20자)" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"
-                margin="0px"></Input>
+                margin="0px 0px 8px 0px"></Input>
                 <Input 
                 _onChange={(e)=>{setPasswordChk(e.target.value); 
                                 pwdCheck(e.target.value); }} 
-                placeholder="비밀번호 확인" type="password" name="signup_pwd_check" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"></Input>
+                placeholder="비밀번호 확인" type="password" name="signup_pwd_check" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px" margin="0px"></Input>
                 </> 
                 : 
                 <>
@@ -176,11 +178,11 @@ const SignUp = () => {
                 _onChange={(e)=>{setPassword(e.target.value); 
                                 pwdCheck(e.target.value)}} 
                 placeholder="비밀번호(영문 대소문자, 숫자를 포함한 8~20자)" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56" borderRadius="6px"
-                margin="0px"></Input>
+                margin="0px 0px 8px 0px"></Input>
                 <Input 
                 _onChange={(e)=>{setPasswordChk(e.target.value); 
                                 pwdCheck(e.target.value); }} 
-                placeholder="비밀번호 확인" type="password" name="signup_pwd_check" height="52px" width="100%" padding="0px 0px 0px 20px" focusOutline="1px solid #FA4D56" border="1px solid #FA4D56" borderRadius="6px"></Input> 
+                placeholder="비밀번호 확인" type="password" name="signup_pwd_check" height="52px" width="100%" padding="0px 0px 0px 20px" focusOutline="1px solid #FA4D56" border="1px solid #FA4D56" borderRadius="6px"  margin="0px"></Input> 
               </>
               
               }
@@ -195,15 +197,15 @@ const SignUp = () => {
               {duplicated === true || passwordMatch(password, passwordChk) === false ?
 
                 <Button disabled={duplicated || passwordMatch() === false}
-                style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} variant='contained' >다음으로</Button> : 
+                style={{display:"block", margin:"95px auto auto auto", width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} variant='contained' >다음으로</Button> : 
 
                 (pwdCheck(password) ? 
               
-                  <Button style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#0AAF42", color:"#FFFFFF", borderRadius:"6px"}} variant='contained'
+                  <Button style={{display:"block", margin:"95px auto auto auto", width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#0AAF42", color:"#FFFFFF", borderRadius:"6px"}} variant='contained'
                   onClick={() => {showNextPage(nextPage); setOpenResult(false);}}>다음으로</Button> : 
                   
                   <Button disabled={duplicated || passwordMatch() === false}
-                  style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} variant='contained' >다음으로</Button>                   
+                  style={{display:"block", margin:"95px auto auto auto",width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} variant='contained' >다음으로</Button>                   
                 )
               }
             </SingUpPage> 
@@ -250,7 +252,7 @@ const SignUp = () => {
                   }
                     <Button 
                     onClick={()=>{checkDuplicatedNickname(nickname); setOpenResult(true);}}
-                    style={{position:"absolute", top:"0px", right:"0px", color:"#6F6F6F", size:"xsmall", height:"40px"}} variant='text' >중복확인</Button>
+                    style={{position:"absolute", right:"0px", color:"#6F6F6F", fontSize:"13px"}} variant='text' >중복확인</Button>
                   </Grid>
                   {duplicatedNickname ? 
                     <Button disabled={duplicatedNickname} style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#F8F8F8", color:"#D5D8DB", borderRadius:"6px"}} variant='contained' name="signup_submit" >회원가입</Button> :
@@ -463,19 +465,11 @@ const SignUp = () => {
   // }
 }
 
-const Header = styled.div`
-  width: 100%;
-  height: 20%;
-  text-align: center;
-  margin: 10px auto;
-`
 const SingUpPage = styled.div`
 width: 100%;
-height: 80%;
 // text-align: center;
 margin: 30px auto;
 position: relative;
-
 
 transition: 0.3s;
 `

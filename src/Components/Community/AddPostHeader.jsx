@@ -20,7 +20,7 @@ const AddPostHeader = (props) => {
             disabled={true}>
             <Text size="base" color="#A8A8A8">{ edit ? "완료" : "올리기" }</Text></Button> :
           <Button type="tran"
-            onClick={() => props.submit()}>
+            _onClick={() => props.submit()}>
             <Text size="base" color="#24A148">{ edit ? "완료" : "올리기" }</Text>
           </Button>}
       </Header>

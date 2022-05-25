@@ -13,11 +13,13 @@ import InfiniteScroll from "../share/etc/InfiniteScroll";
 const AddPlantList = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const plantList = useSelector((state) => state.search?.plantDictList?.content);
-
+  const data = useSelector((state) => state.search?.plantDictList);
+  const plantList = data?.content;
+  
   // 무한스크롤 관련 state
   const [page, setPage] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(false);
+  const totalPage = data?.totalPage;
 
   // 무한스크롤 실행 함수
   const callback = async ([entry], observer) => {
@@ -49,7 +51,11 @@ const AddPlantList = () => {
         <BottomSheet />
       </Grid>
       <Grid width="100%" margin="24px 0">
-        <InfiniteScroll page={page} callback={callback} isLoading={isLoading}>
+        <InfiniteScroll 
+          page={page} 
+          callback={callback} 
+          totalPage={totalPage}
+          isLoading={isLoading}>
           {plantList?.map((plant, idx) => {
             return (
               <PlantProfile list key={plant.plantNo} plant={plant.plantName}

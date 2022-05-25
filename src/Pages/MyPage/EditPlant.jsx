@@ -8,11 +8,11 @@ import { Button } from '@mui/material';
 import EditPlantBottomSheet from '../../Components/MyPage/EditPlant/EditPlantBottomSheet';
 import Modal from 'react-modal';
 import { actionCreators as myActions } from '../../Redux/Modules/MyPage';
+import { set } from 'lodash';
 
 Modal.setAppElement('#root')
 
 //나의 식물 수정 -- 작업중 
-//나의 식물 삭제 -- 작업 완료
 const EditPlant = () => {
 
     const history = useHistory();
@@ -21,13 +21,13 @@ const EditPlant = () => {
     const myPlantId = params.id;
     const myPlant = useSelector(state => state.mypage?.plant);
     
-    const previousPlantName = myPlant.myPlantName;  //식물 기존 이름 
-    const previousPlace = myPlant.myPlantPlace; //식물 기존 장소
+    const previousPlantName = myPlant?.myPlantName;  //식물 기존 이름 
+    const previousPlace = myPlant?.myPlantPlace; //식물 기존 장소
     const [myPlantName, setMyPlantName] = React.useState(""); //내 식물 이름
     const [place, setPlace] = React.useState(""); // 장소 코드 
     const [placeValue, setPlaceValue] = React.useState(""); // 장소 이름
-    const [plantImgUrl, setPlantImgUrl] = React.useState(myPlant?.myPlantImgUrl);
-    const [preview, setPreview] = React.useState(""); 
+    const [plantImgUrl, setPlantImgUrl] = React.useState("");
+    const [preview, setPreview] = React.useState(myPlant?.myPlantImgUrl); 
     
     // Base64로 인코딩하여 미리보기 이미지 출력
     const reader = new FileReader();
@@ -51,7 +51,10 @@ const EditPlant = () => {
 
     //내 식물 수정하기
     const editMyPlant = () => {
-        console.log(myPlantId,",", myPlantName,",", plantImgUrl,",", place);
+        if(myPlantName === "" || myPlantName === " " ){
+            myPlantName = previousPlantName;
+        }
+        dispatch(myActions.editMyPlantDB(myPlantId, myPlantName, place, plantImgUrl, preview))
     }
 
     //내 식물 삭제하기
@@ -62,7 +65,13 @@ const EditPlant = () => {
     //내 식물 정보 불러오기
     React.useEffect(() => {
         dispatch(myActions.getMyPlantDetailDB(params.id));
-    }, [params.id])
+        if(placeValue==="거실"){setPlace("pp04")}
+            else if(placeValue==="베란다/야외"){setPlace("pp06")}
+            else if(placeValue==="방안" || placeValue==="방 안"){setPlace("pp02")}
+            else if(placeValue==="통로"){setPlace("pp01")}
+            else if(placeValue==="창가"){setPlace("pp05")}
+            else if(placeValue==="화장실"){setPlace("pp03")}
+    }, [])
 
     return (
         <React.Fragment>
@@ -115,12 +124,13 @@ const EditPlant = () => {
                 <label htmlFor='nickname'>별명</label>
                     <Input 
                         _onChange={(e)=>setMyPlantName(e.target.value)}
-                        id="nickname" defaultValue={previousPlantName} placeholder="별명" 
+                        defaultValue={myPlantName} 
+                        id="nickname" placeholder="별명" 
                         width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />
 
                     <EditPlantBottomSheet 
                         previousPlace={previousPlace} setPlaceValue={setPlaceValue} placeValue={placeValue} 
-                        plantId={myPlant.myPlantId} place={place} setPlace={setPlace}/>
+                        plantId={myPlant?.myPlantId} place={place} setPlace={setPlace}/>
                     <Grid position="relative" width="100%">
                         <Button 
                             onClick={()=>{setOpenModal(true)}}    
@@ -155,13 +165,6 @@ margin: 0px;
 padding: 0px;
 border: 1px solid #E0E0E0;
 `
-// const Select = styled.select`
-//     width: 100%;
-//     height: 53px;
-//     border-radius: 10px;
-//     margin: 10px 0px;
-//     padding: 0px 10px;
-// `
 const Img = styled.img`
     width: 120px;
     height: 120px;

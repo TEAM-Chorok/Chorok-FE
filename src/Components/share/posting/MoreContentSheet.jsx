@@ -108,8 +108,8 @@ export default function MoreContentSheet(props) {
               <Text margin="0 16px">삭제하기</Text>
             </MenuBox>}
 
-          <MenuBox>
-            <CancelIcon onClick={toggleDrawer('bottom', false)} />
+          <MenuBox onClick={toggleDrawer('bottom', false)}>
+            <CancelIcon />
             <Text margin="0 16px">취소</Text>
           </MenuBox>
 

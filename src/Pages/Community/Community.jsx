@@ -10,6 +10,8 @@ const Community = () => {
     const dispatch = useDispatch();
     const isLogin = sessionStorage.getItem('token') ? true : false;
     
+    const [page, setPage] = React.useState(0);
+
     //+버튼 모달창
     const [open, setOpenModal] = React.useState(false);
     const openModal = () => {
@@ -27,9 +29,9 @@ const Community = () => {
                 <Grid width="100%" position={open? 'fixed': 'nonset'}>
                     <Grid padding="20px 20px 0px 20px" width="100%">
                         <SearchHeader category={category} />
-                        <CommunityFilter setCategory={setCategory} category={category} />
+                        <CommunityFilter page={page} setPage={setPage} setCategory={setCategory} category={category} />
                     </Grid>
-                    <CommPostList category={category} isLogin={isLogin} />
+                    <CommPostList page={page} setPage={setPage} category={category} isLogin={isLogin} />
                     <Button type="plus" _onClick={() => openModal()} />
                     {open ?
                         <>
