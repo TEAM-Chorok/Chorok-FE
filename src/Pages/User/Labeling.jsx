@@ -55,7 +55,7 @@ const Labeling = () => {
         <Grid margin="0px auto" align="center">
           {/*추후 애니메이션 넣기*/}
           <Img className="labelingLogo" src="img/Logo/LOGO.svg" />
-          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position: "absolute", top:"404px", left: "180px"}}/>
+          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position: "absolute", top:"404px", left: "168px"}}/>
         </Grid>
         <Grid margin="120px auto 100px auto" align="center">
           <PrimaryBtn onClick={()=>setActive(1)}>시작할래요</PrimaryBtn>

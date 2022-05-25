@@ -59,11 +59,7 @@ export const userAPI = {
   }),
 
   //프로필 수정
-  editProfile: (nickname, profileMsg) => api.patch(`/user/update/profile`, 
-  {
-    nickname: nickname, 
-    profileMsg: profileMsg,
-  }, {
+  editProfile: (formData) => api.post(`/user/update/profile`, formData, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     },
@@ -71,7 +67,7 @@ export const userAPI = {
   ),
 
   //회원탈퇴
-  deactivateUser: () => api.patch(`/user/update/accountStatus`, {
+  deactivateUser: () => api.put(`/user/update/accountStatus`, {}, {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,
     }

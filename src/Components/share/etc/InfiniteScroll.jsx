@@ -16,22 +16,10 @@ import { ReactComponent as Spinner } from "../../../Assets/img/spinner.svg"
 
 
 const InfiniteScroll = (props) => {
-  const { children, page, totalPage, callback, isLoading } = props;
+  const {children, page, callback, isLoading, totalPage} = props;
 
   const [target, setTarget] = React.useState(null);
-
-
-  //커뮤니티 totalPage
-  const communityTotalPage = useSelector((state) => state.post?.postList?.totalPage);
-  //내 식물공간 totalPage
-  const myPicturesTotalPage = useSelector((state) => state.mypage?.photoList?.totalPage);
-  //스크랩한 식물공간 totalPage
-  const scrapPicturesTotalPage = useSelector((state) => state.mypage?.scrapPhotoList?.totalPage);
-  //내가 쓴 초록톡 totalPage
-  const myPostTotalPage = useSelector((state) => state.mypage?.postList?.totalPage);
-  //스크랩한 초록톡 totalPage
-  const scrapPostTotalPage = useSelector((state) => state.mypage?.scrapPostList?.totalPage);
-
+  
   React.useEffect(() => {
     let observer;
     if (target) {
@@ -41,71 +29,6 @@ const InfiniteScroll = (props) => {
     return () => observer && observer.disconnect();
 
   }, [target]);
-
-
-
-  if (communityTotalPage) {
-    return (
-      <React.Fragment>
-        {children}
-        {isLoading &&
-          <Grid margin="auto">
-            <Text bold size="base">로딩중</Text>
-          </Grid>}
-        {communityTotalPage > (page + 1) ? <Box ref={setTarget}> </Box> : null}
-      </React.Fragment>
-    );
-  }
-  if (myPicturesTotalPage) {
-    return (
-      <React.Fragment>
-        {children}
-
-        {myPicturesTotalPage > (page + 1) ? <Box ref={setTarget}> </Box> : null}
-        {isLoading &&
-          <Grid margin="auto">
-            <Text bold size="base">로딩중</Text>
-          </Grid>}
-      </React.Fragment>
-    );
-  }
-  if (scrapPicturesTotalPage > props.page) {
-    return (
-      <React.Fragment>
-        {children}
-
-        {scrapPicturesTotalPage > (props.page + 1) ? <Box ref={setTarget}> </Box> : null}
-        {isLoading &&
-          <Grid margin="auto">
-            <Text bold size="base">로딩중</Text>
-          </Grid>}
-      </React.Fragment>
-    );
-  }
-  if (myPostTotalPage) {
-    return (
-      <React.Fragment>
-        {children}
-        {isLoading &&
-          <Grid margin="auto">
-            <Text bold size="base">로딩중</Text>
-          </Grid>}
-        {myPostTotalPage > (page + 1) ? <Box ref={setTarget}> </Box> : null}
-      </React.Fragment>
-    );
-  }
-  if (scrapPostTotalPage) {
-    return (
-      <React.Fragment>
-        {children}
-        {isLoading &&
-          <Grid margin="auto">
-            <Text bold size="base">로딩중</Text>
-          </Grid>}
-        {scrapPostTotalPage > (page + 1) ? <Box ref={setTarget}> </Box> : null}
-      </React.Fragment>
-    );
-  }
 
   return (
     <React.Fragment>

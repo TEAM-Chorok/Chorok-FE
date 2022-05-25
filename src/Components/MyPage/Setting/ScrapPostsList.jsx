@@ -16,7 +16,7 @@ const ScrapPostsList = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const scrapPosts =  useSelector(state => state.mypage?.scrapPostList);
+    const totalPage =  useSelector(state => state.mypage?.scrapPostList?.totalPage);
     const scrapPostList = useSelector(state => state.mypage?.scrapPostList?.content);
 
     // 무한스크롤 관련 state
@@ -40,7 +40,7 @@ const ScrapPostsList = () => {
     //infinite scroll 실행 함수
     const callback = async ([entry], observer) => {
         if(entry.isIntersecting && !isLoading) {
-            if(scrapPosts.totalPage > page + 1) {
+            if(totalPage > page + 1) {
                 observer.unobserve(entry.target); //관찰 종료
                 setIsLoading(true);
                     await new Promise ((resolve) => {
@@ -66,7 +66,8 @@ const ScrapPostsList = () => {
             <InfiniteScroll
                 page={page} 
                 callback={callback} 
-                isLoading={isLoading}>
+                isLoading={isLoading}
+                totalPage={totalPage}>
                 {scrapPostList?.map((p) => {
                     return(
                         <Grid  key={p.postId} width="100%">
@@ -94,7 +95,7 @@ const ScrapPostsList = () => {
                                 
                                 {p?.postImgUrl? 
                                     <Grid width="100%" >
-                                        <Image type="planterior" borderRadius="8px" imgUrl={p.postImgUrl} width="100%" height="240px"/>
+                                        <Image type="planterior" borderRadius="8px" imgUrl={p.postImgUrl} width="100%"/>
                                     </Grid>: 
                                     null
                                 }

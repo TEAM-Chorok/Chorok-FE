@@ -13,44 +13,59 @@ const Questionnaire4 = (props) => {
           </Grid>
             <SelectWrap>
               <ImageBox onClick={()=>props.setAttribute2("pgs01")}>
-              <ImageWrap className='child'>
+              <ImageWrap className='child'
+                border={props.attribute2 === "pgs01"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                 <Image margin="0px auto" type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/관목형.png"></Image>
               </ImageWrap>
-              <TextWrap className='text'>
+              <TextWrap className='text'
+                border={props.attribute2 === "pgs01"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
+                bg={props.attribute2 === "pgs01"? "#DEFBE6" : "transparent"}>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">부드러운</Text>
               </TextWrap>
               </ImageBox>
               <ImageBox onClick={()=>props.setAttribute2("pgs05")}>
-                <ImageWrap className='child'>
+                <ImageWrap className='child'
+                 border={props.attribute2 === "pgs05"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                   <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="img/plantType/풀잎형.png"></Image>
                 </ImageWrap>
-                <TextWrap className='text'>
+                <TextWrap className='text'
+                  border={props.attribute2 === "pgs05"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
+                  bg={props.attribute2 === "pgs05"? "#DEFBE6" : "transparent"}>
                   <Text display="block" color="#262626" size="xsmall" margin="0px">아담한</Text>
                 </TextWrap>
               </ImageBox>
               <ImageBox onClick={()=>props.setAttribute2("pgs04")}>
-              <ImageWrap className='child'>
+              <ImageWrap className='child'
+                border={props.attribute2 === "pgs04"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                 <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/직립형.png"></Image>
                 </ImageWrap>
-                <TextWrap className='text'>
+                <TextWrap className='text'
+                  border={props.attribute2 === "pgs04"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
+                  bg={props.attribute2 === "pgs04"? "#DEFBE6" : "transparent"}>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">쭉쭉 뻗은</Text>
                 </TextWrap>
               </ImageBox>
             </SelectWrap>
             <SelectWrap2>
               <ImageBox onClick={()=>props.setAttribute2("pgs02")}>
-              <ImageWrap className='child'>
+              <ImageWrap className='child'
+                border={props.attribute2 === "pgs02"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                 <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/덩굴형.png"></Image>
                 </ImageWrap>
-                <TextWrap className='text'>
+                <TextWrap className='text'
+                  border={props.attribute2 === "pgs02"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
+                  bg={props.attribute2 === "pgs02"? "#DEFBE6" : "transparent"}>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">감겨오르는</Text>
                 </TextWrap>
               </ImageBox> 
               <ImageBox onClick={()=>props.setAttribute2("pgs06")}>
-              <ImageWrap className='child'>
+              <ImageWrap className='child'
+                border={props.attribute2 === "pgs06"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                 <Image margin="0px auto 0px auto"  type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/둥글게펼쳐진.png"></Image>
               </ImageWrap>
-              <TextWrap className='text'>
+              <TextWrap className='text'
+                border={props.attribute2 === "pgs06"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
+                bg={props.attribute2 === "pgs06"? "#DEFBE6" : "transparent"}>
                 <Text display="block" color="#262626" size="xsmall" margin="0px">둥글게 펼쳐진</Text>
                 </TextWrap>
               </ImageBox>
@@ -94,12 +109,15 @@ const ImageWrap = styled.div`
   width: fit-content;
   height: fit-content;
   border-radius: 20px;
+
+  border: ${(props) => props.border};
 `
 const TextWrap = styled.div`
   width: fit-content;
   height: fit-content;
   padding: 6px 12px;
-  border: 1px solid #F4F4F4;
+  background-color: ${(props) => props.bg};
+  border: ${(props) => props.border};
   border-radius: 16px;
   margin: 8px auto;
 `

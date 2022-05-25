@@ -3,17 +3,13 @@ import { Button } from '@mui/material';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { useDispatch } from 'react-redux';
-import { GeneralHeader } from '../../Components';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
 import { ReactComponent as GoBackIcon } from "../../Assets/img/Icons/goBackIcon.svg"
 import { userAPI } from '../../Shared/api';
 import { useSelector } from 'react-redux';
 
 
-// 프로필 편집  --- 이미지 수정 안됨
-//나눠서 api 짜고 dispatch 두가 걸깅
 const ProfileSetting = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -24,10 +20,10 @@ const ProfileSetting = () => {
   const previousNickname = user?.nickname;
   const previousProfileMsg= user?.profileMsg;
 
-  const [nickname, setNickname] = React.useState(previousNickname);
+  const [nickname, setNickname] = React.useState(user?.nickname);
   const [profileImgUrl, setProfileImgUrl] = React.useState("");
-  const [preview, setPreview] = React.useState("");
-  const [describeSelf, setDescribeSelf] = React.useState();
+  const [preview, setPreview] = React.useState(user?.profileImgUrl);
+  const [describeSelf, setDescribeSelf] = React.useState(user?.profileMsg);
 
   const [openResult, setOpenResult] = React.useState();
   const [duplicatedNickname, setDuplicatedNickname] = React.useState();
@@ -55,11 +51,16 @@ const ProfileSetting = () => {
     userAPI
     .nicknameCheck(nickname)
     .then((res) => {
-      setDuplicatedNickname(false);
+      console.log(res.data.StatusCode);
+      if(res.data.StatusCode === "400 BAD_REQUEST"){
+        setDuplicatedNickname(true);
+      }else{
+        setDuplicatedNickname(false);
+      }
     })
     .catch((error) => {
       console.log(error);
-      setDuplicatedNickname(true);
+      
     })
   }
 
@@ -80,17 +81,10 @@ const ProfileSetting = () => {
 
   //프로필 수정 dispatch 요청
   const editProfile = () => {
-
-    {profileImgUrl === "" ? 
-
-      dispatch(userActions.editProfileDB(nickname, describeSelf))  : 
-
-      dispatch(userActions.editProfileDB(nickname, describeSelf));
-      // dispatch(userActions.editProfileImgDB(profileImgUrl));
-
+      dispatch(userActions.editProfileDB(nickname, profileImgUrl, preview, describeSelf )) 
     }
     
-  }
+  
 
   return (
     <React.Fragment>
@@ -183,9 +177,9 @@ const ProfileSetting = () => {
                   _onChange={(e)=>setDescribeSelf(e.target.value)}
                   id="describe" defaultValue={previousProfileMsg} placeholder="소개" 
                   width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />
-              
-      </Container>
-    </React.Fragment>
+                  
+          </Container>
+        </React.Fragment>
     );
 }
 const Header = styled.div`      

@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 //내 식물 수정 bottom sheet
 
 export default function EditPlantBottomSheet( props ) {
-    const { place, previousPlace, setPlaceValue, placeValue, setPlace } = props;
+    const { place, setPlaceValue, placeValue, setPlace, previousPlace } = props;
     const dispatch = useDispatch();
     const history = useHistory();
     
@@ -25,16 +25,16 @@ export default function EditPlantBottomSheet( props ) {
         setState({ ...state, [anchor]: open });
     };
 
-
     return (
         <React.Fragment key={'bottom'}>
             <label htmlFor='place'>공간</label>
                     <Grid _onClick={toggleDrawer('bottom', true)} 
                     id="place" width="100%" margin="10px 0px" padding="10px" height="48px" borderRadius="6px" border="1px solid #C6C6C6">
-                        {props.place? 
-                        <Text size="base">{props.placeValue}</Text>:
-                        <Text size="base">{props.previousPlace}</Text>
+                        {placeValue ? 
+                         <Text size="base">{placeValue}</Text>  :
+                         <Text size="base">{previousPlace}</Text>
                         }
+                        
                         
                     </Grid>
 
@@ -52,20 +52,21 @@ export default function EditPlantBottomSheet( props ) {
             <Grid width="100%" height="346px">
             <Grid margin="32px 0px" width="100%">
                 <Button type="drawerBtn" padding="12px 20px" textAlign="left" 
-                    _onClick={() => {props.setPlace("pp04"); 
-                                    props.setPlaceValue("거실"); 
-                                    setState(false)}}>
+                    _onClick={() => {setPlace("pp04"); 
+                                    setPlaceValue("거실"); 
+                                    setState(false);
+                                    console.log(placeValue)}}>
                 <Text bold size="base" color="#393939">거실</Text>
                 </Button>
                 <Button type="drawerBtn" padding="12px 20px" textAlign="left"
                     _onClick={() => {props.setPlace("pp06"); 
-                                    props.setPlaceValue("베란다/야외"); 
+                                    props.setPlaceValue("베란다,발코니"); 
                                     setState(false)}}>
                 <Text bold size="base" color="#393939">베란다/야외</Text>
                 </Button>
                 <Button type="drawerBtn" padding="12px 20px" textAlign="left"
                     _onClick={() => {props.setPlace("pp02"); 
-                                    props.setPlaceValue("방 안");    
+                                    props.setPlaceValue("방안");    
                                     setState(false)}}>
                 <Text bold size="base" color="#393939">방 안</Text>
                 </Button>
