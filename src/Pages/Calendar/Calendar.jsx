@@ -3,7 +3,7 @@ import { CalendarMyPlant, CalendarTable, CalendarTodo, SideButton } from "../../
 import { Button, Container, Grid, Text } from "../../Elements";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { actionCreators as calendarActions } from "../../Redux/Modules/Calendar";
+import { calendarActions } from "../../Redux/Modules/Calendar";
 import styled from "styled-components";
 
 const CalendarPage = () => {

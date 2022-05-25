@@ -27,9 +27,21 @@ const colors = {
     like: "#FA4D56",
 };
 
+const deviceSizes = {
+    desktop: "1440px",
+    laptop: "1439px",
+    tablet: "1023px",
+};
+
+const device = {
+    desktop: `screen and (min-width: ${deviceSizes.desktop})`,
+    laptop: `screen and (max-width: ${deviceSizes.laptop})`,
+    tablet: `screen and (max-width: ${deviceSizes.tablet})`,
+};
 
 const theme = {
     colors,
+    device,
 };
 
 export default theme;

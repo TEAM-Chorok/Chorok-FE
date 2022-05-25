@@ -22,10 +22,15 @@ import {
 import EditPost from '../Pages/Community/EditPost';
 import theme from './theme';
 import { ReactComponent as Frame } from '../Assets/img/phoneframe.svg';
+import { useLocation } from 'react-router-dom';
 
 
 
 function App() {
+
+  const lo = useLocation().pathname.split('/')[1];
+
+  console.log("위치이이이이이", lo)
 
   return (
     <React.Fragment>
@@ -82,7 +87,9 @@ function App() {
             <Route path="/setting/profile" exact component={ProfileSetting} />
             <Route path="/setting/changepwd" exact component={ChangePwd} />
             <Route path="/setting/deactivation" exact component={DeactivateAccount} />
-            <Navbar />
+            
+            { lo === "" || lo === "labeling" || lo === "add" ? null : <Navbar /> }
+            
           </MobileFrame>
         </Wrap>
       </ThemeProvider>
@@ -94,9 +101,15 @@ function App() {
 const Wrap = styled.div`
   width: 100vw;
   height: 100vh;
-  background-image: url('/img/Desktop.svg');
+  background-image: url('/img/background/desktop.svg');
   background-repeat: no-repeat;
   background-size: cover;
+  @media ${({ theme }) => theme.device.labtop} {
+  background-image: url('/img/background/labtop.svg');
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+  background-image: url('/img/background/tablet.svg');
+  }
 
   .MobileFramePage {
     z-index: 999;

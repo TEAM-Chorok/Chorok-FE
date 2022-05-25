@@ -12,7 +12,7 @@ const FilterLevel = (props) => {
   return (
     <React.Fragment>
       <LevelWrapper>
-        <Grid is_flex align="center" margin="auto" width="312px">
+        <Grid is_flex align="center" padding="0 24px" margin="auto" width="100%">
           <Grid width="100%">
 
             <Grid width="100%" margin="0 0 4px 0">
@@ -59,7 +59,7 @@ const FilterLevel = (props) => {
 const FilterSpace = (props) => {
   return (
     <React.Fragment>
-      <Grid margin="auto" width="312px">
+      <Grid margin="auto" width="100%" padding="0 24px">
         <SpaceWrapper>
           <Grid width="100%" padding="0 2px 2px 0">
             <Button checked={props.code === "pp04" ? true : false} type="filterlong" _onClick={() => { props.setSpace("pp04"); props.setSpaceText("거실"); }}>
@@ -103,7 +103,7 @@ const FilterType = (props) => {
   return (
     <React.Fragment>
       <TypeWrapper>
-        <Grid margin="auto" width="312px">
+        <Grid margin="auto" width="100%" padding="0 24px">
           <Grid width="100%" margin="0 0 4px 0">
             <Button checked={props.code === "pt01" ? true : false} type="filterlong" _onClick={() => { props.setType("pt01"); props.setTypeText("관엽식물") }}>
               <Grid is_flex width="100%">
@@ -159,7 +159,7 @@ const FilterType = (props) => {
 const FilterStyle = (props) => {
   return (
     <React.Fragment>
-      <Grid width="312px" margin="auto">
+      <Grid width="100%" padding="0 24px">
         <StyleWrapper>
           
           <Grid width="100%" padding="0 2px 2px 0">
@@ -236,7 +236,7 @@ const SpaceWrapper = styled.div`
     
     margin: auto;
     
-    width: 312px;
+    width: 100%;
     
     align-items: center;
 `

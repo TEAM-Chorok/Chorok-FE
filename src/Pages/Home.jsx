@@ -24,7 +24,7 @@ const Home = () => {
           <Box>
             <HomeHeader />
           </Box>
-          <Grid padding="109px 16px 0 16px" width="100%" bg="#fff">
+          <Grid padding="102px 16px 0 16px" width="100%" bg="#fff">
             <Tabbar tab1="할 일" tab2="내 식물" setCompNum={setCompNum} compNum={compNum} />
           </Grid>
           <Grid width="100%" bg="#fff">

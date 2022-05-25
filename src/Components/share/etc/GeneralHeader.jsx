@@ -5,7 +5,7 @@ import { Text } from '../../../Elements';
 import { ReactComponent as GoBackIcon } from "../../../Assets/img/Icons/goBackIcon.svg"
 
 const GeneralHeader = (props) => {
-  const {_onClick} = props;
+  const { _onClick } = props;
   const history = useHistory();
 
   const goBack = () => {
@@ -32,7 +32,7 @@ const Header = styled.div`
   justify-content:center;
 
   width: 100%;
-  height: 40px;
+  height: 44px;
 
   background: #fff;
   // border-bottom: 1px solid #E0E0E0;

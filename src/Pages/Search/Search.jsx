@@ -17,9 +17,9 @@ const Search = () => {
   // 보여줄 컴포넌트 넘버
   const [compNum, setCompNum] = React.useState(0);
   const [value, setValue] = React.useState("");
-
+  
   const [open, setOpen] = React.useState(false);
-
+  
   // 탭 선택, 검색에 따라 보여줄 컴포넌트 목록
   const comp = {
     0: <Planterior />,
@@ -27,7 +27,7 @@ const Search = () => {
     2: <SearchOnFocus />,
     3: <Result value={value} />,
   };
-
+  
   const search = (e) => {
     const text = e.target.value;
     if (text) {
@@ -40,7 +40,6 @@ const Search = () => {
       console.log("검색어가없당");
       return;
     } else {
-      console.log("검색", text);
       setValue(text);
       dispatch(searchActions.keywordSearchingDB(text));
       dispatch(searchActions.keywordSearchingPhotoDB(text));

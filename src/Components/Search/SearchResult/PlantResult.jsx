@@ -12,12 +12,11 @@ const PlantResult = (props) => {
   const history = useHistory();
   const plantList = useSelector((state) => state.search?.resultPlant.content);
   const count = useSelector((state) => state.search?.result?.plantDictionaryCount);
+
   // 무한스크롤 관련 state
   const [page, setPage] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [value, setValue] = React.useState(props.value);
 
-  console.log("뭐라고쳤냐면", props.value)
   // 무한스크롤 실행 함수
   const callback = async ([entry], observer) => {
     if (entry.isIntersecting && !isLoading) {
@@ -33,9 +32,8 @@ const PlantResult = (props) => {
   };
 
   React.useEffect(() => {
-    dispatch(searchActions.keywordSearchingPlantDB(value, page));
+    dispatch(searchActions.keywordSearchingPlantDB(props.value, page));
   }, [page])
-
 
   return (
     <React.Fragment>
@@ -59,7 +57,6 @@ const PlantResult = (props) => {
         </InfiniteScroll>
         </Grid>
       </Grid>
-
     </React.Fragment>
   )
 }

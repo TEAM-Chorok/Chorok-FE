@@ -3,10 +3,9 @@ import './Calendar.css';
 import styled from "styled-components";
 import { Container, Grid, Image, Text } from "../../Elements";
 
-import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox } from "react-icons/md";
 import CalendarTodoBlock from "./CalendarTodoBlock";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as calendarActions } from "../../Redux/Modules/Calendar";
+import { calendarActions } from "../../Redux/Modules/Calendar";
 import moment from "moment";
 
 

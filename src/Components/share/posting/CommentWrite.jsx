@@ -84,7 +84,6 @@ const CommentBox = styled.div`
   width: 100%;
 
   background: ${(props) => props.edit? "#fff" : "#F7F8FA" };
-
 `
 const ButtonBox = styled.div`
   position: absolute;

@@ -34,8 +34,8 @@
   align-items: flex-start;
   justify-content: center;
   vertical-align: middle;
-  top: 2px;
-  transform: scale(1.13, 4);
+  top: 0;
+  transform: scale(1.13, 10);
   width: 360px;
   height: 100%;
   margin: 0 auto;
@@ -71,13 +71,16 @@
 @media screen and (min-width: 900px) {
   .WebFullFrame {
     top: 50%;
+    left: 40%;
     transform: translate(-15%, -50%);
   }
 }
 
-@media screen and (min-width: 1120px) {
+
+@media screen and (min-width: 1024px) {
   .WebFullFrame {
     top: 50%;
+    left: 55%;
     transform: translate(-5%, -50%);
   }
 
@@ -86,6 +89,7 @@
 @media screen and (min-width: 1700px) {
   .WebFullFrame {
     top: 50%;
+    left: 55%;
     transform: translate(30%, -50%);
   }
 
@@ -94,6 +98,7 @@
 @media screen and (min-width: 2000px) {
   .WebFullFrame {
     top: 50%;
+    left: 55%;
     transform: translate(50%, -50%);
   }
 

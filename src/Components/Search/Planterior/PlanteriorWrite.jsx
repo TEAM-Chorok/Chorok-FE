@@ -143,7 +143,7 @@ const PlanteriorWriteComp = () => {
 
 
   React.useEffect(() => {
-    if (!planteriordata?.postContent) {
+    if (!planteriordata?.postContent && location === 'edit') {
       // 글 내용을 찾지 못한 경우
       setMessage(5);
       setOpen(true);
@@ -209,7 +209,7 @@ const PlanteriorWriteComp = () => {
 
         </FileWrapper>
       </Wrapper>
-        <Alert2 open={open} setOpen={setOpen} btn1={message === 5 ? "확인" : "계속 작성하기"} url={message === 5 ? '/search' : null}>
+        <Alert2 open={open} setOpen={setOpen} btn1={message === 5 ? "확인" : "계속 작성하기"} error={message === 5 ? '/search' : null}>
         <Text bold wordbreak size="small">
           {alertMessage[message]}
         </Text>

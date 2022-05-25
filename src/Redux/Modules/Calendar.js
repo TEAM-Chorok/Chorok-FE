@@ -1,8 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { calendarAPI } from "../../Shared/api";
-
-
+import { actionCreators as mainActions } from "./Main";
 
 // 액션 
 const GET_CHECKED = "GET_CHECKED";
@@ -103,20 +102,22 @@ const checkCalendarDB = (date, plantNo, workType, year, month) => {
       .checkCalendar(plantNo, date, workType)
       .then((response) => {
         console.log("checkCalendarDB : response", response.data);
+        dispatch(mainActions.getTodoListDB());
         dispatch(getCheckedDB(year, month, plantNo));
       }).catch((error) => {
         console.log("checkCalendarDB : response", error.response);
       })
+    }
   }
-}
-
+  
 const unCheckCalendarDB = (date, plantNo, workType, year, month) => {
   console.log(`/calendar/${date}/${plantNo}/${workType}`);
   return function (dispatch, getState, { history }) {
     calendarAPI
-      .unCheckCalendar(plantNo, date, workType)
-      .then((response) => {
-        console.log("checkCalendarDB : response", response.data);
+    .unCheckCalendar(plantNo, date, workType)
+    .then((response) => {
+      console.log("checkCalendarDB : response", response.data);
+        dispatch(mainActions.getTodoListDB());
         dispatch(getCheckedDB(year, month, plantNo));
       }).catch((error) => {
         console.log("checkCalendarDB : response", error.response);
@@ -138,7 +139,7 @@ export default handleActions(
 
 
 
-const actionCreators = {
+const calendarActions = {
   getCheckedDB,
   postBloomingDB,
   deleteBloomingDB,
@@ -146,4 +147,4 @@ const actionCreators = {
   unCheckCalendarDB,
 }
 
-export { actionCreators };
+export { calendarActions };

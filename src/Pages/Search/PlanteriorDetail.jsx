@@ -21,13 +21,20 @@ const PlanteriorDetail = () => {
 
   const [message, setMessage] = React.useState();
   const [open, setOpen] = React.useState(false);
+  const [deleteOpen, setDeleteOpen] = React.useState(false);
+
+  const deletePlanterior = () => {
+    dispatch(searchActions.deletePlanteriorPostDB(postId));
+  }
 
   return (
     <React.Fragment>
       <HeaderBox>
-        <GeneralHeader title="식물 공간"/>
+        <GeneralHeader title="식물 공간" />
         {writer === user ?
-          <MoreContentSheet planterior url={`/planterior/edit/${postId}`} postId={postId}/> :
+        <IconBox>
+          <MoreContentSheet planterior url={`/planterior/edit/${postId}`} postId={postId} setOpen={setDeleteOpen}/> 
+        </IconBox> :
           <></>}
       </HeaderBox>
       <PlanteriorDetailContents />
@@ -51,9 +58,23 @@ const PlanteriorDetail = () => {
         <CommentWrite setMessage={setMessage} setOpen={setOpen} open={open} />
       </FixWrapper>
       <Grid height="132px" bg="#F7F8FA" />
-      <Alert2 btn1="확인" open={open} setOpen={setOpen}>
-        <Text size="small">{message}</Text>
-      </Alert2>
+
+      {open &&
+        <Alert2 btn1="확인" open={open} setOpen={setOpen}>
+          <Text size="small">{message}</Text>
+        </Alert2>
+      }
+
+      {deleteOpen &&
+        <AlertBox>
+          <Alert2 open={deleteOpen} setOpen={setDeleteOpen} btn1={"확인"} func={deletePlanterior}>
+            <Text bold wordbreak size="small">
+              게시글을 삭제할까요?
+            </Text>
+          </Alert2>
+        </AlertBox>
+      }
+
     </React.Fragment>
   )
 }
@@ -64,6 +85,14 @@ const HeaderBox = styled.div`
   border-bottom: 1px solid #E0E0E0;
 `
 
+const IconBox = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+`
 const FixWrapper = styled.div`
   box-sizing: border-box;
   position: fixed;
@@ -71,6 +100,13 @@ const FixWrapper = styled.div`
   width: 100%;
   border-top: 1px solid #E0E0E0;
   background: #F7F8FA;
+`
+
+const AlertBox = styled.div`
+  position: absolute;
+  top: 0;
+  padding-top: 40vh;
+  width: 100%;
 `
 
 

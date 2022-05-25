@@ -38,7 +38,7 @@ const InfiniteScroll = (props) => {
         <Text bold size="base">로딩중</Text>
       </Grid>
       : null}
-    {totalPage > page ? <Box ref={setTarget}> </Box> : null}
+    {totalPage-1 > page ? <Box ref={setTarget}> </Box> : null}
   </React.Fragment>
   );
 

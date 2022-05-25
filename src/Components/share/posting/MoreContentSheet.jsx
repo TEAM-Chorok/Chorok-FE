@@ -13,7 +13,6 @@ import { ReactComponent as DeleteIcon } from '../../../Assets/img/postingIcon/tr
 import { ReactComponent as CancelIcon } from '../../../Assets/img/postingIcon/cancel_m.svg'
 
 
-
 // props
 // url : 수정할 경우 이동할 url 지정
 // postId : 삭제할 postId
@@ -26,6 +25,7 @@ export default function MoreContentSheet(props) {
 
   const history = useHistory();
   const dispatch = useDispatch();
+
   const postId = useParams().postId;
 
   // 바텀시트 open/close 관련 state
@@ -40,15 +40,15 @@ export default function MoreContentSheet(props) {
   };
 
   const deletePlanterior = () => {
-    if(commentedit) {
+    if (commentedit) {
       dispatch(searchActions.deletePlanteriorCommentDB(commentId, postId));
       return;
     }
     dispatch(searchActions.deletePlanteriorPostDB(props.postId));
   }
-  
+
   const deletePost = () => {
-    if(commentedit) {
+    if (commentedit) {
       dispatch(searchActions.deletePlanteriorCommentDB(commentId, postId));
       return;
     }
@@ -56,7 +56,7 @@ export default function MoreContentSheet(props) {
   }
 
   const edit = () => {
-    if(commentedit) {
+    if (commentedit) {
       props.setEdit(true);
       return;
     }
@@ -88,6 +88,7 @@ export default function MoreContentSheet(props) {
       >
         <Grid width="100%">
           <MenuBox onClick={() => {
+            setState({ bottom: false })
             edit()
           }}>
             <PencilIcon />
@@ -95,7 +96,10 @@ export default function MoreContentSheet(props) {
           </MenuBox>
 
           {planterior ?
-            <MenuBox onClick={() => { deletePlanterior(); }}>
+            <MenuBox onClick={() => {
+              setState({ bottom: false })
+              props.setOpen(true);
+            }}>
               <DeleteIcon />
               <Text margin="0 16px">삭제하기</Text>
             </MenuBox> :
@@ -105,13 +109,14 @@ export default function MoreContentSheet(props) {
             </MenuBox>}
 
           <MenuBox>
-            <CancelIcon onClick={toggleDrawer('bottom', false)}/>
+            <CancelIcon onClick={toggleDrawer('bottom', false)} />
             <Text margin="0 16px">취소</Text>
           </MenuBox>
-          
+
         </Grid>
 
       </SwipeableDrawer>
+
     </React.Fragment>
   );
 
@@ -121,8 +126,8 @@ export default function MoreContentSheet(props) {
 
 const IconBox = styled.div`
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 0;
+  right: 0;
   width: 20px;
   height: 20px;
   text-align: center;

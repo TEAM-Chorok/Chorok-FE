@@ -3,7 +3,7 @@ import './Calendar.css';
 import styled from "styled-components";
 import { Grid } from "../../Elements";
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox } from "react-icons/md";
-import { actionCreators as calendarActions } from "../../Redux/Modules/Calendar";
+import { calendarActions } from "../../Redux/Modules/Calendar";
 import moment from 'moment';
 import { useDispatch } from "react-redux";
 

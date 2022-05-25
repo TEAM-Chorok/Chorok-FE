@@ -33,7 +33,9 @@ const PhotoDetailContents = () => {
     <React.Fragment>
       <Grid width="100%" margin="12px 0">
         <Grid width="100%" padding="0 16px">
-
+          <Grid margin="2px">
+            <Text bold size="xsmall" color="#24A148">{postData?.plantPlace}</Text>
+          </Grid>
           <Grid is_flex align="center">
             <Image type="circle" size="32px" imgUrl={postData?.profileImgUrl ? postData.profileImgUrl : "/img/noProfileImgSmall.svg"} />
             <Grid margin="0 8px 4px 8px">

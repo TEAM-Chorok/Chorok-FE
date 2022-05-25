@@ -121,7 +121,7 @@
     font-family: 'SUIT-Regular';
     text-align: center;
     text-transform: uppercase;
-    font-weight: bold;
+    /* font-weight: bold; */
     font-size: 0.75em;
     color: #A8A8A8;
 }
@@ -129,6 +129,12 @@
 .react-calendar__month-view__weekdays__weekday {
     font-family: 'SUIT-Regular';
     padding: 0.5em;
+    color: #A8A8A8;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+    font-family: 'SUIT-Regular';
+    color: #A8A8A8;
 }
 
 .react-calendar__month-view__weekNumbers .react-calendar__tile {

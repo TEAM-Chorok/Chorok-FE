@@ -39,7 +39,7 @@ const PlantSearchHeader = (props) => {
 PlantSearchHeader.defaultProps = {
   title: "title",
   size: "base",
-  placeholder: "거실? 몬스테라?"
+  placeholder: ""
 }
 
 

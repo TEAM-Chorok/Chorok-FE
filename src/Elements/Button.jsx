@@ -150,7 +150,6 @@ const BasicButton = styled.button`
   background-color: ${(props) => props.backgroundColor};
   box-sizing: border-box;
 
-  //폰트
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "700" : "400")};
   color: ${(props) => props.color};
@@ -162,10 +161,16 @@ const BasicButton = styled.button`
 
 // 사이드 버튼
 const PlusButton = styled.button`
+  box-sizing: border-box;
+
   margin: 0;
   width: 60px;
   height: 60px;
   
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   position: fixed;
   bottom: 82px;
   right: 28px;
@@ -262,10 +267,10 @@ const FilterSizingButton = styled.button`
 // 기본 녹색 버튼 
 const BasicGreenButton = styled.button`
   width: ${(props) => props.width};
-  height: 44px;
+  height: 48px;
   
   border: none;
-  border-radius: 16px;
+  border-radius: 48px;
   background: ${(props) => props.color};
   
 `

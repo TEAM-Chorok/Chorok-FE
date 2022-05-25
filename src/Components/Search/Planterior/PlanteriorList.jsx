@@ -61,8 +61,8 @@ const PlanteriorList = () => {
       <PlaceFilter setPlace={setPlace} setPage={setPage} />
       <Grid width="100%">
         {planteriorList ?
-          <InfiniteScroll 
-            page={page} 
+          <InfiniteScroll
+            page={page}
             callback={callback}
             isLoading={isLoading}>
             <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
@@ -130,12 +130,15 @@ const ContentWrapper = styled.div`
   box-sizing: border-box;
   margin: auto;
   width: 100%;
-  padding: 8px;
   height: fit-content;
 `
 const TextBox = styled.div`  
+  font-family: 'SUIT-Regular';
+
   max-height: 40px;
   
+  word-break: break-word;
+
   font-size: 13px;
   line-height: 20px;
   color: #525252;

@@ -7,9 +7,6 @@ import { actionCreators as mainActions } from "../../Redux/Modules/Main";
 
 
 // 투두페이지 헤더부분 (날씨)
-// 진행할 작업
-// 날씨에 따른 헤더 배경 컬러 변화 
-// 서버 통신 데이터 뿌려주기
 
 const HomeHeader = () => {
   const dispatch = useDispatch();
@@ -26,7 +23,7 @@ const HomeHeader = () => {
   // 현재 날짜
   const day = moment().day()
   const week = ["일", "월", "화", "수", "목", "금", "토"]
-  const date = moment().format("YYYY" + "년 " + "MM" + "월 " + "DD" + "일 " + "(" + `${week[day]}` + ")");
+  const date = moment().format(`YYYY년 MM월 DD일 (${week[day]})`);
 
 
   // 현재 위치 위도 및 경도 가져오기
@@ -86,7 +83,7 @@ const HomeHeader = () => {
       setColor('linear-gradient(180deg, #ced5e6 60%, rgba(242, 244, 248, 0) 88%)');
       return;
     }
-  }, [])
+  }, [weather])
 
   console.log(cityname, weatherData);
   console.log(status);

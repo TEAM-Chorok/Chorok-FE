@@ -127,6 +127,7 @@ const Square = styled.div`
 
     background-image: url("${(props) => props.imgUrl}");
     background-size: cover;
+    background-position: center;
 `
 
 const Planterior = styled.div`

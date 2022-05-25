@@ -18,9 +18,12 @@ const TodoContent = () => {
   React.useEffect(() => {
     dispatch(mainActions.getSentenceDB());
     dispatch(mainActions.getMyPlantDB());
+  }, [])
+  
+  React.useEffect(() => {
     dispatch(mainActions.getTodoListDB());
   }, [])
-
+  
   return (
     <React.Fragment>
       <Grid width="100%" bg="#fff">

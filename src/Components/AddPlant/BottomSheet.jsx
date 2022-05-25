@@ -89,6 +89,7 @@ export default function BottomSheet() {
   };
 
 
+
   return (
     <React.Fragment key={'bottom'}>
       <FilterBox>
@@ -131,7 +132,10 @@ export default function BottomSheet() {
       <SwipeableDrawer
         anchor={'bottom'}
         open={state['bottom']}
-        onClose={toggleDrawer('bottom', false)}
+        onClose={() => {
+          filterSubmit();
+          setState({bottom:false});
+        }}
         onOpen={toggleDrawer('bottom', true)}
         disableSwipeToOpen={false}
         PaperProps={{
@@ -146,7 +150,7 @@ export default function BottomSheet() {
       >
 
 
-        <Grid width="100%" height="300px">
+        <Grid width="100%" height="280px">
           <Grid is_flex margin="32px 24px">
 
             <RelativeBox>
@@ -178,23 +182,28 @@ export default function BottomSheet() {
             </RelativeBox>
 
             <ButtonBox>
-              <CloseIcon onClick={() => { 
-                setState({...state, bottom:false}); }}/>
+              <CloseIcon 
+                stroke="#A8A8A8"
+                onClick={() => { 
+                setState({...state, bottom:false});
+                filterSubmit();}}/>
             </ButtonBox>
 
           </Grid>
           {comp[compNum]}
         </Grid>
-        <Grid is_flex margin="32px auto" align="center">
+        <Grid width="100%" padding="0 24px">
+        <Grid is_flex margin="24px auto" width="100%" align="center">
           <Grid margin="0 16px 0 0" _onClick={clear}>
             <FiRotateCw size="20px" color="#8D8D8D" />
           </Grid>
-          <Button type="basic" width="200px" height="40px"
+          <Button type="basic" width="100%"
             _onClick={() => {
               filterSubmit();
             }}>
-            <Text size="basic" color="#fff">적용하기</Text>
+            <Text size="base" color="#fff">적용하기</Text>
           </Button>
+        </Grid>
         </Grid>
       </SwipeableDrawer>
     </React.Fragment>
@@ -212,7 +221,7 @@ const FilterBox = styled.div`
 const ButtonBox = styled.div`
   position: absolute;
   top: 34px;
-  right: 32px;
+  right: 24px;
 `
 const Dot = styled.div`
   position: absolute;

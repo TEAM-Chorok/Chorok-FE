@@ -5,9 +5,19 @@ import { Text, Button, Grid } from "../../../Elements";
 import Dimmer from "./Dimmer";
 
 
+
+
+// --- props ---
+// btn 1 : 첫번째 버튼
+// btn 2 : 두번째 버튼 (props 할당하지 않은 경우 btn1만 출력됨)
+// url : btn2 클릭시 이동할 url
+// func : 버튼 클릭시 실행할 함수
+// error : btn1 클릭시(문제 발생시 이동할 url
+
+
 const Alert2 = (props) => {
 
-  const { children, btn1, btn2, url } = props;
+  const { children, btn1, btn2, url, func, error } = props;
 
   const history = useHistory();
 
@@ -32,8 +42,10 @@ const Alert2 = (props) => {
               <Grid is_flex margin="24px auto 0 auto" align="center">
                 <Grid margin="0 16px">
                   <Button type="tran" _onClick={() => {
-                    if (url) {
-                      history.push(url);
+                    if (func) {
+                      func();
+                    } else if (error) {
+                      history.replace(error);
                     } else {
                       props.setOpen(false)
                     }
@@ -45,7 +57,7 @@ const Alert2 = (props) => {
                 </Grid>
                 {btn2 ?
                   <Grid margin="0 16px">
-                    <Button type="tran" _onClick={() => { history.replace(`${url}`); }}>
+                    <Button type="tran" _onClick={() => { history.replace(url); }}>
                       <Text size="small">
                         {btn2}
                       </Text>

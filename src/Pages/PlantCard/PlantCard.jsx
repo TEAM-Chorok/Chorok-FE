@@ -106,8 +106,8 @@ const HeaderBox = styled.div`
 
   .bookmark {
     position: absolute;
-    top: 10px;
-    right: 8px;
+    top: 12px;
+    right: 16px;
   }
 `
 
