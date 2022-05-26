@@ -150,8 +150,8 @@ export default function BottomSheet() {
       >
 
 
-        <Grid width="100%" height="280px">
-          <Grid is_flex margin="32px 24px">
+        <Grid width="100%" height="300px">
+          <Grid is_flex margin="24px 24px">
 
             <RelativeBox>
               <Button type="tran" _onClick={() => { setCompNum(0) }}>
@@ -220,7 +220,7 @@ const FilterBox = styled.div`
 
 const ButtonBox = styled.div`
   position: absolute;
-  top: 34px;
+  top: 27px;
   right: 24px;
 `
 const Dot = styled.div`

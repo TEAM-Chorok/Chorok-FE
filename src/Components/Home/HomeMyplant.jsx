@@ -32,15 +32,12 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}/>
+                    imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
                 )
               })}
             </GridBox>
-          </Grid>
-          :
-          <div></div>
-        }
-
+          </Grid> : null }
+        
         {myPlant?.pp05?.length ?
           <Grid margin="0 0 40px 0" width="100%">
             <Grid margin="0 12px">
@@ -52,14 +49,11 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
+                    imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
                 )
               })}
             </GridBox>
-          </Grid>
-          :
-          <div></div>
-        }
+          </Grid> : null }
 
         {myPlant?.pp02?.length ?
           <Grid margin="0 0 40px 0" width="100%">
@@ -72,14 +66,11 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}/>
+                    imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
                 )
               })}
             </GridBox>
-          </Grid>
-          :
-          <div></div>
-        }
+          </Grid> : null }
 
         {myPlant?.pp03?.length ?
           <Grid margin="0 0 40px 0" width="100%">
@@ -92,14 +83,11 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
+                    imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
                 )
               })}
             </GridBox>
-          </Grid>
-          :
-          <div></div>
-        }
+          </Grid> : null }
 
         {myPlant?.pp01?.length ?
           <Grid margin="0 0 40px 0" width="100%">
@@ -112,16 +100,13 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}/>
+                    imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
                 )
               })}
             </GridBox>
-          </Grid>
-          :
-          <div></div>
-        }
-
-        {myPlant?.pp06?.length ?
+          </Grid> : null }
+{/* 
+        {myPlant?.pp06?.length &&
           <Grid margin="0 0 40px 0" width="100%">
             <Grid margin="0 12px">
               <Text bold size="large">베란다/발코니</Text>
@@ -132,15 +117,12 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}/>
+                    imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
                 )
               })}
             </GridBox>
-          </Grid>
-          :
-          <div></div>
-        }
-        <Grid height="100px"/>
+          </Grid> } */}
+        <Grid height="100px" />
       </Grid>
     </React.Fragment>
   );

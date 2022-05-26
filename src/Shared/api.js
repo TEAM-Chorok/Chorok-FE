@@ -4,10 +4,11 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://15.165.160.67',//민성님 Url
+  // baseURL: 'http://15.165.160.67',//민성님 Url
   // baseURL: 'http://121.141.140.148:8085', // 주호님
   // baseURL: 'http://54.180.90.176:8080', // 은아님
   // baseURL: ' http://chorok.shop', // 은아님
+  baseURL: 'https://chorok.shop', // https
   
 }, { withCredentials: true } //CORS error 방지
 );

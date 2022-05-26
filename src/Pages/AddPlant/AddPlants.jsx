@@ -25,7 +25,9 @@ const AddPlants = () => {
             compNum={compNum}
             setMessage={setMessage}
             setCompNum={setCompNum} />,
-        2: <AddDone />,
+        2: <AddDone 
+            compNum={compNum}
+            setCompNum={setCompNum}/>,
     }
 
     return (

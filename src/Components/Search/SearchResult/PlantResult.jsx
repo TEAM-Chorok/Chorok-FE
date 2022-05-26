@@ -5,7 +5,7 @@ import { Grid, Text } from "../../../Elements";
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 import InfiniteScroll from "../../share/etc/InfiniteScroll";
 import PlantProfile from "../../share/etc/PlantProfile";
-
+import { ReactComponent as NotFound } from "../../../Assets/img/Icons/notfound.svg"
 
 const PlantResult = (props) => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const PlantResult = (props) => {
   // 무한스크롤 관련 state
   const [page, setPage] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(false);
-  
+
   // 무한스크롤 실행 함수
   const callback = async ([entry], observer) => {
     if (entry.isIntersecting && !isLoading) {
@@ -35,34 +35,45 @@ const PlantResult = (props) => {
 
   React.useEffect(() => {
     dispatch(searchActions.keywordSearchingPlantDB(value, page));
-  },[page, value])
+  }, [page, value])
 
 
   return (
     <React.Fragment>
       <Grid width="100%" padding="16px 0">
-        <Grid width="100%" margin="0 2px">
-          <Text bold size="small">전체</Text>
-          <Text bold margin="0 8px" size="small" color="#0AAF42">{count}</Text>
-        </Grid>
-        <Grid width="100%">
-        <InfiniteScroll 
-          page={page} 
-          totalPage={totalPage} 
-          callback={callback} 
-          isLoading={isLoading}>
-          {plantList?.map((plant) => {
-            return (
-              <PlantProfile list 
-                key={plant.plantNo}
-                plant={plant.plantName} 
-                imgUrl={plant.plantImgUrl}
-                _onClick={()=>{history.push(`plant/${plant.plantNo}`)}}
-              />
-            )
-          })}
-        </InfiniteScroll>
-        </Grid>
+        {plantList.length ?
+          <Grid width="100%">
+            <Grid width="100%" margin="0 2px">
+              <Text bold size="small">전체</Text>
+              <Text bold margin="0 8px" size="small" color="#0AAF42">{count}</Text>
+            </Grid>
+            <Grid width="100%">
+              <InfiniteScroll
+                page={page}
+                totalPage={totalPage}
+                callback={callback}
+                isLoading={isLoading}>
+                {plantList?.map((plant) => {
+                  return (
+                    <PlantProfile list
+                      key={plant.plantNo}
+                      plant={plant.plantName}
+                      imgUrl={plant.plantImgUrl}
+                      _onClick={() => { history.push(`plant/${plant.plantNo}`) }}
+                    />
+                  )
+                })}
+              </InfiniteScroll>
+            </Grid>
+          </Grid>
+          :
+          <Grid margin="148px auto">
+            <NotFound />
+            <Grid margin="auto">
+              <Text bold size="small">검색결과가 없습니다</Text>
+            </Grid>
+          </Grid>
+        }
       </Grid>
     </React.Fragment>
   )

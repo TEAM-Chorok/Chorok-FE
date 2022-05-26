@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { Grid, Image, Text } from "../../../Elements";
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 import InfiniteScroll from "../../share/etc/InfiniteScroll";
+import { ReactComponent as NotFound } from "../../../Assets/img/Icons/notfound.svg"
+
 
 
 const PlanteriorResult = (props) => {
@@ -45,32 +47,41 @@ const PlanteriorResult = (props) => {
   return (
     <React.Fragment>
       <Grid width="100%" margin="16px 0">
-        <InfiniteScroll
-          page={page}
-          totalPage={totalPage}
-          callback={callback}
-          isLoading={isLoading}>
-          <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
-            {result?.map((post, idx) => {
-              return (
-                <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId); }}>
-                  <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
-                  <Grid is_flex margin="4px 0">
-                    <Image type="circle" size="20px" />
-                    <Text bold size="xsmall" margin="1px 4px">{post.nickname}</Text>
-                  </Grid>
-                  <TextBox>
-                    <Text size="xsmall" color="#525252">
-                      {post.postContent.length < 27
-                        ? post.postContent
-                        : post.postContent.slice(0, 26) + '...'}
-                    </Text>
-                  </TextBox>
-                </ContentWrapper>
-              )
-            })}
-          </Masonry>
-        </InfiniteScroll>
+        {result.length ?
+          <InfiniteScroll
+            page={page}
+            totalPage={totalPage}
+            callback={callback}
+            isLoading={isLoading}>
+            <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
+              {result?.map((post, idx) => {
+                return (
+                  <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId); }}>
+                    <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
+                    <Grid is_flex margin="4px 0">
+                      <Image type="circle" size="20px" />
+                      <Text bold size="xsmall" margin="1px 4px">{post.nickname}</Text>
+                    </Grid>
+                    <TextBox>
+                      <Text size="xsmall" color="#525252">
+                        {post.postContent.length < 27
+                          ? post.postContent
+                          : post.postContent.slice(0, 26) + '...'}
+                      </Text>
+                    </TextBox>
+                  </ContentWrapper>
+                )
+              })}
+            </Masonry>
+          </InfiniteScroll>
+          :
+          <Grid margin="164px auto">
+            <NotFound />
+            <Grid margin="auto">
+              <Text bold size="small">검색결과가 없습니다</Text>
+            </Grid>
+          </Grid>
+        }
       </Grid>
     </React.Fragment>
   )

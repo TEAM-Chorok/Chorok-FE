@@ -116,6 +116,16 @@ const Button = (props) => {
         )
       }
 
+      if(type === "square"){
+        return (
+          <React.Fragment>
+            <SquareButton {...styles} onClick={_onClick}>
+                {children}
+            </SquareButton>
+          </React.Fragment>
+        )
+      }
+
     return (
         <React.Fragment>
             <BasicButton {...styles} onClick={_onClick} value={_value}>
@@ -297,5 +307,14 @@ const ToggleInnerButton = styled.button`
   background-color: transparent;
   text-align: ${(props) => props.textAlign};;
 `
+
+const SquareButton = styled.button`
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  background: ${(props) => props.color? props.color : "#0AAF42" };
+`
+
 
 export default Button;

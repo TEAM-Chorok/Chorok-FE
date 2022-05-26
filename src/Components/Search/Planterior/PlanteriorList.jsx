@@ -12,7 +12,7 @@ import InfiniteScroll from "../../share/etc/InfiniteScroll";
 // 사진 목록 컴포넌트
 
 const PlanteriorList = () => {
-  const is_session = sessionStorage.getItem('token') ? true : false;
+  const is_session = localStorage.getItem('token') ? true : false;
 
   const history = useHistory();
   const dispatch = useDispatch();

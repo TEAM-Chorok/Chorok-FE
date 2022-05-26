@@ -30,7 +30,7 @@ const TodoProfile = (props) => {
           <PlantProfile 
             checked={props.plantName? false : true } 
             name="전체" 
-            imgUrl="img/todoIcons/all.svg" 
+            imgUrl="/img/todoIcons/all.svg" 
             _onClick={() => {props.setPlantName(null)}}
             />
 
@@ -45,7 +45,7 @@ const TodoProfile = (props) => {
               />
           );
         })}
-          <PlantProfile imgUrl="img/todoIcons/plus.svg" _onClick={openAddPlant}/>
+          <PlantProfile imgUrl="/img/todoIcons/plus.svg" _onClick={openAddPlant}/>
         </Grid>
 
       </XdragScroll>

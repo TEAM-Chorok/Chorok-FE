@@ -9,7 +9,7 @@ import PlantProfile from "../../share/etc/PlantProfile";
 // 탐색 - planterior의 추천식물 목록 
 
 const RecommandPlant = () => {
-  const is_session = sessionStorage.getItem('token') ? true : false;
+  const is_session = localStorage.getItem('token') ? true : false;
 
   const dispatch = useDispatch();
   const history = useHistory();

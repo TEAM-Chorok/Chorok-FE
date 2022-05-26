@@ -78,6 +78,23 @@ const Input = (props) => {
     );
   }
   
+  if (type === "squarenp") {
+    return (
+      <React.Fragment>
+        <Grid margin="4px">
+          <Text bold size="small">{label}</Text>
+        </Grid>
+        <SquareInputNonePadding
+          {...styles}
+          ref={_ref}
+          placeholder={placeholder}
+          onChange={_onChange}
+          defaultValue={defaultValue}
+        />
+      </React.Fragment>
+    );
+  }
+  
   if (type === "search") {
     return (
       <React.Fragment>
@@ -269,6 +286,34 @@ const SquareInput = styled.input`
     letter-spacing: 0.25px;
   }
 `
+
+const SquareInputNonePadding = styled.input`
+  font-family: 'SUIT-Regular';
+  font-size: 16px;
+  letter-spacing: 0.25px;
+  color: #262626;
+
+  box-sizing: border-box;
+  padding: 0 16px;
+  
+  width: ${(props) => props.width};
+  height: 40px;
+  
+  border: 1px solid #C6C6C6;
+  border-radius: 6px;
+  background: #fff;
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &::placeholder {
+    color: #A8A8A8;
+    font-size: 16px;
+    letter-spacing: 0.25px;
+  }
+`
+
 
 const SearchInput = styled.input`
   font-family: 'SUIT-Regular';
