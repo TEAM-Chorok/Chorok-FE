@@ -87,7 +87,7 @@ const CalendarTable = (props) => {
 const CalendarBox = styled.div`
   .c1{
     .react-calendar{
-      font-family: 'SUIT-Regular';
+      font-family: 'SUIT';
     }
   }
 `

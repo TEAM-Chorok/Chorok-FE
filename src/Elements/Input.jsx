@@ -234,7 +234,7 @@ const Inputs = styled.input`
 `
 
 const BasicInput = styled.input`
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT';
   font-size: 14px;
   letter-spacing: 0.25px;
   color: #262626;
@@ -261,7 +261,7 @@ const BasicInput = styled.input`
 `
 
 const SquareInput = styled.input`
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT';
   font-size: 16px;
   letter-spacing: 0.25px;
   color: #262626;
@@ -288,7 +288,7 @@ const SquareInput = styled.input`
 `
 
 const SquareInputNonePadding = styled.input`
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT';
   font-size: 16px;
   letter-spacing: 0.25px;
   color: #262626;
@@ -316,7 +316,7 @@ const SquareInputNonePadding = styled.input`
 
 
 const SearchInput = styled.input`
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT';
   font-size: 14px;
   letter-spacing: 0.25px;
   color: #262626;
@@ -343,7 +343,7 @@ const SearchInput = styled.input`
 `
 
 const TextArea = styled.textarea`
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT';
   box-sizing: border-box;
   width: 100%;
   height: 48vh;
@@ -366,7 +366,7 @@ const TextArea = styled.textarea`
 `
 
 const CommentTextArea = styled.textarea`
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT';
   box-sizing: border-box;
   padding: 10px 44px 0 12px;
 
@@ -392,7 +392,7 @@ const CommentTextArea = styled.textarea`
   }
 `
 const PasswordInput = styled.input`
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT';
   box-sizing: border-box;
   font-size: 16px;
   letter-spacing: 0.25px;

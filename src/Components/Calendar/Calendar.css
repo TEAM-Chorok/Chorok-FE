@@ -3,7 +3,7 @@
 .react-calendar {
     width: 100%;
     height: fit-content;
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     line-height: 1.125em;
     background: #fff;
     border-top: 1px solid #E0E0E0;
@@ -13,17 +13,17 @@
 }
 
 .react-calendar--doubleView {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     width: 700px;
 }
 
 .react-calendar--doubleView .react-calendar__viewContainer {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     display: flex;
 }
 
 .react-calendar--doubleView .react-calendar__viewContainer>* {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     color: #262626;
 
     width: 50%;
@@ -33,7 +33,7 @@
 .react-calendar *,
 .react-calendar *:before,
 .react-calendar *:after {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -63,14 +63,14 @@
 }
 
 .react-calendar__navigation__label__labelText {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     font-size: 18px;
     font-weight: 600;
 }
 
 
 .react-calendar button {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     box-sizing: border-box;
     min-height: 50px;
     border: 0;
@@ -85,7 +85,7 @@
 }
 
 .react-calendar__navigation {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
 
     display: flex;
 
@@ -96,7 +96,7 @@
 }
 
 .react-calendar__navigation button {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     font-weight: 600;
 
     font-size: 16px;
@@ -108,17 +108,17 @@
 }
 
 .react-calendar__navigation button:disabled {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     color: #262626;
 }
 
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
 }
 
 .react-calendar__month-view__weekdays {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     text-align: center;
     text-transform: uppercase;
     /* font-weight: bold; */
@@ -127,18 +127,18 @@
 }
 
 .react-calendar__month-view__weekdays__weekday {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     padding: 0.5em;
     color: #A8A8A8;
 }
 
 .react-calendar__month-view__weekdays__weekday abbr {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     color: #A8A8A8;
 }
 
 .react-calendar__month-view__weekNumbers .react-calendar__tile {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,21 +153,21 @@
 
 
 .react-calendar__month-view__days__day--weekend {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     font-weight: 600;
     color: #A8A8A8;
     
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     color: #757575;
 }
 
 .react-calendar__year-view .react-calendar__tile,
 .react-calendar__decade-view .react-calendar__tile,
 .react-calendar__century-view .react-calendar__tile {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     padding: 2em 0.5em;
     background: #F7F8FA;
 }
@@ -176,7 +176,7 @@
 
 /* 타일(일) */
 .react-calendar__tile {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     width: 100%;
     height: 64px;
     text-align: center;
@@ -197,7 +197,7 @@
 }
 
 .react-calendar__tile:disabled {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     color: #262626;
 }
 
@@ -207,14 +207,14 @@
 
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     font-weight: 700;
     /* border-top: 2px solid #A8A8A8; */
 }
 
 
 .react-calendar__tile--now abbr {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     font-weight: 700;
     background: #15AE21;
     padding: 0 4px;
@@ -226,29 +226,29 @@
 
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     
 }
 
 
 
 .react-calendar__tile--hasActive {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
 }
 
 .react-calendar__tile--hasActive:enabled:hover,
 .react-calendar__tile--hasActive:enabled:focus {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     
 }
 
 .react-calendar__tile--active {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     font-weight: 600;
 }
 
 /* .react-calendar__tile--active abbr {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     font-weight: 600;
     background: #A8A8A8;
     padding: 0 4px;
@@ -262,11 +262,11 @@
 
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
 }
 
 .react-calendar--selectRange .react-calendar__tile--hover {
-    font-family: 'SUIT-Regular';
+    font-family: 'SUIT';
     background-color: #e6e6e6;
 }
 

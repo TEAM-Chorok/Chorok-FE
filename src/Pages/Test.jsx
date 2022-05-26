@@ -6,32 +6,59 @@ const Test = () => {
 
     return (
         <React.Fragment>
-            <Container>                
-            <Grid margin="auto">
-                <Text bold size="h5">test page</Text>
-                <Text bold size="base"> - 사용 폰트 suit</Text>
-                <Grid height="100px"/>
-                <Text size="h5" color={({theme}) => theme.colors.primary}>23px H5 헤더5 700 </Text><br/>
-                <Text bold size="h5" color={({theme}) => theme.colors.like}>23px 헤더5는 기본적으로 Bold</Text><br/>
-                <br/>
-                <Text size="h6">20px H6 헤더6 400 </Text><br/>
-                <Text bold size="h6">20px H6 BOLD 굵은 헤더6 700</Text><br/>
-                <br/>
-                <Text size="large">18px LARGE 라지 400 </Text><br/>
-                <Text bold size="large">18px LARGE BOLD 굵은 라지 700</Text><br/>
-                <br/>
-                <Text size="base">16px BASE 베이스 400 자간 0.15px</Text><br/>
-                <Text bold size="base">16px BASE BOLD 굵은 베이스 700</Text><br/>
-                <br/>
-                <Text size="small">14px SMALL 스몰 400 자간 0.25px</Text><br/>
-                <Text bold size="small">14px SMALL BOLD 굵은 스몰 700</Text><br/>
-                <br/>
-                <Text size="xsmall">13px XSMALL 엑스스몰 400 자간 0.25px</Text><br/>
-                <Text bold size="xsmall">13px XSMALL BOLD 굵은 엑스스몰 600</Text><br/>
-                <br/>
-                <Text size="xxsmall">11px XXSMALL 엑스엑스스몰 400 자간 0.4px</Text><br/>
-                <Text bold size="xxsmall">11px XXSMALL BOLD 굵은 엑스스몰 600</Text><br/>
-            </Grid>
+            <Container>
+                <Grid margin="auto">
+                    <Text size="h5">test page</Text>
+                </Grid>
+                <Grid width="100%" margin="50px 0">
+                    <Text size="h5" weight="600">H5 size 23px</Text><br />
+                    <Text size="h5" weight="600" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Grid height="12px" />
+                    <Text size="h6" weight="700">H6 size 20px BOLD</Text><br />
+                    <Text size="h6" weight="700" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="h6" weight="600">H6 size 20px SEMIBOLD</Text><br />
+                    <Text size="h6" weight="600" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="h6" weight="400">H6 size 20px REGULAR</Text><br />
+                    <Text size="h6" weight="400" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Grid height="12px" />
+                    <Text size="large" weight="700">LARGE size 18px BOLD</Text><br />
+                    <Text size="large" weight="700" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="large" weight="600">LARGE size 18px SEMIBOLD</Text><br />
+                    <Text size="large" weight="600" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="large" weight="500">LARGE size 18px MEDIUM</Text><br />
+                    <Text size="large" weight="500" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="large" weight="400">LARGE size 18px REGULAR</Text><br />
+                    <Text size="large" weight="400" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Grid height="12px" />
+                    <Text weight="700">BASE size 16px BOLD</Text><br />
+                    <Text weight="700" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="base" weight="500">BASE size 18px MEDIUM</Text><br />
+                    <Text size="base" weight="500" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="base" weight="400">BASE size 18px REGULAR</Text><br />
+                    <Text size="base" weight="400" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Grid height="12px" />
+                    <Text size="small" weight="700">SMALL size 14px BOLD</Text><br />
+                    <Text size="small" weight="700" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="small" weight="500">SMALL size 14px MEDIUM</Text><br />
+                    <Text size="small" weight="500" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="small" weight="400">SMALL size 14px REGULAR</Text><br />
+                    <Text size="small" weight="400" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Grid height="12px" />
+                    <Text size="xsmall" weight="600">XSMALL size 13px BOLD</Text><br />
+                    <Text size="xsmall" weight="600" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="xsmall" weight="500">XSMALL size 13px MEDIUM</Text><br />
+                    <Text size="xsmall" weight="500" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="xsmall" weight="400">XSMALL size 13px REGULAR</Text><br />
+                    <Text size="xsmall" weight="400" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Grid height="12px" />
+                    <Text size="xxsmall" weight="600">XXSMALL size 11px BOLD</Text><br />
+                    <Text size="xxsmall" weight="600" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="xxsmall" weight="500">XXSMALL size 11px MEDIUM</Text><br />
+                    <Text size="xxsmall" weight="500" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Text size="xxsmall" weight="400">XXSMALL size 11px REGULAR</Text><br />
+                    <Text size="xxsmall" weight="400" color="#262626" >가나다라마바사아자차카타파하</Text><br />
+                    <Grid height="12px" />
+                </Grid>
             </Container>
         </React.Fragment>
     );

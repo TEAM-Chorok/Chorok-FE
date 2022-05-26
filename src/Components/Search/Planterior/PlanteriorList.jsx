@@ -168,7 +168,7 @@ const ContentWrapper = styled.div`
 `;
 
 const TextBox = styled.div`  
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT';
 
   max-height: 40px;
   

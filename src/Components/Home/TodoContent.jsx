@@ -28,8 +28,10 @@ const TodoContent = () => {
         <TitleBox>
           <Grid width="100%" margin="20px 0" >
             <SentenceBox>
+            
               <p className="sentence">
-                {sentence}
+              윤지님, 날이 너무 좋네요 ☀️ 
+오늘은 잎을 닦아볼까요?
               </p>
             </SentenceBox>
           </Grid>
