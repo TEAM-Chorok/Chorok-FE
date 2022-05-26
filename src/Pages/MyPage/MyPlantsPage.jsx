@@ -7,7 +7,7 @@ const MyPlantsPage = () => {
 
     return (
         <React.Fragment>
-            <Container>
+            <Container type="np">
                 <GeneralHeader title="내 식물"/>
             </Container>
             <Hr />

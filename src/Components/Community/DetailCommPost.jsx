@@ -63,7 +63,7 @@ const DetailCommPost = (props) => {
                         <Text size="large">{post?.postTitle}</Text>
                     </Grid>
                     <Grid is_flex align="center" margin="5px 0px 0px 0px">
-                        {post?.profileImgUrl==='' || post?.profileImgUrl === null?
+                        {post?.profileImgUrl==='null' || post?.profileImgUrl === null?
                             <Image type="circle" size="24px" imgUrl="/img/noProfileImgSmall.svg"/> :
                             <Image type="circle" size="24px" imgUrl={post?.profileImgUrl}/>
                         }
@@ -82,11 +82,11 @@ const DetailCommPost = (props) => {
                         {like? 
                             <FavoriteSelectedIcon 
                             onClick={()=> toggleLike()} /> : 
-                            <FavoriteIcon  fill="#393939"
+                            <FavoriteIcon  fill="#6F6F6F"
                             onClick={()=>toggleLike()} />
                         }
                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{post?.postLikeCount}</Text>
-                        <CommentIcon  fill="#656565"/>
+                        <CommentIcon  fill="#6F6F6F"/>
                         <Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
                     </Grid>
                     <Grid position="absolute" top="0px" right="0px" >

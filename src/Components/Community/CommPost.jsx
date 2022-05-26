@@ -46,14 +46,14 @@ const CommPost = (props) => {
         <React.Fragment>
             <Grid width="100%" padding="20px" margin="0px 0px 12px 0px">
                 <Grid width="100%" >
-                    <Grid><Text size="xs" color="#24A148">{post?.postType}</Text></Grid>
+                    <Grid><Text size="xsmall" color="#24A148">{post?.postType}</Text></Grid>
                 </Grid>
                 <Grid width="100%" _onClick={()=>history.push(`/community/${post.postId}`)}>
                     <Grid>
                         <Text size="large">{post?.postTitle}</Text>
                     </Grid>
                     <Grid is_flex align="center" margin="5px 0px 0px 0px">
-                        {post?.profileImgUrl==='' || post?.profileImgUrl === null?
+                        {post?.profileImgUrl==='null' || post?.profileImgUrl === null || post?.profileImgUrl === ""?
                             <Image type="circle" size="24px" imgUrl="img/noProfileImgSmall.svg"/> :
                             <Image type="circle" size="24px" imgUrl={post?.profileImgUrl}/>
                         }
@@ -73,11 +73,11 @@ const CommPost = (props) => {
                         {like? 
                             <FavoriteSelectedIcon
                                 onClick={()=>{toggleLike()}} /> : 
-                            <FavoriteIcon  fill="#393939"
+                            <FavoriteIcon  fill="#6F6F6F"
                                 onClick={()=>toggleLike()} />
                         }
                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{post?.postLikeCount}</Text>
-                        <CommentIcon fill="#656565"/>
+                        <CommentIcon fill="#6F6F6F"/>
                         <Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
                     </Grid>
                     <Grid position="absolute" top="0px" right="0px" >

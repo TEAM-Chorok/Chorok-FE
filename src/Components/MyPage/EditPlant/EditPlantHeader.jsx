@@ -12,7 +12,7 @@ const EditPlantHeader = (props) => {
     const [disable, setDisable] = React.useState(true);
 
     React.useEffect(() => {
-        if(props.preview !== "" || props.myPlantName !== "" || props.place !== props.previousPlace) {
+        if(props.plantImgUrl !== "" || props.myPlantName !== "" || props.place === props.previousPlantPlace) {
             setDisable(false);
         }else {
             setDisable(true);
@@ -28,7 +28,7 @@ const EditPlantHeader = (props) => {
                 {disable? 
                     <Button 
                         disabled={disable}
-                        style={{fontSize:"16px", position: "absolute", right: "20px", top:"12px"}}>완료</Button> : 
+                        style={{fontSize:"16px", position: "absolute", right: "0px", top:"12px"}}>완료</Button> : 
                     <Button
                         onClick={()=>{props.editMyPlant()}}
                         style={{color: "#24A148", fontSize:"16px", position: "absolute", right: "0px", top:"12px"}}>완료</Button>

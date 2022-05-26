@@ -15,7 +15,7 @@ const GeneralHeader = (props) => {
   return (
       <Header>
           <GoBackIcon 
-            style={{ position: 'absolute', left: '0px' }}
+            style={{ position: 'absolute', left: '16px' }}
             onClick={_onClick? _onClick : goBack}/>
           <Text line="2.5em" bold size={props.size}>{props.title}</Text>
       </Header>
@@ -23,7 +23,6 @@ const GeneralHeader = (props) => {
 }
 const Header = styled.div`
   box-sizing: border-box;
-
   position: relative;
   display: flex;
 

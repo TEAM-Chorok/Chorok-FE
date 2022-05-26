@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Permit, Text } from "../../Elements";
+import { Grid, Permit, Text, Image } from "../../Elements";
 import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,7 +23,7 @@ const MyPageHeader = (props) => {
             <Grid width="100%" margin="0px">
                 <GridWrapCol width="100%" padding="10px 10px" >
                     <Grid is_flex align="center" >
-                        <Image src={user.profileImgUrl? user.profileImgUrl : "img/NoProfileImgUser.svg"} />
+                        <Image type="circle" size="80px" imgUrl={user.profileImgUrl === "null" || user.profileImgUr===null ? "img/NoProfileImgUser.svg": user.profileImgUrl} />
                     </Grid>
                     <GridWrapRow>
                         <Grid><Text size="M">{user.nickname}</Text></Grid>
@@ -46,10 +46,10 @@ const GridWrapRow = styled.div`
     align-items: center;
     width: 100%;
 `
-const Image = styled.img`
-    width: 80px;
-    height: 80px;
-    // margin: 0px 10px;
-    border-radius:50px;
-`
+// const Image = styled.img`
+//     width: 80px;
+//     height: 80px;
+//     // margin: 0px 10px;
+//     border-radius:50px;
+// `
 export default MyPageHeader;
