@@ -12,7 +12,7 @@ import InfiniteScroll from "../../share/etc/InfiniteScroll";
 // 사진 목록 컴포넌트
 
 const PlanteriorList = () => {
-  const is_session = sessionStorage.getItem('token') ? true : false;
+  const is_login = localStorage.getItem('token') ? true : false;
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const PlanteriorList = () => {
 
   // 게시글 조회 (페이지 변경, 필터선택시마다 실행)
   React.useEffect(() => {
-    if (!is_session){
+    if (!is_login){
       setTimeout(() => {
         setDone(true);
       }, 2000);

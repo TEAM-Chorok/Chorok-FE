@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 const Community = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const isLogin = sessionStorage.getItem('token') ? true : false;
+    const isLogin = localStorage.getItem('token') ? true : false;
     
     const [page, setPage] = React.useState(0);
 

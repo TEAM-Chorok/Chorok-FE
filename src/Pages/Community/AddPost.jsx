@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import React from 'react';
 import styled from 'styled-components';
 import { Text, Grid, Image, Button, Container } from '../../Elements';
 import { AddPostHeader, AddPostFooter } from '../../Components';

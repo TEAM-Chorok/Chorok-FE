@@ -41,7 +41,7 @@ const PostDetail = () => {
         }
     }
 
-    const is_session = sessionStorage.getItem('token') ? true : false;
+    const is_local = localStorage.getItem('token') ? true : false;
 
     if (!post) {
         return (
@@ -57,7 +57,7 @@ const PostDetail = () => {
         <React.Fragment>
             <Container type="np">
                 <GeneralHeader title={post?.postType} size="base" />
-                {is_session && nickname === post?.nickname ?
+                {is_local && nickname === post?.nickname ?
                     <CommBottomSheet type="post" postId={post?.postId} /> :
                     null
                 }

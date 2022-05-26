@@ -7,12 +7,13 @@ import { ReactComponent as FavoriteIcon} from "../../Assets/img/likeBookmarkIcon
 import { ReactComponent as FavoriteSelectedIcon } from "../../Assets/img/likeBookmarkIcons/favorite_selected.svg";
 import { ReactComponent as BookmarkIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark.svg";
 import { ReactComponent as CommentIcon } from "../../Assets/img/likeBookmarkIcons/Comment.svg";
+import { useEffect } from "react";
 
 const CommPost = (props) => {   
     const dispatch = useDispatch();
     const history = useHistory();
     // const category = useSelector(state => state.post?.category);
-    const isLogin = sessionStorage.getItem('token');
+    const isLogin = localStorage.getItem('token');
     const post = props?.postList;
 
     const postLike = post?.postLike;
@@ -78,7 +79,7 @@ const CommPost = (props) => {
                         <CommentIcon fill="#6F6F6F"/>
                         <Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
                     </Grid>
-                    <Grid position="absolute" top="0px" right="0px" >
+                    <Grid position="absolute" top="4px" right="0px" >
                         {bookmark? 
                             <BookmarkIcon  
                             className='bookmark'

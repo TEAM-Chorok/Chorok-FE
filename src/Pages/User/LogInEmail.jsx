@@ -11,13 +11,13 @@ import { idCheck, pwdCheck } from '../../Shared/RegEx';
 import { ReactComponent as HideIcon } from '../../Assets/img/hidePassword.svg';
 import { ReactComponent as ShowIcon } from '../../Assets/img/showPassword.svg';
 
-//1. JWT토큰 const isLogin  = dispatch(isLogin(sessionStorage.getItem('token')))
+//1. JWT토큰 const isLogin  = dispatch(isLogin(localStorage.getItem('token')))
 
 const LogInEmail = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const isLogin = useSelector(state => state.user.isLogin);
-    const isToken = sessionStorage.getItem('token');
+    const isToken = localStorage.getItem('token');
 
     const [showPwd, setShowPwd] = React.useState(false);
     const [disable, setDisable] = React.useState(true);
