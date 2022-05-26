@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { Text, Grid, Image, Button } from '../../Elements';
+import { Text, Grid, Image, Button } from '../../../Elements';
 import { useHistory } from 'react-router-dom';
-import { actionCreators as MyActions } from '../../Redux/Modules/MyPage';
+import { actionCreators as MyActions } from '../../../Redux/Modules/MyPage';
 
 
 const MyPlants = () => {

@@ -55,20 +55,20 @@ import AddPostFooter from "./Community/AddPostFooter";
 import AddPlantDairy from "./Community/AddPlantDairy";
 
 // -------------------- My Page -------------------- //
-import MyPageHeader from "./MyPage/MyPageHeader";
-import MyCategoryBar from "./MyPage/MyCategoryBar";
+import MyPageHeader from "./MyPage/Setting/MyPageHeader";
+import MyCategoryBar from "./MyPage/Setting/MyCategoryBar";
 
 import MyPicturesPostList from "./MyPage/MyPictures/MyPicturesPostList";
 
-import ScrapPicturesPostList from "./MyPage/ScrapPicturesPostList";
-import ScrapPlantList from "./MyPage/ScrapPlantList";
-import MyPlants from "./MyPage/MyPlants";
+import ScrapPicturesPostList from "./MyPage/Setting/ScrapPicturesPostList";
+import ScrapPlantList from "./MyPage/Setting/ScrapPlantList";
+import MyPlants from "./MyPage/Setting/MyPlants";
 import MyPlantsList from "./MyPage/MyPlants/MyPlantsList";
 
 import EditPlantHeader from "./MyPage/EditPlant/EditPlantHeader";
 import EditPlantBody from "./MyPage/EditPlant/EditPlantBody";
 
-import MyPostsPostList from "./MyPage/MyPostsPostList";
+import MyPostsPostList from "./MyPage/Setting/MyPostsPostList";
 import ScrapPostsList from "./MyPage/Setting/ScrapPostsList";
 import DeactivationAgreement from "./MyPage/Setting/DeactivationAgreement";
 

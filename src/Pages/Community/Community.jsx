@@ -32,6 +32,8 @@ const Community = () => {
                         <CommunityFilter page={page} setPage={setPage} setCategory={setCategory} category={category} />
                     </Grid>
                     <CommPostList page={page} setPage={setPage} category={category} isLogin={isLogin} />
+                    <Grid height="70px" />
+
                     <Button type="plus" _onClick={() => openModal()} />
                     {open ?
                         <>

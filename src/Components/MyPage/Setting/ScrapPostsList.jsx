@@ -143,7 +143,7 @@ const ScrapPostsList = () => {
             </FloatBox>
             </RelativeBox>
             }
-            
+            <Grid height="70px" />
         </React.Fragment>
     )
 }
