@@ -14,6 +14,15 @@ import { userAPI } from '../../Shared/api';
 const SignUp = () => {
     const history = useHistory();
     const dispatch = useDispatch();
+
+    const isLogin = localStorage.getItem('token');
+  
+    React.useEffect(() => {
+      if(isLogin){
+        history.replace('/home');
+      }
+    }, []);
+
     const [loading, setLoading] = React.useState(false);
 
     const [nextPage, setNextPage] = React.useState(1);

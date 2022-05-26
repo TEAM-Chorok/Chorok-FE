@@ -17,7 +17,7 @@ import Dimmer from "./Dimmer";
 
 const Alert2 = (props) => {
 
-  const { children, btn1, btn2, url, func, error } = props;
+  const { type, children, btn1, btn2, url, func, error } = props;
 
   const history = useHistory();
 
@@ -29,6 +29,26 @@ const Alert2 = (props) => {
     }
   }, [props.open])
 
+  if(type==="editPlant"){
+    return (
+      <React.Fragment>
+        {props.open ?
+          <>
+            <Dimmer setOpenModal={props.setOpen} onClick={() => { props.setOpen(false); }} />
+            <Modal onClick={e => e.stopPropagation()}>
+              <InnerWrap2>
+                <Grid width="200px" margin="auto">
+                  {children}
+                </Grid>
+              </InnerWrap2>
+            </Modal>
+          </>
+          :
+          null
+        }
+      </React.Fragment>
+    )
+  }
   return (
     <React.Fragment>
       {props.open ?
@@ -95,4 +115,11 @@ border-radius: 20px;
 background-color: white;
 `
 
+const InnerWrap2 = styled.div`
+width: 240px;
+padding: 32px 0 16px 0;
+text-align: center;
+border-radius: 20px;
+background-color: white;
+`
 export default Alert2;

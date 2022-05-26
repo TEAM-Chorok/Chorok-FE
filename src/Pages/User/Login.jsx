@@ -9,7 +9,14 @@ import { GOOGLE_AUTH_URL } from '../../Shared/OAuthGoogle.js';
 
 const Login = () => {
   const history = useHistory();
-
+  const isLogin = localStorage.getItem('token');
+  
+  React.useEffect(() => {
+    if(isLogin){
+      history.replace('/home');
+    }
+  }, []);
+  
   return (
     <React.Fragment>
       <Container type="np">

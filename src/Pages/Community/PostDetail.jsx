@@ -23,6 +23,12 @@ const PostDetail = () => {
 
     const [message, setMessage] = React.useState();
     const [open, setOpen] = React.useState(false);
+    const [deleteOpen, setDeleteOpen] = React.useState(false);
+
+
+    const deleteOne = () => {
+        dispatch(postActions.deletePostDB(postId));      
+      }
 
     useEffect(() => {
         dispatch(postActions.getDetailPostDB(postId));
@@ -58,7 +64,7 @@ const PostDetail = () => {
             <Container type="np">
                 <GeneralHeader title={post?.postType} size="base" />
                 {is_local && nickname === post?.nickname ?
-                    <CommBottomSheet type="post" postId={post?.postId} /> :
+                    <CommBottomSheet type="post" postId={post?.postId} setDeleteOpen={setDeleteOpen} /> :
                     null
                 }
 
@@ -98,6 +104,15 @@ const PostDetail = () => {
                     </ButtonBox>
                 </CommentBox>
             </Wrapper>
+            {deleteOpen &&
+                <AlertBox>
+                    <Alert2 open={deleteOpen} setOpen={setDeleteOpen} btn1={"확인"} func={deleteOne}>
+                        <Text bold wordbreak size="small">
+                        게시글을 삭제할까요?
+                        </Text>
+                    </Alert2>
+                </AlertBox>
+            }
             {/* </Container> */}
             <Alert2 btn1="확인" open={open} setOpen={setOpen}>
                 <Text size="small">{message}</Text>
@@ -128,4 +143,12 @@ const ButtonBox = styled.div`
   top: 18px;
   right: 24px;
 `
+
+const AlertBox = styled.div`
+  position: absolute;
+  top: 0;
+  padding-top: 40vh;
+  width: 100%;
+`
+
 export default PostDetail;
