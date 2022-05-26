@@ -96,9 +96,9 @@ const HomeHeader = () => {
             <Grid width="100%" padding="8px 16px">
               {/* <Text size="XS" color="#999">{date}</Text> */}
               <br />
-              <Text bold margin="5px 0"> {cityname}, {weatherData?.weather} {weatherData?.temp}℃</Text>
+              <Text size="small" weight="400" margin="5px 0"> {cityname}, {weatherData?.weather} {weatherData?.temp}℃</Text>
               <br />
-              <Text size="XS" color="#999"> 최저 {weatherData?.temp_min}℃ 최고 {weatherData?.temp_max}℃ 습도 {weatherData?.humidity}%</Text>
+              <Text size="xsmall" weight="400" color="#525252"> 최저 {weatherData?.temp_min} 최고 {weatherData?.temp_max} 습도 {weatherData?.humidity}%</Text>
             </Grid>
             <Grid>
               <Img src={`/img/weather/${weatherData?.weather}.svg`} />

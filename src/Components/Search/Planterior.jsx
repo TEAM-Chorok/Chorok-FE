@@ -21,7 +21,7 @@ const Planterior = () => {
         </Grid>
         {recommendList?.length ?
           <Grid margin="10px 2px">
-            <Text bold size="h6">{username ? username : "집사"}님을 위한 추천식물</Text>
+            <Text size="h6" weight="700">{username ? username : "집사"}님을 위한 추천식물</Text>
           </Grid>
           :
           null

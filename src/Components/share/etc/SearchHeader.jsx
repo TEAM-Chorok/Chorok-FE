@@ -65,7 +65,7 @@ const slideOut = keyframes `
 `
 
 const Input = styled.input`
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT';
   font-size: 14px;
   letter-spacing: 0.25px;
   color: #262626;
