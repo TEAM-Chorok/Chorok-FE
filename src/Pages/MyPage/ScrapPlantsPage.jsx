@@ -7,10 +7,10 @@ const ScrapPlantsPage = () => {
 
     return (
         <React.Fragment>
-            <Container>
+            <Container type="np">
                 <GeneralHeader title="스크랩한 식물" />
-            </Container>
             <Hr />
+            </Container>
             <Container>
                 <ScrapPlantList />
                 <div style={{height:"60px", width:"100%"}}></div>

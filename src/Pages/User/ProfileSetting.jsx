@@ -23,7 +23,7 @@ const ProfileSetting = () => {
   const [nickname, setNickname] = React.useState(user?.nickname);
   const [profileImgUrl, setProfileImgUrl] = React.useState("");
   const [preview, setPreview] = React.useState(user?.profileImgUrl);
-  const [describeSelf, setDescribeSelf] = React.useState(user?.profileMsg);
+  const [profileMsg, setprofileMsg] = React.useState(user?.profileMsg);
 
   const [openResult, setOpenResult] = React.useState();
   const [duplicatedNickname, setDuplicatedNickname] = React.useState();
@@ -54,6 +54,9 @@ const ProfileSetting = () => {
       console.log(res.data.StatusCode);
       if(res.data.StatusCode === "400 BAD_REQUEST"){
         setDuplicatedNickname(true);
+        if(nickname === previousNickname) {
+          setDuplicatedNickname(false);
+        }
       }else{
         setDuplicatedNickname(false);
       }
@@ -66,22 +69,22 @@ const ProfileSetting = () => {
 
   React.useEffect(() => {
       if(nickname === previousNickname){
-        { profileImgUrl === "" ? 
+        { profileImgUrl === "" && profileMsg === previousProfileMsg ? 
           setDisable(true) : 
           setDisable(false);
         }
       }else {
-        { duplicatedNickname !== true && duplicatedNickname !== false ? 
-          setDisable(true):
-          setDisable(false);
+        { duplicatedNickname === false? 
+          setDisable(false):
+          setDisable(true);
         }
       }
-  }, [preview, nickname, describeSelf, duplicatedNickname])
+  }, [preview, nickname, profileMsg, duplicatedNickname, profileMsg])
   
 
   //프로필 수정 dispatch 요청
   const editProfile = () => {
-      dispatch(userActions.editProfileDB(nickname, profileImgUrl, preview, describeSelf )) 
+      dispatch(userActions.editProfileDB(nickname, profileImgUrl, preview, profileMsg )) 
     }
     
   
@@ -110,13 +113,13 @@ const ProfileSetting = () => {
          <Grid width="100%">
           <ProfileWrap>
                 {/* 프로필 이미지 미리보기 */}
-                {preview? 
+                {preview === "null" || preview === null? 
                     <Image
-                        margin="10px auto"
-                        type="circle"  
-                        imgUrl={preview}
-                        alt="preview-img"
-                        size="120px"/> : 
+                    margin="10px auto"
+                    type="circle"  
+                    imgUrl="/img/basicPlantImg.png"
+                    alt="preview-img"
+                    size="120px"/>: 
                     (previousImgUrl !== "" ? 
                         <Image
                             margin="10px auto"
@@ -127,10 +130,9 @@ const ProfileSetting = () => {
                         <Image
                             margin="10px auto"
                             type="circle"  
-                            imgUrl="/img/basicPlantImg.png"
+                            imgUrl={preview}
                             alt="preview-img"
-                            size="120px"/>
-
+                            size="120px"/> 
                     )
                 }
                 {/* <Image size="134px" imgUrl="sample.jpeg" type="circle" margin="50px auto 40px auto"/> */}
@@ -167,14 +169,14 @@ const ProfileSetting = () => {
                     null
                   }
                     <Button 
-                    disabled={!nickname}
+                    disabled={nickname===previousNickname}
                     onClick={()=>{checkDuplicatedNickname(nickname); setOpenResult(true);}}
                     style={{position:"absolute", top:"0px", right:"0px", color:"#0AAF42", size:"xsmall", height:"40px"}} variant='text' >중복확인</Button>
                   </Grid>
               <label htmlFor='describe'>소개</label>
                 <Input 
                   type="square"
-                  _onChange={(e)=>setDescribeSelf(e.target.value)}
+                  _onChange={(e)=>setprofileMsg(e.target.value)}
                   id="describe" defaultValue={previousProfileMsg} placeholder="소개" 
                   width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />
                   

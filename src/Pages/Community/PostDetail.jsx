@@ -75,7 +75,7 @@ const PostDetail = () => {
                             content={cmt?.commentContent}
                             name={cmt?.nickname}
                             time={cmt?.commentRecentTime}
-                            img={cmt?.profileImgUrl ? cmt.profileImgUrl : "/img/noProfileImgSmall.svg"}
+                            img={cmt?.profileImgUrl === null || cmt?.profileImgUrl === "null"? "/img/noProfileImgSmall.svg" : cmt.profileImgUrl}
                             setMessage={setMessage}
                             setOpen={setOpen} />
                     )

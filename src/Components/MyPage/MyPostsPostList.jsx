@@ -110,11 +110,11 @@ const MyPostsPostList= () => {
                                         {p.postLike? 
                                             <FavoriteSelectedIcon 
                                             onClick={()=> likePost("myposts", p.postId)} /> : 
-                                            <FavoriteIcon 
+                                            <FavoriteIcon fill='#6F6F6F'
                                             onClick={()=>likePost("myposts", p.postId)} />
                                         }
                                         <Text margin="0px 8px" size="base"  color="#6F6F6F">{p?.postLikeCount}</Text>
-                                        <CommentIcon  />
+                                        <CommentIcon  fill='#6F6F6F'/>
                                         <Text margin="0px 8px" size="base" color="#6F6F6F">{p?.commentCount}</Text>
                                     </Grid>
                                     <Grid position="absolute" top="0px" right="0px" >
@@ -123,7 +123,7 @@ const MyPostsPostList= () => {
                                             onClick={()=>bookmarkPost("myposts", p.postId)}
                                             />
                                             :
-                                            <BookmarkIcon fill="transparent" stroke="#393939"
+                                            <BookmarkIcon fill="transparent" stroke="#6F6F6F"
                                             onClick={()=>bookmarkPost("myposts", p.postId)}
                                             />
                                         }

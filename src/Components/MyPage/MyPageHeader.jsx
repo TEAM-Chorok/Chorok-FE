@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Permit, Text } from "../../Elements";
+import { Grid, Permit, Text, Image } from "../../Elements";
 import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,27 +12,27 @@ const MyPageHeader = (props) => {
   const user = useSelector(state => state.user?.user);
   const myPlantList = useSelector(state => state.main?.myplant);
 
-  return (
-    <React.Fragment>
-      <Permit>
-        <Grid width="100%" height="24px" position="relative">
-          <SettingIcon stroke="none" fill="#393939" style={{ position: "absolute", right: "8px" }}
-            onClick={() => history.push('/setting')} />
-        </Grid>
-      </Permit>
-      <Grid width="100%" margin="0px">
-        <GridWrapCol width="100%" padding="10px 10px" >
-          <Grid is_flex align="center" >
-            <Image src={user?.profileImgUrl ? user?.profileImgUrl : "img/NoProfileImgUser.svg"} />
-          </Grid>
-          <GridWrapRow>
-            <Grid><Text size="M">{user?.nickname}</Text></Grid>
-            <Grid><Text fontSize="0.9em" >{user?.profileMsg}</Text></Grid>
-          </GridWrapRow>
-        </GridWrapCol>
-      </Grid>
-    </React.Fragment>
-  )
+    return (
+        <React.Fragment>
+            <Permit>
+                <Grid width="100%" height="24px" position="relative">
+                    <SettingIcon stroke="none" fill="#393939" style={{position:"absolute", right:"8px"}}
+                            onClick={()=>history.push('/setting')}/>
+                </Grid>
+            </Permit>
+            <Grid width="100%" margin="0px">
+                <GridWrapCol width="100%" padding="10px 10px" >
+                    <Grid is_flex align="center" >
+                        <Image type="circle" size="80px" imgUrl={user?.profileImgUrl === "null" || user?.profileImgUr===null ? "/img/NoProfileImgUser.svg": user?.profileImgUrl} />
+                    </Grid>
+                    <GridWrapRow>
+                        <Grid><Text size="M">{user?.nickname}</Text></Grid>
+                        <Grid><Text fontSize="0.9em" >{user?.profileMsg}</Text></Grid>
+                    </GridWrapRow>
+                </GridWrapCol>
+            </Grid>
+        </React.Fragment>
+    )
 }
 const GridWrapCol = styled.div`
     display: grid;
@@ -46,10 +46,10 @@ const GridWrapRow = styled.div`
     align-items: center;
     width: 100%;
 `
-const Image = styled.img`
-    width: 80px;
-    height: 80px;
-    // margin: 0px 10px;
-    border-radius:50px;
-`
+// const Image = styled.img`
+//     width: 80px;
+//     height: 80px;
+//     // margin: 0px 10px;
+//     border-radius:50px;
+// `
 export default MyPageHeader;

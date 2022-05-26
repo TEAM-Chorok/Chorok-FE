@@ -20,11 +20,10 @@ const EditPost = () => {
     const [postTypeCode, setPostTypeCode] = useState("");
     const [category, setCategory] = useState();
 
-    const previousTitle = post?.postTitle;
-    const [postTitle, setPostTitle] = React.useState(previousTitle);
-    const [postContent, setPostContent] = React.useState(post?.postContent);
+    const [postTitle, setPostTitle] = React.useState("");
+    const [postContent, setPostContent] = React.useState("");
 
-    const [preview, setPreview] = React.useState(post?.postImgUrl); //preview
+    const [preview, setPreview] = React.useState(""); //preview
     const [imageUrl, setImageUrl] = React.useState(""); //보내는 image
 
 
@@ -32,16 +31,23 @@ const EditPost = () => {
 
     useEffect(() => {
         dispatch(postActions.getDetailPostDB(postId));
+        setPostContent(post?.postContent);
+        setPostTitle(post?.postTitle);
+        setPreview(post?.postImgUrl);
 
         if(post.postType === "질문"){
             setPostTypeCode("postType02");
+            setCategory("postType02")
         }else if(post.postType === "식물성장일기"){
             setPostTypeCode("postType03")
+            setCategory("postType03")
         }else if(post.postType === "식물추천"){
             setPostTypeCode("postType04")
+            setCategory("postType04")
         }
         
-    }, []);
+        setPreview(post?.postImgUrl);
+    }, [ post?.postContent, post?.postImgUrl, post?.postTitle, post.postType]);
 
     //사진 미리보기
     const reader = new FileReader();
@@ -62,7 +68,6 @@ const EditPost = () => {
         formData.append('postTitle', postTitle);
         formData.append('postContent', postContent);
         formData.append('postTypeCode', postTypeCode);
-        formData.append('plantPlaceCode', null);
 
         if(imageUrl === ""){ // 이미지 수정 X
             formData.append('originalUrl', preview);

@@ -58,8 +58,6 @@ import AddPlantDairy from "./Community/AddPlantDairy";
 import MyPageHeader from "./MyPage/MyPageHeader";
 import MyCategoryBar from "./MyPage/MyCategoryBar";
 
-import MyPagePost from "./MyPage/MyPagePost";
-
 import MyPicturesPostList from "./MyPage/MyPictures/MyPicturesPostList";
 
 import ScrapPicturesPostList from "./MyPage/ScrapPicturesPostList";
@@ -116,7 +114,7 @@ export {
     SearchOnFocus, AllResult, PlanteriorResult, PlantResult, 
     Carousel, RecommendPlant,
     CommPost, CommPostList, CommunityFilter, DetailCommPost, AddPlantDairy, AddPostHeader, AddPostFooter,
-    MyPageHeader, MyCategoryBar, MyPagePost, CommPostCommentList,
+    MyPageHeader, MyCategoryBar, CommPostCommentList,
     MyPicturesPostList, ScrapPicturesPostList, ScrapPlantList,
     MyPlantsList, MyPlants, GeneralHeader,
     EditPlantHeader, EditPlantBody,

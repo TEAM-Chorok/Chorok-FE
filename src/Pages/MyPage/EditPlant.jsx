@@ -21,6 +21,9 @@ const EditPlant = () => {
 
     const myPlant = useSelector(state => state.mypage?.plant);
 
+    const previousPlantName = myPlant?.myPlantName;
+    const previousPlantPlace = myPlant?.myPlantPlace;
+
     const [myPlantName, setMyPlantName] = React.useState(""); //내 식물 이름
     const [place, setPlace] = React.useState(""); // 장소 코드 
     const [placeValue, setPlaceValue] = React.useState(""); // 장소 이름
@@ -34,11 +37,11 @@ const EditPlant = () => {
         setPlaceValue(myPlant?.myPlantPlace);
         setPreview(myPlant?.myPlantImgUrl);
         if(myPlant?.myPlantPlace=="거실"){setPlace("pp04")}
-        else if(myPlant?.myPlantPlace==="베란다,발코니"){setPlace("pp06")}
-        else if(myPlant?.myPlantPlace==="방안"){setPlace("pp02")}
-        else if(myPlant?.myPlantPlace==="통로"){setPlace("pp01")}
-        else if(myPlant?.myPlantPlace==="창가"){setPlace("pp05")}
-        else if(myPlant?.myPlantPlace==="화장실"){setPlace("pp03")}
+            else if(myPlant?.myPlantPlace==="베란다,발코니"){setPlace("pp06")}
+            else if(myPlant?.myPlantPlace==="방안"){setPlace("pp02")}
+            else if(myPlant?.myPlantPlace==="통로"){setPlace("pp01")}
+            else if(myPlant?.myPlantPlace==="창가"){setPlace("pp05")}
+            else if(myPlant?.myPlantPlace==="화장실"){setPlace("pp03")}
     }, [myPlant?.myPlantName, myPlant?.myPlantPlace, myPlant?.myPlantImgUrl])
 
     // Base64로 인코딩하여 미리보기 이미지 출력
@@ -68,7 +71,6 @@ const EditPlant = () => {
             window.alert('식물의 별명을 지어주세요 :)');
             return;
         }
-
         dispatch(myActions.editMyPlantDB(myPlantId, myPlantName, place, plantImgUrl, preview))
     }
 
@@ -88,7 +90,7 @@ const EditPlant = () => {
     return (
         <React.Fragment>
             <Container type="np">
-                <EditPlantHeader plantImgUrl={plantImgUrl} myPlantName={myPlantName} place={place} editMyPlant={editMyPlant}/>
+                <EditPlantHeader plantImgUrl={plantImgUrl} previousPlantName={previousPlantName} myPlantName={myPlantName} previousPlantPlace={previousPlantPlace} place={place} editMyPlant={editMyPlant}/>
                 <Hr />
                 <Grid padding="12px 0px" margin="0px auto" align="center">
                 {preview? 

@@ -23,7 +23,6 @@ const GeneralHeader = (props) => {
 }
 const Header = styled.div`
   box-sizing: border-box;
-
   position: relative;
   display: flex;
 

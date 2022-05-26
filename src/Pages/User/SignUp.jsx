@@ -54,12 +54,14 @@ const SignUp = () => {
       userAPI
       .userEmailCheck(userEmail)
       .then((res) => {
-        console.log(res);
-        setDuplicated(false);
+        if(res.data.StatusCode === "400 BAD_REQUEST"){
+          setDuplicated(true);
+        }else {
+          setDuplicated(false);
+        }
       })
       .catch((error) => {
         console.log(error);
-        setDuplicated(true);
       })
     }
     //비밀번호 일치 확인
@@ -161,29 +163,39 @@ const SignUp = () => {
               
               {/* 비밀번호 */}
               {passwordMatch(password, passwordChk) || passwordChk === ""?
-              <>
+              <React.Fragment>
                 <Input 
                 _onChange={(e)=>{setPassword(e.target.value); 
                                 pwdCheck(e.target.value)}} 
-                placeholder="비밀번호(영문 대소문자, 숫자를 포함한 8~20자)" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"
+                placeholder="비밀번호" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"
                 margin="0px 0px 8px 0px"></Input>
+                <Grid  margin="0px 0px 8px 8px">
+                { password !== "" && !pwdCheck(password) ? 
+                      <Text size="xxsmall" color="#FA4D56">영문 대문자, 소문자, 숫자를 포함하여 8~20자를 입력해주세요.</Text> : ""
+                }
+              </Grid>
                 <Input 
                 _onChange={(e)=>{setPasswordChk(e.target.value); 
                                 pwdCheck(e.target.value); }} 
                 placeholder="비밀번호 확인" type="password" name="signup_pwd_check" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px" margin="0px"></Input>
-                </> 
+                </React.Fragment> 
                 : 
-                <>
-                <Input 
-                _onChange={(e)=>{setPassword(e.target.value); 
-                                pwdCheck(e.target.value)}} 
-                placeholder="비밀번호(영문 대소문자, 숫자를 포함하여 8~20자)" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56" borderRadius="6px"
-                margin="0px 0px 8px 0px"></Input>
-                <Input 
-                _onChange={(e)=>{setPasswordChk(e.target.value); 
-                                pwdCheck(e.target.value); }} 
-                placeholder="비밀번호 확인" type="password" name="signup_pwd_check" height="52px" width="100%" padding="0px 0px 0px 20px" focusOutline="1px solid #FA4D56" border="1px solid #FA4D56" borderRadius="6px"  margin="0px"></Input> 
-              </>
+                <React.Fragment>
+                  <Input 
+                  _onChange={(e)=>{setPassword(e.target.value); 
+                                  pwdCheck(e.target.value)}} 
+                  placeholder="비밀번호(영문 대소문자, 숫자를 포함하여 8~20자)" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56" borderRadius="6px"
+                  margin="0px 0px 8px 0px"></Input>
+                   <Grid  margin="0px 0px 8px 8px">
+                    { !pwdCheck(password) ? 
+                          <Text size="xxsmall" color="#FA4D56">영문 대문자, 소문자, 숫자를 포함하여 8~20자를 입력해주세요.</Text> : ""
+                    }
+                  </Grid>
+                  <Input 
+                  _onChange={(e)=>{setPasswordChk(e.target.value); 
+                                  pwdCheck(e.target.value); }} 
+                  placeholder="비밀번호 확인" type="password" name="signup_pwd_check" height="52px" width="100%" padding="0px 0px 0px 20px" focusOutline="1px solid #FA4D56" border="1px solid #FA4D56" borderRadius="6px"  margin="0px"></Input> 
+                </React.Fragment>
               
               }
               
