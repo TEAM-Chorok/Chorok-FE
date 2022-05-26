@@ -30,8 +30,6 @@ function App() {
 
   const lo = useLocation().pathname.split('/')[1];
 
-  console.log("위치이이이이이", lo)
-
   return (
     <React.Fragment>
       <ThemeProvider theme={theme} >

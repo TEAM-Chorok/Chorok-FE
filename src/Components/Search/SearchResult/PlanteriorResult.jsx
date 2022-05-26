@@ -3,45 +3,74 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Container, Grid, Image, Input, Text } from "../../../Elements";
+import { Grid, Image, Text } from "../../../Elements";
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
-import PlanteriorList from "../Planterior/PlanteriorList";
+import InfiniteScroll from "../../share/etc/InfiniteScroll";
 
 
 const PlanteriorResult = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const result = useSelector((state) => state.search?.resultPhoto);
+  const data = useSelector((state) => state.search?.resultPhoto);
+  const result = data?.content;
+  const totalPage = data?.totalPage;
+  const value = useSelector((state) => state.search?.value);
 
-  console.log("요ㅕ요",result)
+  // 무한스크롤 관련 state
+  const [page, setPage] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  // 무한스크롤 실행 함수
+  const callback = async ([entry], observer) => {
+    if (entry.isIntersecting && !isLoading) {
+      observer.unobserve(entry.target);
+      setIsLoading(true);
+      await new Promise((resolve) => {
+        setTimeout(resolve, 2000);
+      });
+      setPage((pre) => pre + 1);
+      setIsLoading(false);
+      observer.observe(entry.target);
+    }
+  };
 
   const openDetail = (postId) => {
     history.push(`/planterior/post/${postId}`);
   }
 
+  React.useEffect(() => {
+    dispatch(searchActions.keywordSearchingPhotoDB(value, page));
+  }, [page, value])
+
   return (
     <React.Fragment>
       <Grid width="100%" margin="16px 0">
-        <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
-          {result?.map((post, idx) => {
-            return (
-              <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId); }}>
-                <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
-                <Grid is_flex margin="4px 0">
-                  <Image type="circle" size="20px" />
-                  <Text bold size="xsmall" margin="1px 4px">{post.nickname}</Text>
-                </Grid>
-                <TextBox>
-                  <Text size="xsmall" color="#525252">
-                    {post.postContent.length < 27
-                      ? post.postContent
-                      : post.postContent.slice(0, 26) + '...'}
-                  </Text>
-                </TextBox>
-              </ContentWrapper>
-            )
-          })}
-        </Masonry>
+        <InfiniteScroll
+          page={page}
+          totalPage={totalPage}
+          callback={callback}
+          isLoading={isLoading}>
+          <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
+            {result?.map((post, idx) => {
+              return (
+                <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId); }}>
+                  <Image type="planterior" width="150px" imgUrl={post.postImgUrl} />
+                  <Grid is_flex margin="4px 0">
+                    <Image type="circle" size="20px" />
+                    <Text bold size="xsmall" margin="1px 4px">{post.nickname}</Text>
+                  </Grid>
+                  <TextBox>
+                    <Text size="xsmall" color="#525252">
+                      {post.postContent.length < 27
+                        ? post.postContent
+                        : post.postContent.slice(0, 26) + '...'}
+                    </Text>
+                  </TextBox>
+                </ContentWrapper>
+              )
+            })}
+          </Masonry>
+        </InfiniteScroll>
       </Grid>
     </React.Fragment>
   )

@@ -15,7 +15,7 @@ const GeneralHeader = (props) => {
   return (
       <Header>
           <GoBackIcon 
-            style={{ position: 'absolute', left: '0px' }}
+            style={{ position: 'absolute', left: '20px' }}
             onClick={_onClick? _onClick : goBack}/>
           <Text line="2.5em" bold size={props.size}>{props.title}</Text>
       </Header>
@@ -35,7 +35,6 @@ const Header = styled.div`
   height: 44px;
 
   background: #fff;
-  // border-bottom: 1px solid #E0E0E0;
 `
 
 export default GeneralHeader;

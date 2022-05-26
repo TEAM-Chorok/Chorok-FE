@@ -139,6 +139,7 @@ Button.defaultProps = {
     children: null,
     checked: false,
 }
+
 const BasicButton = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};

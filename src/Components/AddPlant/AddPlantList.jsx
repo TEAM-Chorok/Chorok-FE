@@ -15,6 +15,7 @@ const AddPlantList = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.search?.plantDictList);
   const plantList = data?.content;
+  const filterData = useSelector((state) => state.search?.filterData);
   
   // 무한스크롤 관련 state
   const [page, setPage] = React.useState(0);
@@ -39,9 +40,10 @@ const AddPlantList = () => {
   const openPlantCard = (plantNo) => {
     history.push(`/plant/${plantNo}`);
   }
-
+  
+  
   React.useEffect(() => {
-    dispatch(searchActions.getPlantDictDB(page));
+    dispatch(searchActions.plantFilteringDB(filterData, page));
   }, [page, dispatch])
 
   return (

@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
-import React, { useEffect }  from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { DetailCommPost, CommPost, GeneralHeader, CommPostCommentList, Alert2 } from "../../Components";
 import CommBottomSheet from "../../Components/Community/CommBottomSheet";
-import { Container, Input, Permit, Grid, Text} from "../../Elements";
+import { Container, Input, Permit, Grid, Text } from "../../Elements";
 import { actionCreators as postActions } from "../../Redux/Modules/post";
 import { actionCreators as userActions } from "../../Redux/Modules/User";
 
@@ -30,7 +30,7 @@ const PostDetail = () => {
     }, []);
 
     const addComment = () => {
-        if(comment === "" || comment === " ") { 
+        if (comment === "" || comment === " ") {
             setMessage("댓글 내용을 입력해주세요!");
             setOpen(true);
             return;
@@ -43,10 +43,10 @@ const PostDetail = () => {
 
     const is_session = sessionStorage.getItem('token') ? true : false;
 
-    if(!post){
+    if (!post) {
         return (
             <React.Fragment>
-                <Container>
+                <Container type="np">
                     <GeneralHeader />
                 </Container>
             </React.Fragment>
@@ -55,62 +55,58 @@ const PostDetail = () => {
 
     return (
         <React.Fragment>
-            <Container>
+            <Container type="np">
                 <GeneralHeader title={post?.postType} size="base" />
-                {is_session && nickname === post?.nickname ? 
-                <CommBottomSheet type="post" postId={post?.postId}/> : 
-                null
+                {is_session && nickname === post?.nickname ?
+                    <CommBottomSheet type="post" postId={post?.postId} /> :
+                    null
                 }
-                    
+
             </Container>
             <Container type="np">
-                <HR />
-                <DetailCommPost postList={post}/>
+                <Grid width="100%" height="1px" bg="#E0E0E0" />
+                <DetailCommPost postList={post} />
                 {commentList?.map((cmt) => {
-                    return(
-                        <CommPostCommentList 
-                        key={cmt?.commentId}
-                        postId={post?.postId}
-                        commentId={cmt?.commentId}
-                        content={cmt?.commentContent}
-                        name={cmt?.nickname}
-                        time={cmt?.commentRecentTime}
-                        img={cmt?.profileImgUrl ? cmt.profileImgUrl : "/img/noProfileImgSmall.svg"}
-                        setMessage={setMessage}
-                        setOpen={setOpen}/>
+                    return (
+                        <CommPostCommentList
+                            key={cmt?.commentId}
+                            postId={post?.postId}
+                            commentId={cmt?.commentId}
+                            content={cmt?.commentContent}
+                            name={cmt?.nickname}
+                            time={cmt?.commentRecentTime}
+                            img={cmt?.profileImgUrl ? cmt.profileImgUrl : "/img/noProfileImgSmall.svg"}
+                            setMessage={setMessage}
+                            setOpen={setOpen} />
                     )
                 })}
             </Container>
             <Container type="np">
-                <HR style={{marginTop:"60px"}}/>
+                <Grid width="100%" height="1px" bg="#E0E0E0" />
             </Container>
             {/* <Container> */}
-                <Wrapper> 
-                    <CommentBox >
-                        <Input 
-                            _onChange={(e) => setComment(e.target.value)}
-                            type="comment" placeholder="댓글을 입력해주세요" _ref={contentRef} />
-                            <ButtonBox>
-                                <Button 
-                                    onClick={()=>{addComment()}}
-                                    variant="text" 
-                                    style={{color: "#24A148", fontSize:"14px"}}>등록</Button>
-                            </ButtonBox>
-                     </CommentBox>   
-                </Wrapper>
+            <Wrapper>
+                <CommentBox >
+                    <Input
+                        _onChange={(e) => setComment(e.target.value)}
+                        type="comment" placeholder="댓글을 입력해주세요" _ref={contentRef} />
+                    <ButtonBox>
+                        <Button
+                            onClick={() => { addComment() }}
+                            variant="text"
+                            style={{ color: "#24A148", fontSize: "14px" }}>등록</Button>
+                    </ButtonBox>
+                </CommentBox>
+            </Wrapper>
             {/* </Container> */}
             <Alert2 btn1="확인" open={open} setOpen={setOpen}>
                 <Text size="small">{message}</Text>
             </Alert2>
-            <div style={{height:"60px"}}></div>
+            <div style={{ height: "60px" }}></div>
         </React.Fragment>
     )
 }
-const HR = styled.hr`
-    border: 1px solid #E0E0E0;
-    width: 100%;
-    margin: 0px;
-`
+
 const Wrapper = styled.div`
 width: 100%;
 height: fit-content%;
@@ -124,7 +120,7 @@ const CommentBox = styled.div`
   padding: 18px 16px 16px 16px;
   width: 100%;
 
-  background: ${(props) => props.edit? "#fff" : "#F7F8FA" };
+  background: ${(props) => props.edit ? "#fff" : "#F7F8FA"};
 
 `
 const ButtonBox = styled.div`

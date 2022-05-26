@@ -28,8 +28,8 @@ import PlanteriorDetailContents from "./Search/Planterior/PlanteriorDetailConten
 import PlanteriorDetailComments from "./Search/Planterior/PlanteriorDetailComments";
 import PlanteriorList from "./Search/Planterior/PlanteriorList";
 import PlanteriorWriteComp from "./Search/Planterior/PlanteriorWrite";
-import LabelingTestLink from "./Search/Planterior/LabelingTestLink";
 import RecommendPlant from "./Search/Planterior/RecommendPlant"
+import Carousel from "./Search/Planterior/Carousel";
 
 import SearchOnFocus from "./Search/SearchOnFocus";
 import AllResult from "./Search/SearchResult/AllResult";
@@ -114,7 +114,7 @@ export {
     CalendarTable, CalendarMyPlant, CalendarTodo,
     Planterior, PlanteriorDetailContents, PlanteriorDetailComments, PlanteriorList, PlanteriorWriteComp,
     SearchOnFocus, AllResult, PlanteriorResult, PlantResult, 
-    LabelingTestLink, RecommendPlant,
+    Carousel, RecommendPlant,
     CommPost, CommPostList, CommunityFilter, DetailCommPost, AddPlantDairy, AddPostHeader, AddPostFooter,
     MyPageHeader, MyCategoryBar, MyPagePost, CommPostCommentList,
     MyPicturesPostList, ScrapPicturesPostList, ScrapPlantList,

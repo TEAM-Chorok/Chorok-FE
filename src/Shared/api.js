@@ -4,7 +4,7 @@ axios.defaults.withCredentials = true;
 
 // 서버 주소
 const api = axios.create({
-  baseURL: 'http://52.79.233.178',//민성님 Url
+  baseURL: 'http://15.165.160.67',//민성님 Url
   // baseURL: 'http://121.141.140.148:8085', // 주호님
   // baseURL: 'http://54.180.90.176:8080', // 은아님
   // baseURL: ' http://chorok.shop', // 은아님
@@ -160,8 +160,8 @@ export const mainAPI = {
 // 탐색페이지 관련 API
 export const searchAPI = {
   // 식물도감 필터
-  plantFiltering: (d) => api.get(
-    `/search-post/dictionary/planterior?keyword=&plantLevelCode=${d.plantLevelCode}&plantPlaceCode=${d.plantPlaceCode}&plantTypeCode=${d.plantTypeCode}&plantGrowthShapeCode=${d.plantGrowthShapeCode}`
+  plantFiltering: (d, page) => api.get(
+    `/search-post/dictionary/planterior?keyword=&plantLevelCode=${d.plantLevelCode}&plantPlaceCode=${d.plantPlaceCode}&plantTypeCode=${d.plantTypeCode}&plantGrowthShapeCode=${d.plantGrowthShapeCode}&page=${page}`
     , {
     headers: {
       "Authorization": `${sessionStorage.getItem('token')}`,

@@ -50,6 +50,7 @@ const isLoginDB = () => {
       .isLogin()
       .then((res) => {
         dispatch(getUser(res.data));
+        console.log(res.data)
         localStorage.setItem('nickname', res.data.nickname)
       })
       .catch((err) => {

@@ -17,38 +17,61 @@ const GET_PLANT_DICT = "GET_PLANT_DICT";
 
 
 // 액션 생성
-const plantFiltering = createAction(PLANT_FILTERING, (searchlist) => ({ searchlist }));
+const plantFiltering = createAction(PLANT_FILTERING, (searchlist, filterData) => ({ searchlist, filterData }));
 const getPlanterior = createAction(GET_PLANTERIORLIST, (planteriorlist) => ({planteriorlist}));
 const planteriorFiltering = createAction(PLANTERIOR_FILTERING, (filteringdata) => ({filteringdata}));
 const getPlanteriorDetail = createAction(PLANTERIOR_DETAIL, (planteriordetail) => ({ planteriordetail }));
 const getRecommend = createAction(GET_RECOMMEND, (recommendlist) => ({ recommendlist }));
 const keywordSearching = createAction(KEYWORD_SEARCHING, (searchingdata) => ({ searchingdata }))
-const keywordSearchingPhoto = createAction(KEYWORD_SEARCHING_PHOTO, (searchingdata) => ({ searchingdata }))
+const keywordSearchingPhoto = createAction(KEYWORD_SEARCHING_PHOTO, (searchingdata, value) => ({ searchingdata, value }))
 const keywordSearchingPhotoPlace = createAction(KEYWORD_SEARCHING_PHOTO_PLACE, (searchingdata) => ({ searchingdata }))
-const keywordSearchingPlant = createAction(KEYWORD_SEARCHING_PLANT, (searchingdata) => ({ searchingdata }))
+const keywordSearchingPlant = createAction(KEYWORD_SEARCHING_PLANT, (searchingdata, value) => ({ searchingdata, value }))
 const getPlantDict = createAction(GET_PLANT_DICT, (plantlist) => ({plantlist}));
 
 
 // 초기값
 const initialState = {
-  list: []
+  filterData:{
+    plantTypeCode: '',
+    plantPlaceCode: '',
+    plantLevelCode: '',
+    plantGrowthShapeCode: '',
+  },
+  value: '',
+
 }
 
 // 미들웨어 
 // 식물도감 필터링 
-const plantFilteringDB = (filterData) => {
+const plantFilteringDB = (filterData, page) => {
   return function (dispatch, getState, { history }) {
-    console.log("plantFilteringDB : filterData", filterData)
+    // console.log("plantFilteringDB : filterData", filterData)
     searchAPI
-    .plantFiltering(filterData)
+    .plantFiltering(filterData, page)
     .then((response) => {
       // console.log("plantFilteringDB : response", response.data.plantList);
-      dispatch(plantFiltering(response.data));
+      dispatch(plantFiltering(response.data, filterData));
     }).catch((error) => {
       console.log("plantFilteringDB : error", error.response);
     });
   }
 };
+
+
+// 식물도감 전체조회
+const getPlantDictDB = (page) => {
+  return function (dispatch, getState, {history}) {
+    searchAPI
+    .getPlantDict(page)
+    .then((response) => {
+      // console.log("getPlantDictDB : response", response.data);
+      dispatch(getPlantDict(response.data))
+    }).catch((error) => {
+      console.log("getPlantDictDB : error", error.response);
+    })
+  }
+}
+
 
 // 플랜테리어 전체 목록
 const getPlanteriorListDB = (page) => {
@@ -229,7 +252,7 @@ const keywordSearchingPhotoDB = (value, page) => {
     .keywordSearchingPhoto(value, page)
     .then((response) => {
       // console.log("keywordSearchingPhotoDB : searching", response.data);
-      dispatch(keywordSearchingPhoto(response.data.content))
+      dispatch(keywordSearchingPhoto(response.data, value));
     }).catch((error) => {
       console.log("keywordSearchingPhotoDB : error", error.response);
     })
@@ -253,11 +276,13 @@ const keywordSearchingPhotoPlaceDB = (value, page) => {
 // 탐색탭 키워드 검색 - 식물도감
 const keywordSearchingPlantDB = (value, page) => {
   return function (dispatch, getState, {history}) {
+    console.log("요청해요", value, page);
     searchAPI
     .keywordSearchingPlant(value, page)
     .then((response) => {
+      console.log("받았어요", response.data.page);
       // console.log("keywordSearchingPlantDB : searching", response.data.plantList);
-      dispatch(keywordSearchingPlant(response.data))
+      dispatch(keywordSearchingPlant(response.data, value));
     }).catch((error) => {
       console.log("keywordSearchingPlantDB : error", error.response);
     })
@@ -278,31 +303,18 @@ const getRecommendDB = () => {
   }
 }
 
-// 식물도감 전체조회
-const getPlantDictDB = (page) => {
-  return function (dispatch, getState, {history}) {
-    searchAPI
-    .getPlantDict(page)
-    .then((response) => {
-      // console.log("getPlantDictDB : response", response.data);
-      dispatch(getPlantDict(response.data))
-    }).catch((error) => {
-      console.log("getPlantDictDB : error", error.response);
-    })
-  }
-}
-
 
 // 리듀서
 export default handleActions(
   {
     [PLANT_FILTERING]: (state, action) => produce(state, (draft) => {
-      // console.log("PLANT_FILTERING : searchList", action.payload.searchList);
+      console.log("PLANT_FILTERING : searchList", action.payload);
       if (action.payload.searchlist.page > 0) {
         draft.plantDictList.content.push(...action.payload.searchlist.content);
       } else {
         draft.plantDictList = action.payload.searchlist;
       }
+      draft.filterData=action.payload.filterData;
       draft.plantDictList.page = action.payload.searchlist.page;
     }),
     [GET_PLANTERIORLIST]: (state, action) => produce(state, (draft) => {
@@ -337,7 +349,13 @@ export default handleActions(
     }),
     [KEYWORD_SEARCHING_PHOTO]: (state, action) => produce(state, (draft) => {
       // console.log("KEYWORD_SEARCHING_Photo : searchingdata", action.payload.searchingdata);
-      draft.resultPhoto = action.payload.searchingdata;
+      if (action.payload.searchingdata.page > 0) {
+        draft.resultPhoto.content.push(...action.payload.searchingdata.content);
+      } else {
+        draft.resultPhoto = action.payload.searchingdata;
+      }
+      draft.value = action.payload.value;
+      draft.resultPhoto.page = action.payload.searchingdata.page;
     }),
     [KEYWORD_SEARCHING_PLANT]: (state, action) => produce(state, (draft) => {
       // console.log("KEYWORD_SEARCHING_Plant : searchingdata", action.payload.searchingdata);
@@ -346,6 +364,7 @@ export default handleActions(
       } else {
         draft.resultPlant = action.payload.searchingdata;
       }
+      draft.value = action.payload.value;
       draft.resultPlant.page = action.payload.searchingdata.page;
     }),
     [GET_PLANT_DICT]: (state, action) => produce(state, (draft) => {

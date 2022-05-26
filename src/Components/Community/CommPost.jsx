@@ -6,9 +6,7 @@ import { useDispatch } from "react-redux";
 import { ReactComponent as FavoriteIcon} from "../../Assets/img/likeBookmarkIcons/favorite.svg";
 import { ReactComponent as FavoriteSelectedIcon } from "../../Assets/img/likeBookmarkIcons/favorite_selected.svg";
 import { ReactComponent as BookmarkIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark.svg";
-import { ReactComponent as BookmarkSelectedIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark_selected.svg";
 import { ReactComponent as CommentIcon } from "../../Assets/img/likeBookmarkIcons/Comment.svg";
-import { useEffect } from "react";
 
 const CommPost = (props) => {   
     const dispatch = useDispatch();
@@ -54,7 +52,7 @@ const CommPost = (props) => {
                     </Grid>
                     <Grid is_flex align="center" margin="5px 0px 0px 0px">
                         {post?.profileImgUrl==='' || post?.profileImgUrl === null?
-                            <Image type="circle" size="24px" imgUrl="img/noProfileImgSmall.svg"/> :
+                            <Image type="circle" size="24px" imgUrl="/img/noProfileImgSmall.svg"/> :
                             <Image type="circle" size="24px" imgUrl={post?.profileImgUrl}/>
                         }
                         

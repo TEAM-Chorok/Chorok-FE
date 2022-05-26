@@ -1,7 +1,6 @@
-import React, { Children } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import styled from "styled-components";
-import { Grid, Text } from "../../../Elements";
+import { Grid } from "../../../Elements";
 import { ReactComponent as Spinner } from "../../../Assets/img/spinner.svg"
 
 // 무한스크롤 컴포넌트
@@ -30,6 +29,8 @@ const InfiniteScroll = (props) => {
 
   }, [target]);
 
+
+  
   return (
     <React.Fragment>
       {children}

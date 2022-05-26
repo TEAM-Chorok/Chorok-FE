@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { AddPlantList, Planterior, PlantSearchHeader, SearchOnFocus, SideButton, Tabbar } from "../../Components";
-import { Button, Container, Grid, Text } from "../../Elements";
+import { Grid, Permit } from "../../Elements";
 import { actionCreators as searchActions } from "../../Redux/Modules/Search";
 import Result from "./Result";
 
@@ -16,16 +16,15 @@ const Search = () => {
 
   // 보여줄 컴포넌트 넘버
   const [compNum, setCompNum] = React.useState(0);
-  const [value, setValue] = React.useState("");
   
   const [open, setOpen] = React.useState(false);
   
   // 탭 선택, 검색에 따라 보여줄 컴포넌트 목록
   const comp = {
     0: <Planterior />,
-    1: <AddPlantList />,
+    1: <AddPlantList/>,
     2: <SearchOnFocus />,
-    3: <Result value={value} />,
+    3: <Result/>,
   };
   
   const search = (e) => {
@@ -36,22 +35,22 @@ const Search = () => {
     debouncing(text);
   }
   const debouncing = debounce((text) => {
-    if (text.match(pattern) || text === "") {
+    if (text === "") {
       console.log("검색어가없당");
       return;
     } else {
-      setValue(text);
       dispatch(searchActions.keywordSearchingDB(text));
       dispatch(searchActions.keywordSearchingPhotoDB(text));
       dispatch(searchActions.keywordSearchingPlantDB(text));
     }
   }, 100)
-
-
+  
   return (
     <React.Fragment>
       <Wrapper open={open}>
-      <SideButton open={open} setOpen={setOpen} />
+      <Permit element>
+        <SideButton open={open} setOpen={setOpen} />
+      </Permit>
         <Grid width="100%" padding="16px">
           <Grid width="100%">
             <PlantSearchHeader title="탐색" size="h5"
@@ -74,7 +73,6 @@ const Search = () => {
             {comp[compNum]}
           </Grid>
         }
-        {/* <Button type="plus"/> */}
         <Grid height="50px"/>
       </Wrapper>
     </React.Fragment>

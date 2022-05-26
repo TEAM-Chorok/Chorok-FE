@@ -51,7 +51,9 @@ const Login = () => {
               <Grid width="100%" margin="8px 0px 0px 0px">
                 <Button variant='text'
                   style={{ textAlign: "center", display: "block", width: "100%", height: "48px", backgroundColor: "#E0E0E0", color: "black", fontWeight: "700", borderRadius: "6px", border: "1px solid #E0E0E0", boxShadow: "none", boxSizing: "border-box" }}
-                  onClick={() => history.push('/logIn')}>이메일로 계속하기</Button>
+                  onClick={() => history.push('/logIn')}>
+                  <Text size="small" bold>이메일로 계속하기</Text>
+                </Button>
               </Grid>
             </InnerDiv>
 

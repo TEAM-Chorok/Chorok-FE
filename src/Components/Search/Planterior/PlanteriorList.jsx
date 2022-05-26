@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import { Grid, Image, Text } from "../../../Elements";
 import PlaceFilter from "../PlaceFilter";
 import Masonry from '@mui/lab/Masonry';
@@ -12,8 +12,12 @@ import InfiniteScroll from "../../share/etc/InfiniteScroll";
 // 사진 목록 컴포넌트
 
 const PlanteriorList = () => {
+  const is_session = sessionStorage.getItem('token') ? true : false;
+
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const [done, setDone] = React.useState(false);
   
   // 공간 게시글 데이터
   const data = useSelector((state) => state?.search?.planteriorList);
@@ -48,14 +52,28 @@ const PlanteriorList = () => {
 
   // 게시글 조회 (페이지 변경, 필터선택시마다 실행)
   React.useEffect(() => {
-    if (place === "all") {
+    if (!is_session){
+      setTimeout(() => {
+        setDone(true);
+      }, 2000);
+      return;
+    } else if (place === "all") {
       // 필터를 선택하지 않았을 경우
       dispatch(searchActions.getPlanteriorListDB(page));
+      setTimeout(() => {
+        setDone(true);
+      }, 2000);
+      return;
     } else {
       // 필터를 선택한 경우
       dispatch(searchActions.planteriorFilteringDB(place, page));
+      setTimeout(() => {
+        setDone(true);
+      }, 2000);
+      return;
     }
   }, [page, place, dispatch])
+
 
 
   return (
@@ -95,7 +113,11 @@ const PlanteriorList = () => {
           <RelativeBox>
             <FloatBox>
               <Grid margin="auto">
-                <Text bold size="base" margin="auto">데이터를 불러오고 있습니다💬</Text>
+              {done &&
+                <DoneBox done={done}>
+                  <Text bold size="base" margin="auto">데이터를 불러올 수 없습니다💬</Text>
+                </DoneBox>
+              }
               </Grid>
             </FloatBox>
             <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
@@ -128,13 +150,23 @@ const PlanteriorList = () => {
   )
 }
 
+const FadeIn = keyframes`
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+`;
+
 
 const ContentWrapper = styled.div`
   box-sizing: border-box;
   margin: auto;
   width: 100%;
   height: fit-content;
-`
+`;
+
 const TextBox = styled.div`  
   font-family: 'SUIT-Regular';
 
@@ -145,17 +177,20 @@ const TextBox = styled.div`
   font-size: 13px;
   line-height: 20px;
   color: #525252;
-`
+`;
 
-const GridBox = styled.div`
+const DoneBox = styled.div`
   width: 100%;
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-`
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-name: ${FadeIn};
+  animation-fill-mode: forwards;
+`;
+
 const RelativeBox = styled.div`
   position: relative;
   width: 100%;
-`
+`;
 
 const FloatBox = styled.div`
   position: absolute;
@@ -171,7 +206,7 @@ const FloatBox = styled.div`
 
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
-`
+`;
 
 
 export default PlanteriorList;

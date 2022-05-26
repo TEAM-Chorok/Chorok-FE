@@ -15,6 +15,9 @@ const Result = (props) => {
     2: <PlantResult value={value} />
   };
   
+
+  
+
   return (
     <React.Fragment>
       <Container type="np">
