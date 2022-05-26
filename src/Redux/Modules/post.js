@@ -250,7 +250,7 @@ const bookmarkPostDB = (category, postId) => {
       .then((res) => {
         if (res.data.result === "true") {
           console.log(res.data.result);
-          window.alert("북마크로 등륵되었습니다.");
+          window.alert("북마크로 등록되었습니다.");
         } else {
           window.alert("북마크를 취소하였습니다.");
         }
@@ -270,7 +270,7 @@ const bookmarkDetailPostDB = (postId) => {
       .then((res) => {
         if (res.data.result === "true") {
           console.log(res.data.result);
-          window.alert("북마크로 등륵되었습니다.");
+          window.alert("북마크로 등록되었습니다.");
         } else {
           window.alert("북마크를 취소하였습니다.");
         }
