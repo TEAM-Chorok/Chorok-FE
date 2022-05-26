@@ -90,7 +90,7 @@ const deleteMyPlantDB = (myPlantNo) => {
 //나의 식물 수정 on process...
 const editMyPlantDB = (myPlantId, myPlantName, myPlantPlaceCode, myPlantImgUrl, originalUrl) => {
     const formData = new FormData();
-    if(myPlantImgUrl === null){
+    if(myPlantImgUrl === ""){
         formData.append("myPlantName", myPlantName);
         formData.append("myPlantPlaceCode", myPlantPlaceCode);
         formData.append("originalUrl", originalUrl);

@@ -395,7 +395,7 @@ export const postAPI = {
   ),
 
   //게시글 수정
-  editPost: (formData, postId) => api.put(`/update-post/${postId}`, formData, {
+  editPost: (formData, postId) => api.post(`/update-post/${postId}`, formData, {
     
     headers: {
       "content-type": "multipart/form-data",

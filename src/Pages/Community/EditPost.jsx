@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, Grid, Button, Image } from '../../Elements';
-import { AddPostFooter, AddPostHeader, AddQuestion } from '../../Components';
+import { Container, Grid, Button, Image, Text } from '../../Elements';
+import { AddPostFooter, AddPostHeader, AddQuestion, Alert2 } from '../../Components';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -14,8 +14,13 @@ const EditPost = () => {
     const params = useParams();
     const dispatch = useDispatch();
 
+    // alert 모달 open/close
+    const [open, setOpen] = React.useState(false);
+    const [message, setMessage] = React.useState(null);
+
     const postId = params.postId;
     const post = useSelector(state => state.post?.post);
+    const previousImg = post?.postImgUrl;
 
     const [postTypeCode, setPostTypeCode] = useState("");
     const [category, setCategory] = useState();
@@ -28,26 +33,24 @@ const EditPost = () => {
 
 
 
-
     useEffect(() => {
         dispatch(postActions.getDetailPostDB(postId));
         setPostContent(post?.postContent);
         setPostTitle(post?.postTitle);
         setPreview(post?.postImgUrl);
 
-        if(post.postType === "질문"){
+        if(post?.postType === "질문"){
             setPostTypeCode("postType02");
             setCategory("postType02")
-        }else if(post.postType === "식물성장일기"){
+        }else if(post?.postType === "식물성장일기"){
             setPostTypeCode("postType03")
             setCategory("postType03")
-        }else if(post.postType === "식물추천"){
+        }else if(post?.postType === "식물추천"){
             setPostTypeCode("postType04")
             setCategory("postType04")
         }
         
-        setPreview(post?.postImgUrl);
-    }, [ post?.postContent, post?.postImgUrl, post?.postTitle, post.postType]);
+    }, [ post?.postContent, post?.postImgUrl, post?.postTitle, post?.postType]);
 
     //사진 미리보기
     const reader = new FileReader();
@@ -62,21 +65,35 @@ const EditPost = () => {
     
     //이미지 안바뀌면 그냥 안날리는걸로 해보기
     const submit = ( ) => {
-        console.log(postTypeCode);
-        
+        console.log(postTitle, postContent, postTypeCode, previousImg, imageUrl);
+        // return; 
+        if(!postTypeCode){
+            setMessage("카테고리를 선택해주세요!");
+            setOpen(true);
+            return;
+        }
         const formData = new FormData();
         formData.append('postTitle', postTitle);
         formData.append('postContent', postContent);
         formData.append('postTypeCode', postTypeCode);
 
-        if(imageUrl === ""){ // 이미지 수정 X
-            formData.append('originalUrl', preview);
-            dispatch(postActions.editPostDB(formData, post?.postId));   
-            return;
-        } else {
+        if (!post?.postImgUrl){ //전 글에 이미지가 없었던 경우
+            if(imageUrl){ //이미지 삽입
+                formData.append('postImgUrl', imageUrl);
+                dispatch(postActions.editPostDB(formData, post?.postId)); 
+            }else{ //이미지 변경 없이 내용만 변경
+                dispatch(postActions.editPostDB(formData, post?.postId));
+            }
+        } else if(imageUrl === ""){ // 이미지 수정 X
+            if(preview === ""){ // 이미지 삭제
+                dispatch(postActions.editPostDB(formData, post?.postId)); 
+            }else { 
+                formData.append('originalUrl', preview);
+                dispatch(postActions.editPostDB(formData, post?.postId));   
+            }
+        } else { // 이미지 수정하는 경우
             formData.append('postImgUrl', imageUrl);
             dispatch(postActions.editPostDB(formData, post?.postId));
-            return;
         }
     }
 
@@ -96,11 +113,11 @@ const EditPost = () => {
                         _onClick={() => {setCategory("postType04"); setPostTypeCode("postType04")}}>식물추천</Button>
                 </Grid>
                 <Grid padding="10px 4px" width="100%">
-                    <Input type="text" placeholder='글 제목을 입력해주세요' defaultValue={post.postTitle}
+                    <Input type="text" placeholder='글 제목을 입력해주세요' defaultValue={post?.postTitle}
                     onChange={(e) => {setPostTitle(e.target.value)}}></Input>
                 </Grid>
                 <Grid padding="10px 4px" width="100%">
-                    <Textarea placeholder='이웃집사들과 다양한 이야기를 나누어보세요'  defaultValue={post.postContent}
+                    <Textarea placeholder='이웃집사들과 다양한 이야기를 나누어보세요'  defaultValue={post?.postContent}
                     onChange={(e) => {setPostContent(e.target.value)}}></Textarea>
                 </Grid>
                 {preview === "" || preview===null ? 
@@ -113,7 +130,7 @@ const EditPost = () => {
                         <IconBox>
                         <TiDelete
                           size="25px" style={{ flex: "none", marginLeft: "-6.5px" }} color="#5F6060"
-                          onClick={() => { setImageUrl(); setPreview(""); }} />
+                          onClick={() => { setImageUrl(""); setPreview(""); }} />
                       </IconBox>
                         <input style={{display:"none"}} />
                     </ImageWrap>
@@ -122,6 +139,11 @@ const EditPost = () => {
                 {/* bottom */}
                 <AddPostFooter encodeFileToBase64={encodeFileToBase64} setImageUrl={setImageUrl}/>
             </Container>
+            <Alert2 open={open} setOpen={setOpen} btn1={message === 5 ? "확인" : "계속 작성하기"} >
+                <Text bold wordbreak size="small">
+                {message}
+                </Text>
+            </Alert2>
         </React.Fragment>
     )
 }
