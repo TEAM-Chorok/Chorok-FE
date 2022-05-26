@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import { ReactComponent as Logo } from "../Assets/img/logo/TextLogo.svg"
 
 const Permit = (props) => {
-    const is_logIn = localStorage.getItem('token') ? true : false;
+    const is_login = localStorage.getItem('token') ? true : false;
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const Permit = (props) => {
         return null;   
     }
     // if (!is_login || !is_session) {
-    if (!is_logIn) {
+    if (!is_login) {
         return (
             <React.Fragment>
                 <Container>
