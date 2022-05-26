@@ -5,12 +5,18 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
 import { ReactComponent as SettingIcon } from '../../Assets/img/Icons/settingIcon.svg'
+import { useEffect } from "react";
+import { actionCreators as userActions } from "../../Redux/Modules/User";
 
 const MyPageHeader = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector(state => state.user?.user);
   const myPlantList = useSelector(state => state.main?.myplant);
+
+  useEffect(() => {
+      dispatch(userActions.isLoginDB());
+  }, [])
 
     return (
         <React.Fragment>

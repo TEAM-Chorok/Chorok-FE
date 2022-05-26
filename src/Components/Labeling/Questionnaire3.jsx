@@ -36,7 +36,7 @@ const Questionnaire3 = (props) => {
                 border={props.attribute === "pt03"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
                 bg={props.attribute === "pt03"? "#DEFBE6" : "transparent"}>
               <IconBackground><ImageIcon src="img/labeling/cactus.svg"/></IconBackground>
-                <Text size="base">어디선나 잘 자라면 좋겠어요</Text>
+                <Text size="base">어디서나 잘 자라면 좋겠어요</Text>
               </SelectDiv>
             </SelectWrap>
             
