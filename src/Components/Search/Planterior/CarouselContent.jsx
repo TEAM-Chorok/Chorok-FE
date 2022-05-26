@@ -37,7 +37,6 @@ const ContentLabeling = () => {
 }
 
 const ContentSurvey = () => {
-  const history = useHistory();
   return (
     <React.Fragment>
       <Grid width="100%" padding="0 4px">
@@ -65,7 +64,6 @@ const ContentSurvey = () => {
 }
 
 const ContentBug = () => {
-  const history = useHistory();
   return (
     <React.Fragment>
       <Grid width="100%" padding="0 4px">

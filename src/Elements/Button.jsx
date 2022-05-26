@@ -164,10 +164,6 @@ const BasicButton = styled.button`
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "700" : "400")};
   color: ${(props) => props.color};
-
-  &:active {
-    border: 1px solid #333333;
-  }
 `;
 
 // 사이드 버튼
@@ -230,7 +226,7 @@ const FilterButton = styled.button`
   color: #262626;
 
   margin-right: 5px;
-  padding: 4px 12px;
+  padding: 6px 12px;
 
   border: ${(props) => (props.checked ? "1px solid #0AAF42" : "1px solid #E0E0E0")};
   border-radius: 25px;

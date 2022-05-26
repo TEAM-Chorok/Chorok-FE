@@ -26,14 +26,14 @@ const TodoContent = () => {
     <React.Fragment>
       <Grid width="100%" bg="#fff">
         <TitleBox>
-          <Grid width="100%" >
+          <Grid width="100%" margin="20px 0" >
             <SentenceBox>
-              <Text bold size="h6">
+              <p className="sentence">
                 {sentence}
-              </Text>
+              </p>
             </SentenceBox>
           </Grid>
-          <Grid width="100%" margin="16px 0">
+          <Grid width="100%" margin="-15px 0 16px 0">
             <TodoProfile plantNo={plantNo} setPlantNo={setPlantNo} />
           </Grid>
         </TitleBox>
@@ -61,7 +61,7 @@ const TodoContent = () => {
                           num={todo.todoNo}
                           status={todo?.status}
                           img={'img/todoIcons/' + todo.workType + '.svg'}>
-                          <Text bold size="large">{todo.workType}</Text><br />
+                          <Text size="base">{todo.workType}</Text><br />
                           {todo.days === 0 && todo.status === true ?
                             <Text size="xsmall">작업을 완료했어요!</Text> :
                             <div>
@@ -84,7 +84,7 @@ const TodoContent = () => {
   );
 }
 const TitleBox = styled.div`
-  padding: 20px 16px 0 16px;
+  padding: 0 16px 0 16px;
   border-bottom: 1px solid #E0E0E0;
   background: #fff;
 `
@@ -107,6 +107,12 @@ const SentenceBox = styled.div`
   margin: 4px;
   width: 210px;
   word-break: keep-all;
+  .sentence{
+    font-family: ;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 700;
+  }
 `
 
 const ContentBox = styled.div`

@@ -41,7 +41,7 @@ const PlantResult = (props) => {
   return (
     <React.Fragment>
       <Grid width="100%" padding="16px 0">
-        {plantList.length ?
+        {plantList?.length ?
           <Grid width="100%">
             <Grid width="100%" margin="0 2px">
               <Text bold size="small">전체</Text>

@@ -59,7 +59,7 @@ const PlantCard = () => {
               <BookMarkIcon
                 className='bookmark'
                 fill="none"
-                stroke="#393939"
+                stroke="#6F6F6F"
                 onClick={check}
               />
             }

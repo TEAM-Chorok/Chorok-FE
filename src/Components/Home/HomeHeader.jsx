@@ -93,8 +93,8 @@ const HomeHeader = () => {
       <Grid width="100%" bg="#fff">
         {navigator.geolocation ?
           <GridBox bg={color}>
-            <Grid width="100%" padding="16px">
-              <Text size="XS" color="#999">{date}</Text>
+            <Grid width="100%" padding="8px 16px">
+              {/* <Text size="XS" color="#999">{date}</Text> */}
               <br />
               <Text bold margin="5px 0"> {cityname}, {weatherData?.weather} {weatherData?.temp}℃</Text>
               <br />

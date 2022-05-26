@@ -20,7 +20,7 @@ const Questionnaire = (props) => {
                 <ImageIcon src="img/labeling/baby.svg"/>
               </IconBackground>              
               <Grid margin="0px 0px 0px 8px">
-                <Text margin="0px" display="block" >새싹집사</Text>
+                <Text margin="0px" display="block" size="base">새싹집사</Text>
                 <Text margin="0px" display="block" size="xxsmall" color="#24A148">식물을 한 번도 키워본 적이 없거나 키워도 다 실패해요</Text>
               </Grid>
             </Block>                

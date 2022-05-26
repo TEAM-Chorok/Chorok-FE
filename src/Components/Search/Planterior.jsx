@@ -11,6 +11,7 @@ import PlanteriorList from "./Planterior/PlanteriorList";
 
 const Planterior = () => {
   const username = useSelector((state) => state.user?.user?.nickname);
+  const recommendList = useSelector((state) => state?.search?.recommendlist);
 
   return (
     <React.Fragment>
@@ -18,14 +19,20 @@ const Planterior = () => {
         <Grid width="100%">
           <Carousel />
         </Grid>
-        <Grid margin="10px 2px">
-          <Text bold size="h6">{username? username : "사용자"}님을 위한 추천식물</Text>
-        </Grid>
+        {recommendList?.length ?
+          <Grid margin="10px 2px">
+            <Text bold size="h6">{username ? username : "집사"}님을 위한 추천식물</Text>
+          </Grid>
+          :
+          null
+        }
         <Grid width="100%">
           <RecommendPlant />
         </Grid>
       </Grid>
-      <Grid width="100%" height="12px" bg="#F7F8FA" />
+      {recommendList?.length ?
+        <Grid width="100%" height="12px" bg="#F7F8FA" />
+        : null}
       <Grid width="100%" padding="0 16px">
         <Grid margin="16px 0">
           <Text bold size="h6">식물 공간</Text>

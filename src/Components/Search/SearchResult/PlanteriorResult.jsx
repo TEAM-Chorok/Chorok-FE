@@ -47,7 +47,7 @@ const PlanteriorResult = (props) => {
   return (
     <React.Fragment>
       <Grid width="100%" margin="16px 0">
-        {result.length ?
+        {result?.length ?
           <InfiniteScroll
             page={page}
             totalPage={totalPage}

@@ -30,9 +30,9 @@ const Home = () => {
           <Grid width="100%" bg="#fff">
             {comp[compNum]}
           </Grid>
-          <SideButton open={open} setOpen={setOpen} />
         </Container>
       </Wrapper>
+      <SideButton open={open} setOpen={setOpen} />
     </React.Fragment>
   );
 }
