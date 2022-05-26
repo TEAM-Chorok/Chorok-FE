@@ -32,8 +32,8 @@ const logInDB = (username, password) => {
     userAPI
       .login(username, password)
       .then((response) => {
-        //sessionStorage에 토큰 저장
-        sessionStorage.setItem ("token", response.headers.authorization);
+        //localStorage에 토큰 저장
+        localStorage.setItem ("token", response.headers.authorization);
         dispatch(isLoginDB());
         history.replace('/home');
       }).catch((error) => {
@@ -51,7 +51,7 @@ const isLoginDB = () => {
       .then((res) => {
         dispatch(getUser(res.data));
         console.log(res.data)
-        localStorage.setItem('nickname', res.data.nickname)
+        localStorage.setItem('nickname', res.data.nickname);
       })
       .catch((err) => {
         console.log("isLogin : error", err);
@@ -63,7 +63,6 @@ const isLoginDB = () => {
 
 //signUp 폼데이터로 보내기
 const signUpDB = (username, password, nickname, profileImgUrl) => {
-  console.log(username, password, nickname, profileImgUrl)
   const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
@@ -88,7 +87,7 @@ const kakaoLogInDB = (code) => {
     userAPI
       .kakaoLogIn(code)
       .then((res) => {
-        sessionStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.email);
         dispatch(setUser({
           username: res.data.email
@@ -110,7 +109,7 @@ const googleLogInDB = (code) => {
     userAPI
       .googleLogIn(code)
       .then((res) => {
-        sessionStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', res.data.token);
         dispatch(setUser({
           username: res.data.username
         }))
@@ -127,13 +126,13 @@ const googleLogInDB = (code) => {
 }
 //전체 로그아웃
 const logOutDB = () => {
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
   return function (dispatch, getState, { history }) {
     userAPI
       .logOut(token)
       .then((res) => {
         console.log("logOut : response", res);
-        sessionStorage.removeItem("token");
+        localStorage.removeItem("token");
         localStorage.removeItem("username");
         dispatch(logOut());
         history.push('/');  
@@ -172,13 +171,6 @@ const editProfileDB = (nickname, profileImgUrl, preview, profileMsg) => {
   }
 }
 
-//프로필 수정 ( 이미지 수정 )
-const editProfileImgDB = (profileImgUrl) => {
-  return function (dispatch, getState, {history}) {
-    
-  }
-}
-
 //회원 탈퇴
 const deactivateUserDB = () => {
   return function (dispatch, getState, {history}) {
@@ -198,18 +190,18 @@ const deactivateUserDB = () => {
 }
 
 const findPwdDB = (userName, userId) => {
-  return function( dispatch, getState, {history} ) {
+  // return function( dispatch, getState, {history} ) {
 
-    userAPI
-      .findPwd(userName, userId)
-      .then(() => {
-        window.alert('고객님의 이메일 함을 확인해주세요. 비밀번호 변경 링크를 보내드렸습니다.');
-      })
-      .catch((error) => {
-        console.log("logInDB : error", error.response);
-        alert("아이디와 성함을 다시 확인해주세요.")
-      });
-  }
+  //   userAPI
+  //     .findPwd(userName, userId)
+  //     .then(() => {
+  //       window.alert('고객님의 이메일 함을 확인해주세요. 비밀번호 변경 링크를 보내드렸습니다.');
+  //     })
+  //     .catch((error) => {
+  //       console.log("logInDB : error", error.response);
+  //       alert("아이디와 성함을 다시 확인해주세요.")
+  //     });
+  // }
 }
 const changePwdDB = (password) => {
   return function( dispatch, getState, {history} ) {

@@ -33,7 +33,7 @@ const Questionnaire = (props) => {
                 <ImageIcon src="img/labeling/leaves.svg"/>
               </IconBackground>              
               <Grid margin="0px 0px 0px 8px">
-                <Text margin="0px" display="block" >입문집사</Text>
+                <Text margin="0px" display="block" >초보집사</Text>
                 <Text margin="0px" display="block" size="xxsmall" color="#24A148">식물에 대해 잘 모르지만 한두 번 잘 키워봤어요!</Text>
               </Grid>
             </Block>   
@@ -46,7 +46,7 @@ const Questionnaire = (props) => {
                 <ImageIcon src="img/labeling/tree.svg"/>
               </IconBackground>              
               <Grid margin="0px 0px 0px 8px">
-                <Text margin="0px" display="block" >경력집사</Text>
+                <Text margin="0px" display="block" >숙련집사</Text>
                 <Text margin="0px" display="block" size="xxsmall" color="#24A148">식물에 대해 잘 알고 잘 키울 수 있어요!</Text>
               </Grid>
             </Block>

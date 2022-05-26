@@ -14,7 +14,7 @@ const DetailCommPost = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const postId = useParams().postId;
-    const isLogin = sessionStorage.getItem('token');
+    const isLogin = localStorage.getItem('token');
     const post = props?.postList;
     const postLike = post?.postLike;
     const bookmarked = post?.postBookMark;
@@ -89,9 +89,9 @@ const DetailCommPost = (props) => {
                         <CommentIcon  fill="#6F6F6F"/>
                         <Text margin="0px 8px" size="base" color="#6F6F6F">{post?.commentCount}</Text>
                     </Grid>
-                    <Grid position="absolute" top="0px" right="0px" >
+                    <Grid position="absolute" top="0px" right="4px" >
                         {bookmark? 
-                            <BookmarkSelectedIcon
+                            <BookmarkIcon
                             className='bookmark'
                             fill="#0AAF42"
                             stroke="#0AAF42"

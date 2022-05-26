@@ -9,7 +9,7 @@ import PlantProfile from "../../share/etc/PlantProfile";
 // 탐색 - planterior의 추천식물 목록 
 
 const RecommandPlant = () => {
-  const is_session = localStorage.getItem('token') ? true : false;
+  const is_login = localStorage.getItem('token') ? true : false;
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -21,7 +21,7 @@ const RecommandPlant = () => {
   }
 
   React.useEffect(() => {
-    if(is_session){
+    if(is_login){
       dispatch(searchActions.getRecommendDB());
     } else {
       return;
@@ -48,7 +48,7 @@ const RecommandPlant = () => {
           <Grid margin="12px auto">
             <Button type="tran" _onClick={() => { history.push('/labeling'); }}>
               <Text bold>테스트하러 가기</Text>
-              <Text bold margin="12px">></Text>
+              {/* <Text bold margin="12px"></Text> */}
             </Button>
           </Grid>
         </Grid>
