@@ -17,9 +17,14 @@ const Permit = (props) => {
     // },[]);
     // const is_login = useSelector((state) => state.user.isLogin);
 
-    
-    if(props.element) {
-        return null;   
+
+    if (props.element && !is_login) {
+        return null;
+    }
+    if (props.element) {
+        <React.Fragment>
+            {props.children}
+        </React.Fragment>
     }
     // if (!is_login || !is_session) {
     if (!is_login) {

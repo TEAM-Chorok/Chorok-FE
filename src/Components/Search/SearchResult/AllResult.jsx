@@ -11,7 +11,9 @@ const AllResult = (props) => {
   const history = useHistory();
 
   const result = useSelector((state) => state.search.result);
-
+  const planterior = result?.plantriaSearchList;
+  const dictionary = result?.plantDictionaryList;
+  console.log(planterior.length);
   const openPlantCard = (plantNo) => {
     history.push(`/plant/${plantNo}`);
   }
@@ -19,75 +21,86 @@ const AllResult = (props) => {
   return (
     <React.Fragment>
 
-      <Grid width="100%" padding="28px 0">
-        <TitleBox>
-          <Grid width="100%" margin="auto">
-            <Text bold size="large">사진</Text>
+      {planterior?.length || dictionary?.length ?
+        <Grid width="100%">
+          <Grid width="100%" padding="28px 0">
+            <TitleBox>
+              <Grid width="100%" margin="auto">
+                <Text bold size="large">사진</Text>
+              </Grid>
+              <Text bold size="large" color="#0AAF42">{result?.plantriaCount}</Text>
+              <Grid width="100%" />
+              <Grid width="100%" _onClick={() => { props.setCompNum(1) }}>
+                <Text size="small" color="#525252">더보기</Text>
+              </Grid>
+            </TitleBox>
+
+
+            {planterior?.length > 0 ?
+              <ImageBox>
+                {result?.plantriaSearchList?.map((result, idx) => {
+                  return (
+                    <div key={result?.postId}>
+                      <Grid margin="2px auto"
+                        _onClick={() => { history.push(`/planterior/post/${result.postId}`); }}>
+                        <Image type="square" size="104px" borderRadius="4px" imgUrl={result.postImgUrl} />
+                      </Grid>
+                    </div>
+                  )
+                })}
+              </ImageBox>
+              :
+              <Grid margin="20px auto">
+                <Text size="base" bold>검색 결과가 없습니다.</Text>
+              </Grid>
+            }
           </Grid>
-          <Text bold size="large" color="#0AAF42">{result?.plantriaCount}</Text>
-          <Grid width="100%" />
-          <Grid width="100%" _onClick={() => { props.setCompNum(1) }}>
-            <Text size="small" color="#525252">더보기</Text>
+
+          <Grid width="100%" padding="24px 0">
+            <TitleBox2>
+              <Grid width="100%" margin="auto">
+                <Text bold size="large">식물도감</Text>
+              </Grid>
+              <Text bold size="large" color="#0AAF42">{result?.plantDictionaryCount}</Text>
+              <Grid width="100%" />
+              <Grid width="100%" _onClick={() => { props.setCompNum(2) }}>
+                <Text size="small" color="#525252" >더보기</Text>
+              </Grid>
+            </TitleBox2>
+
+            {dictionary?.length > 0 ?
+              <Grid width="100%">
+                {result?.plantDictionaryList?.map((result, idx) => {
+                  return (
+                    <div key={result?.plantNo}>
+                      <Grid width="100%" margin="2px auto">
+                        <PlantProfile list plant={result?.plantName}
+                          imgUrl={result?.plantImgUrl}
+                          _onClick={() => { openPlantCard(result?.plantNo) }} />
+                      </Grid>
+                    </div>
+                  )
+                })}
+              </Grid>
+              :
+              <Grid margin="20px auto">
+                <Text size="base" bold>검색 결과가 없습니다.</Text>
+              </Grid>
+            }
           </Grid>
-        </TitleBox>
+        </Grid>
 
-
-        {result?.plantriaSearchList?.length > 0 ?
-          <ImageBox>
-            {result?.plantriaSearchList?.map((result, idx) => {
-              return (
-                <div key={result?.postId}>
-                  <Grid margin="2px auto"
-                    _onClick={() => { history.push(`/planterior/post/${result.postId}`); }}>
-                    <Image type="square" size="104px" borderRadius="4px" imgUrl={result.postImgUrl}/>
-                  </Grid>
-                </div>
-              )
-            })}
-          </ImageBox>
-          :
-          <Grid margin="20px auto">
-            <Text size="base" bold>검색 결과가 없습니다.</Text>
+        :
+        <Grid margin="164px auto">
+          <NotFound />
+          <Grid margin="auto">
+            <Text bold size="small">검색결과가 없습니다</Text>
           </Grid>
-        }
+        </Grid>
+      }
 
 
-      </Grid>
 
-      <Grid width="100%" padding="24px 0">
-        <TitleBox2>
-          <Grid width="100%" margin="auto">
-            <Text bold size="large">식물도감</Text>
-          </Grid>
-          <Text bold size="large" color="#0AAF42">{result?.plantDictionaryCount}</Text>
-          <Grid width="100%" />
-          <Grid width="100%" _onClick={() => { props.setCompNum(2) }}>
-            <Text size="small" color="#525252" >더보기</Text>
-          </Grid>
-        </TitleBox2>
-
-        {result?.plantDictionaryList?.length > 0 ?
-          <Grid width="100%">
-            {result?.plantDictionaryList?.map((result, idx) => {
-              return (
-                <div key={result?.plantNo}>
-                <Grid width="100%" margin="2px auto">
-                  <PlantProfile list plant={result?.plantName} 
-                    imgUrl={result?.plantImgUrl} 
-                    _onClick={() => {openPlantCard(result?.plantNo)}}/>
-                </Grid>
-                </div>
-              )
-            })}
-          </Grid>
-          :
-          <Grid margin="20px auto">
-            <Text size="base" bold>검색 결과가 없습니다.</Text>
-          </Grid>
-        }
-
-
-      </Grid>
 
     </React.Fragment>
   )
