@@ -1,7 +1,7 @@
 import React, { useRef, seEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory, useParams } from "react-router-dom";
-import { EditPlantHeader, EditPlantBody } from '../../Components';
+import { EditPlantHeader, EditPlantBody, Alert2 } from '../../Components';
 import { Container, Input, Grid, Image, Text } from '../../Elements';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
@@ -63,6 +63,7 @@ const EditPlant = () => {
 
     //modal 열고 닫는 것을 useState로 관리
     const [openModal, setOpenModal] = React.useState(false);
+    const [deleteOpen, setDeleteOpen] = React.useState(false);
 
     //내 식물 수정하기
 
@@ -137,16 +138,16 @@ const EditPlant = () => {
                         plantId={myPlant?.myPlantId} place={place} setPlace={setPlace}/>
                     <Grid position="relative" width="100%">
                         <Button 
-                            onClick={()=>{setOpenModal(true)}}    
+                            onClick={()=>{ setDeleteOpen(true);}}    
                             style={{ position:"absolute", right:"0px", color:"#0AAF42"}}>식물 삭제하기</Button>
                     </Grid>
-                    <Modal 
+                    {/* <Modal 
                         isOpen={openModal}
                         style={modalStyle}
                         onRequestClose={()=>setOpenModal(false)}
                         ariaHideApp={false}>
                         <Grid display="block" position="inherit" padding="16px 16px 0px 0px" right="0px">
-                            <img src="/img/cancel_s.svg" onClick={()=>setOpenModal(false)}/>
+                            <img src="/img/cancel_s.svg" onClick={()=>{setOpenModal(false);}}/>
                         </Grid>
                         <Text margin="32px 24px 24px 24px" size="xsmall" display="block">정말 삭제하시겠습니까?<br />삭제된 식물은 복구할 수 없습니다.</Text>
                         <Grid margin="0px 0px 0px 24px">
@@ -154,12 +155,30 @@ const EditPlant = () => {
                                 onClick={()=>setOpenModal(false)}
                                 style={{fontSize:"14px", fontWeight:"700", borderRadius:"8px", border:"none", backgroundColor:"#F7F8FA", color:"#262626", marginRight:"8px", width:"116px", height:"36px"}}>취소하기</Button>
                             <Button 
-                                onClick={()=>deleteMyPlant()}
+                                onClick={()=>{deleteMyPlant()}}
                                 style={{fontSize:"14px", fontWeight:"700", borderRadius:"8px", border:"none", backgroundColor:"#F7F8FA", color:"#FA4D56", width:"116px", height:"36px"}}>삭제하기</Button>
                         </Grid>
-                    </Modal>
+                    </Modal> */}
                 </Grid>
             </Container>
+            {deleteOpen &&
+                <AlertBox>
+                    <Alert2 type="editPlant" open={deleteOpen} setOpen={setDeleteOpen} func={deleteMyPlant}>
+                        <Text size="xsmall" align="left">
+                        정말 삭제하시겠습니까?<br />삭제된 식물은 복구할 수 없습니다.
+                        </Text>
+                        <Grid margin="10px auto 0px auto">
+                            <Button 
+                                    onClick={()=>setOpenModal(false)}
+                                    style={{fontSize:"14px", fontWeight:"700", borderRadius:"8px", border:"none", backgroundColor:"#F7F8FA", color:"#262626", marginRight:"8px", width:"90px", height:"36px"}}>미루기</Button>
+                            <Button 
+                                    onClick={()=>{deleteMyPlant()}}
+                                    style={{fontSize:"14px", fontWeight:"700", borderRadius:"8px", border:"none", backgroundColor:"#F7F8FA", color:"#FA4D56", width:"90px", height:"36px"}}>삭제하기</Button>
+                        </Grid>
+                    </Alert2>
+                </AlertBox>
+            }
+
         </React.Fragment>
     )
 }
@@ -198,4 +217,12 @@ const modalStyle = {
         outline: 'none',
     }
 }
+
+
+const AlertBox = styled.div`
+  position: absolute;
+  top: 0;
+  padding-top: 40vh;
+  width: 100%;
+`
 export default EditPlant;

@@ -260,7 +260,7 @@ const XSMALL = styled.p`
   margin: ${(props) => props.margin};
   padding: none;
   box-sizing: border-box;
-
+  
   font-size: 13px;
   font-weight: ${(props) => props.bold ? 600 : 400};
   line-height: ${(props) => props.line};

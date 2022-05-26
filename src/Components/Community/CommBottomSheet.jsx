@@ -77,7 +77,8 @@ export default function CommBottomSheet( props ) {
                   <PencilIcon />
                   <Text margin="0 16px">수정하기</Text>
                 </Button>
-                <Button type="drawerBtn" padding="12px 20px" textAlign="left"_onClick={() => { deleteOne(props.postId) }}>
+                <Button type="drawerBtn" padding="12px 20px" textAlign="left"
+                    _onClick={() => { props.setDeleteOpen(true); setState(false); }}>
                     <DeleteIcon />
                   <Text margin="0 16px">삭제하기</Text>
                 </Button>
@@ -158,7 +159,7 @@ export default function CommBottomSheet( props ) {
       >
         <Grid width="100%" height="167px">
           <Grid margin="32px 0px" width="100%">
-            <Button type="drawerBtn" padding="12px 20px" textAlign="left" _onClick={() => { deleteOne(props.postId) }}>
+            <Button type="drawerBtn" padding="12px 20px" textAlign="left" _onClick={() => {  }}>
                 <PencilIcon style={{width: "16px", height: "16px", color:"#393939", marginRight:"28px"}}/>
               <Text bold size="base" color="#393939">삭제하기</Text>
             </Button>
