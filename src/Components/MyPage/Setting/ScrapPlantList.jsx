@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { Text, Grid, Image } from '../../Elements';
-import { actionCreators as MyActions } from '../../Redux/Modules/MyPage';
-import { ReactComponent as FavoriteIcon} from "../../Assets/img/likeBookmarkIcons/favorite.svg"
-import { ReactComponent as FavoriteSelectedIcon} from '../../Assets/img/likeBookmarkIcons/favorite_selected.svg';
-import { ReactComponent as BookmarkIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark.svg";
-import { ReactComponent as BookmarkSelectedIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark_selected.svg";
-import { ReactComponent as CommentIcon } from "../../Assets/img/likeBookmarkIcons/Comment.svg";
-import MyPlant from './MyPlants/MyPlant';
+import { Text, Grid, Image } from '../../../Elements';
+import { actionCreators as MyActions } from '../../../Redux/Modules/MyPage';
+import { ReactComponent as FavoriteIcon} from "../../../Assets/img/likeBookmarkIcons/favorite.svg";
+import { ReactComponent as FavoriteSelectedIcon} from '../../../Assets/img/likeBookmarkIcons/favorite_selected.svg';
+import { ReactComponent as BookmarkIcon} from "../../../Assets/img/likeBookmarkIcons/Bookmark.svg";
+import { ReactComponent as BookmarkSelectedIcon} from "../../../Assets/img/likeBookmarkIcons/Bookmark_selected.svg";
+import { ReactComponent as CommentIcon } from "../../../Assets/img/likeBookmarkIcons/Comment.svg";
+import MyPlant from '../MyPlants/MyPlant';
 
 const ScrapPlantList = () => {
     const dispatch = useDispatch();

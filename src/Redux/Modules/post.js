@@ -193,8 +193,9 @@ const editPostDB = (formData, postId) => {
       .then((response) => {
         console.log("게시글 수정 성공");
         window.alert('게시글이 성공적으로 수정되었습니다.');
-        dispatch(getDetailPost(response.data.post));
-        history.push(`/community/${response.data.post.postId}`);
+        history.push(`/community/${postId}`);
+        window.location.reload();
+        dispatch(getDetailPost(postId));
       })
       .catch((err) => {
         console.log("error:", err);

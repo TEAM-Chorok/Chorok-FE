@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -9,6 +10,10 @@ import { actionCreators as userActions } from "../../Redux/Modules/User";
 const Setting = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userActions.isLoginDB());
+  }, []);
 
   const logOut = () => {
     dispatch(userActions.logOutDB());

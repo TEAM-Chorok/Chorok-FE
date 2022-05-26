@@ -71,6 +71,7 @@ const SignUp = () => {
       })
       .catch((error) => {
         console.log(error);
+        window.alert('연결에 실패하였습니다.');
       })
     }
     //비밀번호 일치 확인
@@ -83,12 +84,15 @@ const SignUp = () => {
       userAPI
       .nicknameCheck(nickname)
       .then((res) => {
-        console.log(res);
-        setDuplicatedNickname(false);
+        if(res.data.StatusCode === "400 BAD_REQUEST"){
+          setDuplicatedNickname(true);
+        }else {
+          setDuplicatedNickname(false);
+        }
       })
       .catch((error) => {
         console.log(error);
-        setDuplicatedNickname(true);
+        window.alert('연결에 실패하였습니다.');
       })
     }
 

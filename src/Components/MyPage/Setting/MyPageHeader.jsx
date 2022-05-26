@@ -1,12 +1,12 @@
 import React from "react";
-import { Grid, Permit, Text, Image } from "../../Elements";
+import { Grid, Permit, Text, Image } from "../../../Elements";
 import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as mainActions } from "../../Redux/Modules/Main";
-import { ReactComponent as SettingIcon } from '../../Assets/img/Icons/settingIcon.svg'
+import { actionCreators as mainActions } from "../../../Redux/Modules/Main";
+import { ReactComponent as SettingIcon } from '../../../Assets/img/Icons/settingIcon.svg'
 import { useEffect } from "react";
-import { actionCreators as userActions } from "../../Redux/Modules/User";
+import { actionCreators as userActions } from "../../../Redux/Modules/User";
 
 const MyPageHeader = (props) => {
   const dispatch = useDispatch();

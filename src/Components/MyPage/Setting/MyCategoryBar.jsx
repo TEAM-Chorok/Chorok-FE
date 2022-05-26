@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text, Grid, Container } from '../../Elements';
+import { Text, Grid, Container } from '../../../Elements';
 import MyPlants from './MyPlants';
 import MyPictures from './MyPictures';
 

@@ -79,7 +79,7 @@ const ProfileSetting = () => {
           setDisable(true);
         }
       }
-  }, [preview, nickname, profileMsg, duplicatedNickname, profileMsg])
+  }, [preview, nickname, duplicatedNickname, profileMsg])
   
 
   //프로필 수정 dispatch 요청
@@ -113,27 +113,30 @@ const ProfileSetting = () => {
          <Grid width="100%">
           <ProfileWrap>
                 {/* 프로필 이미지 미리보기 */}
-                {preview === "null" || preview === null? 
-                    <Image
+                {profileImgUrl !== "" ? 
+
+                  <Image
                     margin="10px auto"
                     type="circle"  
-                    imgUrl="/img/basicPlantImg.png"
+                    imgUrl={preview}
                     alt="preview-img"
-                    size="120px"/>: 
-                    (previousImgUrl !== "" ? 
-                        <Image
-                            margin="10px auto"
-                            type="circle"  
-                            imgUrl={previousImgUrl}
-                            alt="preview-img"
-                            size="120px"/> :
-                        <Image
-                            margin="10px auto"
-                            type="circle"  
-                            imgUrl={preview}
-                            alt="preview-img"
-                            size="120px"/> 
-                    )
+                    size="120px"/> :
+                  
+                    (preview === "null" || preview === null?
+                      <Image
+                      margin="10px auto"
+                      type="circle"  
+                      imgUrl="/img/basicPlantImg.png"
+                      alt="preview-img"
+                      size="120px"/> : 
+
+                      <Image
+                          margin="10px auto"
+                          type="circle"  
+                          imgUrl={previousImgUrl}
+                          alt="preview-img"
+                          size="120px"/>
+                  )
                 }
                 {/* <Image size="134px" imgUrl="sample.jpeg" type="circle" margin="50px auto 40px auto"/> */}
                 {/* 미리보기 클릭하면 input type=file 오픈하기 */}

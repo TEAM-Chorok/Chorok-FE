@@ -47,20 +47,22 @@ const Labeling = () => {
   if (active === 0 ) {
     return (
     <React.Fragment>
-      <Container>
+      <Container type="np">
         <GeneralHeader />
-        <Grid margin="100px 0px">
+      </Container>
+      <Container>
+        <Grid margin="22px 0px">
           <Text size="large" color="#262626" bold>반가워요!<br/>지금부터 나와 꼭 맞는 식물을<br />찾아볼까요?</Text>
         </Grid>
         
-        <Grid margin="120px auto 100px auto" align="center">
+        <Grid margin="350px auto 100px auto" align="center" width="100%">
           <PrimaryBtn onClick={()=>setActive(1)}>시작할래요</PrimaryBtn>
           <GobackBtn onClick={()=>history.goBack()}>다음에 할게요</GobackBtn>
         </Grid>
-        <Grid margin="0px auto" align="center">
+        <Grid margin="0px auto" align="center" position="absolute" top="250px" left="38%">
           {/*추후 애니메이션 넣기*/}
           <Img className="labelingLogo" src="img/Logo/LOGO.svg" />
-          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position: "absolute", top:"404px", left: "168px"}}/>
+          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position: "absolute", top:"84px", left: "30px"}}/>
         </Grid>
       </Container>
     </React.Fragment>
@@ -92,9 +94,9 @@ const PrimaryBtn = styled.button`
   border: none;
   font-weight: 700;
   border-radius: 8px;
-  position: absolute;
-  top: 472px;
-  left: 30px;
+  // position: absolute;
+  // top: 472px;
+  // left: 30px;
 `
 const GobackBtn = styled.button`
   width: 86%;
@@ -104,8 +106,8 @@ const GobackBtn = styled.button`
   text-align: center;
   border-radius: 8px;
   border: none;
-  position: absolute;
-  top: 522px;
-  left: 30px;
+  // position: absolute;
+  // top: 522px;
+  // left: 30px;
 `
 export default Labeling;

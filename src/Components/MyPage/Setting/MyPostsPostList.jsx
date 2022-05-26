@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { Text, Grid, Image, Container } from '../../Elements';
-import { actionCreators as MyActions } from '../../Redux/Modules/MyPage';
-import { ReactComponent as FavoriteIcon} from "../../Assets/img/likeBookmarkIcons/favorite.svg"
-import { ReactComponent as FavoriteSelectedIcon} from "../../Assets/img/likeBookmarkIcons/favorite_selected.svg"
-import { ReactComponent as BookmarkIcon} from "../../Assets/img/likeBookmarkIcons/Bookmark.svg";
-import { ReactComponent as CommentIcon } from "../../Assets/img/likeBookmarkIcons/Comment.svg";
-import InfiniteScroll from '../share/etc/InfiniteScroll';
+import { Text, Grid, Image, Container } from '../../../Elements';
+import { actionCreators as MyActions } from '../../../Redux/Modules/MyPage';
+import { ReactComponent as FavoriteIcon} from "../../../Assets/img/likeBookmarkIcons/favorite.svg"
+import { ReactComponent as FavoriteSelectedIcon} from "../../../Assets/img/likeBookmarkIcons/favorite_selected.svg"
+import { ReactComponent as BookmarkIcon} from "../../../Assets/img/likeBookmarkIcons/Bookmark.svg";
+import { ReactComponent as CommentIcon } from "../../../Assets/img/likeBookmarkIcons/Comment.svg";
+import InfiniteScroll from '../../share/etc/InfiniteScroll';
 
 const MyPostsPostList= () => {
     const history = useHistory();
@@ -143,8 +143,7 @@ const MyPostsPostList= () => {
                         <Text bold size="base" margin="auto">데이터를 불러오고 있습니다💬</Text>
                     </Grid>
                     </FloatBox>
-                </RelativeBox>}     
-            
+                </RelativeBox>}
         </React.Fragment>
     )
 }

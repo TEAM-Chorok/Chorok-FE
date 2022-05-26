@@ -44,6 +44,7 @@ const PostDetail = () => {
         else {
             dispatch(postActions.addCommentDB(postId, comment));
             contentRef.current.value = null;
+            setComment("");
         }
     }
 
@@ -98,7 +99,7 @@ const PostDetail = () => {
                         type="comment" placeholder="댓글을 입력해주세요" _ref={contentRef} />
                     <ButtonBox>
                         <Button
-                            onClick={() => { addComment() }}
+                            onClick={() => { addComment();  }}
                             variant="text"
                             style={{ color: "#24A148", fontSize: "14px" }}>등록</Button>
                     </ButtonBox>

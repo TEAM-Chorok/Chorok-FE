@@ -19,30 +19,34 @@ const EditPlant = () => {
     const params = useParams();
     const myPlantId = params.id;
 
+    //내 식물 정보 불러오기
+    React.useEffect(() => {
+        dispatch(myActions.getMyPlantDetailDB(params.id));
+    }, [])
+    
     const myPlant = useSelector(state => state.mypage?.plant);
 
     const previousPlantName = myPlant?.myPlantName;
-    const previousPlantPlace = myPlant?.myPlantPlace;
+    const [previousPlace, setPreviousPlantPlace] = React.useState(myPlant?.myPlantPlace);
 
     const [myPlantName, setMyPlantName] = React.useState(""); //내 식물 이름
     const [place, setPlace] = React.useState(""); // 장소 코드 
     const [placeValue, setPlaceValue] = React.useState(""); // 장소 이름
     const [plantImgUrl, setPlantImgUrl] = React.useState("");
-    const [preview, setPreview] = React.useState(""); 
+    const [preview, setPreview] = React.useState(null); 
 
-    //내 식물 정보 불러오기
     React.useEffect(() => {
-        dispatch(myActions.getMyPlantDetailDB(params.id));
         setMyPlantName(myPlant?.myPlantName);
         setPlaceValue(myPlant?.myPlantPlace);
+        setPreviousPlantPlace(myPlant?.myPlantPlace);
+        if(placeValue === "통로") {setPlace("pp01")}
+        else if(placeValue === "방안") {setPlace("pp02")}
+        else if(placeValue === "화장실") {setPlace("pp03")}
+        else if(placeValue === "거실") {setPlace("pp04")}
+        else if(placeValue === "창가") {setPlace("pp05")}
+        else if(placeValue === "베란다,발코니") {setPlace("pp06")}
         setPreview(myPlant?.myPlantImgUrl);
-        if(myPlant?.myPlantPlace=="거실"){setPlace("pp04")}
-            else if(myPlant?.myPlantPlace==="베란다,발코니"){setPlace("pp06")}
-            else if(myPlant?.myPlantPlace==="방안"){setPlace("pp02")}
-            else if(myPlant?.myPlantPlace==="통로"){setPlace("pp01")}
-            else if(myPlant?.myPlantPlace==="창가"){setPlace("pp05")}
-            else if(myPlant?.myPlantPlace==="화장실"){setPlace("pp03")}
-    }, [myPlant?.myPlantName, myPlant?.myPlantPlace, myPlant?.myPlantImgUrl])
+    },[myPlant?.myPlantName, myPlant?.myPlantPlace, myPlant?.myPlantImgUrl, previousPlace])
 
     // Base64로 인코딩하여 미리보기 이미지 출력
     const reader = new FileReader();
@@ -66,12 +70,13 @@ const EditPlant = () => {
     const [deleteOpen, setDeleteOpen] = React.useState(false);
 
     //내 식물 수정하기
-
     const editMyPlant = () => {
         if(myPlantName === "" || myPlantName === " " ){
             window.alert('식물의 별명을 지어주세요 :)');
             return;
         }
+
+        console.log(myPlantId, myPlantName, placeValue, place, plantImgUrl, preview);
         dispatch(myActions.editMyPlantDB(myPlantId, myPlantName, place, plantImgUrl, preview))
     }
 
@@ -81,8 +86,6 @@ const EditPlant = () => {
     }
 
 
-    
-
     if(!myPlant){
         return (
             <div></div>
@@ -91,20 +94,27 @@ const EditPlant = () => {
     return (
         <React.Fragment>
             <Container type="np">
-                <EditPlantHeader plantImgUrl={plantImgUrl} previousPlantName={previousPlantName} myPlantName={myPlantName} previousPlantPlace={previousPlantPlace} place={place} editMyPlant={editMyPlant}/>
+                <EditPlantHeader plantImgUrl={plantImgUrl} previousPlantName={previousPlantName} myPlantName={myPlantName} previousPlace={previousPlace} place={place} editMyPlant={editMyPlant}/>
                 <Hr />
                 <Grid padding="12px 0px" margin="0px auto" align="center">
-                {preview? 
+                {plantImgUrl ? 
                     <Image
                         margin="10px auto" size="120px"
                         type="circle"  
                         imgUrl={preview}
-                        alt="preview-img"/> : 
-                    <Image
-                        margin="10px auto" size="120px"
-                        type="circle"  
-                        imgUrl="/img/plantProfile.svg"
-                        alt="preview-img"/>
+                        alt="preview-img"/>: 
+                    (myPlant?.myPlantImgUrl?
+                        <Image
+                            margin="10px auto" size="120px"
+                            type="circle"  
+                            imgUrl={myPlant?.myPlantImgUrl}
+                            alt="preview-img"/> :
+                        <Image
+                            margin="10px auto" size="120px"
+                            type="circle"  
+                            imgUrl="/img/plantProfile.svg"
+                            alt="preview-img"/> 
+                    )
                 }
                 <input ref={profileImgRef} 
                 style={{display:"none"}} type="file"
@@ -130,12 +140,11 @@ const EditPlant = () => {
                         _onChange={(e)=>setMyPlantName(e.target.value)}
                         defaultValue={myPlant?.myPlantName} 
                         id="nickname" placeholder="별명" 
-                        width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />
+                        width="100%" borderRadius="6px" border="1px solid #C6C6C6" padding="10px 0px 10px 10px" />
                         
                     {/* 식물 장소정하기 */}
                     <EditPlantBottomSheet 
-                        setPlaceValue={setPlaceValue} placeValue={myPlant?.myPlantPlace} 
-                        plantId={myPlant?.myPlantId} place={place} setPlace={setPlace}/>
+                        place={place} setPlace={setPlace} placeValue={placeValue} setPlaceValue={setPlaceValue}/>
                     <Grid position="relative" width="100%">
                         <Button 
                             onClick={()=>{ setDeleteOpen(true);}}    
