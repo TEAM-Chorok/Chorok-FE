@@ -1,8 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Carousel, PlanteriorList, RecommendPlant } from "..";
+import { RecommendPlant } from "..";
 
 import { Grid, Text } from "../../Elements";
+import Carousel from "./Planterior/Carousel";
+import PlanteriorList from "./Planterior/PlanteriorList";
 
 
 // planterior 페이지 관련 하위 컴포넌트들을 여기서 미리 합쳐서 가져갑니다.
