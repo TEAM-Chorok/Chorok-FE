@@ -73,7 +73,7 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
       .signUp(formData)
       .then((res) => {
         console.log(res);
-        window.alert("회원가입되었습니다. 다시 로그인해주세요.");
+        window.alert("인증메일을 발송하였습니다. 메일함(스팸함)을 확인해주세요.");
         history.push('/'); 
       }).catch((err) => {
         console.log("signUpDB : error", err.response);

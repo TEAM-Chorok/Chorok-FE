@@ -24,7 +24,7 @@ const ChangePwd = (props) => {
   const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
 
   //비밀번호 일치 확인
-  const passwordMatch = () => {
+  const passwordMatch = (password, passwordChk) => {
     if (password === passwordChk) {
       return true;
     } else { return false; }
@@ -54,6 +54,7 @@ const ChangePwd = (props) => {
         <Grid margin="12px 4px">
           <Text weight="400">변경하실 비밀번호를 입력해주세요 :)</Text>
         </Grid>
+
         <Grid width="100%">
           {passwordMatch(password, passwordChk) || passwordChk === "" ?
             <Grid width="100%" position="relative">
@@ -125,7 +126,7 @@ const ChangePwd = (props) => {
 
           }
 
-          {passwordMatch(password, passwordChk) || passwordChk === "" ?
+          {passwordMatch() || passwordChk === "" ?
             <Grid margin="-4px 4px 12px 4px">
               <Text size="xsmall" color="#24A148"> 비밀번호가 일치합니다.</Text>
             </Grid> :
