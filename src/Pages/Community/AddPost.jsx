@@ -60,24 +60,22 @@ const AddPost = () => {
 
     return (
         <React.Fragment>
-            <Container>
                 <AddPostHeader submit={submit} disable={postTitle === "" || postContent === "" || category === ""} title="초록톡 글쓰기"/>
-                <HR />
-                <Grid margin="16px 0">
+                <Grid height="1px" width="100%" bg="#E0E0E0" />
+                <Grid margin="16px">
                     <Button type="filter" checked={category === "postType02"} _onClick={() => {setCategory("postType02")}}>질문</Button>
                     <Button type="filter" checked={category === "postType03"} _onClick={() => {setCategory("postType03")}}>식물성장일기</Button>
                     <Button type="filter" checked={category === "postType04"} _onClick={() => {setCategory("postType04")}}>식물추천</Button>
                 </Grid>
-                <Grid padding="10px 4px" width="100%">
+                <Grid padding="0 16px" width="100%">
                     <Input maxLength="15" type="text" placeholder='글 제목을 입력해주세요'
                     onChange={(e) => {setPostTitle(e.target.value)}}></Input>
                 </Grid>
-                <Grid padding="10px 4px" width="100%">
-                    <Textarea placeholder='이웃집사들과 다양한 이야기를 나누어보세요' 
+                <Grid width="100%" padding="16px">
+                    <Textarea placeholder='이웃집사들과 다양한 이야기를 나누어보세요'
                     onChange={(e) => {setPostContent(e.target.value)}}></Textarea>
                 </Grid>
-            </Container>
-            <Container type="np">
+                <FixedBox>
                 {imageUrl === "" || imageUrl === null ? 
                     <ImageWrap style={{visibility:"hidden"}}>
                         <Image width="84px" height="84px" type="planterior" />
@@ -98,13 +96,13 @@ const AddPost = () => {
 
                 {/* bottom */}
                 <AddPostFooter encodeFileToBase64={encodeFileToBase64} setImageUrl={setImageUrl}/>
-            </Container>
+                </FixedBox>
         </React.Fragment>
     )
 }
-export default AddPost;
 
 const Input = styled.input`
+   font-family: 'SUIT';
     width: 100%;
     height: 40px;
     font-size: 16px;
@@ -112,7 +110,7 @@ const Input = styled.input`
     border-bottom: 1px solid #DDE1E6;
     &::placeholder {
         color: #DDE1E6;
-        font-weight: 600;
+        font-weight: 500;
     }
     &:focus {
         outline: none;
@@ -140,17 +138,18 @@ const IconBox = styled.div`
 `
 
 const Textarea = styled.textarea`
+    font-family: 'SUIT';
     width: 100%;
-    height: 300px;
+    height: 40vh;
     border: none;
     font-size: 14px;
     resize: none;
     &::placeholder {
         color: #DDE1E6;
-        font-weight: 600;
+        font-weight: 500;
     }
     &:focus {
-        outline:none;
+        outline: none;
     }
 `
 const HR = styled.hr`
@@ -159,3 +158,8 @@ const HR = styled.hr`
     margin-left: calc(-50vw + 50%);
 `
 
+const FixedBox = styled.div`
+    position: fixed;
+    bottom: 56px;
+`
+export default AddPost;

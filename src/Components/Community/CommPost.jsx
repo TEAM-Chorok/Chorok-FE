@@ -52,7 +52,7 @@ const CommPost = (props) => {
             <Text size="large" weight="500">{post?.postTitle}</Text>
           </Grid>
 
-          <Grid is_flex align="center" margin="4px -1px">
+          <Grid is_flex align="center" margin="4px 0">
             {post?.profileImgUrl === 'null' || post?.profileImgUrl === null || post?.profileImgUrl === "" ?
               <Image type="circle" size="24px" imgUrl="/img/noProfileImgSmall.svg" /> :
               <Image type="circle" size="24px" imgUrl={post?.profileImgUrl} />

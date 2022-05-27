@@ -89,7 +89,6 @@ const PlanteriorWriteComp = () => {
   
   // 게시글 등록
   const submit = () => {
-    console.log("글작성!!!!!!!!")
     // 데이터 유효성 
     if (place === null) {
       // 장소 설정하지 않았을 경우

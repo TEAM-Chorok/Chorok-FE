@@ -101,10 +101,9 @@ const EditPost = () => {
 
     return (
         <React.Fragment>
-            <Container>
                 <AddPostHeader edit submit={submit} disable={postTitle === "" || postContent === "" || category === ""} title="초록톡 수정하기"/>
-                <HR />
-                <Grid margin="16px 0">
+                <Grid height="1px" width="100%" bg="#E0E0E0" />
+                <Grid margin="16px">
                     <Button type="filter" checked={category === "postType02"} 
                         _onClick={() => {setCategory("postType02"); setPostTypeCode("postType02")}}>질문</Button>
                     <Button type="filter" checked={category === "postType03"} 
@@ -112,14 +111,15 @@ const EditPost = () => {
                     <Button type="filter" checked={category === "postType04"} 
                         _onClick={() => {setCategory("postType04"); setPostTypeCode("postType04")}}>식물추천</Button>
                 </Grid>
-                <Grid padding="10px 4px" width="100%">
+                <Grid padding="0 16px" width="100%">
                     <Input maxLength="15" type="text" placeholder='글 제목을 입력해주세요' defaultValue={post?.postTitle}
                     onChange={(e) => {setPostTitle(e.target.value)}}></Input>
                 </Grid>
-                <Grid padding="10px 4px" width="100%">
+                <Grid width="100%" padding="16px">
                     <Textarea placeholder='이웃집사들과 다양한 이야기를 나누어보세요'  defaultValue={post?.postContent}
                     onChange={(e) => {setPostContent(e.target.value)}}></Textarea>
                 </Grid>
+                <FixedBox>
                 {preview === "" || preview===null ? 
                     <ImageWrap style={{visibility:"hidden"}}>
                         <Image width="84px" height="84px" type="planterior" />
@@ -138,7 +138,7 @@ const EditPost = () => {
                 
                 {/* bottom */}
                 <AddPostFooter encodeFileToBase64={encodeFileToBase64} setImageUrl={setImageUrl}/>
-            </Container>
+                </FixedBox>
             <Alert2 open={open} setOpen={setOpen} btn1={message === 5 ? "확인" : "계속 작성하기"} >
                 <Text bold wordbreak size="small">
                 {message}
@@ -149,6 +149,7 @@ const EditPost = () => {
 }
 
 const Input = styled.input`
+    font-family: 'SUIT';
     width: 100%;
     height: 40px;
     font-size: 16px;
@@ -156,18 +157,18 @@ const Input = styled.input`
     border-bottom: 1px solid #DDE1E6;
     &::placeholder {
         color: #DDE1E6;
-        font-weight: 600;
+        font-weight: 500;
     }
     &:focus {
         outline: none;
     }
 `
 const ImageWrap = styled.div`
-
     padding: 8px 6px;
     position: relative;
 `
 const Textarea = styled.textarea`
+    font-family: 'SUIT';
     width: 100%;
     height: 40vh;
     border: none;
@@ -175,7 +176,7 @@ const Textarea = styled.textarea`
     resize: none;
     &::placeholder {
         color: #DDE1E6;
-        font-weight: 600;
+        font-weight: 500;
     }
     &:focus {
         outline: none;
@@ -200,6 +201,10 @@ const IconBox = styled.div`
   border: 1px solid #000;
   border-radius: 12px;
   background: #fff;
+`
+const FixedBox = styled.div`
+    position: fixed;
+    bottom: 56px;
 `
 
 export default EditPost;

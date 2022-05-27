@@ -225,7 +225,7 @@ const FilterButton = styled.button`
   font-family: 'SUIT';
   font-size: 14px;
   letter-spacing: 0.25px;
-  color: #262626;
+  color: ${(props) => (props.checked ? "#0AAF42" : "#262626")};
 
   margin-right: 6px;
   padding: 6px 12px;
