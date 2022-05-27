@@ -27,7 +27,9 @@ const ChangePwd = (props) => {
 
   //비밀번호 일치 확인
     const passwordMatch = () => {
-      return password === passwordChk;
+      if(password === passwordChk) {
+        return true;
+      }else { return false;}
     }
 
     const changePwd = () => {
@@ -55,56 +57,68 @@ const ChangePwd = (props) => {
         <Container>
           <Grid width="100%">
           {passwordMatch(password, passwordChk) || passwordChk === ""?
-              <Grid width="100%" position="relative">
-                <Input 
-                type={showPassword? "shownPassword" : "password"}
-                _onChange={(e)=>{setPassword(e.target.value); 
-                                pwdCheck(e.target.value)}} 
-                                border="1px solid #D5D8DB"
-                placeholder="비밀번호(영문 대소문자, 숫자를 포함한 8~20자)" ></Input>
+              <Grid width="100%" >
+                <Grid width="100%">
+                <Grid width="100%" position="relative">
+                  <Input 
+                  type={showPassword? "shownPassword" : "password"}
+                  _onChange={(e)=>{setPassword(e.target.value); 
+                                  pwdCheck(e.target.value)}} 
+                                  border="1px solid #D5D8DB"
+                  placeholder="비밀번호" 
+                  margin="0px 0px 0px 0px" ></Input>
 
-                <HideBtn style={{position:"absolute", top:"20%", right:"8px"}}
-                onClick={()=>setShowPassword(!showPassword)}>
-                  {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
-
-
-                <Input 
-                type={showPassword? "shownPassword" : "password"}
-                border="1px solid #D5D8DB"
-                _onChange={(e)=>{setPasswordChk(e.target.value); 
-                                pwdCheck(e.target.value); }} 
-                placeholder="비밀번호 확인"  ></Input>
-
-                <HideBtn  style={{position:"absolute", top:"70%", right:"8px"}}
-                onClick={()=>setShowPassword(!showPassword)} >
-                  {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
-                </Grid> 
+                  <HideBtn style={{position:"absolute", top:"32%", right:"8px"}}
+                  onClick={()=>setShowPassword(!showPassword)}>
+                    {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
+                </Grid>
+                    <Grid  margin="0px 0px 8px 8px">
+                      { password !== "" && !pwdCheck(password) ? 
+                            <Text size="xxsmall" color="#FA4D56"> 영문 대문자, 소문자, 숫자를 포함하여 8~20자를 입력해주세요.</Text> : ""
+                      }
+                    </Grid>
+                  </Grid>
+                  <Grid width="100%" position="relative">
+                    <Input 
+                    type={showPassword? "shownPassword" : "password"}
+                    border="1px solid #D5D8DB"
+                    _onChange={(e)=>{setPasswordChk(e.target.value); 
+                                    pwdCheck(e.target.value); }} 
+                    placeholder="비밀번호 확인"  
+                    margin="0px 0px 0px 0px"></Input>
+                    
+                    <HideBtn  style={{position:"absolute", top:"32%", right:"8px"}}
+                    onClick={()=>setShowPassword(!showPassword)} >
+                      {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
+                  </Grid> 
+                </Grid>
 
                 : 
+              <Grid width="100%">
+                <Grid width="100%" position="relative">
+                  <Input 
+                  type={showPassword? "shownPassword" : "password"}
+                  _onChange={(e)=>{setPassword(e.target.value); 
+                                  pwdCheck(e.target.value)}} 
+                  border="1px solid #FA4D56" 
+                  placeholder="비밀번호" margin="0px 0px 8px 0px" ></Input>
 
+                  <HideBtn  style={{position:"absolute", top:"32%", right:"8px"}}
+                  onClick={()=>setShowPassword(!showPassword)}  >
+                    {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
+                </Grid>
               <Grid width="100%" position="relative">
-                <Input 
-                type={showPassword? "shownPassword" : "password"}
-                _onChange={(e)=>{setPassword(e.target.value); 
-                                pwdCheck(e.target.value)}} 
-                border="1px solid #FA4D56" 
-                placeholder="비밀번호(영문 대소문자, 숫자를 포함한 8~20자)"  ></Input>
-
-                <HideBtn  style={{position:"absolute", top:"20%", right:"8px"}}
-                onClick={()=>setShowPassword(!showPassword)}  >
-                  {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
-
-
                 <Input 
                 type={showPassword? "shownPassword" : "password"}
                  border="1px solid #FA4D56" 
                 _onChange={(e)=>{setPasswordChk(e.target.value); 
                                 pwdCheck(e.target.value); }} 
-                placeholder="비밀번호 확인"  ></Input> 
+                placeholder="비밀번호 확인" margin="0px 0px 0px 0px" ></Input> 
 
-                <HideBtn  style={{position:"absolute", top:"70%", right:"8px"}}
+                <HideBtn  style={{position:"absolute", top:"32%", right:"8px"}}
                 onClick={()=>setShowPassword(!showPassword)}  >
                   {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
+              </Grid>
               </Grid>
               
               }
