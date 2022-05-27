@@ -32,8 +32,8 @@ const MyPageHeader = (props) => {
                         <Image type="circle" size="80px" imgUrl={user?.profileImgUrl === "null" || user?.profileImgUr===null ? "/img/NoProfileImgUser.svg": user?.profileImgUrl} />
                     </Grid>
                     <GridWrapRow>
-                        <Grid><Text size="M">{user?.nickname}</Text></Grid>
-                        <Grid><Text fontSize="0.9em" >{user?.profileMsg}</Text></Grid>
+                        <Grid><Text size="large" weight="700">{user?.nickname.length < 11 ? user?.nickname : user?.nickname.slice(0,10) + '...' }</Text></Grid>
+                        <Grid><Text size="small" color="#6F6F6F" >{user?.profileMsg.length < 15? user?.profileMsg : user?.profileMsg.slice(0,14) + '...'}</Text></Grid>
                     </GridWrapRow>
                 </GridWrapCol>
             </Grid>

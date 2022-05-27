@@ -85,7 +85,7 @@ const MyPostsPostList= () => {
                                         <Image type="circle" size="24px" imgUrl="/img/noProfileImgSmall.svg"/> :
                                         <Image type="circle" size="24px" imgUrl={p?.profileImgUrl}/>
                                     }
-                                    <Text margin="0px 8px" size="small">{p?.nickname}</Text>
+                                    <Text margin="0px 8px" size="small">{p?.nickname.length < 11 ? p?.nickname : p?.nickname.slice(0,10) + '...' }</Text>
                                     <Text size="xsmall" color="#6F6F6F">・ {p?.postRecentTime}</Text>
                                 </Grid>
                                 

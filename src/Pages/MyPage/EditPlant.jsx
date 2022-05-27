@@ -28,7 +28,6 @@ const EditPlant = () => {
 
     const previousPlantName = myPlant?.myPlantName;
     const [previousPlace, setPreviousPlantPlace] = React.useState(myPlant?.myPlantPlace);
-
     const [myPlantName, setMyPlantName] = React.useState(""); //내 식물 이름
     const [place, setPlace] = React.useState(""); // 장소 코드 
     const [placeValue, setPlaceValue] = React.useState(""); // 장소 이름
@@ -125,11 +124,11 @@ const EditPlant = () => {
                         onClick={handleClick}> 사진 바꾸기 </Button>
             </Grid>
             <Hr />
-            <Grid width="100%" padding="16px" position="relative">
-                <Text display="block" size="small" color="#0AAF42" >내 식물의 종류</Text>
+            <Grid width="100%" padding="16px" position="relative"
+             _onClick={()=>history.push(`/plant/${myPlant.plantNo}`)}>
+                <Text display="block" size="small" color="#0AAF42" >{myPlant?.plantName}</Text>
                 <Text display="block" size="large">{myPlant?.myPlantName}</Text>
-                <img 
-                    onClick={()=>history.push(`/plant/${myPlant.plantNo}`)}
+                <img
                     src="/img/arrowToRight.svg" 
                     style={{position:"absolute", right:"20px", bottom:"28px"}}/>
             </Grid>
@@ -139,6 +138,7 @@ const EditPlant = () => {
                     <Input 
                         _onChange={(e)=>setMyPlantName(e.target.value)}
                         defaultValue={myPlant?.myPlantName} 
+                        maxlength="15"
                         id="nickname" placeholder="별명" 
                         width="100%" borderRadius="6px" border="1px solid #C6C6C6" padding="10px 0px 10px 10px" />
                         

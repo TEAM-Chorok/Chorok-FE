@@ -113,7 +113,7 @@ const EditPost = () => {
                         _onClick={() => {setCategory("postType04"); setPostTypeCode("postType04")}}>식물추천</Button>
                 </Grid>
                 <Grid padding="10px 4px" width="100%">
-                    <Input type="text" placeholder='글 제목을 입력해주세요' defaultValue={post?.postTitle}
+                    <Input maxLength="15" type="text" placeholder='글 제목을 입력해주세요' defaultValue={post?.postTitle}
                     onChange={(e) => {setPostTitle(e.target.value)}}></Input>
                 </Grid>
                 <Grid padding="10px 4px" width="100%">
