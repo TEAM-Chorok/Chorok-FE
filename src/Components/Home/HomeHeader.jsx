@@ -19,6 +19,7 @@ const HomeHeader = () => {
   const weatherData = useSelector((state) => state?.main?.weather);
   const weather = weatherData?.weather;
   const [color, setColor] = React.useState('linear-gradient(180deg, #E7F4F7 60%, rgba(242, 244, 248, 0) 88%)');
+  const [location, setLocation] = React.useState(false);
 
   // 현재 날짜
   const day = moment().day()
@@ -44,8 +45,10 @@ const HomeHeader = () => {
         dispatch(mainActions.getWeatherDB(userLocation));
         // 조회한 위치정보 한글로 출력
         getAddr(userLocation.lat, userLocation.lon);
+        setLocation(true);
       }, () => {
         setStatus('위치를 조회할 수 없습니다.');
+        setLocation(false);
       });
     }
   }
@@ -91,11 +94,11 @@ const HomeHeader = () => {
   return (
     <React.Fragment>
       <Grid width="100%" bg="#fff">
-        {navigator.geolocation ?
+        {location ?
           <GridBox bg={color}>
-            <Grid width="100%" padding="8px 16px">
+            <Grid width="100%" padding="16px">
               {/* <Text size="XS" color="#999">{date}</Text> */}
-              <br />
+              {/* <br /> */}
               <Text size="small" weight="400" margin="5px 0"> {cityname}, {weatherData?.weather} {weatherData?.temp}℃</Text>
               <br />
               <Text size="xsmall" weight="400" color="#525252"> 최저 {weatherData?.temp_min} 최고 {weatherData?.temp_max} 습도 {weatherData?.humidity}%</Text>
@@ -123,7 +126,7 @@ const Img = styled.img`
 
 const GridBox = styled.div`
   width: 100%;
-  height: 120px;
+  height: 140px;
   background: ${(props) => props.bg};
   display: grid;
   grid-template-columns: 3fr 1fr;  

@@ -14,7 +14,7 @@ const TodoProfile = (props) => {
   const history = useHistory();
 
   const myPlant = useSelector((state) => state?.main?.myplant);
-
+  const [unCheck, setUnCheck] = React.useState(true);
   // 식물 추가 flow로 
   const openAddPlant = () => {
     history.push('/plant');
@@ -28,20 +28,27 @@ const TodoProfile = (props) => {
 
         <Grid is_flex>
           <PlantProfile 
-            checked={props.plantName? false : true } 
+            checked={unCheck} 
             name="전체" 
             imgUrl="/img/todoIcons/all.svg" 
-            _onClick={() => {props.setPlantName(null)}}
+            _onClick={() => {
+              props.setPlantNo(null);
+              setUnCheck(true);
+            }}
             />
 
-        {myPlant?.map((plant) => {
+        {myPlant?.map((plant, idx) => {
           return (
-            <PlantProfile key={plant.myPlantNo} 
-              checked={plant.myPlantNo === props.plantNo? true : false}
+            <PlantProfile key={plant?.myPlantNo} 
+              checked={plant?.myPlantNo === props.plantNo? true : false}
               name={plant?.myPlantName.length<6? plant.myPlantName : plant.myPlantName.slice(0,4)+'...'} 
               plant={plant.plantName.length < 6? plant.plantName : plant.plantName.slice(0, 5)+'...'} 
               imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : "/img/plantProfile.svg" }
-              _onClick={() => {props.setPlantNo(plant.myPlantNo)}}
+              _onClick={() => {
+                props.setPlantNo(plant.myPlantNo);
+                props.selectPlant(idx);
+                setUnCheck(false);
+              }}
               />
           );
         })}

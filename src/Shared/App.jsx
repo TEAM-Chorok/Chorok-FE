@@ -23,6 +23,7 @@ import EditPost from '../Pages/Community/EditPost';
 import theme from './theme';
 import { ReactComponent as Frame } from '../Assets/img/phoneframe.svg';
 import { useLocation } from 'react-router-dom';
+import Event from '../Pages/Event';
 
 
 
@@ -85,6 +86,8 @@ function App() {
             <Route path="/setting/profile" exact component={ProfileSetting} />
             <Route path="/setting/changepwd" exact component={ChangePwd} />
             <Route path="/setting/deactivation" exact component={DeactivateAccount} />
+
+            <Route path="/event" exact component={Event} />
             
             { lo === "" || lo === "labeling" || lo === "add" ? null : <Navbar /> }
             

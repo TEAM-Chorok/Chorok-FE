@@ -1,9 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { Text, Button } from "../../../Elements";
+import { Text, Button, Image, Grid } from "../../../Elements";
 import Dimmer from "../modal/Dimmer";
-
+import { ReactComponent as LeafIcon } from "../../../Assets/img/sidebuttonIcons/leaf.svg"
+import { ReactComponent as HouseIcon } from "../../../Assets/img/sidebuttonIcons/house.svg"
+import { ReactComponent as BubbleIcon } from "../../../Assets/img/sidebuttonIcons/bubble.svg"
 
 // 호출한 부모 컴포넌트에서 모달 open/close에 관여하는 state를 관리해야합니다!
 // const [open, setOpen] = React.useState(false);
@@ -25,7 +27,7 @@ const SideButton = (props) => {
   //+버튼 모달창
 
   const openModal = () => {
-    if(props.open) {
+    if (props.open) {
       props.setOpen(false);
     } else {
       props.setOpen(true);
@@ -41,16 +43,27 @@ const SideButton = (props) => {
           <Dimmer setOpenModal={props.setOpen} onClick={() => openModal()} />
           <Modal onClick={e => e.stopPropagation()}>
             <InnerWrap onClick={() => history.push('/plant')}>
-              <Text size="small" >🌱 식물 추가하기</Text>
+              <LeafIcon />
+              <Grid margin="0 8px">
+                <Text size="small" >식물 추가하기</Text>
+              </Grid>
             </InnerWrap>
 
             <InnerWrap>
-              <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
-                <Text size="small">🏡 공간 자랑하기</Text>
-              </InnerBox1>
-              <InnerBox2 onClick={() => history.push(`/addpost`)}>
-                <Text size="small">💬 초록톡 글쓰기</Text>
-              </InnerBox2>
+              <Grid width="100%">
+                <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
+                  <HouseIcon style={{width:'24px', height:'24px'}}/>
+                  <Grid margin="0 8px">
+                    <Text size="small">공간 자랑하기</Text>
+                  </Grid>
+                </InnerBox1>
+                <InnerBox2 onClick={() => history.push(`/addpost`)}>
+                  <BubbleIcon style={{width:'24px', height:'24px'}}/>
+                  <Grid margin="0 8px">
+                    <Text size="small">초록톡 글쓰기</Text>
+                  </Grid>
+                </InnerBox2>
+              </Grid>
             </InnerWrap>
           </Modal>
         </>
@@ -66,10 +79,13 @@ width: fit-content;
 height: fit-content;
 z-index: 200;
 position: fixed;
-right: 32px;
-bottom: 144px; 
+right: 16px;
+bottom: 136px; 
 `
 const InnerWrap = styled.div`
+display: flex;
+align-items: center;
+
 margin: 12px 0;
 padding: 12px 16px;
 
@@ -80,9 +96,15 @@ border-radius: 16px;
 background-color: white;
 `
 const InnerBox1 = styled.div`
+display: flex;
+align-items: center;
+
 padding-bottom: 10px;
 `
 const InnerBox2 = styled.div`
+display: flex;
+align-items: center;
+
 padding-top: 10px;
 `
 export default SideButton;

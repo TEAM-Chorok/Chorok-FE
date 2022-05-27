@@ -159,23 +159,29 @@ const TabMenu = styled.div`
 
 const BackLine = styled.div`
   position: absolute;
-  bottom: -4px;
+  bottom: 0px;
   
   transition: 0.4s;
   width: 100%;
-  
-  border-bottom: 2px solid #F4F4F4;
+
+  height: 2px;
+  background: #F4F4F4;
+  border-radius: 2px;
+  ${'' /* border-bottom: 2px solid #F4F4F4; */}
 `
 
 const Line = styled.div`
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   ${(props) => props.num === 0 ? "left: 0" : "left: 50%"};
   
   transition: 0.4s;
   width: 50%;
   
-  border-bottom: 2px solid #24A148;
+  height: 2px;
+  background: #24A148;
+  border-radius:2px;
+  ${'' /* border-bottom: 2px solid #24A148; */}
 `
 
 
@@ -207,17 +213,20 @@ const TabMenu2 = styled.div`
 
 const BackLine2 = styled.div`
   position: absolute;
-  bottom: -4px;
+  bottom: 0px;
   
   transition: 0.4s;
   width: 100%;
   
-  border-bottom: 2px solid #F4F4F4;
+  height: 2px;
+  background: #F4F4F4;
+  border-radius: 2px;
+  ${'' /* border-bottom: 2px solid #F4F4F4; */}
 `
 
 const Line2 = styled.div`
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   
   ${(props) => props.num===0? "left: 0" : ""};
   ${(props) => props.num===1? "left: 34%" : ""};
@@ -225,8 +234,10 @@ const Line2 = styled.div`
   
   transition: 0.4s;
   width: 33%;
-  
-  border-bottom: 2px solid #24A148;
+  height: 2px;
+  background: #24A148;
+  border-radius:2px;
+  ${'' /* border-bottom: 2px solid #24A148; */}
 `
 
 export default Tabbar;

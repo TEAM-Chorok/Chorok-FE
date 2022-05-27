@@ -21,6 +21,7 @@ const PlantProfile = (props) => {
 
   const { list, size, name, plant, imgUrl, _onClick, _onBlur, checked, square } = props;
 
+  console.log(name, checked);
 
   if (size === "L") {
     return (
@@ -84,7 +85,7 @@ const PlantProfile = (props) => {
         </Grid>
       </Grid>
       <Grid margin="-3px auto" align="center">
-        <Text bold size="small" color={checked ? "#0AAF42" : ""}>{name}</Text>
+        <Text size="small" color={checked ? "#0AAF42" : ""} weight={checked ? "700" : "500" }>{name}</Text>
         <Grid margin="-4px auto">
           <Text size="xxsmall" color="#6F6F6F">{plant}</Text>
         </Grid>

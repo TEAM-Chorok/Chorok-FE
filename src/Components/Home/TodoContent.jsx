@@ -5,13 +5,30 @@ import TodoContentBlock from "./TodoContentBlock";
 import TodoProfile from "./TodoProfile";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
 import { useDispatch, useSelector } from "react-redux";
+import { ReactComponent as EventBanner } from "../../Assets/img/eventimg/eventbanner.svg"
+import { useHistory } from "react-router-dom";
+import { ReactComponent as Arrow } from "../../Assets/img/Icons/arrowToRight.svg"
 
 // 투두페이지 할 일 목록 
 const TodoContent = () => {
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const sentence = useSelector((state) => state.main.sentence);
   const todoList = useSelector((state) => state?.main?.todo);
+
+  const scrollRef = React.useRef();
+
+  // const Refs = todoList?.reduce((acc, value) => {
+  //   acc[value.myPlnatNo] = React.createRef();
+  //   return acc;
+  // }, {})
+
+  const selectPlant = (value) => {
+    // Refs[value].current?.scrollIntoView({ behavior: 'smooth', });
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+  
 
   const [plantNo, setPlantNo] = React.useState(null);
 
@@ -20,65 +37,88 @@ const TodoContent = () => {
     dispatch(mainActions.getMyPlantDB());
     dispatch(mainActions.getTodoListDB());
   }, [])
-  
-  
+
+
   return (
     <React.Fragment>
       <Grid width="100%" bg="#fff">
         <TitleBox>
           <Grid width="100%" margin="20px 0" >
             <SentenceBox>
-            
+
               <p className="sentence">
-              윤지님, 날이 너무 좋네요 ☀️ 
-오늘은 잎을 닦아볼까요?
+                {sentence}
               </p>
             </SentenceBox>
           </Grid>
           <Grid width="100%" margin="-15px 0 16px 0">
-            <TodoProfile plantNo={plantNo} setPlantNo={setPlantNo} />
+            <TodoProfile plantNo={plantNo} setPlantNo={setPlantNo} selectPlant={selectPlant}/>
           </Grid>
         </TitleBox>
 
-        <Wrapper>
-
-          {todoList?.map((plant, idx) => {
-            return (
-              <TodoBox key={plant.myPlantNo}>
-                <Grid is_flex margin="0 5px" align="center">
-                  <Image type="circle" size="18px" imgUrl={plant.myPlantImgUrl} />
-                  <Text bold size="large" margin="0 8px">{plant.myPlantName}</Text>
-                  <Text size="small" color="#525252" margin="0">{plant.plantName} · {plant.myPlantPlace}</Text>
+        <Wrapper bg={todoList?.length ? "#F7F8FA" : "#fff"}>
+          <Grid margin="-8px auto 12px auto">
+            <EventBanner style={{ filter: 'drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.16))' }} onClick={() => { history.push('/event'); }} />
+          </Grid>
+          {todoList ?
+            <>
+              {todoList?.map((plant, idx) => {
+                return (
+                  <TodoBox key={plant.myPlantNo} ref={scrollRef}>
+                    <Grid is_flex margin="8px 0" align="center">
+                      <Image type="circle" size="32px" imgUrl={plant.myPlantImgUrl} />
+                      <GridRowBox>
+                        <Text size="small">{plant.myPlantName}</Text>
+                        <Text size="xsmall" weight="400" color="#525252">{plant.plantName} · {plant.myPlantPlace}</Text>
+                      </GridRowBox>
+                    </Grid>
+                    {!plant.todos.length ?
+                      <ContentBox>
+                        <Text bold size="small" margin="auto">{plant.myPlantName}(이)는 오늘 쉬고 싶어요😴</Text>
+                      </ContentBox>
+                      :
+                      <Grid margin="5px 0" width="100%">
+                        {plant?.todos?.map((todo, idx) => {
+                          return (
+                            <TodoContentBlock
+                              key={todo.todoNo}
+                              num={todo.todoNo}
+                              status={todo?.status}
+                              img={'img/todoIcons/' + todo.workType + '.svg'}>
+                              <Text size="base">{todo.workType}</Text><br />
+                              {todo.days === 0 && todo.status === true ?
+                                <Text size="xsmall">작업을 완료했어요!</Text> :
+                                <div>
+                                  {todo.days === 0 ? <Text size="xsmall">{plant.myPlantName}(이)의 첫 {todo.workType}!</Text> :
+                                    <Text size="xsmall">마지막 작업 이후 {todo.days}일 지났어요.</Text>}
+                                </div>
+                              }
+                            </TodoContentBlock>
+                          )
+                        })}
+                      </Grid>
+                    }
+                  </TodoBox>
+                )
+              })}
+            </> :
+            <>
+              <LinkBox onClick={() => { history.push('/labeling') }}>
+                <Grid width="100%" padding="13px 16px">
+                  <Text size="xsmall" color="#24A148">어떤 식물을 키울 지 고민된다면</Text><br />
+                  <Text size="large">나와 맞는 식물 찾으러 가기</Text>
+                  <Arrow className="arrow" />
                 </Grid>
-                {!plant.todos.length ?
-                  <ContentBox>
-                    <Text bold size="small" margin="auto">{plant.myPlantName}(이)는 오늘 쉬고 싶어요😴</Text>
-                  </ContentBox>
-                  :
-                  <Grid margin="5px 0" width="100%">
-                    {plant?.todos?.map((todo, idx) => {
-                      return (
-                        <TodoContentBlock 
-                          key={todo.todoNo}
-                          num={todo.todoNo}
-                          status={todo?.status}
-                          img={'img/todoIcons/' + todo.workType + '.svg'}>
-                          <Text size="base">{todo.workType}</Text><br />
-                          {todo.days === 0 && todo.status === true ?
-                            <Text size="xsmall">작업을 완료했어요!</Text> :
-                            <div>
-                              {todo.days === 0 ? <Text size="xsmall">{plant.myPlantName}(이)의 첫 {todo.workType}!</Text> :
-                                <Text size="xsmall">마지막 작업 이후 {todo.days}일 지났어요.</Text>}
-                            </div>
-                          }
-                        </TodoContentBlock>
-                      )
-                    })}
-                  </Grid>
-                }
-              </TodoBox>
-            )
-          })}
+              </LinkBox>
+              <LinkBox onClick={() => { history.push('/plant') }}>
+                <Grid width="100%" padding="13px 16px">
+                  <Text size="xsmall" color="#24A148">식물을 키우고 있다면</Text><br />
+                  <Text size="large">식물 추가하기</Text>
+                  <Arrow className="arrow" />
+                </Grid>
+              </LinkBox>
+            </>
+          }
           <Grid height="100px" />
         </Wrapper>
       </Grid>
@@ -97,7 +137,7 @@ const Wrapper = styled.div`
 
   width: 100%;
 
-  background: #F7F8FA;
+  background: ${(props) => props.bg};
 `
 
 const TodoBox = styled.div`
@@ -133,5 +173,34 @@ const ContentBox = styled.div`
   background: #fff;
 `;
 
+const LinkBox = styled.div`
+  position:relative;
+  display: flex;
+  align-items: center;
+
+  margin: 8px auto;
+
+  width: 100%;
+  height: 76px;
+
+  border-radius: 16px;
+  
+  background: #F7F8FA;
+  .arrow {
+    position: absolute;
+    right: 16px;
+    width: 10px;
+    height: 10px;
+    top: 32px;
+  }
+`
+
+const GridRowBox = styled.div`
+  display: grid;
+  grid-template-row: 1fr 1fr;
+  align-items: center;
+  text-align:left;
+  margin: 0 8px;
+`
 
 export default TodoContent;

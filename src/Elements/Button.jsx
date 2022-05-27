@@ -181,8 +181,8 @@ const PlusButton = styled.button`
   justify-content: center;
 
   position: fixed;
-  bottom: 82px;
-  right: 28px;
+  bottom: 74px;
+  right: 16px;
   
   border: none;
   border-radius: 60px;
@@ -193,10 +193,7 @@ const PlusButton = styled.button`
   z-index: 300;
 
   transition: 0.2s;
-  &:active {
-    bottom: 80px;
-    transform: scale(0.97);
-  }
+
 `;
 
 // 식물 추가 버튼

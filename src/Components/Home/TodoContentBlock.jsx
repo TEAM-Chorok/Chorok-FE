@@ -15,7 +15,7 @@ const TodoContentBlock = (props) => {
 
   // 투두 컨텐츠 좌측 체크 표시용 체크/체크해제 관리
   const [ checked, setChecked ] = React.useState(status);
-  const [ unChecked, setUnChecked ] = React.useState(!status);
+  const [ unChecked, setUnChecked ] = React.useState(false);
   
   const check = () => {
     if(checked === false) {
