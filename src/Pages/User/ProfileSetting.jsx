@@ -166,9 +166,10 @@ const ProfileSetting = () => {
           type="squarenp"
           label="사용자 이름"
           _onChange={(e) => setNickname(e.target.value)}
-          id="nickname"
+          id="nickname" 
+          max="8"
           defaultValue={previousNickname}
-          placeholder="별명을 입력해주세요." />
+          placeholder="별명을 입력해주세요. ( 최대 8자 )" />
         <Grid width="100%" position="relative" height="44px" display="flex" align="center">
           {/* 중복확인 후에 아래 텍스트 출력 */}
           {openResult ?
@@ -191,7 +192,7 @@ const ProfileSetting = () => {
         </Grid>
         <Input
           type="squarenp"
-          label="소개"
+          label="소개" max="18"
           _onChange={(e) => setprofileMsg(e.target.value)}
           id="describe" defaultValue={previousProfileMsg} placeholder="소개"
           width="100%" height="48px" borderRadius="6px" border="1px solid #C6C6C6" padding="5px 0px 5px 10px" />

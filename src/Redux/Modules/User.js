@@ -133,7 +133,7 @@ const logOutDB = () => {
       .then((res) => {
         console.log("logOut : response", res);
         localStorage.removeItem("token");
-        localStorage.removeItem("username");
+        localStorage.removeItem("nickname");
         dispatch(logOut());
         history.push('/');  
         window.location.reload();
@@ -178,7 +178,8 @@ const deactivateUserDB = () => {
       .deactivateUser()
       .then((response) => {
         window.alert('정상적으로 회원탈퇴 되었습니다.');
-        dispatch(logOutDB());
+        localStorage.removeItem("token");
+        localStorage.removeItem("nickname");
         history.push('/');
         window.location.reload();
       }).catch((error) => {

@@ -24,6 +24,8 @@ const Input = (props) => {
       right,
       bottom,
       focusOutline,
+      max,
+      _value,
       _onChange,
       _onFocus,
       _onBlur,
@@ -56,6 +58,7 @@ const Input = (props) => {
           ref={_ref}
           placeholder={placeholder}
           onChange={_onChange}
+          maxLength={max}
         />
       </React.Fragment>
     );
@@ -93,6 +96,7 @@ const Input = (props) => {
           placeholder={placeholder}
           onChange={_onChange}
           defaultValue={defaultValue}
+          maxLength={max}
         />
       </React.Fragment>
     );
@@ -161,6 +165,7 @@ const Input = (props) => {
             placeholder={placeholder}
             onChange={_onChange}
             ref={_ref}
+            value={_value}
             />
         </Grid>
       </React.Fragment>
@@ -175,6 +180,7 @@ const Input = (props) => {
             placeholder={placeholder}
             onChange={_onChange}
             ref={_ref}
+            value={_value}
             />
         </Grid>
       </React.Fragment>
