@@ -73,8 +73,11 @@ const ScrapPicturesPostList = () => {
                                     <Image type="circle" size="32px" imgUrl="/img/noProfileImgSmall.svg"/> :
                                     <Image type="circle" size="32px" imgUrl={p?.profileImgUrl}/>
                                 }
-                                <Text margin="0px 8px" size="small">{p?.nickname}</Text>
-                                <Text size="xsmall" color="#6F6F6F">・ {p?.postRecentTime}</Text>
+                                {/* profileMsg있으면 닉네임 시간 // profileMsg */}
+                                <Wrapper>
+                                    <Text align="left" margin="0px 8px" size="small">{p?.nickname.length < 11 ? p?.nickname : p?.nickname.slice(0,10) + '...' }</Text>
+                                    <Text align="left" margin="0px 10px" size="xsmall" color="#6F6F6F"> {p?.postRecentTime}</Text>
+                                </Wrapper>
                             </Grid>
                             
                             {p?.postImgUrl? 
@@ -136,6 +139,11 @@ const ScrapPicturesPostList = () => {
     )
     
 }
+const Wrapper = styled.div`
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+`
 
 const RelativeBox = styled.div`
   position: relative;
