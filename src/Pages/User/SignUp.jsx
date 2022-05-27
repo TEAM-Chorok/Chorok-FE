@@ -261,8 +261,9 @@ const SignUp = () => {
                   name="signup_profile_img" id="profileUpdate"
                   style={{margin:"20px auto", display:"none"}} ></input>
                   <Input  
+                  max="8"
                   _onChange={(e) => setNickname(e.target.value)} 
-                  placeholder="닉네임" name="signup_profile_nickname"
+                  placeholder="닉네임 ( 최대 8자 )" name="signup_profile_nickname"
                   display="inline-block" margin="0px" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px" ></Input>
                   <Grid width="100%" position="relative" height="44px" display="flex" align="center">
                   {/* 중복확인 후에 아래 텍스트 출력 */}
@@ -299,10 +300,10 @@ const SignUp = () => {
                   <Grid margin="20px 0px 16px 0px" bg="#F7F8FA" width="100%" height="48px" borderRadius="6px" align="center" is_flex>
                     <Text>{userEmail}</Text>
                   </Grid>
-                  <Grid margin="auto"
+                  {/* <Grid margin="auto"
                    _onClick={()=>{dispatch(); }}>
                     <p style={{borderBottom:"1px solid #8D8D8D", color:"#8D8D8D", fontSize:"13px"}} >인증메일 재발송</p>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
 
                 

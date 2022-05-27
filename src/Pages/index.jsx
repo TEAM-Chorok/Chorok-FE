@@ -2,6 +2,7 @@
 // user
 import Login from "./User/Login";
 import SignUp from "./User/SignUp";
+import EmailValidation from "./User/EmailValidation";
 import LogInEmail from "./User/LogInEmail";
 
 import Kakao from "./User/Kakao";
@@ -36,6 +37,7 @@ import Result from "./Search/Result"
 
 import Community from "./Community/Community";
 import AddPost from "./Community/AddPost";
+import EditPost from "./Community/EditPost";
 import PostDetail from "./Community/PostDetail";
 import CommBottomSheet from "../Components/Community/CommBottomSheet";
 
@@ -55,7 +57,7 @@ import DeactivateAccount from "./User/DeactivateAccount";
 // test
 import Test from "./Test";
 
-export { Login, SignUp, Kakao, Google, LogInEmail,
+export { Login, SignUp, EmailValidation, Kakao, Google, LogInEmail,
     FindPwd, ChangePwd, 
     Labeling, ProfileSetting,
     Home, Recommendation,
@@ -63,7 +65,7 @@ export { Login, SignUp, Kakao, Google, LogInEmail,
     CalendarPage,
     PlantCard,
     Search, PlanteriorDetail, PlanteriorWrite, Result, 
-    Community, AddPost, PostDetail, CommBottomSheet, 
+    Community, AddPost, EditPost, PostDetail, CommBottomSheet, 
     MyPage, MyPicturesPage, MyPlantsPage, ScrapPlantsPage, ScrapPicturesPage, 
     EditPlant, MyPostsPage, ScrapPostsPage,
     Setting, DeactivateAccount,

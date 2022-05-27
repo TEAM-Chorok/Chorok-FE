@@ -70,9 +70,9 @@ const MyPostsPostList= () => {
                         <Grid  key={p.postId} width="100%">
                         <Container>
                             <Grid width="100%" _onClick={() => {history.push(`/community/${p?.postId}`)}} >
-                                <Grid width="100%" >
-                                    <Grid><Text size="xs" color="#24A148">{p?.postType}</Text></Grid>
-                                </Grid>
+                                <Grid><Text size="xs" color="#24A148">{p?.postType}</Text></Grid>
+                            </Grid>
+                                <Grid width="100%" _onClick={() => history.push(`/community/${p.postId}`)}></Grid>
                                 {p?.postTitle === "title" || p?.postTitle === "null"? 
                                     null: 
                                     <Grid>
@@ -80,32 +80,36 @@ const MyPostsPostList= () => {
                                     </Grid>
                                 }
                                 
-                                <Grid is_flex align="center" margin="5px 0px 16px 0px" >
-                                    {p?.profileImgUrl===null?
+                                <Grid is_flex align="center" margin="4px 0" >
+                                    {p?.profileImgUrl===null || p?.profileImgUrl==="null" || p?.profileImgUrl=== "" ?
                                         <Image type="circle" size="24px" imgUrl="/img/noProfileImgSmall.svg"/> :
                                         <Image type="circle" size="24px" imgUrl={p?.profileImgUrl}/>
                                     }
-                                    <Text margin="0px 8px" size="small">{p?.nickname.length < 11 ? p?.nickname : p?.nickname.slice(0,10) + '...' }</Text>
-                                    <Text size="xsmall" color="#6F6F6F">・ {p?.postRecentTime}</Text>
+                                    <Grid is_flex align="center" margin="0 8px 1px 8px">
+                                        <Grid align="center" margin="1px 0 0 0">
+                                            <Text size="small" weight="400">{p?.nickname}</Text>
+                                        </Grid>
+                                        <Grid align="center">
+                                            <Text size="xsmall" color="#6F6F6F" weight="400">・{p?.postRecentTime}</Text>
+                                        </Grid>
+                                        </Grid>
                                 </Grid>
                                 
-                                <Grid margin="12px 0px 16px 0px">
-                                    <Text color="#262626" size="small">{p?.postContent}</Text>
+                                <Grid margin="8px 0px 16px 0px">
+                                    <Text color="#262626" size="small" weight="400">{p?.postContent}</Text>
                                 </Grid>
                                 
                                 
 
-                                <Grid width="100%">                                
                                     {p?.postImgUrl? 
-                                        <Grid margin="12px auto">
-                                            <Image type="planterior" borderRadius="8px" imgUrl={p.postImgUrl} width="100%"/>
+                                        <Grid width="100%">
+                                            <Image type="planterior"  imgUrl={p.postImgUrl} width="100%"/>
                                         </Grid>: 
                                         null
                                     }
-                                </Grid>
-                            </Grid>
                             {/* bottom part - 좋아요, 댓글, 북마크  */}
-                            <Grid width="100%" margin="20px 0px" position="relative">
+                            <Grid width="100%" margin="20px 0px 0px 0px" position="relative">
+                                <Grid is_flex align="center" >
                                     <Grid is_flex align="center">
                                         {p.postLike? 
                                             <FavoriteSelectedIcon 
@@ -113,11 +117,15 @@ const MyPostsPostList= () => {
                                             <FavoriteIcon fill='#6F6F6F'
                                             onClick={()=>likePost("myposts", p.postId)} />
                                         }
-                                        <Text margin="0px 8px" size="base"  color="#6F6F6F">{p?.postLikeCount}</Text>
+                                        <Text margin="0px 8px" size="base"  color="#6F6F6F"
+                                        weight="400">{p?.postLikeCount}</Text>
+                                        </Grid>
+                                        <Grid is_flex align="center" margin="0 8px" _onClick={() => history.push(`/community/${p.postId}`)}>
                                         <CommentIcon  fill='#6F6F6F'/>
-                                        <Text margin="0px 8px" size="base" color="#6F6F6F">{p?.commentCount}</Text>
+                                        <Text margin="0px 8px" size="base" weight="400"  color="#6F6F6F">{p?.commentCount}</Text>
                                     </Grid>
-                                    <Grid position="absolute" top="0px" right="0px" >
+                                    </Grid>
+                                    <Grid position="absolute" top="3px" right="0px" >
                                         {p.postBookMark? 
                                             <BookmarkIcon fill="#0AAF42" stroke="#0AAF42"
                                             onClick={()=>bookmarkPost("myposts", p.postId)}

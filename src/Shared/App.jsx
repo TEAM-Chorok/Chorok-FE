@@ -14,12 +14,12 @@ import {
   MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage,
   EditPlant, MyPostsPage, DeactivateAccount,
   Test,
-  AddPost,
+  AddPost, EditPost, 
   PostDetail,
   LogInEmail,
   ScrapPostsPage,
+  EmailValidation,
 } from '../Pages';
-import EditPost from '../Pages/Community/EditPost';
 import theme from './theme';
 import { ReactComponent as Frame } from '../Assets/img/phoneframe.svg';
 import { useLocation } from 'react-router-dom';
@@ -40,6 +40,7 @@ function App() {
             <Route path="/" exact component={Login} />
             <Route path="/logIn" exact component={LogInEmail} />
             <Route path="/signup" exact component={SignUp} />
+            <Route path="/signup/emailValidation" component={EmailValidation} />
 
             <Route path="/auth/kakao/callback" component={Kakao} />
             <Route path="/auth/google/callback" exact component={Google} />
