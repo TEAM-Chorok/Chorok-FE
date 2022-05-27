@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RecommendPlant } from "..";
 
 import { Grid, Text } from "../../Elements";
+import PlaceFilter from "./PlaceFilter";
 import Carousel from "./Planterior/Carousel";
 import PlanteriorList from "./Planterior/PlanteriorList";
 
@@ -12,7 +13,10 @@ import PlanteriorList from "./Planterior/PlanteriorList";
 const Planterior = () => {
   const username = useSelector((state) => state.user?.user?.nickname);
   const recommendList = useSelector((state) => state?.search?.recommendlist);
-
+  // 공간 필터 선택 state
+  const [place, setPlace] = React.useState("all");
+  // 무한스크롤 관련 state
+  const [page, setPage] = React.useState(0);
   return (
     <React.Fragment>
       <Grid width="100%" padding="0 16px">
@@ -33,12 +37,14 @@ const Planterior = () => {
       {recommendList?.length ?
         <Grid width="100%" height="12px" bg="#F7F8FA" />
         : null}
-      <Grid width="100%" padding="0 16px">
-        <Grid margin="16px 0">
+
+      <Grid width="100%">
+        <Grid margin="16px 0" padding="0 0 0 16px">
           <Text bold size="h6">식물 공간</Text>
+          <PlaceFilter setPlace={setPlace} setPage={setPage} />
         </Grid>
-        <Grid width="100%">
-          <PlanteriorList />
+        <Grid width="100%" padding="0 16px">
+          <PlanteriorList setPlace={setPlace} place={place} page={page} setPage={setPage}/>
         </Grid>
       </Grid>
     </React.Fragment>

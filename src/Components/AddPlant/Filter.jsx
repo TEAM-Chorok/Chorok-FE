@@ -16,10 +16,10 @@ const FilterLevel = (props) => {
           <Grid width="100%">
 
             <Grid width="100%" margin="0 0 4px 0">
-              <Button checked={props.code === "pl01" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl01"); props.setLevelText("초보레벨") }}>
+              <Button checked={props.code === "pl01" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl01"); props.setLevelText("새싹집사") }}>
                 <Grid is_flex width="100%">
                   <ButtonTextWrapped>
-                    <Text margin="0 8px 0 24px" size="base" color={props.code === "pl01" ? "#0AAF42" : ""}>새싹레벨</Text>
+                    <Text margin="0 8px 0 24px" size="base" color={props.code === "pl01" ? "#0AAF42" : ""}>새싹집사</Text>
                     <Text size="xxsmall" color="#8D8D8D">이제 막 식물집사가 되었다면</Text>
                   </ButtonTextWrapped>
                 </Grid>
@@ -27,10 +27,10 @@ const FilterLevel = (props) => {
             </Grid>
 
             <Grid width="100%" margin="0 0 4px 0">
-              <Button checked={props.code === "pl02" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl02"); props.setLevelText("경력레벨") }}>
+              <Button checked={props.code === "pl02" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl02"); props.setLevelText("초보집사") }}>
                 <Grid is_flex width="100%">
                   <ButtonTextWrapped>
-                    <Text margin="0 8px 0 24px" size="base" color={props.code === "pl02" ? "#0AAF42" : ""}>초보레벨</Text>
+                    <Text margin="0 8px 0 24px" size="base" color={props.code === "pl02" ? "#0AAF42" : ""}>초보집사</Text>
                     <Text size="xxsmall" color="#8D8D8D">식물집사의 즐거움을 알아가는 중이라면</Text>
                   </ButtonTextWrapped>
                 </Grid>
@@ -38,10 +38,10 @@ const FilterLevel = (props) => {
             </Grid>
 
             <Grid width="100%" margin="0 0 4px 0">
-              <Button checked={props.code === "pl03" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl03"); props.setLevelText("숙련레벨") }}>
+              <Button checked={props.code === "pl03" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl03"); props.setLevelText("숙련집사") }}>
                 <Grid is_flex width="100%">
                   <ButtonTextWrapped>
-                    <Text margin="0 8px 0 24px" size="base" color={props.code === "pl03" ? "#0AAF42" : ""}>숙련레벨</Text>
+                    <Text margin="0 8px 0 24px" size="base" color={props.code === "pl03" ? "#0AAF42" : ""}>숙련집사</Text>
                     <Text size="xxsmall" color="#8D8D8D">풍부한 식물집사경험을 가지고 있다면</Text>
                   </ButtonTextWrapped>
                 </Grid>

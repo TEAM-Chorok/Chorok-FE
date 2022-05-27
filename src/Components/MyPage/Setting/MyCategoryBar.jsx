@@ -5,54 +5,54 @@ import MyPlants from './MyPlants';
 import MyPictures from './MyPictures';
 
 const MyCategoryBar = (props) => {
-    
-    const comp = {
-        0: <MyPictures />,
-        1: <MyPlants />,
-    };
 
-    const [active, setActive] = React.useState(0);
+  const comp = {
+    0: <MyPictures />,
+    1: <MyPlants />,
+  };
 
-    return (
-        <React.Fragment>
-            <Tab>
-                <ul>
-    
-                {active === 0 ?
-                    <li onClick={() => { setActive(0) }}>
-                    <TabMenu>
-                        <Text bold size="base" color="#24A148">식물공간</Text>
-                    </TabMenu>
-                    </li> :
-                    <li onClick={() => { setActive(0) }}>
-                    <TabMenu>
-                        <Text size="base">식물공간</Text>
-                    </TabMenu>
-                    </li>}
-    
-                {active === 1 ?
-                    <li onClick={() => { setActive(1) }}>
-                    <TabMenu>
-                        <Text bold size="base" color="#24A148">식물</Text>
-                    </TabMenu>
-                    </li> :
-                    <li onClick={() => { setActive(1) }}>
-                    <TabMenu>
-                        <Text size="base">식물</Text>
-                    </TabMenu>
-                    </li>}
-                    <BackLine>
-                        <Line num={active}/>
-                    </BackLine>
-                
-                </ul>
-            </Tab>
-            <Grid margin="20px 0" width="100%">
-                {comp[active]}
-            </Grid>
-            <Grid width="100%" height="60px"></Grid>
-      </React.Fragment>
-    )
+  const [active, setActive] = React.useState(0);
+
+  return (
+    <React.Fragment>
+      <Tab>
+        <ul>
+
+          {active === 0 ?
+            <li onClick={() => { setActive(0) }}>
+              <TabMenu>
+                <Text bold size="base" weight="600" color="#24A148">식물공간</Text>
+              </TabMenu>
+            </li> :
+            <li onClick={() => { setActive(0) }}>
+              <TabMenu>
+                <Text size="base" weight="600">식물공간</Text>
+              </TabMenu>
+            </li>}
+
+          {active === 1 ?
+            <li onClick={() => { setActive(1) }}>
+              <TabMenu>
+                <Text bold size="base" weight="600" color="#24A148">식물</Text>
+              </TabMenu>
+            </li> :
+            <li onClick={() => { setActive(1) }}>
+              <TabMenu>
+                <Text size="base" weight="600" >식물</Text>
+              </TabMenu>
+            </li>}
+          <BackLine>
+            <Line num={active} />
+          </BackLine>
+
+        </ul>
+      </Tab>
+      <Grid margin="20px 0" width="100%">
+        {comp[active]}
+      </Grid>
+      <Grid width="100%" height="60px"></Grid>
+    </React.Fragment>
+  )
 }
 const CategoryGrid = styled.div`
 width: 100%;
@@ -90,7 +90,7 @@ const TabMenu = styled.div`
 
   text-align: center;
   
-  border-bottom: ${(props) => props.line? "2px solid #24A148" : "none"};
+  border-bottom: ${(props) => props.line ? "2px solid #24A148" : "none"};
 
   list-style: none;
   cursor: pointer;
@@ -99,7 +99,7 @@ const TabMenu = styled.div`
 const Line = styled.div`
   position: absolute;
   bottom: -2px;
-  ${(props) => props.num === 0? "left: 0" : "left: 50%"};
+  ${(props) => props.num === 0 ? "left: 0" : "left: 50%"};
   
   transition: 0.4s;
   width: 50%;

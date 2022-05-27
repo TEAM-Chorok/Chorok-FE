@@ -27,7 +27,7 @@ const Community = () => {
         <React.Fragment>
             <Container type="np">
                 <Grid width="100%" position={open? 'fixed': 'nonset'}>
-                    <Grid padding="20px 20px 0px 20px" width="100%">
+                    <Grid padding="16px 16px 0 16px" width="100%">
                         <SearchHeader category={category} />
                         <CommunityFilter page={page} setPage={setPage} setCategory={setCategory} category={category} />
                     </Grid>

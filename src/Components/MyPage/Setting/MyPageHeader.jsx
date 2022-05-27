@@ -22,18 +22,18 @@ const MyPageHeader = (props) => {
         <React.Fragment>
             <Permit>
                 <Grid width="100%" height="24px" position="relative">
-                    <SettingIcon stroke="none" fill="#393939" style={{position:"absolute", right:"8px"}}
+                    <SettingIcon stroke="none" fill="#393939" style={{position:"absolute", right:0, }}
                             onClick={()=>history.push('/setting')}/>
                 </Grid>
             </Permit>
             <Grid width="100%" margin="0px">
                 <GridWrapCol width="100%" padding="10px 10px" >
-                    <Grid is_flex align="center" >
+                    <Grid is_flex align="center" padding="0 16px 0">
                         <Image type="circle" size="80px" imgUrl={user?.profileImgUrl === "null" || user?.profileImgUr===null ? "/img/NoProfileImgUser.svg": user?.profileImgUrl} />
                     </Grid>
                     <GridWrapRow>
-                        <Grid><Text size="M">{user?.nickname}</Text></Grid>
-                        <Grid><Text fontSize="0.9em" >{user?.profileMsg}</Text></Grid>
+                        <Grid><Text size="large" weight="700">{user?.nickname}</Text></Grid>
+                        <Grid margin="0 1px"><Text size="small" color="#6F6F6F">{user?.profileMsg}</Text></Grid>
                     </GridWrapRow>
                 </GridWrapCol>
             </Grid>
@@ -42,15 +42,16 @@ const MyPageHeader = (props) => {
 }
 const GridWrapCol = styled.div`
     display: grid;
-    grid-template-columns: 1fr 2.5fr;
+    grid-template-columns: 1fr 3fr;
     place-items: center;
 `
 const GridWrapRow = styled.div`
     display: grid;
     grid-template-rows: 1fr 1fr; 
-    padding: 12px 0px;
+    padding: 12px 0;
     align-items: center;
     width: 100%;
+    height: 48px;
 `
 // const Image = styled.img`
 //     width: 80px;

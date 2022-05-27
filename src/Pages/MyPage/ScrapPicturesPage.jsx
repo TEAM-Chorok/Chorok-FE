@@ -8,8 +8,8 @@ const ScrapPicturesPage = () => {
     return (
         <React.Fragment>
             <Container type="np">
-                <GeneralHeader title="스크랩한 사진" size="base"/> 
-                <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
+                <GeneralHeader title="스크랩한 식물 공간" size="base"/> 
+                <Grid height="1px" bg="#E0E0E0"/>
                 <ScrapPicturesPostList />
                 <div style={{height:"60px", width:"100%"}}></div>
             </Container>

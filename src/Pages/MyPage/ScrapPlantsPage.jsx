@@ -9,7 +9,7 @@ const ScrapPlantsPage = () => {
         <React.Fragment>
             <Container type="np">
                 <GeneralHeader title="스크랩한 식물" />
-            <Hr />
+                <Grid height="1px" bg="#E0E0E0"/>
             </Container>
             <Container>
                 <ScrapPlantList />
@@ -18,9 +18,5 @@ const ScrapPlantsPage = () => {
         </React.Fragment>
     )
 }
-const Hr = styled.hr`
-border: 1px solid #E0E0E0;
-margin:0px;
-padding: 0px;
-`
+
 export default ScrapPlantsPage;

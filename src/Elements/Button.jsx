@@ -225,7 +225,7 @@ const FilterButton = styled.button`
   letter-spacing: 0.25px;
   color: #262626;
 
-  margin-right: 5px;
+  margin-right: 6px;
   padding: 6px 12px;
 
   border: ${(props) => (props.checked ? "1px solid #0AAF42" : "1px solid #E0E0E0")};

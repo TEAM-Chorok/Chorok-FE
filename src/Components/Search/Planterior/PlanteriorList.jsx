@@ -11,7 +11,7 @@ import InfiniteScroll from "../../share/etc/InfiniteScroll";
 // 탐색 - planterior
 // 사진 목록 컴포넌트
 
-const PlanteriorList = () => {
+const PlanteriorList = ({place, page, setPage}) => {
   const is_login = localStorage.getItem('token') ? true : false;
 
   const history = useHistory();
@@ -22,12 +22,10 @@ const PlanteriorList = () => {
   // 공간 게시글 데이터
   const data = useSelector((state) => state?.search?.planteriorList);
   const planteriorList = data?.content;
-  // 무한스크롤 관련 state
-  const [page, setPage] = React.useState(0);
+
   const [isLoading, setIsLoading] = React.useState(false);
   const totalPage = data?.totalPage;
-  // 공간 필터 선택 state
-  const [place, setPlace] = React.useState("all");
+
   // skeleton
   const height = ["100px", "130px", "150px", "200px", "200px", "120px"]
 
@@ -78,7 +76,6 @@ const PlanteriorList = () => {
 
   return (
     <React.Fragment>
-      <PlaceFilter setPlace={setPlace} setPage={setPage} />
       <Grid width="100%">
         {planteriorList ?
           <InfiniteScroll
@@ -86,7 +83,7 @@ const PlanteriorList = () => {
             callback={callback}
             totalPage={totalPage}
             isLoading={isLoading}>
-            <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
+            <Masonry columns={2} spacing={2} sx={{ margin:'auto', maxWidth:'500px'}}>
               {planteriorList?.map((post, idx) => {
                 return (
                   <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId) }}>
@@ -162,7 +159,7 @@ const FadeIn = keyframes`
 
 const ContentWrapper = styled.div`
   box-sizing: border-box;
-  margin: auto;
+  margin: 0;
   width: 100%;
   height: fit-content;
 `;

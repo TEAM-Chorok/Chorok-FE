@@ -7,7 +7,7 @@ const CommunityFilter = (props) => {
     return(
         <React.Fragment>
 
-            <Grid margin="15px 0px 0px 0px">
+            <Grid margin="12px 0 0 0">
                 <Button type="filter" 
                         checked={props.category === "all"} 
                         _onClick={() => {props.setCategory("all")}}>전체</Button>
