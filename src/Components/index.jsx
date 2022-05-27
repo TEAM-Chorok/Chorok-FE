@@ -66,7 +66,6 @@ import MyPlants from "./MyPage/Setting/MyPlants";
 import MyPlantsList from "./MyPage/MyPlants/MyPlantsList";
 
 import EditPlantHeader from "./MyPage/EditPlant/EditPlantHeader";
-import EditPlantBody from "./MyPage/EditPlant/EditPlantBody";
 
 import MyPostsPostList from "./MyPage/Setting/MyPostsPostList";
 import ScrapPostsList from "./MyPage/Setting/ScrapPostsList";
@@ -117,7 +116,7 @@ export {
     MyPageHeader, MyCategoryBar, CommPostCommentList,
     MyPicturesPostList, ScrapPicturesPostList, ScrapPlantList,
     MyPlantsList, MyPlants, GeneralHeader,
-    EditPlantHeader, EditPlantBody,
+    EditPlantHeader,
     MyPostsPostList, ScrapPostsList,
     DeactivationAgreement,
     Alert, Alert2, Dimmer, 
