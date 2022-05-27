@@ -84,9 +84,9 @@ const LogInEmail = () => {
              <Button variant='text' 
                 style={{display:"block", margin:"10px auto", width:"100%", height:"48px",  backgroundColor:"#0AAF42", color:"white", fontWeight:"700"}} 
                 onClick={()=>login()}>로그인하기</Button>}
-              <Button variant='text' 
+              {/* <Button variant='text' 
                 style={{display:"block", margin:"10px auto", width:"100%",  color:"#6F6F6F"}} 
-                onClick={()=>history.push('/changepwd')}>비밀번호 재설정</Button>
+                onClick={()=>history.push('/changepwd')}>비밀번호 재설정</Button> */}
             </Grid>  
       </Grid>
       </Container>

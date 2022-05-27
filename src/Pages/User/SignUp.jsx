@@ -197,7 +197,7 @@ const SignUp = () => {
                   <Input 
                   _onChange={(e)=>{setPassword(e.target.value); 
                                   pwdCheck(e.target.value)}} 
-                  placeholder="비밀번호(영문 대소문자, 숫자를 포함하여 8~20자)" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56" borderRadius="6px"
+                  placeholder="비밀번호" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56" borderRadius="6px"
                   margin="0px 0px 8px 0px"></Input>
                    <Grid  margin="0px 0px 8px 8px">
                     { !pwdCheck(password) ? 
