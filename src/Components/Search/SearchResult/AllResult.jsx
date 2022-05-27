@@ -13,7 +13,7 @@ const AllResult = (props) => {
   const result = useSelector((state) => state.search.result);
   const planterior = result?.plantriaSearchList;
   const dictionary = result?.plantDictionaryList;
-  console.log(planterior.length);
+
   const openPlantCard = (plantNo) => {
     history.push(`/plant/${plantNo}`);
   }

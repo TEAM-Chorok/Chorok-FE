@@ -3,119 +3,122 @@ import React from "react";
 import styled from "styled-components";
 import CommBottomSheet from "./CommBottomSheet";
 import CommentWrite from "../share/posting/CommentWrite";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../../Redux/Modules/post";
 import { useEffect } from "react";
+import MoreContentSheet from "../share/posting/MoreContentSheet";
+import Alert2 from "../share/modal/Alert2";
 
 const CommPostCommentList = (props) => {
-    const { content, name, time, img, commentId } = props;
+  const { content, name, time, img, commentId } = props;
 
-    const dispatch = useDispatch();
-    const user = localStorage.getItem('nickname');   
-    const [ edit, setEdit ] = React.useState(false);
-    const [comment, setComment] = React.useState("");
+  const dispatch = useDispatch();
+  const user = localStorage.getItem('nickname');
+  const [edit, setEdit] = React.useState(false);
 
-    const postId = useParams().postId;
-    const contentRef = React.useRef();
-
-    const editComment = () => {
-        if (!contentRef.current.value.replace(/\s/g, '').length) {
-            props.setMessage("댓글 내용을 입력해주세요!")
-            props.setOpen(true);
-            return;
-          }
-        const editdata = {
-            commentId : commentId,
-            commentContent : contentRef.current.value,
-        }
-        dispatch(postActions.editCommentDB(postId, editdata));
-        contentRef.current.value = null;
-        setEdit(false);
-        return;
-    }
-
-    useEffect(() => {
-        if(content){
-            setComment(content);
-        }
-    }, [content]);
+  const postId = useParams().postId;
 
 
-    return  (
-            <Grid width="100%">
-                {edit? 
-                <React.Fragment>
-                    <Wrapper>
-                        <CommentBox>
-                            <Input type="comment" placeholder="수정할 내용을 입력해주세요" defaultValue={content} 
-                            _ref={contentRef} />
-                            <ButtonBox>
-                                <Button  type="tran" _onClick={() => { editComment(); }}>
-                                    <Text size="small" color="#24A148">수정</Text>
-                                </Button>
-                            </ButtonBox>
-                        </CommentBox>
-                    </Wrapper>
-                </React.Fragment>
-                :
-                <CommentWrap key={props.commentId}>
-                    <Grid>
-                        <Image type="circle" size="24px" imgUrl={img} />  
-                    </Grid>
-                    <CommentRowsBox>
-                        <Grid>
-                            <Text margin="0px 5px" size="small">{name}</Text>
-                            <Text size="xsmall" color="#6F6F6F">・ {time}</Text>
-                        </Grid>
-                        <Grid margin="0px 5px"><Text size="small">{content}</Text></Grid>
-                    </CommentRowsBox>
-                    { user === name ? 
-                    <Permit>
-                        <Grid><CommBottomSheet postId={props.postId}
-                        setEdit={setEdit} commentedit
-                        type="comment"  writer={name} commentId={commentId}/></Grid>
-                    </Permit> :
-                    null}
-                    
-                </CommentWrap>
-            }
+  // alert 모달 open/close
+  const [open, setOpen] = React.useState(false);
+
+  const deleteComment = () => {
+    dispatch(postActions.deleteCommentDB(postId, commentId));
+  }
+
+
+
+  return (
+    <Grid width="100%">
+      <CommentWrapper>
+        {edit ?
+          <CommentBox>
+            <CommentWrite
+              choroktalk
+              content={content}
+              commentId={commentId}
+              setEdit={setEdit}
+              setOpen={props.setOpen}
+              setMessage={props.setMessage}
+              placeholder="수정할 내용을 입력해주세요." />
+
+          </CommentBox>
+          :
+          <Grid width="100%" padding="16px">
+            <ProfileBox>
+              <Image type="circle" size="24px" imgUrl={img} />
+              <Grid margin="0px 8px 2px 8px">
+                <Text bold size="small">{name}</Text>
+                <Text size="xsmall" color="#888"> · {time}</Text>
+              </Grid>
+            </ProfileBox>
+            {user === name ?
+              <Permit>
+                <AbsoluteBox>
+                  <MoreContentSheet
+                    commentedit
+                    setEdit={setEdit}
+                    commentId={commentId}
+                    setOpen={setOpen} />
+                </AbsoluteBox>
+              </Permit> :
+              null}
+            <Grid margin="0 20px 0 32px" width="275px">
+              <Text size="small">{content}</Text>
             </Grid>
-            )
+          </Grid>
+        }
+        <Grid height="1px" width="100%" bg="#E0E0E0" />
+
+
+      </CommentWrapper>
+      {open &&
+        <AlertBox>
+          <Alert2 open={open} setOpen={setOpen} btn1={"확인"} func={deleteComment}>
+            <Text bold wordbreak size="small">
+              댓글을 삭제할까요?
+            </Text>
+          </Alert2>
+        </AlertBox>
+      }
+    </Grid>
+  )
 
 }
-const Wrapper = styled.div`
-  width: 100%;
-  background: #F7F8FA;
-  overflow: hidden;
-`
+
 const CommentBox = styled.div`
   position: relative;
   box-sizing: border-box;
 
-  padding: 18px 16px 16px 16px;
   width: 100%;
 
   background: #fff;
-
-`
-const ButtonBox = styled.div`
-  position: absolute;
-  top: 26px;
-  right: 24px;
 `
 
-const CommentWrap = styled.div`
-    height: fit-content;
-    display: grid;
-    grid-template-columns: 1fr 10fr 0.3fr;
-    padding: 12px 16px;
-    border-bottom: 1px solid #E0E0E0;
-`
-const CommentRowsBox = styled.div`
-    width: 100%;
-    height: fit-content;
-    display: grid;
+const ProfileBox = styled.div`
+    display: flex;
     align-items: center;
 `
+const CommentWrapper = styled.div`
+    position: relative;
+    width: 100%;
+    min-height: 52px;
+`
+
+const AbsoluteBox = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+`
+
+const AlertBox = styled.div`
+  position: absolute;
+  top: 0;
+  padding-top: 40vh;
+  width: 100%;
+`
+
 export default CommPostCommentList;

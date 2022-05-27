@@ -37,7 +37,7 @@ const PhotoDetailComments = (props) => {
           setMessage={props.setMessage}
           placeholder="수정할 내용을 입력해주세요." />
         :
-        <Grid width="100%" padding="12px 16px">
+        <Grid width="100%" padding="12px 16px 6px 16px">
           <CommentWrapper>
             <ProfileBox>
               <Image type="circle" size="24px" imgUrl={img} />
@@ -49,7 +49,11 @@ const PhotoDetailComments = (props) => {
 
             {user === name ?
               <AbsoluteBox>
-                <MoreContentSheet planterior commentedit setEdit={setEdit} commentId={commentId} setOpen={setOpen} />
+                <MoreContentSheet planterior 
+                  commentedit 
+                  setEdit={setEdit} 
+                  commentId={commentId} 
+                  setOpen={setOpen} />
               </AbsoluteBox> :
               <></>}
 
@@ -92,7 +96,7 @@ const ProfileBox = styled.div`
 const AbsoluteBox = styled.div`
   position: absolute;
   top: 0px;
-  right: 0px;
+  right: -8px;
 `
 
 const AlertBox = styled.div`

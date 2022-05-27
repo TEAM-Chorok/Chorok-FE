@@ -311,7 +311,7 @@ const addCommentDB = (postId, commentContent) => {
   const commentdata = {postId, commentContent };
   return function (dispatch, getState, { history }){
     postAPI
-      .addComment(commentdata)
+      .addComment(commentContent)
       .then((res) => {
         dispatch(getDetailPostDB(postId));
       }).catch((error) => {
@@ -323,7 +323,6 @@ const addCommentDB = (postId, commentContent) => {
 
 //댓글 수정 (postId는 필요하지 않은지?)
 const editCommentDB = (postId, editdata) => {
-
     return function (dispatch, getState, { history }){
       postAPI
         .editComment(editdata)
@@ -339,7 +338,6 @@ const editCommentDB = (postId, editdata) => {
 
 //댓글 삭제
 const deleteCommentDB = (postId, commentId) => {
-  
     return function (dispatch, getState, { history }){
       postAPI
         .deleteComment(commentId)

@@ -39,17 +39,9 @@ export default function MoreContentSheet(props) {
     setState({ ...state, [anchor]: open });
   };
 
-  const deletePlanterior = () => {
-    if (commentedit) {
-      dispatch(searchActions.deletePlanteriorCommentDB(commentId, postId));
-      return;
-    }
-    dispatch(searchActions.deletePlanteriorPostDB(props.postId));
-  }
-
   const deletePost = () => {
     if (commentedit) {
-      dispatch(searchActions.deletePlanteriorCommentDB(commentId, postId));
+      dispatch(postActions.deleteCommentDB(commentId, postId));
       return;
     }
     dispatch(postActions.deletePostDB(props.postId));
@@ -103,7 +95,10 @@ export default function MoreContentSheet(props) {
               <DeleteIcon />
               <Text margin="0 16px">삭제하기</Text>
             </MenuBox> :
-            <MenuBox onClick={() => { deletePost(); }}>
+            <MenuBox onClick={() => {
+              setState({ bottom: false })
+              props.setOpen(true);
+            }}>
               <DeleteIcon />
               <Text margin="0 16px">삭제하기</Text>
             </MenuBox>}

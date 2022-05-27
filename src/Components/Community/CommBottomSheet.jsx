@@ -99,7 +99,7 @@ export default function CommBottomSheet( props ) {
         <React.Fragment key={'bottom'}>
             
             <FilterBox>
-                  <MoreIcon style={{right:"20px"}}
+                  <MoreIcon style={{ width:"20px", height:"20ox", right:"20px"}}
                   onClick={toggleDrawer('bottom', true)}/>
               </FilterBox>        
     

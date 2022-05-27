@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { Button, Input, Text } from '../../../Elements';
+import { actionCreators as postActions } from "../../../Redux/Modules/post";
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 
 import Alert2 from "../modal/Alert2";
@@ -12,7 +13,7 @@ import Alert2 from "../modal/Alert2";
 // 코멘트 input창
 
 const CommentWrite = (props) => {
-  const {content, placeholder, commentId} = props;
+  const {content, placeholder, commentId, choroktalk} = props;
 
   const dispatch = useDispatch();
 
@@ -44,6 +45,31 @@ const CommentWrite = (props) => {
   }
   
 
+  const addChoroktalkComment = () => {
+    if (!contentRef.current.value.replace(/\s/g, '').length) {
+      props.setMessage("댓글 내용을 입력해주세요!")
+      props.setOpen(true);
+      return;
+    }
+    const commentdata = {
+      postId : postId,
+      commentContent : contentRef.current.value,
+    }
+    const editdata = {
+      commentId : commentId,
+      commentContent : contentRef.current.value,
+    }
+    if(content) {
+      dispatch(postActions.editCommentDB(postId, editdata));
+      contentRef.current.value = null;
+      props.setEdit(false);
+      return;
+    }
+    dispatch(postActions.addCommentDB(postId, commentdata));
+    contentRef.current.value = null;
+  }
+  
+
   React.useEffect(() => {
     if(content) {
       contentRef.current.value = content;
@@ -57,9 +83,15 @@ const CommentWrite = (props) => {
           <CommentBox edit={content? true : false }>
             <Input type="comment" placeholder={placeholder? placeholder : "댓글을 입력해주세요." } _ref={contentRef} />
             <ButtonBox>
+            {choroktalk?
+              <Button type="tran" _onClick={() => { addChoroktalkComment(); }}>
+                <Text size="small" color="#24A148">{content? "수정" : "등록"}</Text>
+              </Button>
+            :
               <Button type="tran" _onClick={() => { addComment(); }}>
                 <Text size="small" color="#24A148">{content? "수정" : "등록"}</Text>
               </Button>
+            }
             </ButtonBox>
           </CommentBox>
       </Wrapper>

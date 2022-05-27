@@ -15,7 +15,7 @@ const GeneralHeader = (props) => {
   return (
       <Header>
           <GoBackIcon 
-            style={{ position: 'absolute', left: '20px' }}
+            style={{ width:"15px", height:"15px", position: 'absolute', left: '20px' }}
             onClick={_onClick? _onClick : goBack}/>
           <Text line="2.5em" bold size={props.size}>{props.title}</Text>
       </Header>
