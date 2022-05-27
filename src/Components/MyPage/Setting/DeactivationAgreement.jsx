@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Text, Grid } from "../../../Elements";
-import { ReactComponent as CheckedIcon } from "../../../Assets/img/Circle_Check_checked.svg";
-import { ReactComponent as UncheckedIcon } from "../../../Assets/img/Circle_Check_valid.svg";
+import { ReactComponent as CheckedIcon } from "../../../Assets/img/checkIcons/Circle_Check_valid.svg";
+import { ReactComponent as UncheckedIcon } from "../../../Assets/img/checkIcons/unCheckedIcon.svg";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../../Redux/Modules/User";
 

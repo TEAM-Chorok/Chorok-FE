@@ -397,8 +397,8 @@ const CommentTextArea = styled.textarea`
   }
 `
 const PasswordInput = styled.input`
-  font-family: 'SUIT';
   box-sizing: border-box;
+  font-family: 'SUIT';
   font-size: 16px;
   letter-spacing: 0.25px;
   color: #262626;
