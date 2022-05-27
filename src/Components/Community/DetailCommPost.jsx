@@ -26,7 +26,7 @@ const DetailCommPost = (props) => {
         if (like === false && isLogin) {
             setLike(true);
             dispatch(postActions.likeDetailPostDB(postId));
-        } else {
+        } else if  (like === true && isLogin){
             setLike(false);
             dispatch(postActions.likeDetailPostDB(postId));
         }
@@ -35,7 +35,7 @@ const DetailCommPost = (props) => {
         if (bookmark === false && isLogin) {
             setBookmark(true);
             dispatch(postActions.bookmarkDetailPostDB(postId));
-        } else {
+        } else if (bookmark === true && isLogin)  {
             setBookmark(false);
             dispatch(postActions.bookmarkDetailPostDB(postId));
         }
@@ -43,15 +43,11 @@ const DetailCommPost = (props) => {
 
     useEffect(() => {
         dispatch(postActions.getDetailPostDB(postId));
-        setLike(postLike);
-        setBookmark(bookmarked);
-    }, [post?.postId]);
+        // setLike(postLike);
+        // setBookmark(bookmarked);
+    }, [dispatch, post?.postId]);
 
-    if (!post) {
-        return (
-            <div></div>
-        )
-    }
+    
     return (
         <React.Fragment>
             <Grid width="100%" padding="20px" margin="0px">
