@@ -28,7 +28,7 @@ const SignUp = () => {
     const [nextPage, setNextPage] = React.useState(1);
     const [userEmail, setUserEmail] = React.useState("");
     const [duplicated, setDuplicated] = React.useState(false);
-    const [duplicatedNickname, setDuplicatedNickname] = React.useState(false);
+    const [duplicatedNickname, setDuplicatedNickname] = React.useState(true);
     const [openResult, setOpenResult] = React.useState(false);
     const [password, setPassword] = React.useState("");
     const [passwordChk, setPasswordChk] = React.useState("");
@@ -280,8 +280,8 @@ const SignUp = () => {
                     onClick={()=>{checkDuplicatedNickname(nickname); setOpenResult(true);}}
                     style={{position:"absolute", right:"0px", color:"#6F6F6F", fontSize:"13px"}} variant='text' >중복확인</Button>
                   </Grid>
-                  {duplicatedNickname ? 
-                    <Button disabled={duplicatedNickname} style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#F8F8F8", color:"#D5D8DB", borderRadius:"6px"}} variant='contained' name="signup_submit" >회원가입</Button> :
+                  {duplicatedNickname === "" || duplicatedNickname === true? 
+                    <Button disabled={true} style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#F8F8F8", color:"#D5D8DB", borderRadius:"6px"}} variant='contained' name="signup_submit" >회원가입</Button> :
                     <Button style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#0AAF42", color:"#FFFFFF", borderRadius:"6px"}} variant='contained' name="signup_submit" onClick={()=>{signUp(); showNextPage(nextPage);}}>회원가입</Button>
                   }
                   

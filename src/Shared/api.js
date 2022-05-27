@@ -33,6 +33,8 @@ export const userAPI = {
   }
   ),
 
+  emailValidation : (data) => api.post(`/auth/check-email-token${data}`),
+
   //카카오 로그인
   kakaoLogIn:(code) => api.get(`/auth/kakao/callback?code=${code}`),
 

@@ -73,7 +73,7 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
       .signUp(formData)
       .then((res) => {
         console.log(res);
-        window.alert("인증메일을 발송하였습니다. 메일함(스팸함)을 확인해주세요.");
+        window.alert("인증메일을 발송하였습니다. 메일을 확인해주세요.");
         history.push('/'); 
       }).catch((err) => {
         console.log("signUpDB : error", err.response);
@@ -81,6 +81,24 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
       })
   }
 }
+
+const emailValidationDB = (data) => {
+  console.log(data);
+  return function (dispatch, getState, { history }) {
+    userAPI
+      .emailValidation(data)
+      .then((response) => {
+        console.log(response.data);
+        localStorage.setItem ("token", response.headers.authorization);
+        dispatch(isLoginDB());
+      }).catch((err) => {
+        window.alert("이메일 인증에 실패하였습니다. 다시 시도하여주세요."); 
+        history.replace('/');
+      })
+  }
+
+}
+
 //카카오로그인
 const kakaoLogInDB = (code) => {
   return function (dispatch, getState, {history}){
@@ -245,6 +263,7 @@ const actionCreators = {
   setUser,
   isLoginDB,
   signUpDB,
+  emailValidationDB,
   kakaoLogInDB,
   googleLogInDB,
   logInDB,
