@@ -292,13 +292,25 @@ const SignUp = () => {
                   <img src="img/Logo/LOGO.svg" />
                 </Grid>
                 <Grid margin="10px auto">
-                  <Text bold>초록 가입을 환영합니다👍</Text>
+                  <Text weight="700">초록 가입을 환영합니다👍</Text>
                 </Grid>
                 <Grid margin="auto" align="center">
+                  <Text size="small">아래의 메일로 인증 메일을 전송하였습니다. <br />전송된 메일에서 링크를 클릭하면 <br />회원가입이 완료됩니다.</Text>
+                  <Grid margin="20px 0px 16px 0px" bg="#F7F8FA" width="100%" height="48px" borderRadius="6px" align="center" is_flex>
+                    <Text>{userEmail}</Text>
+                  </Grid>
+                  <Grid margin="auto"
+                   _onClick={()=>{dispatch(); }}>
+                    <p style={{borderBottom:"1px solid #8D8D8D", color:"#8D8D8D", fontSize:"13px"}} >인증메일 재발송</p>
+                  </Grid>
+                </Grid>
+
+                
+                {/* <Grid margin="auto" align="center">
                   <Text size="small">다시 로그인을 하시면 초록을 이용하실 수 있습니다.</Text>
                   <Button onClick={()=>history.push('/login')}
                   variant="text" style={{color: "#42BE65", margin:"50px auto", fontWeight:"700"}}>로그인하기</Button>
-                </Grid>
+                </Grid> */}
               </Grid>
               )}
         </Container>
