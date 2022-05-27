@@ -21,6 +21,7 @@ const Button = (props) => {
         borderRadius,
         checked,
         textAlign,
+        disable,
       } = props;
     
       const styles = {
@@ -37,6 +38,7 @@ const Button = (props) => {
         borderRadius,
         checked,
         textAlign,
+        disable,
       };
 
       
@@ -291,6 +293,7 @@ const TransparentButton = styled.button`
   
   border: none;
   background: transparent;
+  disable: ${(props) => props.disabled};
 `
 
 //toggledrawer 삭제 수정 버튼

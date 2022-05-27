@@ -81,9 +81,12 @@ const Input = (props) => {
   if (type === "squarenp") {
     return (
       <React.Fragment>
-        <Grid margin="4px">
-          <Text bold size="small">{label}</Text>
+        {label?
+        <Grid margin="1px">
+          <Text size="base" weight="400">{label}</Text>
         </Grid>
+        :
+        null}
         <SquareInputNonePadding
           {...styles}
           ref={_ref}
@@ -289,6 +292,7 @@ const SquareInput = styled.input`
 
 const SquareInputNonePadding = styled.input`
   font-family: 'SUIT';
+  font-weight: 500;
   font-size: 16px;
   letter-spacing: 0.25px;
   color: #262626;
@@ -297,7 +301,8 @@ const SquareInputNonePadding = styled.input`
   padding: 0 16px;
   
   width: ${(props) => props.width};
-  height: 40px;
+  height: 48px;
+  width: 100%;
   
   border: 1px solid #C6C6C6;
   border-radius: 6px;
@@ -400,7 +405,7 @@ const PasswordInput = styled.input`
 
   width: 100%;
   height: 52px;
-  padding: 0px 0px 0px 16px; 
+  padding: 0px 40px 0px 16px; 
   border: ${(props) => props.border};
   border-radius: 6px;
   margin: ${(props) => props.margin};

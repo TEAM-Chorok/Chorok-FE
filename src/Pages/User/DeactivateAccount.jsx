@@ -10,13 +10,11 @@ const DeactivateAccount = () => {
     const history = useHistory();
     return (
         <React.Fragment>
-            <Container>
                 <Grid width="100%">
                     <GeneralHeader title="회원탈퇴" size="base" />
                 </Grid>
-            </Container>
             <Container type="np">
-                <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
+            <Grid height="1px" width="100%" bg="#E0E0E0" />
                 <DeactivationAgreement />
             </Container>    
         </React.Fragment>

@@ -1,16 +1,14 @@
-import { Input, Text, Grid, Container} from '../../Elements/index';
-import { Button } from '@mui/material';
+import { Input, Button, Text, Grid, Container } from '../../Elements/index';
 import React from 'react';
 import styled from 'styled-components';
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
 import { GeneralHeader } from '../../Components';
 import { pwdCheck } from '../../Shared/RegEx';
 import { ReactComponent as HideIcon } from '../../Assets/img/hidePassword.svg';
 import { ReactComponent as ShowIcon } from '../../Assets/img/showPassword.svg';
 import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
+
 
 const ChangePwd = (props) => {
   const history = useHistory();
@@ -20,105 +18,119 @@ const ChangePwd = (props) => {
   const [passwordChk, setPasswordChk] = React.useState("");
 
   const [showPassword, setShowPassword] = React.useState(false);
-    
+
 
   //비밀번호 정규식
   const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
 
   //비밀번호 일치 확인
-    const passwordMatch = () => {
-      return password === passwordChk;
-    }
+  const passwordMatch = () => {
+    return password === passwordChk;
+  }
 
-    const changePwd = () => {
-      dispatch(userActions.changePwdDB(password));
-    }
+  const changePwd = () => {
+    dispatch(userActions.changePwdDB(password));
+  }
 
-  
+
   return (
-      <React.Fragment>
-        <Container>
-            <GeneralHeader title="비밀번호 변경" size="base" />
-            {passwordMatch() === false ? 
-            <Button 
-            disabled={passwordMatch() === false}
-            style={{fontSize:"16px", position: "absolute", right: "0px", top:"16px"}}>완료</Button> :
-            <Button 
-            onClick={()=>changePwd()}
-            style={{fontSize:"16px", position: "absolute", right: "0px", top:"16px", color:"#0AAF42", fontWeight:"700"}}>완료</Button>
-            }
-            
-          </Container>
-        <Container type="np">
-            <hr style={{border: "1px solid #E0E0E0", margin:"0px"}} />
-        </Container>
-        <Container>
-          <Grid width="100%">
-          {passwordMatch(password, passwordChk) || passwordChk === ""?
-              <Grid width="100%" position="relative">
-                <Input 
-                type={showPassword? "shownPassword" : "password"}
-                _onChange={(e)=>{setPassword(e.target.value); 
-                                pwdCheck(e.target.value)}} 
-                                border="1px solid #D5D8DB"
+    <React.Fragment>
+      <GeneralHeader title="비밀번호 변경" size="base" />
+      <AbsoluteBox>
+        {passwordMatch() === false ?
+          <Button type="tran" disabled={passwordMatch() === false}>
+            <Text color="#A8A8A8">완료</Text>
+          </Button> :
+          <Button type="tran" _onClick={() => changePwd()}>
+            <Text color="#0AAF42" weight="700">완료</Text>
+          </Button>
+        }
+      </AbsoluteBox>
+
+      <Container type="np">
+        <Grid height="1px" width="100%" bg="#E0E0E0" />
+      </Container>
+      <Container>
+        <Grid margin="12px 4px">
+          <Text weight="400">변경하실 비밀번호를 입력해주세요 :)</Text>
+        </Grid>
+        <Grid width="100%">
+          {passwordMatch(password, passwordChk) || passwordChk === "" ?
+            <Grid width="100%" position="relative">
+              <Input
+                type={showPassword ? "shownPassword" : "password"}
+                _onChange={(e) => {
+                  setPassword(e.target.value);
+                  pwdCheck(e.target.value)
+                }}
+                border="1px solid #D5D8DB"
                 placeholder="비밀번호(영문 대소문자, 숫자를 포함한 8~20자)" ></Input>
 
-                <HideBtn style={{position:"absolute", top:"20%", right:"8px"}}
-                onClick={()=>setShowPassword(!showPassword)}>
-                  {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
+              <HideBtn style={{ position: "absolute", top: "20%", right: "8px" }}
+                onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? <ShowIcon /> : <HideIcon />}</HideBtn>
 
 
-                <Input 
-                type={showPassword? "shownPassword" : "password"}
+              <Input
+                type={showPassword ? "shownPassword" : "password"}
                 border="1px solid #D5D8DB"
-                _onChange={(e)=>{setPasswordChk(e.target.value); 
-                                pwdCheck(e.target.value); }} 
+                _onChange={(e) => {
+                  setPasswordChk(e.target.value);
+                  pwdCheck(e.target.value);
+                }}
                 placeholder="비밀번호 확인"  ></Input>
 
-                <HideBtn  style={{position:"absolute", top:"70%", right:"8px"}}
-                onClick={()=>setShowPassword(!showPassword)} >
-                  {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
-                </Grid> 
+              <HideBtn style={{ position: "absolute", top: "70%", right: "8px" }}
+                onClick={() => setShowPassword(!showPassword)} >
+                {showPassword ? <ShowIcon /> : <HideIcon />}</HideBtn>
+            </Grid>
 
-                : 
+            :
 
-              <Grid width="100%" position="relative">
-                <Input 
-                type={showPassword? "shownPassword" : "password"}
-                _onChange={(e)=>{setPassword(e.target.value); 
-                                pwdCheck(e.target.value)}} 
-                border="1px solid #FA4D56" 
+            <Grid width="100%" position="relative">
+              <Input
+                type={showPassword ? "shownPassword" : "password"}
+                _onChange={(e) => {
+                  setPassword(e.target.value);
+                  pwdCheck(e.target.value)
+                }}
+                border="1px solid #FA4D56"
                 placeholder="비밀번호(영문 대소문자, 숫자를 포함한 8~20자)"  ></Input>
 
-                <HideBtn  style={{position:"absolute", top:"20%", right:"8px"}}
-                onClick={()=>setShowPassword(!showPassword)}  >
-                  {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
+              <HideBtn style={{ position: "absolute", top: "28px", right: "8px" }}
+                onClick={() => setShowPassword(!showPassword)}  >
+                {showPassword ? <ShowIcon /> : <HideIcon />}</HideBtn>
 
+              <Grid is_flex width="100%" position="relative">
+                <Input
+                  type={showPassword ? "shownPassword" : "password"}
+                  border="1px solid #FA4D56"
+                  _onChange={(e) => {
+                    setPasswordChk(e.target.value);
+                    pwdCheck(e.target.value);
+                  }}
+                  placeholder="비밀번호 확인" />
 
-                <Input 
-                type={showPassword? "shownPassword" : "password"}
-                 border="1px solid #FA4D56" 
-                _onChange={(e)=>{setPasswordChk(e.target.value); 
-                                pwdCheck(e.target.value); }} 
-                placeholder="비밀번호 확인"  ></Input> 
-
-                <HideBtn  style={{position:"absolute", top:"70%", right:"8px"}}
-                onClick={()=>setShowPassword(!showPassword)}  >
-                  {showPassword? <ShowIcon/> : <HideIcon/> }</HideBtn>
+                <HideBtn style={{ position: "absolute", top: "28px", right: "8px" }}
+                  onClick={() => setShowPassword(!showPassword)}  >
+                  {showPassword ? <ShowIcon /> : <HideIcon />}</HideBtn>
               </Grid>
-              
-              }
-              
-              {passwordMatch(password, passwordChk) || passwordChk === ""?
-                "" : 
-                <Grid  margin="0px 0px 0px 10px">
-                  <Text size="xsmall" color="#FA4D56"> 비밀번호가 일치하지 않습니다.</Text>
-                </Grid>
-              }
+            </Grid>
 
-          </Grid>
-        </Container>
-      </React.Fragment>
+          }
+
+          {passwordMatch(password, passwordChk) || passwordChk === "" ?
+            <Grid margin="0 4px">
+              <Text size="xsmall" color="#24A148"> 비밀번호가 일치합니다.</Text>
+            </Grid> :
+            <Grid margin="0 4px">
+              <Text size="xsmall" color="#FA4D56"> 비밀번호가 일치하지 않습니다.</Text>
+            </Grid>
+          }
+
+        </Grid>
+      </Container>
+    </React.Fragment>
   );
 }
 const HideBtn = styled.button`
@@ -127,4 +139,11 @@ const HideBtn = styled.button`
   background-color: transparent;
   border: none;
 `
+
+const AbsoluteBox = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 12px;
+`
+
 export default ChangePwd;
