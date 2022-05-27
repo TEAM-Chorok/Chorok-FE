@@ -56,8 +56,8 @@ const Labeling = () => {
         </Grid>
         
         <Grid margin="350px auto 100px auto" align="center" width="100%">
-          <PrimaryBtn onClick={()=>setActive(1)}>시작할래요</PrimaryBtn>
-          <GobackBtn onClick={()=>history.goBack()}>다음에 할게요</GobackBtn>
+          <PrimaryBtn onClick={()=>setActive(1)}>다음으로</PrimaryBtn>
+          <GobackBtn onClick={()=>history.goBack()}>종료하기</GobackBtn>
         </Grid>
         <Grid margin="0px auto" align="center" position="absolute" top="250px" left="38%">
           {/*추후 애니메이션 넣기*/}
@@ -71,7 +71,7 @@ const Labeling = () => {
   if(active !== 0){
     return (
       <React.Fragment>
-        <Container>
+        <Container type="np">
           {comp[active]}
         </Container>
       </React.Fragment>
@@ -85,29 +85,28 @@ const Img = styled.img `
 `
 
 const PrimaryBtn = styled.button`
-  width: 86%;
+  width: 90%;
   height: 44px;
   color: white;
   background-color: #0AAF42;
   text-align: center;
   margin-bottom: 8px;
   border: none;
+  font-size: 16px;
   font-weight: 700;
+  font-family: 'SUIT';
   border-radius: 8px;
-  // position: absolute;
-  // top: 472px;
-  // left: 30px;
 `
 const GobackBtn = styled.button`
-  width: 86%;
+  width: 90%;
   height: 44px;
   color: #A8A8A8;
   background-color: #F7F8FA;
   text-align: center;
   border-radius: 8px;
   border: none;
-  // position: absolute;
-  // top: 522px;
-  // left: 30px;
+  font-weight: 700;
+  font-family: 'SUIT';
+  font-size: 16px;
 `
 export default Labeling;

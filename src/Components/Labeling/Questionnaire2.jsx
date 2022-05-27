@@ -1,4 +1,4 @@
-import {Text, Grid, Image} from '../../Elements/index';
+import {Text, Grid, Image, Container} from '../../Elements/index';
 import React from 'react';
 import styled from 'styled-components';
 import { GeneralHeader } from '..';
@@ -9,8 +9,9 @@ const Questionnaire2 = (props) => {
     return(
       <React.Fragment>
           <GeneralHeader />
-          <Grid margin="80px 0px 24px 0px" width="100%">
-            <Text size="large" bold >어떤 공간에서 <br />식물을 키우고 싶으신가요?</Text>
+        <Container>
+          <Grid margin="32px 0px 32px 0px" width="100%">
+            <Text size="large" weight="600" >어떤 공간에서 <br />식물을 키우고 싶으신가요?</Text>
           </Grid>
               <SelectionWrap>
                 <ImageBox onClick={()=>props.setPlace("pp03")}> 
@@ -18,27 +19,31 @@ const Questionnaire2 = (props) => {
                     border={props.place === "pp03"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/bathroom.png"></Image>
                   </ImageWrap>
-                  <TextWrap className='text'
-                  border={props.place === "pp03"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
-                  bg={props.place === "pp03"? "#DEFBE6" : "transparent"}><Text>화장실</Text></TextWrap>
+                  <TextWrap ><Text className='text' size="small"
+                  weight={props.place ===  "pp03" ? "700" : "500"}
+                  color={props.place ===  "pp03" ? "#24A148" : "#262626"}>화장실</Text></TextWrap>
                 </ImageBox>
+
                 <ImageBox onClick={()=>props.setPlace("pp02")}>
                   <ImageWrap className='child'
                     border={props.place === "pp02"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/bedroom.png"></Image>
                   </ImageWrap>
-                  <TextWrap className='text'
-                    border={props.place === "pp02"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
-                    bg={props.place === "pp02"? "#DEFBE6" : "transparent"}><Text>방안</Text></TextWrap>
+                  <TextWrap>
+                    <Text className='text' size="small"
+                    weight={props.place ===  "pp02" ? "700" : "500"}
+                    color={props.place ===  "pp02" ? "#24A148" : "#262626"}>방안</Text>
+                  </TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp01")}>
                   <ImageWrap className='child'
                     border={props.place === "pp01"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/hallway.png"></Image>
                   </ImageWrap>
-                  <TextWrap className='text'
-                    border={props.place === "pp01"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
-                    bg={props.place === "pp01"? "#DEFBE6" : "transparent"}><Text>통로</Text></TextWrap>
+                  <TextWrap>  
+                    <Text className='text' size="small"
+                    weight={props.place ===  "pp01" ? "700" : "500"}
+                    color={props.place ===  "pp01" ? "#24A148" : "#262626"}>통로</Text></TextWrap>
                 </ImageBox>
               </SelectionWrap>
 
@@ -48,43 +53,50 @@ const Questionnaire2 = (props) => {
                     border={props.place === "pp06"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/terrace.png"></Image>
                   </ImageWrap>
-                  <TextWrap className='text'
-                  border={props.place === "pp06"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
-                  bg={props.place === "pp06"? "#DEFBE6" : "transparent"}><Text>베란다</Text></TextWrap>
+                  <TextWrap>
+                    <Text  className='text' size="small"
+                    weight={props.place ===  "pp06" ? "700" : "500"}
+                    color={props.place ===  "pp06" ? "#24A148" : "#262626"}>베란다</Text>
+                  </TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp05")}>
                   <ImageWrap className='child'
                     border={props.place === "pp05"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/windowside.png"></Image>
                   </ImageWrap>
-                  <TextWrap className='text'
-                    border={props.place === "pp05"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
-                    bg={props.place === "pp05"? "#DEFBE6" : "transparent"}><Text>창가</Text></TextWrap>
+                  <TextWrap>
+                    <Text className='text' size="small"
+                    weight={props.place ===  "pp05" ? "700" : "500"}
+                    color={props.place ===  "pp05" ? "#24A148" : "#262626"}>창가</Text>
+                  </TextWrap>
                 </ImageBox>
                 <ImageBox onClick={()=>props.setPlace("pp04")}>
                   <ImageWrap className='child'
                     border={props.place === "pp04"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                     <Image type="square" borderRadius="10px" size="100px" imgUrl="img/plantType/livingroom.png"></Image>
                   </ImageWrap>
-                  <TextWrap className='text'
-                   border={props.place === "pp04"? "1px solid #0AAF42" : "1px solid #F4F4F4"}
-                   bg={props.place === "pp04"? "#DEFBE6" : "transparent"}><Text>거실</Text></TextWrap>
+                  <TextWrap>
+                    <Text className='text' size="small"
+                    weight={props.place ===  "pp04" ? "700" : "500"}
+                    color={props.place ===  "pp04" ? "#24A148" : "#262626"}>거실</Text>
+                  </TextWrap>
                 </ImageBox>
               </SelectionWrap>
-              <Grid position="absolute" top="600px" right="100px" align="center">
+              <Grid width="100%" align="center" margin="42px 0px 0px 0px">
             <PrimaryBtn disabled={props.place === ""} onClick={()=>props.setActive(3)}>다음으로</PrimaryBtn>
           </Grid>
+        </Container>
       </React.Fragment>
     )
 }
 const SelectionWrap = styled.div`
   width: 100%;
-  height: fit-content;
+  height: 150px;
   display: grid;
   place-items: center;
   grid-template-columns: 1fr 1fr 1fr;
 
-  margin-bottom: 30px;  
+  margin-bottom: 10px;  
 `
 const ImageBox = styled.div`
   width: fit-content;
@@ -93,12 +105,9 @@ const ImageBox = styled.div`
 
   &:hover .child{
     border: 3px solid #0AAF42;
-    color: #0AAF42;
   }
   &:hover .text{
-    border: 1px solid #0AAF42;
-    background-color: #DEFBE6;
-    color: #0AAF42;
+    color: #24A148;
   }
 `
 const ImageWrap = styled.div`
@@ -111,25 +120,26 @@ const ImageWrap = styled.div`
 const TextWrap = styled.div`
   width: fit-content;
   height: fit-content;
-  padding: 2px 10px;
-  border-radius: 16px;
   margin: 5px auto;
 
   background-color: ${(props) => props.bg};
   border: ${(props) => props.border};
 `
 const PrimaryBtn = styled.button`
-  width: 167px;
-  height: 44px;
-  color: white;
-  background-color: #0AAF42;
-  text-align: center;
-  border: none;
-  border-radius: 16px;
-  &:disabled{
-    background-color: #F4F4F4;
-    color: #A8A8A8;
-  }
+width: 90%;
+height: 44px;
+color: #fff;
+text-align: center;
+border-radius: 8px;
+border: none;
+background-color: #0AAF42;
+font-family: 'SUIT';
+font-weight: 700;
+font-size: 16px;
+&:disabled{
+  background-color: #F4F4F4;
+  color: #A8A8A8;
+}
 `
 
 export default Questionnaire2;

@@ -91,7 +91,7 @@ Text.defaultProps = {
   line: "",
   margin: "0",
   wordbreak: "",
-  weight: "400",
+  weight: "500",
 }
 
 
