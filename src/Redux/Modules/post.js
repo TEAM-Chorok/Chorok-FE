@@ -154,6 +154,7 @@ const getDetailPostDB = (postId) => {
     postAPI
       .getDetailPost(_postId)
       .then((response) => {
+        console.log(response.data);
         dispatch(getDetailPost(response.data));
       })
       .catch((err) => {
@@ -234,6 +235,7 @@ const likeDetailPostDB = (postId) => {
         } else if (res.data.result === "false") {
           console.log('좋아요 취소');
         }
+        dispatch(getPostListDB_login(0));
         dispatch(getDetailPostDB(postId));
       })
       .catch((err) => {
@@ -275,6 +277,7 @@ const bookmarkDetailPostDB = (postId) => {
         } else {
           window.alert("북마크를 취소하였습니다.");
         }
+        dispatch(getPostListDB_login(0));
         dispatch(getDetailPostDB(postId));
       })
       .catch((err) => {

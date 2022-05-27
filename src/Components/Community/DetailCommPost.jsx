@@ -43,9 +43,9 @@ const DetailCommPost = (props) => {
 
     useEffect(() => {
         dispatch(postActions.getDetailPostDB(postId));
-        // setLike(postLike);
-        // setBookmark(bookmarked);
-    }, [dispatch, post?.postId]);
+        setLike(post?.postLike);
+        setBookmark(post?.postBookMark);
+    }, [dispatch, post?.postId, post?.postLike, post?.postBookMark]);
 
     
     return (

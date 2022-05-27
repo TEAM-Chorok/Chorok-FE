@@ -171,6 +171,7 @@ const SMALL = styled.p`
   line-height: 20px;
   color: ${(props) => props.color ? props.color : "#262626"};
   letter-spacing: 0.25px;
+  text-align: ${(props) => props.align};
 `
 
 const XSMALL = styled.p`
@@ -186,7 +187,7 @@ const XSMALL = styled.p`
   line-height: 20px;
   letter-spacing: 0.25px;  
   color: ${(props) => props.color ? props.color : "#262626"};
-
+  text-align: ${(props) => props.align};
 `
 
 const XXSMALL = styled.p`

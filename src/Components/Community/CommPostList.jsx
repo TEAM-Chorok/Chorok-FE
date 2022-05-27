@@ -46,7 +46,11 @@ const CommPostList = (props) => {
         
     }
 
-
+    if(!postList){
+        return (
+            <div></div>
+        )
+    }
     return (
         <React.Fragment>
             {postList? 
