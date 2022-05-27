@@ -45,7 +45,7 @@ const DetailCommPost = (props) => {
         dispatch(postActions.getDetailPostDB(postId));
         setLike(postLike);
         setBookmark(bookmarked);
-    }, [post.postId, like, bookmark]);
+    }, [post?.postId]);
 
     if (!post) {
         return (

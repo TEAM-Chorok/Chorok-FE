@@ -98,7 +98,7 @@ const TabMenu = styled.div`
 
 const Line = styled.div`
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   ${(props) => props.num === 0? "left: 0" : "left: 50%"};
   
   transition: 0.4s;
@@ -108,7 +108,7 @@ const Line = styled.div`
 `
 const BackLine = styled.div`
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   
   transition: 0.4s;
   width: 100%;
