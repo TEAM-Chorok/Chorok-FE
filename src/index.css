@@ -103,11 +103,13 @@
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  scroll-behavior: smooth; 
 }
 
 *::-webkit-scrollbar {
 display: none; /* Chrome, Safari, Opera*/
 }
+
 
 body {
   margin: 0;

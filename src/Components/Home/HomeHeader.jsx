@@ -94,23 +94,23 @@ const HomeHeader = () => {
   return (
     <React.Fragment>
       <Grid width="100%" bg="#fff">
-        {location ?
+        {!location ?
           <GridBox bg={color}>
-            <Grid width="100%" padding="16px">
+            <Grid width="100%" padding="24px 16px">
               {/* <Text size="XS" color="#999">{date}</Text> */}
               {/* <br /> */}
               <Text size="small" weight="400" margin="5px 0"> {cityname}, {weatherData?.weather} {weatherData?.temp}℃</Text>
               <br />
               <Text size="xsmall" weight="400" color="#525252"> 최저 {weatherData?.temp_min} 최고 {weatherData?.temp_max} 습도 {weatherData?.humidity}%</Text>
             </Grid>
-            <Grid>
+            <Grid width="100%" padding="0 16px" align="right">
               <Img src={`/img/weather/${weatherData?.weather}.svg`} />
             </Grid>
           </GridBox>
           :
           <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F4F7 68.85%, rgba(242, 244, 248, 0) 88.45%)">
             <Grid margin="20px auto" padding="16px">
-              <Text bold size="xsmall">💬 {status}</Text>
+              {/* <Text bold size="xsmall">💬 {status}</Text> */}
             </Grid>
           </Grid>
         }

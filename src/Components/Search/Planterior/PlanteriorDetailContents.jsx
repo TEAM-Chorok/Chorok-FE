@@ -50,7 +50,7 @@ const PhotoDetailContents = () => {
           <Grid margin="12px auto">
             <Image type="planterior" width="100%" imgUrl={postData?.postImgUrl} />
           </Grid>
-          <Grid margin="12px 0">
+          <Grid margin="12px 0" width="100%">
             <Text size="small">{postData?.postContent}</Text>
           </Grid>
           <BookmarkBox>

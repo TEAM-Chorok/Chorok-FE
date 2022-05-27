@@ -15,20 +15,9 @@ const TodoContent = () => {
   const dispatch = useDispatch();
   const sentence = useSelector((state) => state.main.sentence);
   const todoList = useSelector((state) => state?.main?.todo);
+  const [index, setindex] = React.useState(null);
 
-  const scrollRef = React.useRef();
-
-  // const Refs = todoList?.reduce((acc, value) => {
-  //   acc[value.myPlnatNo] = React.createRef();
-  //   return acc;
-  // }, {})
-
-  const selectPlant = (value) => {
-    // Refs[value].current?.scrollIntoView({ behavior: 'smooth', });
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-
-  
+  const scrollRef = React.useRef([]);
 
   const [plantNo, setPlantNo] = React.useState(null);
 
@@ -45,14 +34,17 @@ const TodoContent = () => {
         <TitleBox>
           <Grid width="100%" margin="20px 0" >
             <SentenceBox>
-
               <p className="sentence">
                 {sentence}
               </p>
             </SentenceBox>
           </Grid>
           <Grid width="100%" margin="-15px 0 16px 0">
-            <TodoProfile plantNo={plantNo} setPlantNo={setPlantNo} selectPlant={selectPlant}/>
+            <TodoProfile 
+            plantNo={plantNo} 
+            setPlantNo={setPlantNo} 
+            // selectPlant={selectPlant} 
+            />
           </Grid>
         </TitleBox>
 
@@ -64,7 +56,7 @@ const TodoContent = () => {
             <>
               {todoList?.map((plant, idx) => {
                 return (
-                  <TodoBox key={plant.myPlantNo} ref={scrollRef}>
+                  <TodoBox key={plant.myPlantNo} id={plant.myPlantNo}>
                     <Grid is_flex margin="8px 0" align="center">
                       <Image type="circle" size="32px" imgUrl={plant.myPlantImgUrl} />
                       <GridRowBox>
@@ -84,13 +76,13 @@ const TodoContent = () => {
                               key={todo.todoNo}
                               num={todo.todoNo}
                               status={todo?.status}
-                              img={'img/todoIcons/' + todo.workType + '.svg'}>
+                              img={'/img/todoIcons/' + todo.workType + '.svg'}>
                               <Text size="base">{todo.workType}</Text><br />
                               {todo.days === 0 && todo.status === true ?
                                 <Text size="xsmall">작업을 완료했어요!</Text> :
                                 <div>
                                   {todo.days === 0 ? <Text size="xsmall">{plant.myPlantName}(이)의 첫 {todo.workType}!</Text> :
-                                    <Text size="xsmall">마지막 작업 이후 {todo.days}일 지났어요.</Text>}
+                                    <Text size="xsmall" weight="400">마지막 작업 이후 {todo.days}일 지났어요.</Text>}
                                 </div>
                               }
                             </TodoContentBlock>
