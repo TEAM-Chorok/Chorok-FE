@@ -310,12 +310,12 @@ const postSearchingDB = (postTypeCode, keyword) => {
 
 
 //댓글 달기
-const addCommentDB = (postId, commentContent) => {
-  const commentdata = {postId, commentContent };
+const addCommentDB = (postId, commentdata) => {
   return function (dispatch, getState, { history }){
     postAPI
-      .addComment(commentContent)
+      .addComment(commentdata)
       .then((res) => {
+        console.log(res);
         dispatch(getDetailPostDB(postId));
       }).catch((error) => {
         console.log("error: ", error);

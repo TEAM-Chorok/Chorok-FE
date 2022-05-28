@@ -34,7 +34,7 @@ const MyPlantsList = () => {
                         count={myPlant?.pp04?.length}
                         name={plant.myPlantName}
                         plant={plant.plantName}
-                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
+                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileLarge.svg'} />
                     )
                   })}
                 </GridBox>
@@ -55,7 +55,7 @@ const MyPlantsList = () => {
                         count={myPlant?.pp05?.length}
                         name={plant.myPlantName}
                         plant={plant.plantName}
-                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
+                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileLarge.svg'} />
                     )
                   })}
                 </GridBox>
@@ -76,7 +76,7 @@ const MyPlantsList = () => {
                         count={myPlant?.pp02?.length}
                         name={plant.myPlantName}
                         plant={plant.plantName}
-                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
+                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileLarge.svg'} />
                     )
                   })}
                 </GridBox>
@@ -98,7 +98,7 @@ const MyPlantsList = () => {
                         count={myPlant?.pp03?.length}
                         name={plant.myPlantName}
                         plant={plant.plantName}
-                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
+                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileLarge.svg'} />
                     )
                   })}
                 </GridBox>
@@ -120,7 +120,7 @@ const MyPlantsList = () => {
                         count={myPlant?.pp01?.length}
                         name={plant.myPlantName}
                         plant={plant.plantName}
-                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
+                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileLarge.svg'} />
                     )
                   })}
                 </GridBox>
@@ -142,7 +142,7 @@ const MyPlantsList = () => {
                         count={myPlant?.pp06?.length}
                         name={plant.myPlantName}
                         plant={plant.plantName}
-                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
+                        imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileLarge.svg'} />
                     )
                   })}
                 </GridBox>

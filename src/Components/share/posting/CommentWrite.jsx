@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { Button, Input, Text } from '../../../Elements';
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
+import { actionCreators as postActions } from "../../../Redux/Modules/post";
 
 import Alert2 from "../modal/Alert2";
 
@@ -12,7 +13,7 @@ import Alert2 from "../modal/Alert2";
 // 코멘트 input창
 
 const CommentWrite = (props) => {
-  const {content, placeholder, commentId} = props;
+  const {choroktalk, content, placeholder, commentId} = props;
 
   const dispatch = useDispatch();
 
@@ -32,11 +33,22 @@ const CommentWrite = (props) => {
     const editdata = {
       commentId : commentId,
       commentContent : contentRef.current.value,
+    }    
+    if(choroktalk && content) { 
+      dispatch(postActions.editCommentDB(postId, editdata));
+      contentRef.current.value = null;
+      props.setEdit(false);
+      return;
     }
     if(content) {
       dispatch(searchActions.editPlanteriorCommentDB(editdata, postId));
       contentRef.current.value = null;
       props.setEdit(false);
+      return;
+    }
+    if(choroktalk) {
+      dispatch(postActions.addCommentDB(postId, commentdata));
+      contentRef.current.value = null;
       return;
     }
     dispatch(searchActions.writePlanteriorCommentDB(commentdata));
