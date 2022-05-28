@@ -99,10 +99,6 @@ export const labelAPI = {
     answer2: answer2, 
     answer3: answer3, 
     answer4: answer4
-  },{
-    headers: {
-      "Authorization": ` ${localStorage.getItem('token')}`,
-    }
   }
   )
 }
