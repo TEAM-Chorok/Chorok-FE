@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled,{ keyframes } from "styled-components";
 import CommPost from "./CommPost";
 import { Grid, Text } from "../../Elements";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,6 +10,10 @@ import { useHistory } from "react-router-dom";
 const CommPostList = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
+
+
+     const [done, setDone] = React.useState(false);
+
 
     // 무한스크롤 관련 state
     const [isLoading, setIsLoading] = React.useState(false);
@@ -24,6 +28,10 @@ const CommPostList = (props) => {
             dispatch(postActions.getPostListDB_login(props.category, props.page)) :
             dispatch(postActions.getPostListDB_non_login(props.category, props.page))
         }
+        setTimeout(() => {
+            setDone(true);
+        }, 2000);
+        return;
     }, [props.category, props.page, dispatch]);
 
     //infinite scroll 실행 함수
@@ -47,7 +55,23 @@ const CommPostList = (props) => {
 
     if(!postList){
         return (
-            <div></div>
+            <RelativeBox>
+              <FloatBox>
+                <Grid margin="auto">
+                  {done &&
+                    <Grid done={done}>
+                      <Text bold size="base" margin="auto">데이터를 불러올 수 없습니다💬</Text>
+                    </Grid>
+                  }
+                </Grid>
+              </FloatBox>
+              
+              <Grid margin="-16px auto">
+                <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
+                <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
+                <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
+              </Grid>
+            </RelativeBox>
         )
     }
     return (
@@ -89,7 +113,7 @@ const RelativeBox = styled.div`
 
 const FloatBox = styled.div`
   position: absolute;
-  top: 0;
+  top: 300px;
 
   display:flex;
   align-items: center;
@@ -102,5 +126,4 @@ const FloatBox = styled.div`
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
 `
-
 export default CommPostList;

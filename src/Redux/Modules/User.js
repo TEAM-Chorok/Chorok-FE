@@ -38,7 +38,7 @@ const logInDB = (username, password) => {
         history.replace('/home');
       }).catch((error) => {
         console.log("logInDB : error", error.response);
-        window.alert("이메일 혹은 비밀번호를 다시 확인해주세요.")
+        window.alert("이메일 혹은 비밀번호를 다시 확인해주세요.");
         return;
       });
   }

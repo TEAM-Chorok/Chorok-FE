@@ -178,18 +178,13 @@ const EditPlant = () => {
       </Container>
       {deleteOpen &&
         <AlertBox>
-          <Alert2 type="editPlant" open={deleteOpen} setOpen={setDeleteOpen} func={deleteMyPlant}>
-            <Text size="xsmall" align="left">
-              정말 삭제하시겠습니까?<br />삭제된 식물은 복구할 수 없습니다.
-            </Text>
-            <Grid margin="10px auto 0px auto">
-              <Button
-                onClick={() => setOpenModal(false)}
-                style={{ fontSize: "14px", fontWeight: "700", borderRadius: "8px", border: "none", backgroundColor: "#F7F8FA", color: "#262626", marginRight: "8px", width: "90px", height: "36px" }}>미루기</Button>
-              <Button
-                onClick={() => { deleteMyPlant() }}
-                style={{ fontSize: "14px", fontWeight: "700", borderRadius: "8px", border: "none", backgroundColor: "#F7F8FA", color: "#FA4D56", width: "90px", height: "36px" }}>삭제하기</Button>
+          <Alert2 type="editPlant" open={deleteOpen} setOpen={setDeleteOpen} func={deleteMyPlant} btn1={"미루기"} btn2={"삭제하기"}>
+            <Grid margin="0px auto"> 
+              <Text size="large" weight="700">
+                정말 삭제하시겠습니까?<br /> </Text> 
+              <Text size="xsmall" weight="400" color="#393939">삭제된 식물은 복구할 수 없습니다.</Text>
             </Grid>
+            
           </Alert2>
         </AlertBox>
       }
