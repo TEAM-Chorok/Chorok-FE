@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import { AddDone, Navbar } from '../Components';
+import { AddDone, Navbar, SearchOnFocus } from '../Components';
 import MobileFrame from '../Components/MobileFrame';
 import {
   Login, Home, SignUp, Kakao, Google, ProfileSetting, Labeling,
@@ -70,7 +70,7 @@ function App() {
             <Route path="/planterior/edit/:postId" exact component={PlanteriorWrite} />
             <Route path="/planterior/post/:postId" exact component={PlanteriorDetail} />
 
-            <Route path="/test" exact component={Test} />
+            <Route path="/test" exact component={SearchOnFocus} />
 
             <Route path="/community" exact component={Community} />
             <Route path="/addpost" exact component={AddPost} />

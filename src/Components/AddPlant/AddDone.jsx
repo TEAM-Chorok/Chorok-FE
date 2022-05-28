@@ -12,7 +12,8 @@ const AddDone = (props) => {
 
     return (
         <React.Fragment>
-            <GeneralHeader _onClick={() => { props.setCompNum(props.compNum - 1); }} />
+            {/* <GeneralHeader _onClick={() => { props.setCompNum(props.compNum - 1); }} /> */}
+            <Grid height="44px"/>
             <RelativeBox>
                 <LeafBox>
                     <LeafLogo />
@@ -41,7 +42,7 @@ const AddDone = (props) => {
                     </Grid>
                     <Grid width="100%">
                         <Button type="square" width="100%" color="#F7F8FA" _onClick={() => { history.replace("/home") }}>
-                            <Text color="#A8A8A8">괜찮아요</Text>
+                            <Text color="#A8A8A8">홈으로 돌아가기</Text>
                         </Button>
                     </Grid>
                 </Grid>

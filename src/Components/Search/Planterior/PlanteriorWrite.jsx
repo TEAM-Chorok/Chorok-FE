@@ -104,7 +104,7 @@ const PlanteriorWriteComp = () => {
       setMessage(1);
       setOpen(true);
       return;
-    } else if (!file?.length) {
+    } else if (!preview?.length) {
       // 파일이 없을 경우
       setMessage(2);
       setOpen(true);
@@ -130,7 +130,7 @@ const PlanteriorWriteComp = () => {
         return;
       } else {
         // 파일 수정하지 않았을 경우
-        formData.append('originalUrl', preview[0]);
+        formData.append('originalUrl', preview);
         dispatch(searchActions.editPlanteriorPostDB(formData, postId.postId));
         return;
       };
@@ -206,7 +206,7 @@ const PlanteriorWriteComp = () => {
             </Grid>
             <Grid width="100%" />
             <Grid margin="auto">
-              <Text bold size="base" color="#24A148">{file?.length ? file.length : "0"}</Text>
+              <Text bold size="base" color="#24A148">{preview?.length ? preview.length : "0"}</Text>
               <Text size="base" color="#6F6F6F">/1</Text>
             </Grid>
           </UploadArea>

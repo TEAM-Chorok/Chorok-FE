@@ -51,7 +51,7 @@ const CalendarPage = () => {
         <Wrapper open={open}>
           <Grid width="100%" padding="16px 0 16px 16px">
             <Text size="h5">캘린더</Text>
-            {myPlant ?
+            {myPlant?.length ?
               <>
                 <Grid margin="8px 0 -2px 0">
                   <Text size="small">식물을 선택해주세요.</Text>

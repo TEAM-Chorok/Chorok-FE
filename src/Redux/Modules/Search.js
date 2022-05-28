@@ -116,6 +116,7 @@ const editPlanteriorPostDB = (postdata, postId) => {
     searchAPI
     .editPlanteriorPost(postdata, postId)
     .then((response) => {
+      history.replace(`/planterior/post/${response.data.postId}`);
       dispatch(getPlanteriorDetailDB(postId));
       window.location.reload()
     }).catch((error) => {

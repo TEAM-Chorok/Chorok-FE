@@ -41,7 +41,7 @@ const Permit = (props) => {
                                 _onClick={() => history.push('/')}>
                                 <Text weight="600" color="#fff">로그인 하러 가기</Text>
                             </Button>
-                            <Grid margin="16px auto">
+                            <Grid margin="8px auto">
                                 <Button type="tran" _onClick={() => { history.push('/home'); }}>
                                     <Text color="#6F6F6F">초록 홈으로</Text>
                                 </Button>

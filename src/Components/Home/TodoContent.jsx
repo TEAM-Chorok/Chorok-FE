@@ -65,7 +65,7 @@ const TodoContent = () => {
               </EventBannerBox>
             </Grid>
           </Grid>
-          {todoList ?
+          {todoList?.length ?
             <>
               {todoList?.map((plant, idx) => {
                 return (
@@ -148,6 +148,7 @@ const Wrapper = styled.div`
   padding: 28px 16px;
 
   width: 100%;
+  min-height: 70vh;
 
   background: ${(props) => props.bg};
 `

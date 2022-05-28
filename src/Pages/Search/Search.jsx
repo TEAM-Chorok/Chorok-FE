@@ -65,8 +65,8 @@ const Search = () => {
           <Grid width="100%">
             <PlantSearchHeader title="탐색" size="h5"
               _onChange={(e) => { search(e) }}
-              _onFocus={() => { compNum === 3 ? setCompNum(3) : setCompNum(2) }}
-              _onBlur={() => { compNum < 3 ? setCompNum(0) : setCompNum(3) }}
+              // _onFocus={() => { compNum === 3 ? setCompNum(3) : setCompNum(2) }}
+              // _onBlur={() => { compNum < 3 ? setCompNum(0) : setCompNum(3) }}
               placeholder="어떤 식물을 찾고 있나요?"
             />
           </Grid>

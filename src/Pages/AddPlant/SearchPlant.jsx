@@ -2,7 +2,7 @@ import React from "react";
 import { debounce } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { AddPlantList, BottomSheet, PlantResult, PlantSearchHeader } from "../../Components";
+import { AddPlantList, BottomSheet, GeneralHeader, PlantResult, PlantSearchHeader } from "../../Components";
 import { Container, Grid, Input, Text } from "../../Elements";
 import { actionCreators as searchActions } from "../../Redux/Modules/Search";
 
@@ -38,6 +38,8 @@ const SearchPlant = () => {
 
   return (
     <React.Fragment>
+      <GeneralHeader title="식물 추가하기"/>
+      <Grid width="100%" height="1px" bg="#E0E0E0" /> 
       <Container>
         <PlantSearchHeader 
           title="원하는 식물을 찾아보세요" size="large"

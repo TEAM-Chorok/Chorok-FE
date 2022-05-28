@@ -5,7 +5,8 @@ import { Grid, Text } from "../../../Elements";
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 import InfiniteScroll from "../../share/etc/InfiniteScroll";
 import PlantProfile from "../../share/etc/PlantProfile";
-import { ReactComponent as NotFound } from "../../../Assets/img/Icons/notfound.svg"
+import { ReactComponent as NotFound } from "../../../Assets/img/errorIcons/nondata.svg"
+
 
 const PlantResult = (props) => {
   const is_login = localStorage.getItem('token') ? true : false;
@@ -70,14 +71,14 @@ const PlantResult = (props) => {
             </Grid>
           </Grid>
           :
-          <Grid margin="14vh auto">
-            <Grid margin="20px auto" align="center">
-              <Text bold size="h5" weight="700">검색<br />결과가 없어요</Text>
-            </Grid>
-            <Grid margin="auto">
-              <NotFound />
-            </Grid>
+          <Grid margin="13.8vh auto">
+          <Grid margin="20px auto" align="center">
+            <Text bold size="h5" weight="700">검색<br/>결과가 없어요</Text>
           </Grid>
+          <Grid margin="auto">
+            <NotFound />
+          </Grid>
+        </Grid>
         }
       </Grid>
     </React.Fragment>

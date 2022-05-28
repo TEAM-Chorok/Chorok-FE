@@ -62,55 +62,57 @@ const PostDetail = () => {
 
   return (
     <React.Fragment>
-      <Container type="np">
-        <GeneralHeader title={post?.postType} size="base" />
-        {is_local && nickname === post?.nickname ?
-          <CommBottomSheet type="post" postId={post?.postId} setDeleteOpen={setDeleteOpen} /> :
-          null
-        }
+      <Permit>
+        <Container type="np">
+          <GeneralHeader title={post?.postType} size="base" />
+          {is_local && nickname === post?.nickname ?
+            <CommBottomSheet type="post" postId={post?.postId} setDeleteOpen={setDeleteOpen} /> :
+            null
+          }
 
-      </Container>
-      <Container type="np">
-        <Grid width="100%" height="1px" bg="#E0E0E0" />
-        <DetailCommPost postList={post} />
-        {commentList?.map((cmt) => {
-          return (
-            <CommPostCommentList
-              key={cmt?.commentId}
-              postId={post?.postId}
-              commentId={cmt?.commentId}
-              content={cmt?.commentContent}
-              name={cmt?.nickname}
-              time={cmt?.commentRecentTime}
-              img={cmt?.profileImgUrl === null || cmt?.profileImgUrl === "null" ? "/img/noProfileImgSmall.svg" : cmt.profileImgUrl}
+        </Container>
+        <Container type="np">
+          <Grid width="100%" height="1px" bg="#E0E0E0" />
+          <DetailCommPost postList={post} />
+          {commentList?.map((cmt) => {
+            return (
+              <CommPostCommentList
+                key={cmt?.commentId}
+                postId={post?.postId}
+                commentId={cmt?.commentId}
+                content={cmt?.commentContent}
+                name={cmt?.nickname}
+                time={cmt?.commentRecentTime}
+                img={cmt?.profileImgUrl === null || cmt?.profileImgUrl === "null" ? "/img/noProfileImgSmall.svg" : cmt.profileImgUrl}
+                setMessage={setMessage}
+                setOpen={setOpen} />
+            )
+          })}
+          <Grid height="60px" />
+        </Container>
+        <Wrapper>
+          <FixWrapper>
+            <CommentWrite
+              choroktalk
               setMessage={setMessage}
-              setOpen={setOpen} />
-          )
-        })}
-        <Grid height="60px"/>
-      </Container>
-      <Wrapper>
-        <FixWrapper>
-          <CommentWrite 
-            choroktalk
-            setMessage={setMessage} 
-            setOpen={setOpen} 
-            open={open} />
-        </FixWrapper>
-      </Wrapper>
-      {deleteOpen &&
-        <AlertBox>
-          <Alert2 open={deleteOpen} setOpen={setDeleteOpen} btn1={"확인"} func={deleteOne}>
-            <Text bold wordbreak size="small">
-              게시글을 삭제할까요?
-            </Text>
-          </Alert2>
-        </AlertBox>
-      }
-      <Alert2 btn1="확인" open={open} setOpen={setOpen}>
-        <Text size="small">{message}</Text>
-      </Alert2>
-      <div style={{ height: "60px" }}></div>
+              setOpen={setOpen}
+              open={open} />
+          </FixWrapper>
+        </Wrapper>
+        {deleteOpen &&
+          <AlertBox>
+            <Alert2 open={deleteOpen} setOpen={setDeleteOpen} btn1={"확인"} func={deleteOne}>
+              <Text bold wordbreak size="small">
+                게시글을 삭제할까요?
+              </Text>
+            </Alert2>
+          </AlertBox>
+        }
+        <Alert2 btn1="확인" open={open} setOpen={setOpen}>
+          <Text size="small">{message}</Text>
+        </Alert2>
+        <div style={{ height: "60px" }}></div>
+      </Permit>
     </React.Fragment>
   )
 }

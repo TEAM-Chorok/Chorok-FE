@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as searchActions } from "../../Redux/Modules/Search";
 import PlantProfile from "../share/etc/PlantProfile";
 import InfiniteScroll from "../share/etc/InfiniteScroll";
-import { ReactComponent as NotFound } from "../../Assets/img/Icons/notfound.svg"
+import { ReactComponent as NotFound } from "../../Assets/img/errorIcons/nondata.svg"
 
 // 식물 추가 flow의 식물 리스트 컴포넌트
 // 코드 상단의 <BottomSheet/> 부분이 필터 바텀시트 부분 컴포넌트입니다.
