@@ -11,11 +11,12 @@ const EmailValidation = () => {
     const dispatch = useDispatch();
 
     const url = new URL(window.location.href);
-    const data = url.href.split('emailValidation')[1];
+    const token = url.searchParams.get("token");
+    const email = url.searchParams.get("email");
 
     React.useEffect(() => {
-        dispatch(UserActions.emailValidationDB(data));
-      }, [ dispatch, data ]);
+        dispatch(UserActions.emailValidationDB(token, email));
+      }, [ dispatch, token, email ]);
     
 
     return(

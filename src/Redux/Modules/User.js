@@ -73,8 +73,7 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
       .signUp(formData)
       .then((res) => {
         console.log(res);
-        window.alert("인증메일을 발송하였습니다. 메일을 확인해주세요.");
-        history.push('/'); 
+        history.replace('/'); 
       }).catch((err) => {
         console.log("signUpDB : error", err.response);
         window.alert("회원가입에 실패하였습니다. 다시 시도하여주세요.")
@@ -82,16 +81,17 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
   }
 }
 
-const emailValidationDB = (data) => {
-  console.log(data);
+const emailValidationDB = (token, email) => {
+  console.log(token, email);
   return function (dispatch, getState, { history }) {
     userAPI
-      .emailValidation(data)
+      .emailValidation(token, email)
       .then((response) => {
         console.log(response.data);
         localStorage.setItem ("token", response.headers.authorization);
         dispatch(isLoginDB());
       }).catch((err) => {
+        console.log(err);
         window.alert("이메일 인증에 실패하였습니다. 다시 시도하여주세요."); 
         history.replace('/');
       })
