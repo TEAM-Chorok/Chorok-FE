@@ -32,8 +32,8 @@ export const userAPI = {
     }
   }
   ),
-
-  emailValidation : (data) => api.post(`/auth/check-email-token${data}`),
+  //이메일 인증
+  emailValidation : (token, email) => api.get(`/auth/check-email-token?token=${token}&email=${email}`),
 
   //카카오 로그인
   kakaoLogIn:(code) => api.get(`/auth/kakao/callback?code=${code}`),
