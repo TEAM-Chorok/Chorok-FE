@@ -33,7 +33,7 @@ const MyPageHeader = (props) => {
                     </Grid>
                     <GridWrapRow>
                         <Grid><Text size="large" weight="700">{user?.nickname}</Text></Grid>
-                        {user?.profileMsg === null || user?.profileMsg === ""? 
+                        {user?.profileMsg === null || user?.profileMsg === "" || user?.profileMsg === "null"?  
                             <Button 
                             _onClick={()=>history.push('/setting/profile')}
                             padding="0px 0px 0px 1px" margin="0px" type="tran"><Text color="#6F6F6F" size="small" >프로필 소개 추가하기 > </Text></Button> :
