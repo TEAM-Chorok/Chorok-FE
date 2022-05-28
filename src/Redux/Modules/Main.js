@@ -32,7 +32,6 @@ const getWeatherDB = (userLocation) => {
     mainAPI
       .getWeather(userLocation)
       .then((response) => {
-        // console.log("getWeatherDB : response", response.data);
         // 날씨 데이터 한글 변환
         let weather = '';
         let arr = [['Clear', 'Clouds', 'Rain', 'Snow', 'Mist', 'Thunderstorm', 'Drizzle',
@@ -68,7 +67,6 @@ const getSentenceDB = () => {
     mainAPI
       .getSentence()
       .then((response) => {
-        // console.log("getSentenceDB : response", response.data);
         dispatch(getSentence(response.data));
       }).catch((error) => {
         console.log("getSentenceDB : error", error.response);
@@ -82,7 +80,6 @@ const getMyPlantDB = () => {
     mainAPI
       .getMyPlant()
       .then((response) => {
-        // console.log("getMyplantDB : response", response.data);
         dispatch(getMyPlant(response.data));
       }).catch((error) => {
         console.log("getMyplantDB : error", error.response);
@@ -96,7 +93,6 @@ const getTodoListDB = () => {
     mainAPI
       .getTodoList()
       .then((response) => {
-        // console.log("getTodoListDB : response", response.data);
         dispatch(getTodoList(response.data));
       }).catch((error) => {
         console.log("getTodoListDB : error", error.response);
@@ -107,11 +103,9 @@ const getTodoListDB = () => {
 // 투두 체크하기
 const todoCheckDB = (todoNo) => {
   return function (dispatch, getState, { history }) {
-    console.log(todoNo)
     mainAPI
       .todoCheck(todoNo)
       .then((response) => {
-        // console.log("todoCheckDB : response", response);
         dispatch(getTodoListDB());
       }).catch((error) => {
         console.log("todoCheckDB : error", error.response);
@@ -125,7 +119,6 @@ const todoUnCheckDB = (todoNo) => {
     mainAPI
       .todoUnCheck(todoNo)
       .then((response) => {
-        // console.log("todoCheckDB : response", response);
         dispatch(getTodoListDB());
       }).catch((error) => {
         console.log("todoCheckDB : error", error.response);
@@ -139,7 +132,6 @@ const getMyPlantPageDB = () => {
     mainAPI
     .getMyPlantPage()
     .then((response) => {
-      // console.log("getMyPlantPageDB : response", response);
       dispatch(getMyPlantPage(response.data));
     }).catch((error) => {
       console.log("getMyPlantPageDB : error", error.response);

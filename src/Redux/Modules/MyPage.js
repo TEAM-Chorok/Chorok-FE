@@ -45,7 +45,6 @@ const getMySixPlantsDB = () => {
         myPageAPI
             .getMyPlantList()
             .then((res) => {
-                console.log(res.data);
                 dispatch(getMyPlantList(res.data.myPlantCount, res.data.mypageMyplantSixDtos));
             })
             .catch((err) => {
@@ -72,12 +71,10 @@ const getMyPlantDetailDB = (myPlantNo) => {
 }
 //내 식물 삭제하기
 const deleteMyPlantDB = (myPlantNo) => {
-    console.log(myPlantNo);
     return function (dispatch, getState, {history}){
         myPageAPI
             .deleteMyPlant(myPlantNo)
             .then((res) => {
-                console.log(res.data);
                 history.push('/myplants');
                 window.location.reload();
             })
@@ -105,7 +102,6 @@ const editMyPlantDB = (myPlantId, myPlantName, myPlantPlaceCode, myPlantImgUrl, 
         myPageAPI
             .editMyPlant(myPlantId, formData)
             .then((res) => {
-                console.log(res.data);
                 history.push('/myplants');
                 window.location.reload();
             })
@@ -126,7 +122,6 @@ const getMyPhotoScrapedPhotoListDB = () => {
                 dispatch(getMyPhotoScrapPhotoList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
-                // window.alert('내 사진 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -141,7 +136,6 @@ const getMyPhotoListDB = (page) => {
                 dispatch(getPhotoList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
-                // window.alert('내 사진 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -155,7 +149,6 @@ const getScrapPhotoListDB = (page) => {
                 dispatch(getScrapPhotoList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
-                // window.alert('스크랩한 사진 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -168,7 +161,6 @@ const getScrapSixPlantListDB = () => {
                 dispatch(getScrapSixPlantList(res.data.count, res.data.myBookMarkPlant));
             }).catch((error) => {
                 console.log("error: ", error);
-                // window.alert('스크랩한 사진 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -182,7 +174,6 @@ const getScrapPlantListDB = (page) => {
                 dispatch(getScrapPlantList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
-                // window.alert('스크랩한 식물 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -196,7 +187,6 @@ const getMyPostListDB = (page) => {
                 dispatch(getMyPostList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
-                // window.alert('내 글 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -207,11 +197,9 @@ const getScrapPostListDB = (page) => {
         myPageAPI
             .getScrapPostList(page)
             .then((res)=> {
-                console.log(res.data);
                 dispatch(getScrapPostList(res.data));
             }).catch((error) => {
                 console.log("error: ", error);
-                // window.alert('내 글 불러오기에 실패하였습니다.');
             });
     }
 }
@@ -222,7 +210,6 @@ const likePostDB = (page, postId) => {
         postAPI 
             .likePost(postId)
             .then((res) => {
-                console.log(res.data);
                 if(page === "mypictures"){
                     dispatch(getMyPhotoListDB(0));
                 }
@@ -249,7 +236,6 @@ const bookmarkPostDB = (page, postId) => {
         postAPI
             .bookmarkPost(postId)
             .then((res) => {
-                console.log(res.data);
                 if(page === "mypictures"){
                     dispatch(getMyPhotoListDB(0));
                 }

@@ -53,7 +53,6 @@ export default function EditPlantBottomSheet(props) {
                 setPlace("pp04");
                 setPlaceValue("거실");
                 setState(false);
-                console.log(placeValue)
               }}>
               <Text bold size="base" color="#393939">거실</Text>
             </Button>
@@ -62,7 +61,6 @@ export default function EditPlantBottomSheet(props) {
                 props.setPlace("pp06");
                 props.setPlaceValue("베란다,발코니");
                 setState(false)
-                console.log(placeValue)
               }}>
               <Text bold size="base" color="#393939">베란다,발코니</Text>
             </Button>
@@ -71,7 +69,6 @@ export default function EditPlantBottomSheet(props) {
                 props.setPlace("pp02");
                 props.setPlaceValue("방안");
                 setState(false)
-                console.log(placeValue)
               }}>
               <Text bold size="base" color="#393939">방 안</Text>
             </Button>
@@ -80,7 +77,6 @@ export default function EditPlantBottomSheet(props) {
                 props.setPlace("pp01");
                 props.setPlaceValue("통로");
                 setState(false)
-                console.log(placeValue)
               }}>
               <Text bold size="base" color="#393939">통로</Text>
             </Button>
@@ -89,7 +85,6 @@ export default function EditPlantBottomSheet(props) {
                 props.setPlace("pp05");
                 props.setPlaceValue("창가");
                 setState(false)
-                console.log(placeValue)
               }}>
               <Text bold size="base" color="#393939">창가</Text>
             </Button>
@@ -98,7 +93,6 @@ export default function EditPlantBottomSheet(props) {
                 props.setPlace("pp03");
                 props.setPlaceValue("화장실");
                 setState(false)
-                console.log(placeValue)
               }}>
               <Text bold size="base" color="#393939">화장실</Text>
             </Button>

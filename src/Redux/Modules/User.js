@@ -50,7 +50,6 @@ const isLoginDB = () => {
       .isLogin()
       .then((res) => {
         dispatch(getUser(res.data));
-        // console.log(res.data)
         localStorage.setItem('nickname', res.data.nickname);
       })
       .catch((err) => {
@@ -72,7 +71,6 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
     userAPI
       .signUp(formData)
       .then((res) => {
-        console.log(res);
         history.replace('/'); 
       }).catch((err) => {
         console.log("signUpDB : error", err.response);
@@ -87,7 +85,6 @@ const emailValidationDB = (token, email) => {
     userAPI
       .emailValidation(token, email)
       .then((response) => {
-        console.log(response.data);
         localStorage.setItem ("token", response.headers.authorization);
         dispatch(isLoginDB());
       }).catch((err) => {
@@ -149,7 +146,6 @@ const logOutDB = () => {
     userAPI
       .logOut(token)
       .then((res) => {
-        console.log("logOut : response", res);
         localStorage.removeItem("token");
         localStorage.removeItem("nickname");
         dispatch(logOut());

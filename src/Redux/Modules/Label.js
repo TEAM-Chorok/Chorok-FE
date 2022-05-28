@@ -22,11 +22,9 @@ const initialState = {
 //MiddleWare
 const labelingDB = (answer1, answer2, answer3, answer4) => {
     return function (dispatch, getState, { history }) {
-      console.log("labeling", answer1, answer2, answer3, answer4);
       labelAPI
         .labeling(answer1, answer2, answer3, answer4)
         .then((res) => {
-          console.log("추천 식물:", res.data);
           dispatch(labeling(res.data, true));
           history.replace(`/recommendation/${res.data.plantId}`);
         })
@@ -38,11 +36,9 @@ const labelingDB = (answer1, answer2, answer3, answer4) => {
 
   const labeling_non_loginDB = (answer1, answer2, answer3, answer4) => {
     return function (dispatch, getState, { history }) {
-      console.log("labeling", answer1, answer2, answer3, answer4);
       labelAPI
         .labeling_nonLogin(answer1, answer2, answer3, answer4)
         .then((res) => {
-          console.log("추천 식물:", res.data);
           dispatch(labeling(res.data, true));
           history.replace(`/recommendation/${res.data.plantId}`);
         })

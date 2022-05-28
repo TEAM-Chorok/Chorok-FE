@@ -24,7 +24,6 @@ const getPlantDetailDB = (plantNo) => {
   plantAPI
   .getPlantDetail(plantNo)
   .then((response) => {
-    // console.log("getPlantDetailDB : response", response);
     dispatch(getPlantDetail(response.data))
   }).catch((error) => {
     console.log("getPlantDetailDB : error", error.response);
@@ -37,7 +36,6 @@ const plantMarkingDB = (plantNo) => {
     plantAPI
     .plantMarking(plantNo)
     .then((response) => {
-      // console.log("plantMarkingDB : response ", response);
       dispatch(getPlantDetailDB(plantNo));
     }).catch((error) => {
       console.log("plantMarkingDB : error ", error.response);
@@ -53,7 +51,6 @@ const addPlantDB = (plantData) => {
   plantAPI
   .addPlant(plantData)
   .then((response) => {
-    // console.log("addPlantDB : response", response);
   }).catch((error) => {
     console.log("addPlantDB : error", error.response);
   })
@@ -66,7 +63,6 @@ const getPlantPlaceDB = () => {
   plantAPI
   .getPlantPlace()
   .then((response) => {
-    // console.log("getPlantPlaceDB : response", response.data);
     dispatch(getPlantPlace(response.data));
   }).catch((error) => {
     console.log("getPlantPlaceDB : error", error.response);
@@ -80,7 +76,6 @@ const getPlantPlaceDB = () => {
 export default handleActions(
   {
     [PLANT_DETAIL]: (state, action) => produce(state, (draft) => {
-      // console.log("PLANT_DETAIL : plantdata", action.payload.plantdata);
       draft.plantData = action.payload.plantData;
     }),
     [PLANT_PLACE]: (state, action) => produce(state, (draft) => {

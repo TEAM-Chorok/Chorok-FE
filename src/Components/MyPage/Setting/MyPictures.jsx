@@ -16,8 +16,6 @@ const MyPictures = () => {
     const scrapPhotoList = useSelector(state => state.mypage?.myPlanteriorBookMarKList);
 
 
-    console.log(myPhotoList);
-
     useEffect(() => {
         dispatch(MyActions.getMyPhotoScrapedPhotoListDB());
     }, [])

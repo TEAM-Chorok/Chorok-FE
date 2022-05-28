@@ -15,7 +15,6 @@ const FindPwd = (props) => {
   const [userEmail, setUserEmail] = React.useState("");
 
   const findPWD = () => {
-    console.log(userEmail);
     // dispatch(userActions.findPwdDB(userEmail));
   }
   return (

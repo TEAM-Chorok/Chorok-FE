@@ -14,8 +14,6 @@ const MyPlants = () => {
     const scrapPlantList = useSelector(state => state.mypage?.scrapPlantList);
     const scrapPlantCount = useSelector(state => state.mypage?.scrapPlantCount);
 
-    console.log(scrapPlantList);
-
     useEffect(() => {
         dispatch(MyActions.getMySixPlantsDB());
         dispatch(MyActions.getScrapSixPlantListDB());

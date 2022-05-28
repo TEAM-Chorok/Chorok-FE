@@ -24,14 +24,12 @@ const Labeling = () => {
   const submit = () => {
     setLoading(true); //로딩화면 보여주려고 함
     try {
-      console.log(loading); 
       if(isLogin){
         dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
       }else {
         dispatch(labelActions.labeling_non_loginDB(level, place, attribute, attribute2));
       }
       setLoading(false);
-      console.log(loading);
       setActive(5);
     }catch(err){
       console.log(err);

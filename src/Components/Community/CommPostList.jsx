@@ -15,7 +15,6 @@ const CommPostList = (props) => {
     const [isLoading, setIsLoading] = React.useState(false);
 
     const totalPage = useSelector(state => state.post?.postList?.totalPage);
-    console.log(totalPage);
     const postList = useSelector(state => state.post?.postList?.content);
     const category = props.category;
 

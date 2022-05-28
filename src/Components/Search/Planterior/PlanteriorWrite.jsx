@@ -126,19 +126,16 @@ const PlanteriorWriteComp = () => {
       if (file.length > 0) {
         // 파일을 수정했을 경우
         formData.append('postImgUrl', file[0]);
-        console.log(file)
         dispatch(searchActions.editPlanteriorPostDB(formData, postId.postId));
         return;
       } else {
         // 파일 수정하지 않았을 경우
         formData.append('originalUrl', preview[0]);
-        console.log(preview[0]);
         dispatch(searchActions.editPlanteriorPostDB(formData, postId.postId));
         return;
       };
     }
     // 글 작성 루트일 경우
-    // console.log("파일어딨냐구", file[0][0])
     formData.append('postImgUrl', file[0][0]);
     dispatch(searchActions.writePlanteriorPostDB(formData));
   }

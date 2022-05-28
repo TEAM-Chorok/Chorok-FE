@@ -65,7 +65,6 @@ const EditPost = () => {
     
     //이미지 안바뀌면 그냥 안날리는걸로 해보기
     const submit = ( ) => {
-        console.log(postTitle, postContent, postTypeCode, previousImg, imageUrl);
         // return; 
         if(!postTypeCode){
             setMessage("카테고리를 선택해주세요!");

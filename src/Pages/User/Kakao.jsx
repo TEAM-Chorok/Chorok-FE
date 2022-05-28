@@ -12,8 +12,6 @@ const Kakao = (props) => {
     let params = new URL(document.URL).searchParams;
     //params에 저장된 파라미터 안에서 '인가코드'가져옴
     let code = params.get("code");
-
-    console.log("code: ",code);
     
     React.useEffect( () => {
         dispatch(userActions.kakaoLogInDB(code));

@@ -84,7 +84,6 @@ export default function BottomSheet() {
     }
     // 필터링 값이 전부 null일 경우 그냥 전체 조회로 dispatch 해야함
     dispatch(searchActions.plantFilteringDB(filterData, 0));
-    // console.log(filterData)
     setState({...state, bottom:false})
   };
 
