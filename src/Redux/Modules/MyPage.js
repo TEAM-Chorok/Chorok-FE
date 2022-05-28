@@ -45,6 +45,7 @@ const getMySixPlantsDB = () => {
         myPageAPI
             .getMyPlantList()
             .then((res) => {
+                console.log(res.data);
                 dispatch(getMyPlantList(res.data.myPlantCount, res.data.mypageMyplantSixDtos));
             })
             .catch((err) => {

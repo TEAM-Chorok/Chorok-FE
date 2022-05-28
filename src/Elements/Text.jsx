@@ -88,7 +88,7 @@ Text.defaultProps = {
   align: "",
   color: "#262626",
   display: "unset",
-  line: "",
+  line: "24px",
   margin: "0",
   wordbreak: "",
   weight: 500,
@@ -149,7 +149,7 @@ const BASE = styled.p`
 
   font-size: 16px;
   font-weight: ${(props) => props.weight};
-  line-height: 24px;
+  line-height: ${(props) => props.line};
   letter-spacing: 0.15px;
   color: ${(props) => props.color ? props.color : "#262626"};
 

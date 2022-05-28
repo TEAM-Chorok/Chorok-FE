@@ -12,6 +12,7 @@ import { ReactComponent as LeafLogoShadow } from '../../Assets/img/logo/leafLogo
 const Labeling = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const isLogin = localStorage.getItem('token');
 
   const [loading, setLoading] = React.useState(false);
 
@@ -21,11 +22,14 @@ const Labeling = () => {
   const [attribute2, setAttribute2] = React.useState("");
 
   const submit = () => {
-    
     setLoading(true); //로딩화면 보여주려고 함
     try {
       console.log(loading); 
-      dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
+      if(isLogin){
+        dispatch(labelActions.labelingDB(level, place, attribute, attribute2));
+      }else {
+        dispatch(labelActions.labeling_non_loginDB(level, place, attribute, attribute2));
+      }
       setLoading(false);
       console.log(loading);
       setActive(5);

@@ -111,7 +111,7 @@ const EditPlant = () => {
               <Image
                 margin="10px auto" size="120px"
                 type="circle"
-                imgUrl="/img/plantProfile.svg"
+                imgUrl="/img/nonImageIcons/nonImagePlantProfileLarge.svg"
                 alt="preview-img" />
             )
           }
