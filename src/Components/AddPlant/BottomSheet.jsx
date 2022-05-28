@@ -15,6 +15,7 @@ import { actionCreators as searchActions } from '../../Redux/Modules/Search';
 // 필터기능 관련 bottomsheet 컴포넌트
 // 리팩토링 예정입니다 ㅠ.ㅠ~!!
 export default function BottomSheet() {
+  const is_login = localStorage.getItem('token') ? true : false;
 
   const dispatch = useDispatch();
 
@@ -78,13 +79,15 @@ export default function BottomSheet() {
 
   // 필터 데이터 서버로 전송 -> 필터링된 목록 조회
   const filterSubmit = () => {
-    if( !level && !space && !type && !style ) {
-      setState({...state, bottom:false})
-      return;
+    if(is_login) {
+      if( !level && !space && !type && !style ) {
+        setState({...state, bottom:false})
+        return;
+      }
+      // 필터링 값이 전부 null일 경우 그냥 전체 조회로 dispatch 해야함
+      dispatch(searchActions.plantFilteringDB(filterData, 0));
+      // console.log(filterData)
     }
-    // 필터링 값이 전부 null일 경우 그냥 전체 조회로 dispatch 해야함
-    dispatch(searchActions.plantFilteringDB(filterData, 0));
-    // console.log(filterData)
     setState({...state, bottom:false})
   };
 

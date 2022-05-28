@@ -21,7 +21,7 @@ const AllResult = (props) => {
 
   return (
     <React.Fragment>
-
+      
       {planterior?.length || dictionary?.length ?
         <Grid width="100%">
           <Grid width="100%" padding="28px 0">

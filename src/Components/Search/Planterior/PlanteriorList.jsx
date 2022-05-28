@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import styled, {keyframes} from "styled-components";
-import { Grid, Image, Text } from "../../../Elements";
+import styled, { keyframes } from "styled-components";
+import { Grid, Image, Permit, Text } from "../../../Elements";
 import PlaceFilter from "../PlaceFilter";
 import Masonry from '@mui/lab/Masonry';
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
@@ -11,14 +11,14 @@ import InfiniteScroll from "../../share/etc/InfiniteScroll";
 // 탐색 - planterior
 // 사진 목록 컴포넌트
 
-const PlanteriorList = ({place, page, setPage}) => {
+const PlanteriorList = ({ place, page, setPage }) => {
   const is_login = localStorage.getItem('token') ? true : false;
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   const [done, setDone] = React.useState(false);
-  
+
   // 공간 게시글 데이터
   const data = useSelector((state) => state?.search?.planteriorList);
   const planteriorList = data?.content;
@@ -50,7 +50,7 @@ const PlanteriorList = ({place, page, setPage}) => {
 
   // 게시글 조회 (페이지 변경, 필터선택시마다 실행)
   React.useEffect(() => {
-    if (!is_login){
+    if (!is_login) {
       setTimeout(() => {
         setDone(true);
       }, 2000);
@@ -76,73 +76,75 @@ const PlanteriorList = ({place, page, setPage}) => {
 
   return (
     <React.Fragment>
-      <Grid width="100%">
-        {planteriorList ?
-          <InfiniteScroll
-            page={page}
-            callback={callback}
-            totalPage={totalPage}
-            isLoading={isLoading}>
-            <Masonry columns={2} spacing={2} sx={{ margin:'auto', width:'100%', maxWidth:'500px', padding:'8px'}} >
-              {planteriorList?.map((post, idx) => {
-                return (
-                  <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId) }}>
-                    <Image type="planterior" width="100%" imgUrl={post.postImgUrl} />
-                    <Grid is_flex margin="4px 0">
-                      <Image type="circle" size="20px"
-                        imgUrl={post.profileImageUrl ? post.profileImageUrl : "/img/noProfileImgSmall.svg"}
-                      />
-                      <Text bold size="xsmall" margin="1px 8px">{post.nickname}</Text>
-                    </Grid>
-                    <TextBox>
-                      <Text size="xsmall" color="#525252">
-                        {post.postContent.length < 27
-                          ? post.postContent
-                          : post.postContent.slice(0, 26) + '...'}
-                      </Text>
-                    </TextBox>
-                  </ContentWrapper>
-                )
-              })}
-            </Masonry>
-          </InfiniteScroll>
-          :
-          <RelativeBox>
-            <FloatBox>
-              <Grid margin="auto">
-              {done &&
-                <DoneBox done={done}>
-                  <Text bold size="base" margin="auto">데이터를 불러올 수 없습니다💬</Text>
-                </DoneBox>
-              }
+      <Permit>
+        <Grid width="100%">
+          {planteriorList ?
+            <InfiniteScroll
+              page={page}
+              callback={callback}
+              totalPage={totalPage}
+              isLoading={isLoading}>
+              <Masonry columns={2} spacing={2} sx={{ margin: 'auto', width: '100%', maxWidth: '500px', padding: '8px' }} >
+                {planteriorList?.map((post, idx) => {
+                  return (
+                    <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId) }}>
+                      <Image type="planterior" width="100%" imgUrl={post.postImgUrl} />
+                      <Grid is_flex margin="4px 0">
+                        <Image type="circle" size="20px"
+                          imgUrl={post.profileImageUrl ? post.profileImageUrl : "/img/noProfileImgSmall.svg"}
+                        />
+                        <Text bold size="xsmall" margin="1px 8px">{post.nickname}</Text>
+                      </Grid>
+                      <TextBox>
+                        <Text size="xsmall" color="#525252">
+                          {post.postContent.length < 27
+                            ? post.postContent
+                            : post.postContent.slice(0, 26) + '...'}
+                        </Text>
+                      </TextBox>
+                    </ContentWrapper>
+                  )
+                })}
+              </Masonry>
+            </InfiniteScroll>
+            :
+            <RelativeBox>
+              <FloatBox>
+                <Grid margin="auto">
+                  {done &&
+                    <DoneBox done={done}>
+                      <Text bold size="base" margin="auto">데이터를 불러올 수 없습니다💬</Text>
+                    </DoneBox>
+                  }
+                </Grid>
+              </FloatBox>
+              <Masonry columns={2} spacing={2} sx={{ "margin": "auto", padding: '0 8px' }}>
+                {height.map((height, idx) => {
+                  return (
+                    <ContentWrapper key={idx} _onClick={openDetail}>
+                      <Grid width="100%" height={height} bg="#ddd" borderRadius="8px" />
+                      <Grid is_flex margin="4px 0" align="center">
+                        <Grid width="20px" height="20px" bg="#ddd" borderRadius="20px" />
+                        <Grid margin="0 4px" width="80px" height="12px" bg="#ddd" borderRadius="4px" />
+                      </Grid>
+                      <Grid width="100%">
+                        <Grid margin="2px 0" width="140px" height="8px" bg="#ddd" borderRadius="4px" />
+                        <Grid margin="8px 0" width="130px" height="8px" bg="#ddd" borderRadius="4px" />
+                      </Grid>
+                    </ContentWrapper>
+                  )
+                })}
+              </Masonry>
+              <Grid margin="-16px auto">
+                <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
+                <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
+                <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
               </Grid>
-            </FloatBox>
-            <Masonry columns={2} spacing={2} sx={{ "margin": "auto", padding: '0 8px'}}>
-              {height.map((height, idx) => {
-                return (
-                  <ContentWrapper key={idx} _onClick={openDetail}>
-                    <Grid width="100%" height={height} bg="#ddd" borderRadius="8px" />
-                    <Grid is_flex margin="4px 0" align="center">
-                      <Grid width="20px" height="20px" bg="#ddd" borderRadius="20px" />
-                      <Grid margin="0 4px" width="80px" height="12px" bg="#ddd" borderRadius="4px" />
-                    </Grid>
-                    <Grid width="100%">
-                      <Grid margin="2px 0" width="140px" height="8px" bg="#ddd" borderRadius="4px" />
-                      <Grid margin="8px 0" width="130px" height="8px" bg="#ddd" borderRadius="4px" />
-                    </Grid>
-                  </ContentWrapper>
-                )
-              })}
-            </Masonry>
-            <Grid margin="-16px auto">
-              <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
-              <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
-              <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
-            </Grid>
-          </RelativeBox>
-        }
-        <Grid height="50px" />
-      </Grid>
+            </RelativeBox>
+          }
+          <Grid height="50px" />
+        </Grid>
+      </Permit>
     </React.Fragment>
   )
 }

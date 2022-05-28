@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import { Navbar } from '../Components';
+import { AddDone, Navbar } from '../Components';
 import MobileFrame from '../Components/MobileFrame';
 import {
   Login, Home, SignUp, Kakao, Google, ProfileSetting, Labeling,
@@ -58,6 +58,7 @@ function App() {
 
             <Route path="/plant" exact component={SearchPlant} />
             <Route path="/add/:plantNo" exact component={AddPlants} />
+            <Route path="/add/done" exact component={AddDone} />
 
             <Route path="/plant/:plantname" exact component={PlantCard} />
 
@@ -112,9 +113,13 @@ const Wrap = styled.div`
   background-size: cover;
   @media ${({ theme }) => theme.device.labtop} {
   background-image: url('/img/background/labtop.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
   }
   @media ${({ theme }) => theme.device.tablet} {
   background-image: url('/img/background/tablet.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
   }
 
   .MobileFramePage {

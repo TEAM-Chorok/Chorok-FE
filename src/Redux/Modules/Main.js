@@ -107,7 +107,7 @@ const getTodoListDB = () => {
 // 투두 체크하기
 const todoCheckDB = (todoNo) => {
   return function (dispatch, getState, { history }) {
-    console.log(todoNo)
+    // console.log(todoNo)
     mainAPI
       .todoCheck(todoNo)
       .then((response) => {

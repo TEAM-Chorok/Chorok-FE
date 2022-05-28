@@ -8,6 +8,7 @@ import PlantProfile from "../../share/etc/PlantProfile";
 import { ReactComponent as NotFound } from "../../../Assets/img/Icons/notfound.svg"
 
 const PlantResult = (props) => {
+  const is_login = localStorage.getItem('token') ? true : false;
   const dispatch = useDispatch();
   const history = useHistory();
   const data = useSelector((state) => state.search?.resultPlant);
@@ -34,7 +35,9 @@ const PlantResult = (props) => {
   };
 
   React.useEffect(() => {
-    dispatch(searchActions.keywordSearchingPlantDB(value, page));
+    if(is_login) {
+      dispatch(searchActions.keywordSearchingPlantDB(value, page));
+    }
   }, [page, value])
 
 

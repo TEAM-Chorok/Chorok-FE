@@ -12,6 +12,8 @@ import { ReactComponent as NotFound } from "../../Assets/img/Icons/notfound.svg"
 // 코드 상단의 <BottomSheet/> 부분이 필터 바텀시트 부분 컴포넌트입니다.
 
 const AddPlantList = () => {
+  const is_login = localStorage.getItem('token') ? true : false;
+
   const history = useHistory();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.search?.plantDictList);
@@ -44,7 +46,9 @@ const AddPlantList = () => {
 
 
   React.useEffect(() => {
-    dispatch(searchActions.plantFilteringDB(filterData, page));
+    if(is_login) {
+      dispatch(searchActions.plantFilteringDB(filterData, page));
+    }
   }, [page, dispatch])
 
   return (

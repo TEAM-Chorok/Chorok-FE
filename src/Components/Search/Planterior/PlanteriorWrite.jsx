@@ -125,37 +125,35 @@ const PlanteriorWriteComp = () => {
     if (location === 'edit') {
       if (file.length > 0) {
         // 파일을 수정했을 경우
-        formData.append('postImgUrl', file[0]);
-        console.log(file)
+        formData.append('postImgUrl', file[0][0]);
         dispatch(searchActions.editPlanteriorPostDB(formData, postId.postId));
         return;
       } else {
         // 파일 수정하지 않았을 경우
         formData.append('originalUrl', preview[0]);
-        console.log(preview[0]);
         dispatch(searchActions.editPlanteriorPostDB(formData, postId.postId));
         return;
       };
     }
     // 글 작성 루트일 경우
-    // console.log("파일어딨냐구", file[0][0])
     formData.append('postImgUrl', file[0][0]);
     dispatch(searchActions.writePlanteriorPostDB(formData));
   }
 
 
   React.useEffect(() => {
-    if (!planteriordata?.postContent && location === 'edit') {
-      // 글 내용을 찾지 못한 경우
-      setMessage(5);
-      setOpen(true);
-      return
-    } else if (location === 'edit') {
+    // if (!planteriordata?.postContent && location === 'edit') {
+    //   // 글 내용을 찾지 못한 경우
+    //   setMessage(5);
+    //   setOpen(true);
+    //   return
+    // } else 
+    if (location === 'edit') {
       // 글 수정 루트일 경우 
       contentRef.current.value = planteriordata?.postContent;
       setPreview([planteriordata?.postImgUrl]);
     }
-  }, [location, planteriordata])
+  }, [])
 
 
   return (
@@ -169,7 +167,8 @@ const PlanteriorWriteComp = () => {
           <PlaceFilter none setPlace={setPlace} setPage={setPage} />
         </Grid>
         <Grid width="100%" heigth="100%" padding="0 16px">
-          <Input type="textarea" placeholder="사진에 대해 설명해 주세요." _ref={contentRef} _onChange={(e) => { setText(e.target.value); }}/>
+          <Input type="textarea" placeholder="사진에 대해 설명해 주세요." _ref={contentRef} 
+            _onChange={(e) => { setText(e.target.value); }}/>
         </Grid>
 
         <FileWrapper>

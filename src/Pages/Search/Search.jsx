@@ -11,6 +11,7 @@ import { StepContext } from "@mui/material";
 
 // 탐색페이지
 const Search = () => {
+  const is_login = localStorage.getItem('token') ? true : false;
   const history = useHistory();
   const dispatch = useDispatch();
   const pattern = /\s/g;
@@ -46,11 +47,12 @@ const Search = () => {
   const debouncing = debounce((text) => {
     if (!text.replace(pattern, '').length) {
       return;
-    } 
-    // 검색 실행
-    dispatch(searchActions.keywordSearchingDB(text));
-    dispatch(searchActions.keywordSearchingPhotoDB(text));
-    dispatch(searchActions.keywordSearchingPlantDB(text));
+    } else if (is_login) {
+      // 검색 실행
+      dispatch(searchActions.keywordSearchingDB(text));
+      dispatch(searchActions.keywordSearchingPhotoDB(text));
+      dispatch(searchActions.keywordSearchingPlantDB(text));
+    }
   }, 100)
   
   return (

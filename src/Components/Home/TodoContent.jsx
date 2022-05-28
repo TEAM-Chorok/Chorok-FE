@@ -11,20 +11,19 @@ import { ReactComponent as Arrow } from "../../Assets/img/Icons/arrowToRight.svg
 
 // 투두페이지 할 일 목록 
 const TodoContent = () => {
+  const is_login = localStorage.getItem('token') ? true : false;
   const history = useHistory();
   const dispatch = useDispatch();
   const sentence = useSelector((state) => state.main.sentence);
   const todoList = useSelector((state) => state?.main?.todo);
-  const [index, setindex] = React.useState(null);
-
-  const scrollRef = React.useRef([]);
-
   const [plantNo, setPlantNo] = React.useState(null);
 
   React.useEffect(() => {
-    dispatch(mainActions.getSentenceDB());
-    dispatch(mainActions.getMyPlantDB());
-    dispatch(mainActions.getTodoListDB());
+    if(is_login) {
+      dispatch(mainActions.getSentenceDB());
+      dispatch(mainActions.getMyPlantDB());
+      dispatch(mainActions.getTodoListDB());
+    }
   }, [])
 
 
@@ -107,6 +106,7 @@ const TodoContent = () => {
                   <Arrow className="arrow" />
                 </Grid>
               </LinkBox>
+              {is_login?
               <LinkBox onClick={() => { history.push('/plant') }}>
                 <Grid width="100%" padding="13px 16px">
                   <Text size="xsmall" color="#24A148">식물을 키우고 있다면</Text><br />
@@ -114,6 +114,7 @@ const TodoContent = () => {
                   <Arrow className="arrow" />
                 </Grid>
               </LinkBox>
+              : null }
             </>
           }
           <Grid height="100px" />

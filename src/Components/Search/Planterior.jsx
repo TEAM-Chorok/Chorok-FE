@@ -17,6 +17,7 @@ const Planterior = () => {
   const [place, setPlace] = React.useState("all");
   // 무한스크롤 관련 state
   const [page, setPage] = React.useState(0);
+  
   return (
     <React.Fragment>
       <Grid width="100%" padding="0 16px">

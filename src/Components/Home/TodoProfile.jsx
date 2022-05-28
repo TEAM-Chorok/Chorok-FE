@@ -10,7 +10,7 @@ import XdragScroll from "../share/etc/XdragScroll";
 // 투두페이지 상단 내 식물 원형 프로필 
 
 const TodoProfile = (props) => {
-
+  const is_login = localStorage.getItem('token') ? true : false;
   const history = useHistory();
 
   const myPlant = useSelector((state) => state?.main?.myplant);
@@ -53,7 +53,9 @@ const TodoProfile = (props) => {
             </a>
           );
         })}
+        {is_login? 
           <PlantProfile imgUrl="/img/todoIcons/plus.svg" _onClick={openAddPlant}/>
+        : null }
         </Grid>
 
       </XdragScroll>

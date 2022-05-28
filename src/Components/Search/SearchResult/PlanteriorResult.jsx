@@ -11,6 +11,7 @@ import { ReactComponent as NotFound } from "../../../Assets/img/errorIcons/nonda
 
 
 const PlanteriorResult = (props) => {
+  const is_login = localStorage.getItem('token') ? true : false;
   const history = useHistory();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.search?.resultPhoto);
@@ -41,7 +42,9 @@ const PlanteriorResult = (props) => {
   }
 
   React.useEffect(() => {
-    dispatch(searchActions.keywordSearchingPhotoDB(value, page));
+    if(is_login) {
+      dispatch(searchActions.keywordSearchingPhotoDB(value, page));
+    }
   }, [page, value])
 
   return (

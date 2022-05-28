@@ -11,11 +11,14 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const Carousel = () => {
+  const is_login = localStorage.getItem('token') ? true : false;
   const dispatch = useDispatch();
   const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
-    dispatch(userActions.isLoginDB());
+    if(is_login) {
+      dispatch(userActions.isLoginDB());
+    }
   }, [])
 
 

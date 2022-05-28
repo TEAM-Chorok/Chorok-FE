@@ -1,13 +1,14 @@
 import React from "react";
 import { Button, Container, Grid, Image, Input, Text } from "../../Elements";
 import { useDispatch } from "react-redux";
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { actionCreators as plantActions } from "../../Redux/Modules/Plant";
 import styled from "styled-components";
 import Alert2 from "../share/modal/Alert2";
 import GeneralHeader from "../share/etc/GeneralHeader";
 
 const WritePlantProfile = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   // 내 식물 등록할 정보
@@ -64,7 +65,8 @@ const WritePlantProfile = (props) => {
     formData.append('myPlantPlaceCode', myPlantPlace);
     formData.append('myPlantImgUrl', file);
     formData.append('myPlantName', plantName);
-    props.setCompNum(2);
+    // props.setCompNum(2);
+    history.replace('/add/done')
     dispatch(plantActions.addPlantDB(formData));
   }
 
