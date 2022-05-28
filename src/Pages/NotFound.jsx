@@ -9,7 +9,7 @@ const NotFound = () => {
   return (
     <React.Fragment>
       <Container>
-        <Grid width="100%" margin="30vh auto" align="center">
+        <Grid width="100%" margin="25vh auto 0 auto" align="center">
           <Text size="h5">앗, 화면을<br/>불러오지 못했어요.</Text>
           <Grid margin="20px auto">
             {/* <Icon /> */}
@@ -21,7 +21,7 @@ const NotFound = () => {
               _onClick={() => { history.goBack(); } }>
               <Text weight="600" color="#fff">다시 해보기</Text>
             </Button>
-            <Grid margin="16px auto">
+            <Grid margin="8px auto">
               <Button type="tran" _onClick={() => { history.push('/home'); }}>
                 <Text color="#6F6F6F">초록 홈으로</Text>
               </Button>

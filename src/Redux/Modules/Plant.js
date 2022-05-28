@@ -37,7 +37,7 @@ const plantMarkingDB = (plantNo) => {
     plantAPI
     .plantMarking(plantNo)
     .then((response) => {
-      console.log("plantMarkingDB : response ", response);
+      // console.log("plantMarkingDB : response ", response);
       dispatch(getPlantDetailDB(plantNo));
     }).catch((error) => {
       console.log("plantMarkingDB : error ", error.response);
@@ -66,7 +66,7 @@ const getPlantPlaceDB = () => {
   plantAPI
   .getPlantPlace()
   .then((response) => {
-    console.log("getPlantPlaceDB : response", response.data);
+    // console.log("getPlantPlaceDB : response", response.data);
     dispatch(getPlantPlace(response.data));
   }).catch((error) => {
     console.log("getPlantPlaceDB : error", error.response);

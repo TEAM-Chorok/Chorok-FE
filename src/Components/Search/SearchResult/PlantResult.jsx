@@ -67,10 +67,12 @@ const PlantResult = (props) => {
             </Grid>
           </Grid>
           :
-          <Grid margin="148px auto">
-            <NotFound />
+          <Grid margin="14vh auto">
+            <Grid margin="20px auto" align="center">
+              <Text bold size="h5" weight="700">검색<br />결과가 없어요</Text>
+            </Grid>
             <Grid margin="auto">
-              <Text bold size="small">검색결과가 없습니다</Text>
+              <NotFound />
             </Grid>
           </Grid>
         }

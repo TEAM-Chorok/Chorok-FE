@@ -76,7 +76,7 @@ const Wrapper = styled.div`
 
 const PlantType = styled.div`
   margin-right: 4px;
-  padding: 1px 12px 4px 12px;
+  padding: 3px 12px 4px 12px;
   
   width: fit-content;
 

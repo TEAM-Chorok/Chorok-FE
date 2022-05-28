@@ -57,7 +57,7 @@ const PlanteriorDetail = () => {
       <FixWrapper>
         <CommentWrite setMessage={setMessage} setOpen={setOpen} open={open} />
       </FixWrapper>
-      <Grid height="132px" bg="#F7F8FA" />
+      <Grid height="120px"/>
 
       {open &&
         <Alert2 btn1="확인" open={open} setOpen={setOpen}>

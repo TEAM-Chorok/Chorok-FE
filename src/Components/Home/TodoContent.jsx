@@ -5,7 +5,7 @@ import TodoContentBlock from "./TodoContentBlock";
 import TodoProfile from "./TodoProfile";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
 import { useDispatch, useSelector } from "react-redux";
-import { ReactComponent as EventBanner } from "../../Assets/img/eventimg/eventbanner.svg"
+import { ReactComponent as EventItem } from "../../Assets/img/eventimg/eventItem.svg"
 import { useHistory } from "react-router-dom";
 import { ReactComponent as Arrow } from "../../Assets/img/Icons/arrowToRight.svg"
 
@@ -49,8 +49,13 @@ const TodoContent = () => {
         </TitleBox>
 
         <Wrapper bg={todoList?.length ? "#F7F8FA" : "#fff"}>
-          <Grid margin="-8px auto 12px auto">
-            <EventBanner style={{ filter: 'drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.16))' }} onClick={() => { history.push('/event'); }} />
+          <Grid margin="-8px auto 16px auto" width="100%">
+          <Grid width="100%">
+            <EventBannerBox onClick={() => { history.push('/event'); }}>
+              <EventItem className="item"/>
+            </EventBannerBox> 
+          </Grid>
+            {/* <EventBanner style={{ filter: 'drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.16))' }} onClick={() => { history.push('/event'); }} /> */}
           </Grid>
           {todoList ?
             <>
@@ -58,7 +63,7 @@ const TodoContent = () => {
                 return (
                   <TodoBox key={plant.myPlantNo} id={plant.myPlantNo}>
                     <Grid is_flex margin="8px 0" align="center">
-                      <Image type="circle" size="32px" imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileSmall.svg'} />
+                      <Image type="circle" filter="drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.12))" size="32px" imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileSmall.svg'} />
                       <GridRowBox>
                         <Text size="small">{plant.myPlantName}</Text>
                         <Text size="xsmall" weight="400" color="#525252">{plant.plantName} · {plant.myPlantPlace}</Text>
@@ -117,6 +122,8 @@ const TodoContent = () => {
     </React.Fragment>
   );
 }
+
+
 const TitleBox = styled.div`
   padding: 0 0 0 16px;
   border-bottom: 1px solid #E0E0E0;
@@ -193,6 +200,23 @@ const GridRowBox = styled.div`
   align-items: center;
   text-align:left;
   margin: 0 8px;
+`
+
+const EventBannerBox = styled.div`
+  width: 100%;
+  height: 116px;
+  display: flex;
+  border-radius: 16px;
+
+  background-image: url('/img/event/eventBackground.svg');
+  background-size: cover;
+  background-position: center;
+
+  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.16));
+
+  .item {
+    margin: auto;
+  }
 `
 
 export default TodoContent;

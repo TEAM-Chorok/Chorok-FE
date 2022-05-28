@@ -117,7 +117,7 @@ const PlanteriorList = ({place, page, setPage}) => {
               }
               </Grid>
             </FloatBox>
-            <Masonry columns={2} spacing={2} sx={{ "margin": "auto", }}>
+            <Masonry columns={2} spacing={2} sx={{ "margin": "auto", padding: '0 8px'}}>
               {height.map((height, idx) => {
                 return (
                   <ContentWrapper key={idx} _onClick={openDetail}>
@@ -163,6 +163,7 @@ const ContentWrapper = styled.div`
   height: fit-content;
 `;
 
+
 const TextBox = styled.div`  
   font-family: 'SUIT';
 
@@ -190,7 +191,7 @@ const RelativeBox = styled.div`
 
 const FloatBox = styled.div`
   position: absolute;
-  top: 0;
+  top: 0px;
 
   display:flex;
   align-items: center;

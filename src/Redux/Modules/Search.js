@@ -107,7 +107,7 @@ const writePlanteriorPostDB = (postdata) => {
     searchAPI
     .writePlanteriorPost(postdata)
     .then((response) => {
-      console.log("writePlanteriorPostDB : response", response);
+      // console.log("writePlanteriorPostDB : response", response);
       history.replace(`/planterior/post/${response.data.postId}`);
       window.location.reload();
     }).catch((error) => {
@@ -137,7 +137,7 @@ const deletePlanteriorPostDB = (postId) => {
     searchAPI
     .deletePlanteriorPost(postId)
     .then((response) => {
-      console.log("deletePlanteriorPostDB : response", response);
+      // console.log("deletePlanteriorPostDB : response", response);
       history.replace('/search');
       window.location.reload();
     }).catch((error) => {
@@ -152,7 +152,7 @@ const likePlanteriorPostDB = (postId) => {
     searchAPI
     .likePlanteriorPost(postId)
     .then((response) => {
-      console.log("likePlanteriorPostDB : response", response);
+      // console.log("likePlanteriorPostDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("likePlanteriorPostDB : error", error.response);
@@ -166,7 +166,7 @@ const bookMarkPlanteriorPostDB = (postId) => {
     searchAPI
     .bookMarkPlanteriorPost(postId)
     .then((response) => {
-      console.log("bookMarkPlanteriorPostDB : response", response);
+      // console.log("bookMarkPlanteriorPostDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("bookMarkPlanteriorPostDB : error", error.response);
@@ -180,7 +180,7 @@ const writePlanteriorCommentDB = (commentdata) => {
     searchAPI
     .writePlanteriorComment(commentdata)
     .then((response) => {
-      console.log("writePlanteriorCommentDB : response", response);
+      // console.log("writePlanteriorCommentDB : response", response);
       dispatch(getPlanteriorDetailDB(commentdata.postId));
     }).catch((error) => {
       console.log("writePlanteriorCommentDB : error", error.response);
@@ -194,7 +194,7 @@ const editPlanteriorCommentDB = (editdata, postId) => {
     searchAPI
     .editPlanteriorComment(editdata)
     .then((response) => {
-      console.log("editPlanteriorCommentDB : response", response);
+      // console.log("editPlanteriorCommentDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("editPlanteriorCommentDB : error", error.response);
@@ -208,7 +208,7 @@ const deletePlanteriorCommentDB = (commentId, postId) => {
     searchAPI
     .deletePlanteriorComment(commentId)
     .then((response) => {
-      console.log("deletePlanteriorCommentDB : response", response);
+      // console.log("deletePlanteriorCommentDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("deletePlanteriorCommentDB : error", error.response);
@@ -223,7 +223,7 @@ const getPlanteriorDetailDB = (postId) => {
     searchAPI
       .getPlanteriorDetail(postId)
       .then((response) => {
-        console.log("getPlanteriorDB : response", response.data);
+        // console.log("getPlanteriorDB : response", response.data);
         dispatch(getPlanteriorDetail(response.data));
       }).catch((error) => {
         console.log("getPlanteriorDetailDB : error", error.response);
@@ -265,7 +265,7 @@ const keywordSearchingPhotoPlaceDB = (value, page) => {
     searchAPI
     .keywordSearchingPhotoPlace(value, page)
     .then((response) => {
-      console.log("keywordSearchingPhotoPlaceDB : searching", response.data.content);
+      // console.log("keywordSearchingPhotoPlaceDB : searching", response.data.content);
       dispatch(keywordSearchingPhotoPlace(response.data.content))
     }).catch((error) => {
       console.log("keywordSearchingPhotoPlaceDB : error", error.response);
@@ -276,11 +276,11 @@ const keywordSearchingPhotoPlaceDB = (value, page) => {
 // 탐색탭 키워드 검색 - 식물도감
 const keywordSearchingPlantDB = (value, page) => {
   return function (dispatch, getState, {history}) {
-    console.log("요청해요", value, page);
+    // console.log("요청해요", value, page);
     searchAPI
     .keywordSearchingPlant(value, page)
     .then((response) => {
-      console.log("받았어요", response.data.page);
+      // console.log("받았어요", response.data.page);
       // console.log("keywordSearchingPlantDB : searching", response.data.plantList);
       dispatch(keywordSearchingPlant(response.data, value));
     }).catch((error) => {
@@ -308,7 +308,7 @@ const getRecommendDB = () => {
 export default handleActions(
   {
     [PLANT_FILTERING]: (state, action) => produce(state, (draft) => {
-      console.log("PLANT_FILTERING : searchList", action.payload);
+      // console.log("PLANT_FILTERING : searchList", action.payload);
       if (action.payload.searchlist.page > 0) {
         draft.plantDictList.content.push(...action.payload.searchlist.content);
       } else {

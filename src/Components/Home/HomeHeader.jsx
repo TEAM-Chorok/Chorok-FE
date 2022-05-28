@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Text } from "../../Elements";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
-import { ReactComponent as Logo } from "../../Assets/img/logo/logoTextwithIcon.svg"
-import { Scale } from "@mui/icons-material";
+import { ReactComponent as Logo } from "../../Assets/img/logo/logoTextwithIconSmall.svg"
 
 // 투두페이지 헤더부분 (날씨)
 
@@ -41,7 +40,6 @@ const HomeHeader = () => {
           lon: position.coords.longitude,
         }
         setStatus(`현재 위치 ${userLocation.lat} - ${userLocation.lon}`);
-        console.log(userLocation);
         // 조회한 위치정보로 날씨 api 요청
         dispatch(mainActions.getWeatherDB(userLocation));
         // 조회한 위치정보 한글로 출력
@@ -89,12 +87,10 @@ const HomeHeader = () => {
     }
   }, [weather])
 
-  console.log(cityname, weatherData);
-  console.log(status);
 
   return (
     <React.Fragment>
-      <Grid width="100%" bg="#fff">
+      <Div>
         {!location ?
           <GridBox bg={color}>
             <Grid width="100%" padding="24px 16px">
@@ -109,16 +105,20 @@ const HomeHeader = () => {
             </Grid>
           </GridBox>
           :
-          <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F4F7 68.85%, rgba(242, 244, 248, 0) 88.45%)">
+          <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F7ED 68.85%, rgba(242, 244, 248, 0) 88.45%)">
             <LogoBox>
               <Logo className="logo"/>
             </LogoBox>
           </Grid>
         }
-      </Grid>
+      </Div>
     </React.Fragment>
   );
 }
+const Div = styled.div`
+  width: 100%;
+`
+
 
 const Img = styled.img`
   margin-top: 4px;
@@ -138,9 +138,9 @@ const LogoBox = styled.div`
   width: 100%;
   .logo {
     position: absolute;
-    top: 20px;
-    left: -50px;
-    transform: scale(0.6);
+    top: 35px;
+    ${'' /* left: -50px; */}
+    ${'' /* transform: scale(0.6); */}
   }
 `
 

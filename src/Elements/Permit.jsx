@@ -30,8 +30,7 @@ const Permit = (props) => {
     if (!is_login) {
         return (
             <React.Fragment>
-                <Container>
-                    <Grid width="100%" margin="30vh auto" align="center">
+                    <Grid width="100%" margin="25vh auto 0 auto" align="center">
                         <Text size="h5">로그인이 필요한<br />서비스입니다</Text>
                         <Grid margin="20px auto">
                             <Icon />
@@ -49,7 +48,6 @@ const Permit = (props) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                </Container>
             </React.Fragment>
 
         )

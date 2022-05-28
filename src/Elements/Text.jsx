@@ -104,7 +104,7 @@ const H5 = styled.p`
   box-sizing: border-box;
 
   font-size: 23px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 32px;
   color: ${(props) => props.color ? props.color : "#262626"};
 `

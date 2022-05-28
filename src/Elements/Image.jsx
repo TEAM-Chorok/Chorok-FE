@@ -4,7 +4,7 @@ import styled, { css, keyframes } from "styled-components";
 
 const Image = (props) => {
 
-  const { type, width, height, size, imgUrl, margin, borderRadius, checked, unChecked, src } = props;
+  const { type, width, height, size, imgUrl, margin, borderRadius, checked, unChecked, src, filter } = props;
 
   const styles = {
     margin: margin,
@@ -15,6 +15,7 @@ const Image = (props) => {
     borderRadius: borderRadius,
     checked: checked,
     unChecked: unChecked,
+    filter: filter,
   };
 
 
@@ -157,6 +158,8 @@ const Circle = styled.div`
 
     border: ${(props) => props.imgUrl ? "none" : "1px solid #ccc"};
     border-radius: ${(props) => props.size};
+
+    filter: ${(props) => props.filter ? props.filter : ""};
 
     background-image: url("${(props) => props.imgUrl}");
     background-size: cover;

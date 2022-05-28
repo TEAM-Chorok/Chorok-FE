@@ -87,6 +87,7 @@ const PostDetail = () => {
               setOpen={setOpen} />
           )
         })}
+        <Grid height="60px"/>
       </Container>
       <Wrapper>
         <FixWrapper>

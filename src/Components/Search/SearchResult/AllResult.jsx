@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../../Elements";
 import PlantProfile from "../../share/etc/PlantProfile";
-import { ReactComponent as NotFound } from "../../../Assets/img/Icons/notfound.svg"
+// import { ReactComponent as NotFound } from "../../../Assets/img/Icons/notfound.svg"
+import { ReactComponent as NotFound } from "../../../Assets/img/errorIcons/nondata.svg"
 
 
 const AllResult = (props) => {
@@ -91,10 +92,12 @@ const AllResult = (props) => {
         </Grid>
 
         :
-        <Grid margin="164px auto">
-          <NotFound />
+        <Grid margin="15vh auto">
+          <Grid margin="20px auto" align="center">
+            <Text bold size="h5" weight="700">검색<br/>결과가 없어요</Text>
+          </Grid>
           <Grid margin="auto">
-            <Text bold size="small">검색결과가 없습니다</Text>
+            <NotFound />
           </Grid>
         </Grid>
       }

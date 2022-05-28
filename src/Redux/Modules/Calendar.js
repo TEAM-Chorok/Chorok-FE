@@ -28,7 +28,7 @@ const getCheckedDB = (year, month, plantNo) => {
       .getChecked(year, month, plantNo)
       .then((response) => {
 
-        console.log("getCheckedDB : response", response);
+        // console.log("getCheckedDB : response", response);
         const blooming = [];
         const changing = [];
         const leafcleaning = [];
@@ -72,7 +72,7 @@ const postBloomingDB = (plantNo, data, year, month) => {
     calendarAPI
     .postBlooming(plantNo, data)
     .then((response) => {
-      console.log("postBloomingDB : response", response.data);
+      // console.log("postBloomingDB : response", response.data);
       dispatch(getCheckedDB(year, month, plantNo));
     }).catch((error) => {
       console.log("postBloomingDB : error", error.response);
@@ -86,7 +86,7 @@ const deleteBloomingDB = (plantNo, date, year, month) => {
     calendarAPI
     .deleteBlooming(plantNo,date)
     .then((response) => {
-      console.log("postBloomingDB : response", response.data);
+      // console.log("postBloomingDB : response", response.data);
       dispatch(getCheckedDB(year, month, plantNo));
     }).catch((error) => {
       console.log("postBloomingDB : error", error.response);
@@ -96,12 +96,12 @@ const deleteBloomingDB = (plantNo, date, year, month) => {
 
 // 개화 외 목록 체크
 const checkCalendarDB = (date, plantNo, workType, year, month) => {
-  console.log(`/calendar/${date}/${plantNo}/${workType}`);
+  // console.log(`/calendar/${date}/${plantNo}/${workType}`);
   return function (dispatch, getState, { history }) {
     calendarAPI
       .checkCalendar(plantNo, date, workType)
       .then((response) => {
-        console.log("checkCalendarDB : response", response.data);
+        // console.log("checkCalendarDB : response", response.data);
         dispatch(mainActions.getTodoListDB());
         dispatch(getCheckedDB(year, month, plantNo));
       }).catch((error) => {
@@ -111,12 +111,12 @@ const checkCalendarDB = (date, plantNo, workType, year, month) => {
   }
   
 const unCheckCalendarDB = (date, plantNo, workType, year, month) => {
-  console.log(`/calendar/${date}/${plantNo}/${workType}`);
+  // console.log(`/calendar/${date}/${plantNo}/${workType}`);
   return function (dispatch, getState, { history }) {
     calendarAPI
     .unCheckCalendar(plantNo, date, workType)
     .then((response) => {
-      console.log("checkCalendarDB : response", response.data);
+      // console.log("checkCalendarDB : response", response.data);
         dispatch(mainActions.getTodoListDB());
         dispatch(getCheckedDB(year, month, plantNo));
       }).catch((error) => {

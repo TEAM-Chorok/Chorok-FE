@@ -35,7 +35,10 @@ const CalendarTodo = (props) => {
     <React.Fragment>
       <Grid width="100%" margin="0 0 30px 0">
         <Grid is_flex align="center">
-          <Image type="circle" size="32px" imgUrl={props.plantImg} />
+          <Image 
+            type="circle" 
+            size="56px" 
+            imgUrl={props.plantImg ? props.plantImg : '/img/nonImageIcons/nonImagePlantProfileSmall.svg' } />
           <Grid margin="0 12px">
             <Grid margin="-4px 0">
               <Text size="small">{props.plantName}</Text>

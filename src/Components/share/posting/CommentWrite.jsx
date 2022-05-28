@@ -88,7 +88,7 @@ const CommentBox = styled.div`
 const ButtonBox = styled.div`
   position: absolute;
   display: flex;
-  top: 21px;
+  top: 12px;
   right: 24px;
 `
 

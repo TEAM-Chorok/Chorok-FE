@@ -14,7 +14,6 @@ const RecommandPlant = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const recommendList = useSelector((state) => state?.search?.recommendlist);
-  console.log(recommendList);
   // 식물카드 페이지로 
   const openPlantCard = (plantid) => {
     history.push(`/plant/${plantid}`);

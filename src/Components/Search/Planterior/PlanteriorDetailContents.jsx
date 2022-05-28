@@ -15,7 +15,6 @@ const PhotoDetailContents = () => {
   const dispatch = useDispatch();
   const postData = useSelector((state) => state?.search?.planterior)
 
-  console.log(postData)
   const bookmark = postData?.postBookMark;
   const like = postData?.postLike;
   const postId = postData?.postId;

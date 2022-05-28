@@ -94,7 +94,7 @@ function App() {
             
             <Route component={NotFound} />
           </Switch>
-            { lo === "" || lo === "labeling" || lo === "add" ? null : <Navbar /> }
+            { lo === "" || lo === "labeling" || lo === "add" || lo === 'event' ? null : <Navbar /> }
             
           </MobileFrame>
         </Wrap>
