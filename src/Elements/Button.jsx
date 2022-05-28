@@ -62,6 +62,16 @@ const Button = (props) => {
         );
       }
 
+      if(type === "float"){
+        return (
+            <React.Fragment>
+              <FloatButton {...styles} onClick={_onClick}>
+                {children}
+              </FloatButton>
+            </React.Fragment>
+        );
+      }
+
       if(type === "filter") {
         return (
           <React.Fragment>
@@ -215,6 +225,21 @@ const FloatLongButton = styled.button`
   transition: 0.5s;
 `;
 
+const FloatButton = styled.button`
+  width: 200px;
+  height: 56px;
+
+  border: none;
+  border-radius: 65px;
+
+  color: #fff;
+  background: #0AAF42;
+  box-shadow: 1px 2px 10px rgba(5, 167, 67, 0.36);
+
+  z-index: 300;
+  transition: 0.5s;
+`;
+
 // 필터 선택 버튼
 const FilterButton = styled.button`
   flex: none;
@@ -313,6 +338,7 @@ const SquareButton = styled.button`
   border-radius: 8px;
   background: ${(props) => props.color? props.color : "#0AAF42" };
 `
+
 
 
 export default Button;

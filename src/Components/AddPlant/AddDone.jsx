@@ -36,12 +36,12 @@ const AddDone = (props) => {
                 <Grid margin="110px auto" width="100%" padding="0 20px">
                     <Grid margin="8px 0" width="100%">
                         <Button type="square" _onClick={() => { history.replace("/myplants"); }}>
-                            <Text size="small" color="#fff">지금 확인할게요</Text>
+                            <Text color="#fff">지금 확인할게요</Text>
                         </Button>
                     </Grid>
                     <Grid width="100%">
                         <Button type="square" width="100%" color="#F7F8FA" _onClick={() => { history.replace("/home") }}>
-                            <Text size="small" color="#A8A8A8">괜찮아요</Text>
+                            <Text color="#A8A8A8">괜찮아요</Text>
                         </Button>
                     </Grid>
                 </Grid>
@@ -53,18 +53,15 @@ const AddDone = (props) => {
 const RelativeBox = styled.div`
     margin-top: 155px;
     width: 100%;
-    border: 1px solid red;
 `
 
 const LeafBox = styled.div`
     margin: auto;
     width: fit-content;
-    border: 1px solid green;
 `
 const ShadowBox = styled.div`
     margin: auto;
     width: fit-content;
-    border: 1px solid blue;
 `
 
 export default AddDone;

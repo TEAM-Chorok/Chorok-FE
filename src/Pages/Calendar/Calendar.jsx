@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { calendarActions } from "../../Redux/Modules/Calendar";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { actionCreators as mainActions } from "../../Redux/Modules/Main";
 
 const CalendarPage = () => {
   const history = useHistory();
@@ -27,6 +28,7 @@ const CalendarPage = () => {
   React.useEffect(() => {
     setPlantNo(null);
     dispatch(calendarActions.getCheckedDB(year, month, plantNo));
+    dispatch(mainActions.getMyPlantDB());
   }, [])
 
   React.useEffect(() => {

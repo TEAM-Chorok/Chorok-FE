@@ -22,8 +22,9 @@ import {
 } from '../Pages';
 import theme from './theme';
 import { ReactComponent as Frame } from '../Assets/img/phoneframe.svg';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Switch } from 'react-router-dom';
 import Event from '../Pages/Event';
+import NotFound from '../Pages/NotFound';
 
 
 
@@ -37,6 +38,7 @@ function App() {
         <Wrap>
           <MobileFrame className="MobileFramePage">
           {/* <Frame className='frame'/> */}
+          <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/logIn" exact component={LogInEmail} />
             <Route path="/signup" exact component={SignUp} />
@@ -90,6 +92,8 @@ function App() {
 
             <Route path="/event" exact component={Event} />
             
+            <Route component={NotFound} />
+          </Switch>
             { lo === "" || lo === "labeling" || lo === "add" ? null : <Navbar /> }
             
           </MobileFrame>

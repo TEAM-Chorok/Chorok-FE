@@ -117,7 +117,7 @@ const ButtonBox = styled.div`
     box-sizing: border-box;
     width: 100%;
     padding: 0 4px;
-    margin: 86px auto 0 auto;
+    margin: 82px auto 0 auto;
 `
 
 export default WritePlantProfile;

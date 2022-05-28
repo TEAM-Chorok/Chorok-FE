@@ -58,7 +58,7 @@ const TodoContent = () => {
                 return (
                   <TodoBox key={plant.myPlantNo} id={plant.myPlantNo}>
                     <Grid is_flex margin="8px 0" align="center">
-                      <Image type="circle" size="32px" imgUrl={plant.myPlantImgUrl} />
+                      <Image type="circle" size="32px" imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileSmall.svg'} />
                       <GridRowBox>
                         <Text size="small">{plant.myPlantName}</Text>
                         <Text size="xsmall" weight="400" color="#525252">{plant.plantName} · {plant.myPlantPlace}</Text>

@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Text } from "../../Elements";
 import { actionCreators as mainActions } from "../../Redux/Modules/Main";
-
+import { ReactComponent as Logo } from "../../Assets/img/logo/logoTextwithIcon.svg"
+import { Scale } from "@mui/icons-material";
 
 // 투두페이지 헤더부분 (날씨)
 
@@ -94,7 +95,7 @@ const HomeHeader = () => {
   return (
     <React.Fragment>
       <Grid width="100%" bg="#fff">
-        {location ?
+        {!location ?
           <GridBox bg={color}>
             <Grid width="100%" padding="24px 16px">
               {/* <Text size="XS" color="#999">{date}</Text> */}
@@ -109,9 +110,9 @@ const HomeHeader = () => {
           </GridBox>
           :
           <Grid is_flex width="100%" height="120px" bg="linear-gradient(180deg, #E7F4F7 68.85%, rgba(242, 244, 248, 0) 88.45%)">
-            <Grid margin="20px auto" padding="16px">
-              {/* <Text bold size="xsmall">💬 {status}</Text> */}
-            </Grid>
+            <LogoBox>
+              <Logo className="logo"/>
+            </LogoBox>
           </Grid>
         }
       </Grid>
@@ -130,6 +131,17 @@ const GridBox = styled.div`
   background: ${(props) => props.bg};
   display: grid;
   grid-template-columns: 3fr 1fr;  
+`
+const LogoBox = styled.div`
+  position: relative;
+  padding: 16px;
+  width: 100%;
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: -50px;
+    transform: scale(0.6);
+  }
 `
 
 export default HomeHeader;
