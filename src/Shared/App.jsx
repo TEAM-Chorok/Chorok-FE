@@ -37,7 +37,7 @@ function App() {
       <ThemeProvider theme={theme} >
         <Wrap>
           <MobileFrame className="MobileFramePage">
-          <Frame className='frame'/>
+          {/* <Frame className='frame'/> */}
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/logIn" exact component={LogInEmail} />
