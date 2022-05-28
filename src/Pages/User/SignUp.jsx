@@ -1,5 +1,4 @@
-import { Input, Text, Container} from '../../Elements/index';
-import { Button } from '@mui/material';
+import { Input, Text, Container, Button } from '../../Elements/index';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Grid from '../../Elements/Grid';
@@ -169,8 +168,8 @@ const SignUp = () => {
                 </Grid>: 
                 null
               }
-              <Button disabled={!idCheck(userEmail)}
-                onClick={()=> {checkDuplicated(userEmail); setOpenResult(true);}}
+              <Button type="tran" disabled={!idCheck(userEmail)}
+                _onClick={()=> {checkDuplicated(userEmail); setOpenResult(true);}}
                 style={{position:"absolute", right:"0px", color:"#6F6F6F", fontSize:"13px"}} variant='text'>중복확인</Button>
               </Grid>
               
@@ -222,15 +221,15 @@ const SignUp = () => {
               {duplicated === true || passwordMatch(password, passwordChk) === false ?
 
                 <Button disabled={duplicated || passwordMatch() === false}
-                style={{display:"block", margin:"95px auto auto auto", width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} variant='contained' >다음으로</Button> : 
+                style={{display:"block", margin:"95px auto auto auto", width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} >다음으로</Button> : 
 
                 (pwdCheck(password) ? 
               
-                  <Button style={{display:"block", margin:"95px auto auto auto", width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#0AAF42", color:"#FFFFFF", borderRadius:"6px"}} variant='contained'
+                  <Button style={{display:"block", margin:"95px auto auto auto", width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#0AAF42", color:"#FFFFFF", borderRadius:"6px"}} 
                   onClick={() => {showNextPage(nextPage); setOpenResult(false);}}>다음으로</Button> : 
                   
                   <Button disabled={duplicated || passwordMatch() === false}
-                  style={{display:"block", margin:"95px auto auto auto",width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} variant='contained' >다음으로</Button>                   
+                  style={{display:"block", margin:"95px auto auto auto",width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} >다음으로</Button>                   
                 )
               }
             </SingUpPage> 
@@ -276,13 +275,12 @@ const SignUp = () => {
                     </Grid>: 
                     null
                   }
-                    <Button 
-                    onClick={()=>{checkDuplicatedNickname(nickname); setOpenResult(true);}}
-                    style={{position:"absolute", right:"0px", color:"#6F6F6F", fontSize:"13px"}} variant='text' >중복확인</Button>
+                    <Button type="tran"
+                    _onClick={()=>{checkDuplicatedNickname(nickname); setOpenResult(true);}}>중복확인</Button>
                   </Grid>
                   {duplicatedNickname === "" || duplicatedNickname === true? 
                     <Button disabled={true} style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#F8F8F8", color:"#D5D8DB", borderRadius:"6px"}} variant='contained' name="signup_submit" >회원가입</Button> :
-                    <Button style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#0AAF42", color:"#FFFFFF", borderRadius:"6px"}} variant='contained' name="signup_submit" onClick={()=>{signUp(); showNextPage(nextPage);}}>회원가입</Button>
+                    <Button style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#0AAF42", color:"#FFFFFF", borderRadius:"6px"}} variant='contained' name="signup_submit" _onClick={()=>{signUp(); showNextPage(nextPage);}}>회원가입</Button>
                   }
                   
                 </ProfileWrap> 
@@ -300,10 +298,10 @@ const SignUp = () => {
                   <Grid margin="20px 0px 16px 0px" bg="#F7F8FA" width="100%" height="48px" borderRadius="6px" align="center" is_flex>
                     <Text>{userEmail}</Text>
                   </Grid>
-                  {/* <Grid margin="auto"
-                   _onClick={()=>{dispatch(); }}>
+                  <Grid margin="auto"
+                   _onClick={()=>{dispatch(userActions.signUpDB(userEmail, password, nickname, profileImgUrl)); }}>
                     <p style={{borderBottom:"1px solid #8D8D8D", color:"#8D8D8D", fontSize:"13px"}} >인증메일 재발송</p>
-                  </Grid> */}
+                  </Grid>
                 </Grid>
 
                 
