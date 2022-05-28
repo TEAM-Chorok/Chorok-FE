@@ -7,6 +7,7 @@ import { actionCreators as userActions } from '../../Redux/Modules/User';
 import { ReactComponent as GoBackIcon } from "../../Assets/img/Icons/goBackIcon.svg"
 import { userAPI } from '../../Shared/api';
 import { useSelector } from 'react-redux';
+import { GeneralHeader } from '../../Components';
 
 
 const ProfileSetting = () => {
@@ -93,8 +94,11 @@ const ProfileSetting = () => {
   return (
     <React.Fragment>
       <Header>
-        <GoBackIcon onClick={() => history.goBack()} className="backIcon" />
-        <Text>프로필 편집</Text>
+          <div onClick={()=>history.goBack()} className="grid">
+            <GoBackIcon 
+              style={{ width:"15px", height:"15px" }}/>
+          </div>
+          <Text line="2.5em" bold size="base">프로필 편집</Text>
         <div className="doneButton">
         {disable || duplicatedNickname ?
           <Button type="tran" disabled={disable}>
@@ -216,6 +220,14 @@ const Header = styled.div`
     .doneButton{
       position: absolute;
       right: 12px;
+    }
+    .grid {
+      position: absolute;
+      display: flex;
+      width: 24px;
+      height: 24px;
+      left: 8px;
+      align-items: center;
     }
 `
 const ProfileWrap = styled.div`

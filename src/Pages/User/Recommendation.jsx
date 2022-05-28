@@ -43,7 +43,7 @@ const Recommendation = (props) => {
                 </Grid>
               
                   <InnerWrap>
-                    <Text size="base">집사님을 위한 <span style={{color:"#0AAF42"}}>추천 식물</span> 도착!</Text>
+                    <Text size="large" weight="700">집사님을 위한 <span style={{color:"#0AAF42"}}>추천 식물</span> 도착!</Text>
                     <Image imgUrl={plantImgUrl} type="circle" size="148px" margin="20px auto 8px auto"/>
                     <Text size="base" weight="700">{plantName}</Text>
                   </InnerWrap>
@@ -83,7 +83,7 @@ height: fit-content;
 `
 const PrimaryBtn = styled.button`
   width: 100%;
-  height: fit-content;
+  height: 48px;
   padding: 10px 70px;
   color: white;
   font-size: 16px;

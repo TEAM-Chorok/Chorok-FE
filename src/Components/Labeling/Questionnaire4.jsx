@@ -16,7 +16,7 @@ const Questionnaire4 = (props) => {
               <ImageBox onClick={()=>props.setAttribute2("pgs01")}>
               <ImageWrap className='child'
                 border={props.attribute2 === "pgs01"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
-                <Image margin="0px auto" type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/관목형.png"></Image>
+                <Image margin="0px auto" type="square" borderRadius="16px" size="100px" imgUrl="img/plantType/풀잎형.png"></Image>
               </ImageWrap>
               <TextWrap>
                 <Text size="small" className='text' weight={props.attribute2 ===  "pgs01" ? "700" : "500"} color={props.attribute2 ===  "pgs01" ? "#24A148" : "#262626"}>부드러운</Text>
@@ -25,7 +25,7 @@ const Questionnaire4 = (props) => {
               <ImageBox onClick={()=>props.setAttribute2("pgs05")}>
                 <ImageWrap className='child'
                  border={props.attribute2 === "pgs05"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
-                  <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="img/plantType/풀잎형.png"></Image>
+                  <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="img/plantType/관목형.png"></Image>
                 </ImageWrap>
                 <TextWrap >
                   <Text size="small" weight={props.attribute2 ===  "pgs05" ? "700" : "500"}
@@ -115,7 +115,7 @@ const TextWrap = styled.div`
 `
 const PrimaryBtn = styled.button`
   width: 90%;
-  height: 44px;
+  height: 48px;
   font-size: 16px;
   color: white;
   background-color: #0AAF42;

@@ -12,6 +12,7 @@ const Button = (props) => {
         size,
         bold,
         color,
+        fontColor,
         backgroundColor,
         border,
         children,
@@ -32,6 +33,7 @@ const Button = (props) => {
         padding,
         size,
         color,
+        fontColor,
         backgroundColor,
         border,
         bold,
@@ -111,7 +113,7 @@ const Button = (props) => {
       if(type === "tran") {
         return (
         <React.Fragment>
-          <TransparentButton {...styles} onClick={_onClick}>
+          <TransparentButton {...styles} onClick={_onClick} disabled={disable}>
               {children}
           </TransparentButton>
         </React.Fragment>
@@ -318,6 +320,8 @@ const TransparentButton = styled.button`
   border: none;
   background: transparent;
   disable: ${(props) => props.disabled};
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
 `
 
 //toggledrawer 삭제 수정 버튼
@@ -337,6 +341,7 @@ const SquareButton = styled.button`
   border: none;
   border-radius: 8px;
   background: ${(props) => props.color? props.color : "#0AAF42" };
+  color: ${(props) => props.fontColor? props.fontColor : "#262626"};
 `
 
 
