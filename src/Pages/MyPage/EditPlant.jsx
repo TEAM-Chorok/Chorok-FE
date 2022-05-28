@@ -71,7 +71,7 @@ const EditPlant = () => {
   //내 식물 수정하기
   const editMyPlant = () => {
     if (myPlantName === "" || myPlantName === " ") {
-      window.alert('식물의 별명을 지어주세요 :)');
+      // window.alert('식물의 별명을 지어주세요 :)');
       return;
     }
     dispatch(myActions.editMyPlantDB(myPlantId, myPlantName, place, plantImgUrl, preview))

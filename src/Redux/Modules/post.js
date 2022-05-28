@@ -182,7 +182,7 @@ const editPostDB = (formData, postId) => {
     postAPI
       .editPost(formData, postId)
       .then((response) => {
-        window.alert('게시글이 성공적으로 수정되었습니다.');
+        // window.alert('게시글이 성공적으로 수정되었습니다.');
         history.push(`/community/${postId}`);
         window.location.reload();
         dispatch(getDetailPost(postId));
@@ -230,11 +230,11 @@ const bookmarkPostDB = (category, postId) => {
     postAPI
       .bookmarkPost(postId)
       .then((res) => {
-        if (res.data.result === "true") {
-          window.alert("북마크로 등록되었습니다.");
-        } else {
-          window.alert("북마크를 취소하였습니다.");
-        }
+        // if (res.data.result === "true") {
+        //   // window.alert("북마크로 등록되었습니다.");
+        // } else {
+        //   // window.alert("북마크를 취소하였습니다.");
+        // }
         dispatch(getPostListDB_login(category, 0));
       })
       .catch((err) => {
@@ -249,11 +249,11 @@ const bookmarkDetailPostDB = (postId) => {
     postAPI
       .bookmarkPost(postId)
       .then((res) => {
-        if (res.data.result === "true") {
-          window.alert("북마크로 등록되었습니다.");
-        } else {
-          window.alert("북마크를 취소하였습니다.");
-        }
+        // if (res.data.result === "true") {
+        //   window.alert("북마크로 등록되었습니다.");
+        // } else {
+        //   window.alert("북마크를 취소하였습니다.");
+        // }
         dispatch(getPostListDB_login(0));
         dispatch(getDetailPostDB(postId));
       })
