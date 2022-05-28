@@ -58,7 +58,7 @@ function App() {
 
             <Route path="/plant" exact component={SearchPlant} />
             <Route path="/add/:plantNo" exact component={AddPlants} />
-            <Route path="/add/done" exact component={AddDone} />
+            <Route path="/done" exact component={AddDone} />
 
             <Route path="/plant/:plantname" exact component={PlantCard} />
 
@@ -111,11 +111,13 @@ const Wrap = styled.div`
   background-image: url('/img/background/desktop.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  @media ${({ theme }) => theme.device.labtop} {
+
+  ${'' /* @media ${({ theme }) => theme.device.labtop} {
   background-image: url('/img/background/labtop.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  }
+  } */}
+
   @media ${({ theme }) => theme.device.tablet} {
   background-image: url('/img/background/tablet.svg');
   background-repeat: no-repeat;
@@ -125,7 +127,6 @@ const Wrap = styled.div`
   .MobileFramePage {
     z-index: 999;
   }
-
 `
 
 export default App;

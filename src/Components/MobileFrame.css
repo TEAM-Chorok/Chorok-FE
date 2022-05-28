@@ -83,7 +83,14 @@
     left: 55%;
     transform: translate(-5%, -50%);
   }
+}
 
+@media screen and (min-width: 1280px) {
+  .WebFullFrame {
+    top: 50%;
+    left: 55%;
+    transform: translate(-5%, -50%);
+  }
 }
 
 @media screen and (min-width: 1700px) {

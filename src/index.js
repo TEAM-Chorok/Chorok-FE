@@ -20,5 +20,3 @@ root.render(
     </ConnectedRouter>
   </Provider>
 );
-
-ServiceWorker.register();

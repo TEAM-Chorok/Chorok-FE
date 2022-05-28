@@ -28,8 +28,8 @@ const colors = {
 };
 
 const deviceSizes = {
-    desktop: "1440px",
-    laptop: "1439px",
+    desktop: "1920px",
+    laptop: "1280px",
     tablet: "1023px",
 };
 
@@ -38,6 +38,7 @@ const device = {
     laptop: `screen and (max-width: ${deviceSizes.laptop})`,
     tablet: `screen and (max-width: ${deviceSizes.tablet})`,
 };
+
 
 const theme = {
     colors,

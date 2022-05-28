@@ -62,7 +62,7 @@ const TodoContent = () => {
                 return (
                   <TodoBox key={plant.myPlantNo} id={plant.myPlantNo}>
                     <Grid is_flex margin="8px 0" align="center">
-                      <Image type="circle" filter="drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.12))" size="32px" imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileSmall.svg'} />
+                      <Image type="circle" filter="drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.12))" size="32px" imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileSmall.svg'} />
                       <GridRowBox>
                         <Text size="small">{plant.myPlantName}</Text>
                         <Text size="xsmall" weight="400" color="#525252">{plant.plantName} · {plant.myPlantPlace}</Text>
@@ -204,8 +204,10 @@ const GridRowBox = styled.div`
 `
 
 const EventBannerBox = styled.div`
+  position: relative;
+  
   width: 100%;
-  height: 116px;
+  height: 109px;
   display: flex;
   border-radius: 16px;
 
@@ -216,7 +218,10 @@ const EventBannerBox = styled.div`
   filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.16));
 
   .item {
+    position: absolute;
+    bottom: 0;
     margin: auto;
+
   }
 `
 

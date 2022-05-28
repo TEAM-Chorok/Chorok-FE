@@ -40,10 +40,10 @@ const CalendarTodo = (props) => {
             size="56px" 
             imgUrl={props.plantImg ? props.plantImg : '/img/nonImageIcons/nonImagePlantProfileSmall.svg' } />
           <Grid margin="0 12px">
-            <Grid margin="-4px 0">
+            <Grid margin="0 0">
               <Text size="small">{props.plantName}</Text>
             </Grid>
-            <Grid margin="-4px 0">
+            <Grid margin="0 0">
               <Text size="xsmall">{props.plantType} · {props.plantPlace}</Text>
             </Grid>
           </Grid>

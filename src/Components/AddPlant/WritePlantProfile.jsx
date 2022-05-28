@@ -66,8 +66,8 @@ const WritePlantProfile = (props) => {
     formData.append('myPlantImgUrl', file);
     formData.append('myPlantName', plantName);
     // props.setCompNum(2);
-    history.replace('/add/done')
     dispatch(plantActions.addPlantDB(formData));
+    history.replace('/done');
   }
 
   return (

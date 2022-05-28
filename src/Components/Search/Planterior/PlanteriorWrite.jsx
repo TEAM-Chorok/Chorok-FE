@@ -99,12 +99,12 @@ const PlanteriorWriteComp = () => {
       setMessage(0);
       setOpen(true);
       return;
-    } else if (!contentRef) {
+    } else if (!text) {
       // 글 내용을 작성하지 않았을 경우
       setMessage(1);
       setOpen(true);
       return;
-    } else if (!file) {
+    } else if (!file?.length) {
       // 파일이 없을 경우
       setMessage(2);
       setOpen(true);
@@ -161,14 +161,15 @@ const PlanteriorWriteComp = () => {
 
       <Wrapper>
         <AddPostHeader edit title={location === 'edit' ? "글 수정하기" : "식물 공간 올리기"} 
-          submit={submit} disable={!text}/>
+          submit={submit}/>
         <Grid width="100%" height="1px" bg="#E0E0E0"/>
         <Grid width="100%" padding="8px 0 8px 16px">
           <PlaceFilter none setPlace={setPlace} setPage={setPage} />
         </Grid>
         <Grid width="100%" heigth="100%" padding="0 16px">
           <Input type="textarea" placeholder="사진에 대해 설명해 주세요." _ref={contentRef} 
-            _onChange={(e) => { setText(e.target.value); }}/>
+            _onChange={(e) => { setText(e.target.value); }}
+            />
         </Grid>
 
         <FileWrapper>
