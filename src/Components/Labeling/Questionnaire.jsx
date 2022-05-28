@@ -105,7 +105,7 @@ const QuestionBox = styled.div`
 `
 const PrimaryBtn = styled.button`
   width: 90%;
-  height: 44px;
+  height: 48px;
   color: #fff;
   text-align: center;
   border-radius: 8px;

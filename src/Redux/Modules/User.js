@@ -198,6 +198,7 @@ const deactivateUserDB = () => {
         window.alert('정상적으로 회원탈퇴 되었습니다.');
         localStorage.removeItem("token");
         localStorage.removeItem("nickname");
+        localStorage.removeItem("username");
         history.push('/');
         window.location.reload();
       }).catch((error) => {

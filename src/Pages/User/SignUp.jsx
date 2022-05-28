@@ -131,7 +131,7 @@ const SignUp = () => {
                 <Input 
                 _onChange={(e)=>{setUserEmail(e.target.value); 
                                 idCheck(e.target.value); setOpenResult(false);}} 
-                placeholder="이메일" type="email" 
+                placeholder="이메일" type="email" margin="0px"
                 width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB"></Input>
                 :
                 ( duplicated || !idCheck(userEmail) ? 
@@ -139,48 +139,52 @@ const SignUp = () => {
                   <Input 
                   _onChange={(e)=>{setUserEmail(e.target.value); 
                                   idCheck(e.target.value); setOpenResult(false);}} 
-                  placeholder="이메일" name="signup_id" type="email" 
+                  placeholder="이메일" name="signup_id" type="email" margin="0px"
                   display="inline-block" height="48px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" borderRadius="6px" focusOutline="1px solid #FA4D56"></Input> 
                   : 
                   // 정상 input
                   <Input 
                     _onChange={(e)=>{setUserEmail(e.target.value); 
                                     idCheck(e.target.value); setOpenResult(false);}} 
-                    placeholder="이메일" name="signup_id" type="email" 
+                    placeholder="이메일" name="signup_id" type="email" margin="0px"
                     display="inline-block" height="48px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"></Input>
                 )
               }
               </Grid>
 
-              <Grid position="relative" width="100%" height="44px" display="flex" align="center"  margin="0px 0px 10px 0px">
-              <Grid  margin="0px 0px 0px 10px">
-                { userEmail !== "" && !idCheck(userEmail) ? 
-                      <Text size="xsmall" color="#FA4D56">이메일 형식이 올바르지 않습니다.</Text> : ""
-                }
-              </Grid>
-              {/* 중복확인 후에 아래 텍스트 출력 */}
-              {openResult? 
+              <Grid position="relative" width="100%" height="44px" display="flex" align="center"  margin="0px">
                 <Grid  margin="0px 0px 0px 10px">
-                  {duplicated ? 
-                      <Text size="xsmall" color="#FA4D56">이미 사용 중인 이메일입니다.</Text> :
-                      <Text size="xsmall" color="#0AAF42">사용하실 수 있는 이메일입니다.</Text>
-                    }
-                </Grid>: 
-                null
-              }
-              <Button type="tran" disabled={!idCheck(userEmail)}
-                _onClick={()=> {checkDuplicated(userEmail); setOpenResult(true);}}
-                style={{position:"absolute", right:"0px", color:"#6F6F6F", fontSize:"13px"}} variant='text'>중복확인</Button>
+                  { userEmail !== "" && !idCheck(userEmail) ? 
+                        <Text size="xsmall" color="#FA4D56">이메일 형식이 올바르지 않습니다.</Text> : ""
+                  }
+                </Grid>
+                {/* 중복확인 후에 아래 텍스트 출력 */}
+                {openResult? 
+                  <Grid  margin="0px 0px 0px 10px">
+                    {duplicated ? 
+                        <Text size="xsmall" color="#FA4D56">이미 사용 중인 이메일입니다.</Text> :
+                        <Text size="xsmall" color="#0AAF42">사용하실 수 있는 이메일입니다.</Text>
+                      }
+                  </Grid>: 
+                  null
+                }
+                <Grid position="absolute" right="0px" >
+                  <Button type="tran" disable={!idCheck(userEmail)}
+                    _onClick={()=> {checkDuplicated(userEmail); setOpenResult(true);}}
+                    style={{color:"#6F6F6F", fontSize:"13px"}}>중복확인</Button>
+                </Grid>
+                
               </Grid>
               
               {/* 비밀번호 */}
+              <Grid width="100%" height="170px">
               {passwordMatch(password, passwordChk) || passwordChk === ""?
               <React.Fragment>
                 <Input 
                 _onChange={(e)=>{setPassword(e.target.value); 
                                 pwdCheck(e.target.value)}} 
                 placeholder="비밀번호" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #D5D8DB" borderRadius="6px"
-                margin="0px 0px 8px 0px"></Input>
+                margin="0px"></Input>
                 <Grid  margin="0px 0px 8px 8px">
                 { password !== "" && !pwdCheck(password) ? 
                       <Text size="xxsmall" color="#FA4D56">영문 대문자, 소문자, 숫자를 포함하여 8~20자를 입력해주세요.</Text> : ""
@@ -197,7 +201,7 @@ const SignUp = () => {
                   _onChange={(e)=>{setPassword(e.target.value); 
                                   pwdCheck(e.target.value)}} 
                   placeholder="비밀번호" type="password" name="signup_pwd" height="52px" width="100%" padding="0px 0px 0px 20px" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56" borderRadius="6px"
-                  margin="0px 0px 8px 0px"></Input>
+                  margin="0px"></Input>
                    <Grid  margin="0px 0px 8px 8px">
                     { !pwdCheck(password) ? 
                           <Text size="xxsmall" color="#FA4D56">영문 대문자, 소문자, 숫자를 포함하여 8~20자를 입력해주세요.</Text> : ""
@@ -218,18 +222,20 @@ const SignUp = () => {
                 </Grid>
               }
               {/* <Text fontSize="0.7em" color="grey">비밀번호는 영문 대소문자, 숫자를 혼합하여 8~20자로 입력해주세요</Text> */}
+              </Grid>
+
               {duplicated === true || passwordMatch(password, passwordChk) === false ?
 
-                <Button disabled={duplicated || passwordMatch() === false}
-                style={{display:"block", margin:"95px auto auto auto", width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} >다음으로</Button> : 
+                <Button type="square" color="#F4F4F4" 
+                disabled={duplicated || passwordMatch() === false}>다음으로</Button> : 
 
                 (pwdCheck(password) ? 
               
-                  <Button style={{display:"block", margin:"95px auto auto auto", width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#0AAF42", color:"#FFFFFF", borderRadius:"6px"}} 
-                  onClick={() => {showNextPage(nextPage); setOpenResult(false);}}>다음으로</Button> : 
+                  <Button type="square" fontColor="#fff"
+                  _onClick={() => {showNextPage(nextPage); setOpenResult(false);}}>다음으로</Button> : 
                   
-                  <Button disabled={duplicated || passwordMatch() === false}
-                  style={{display:"block", margin:"95px auto auto auto",width:"100%", height:"48px", boxShadow:"none", backgroundColor:"#F4F4F4", color:"#A8A8A8", borderRadius:"6px"}} >다음으로</Button>                   
+                  <Button type="square" color="#F4F4F4"
+                  disabled={duplicated || passwordMatch() === false} >다음으로</Button>                   
                 )
               }
             </SingUpPage> 
@@ -275,14 +281,20 @@ const SignUp = () => {
                     </Grid>: 
                     null
                   }
+                  <Grid position="absolute" right="0px" >
                     <Button type="tran"
-                    _onClick={()=>{checkDuplicatedNickname(nickname); setOpenResult(true);}}>중복확인</Button>
+                      _onClick={()=>{checkDuplicatedNickname(nickname); setOpenResult(true);}}
+                      style={{color:"#6F6F6F", fontSize:"13px"}}>중복확인</Button>
                   </Grid>
+                    
+                  </Grid>
+                  <Grid width="100%" margin="42px 0px 0px 0px ">
                   {duplicatedNickname === "" || duplicatedNickname === true? 
-                    <Button disabled={true} style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#F8F8F8", color:"#D5D8DB", borderRadius:"6px"}} variant='contained' name="signup_submit" >회원가입</Button> :
-                    <Button style={{display:"block", margin:"95px auto auto auto", width:"320px", height:"48px", boxShadow:"none", backgroundColor:"#0AAF42", color:"#FFFFFF", borderRadius:"6px"}} variant='contained' name="signup_submit" _onClick={()=>{signUp(); showNextPage(nextPage);}}>회원가입</Button>
+                    <Button disabled={true} type="square" color="#F4F4F4" name="signup_submit" >회원가입</Button> 
+                    :
+                    <Button type="square" fontColor="#fff" name="signup_submit" _onClick={()=>{signUp(); showNextPage(nextPage);}}>회원가입</Button>
                   }
-                  
+                  </Grid>
                 </ProfileWrap> 
               </Grid> :
 

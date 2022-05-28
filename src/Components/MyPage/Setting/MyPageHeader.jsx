@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Permit, Text, Image } from "../../../Elements";
+import { Grid, Permit, Text, Image, Button } from "../../../Elements";
 import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,20 +22,22 @@ const MyPageHeader = (props) => {
         <React.Fragment>
             <Permit>
                 <Grid width="100%" height="24px" position="relative">
-                    <SettingIcon stroke="none" fill="#393939" style={{position:"absolute", right:0, }}
+                    <SettingIcon stroke="none" fill="#393939" style={{position:"absolute", right:0 }}
                             onClick={()=>history.push('/setting')}/>
                 </Grid>
             </Permit>
             <Grid width="100%" margin="0px">
                 <GridWrapCol width="100%" padding="10px 10px" >
-                    <Grid is_flex align="center" padding="0 16px 0">
+                    <Grid is_flex align="center" padding="0px 16px 0px 0px">
                         <Image type="circle" size="80px" imgUrl={user?.profileImgUrl === "null" || user?.profileImgUr===null ? "/img/NoProfileImgUser.svg": user?.profileImgUrl} />
                     </Grid>
                     <GridWrapRow>
                         <Grid><Text size="large" weight="700">{user?.nickname}</Text></Grid>
-                        {user?.profileMsg ? 
-                            <Grid margin="0 1px"><Text size="small" color="#6F6F6F">{user?.profileMsg}</Text></Grid> :
-                            null
+                        {!user?.profileMsg || user?.profileMsg === ""? 
+                            <Button 
+                            _onClick={()=>history.push('/setting/profile')}
+                            padding="0px 0px 0px 1px" margin="0px" type="tran"><Text color="#6F6F6F" size="small" >프로필 소개 추가하기 > </Text></Button> :
+                            <Grid margin="0 1px"><Text size="small" color="#6F6F6F">{user?.profileMsg}</Text></Grid>
                         }
                         
                     </GridWrapRow>
