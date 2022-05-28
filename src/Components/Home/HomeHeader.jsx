@@ -94,7 +94,7 @@ const HomeHeader = () => {
   return (
     <React.Fragment>
       <Grid width="100%" bg="#fff">
-        {!location ?
+        {location ?
           <GridBox bg={color}>
             <Grid width="100%" padding="24px 16px">
               {/* <Text size="XS" color="#999">{date}</Text> */}

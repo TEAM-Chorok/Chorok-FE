@@ -111,7 +111,7 @@ export const labelAPI = {
 // To-Do 관련(mainpage) API
 export const mainAPI = {
   // 날씨 정보 가져오기
-  getWeather: (userLocation) => api.get(`api/weather?lat=${userLocation.lat}&lon=${userLocation.lon}`, {
+  getWeather: (userLocation) => api.get(`/weather/situation?lat=${userLocation.lat}&lon=${userLocation.lon}`, {
     headers: {
       "Authorization": `${localStorage.getItem('token')}`,
     }

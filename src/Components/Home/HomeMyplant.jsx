@@ -32,7 +32,7 @@ const HomeMyplant = () => {
                   <PlantProfile key={idx} size="L"
                     name={plant.myPlantName}
                     plant={plant.plantName}
-                    imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : '/img/plantProfile.svg'} />
+                    imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileLarge.svg'} />
                 )
               })}
             </GridBox>

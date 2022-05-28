@@ -83,7 +83,7 @@ const PlanteriorList = ({place, page, setPage}) => {
             callback={callback}
             totalPage={totalPage}
             isLoading={isLoading}>
-            <Masonry columns={2} spacing={2} sx={{ margin:'auto', maxWidth:'500px'}}>
+            <Masonry columns={2} spacing={2} sx={{ margin:'auto', width:'100%', maxWidth:'500px', padding:'8px'}} >
               {planteriorList?.map((post, idx) => {
                 return (
                   <ContentWrapper key={post.postId} onClick={() => { openDetail(post.postId) }}>
@@ -92,7 +92,7 @@ const PlanteriorList = ({place, page, setPage}) => {
                       <Image type="circle" size="20px"
                         imgUrl={post.profileImageUrl ? post.profileImageUrl : "/img/noProfileImgSmall.svg"}
                       />
-                      <Text bold size="xsmall" margin="1px 4px">{post.nickname}</Text>
+                      <Text bold size="xsmall" margin="1px 8px">{post.nickname}</Text>
                     </Grid>
                     <TextBox>
                       <Text size="xsmall" color="#525252">
@@ -158,8 +158,7 @@ const FadeIn = keyframes`
 
 
 const ContentWrapper = styled.div`
-  box-sizing: border-box;
-  margin: 0;
+  ${'' /* box-sizing: border-box; */}
   width: 100%;
   height: fit-content;
 `;

@@ -121,7 +121,7 @@ const EditPlant = () => {
               encodeFileToBase64(e.target.files[0]);
               setPlantImgUrl(e.target.files[0]);
             }} />
-          <Button type="tran" onClick={handleClick}>
+          <Button type="tran" _onClick={handleClick}>
             <Text size="small" weight="700" color="#0AAF42">사진 바꾸기</Text>
           </Button>
         </Grid>
@@ -152,7 +152,7 @@ const EditPlant = () => {
               place={place} setPlace={setPlace} placeValue={placeValue} setPlaceValue={setPlaceValue} />
             <Grid position="relative" width="100%">
               <AbsoluteBox>
-                <Button type="tran" onClick={() => { setDeleteOpen(true); }}>
+                <Button type="tran" _onClick={() => { setDeleteOpen(true); }}>
                   <Text size="small" color="#0AAF42">식물 삭제하기</Text>
                 </Button>
               </AbsoluteBox>

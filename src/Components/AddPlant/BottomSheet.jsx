@@ -102,26 +102,26 @@ export default function BottomSheet() {
         </Button>
 
         <Button checked={levelText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 0)}>
-          <Text bold={levelText ? true : false} size="small" color={levelText ? "#0AAF42" : ""}>
+          <Text weight={levelText ? 600 : 400} size="small" color={levelText ? "#0AAF42" : ""}>
             {levelText ? levelText : "난이도"}
           </Text>
         </Button>
 
         <Button
           checked={spaceText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 1)}>
-          <Text bold={spaceText ? true : false} size="small" color={spaceText ? "#0AAF42" : ""}>
+          <Text weight={spaceText ? 600 : 400} size="small" color={spaceText ? "#0AAF42" : ""}>
             {spaceText ? spaceText : "공간"}
           </Text>
         </Button>
 
         <Button checked={typeText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 2)}>
-          <Text bold={typeText ? true : false} size="small" color={typeText ? "#0AAF42" : ""}>
+          <Text weight={typeText ? 600 : 400 } size="small" color={typeText ? "#0AAF42" : ""}>
             {typeText ? typeText : "종류"}
           </Text>
         </Button>
 
         <Button checked={styleText ? true : false} type="filter" _onClick={toggleDrawer('bottom', true, 3)}>
-          <Text bold={styleText ? true : false} size="small" color={styleText ? "#0AAF42" : ""}>
+          <Text weight={styleText ? 600 : 400 } size="small" color={styleText ? "#0AAF42" : ""}>
             {styleText ? styleText : "특징"}
           </Text>
         </Button>

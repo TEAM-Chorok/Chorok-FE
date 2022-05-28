@@ -23,7 +23,7 @@ const CalendarMyPlant = (props) => {
             checked={props.plantNo === plant.myPlantNo ? true : false}  
             name={plant?.myPlantName.length<6? plant.myPlantName : plant.myPlantName.slice(0,4)+'...'} 
             plant={plant?.plantName.length<6? plant.plantName : plant.plantName.slice(0,5)+'...'} 
-            imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/plantProfile.svg'}          
+            imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfile.svg'}          
             _onClick={() => {
               props.setPlantNo(plant?.myPlantNo);
               props.setPlantName(plant?.myPlantName);}} />

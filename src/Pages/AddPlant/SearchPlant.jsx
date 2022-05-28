@@ -37,6 +37,7 @@ const SearchPlant = () => {
       <Container>
         <PlantSearchHeader 
           title="원하는 식물을 찾아보세요" size="large"
+          placeholder="어떤 식물을 찾고 있나요?"
           _onChange={(e) => { search(e) }}
         />
 

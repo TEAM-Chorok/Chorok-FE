@@ -32,14 +32,14 @@ const TodoContent = () => {
     <React.Fragment>
       <Grid width="100%" bg="#fff">
         <TitleBox>
-          <Grid width="100%" margin="20px 0" >
+          <Grid width="100%" margin="16px 0" >
             <SentenceBox>
               <p className="sentence">
                 {sentence}
               </p>
             </SentenceBox>
           </Grid>
-          <Grid width="100%" margin="-15px 0 16px 0">
+          <Grid width="100%" margin="-10px 0 16px 0">
             <TodoProfile 
             plantNo={plantNo} 
             setPlantNo={setPlantNo} 
@@ -118,7 +118,7 @@ const TodoContent = () => {
   );
 }
 const TitleBox = styled.div`
-  padding: 0 16px 0 16px;
+  padding: 0 0 0 16px;
   border-bottom: 1px solid #E0E0E0;
   background: #fff;
 `

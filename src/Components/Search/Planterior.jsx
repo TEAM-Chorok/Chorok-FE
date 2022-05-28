@@ -43,7 +43,7 @@ const Planterior = () => {
           <Text bold size="h6">식물 공간</Text>
           <PlaceFilter setPlace={setPlace} setPage={setPage} />
         </Grid>
-        <Grid width="100%" padding="0 16px">
+        <Grid width="100%">
           <PlanteriorList setPlace={setPlace} place={place} page={page} setPage={setPage}/>
         </Grid>
       </Grid>

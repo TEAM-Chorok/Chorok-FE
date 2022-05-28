@@ -151,7 +151,7 @@ const ProfileSetting = () => {
                 encodeFileToBase64(e.target.files[0]);
                 setProfileImgUrl(e.target.files[0]);
               }} />
-            <Button type="tran" onClick={handleClick}>
+            <Button type="tran" _onClick={handleClick}>
               <Text size="small" weight="700" color="#0AAF42">사진 바꾸기</Text>
             </Button>
           </ProfileWrap>

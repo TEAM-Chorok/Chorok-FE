@@ -55,7 +55,7 @@ const Wrapper = styled.div`
 `
 
 const Track = styled.div`
-  margin: 8px 0 12px 0;
+  margin: 8px 0 16px 0;
   width: 100%;
 `
 

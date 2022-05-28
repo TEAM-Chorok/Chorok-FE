@@ -72,9 +72,11 @@ const MyPlants = () => {
                         return (
                             <Contents key={idx} onClick={() => history.push(`/plant/${p.plantNo}`)}>
                                 <Image type="circle" size="96px" imgUrl={p.plantImgUrl} />
+                                <Grid width="100%" margin="4px 0" align="center">
                                 <Text size="small" color="#6F6F6F" display="block">
-                                    {p.plantName.length < 6 ? p.plantName : p.plantName.slice(0, 5) + '...'}</Text>
+                                    {p.plantName.length < 8 ? p.plantName : p.plantName.slice(0, 7) + '...'}</Text>
                                 {/* <Text size="small" color="#6F6F6F" display="block">장미</Text> */}
+                                </Grid>
                             </Contents>
                         )
                     })}
@@ -94,6 +96,7 @@ const TitleWrap = styled.div`
 const ContentWrap = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
     grid-column-gap:20px;
     grid-row-gap:16px;
     width: 100%;
@@ -112,10 +115,10 @@ const ScrapContentWrap = styled.div`
     margin-bottom: 40px;
 `
 const Contents = styled.div`
-    width: 100%;
     height: 100%;
     border-radius: 5px;
     text-align: center;
+    justify-content: center;
 `
 
 const AbsoluteBox = styled.div`

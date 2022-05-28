@@ -6,6 +6,7 @@ import Dimmer from "../modal/Dimmer";
 import { ReactComponent as LeafIcon } from "../../../Assets/img/sidebuttonIcons/leaf.svg"
 import { ReactComponent as HouseIcon } from "../../../Assets/img/sidebuttonIcons/house.svg"
 import { ReactComponent as BubbleIcon } from "../../../Assets/img/sidebuttonIcons/bubble.svg"
+import { ReactComponent as PlusIcon } from "../../../Assets/img/sidebuttonIcons/plus.svg"
 
 // 호출한 부모 컴포넌트에서 모달 open/close에 관여하는 state를 관리해야합니다!
 // const [open, setOpen] = React.useState(false);
@@ -43,7 +44,8 @@ const SideButton = (props) => {
           <Dimmer setOpenModal={props.setOpen} onClick={() => openModal()} />
           <Modal onClick={e => e.stopPropagation()}>
             <InnerWrap onClick={() => history.push('/plant')}>
-              <LeafIcon />
+              <LeafIcon style={{width:'24px', height:'24px'}}/>
+              <PlusIcon className="plus"/>
               <Grid margin="0 8px">
                 <Text size="small" >식물 추가하기</Text>
               </Grid>
@@ -54,7 +56,7 @@ const SideButton = (props) => {
                 <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
                   <HouseIcon style={{width:'24px', height:'24px'}}/>
                   <Grid margin="0 8px">
-                    <Text size="small">공간 자랑하기</Text>
+                    <Text size="small">식물 공간 올리기</Text>
                   </Grid>
                 </InnerBox1>
                 <InnerBox2 onClick={() => history.push(`/addpost`)}>
@@ -83,6 +85,7 @@ right: 16px;
 bottom: 136px; 
 `
 const InnerWrap = styled.div`
+position: relative;
 display: flex;
 align-items: center;
 
@@ -94,6 +97,11 @@ height: fit-content;
 border-radius: 16px;
 
 background-color: white;
+  .plus{
+    position: absolute;
+    bottom: 12px;
+    left: 30px;
+  }
 `
 const InnerBox1 = styled.div`
 display: flex;

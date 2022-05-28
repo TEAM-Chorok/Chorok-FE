@@ -44,8 +44,8 @@ const ContentSurvey = () => {
           window.open('https://forms.gle/pDgB4u3pbWud6FJy8', '_blank');
         }}>
           <Grid is_flex margin="0 5px" width="100%">
-            <Grid margin="auto 8px">
-              <Note />
+            <Grid margin="auto 12px">
+              <Note style={{ width: '24px', height: '24px'}}/>
             </Grid>
             <Grid width="100%" margin="0 0 6px 0">
               <Grid>
@@ -71,8 +71,8 @@ const ContentBug = () => {
           window.open('https://forms.gle/VPQYnv6rgfaSvjYg7', '_blank');
         }}>
           <Grid is_flex margin="0 5px" width="100%">
-            <Grid margin="auto 8px">
-              <Glass />
+            <Grid margin="auto 12px">
+              <Glass style={{ width: '24px', height: '24px'}}/>
             </Grid>
             <Grid width="100%" margin="0 0 6px 0">
               <Grid>

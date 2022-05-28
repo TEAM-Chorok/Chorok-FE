@@ -347,7 +347,7 @@ const SearchInput = styled.input`
   }
   
   &::placeholder {
-    color: #6F6F6F;
+    color: #A8A8A8;
     font-size: 14px;
     letter-spacing: 0.25px;
   }

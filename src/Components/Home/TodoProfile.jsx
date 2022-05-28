@@ -74,7 +74,8 @@ const ProfileBox = styled.div`
 
     -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-
+  
+  z-index: 100;
 &::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }

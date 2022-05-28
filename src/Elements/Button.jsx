@@ -224,6 +224,8 @@ const FilterButton = styled.button`
   letter-spacing: 0.25px;
   color: ${(props) => (props.checked ? "#0AAF42" : "#262626")};
 
+  font-weight: ${(props) => (props.checked ? "600" : "400")};
+
   margin-right: 6px;
   padding: 6px 12px;
 

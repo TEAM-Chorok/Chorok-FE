@@ -37,6 +37,8 @@ const PlanteriorWriteComp = () => {
   const [file, setFile] = React.useState([]);
   const [preview, setPreview] = React.useState([]);
 
+  const [text, setText] = React.useState();
+
   // alert 메세지 
   const alertMessage = {
     0: "자랑할 공간을 선택해주세요!",
@@ -62,7 +64,8 @@ const PlanteriorWriteComp = () => {
       return;
     } else if (e.target.files) {
       // 파일 업로드 됐을 경우 
-      setFile([...file, ...e.target.files]);
+      setFile([e.target.files]);
+      // setFile([...file, ...e.target.files]);
     } else {
       // 업로드 취소
       setFile([])
@@ -81,7 +84,8 @@ const PlanteriorWriteComp = () => {
       let reader = new FileReader();
       reader.onload = () => {
         fileURLs[i] = reader.result;
-        setPreview([...fileURLs]);
+        setPreview([fileURLs]);
+        // setPreview([...fileURLs]);
       };
       reader.readAsDataURL(files);
     }
@@ -134,7 +138,8 @@ const PlanteriorWriteComp = () => {
       };
     }
     // 글 작성 루트일 경우
-    formData.append('postImgUrl', file[0]);
+    // console.log("파일어딨냐구", file[0][0])
+    formData.append('postImgUrl', file[0][0]);
     dispatch(searchActions.writePlanteriorPostDB(formData));
   }
 
@@ -157,12 +162,14 @@ const PlanteriorWriteComp = () => {
     <React.Fragment>
 
       <Wrapper>
-        <AddPostHeader edit title={location === 'edit' ? "글 수정하기" : "공간 자랑하기"} submit={submit} />
-        <Grid width="100%" padding="0 16px">
+        <AddPostHeader edit title={location === 'edit' ? "글 수정하기" : "식물 공간 올리기"} 
+          submit={submit} disable={!text}/>
+        <Grid width="100%" height="1px" bg="#E0E0E0"/>
+        <Grid width="100%" padding="8px 0 8px 16px">
           <PlaceFilter none setPlace={setPlace} setPage={setPage} />
         </Grid>
         <Grid width="100%" heigth="100%" padding="0 16px">
-          <Input type="textarea" placeholder="사진에 대해 설명해 주세요." _ref={contentRef} />
+          <Input type="textarea" placeholder="사진에 대해 설명해 주세요." _ref={contentRef} _onChange={(e) => { setText(e.target.value); }}/>
         </Grid>
 
         <FileWrapper>

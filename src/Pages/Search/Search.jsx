@@ -57,6 +57,7 @@ const Search = () => {
               _onChange={(e) => { search(e) }}
               _onFocus={() => { compNum === 3 ? setCompNum(3) : setCompNum(2) }}
               _onBlur={() => { compNum < 3 ? setCompNum(0) : setCompNum(3) }}
+              placeholder="어떤 식물을 찾고 있나요?"
             />
           </Grid>
           {compNum > 1 ?
