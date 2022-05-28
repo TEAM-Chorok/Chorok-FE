@@ -201,7 +201,7 @@ export default function BottomSheet() {
             _onClick={() => {
               filterSubmit();
             }}>
-            <Text size="base" color="#fff">적용하기</Text>
+            <Text size="base" weight="700" color="#fff">적용하기</Text>
           </Button>
         </Grid>
         </Grid>

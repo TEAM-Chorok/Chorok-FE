@@ -42,32 +42,32 @@ const CalendarTable = (props) => {
                 <GridBox>
                   {watering?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="11px" imgUrl="img/calendaricon/water.svg"/>
+                    <Image type="square" size="11px" imgUrl="/img/calendaricon/water.svg"/>
                   </IconBox>
                   : ""}
                   {leafcleaning?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="11px" imgUrl="img/calendaricon/leaf.svg"/>
+                    <Image type="square" size="11px" imgUrl="/img/calendaricon/leaf.svg"/>
                   </IconBox>
                   : ""}
                   {refreshing?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="11px" imgUrl="img/calendaricon/wind.svg"/>
+                    <Image type="square" size="11px" imgUrl="/img/calendaricon/wind.svg"/>
                   </IconBox>
                   : ""}
                   {changing?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="11px" imgUrl="img/calendaricon/pottedplant.svg"/>
+                    <Image type="square" size="11px" imgUrl="/img/calendaricon/pottedplant.svg"/>
                   </IconBox>
                   : ""}
                   {supplements?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="11px" imgUrl="img/calendaricon/pill.svg"/>
+                    <Image type="square" size="11px" imgUrl="/img/calendaricon/pill.svg"/>
                   </IconBox>
                   : ""}
                   {blooming?.find((x) => x === moment(date).format("YYYY-MM-DD"))?
                   <IconBox>
-                    <Image type="square" size="11px" imgUrl="img/calendaricon/flower.svg"/>
+                    <Image type="square" size="11px" imgUrl="/img/calendaricon/flower.svg"/>
                   </IconBox>
                   : ""}
                 </GridBox>

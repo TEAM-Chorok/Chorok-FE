@@ -23,26 +23,37 @@ const CalendarTodo = (props) => {
 
 
   const content = {
-    w1: <TodoIcons content="물주기" img="img/calendaricon/water.svg" />,
-    w2: <TodoIcons content="잎닦기" img="img/calendaricon/leaf.svg" />,
-    w3: <TodoIcons content="환기하기" img="img/calendaricon/wind.svg" />,
-    w4: <TodoIcons content="분갈이" img="img/calendaricon/pottedplant.svg" />,
-    w5: <TodoIcons content="영양제" img="img/calendaricon/pill.svg" />,
-    w6: <TodoIcons content="꽃 핀 날" img="img/calendaricon/flower.svg" />,
+    w1: <TodoIcons content="물주기" img="/img/calendaricon/water.svg" />,
+    w2: <TodoIcons content="잎닦기" img="/img/calendaricon/leaf.svg" />,
+    w3: <TodoIcons content="환기하기" img="/img/calendaricon/wind.svg" />,
+    w4: <TodoIcons content="분갈이" img="/img/calendaricon/pottedplant.svg" />,
+    w5: <TodoIcons content="영양제" img="/img/calendaricon/pill.svg" />,
+    w6: <TodoIcons content="꽃 핀 날" img="/img/calendaricon/flower.svg" />,
   }
 
   return (
     <React.Fragment>
-      <Grid margin="8px 0">
-        <Text bold size="large">{props.plantName}</Text>
+      <Grid width="100%" margin="0 0 30px 0">
+        <Grid is_flex align="center">
+          <Image type="circle" size="32px" imgUrl={props.plantImg} />
+          <Grid margin="0 12px">
+            <Grid margin="-4px 0">
+              <Text size="small">{props.plantName}</Text>
+            </Grid>
+            <Grid margin="-4px 0">
+              <Text size="xsmall">{props.plantType} · {props.plantPlace}</Text>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
-        
-        <CalendarTodoBlock content={content.w1} workType="물주기" arr={watering} plantNo={props.plantNo}/>
-        <CalendarTodoBlock content={content.w2} workType="잎닦기" arr={leafcleaning} plantNo={props.plantNo}/>
-        <CalendarTodoBlock content={content.w3} workType="환기" arr={refreshing} plantNo={props.plantNo}/>
-        <CalendarTodoBlock content={content.w4} workType="분갈이" arr={changing} plantNo={props.plantNo}/>
-        <CalendarTodoBlock content={content.w5} workType="영양제" arr={supplements} plantNo={props.plantNo}/>
-        <CalendarTodoBlock content={content.w6} workType="꽃핀날" arr={blooming} plantNo={props.plantNo}/>
+      <GridBox>
+        <CalendarTodoBlock content={content.w1} workType="물주기" arr={watering} plantNo={props.plantNo} />
+        <CalendarTodoBlock content={content.w2} workType="잎닦기" arr={leafcleaning} plantNo={props.plantNo} />
+        <CalendarTodoBlock content={content.w3} workType="환기" arr={refreshing} plantNo={props.plantNo} />
+        <CalendarTodoBlock content={content.w4} workType="분갈이" arr={changing} plantNo={props.plantNo} />
+        <CalendarTodoBlock content={content.w5} workType="영양제" arr={supplements} plantNo={props.plantNo} />
+        <CalendarTodoBlock content={content.w6} workType="꽃핀날" arr={blooming} plantNo={props.plantNo} />
+      </GridBox>
     </React.Fragment>
   )
 };
@@ -51,21 +62,28 @@ const CalendarTodo = (props) => {
 const TodoIcons = (props) => {
   return (
     <TodoBox>
-      <Image type="square" size="15px" imgUrl={props.img} />
-      <Text margin="0 8px" size="small">{props.content}</Text>
+      <Image type="square" size="32px" imgUrl={props.img} />
+      <Text margin="0 12px" size="base">{props.content}</Text>
     </TodoBox>
-    );
+  );
 }
 
 
 const TodoBox = styled.div`
 width: 100%;
-height: 52px;
 
 display: flex;
 align-items: center;
 
 `
+
+const GridBox = styled.div`
+  display: grid;
+  grid-template-row: repeat(6, 1fr);
+  grid-row-gap: 30px;
+`
+
+
 
 export default CalendarTodo;
 

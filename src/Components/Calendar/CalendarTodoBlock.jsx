@@ -60,11 +60,11 @@ const CalendarTodoBlock = (props) => {
   return (
     <React.Fragment>
       <TodoBox>
-        <Grid is_flex margin="0 4px" width="100%" align="center">
+        <Grid is_flex width="100%" align="center">
           <Grid width="100%">
             {content}
           </Grid>
-          <Grid>
+          <div className="icon">
             {checked ?
               <MdOutlineCheckBox color="#0AAF42" size="20px"
                 onClick={() => { check(); }}
@@ -72,7 +72,7 @@ const CalendarTodoBlock = (props) => {
               <MdOutlineCheckBoxOutlineBlank size="20px" color="#C6C6C6"
                 onClick={() => { check(); }}
               />}
-          </Grid>
+          </div>
         </Grid>
       </TodoBox>
     </React.Fragment>
@@ -81,14 +81,20 @@ const CalendarTodoBlock = (props) => {
 
 
 const TodoBox = styled.div`
+position: relative;
 
 width: 100%;
-height: 52px;
 
 display: flex;
 align-items: center;
 
 ${'' /* border-bottom: 1px solid #F4F4F4; */}
+
+  .icon{
+    position:absolute;
+    top:6px;
+    right: 0px;
+  }
 `
 
 export default CalendarTodoBlock;

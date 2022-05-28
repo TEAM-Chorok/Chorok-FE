@@ -26,7 +26,10 @@ const CalendarMyPlant = (props) => {
             imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfile.svg'}          
             _onClick={() => {
               props.setPlantNo(plant?.myPlantNo);
-              props.setPlantName(plant?.myPlantName);}} />
+              props.setPlantName(plant?.myPlantName);
+              props.setPlantType(plant?.plantName);
+              props.setPlantImg(plant?.myPlantImgUrl);
+              props.setPlantPlace(plant?.myPlantPlace);}} />
           )
         })}
       </XdragScroll>
@@ -34,17 +37,7 @@ const CalendarMyPlant = (props) => {
   )
 };
 
-const PlantBox = styled.div`
-  display: flex;
-  
-  padding: 8px 0;
 
-  width: 100%;
-  height: 100px;
-
-
-  overflow-x: scroll;
-`
 
 export default CalendarMyPlant;
 

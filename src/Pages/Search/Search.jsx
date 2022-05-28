@@ -7,13 +7,15 @@ import { AddPlantList, Planterior, PlantSearchHeader, SearchOnFocus, SideButton,
 import { Grid, Permit } from "../../Elements";
 import { actionCreators as searchActions } from "../../Redux/Modules/Search";
 import Result from "./Result";
+import { StepContext } from "@mui/material";
 
 // 탐색페이지
 const Search = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const pattern = /\s/g;
-
+  const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
+  
   // 보여줄 컴포넌트 넘버
   const [compNum, setCompNum] = React.useState(0);
   
@@ -29,20 +31,26 @@ const Search = () => {
   
   const search = (e) => {
     const text = e.target.value;
+    let newText;
     if (text) {
       setCompNum(3);
+    }
+    if (regExp.test(text)){
+      // 특수문자 입력 CORS 방지
+      newText = text.replace(regExp, "");
+      debouncing(newText);
+      return;
     }
     debouncing(text);
   }
   const debouncing = debounce((text) => {
-    if (text === "") {
-      console.log("검색어가없당");
+    if (!text.replace(pattern, '').length) {
       return;
-    } else {
-      dispatch(searchActions.keywordSearchingDB(text));
-      dispatch(searchActions.keywordSearchingPhotoDB(text));
-      dispatch(searchActions.keywordSearchingPlantDB(text));
-    }
+    } 
+    // 검색 실행
+    dispatch(searchActions.keywordSearchingDB(text));
+    dispatch(searchActions.keywordSearchingPhotoDB(text));
+    dispatch(searchActions.keywordSearchingPlantDB(text));
   }, 100)
   
   return (

@@ -76,13 +76,13 @@ const PlantProfile = (props) => {
   }
 
   return (
-    <Grid margin="0 8px">
-      <Grid _onClick={_onClick} _onBlur={_onBlur}>
+    <Grid margin="0 16px 0 0">
+      <Grid margin="4px 2px" _onClick={_onClick} _onBlur={_onBlur}>
         <Grid border={checked ? "3px solid #0AAF42" : "3px solid #fff"} borderRadius="100%">
           <Image type="circle" size="56px" imgUrl={imgUrl} />
         </Grid>
       </Grid>
-      <Grid margin="-2px auto" align="center">
+      <Grid margin="-3px auto" align="center">
         <Text size="small" color={checked ? "#0AAF42" : ""} weight={checked ? "700" : "500" }>{name}</Text>
         <Grid margin="-4px auto">
           <Text size="xxsmall" color="#6F6F6F">{plant}</Text>
