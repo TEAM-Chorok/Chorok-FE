@@ -59,9 +59,9 @@ const Alert2 = (props) => {
               <Grid align="center" width="200px" margin="auto">
                 {children}
               </Grid>
-              <Grid is_flex margin="24px auto 0 auto" align="center">
-                <Grid margin="0 16px">
-                  <Button type="tran" _onClick={() => {
+              <Grid is_flex margin="24px auto 0 auto" width="100%" align="center" padding="0 16px">
+                <Grid width="100%">
+                  <Button type="square" color="#F4F4F4" _onClick={() => {
                     if (func) {
                       func();
                     } else if (error) {
@@ -70,15 +70,16 @@ const Alert2 = (props) => {
                       props.setOpen(false)
                     }
                   }}>
-                    <Text size="small">
+                    <Text size="base">
                       {btn1}
                     </Text>
                   </Button>
                 </Grid>
+                {btn2 ? <Grid width="8px"/> : null }
                 {btn2 ?
-                  <Grid margin="0 16px">
-                    <Button type="tran" _onClick={() => { history.replace(url); }}>
-                      <Text size="small">
+                  <Grid width="100%">
+                    <Button type="square" _onClick={() => { history.replace(url); }}>
+                      <Text size="base" color="#fff">
                         {btn2}
                       </Text>
                     </Button>
@@ -104,12 +105,12 @@ z-index: 200;
 position: sticky;
 bottom: 40%;
 margin: auto;
-border-radius: 10px;
+border-radius: 16px;
 box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
 `
 const InnerWrap = styled.div`
 width: 240px;
-padding: 32px 0 28px 0;
+padding: 28px 8px 22px 8px;
 text-align: center;
 border-radius: 20px;
 background-color: white;

@@ -96,7 +96,7 @@ const ContentShare = () => {
     <React.Fragment>
       <Grid width="100%" padding="0 4px">
         <LinkBox bg="#FDEEFC" onClick={() => {
-          history.push("/labeling");
+          history.push("/event");
         }}>
           <Grid is_flex margin="0 5px" width="100%">
             <Grid margin="auto 8px">
