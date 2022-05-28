@@ -74,12 +74,14 @@ const AddPlantList = () => {
             </InfiniteScroll>
           </Grid>
           :
-          <Grid margin="148px auto">
-            <NotFound />
-            <Grid margin="auto">
-              <Text bold size="small">검색결과가 없습니다</Text>
-            </Grid>
+          <Grid margin="15vh auto">
+          <Grid margin="20px auto" align="center">
+            <Text bold size="h5" weight="700">검색<br/>결과가 없어요</Text>
           </Grid>
+          <Grid margin="auto">
+            <NotFound />
+          </Grid>
+        </Grid>
         }
       </Grid>
 

@@ -87,7 +87,6 @@ const Wrapper = styled.div`
   overflow: ${(props) => props.open ? "hidden" : "auto"};
 `
 
-
 const CommentBox = styled.div`
   position: relative;
   box-sizing: border-box;

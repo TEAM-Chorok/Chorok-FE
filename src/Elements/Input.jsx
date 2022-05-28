@@ -379,7 +379,7 @@ const TextArea = styled.textarea`
 const CommentTextArea = styled.textarea`
   font-family: 'SUIT';
   box-sizing: border-box;
-  padding: 10px 44px 0 12px;
+  padding: 10px 52px 0 12px;
 
   width: 100%;
   height: 40px;

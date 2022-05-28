@@ -50,9 +50,10 @@ export default function CommBottomSheet( props ) {
       return (
         <React.Fragment key={'bottom'}>
             
-            <FilterBox>
-                <MoreIcon style={{position:"absolute", right:"16px", top:"16px"}}
-                onClick={toggleDrawer('bottom', true)}/>
+            <FilterBox onClick={toggleDrawer('bottom', true)}>
+              <IconBox>
+                  <MoreIcon className='icon'/>
+              </IconBox>
             </FilterBox>
 
     
@@ -180,13 +181,34 @@ export default function CommBottomSheet( props ) {
   );  
 }
     const FilterBox = styled.div`
+    position: relative;
     width: 100%;
     `
 
     const MenuBox = styled.div`
+
       display: flex;
       align-items: center;
       padding: 16px;
       width: 100%;
       border-bottom: 1px solid #ddd;
+    `
+
+    const IconBox = styled.div`
+      position: absolute;
+      top: -33px;
+      right: 8px;
+      
+      display: flex;
+      align-items: center;
+
+      width: 24px;
+      height: 24px;
+
+      z-index: 100;
+
+      .icon { 
+        margin: 0 10px;
+
+      }
     `
