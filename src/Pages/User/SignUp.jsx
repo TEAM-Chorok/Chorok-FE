@@ -4,9 +4,11 @@ import styled from 'styled-components';
 import Grid from '../../Elements/Grid';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { ReactComponent as Logo} from '../../Assets/img/logo/leafLogo.svg';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
 import { idCheck, pwdCheck } from '../../Shared/RegEx';
 import { userAPI } from '../../Shared/api';
+import { Alert2 } from '../../Components';
 //1. 회원가입 이메일 . 비밀번호 . 닉네임 정규식  > const emailCheck, passwordCheck, nicknameCheck
 //2. 프로필 이미지 용량 제한
 
@@ -34,6 +36,10 @@ const SignUp = () => {
     const [profileImgUrl, setProfileImageUrl] = React.useState(null);
     const [nickname, setNickname] = React.useState("");
     const [preview, setPreview] = React.useState("img/profilepreview.svg");
+
+    // alert 모달 open/close
+     const [open, setOpen] = React.useState(false);
+     const [message, setMessage] = React.useState("");
 
     //회원가입 페이지 내 이동
     const showNextPage = (i) => {
@@ -70,7 +76,8 @@ const SignUp = () => {
       })
       .catch((error) => {
         console.log(error);
-        window.alert('연결에 실패하였습니다.');
+        setOpen(open);
+        setMessage("연결에 실패하였습니다. ")
       })
     }
     //비밀번호 일치 확인
@@ -91,18 +98,22 @@ const SignUp = () => {
       })
       .catch((error) => {
         console.log(error);
-        window.alert('연결에 실패하였습니다.');
+        setOpen(true);
+        setMessage("연결에 실패하였습니다. ")
       })
     }
 
     //회원가입! 
     const signUp = () => {
       if(nickname === "") {
-        window.alert('닉네임을 작성해주세요! ');
+        setOpen(open);
+        setMessage("닉네임을 작성해주세요. ")
+        console.log(message);
         return;
       }
       // 나중에 여기서 dispatch해서 넘겨줄것
       dispatch(userActions.signUpDB(userEmail, password, nickname, profileImgUrl));
+      showNextPage(nextPage);
     }
     
     return (
@@ -239,6 +250,7 @@ const SignUp = () => {
                 )
               }
             </SingUpPage> 
+            
           </Grid>: 
           
             (nextPage === 2 ? 
@@ -289,18 +301,19 @@ const SignUp = () => {
                     
                   </Grid>
                   <Grid width="100%" margin="42px 0px 0px 0px ">
-                  {duplicatedNickname === "" || duplicatedNickname === true? 
+                  {duplicatedNickname === "" || duplicatedNickname === true || nickname === ""? 
                     <Button disabled={true} type="square" color="#F4F4F4" name="signup_submit" >회원가입</Button> 
                     :
-                    <Button type="square" fontColor="#fff" name="signup_submit" _onClick={()=>{signUp(); showNextPage(nextPage);}}>회원가입</Button>
+                    <Button type="square" fontColor="#fff" name="signup_submit" _onClick={()=>{signUp(); }}>회원가입</Button>
                   }
                   </Grid>
-                </ProfileWrap> 
-              </Grid> :
+                </ProfileWrap>                 
+              </Grid>
+               :
 
               <Grid width="100%">
                 <Grid margin="160px auto 32px auto">
-                  <img src="img/Logo/LOGO.svg" />
+                  <Logo />
                 </Grid>
                 <Grid margin="10px auto">
                   <Text weight="700">초록 가입을 환영합니다👍</Text>
@@ -316,14 +329,20 @@ const SignUp = () => {
                   </Grid>
                 </Grid>
 
-                
-                {/* <Grid margin="auto" align="center">
-                  <Text size="small">다시 로그인을 하시면 초록을 이용하실 수 있습니다.</Text>
-                  <Button onClick={()=>history.push('/login')}
-                  variant="text" style={{color: "#42BE65", margin:"50px auto", fontWeight:"700"}}>로그인하기</Button>
-                </Grid> */}
+
               </Grid>
               )}
+              {
+                open ?
+                <AlertBox>
+                  <Alert2 open={open} setOpen={setOpen} btn1={"확인"} func={setOpen(false)}>
+                    <Text bold wordbreak size="small">
+                      {message}
+                    </Text>
+                  </Alert2>
+                </AlertBox> 
+                : null
+              }
         </Container>
       </React.Fragment>
     )
@@ -349,5 +368,12 @@ const Image = styled.img`
 width: 134px;
 height: 134px;
 border-radius: 134px;
+`
+
+const AlertBox = styled.div`
+  position: absolute;
+  top: 0;
+  padding-top: 40vh;
+  width: 100%;
 `
 export default SignUp;

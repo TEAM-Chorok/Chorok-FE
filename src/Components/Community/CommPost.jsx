@@ -25,7 +25,6 @@ const CommPost = (props) => {
   const toggleLike = () => {
     if (like === false && isLogin) {
       setLike(true);
-      console.log(like);
       dispatch(postActions.likePostDB(props.category, post.postId));
     } else {
       setLike(false);

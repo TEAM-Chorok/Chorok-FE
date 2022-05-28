@@ -40,6 +40,39 @@ const Alert2 = (props) => {
                 <Grid width="200px" margin="auto">
                   {children}
                 </Grid>
+                <Grid is_flex margin="24px auto 0 auto" width="100%" align="center" padding="0 16px">
+                <Grid width="100%">
+                  <Button type="square" color="#F4F4F4"  _onClick={() => {
+                    if (func) {
+                      props.setOpen(false);
+                    } else if (error) {
+                      history.replace(error);
+                    } 
+                  }}>
+                    <Text size="base">
+                      {btn1}
+                    </Text>
+                  </Button>
+                </Grid>
+                {btn2 ? <Grid width="8px"/> : null }
+                {btn2 ?
+                  <Grid width="100%">
+                    <Button type="square"  color="#F4F4F4" _onClick={() =>  {
+                    if (func) {
+                     func();
+                    } else if (error) {
+                      history.replace(error);
+                    } 
+                  }}>
+                      <Text size="base" color="#FA4D56">
+                        {btn2}
+                      </Text>
+                    </Button>
+                  </Grid>
+                  :
+                  <></>
+                }
+              </Grid>
               </InnerWrap2>
             </Modal>
           </>

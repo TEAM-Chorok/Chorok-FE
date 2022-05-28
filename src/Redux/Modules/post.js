@@ -100,7 +100,6 @@ const getPostListDB_login = (category, page) => {
         })
         .catch((error) => {
           console.log('error: ', error);
-          window.alert('게시글을 불러오지 못하였습니다.');
         })
     }
     if (category !== "all") {
@@ -111,7 +110,6 @@ const getPostListDB_login = (category, page) => {
         })
         .catch((error) => {
           console.log('error: ', error);
-          window.alert('게시글을 불러오지 못하였습니다.');
         })
     }
   }
@@ -127,7 +125,6 @@ const getPostListDB_non_login = (category, page) => {
         })
         .catch((error) => {
           console.log('error: ', error);
-          window.alert('게시글을 불러오지 못하였습니다.');
         })
     }
     if (category !== "all") {
@@ -138,7 +135,6 @@ const getPostListDB_non_login = (category, page) => {
         })
         .catch((error) => {
           console.log('error: ', error);
-          window.alert('게시글을 불러오지 못하였습니다.');
         })
     }
   }
