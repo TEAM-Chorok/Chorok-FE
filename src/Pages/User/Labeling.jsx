@@ -6,6 +6,8 @@ import { GeneralHeader, Questionnaire, Questionnaire2, Questionnaire3, Questionn
 import { useDispatch } from 'react-redux';
 import { actionCreators as labelActions } from '../../Redux/Modules/Label';
 import Recommendation from './Recommendation';
+import { ReactComponent as LeafLogo} from '../../Assets/img/logo/leafLogo.svg';
+import { ReactComponent as LeafLogoShadow } from '../../Assets/img/logo/leafLogoShadow.svg';
 
 const Labeling = () => {
   const dispatch = useDispatch();
@@ -61,8 +63,8 @@ const Labeling = () => {
         </Grid>
         <Grid margin="0px auto" align="center" position="absolute" top="250px" left="38%">
           {/*추후 애니메이션 넣기*/}
-          <Img className="labelingLogo" src="img/Logo/LOGO.svg" />
-          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position: "absolute", top:"84px", left: "30px"}}/>
+          <LeafLogo className="labelingLogo" />
+          <LeafLogoShadow style={{width:"30px", position: "absolute", top:"84px", left: "30px"}}/>
         </Grid>
       </Container>
     </React.Fragment>

@@ -46,9 +46,11 @@ const MyPlants = () => {
                         return (
                             <Contents key={index}>
                                 <Image type="circle" size="96px"
-                                    imgUrl={p.myPlantImgUrl ? p.myPlantImgUrl : '/img/plantProfile.svg'} />
-                                <Text display="block">
-                                    {p?.myPlantName.length < 6 ? p.myPlantName : p.myPlantName.slice(0, 4) + '...'}</Text>
+                                    imgUrl={p.myPlantImgUrl ? p.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileLarge.svg'} />
+                                <Grid margin="6px auto 0px auto">
+                                    <Text display="block">
+                                        {p?.myPlantName.length < 6 ? p.myPlantName : p.myPlantName.slice(0, 4) + '...'}</Text>
+                                </Grid>
                                 <Text size="small" color="#6F6F6F" display="block">
                                     {p.plantName.length < 6 ? p.plantName : p.plantName.slice(0, 5) + '...'}</Text>
                             </Contents>

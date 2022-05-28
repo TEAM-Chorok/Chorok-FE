@@ -12,16 +12,17 @@ const Recommendation = (props) => {
     const plantId = recommend?.plantId;
     const plantName = recommend?.plantName;
     const plantImgUrl = recommend?.plantImgUrl;
+    const result = recommend?.result;
 
   if(!plantName || !plantImgUrl) {
     return (
       <>
         <Container>
           <Grid width="100%" height="100vh"> 
-          <Grid margin="0px auto" align="center">
+          <Grid margin="100px auto" align="center">
           {/*추후 애니메이션 넣기*/}
-          <Img className="labelingLogo" src="img/Logo/LOGO.svg" />
-          <img src="img/Logo/LOGO SHADOW.png" style={{width:"30px", position:"absolute", top:"328px", left:"154px"}}/>
+          <LeafLogo className="labelingLogo" />
+          <LeafLogoShadow style={{width:"30px", position:"absolute", top:"328px", left:"154px"}}/>
         </Grid>
             <div style={{ position: "absolute", top: "387px", right: "78px", textAlign:"center"}}>
               <Text bold color="#262626" size="large" display="block" margin="0px auto">열심히 취향 분석 중!<br />곧 맞춤 식물을 알려드릴게요!👍</Text>
@@ -29,6 +30,34 @@ const Recommendation = (props) => {
           </Grid>
         </Container>
       </>
+    )
+  }
+  if(result === false){
+    return(
+      <React.Fragment>
+        <Container>
+              <Grid width="100%" >
+                <Grid display="grid" margin="80px auto 0px auto">
+                  <LeafLogo />
+                  <Grid margin="4px auto">
+                    <LeafLogoShadow />
+                  </Grid>
+                </Grid>
+              
+                  <InnerWrap>
+                    <Text size="large" weight="700">집사님을 위한 <span style={{color:"#0AAF42"}}>추천 식물</span> 도착!</Text> <br />
+                    <Text size="base" weight="700">조건에 맞는 식물이 없네요🥲 <br /> 이런 식물은 어떠세요?</Text>
+                    <Image imgUrl={plantImgUrl} type="circle" size="148px" margin="20px auto 8px auto"/>
+                    <Text size="base" weight="700">{plantName}</Text>
+                  </InnerWrap>
+                  <BottomWrap>
+                        <PrimaryBtn 
+                        onClick={()=>history.replace(`/plant/${plantId}`)}>이 식물에 대해 더 알아보기</PrimaryBtn>
+                        <ExitBtn onClick={()=>history.replace('/home')}>종료하기</ExitBtn>
+                  </BottomWrap>
+              </Grid>
+          </Container>
+        </React.Fragment>
     )
   }
     return(
