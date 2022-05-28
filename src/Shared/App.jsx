@@ -37,7 +37,7 @@ function App() {
       <ThemeProvider theme={theme} >
         <Wrap>
           <MobileFrame className="MobileFramePage">
-          {/* <Frame className='frame'/> */}
+          <Frame className='frame'/>
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/logIn" exact component={LogInEmail} />
@@ -112,11 +112,11 @@ const Wrap = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
 
-  ${'' /* @media ${({ theme }) => theme.device.labtop} {
+  @media ${({ theme }) => theme.device.labtop} {
   background-image: url('/img/background/labtop.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  } */}
+  }
 
   @media ${({ theme }) => theme.device.tablet} {
   background-image: url('/img/background/tablet.svg');

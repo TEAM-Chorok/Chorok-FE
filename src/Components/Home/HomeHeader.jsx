@@ -32,6 +32,7 @@ const HomeHeader = () => {
     if (!navigator.geolocation) {
       // navigator.geolocation 지원하지 않을 경우
       setStatus('위치를 조회할 수 없습니다.');
+      setLocation(false);
     } else {
       navigator.geolocation.getCurrentPosition((position) => {
         setStatus("위치를 조회중입니다.")
@@ -91,7 +92,7 @@ const HomeHeader = () => {
   return (
     <React.Fragment>
       <Div>
-        {location ?
+        {location || weatherData ?
           <GridBox bg={color}>
             <Grid width="100%" padding="24px 16px">
               {/* <Text size="XS" color="#999">{date}</Text> */}

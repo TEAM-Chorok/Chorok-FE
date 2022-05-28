@@ -18,8 +18,16 @@ const TodoContent = () => {
   const todoList = useSelector((state) => state?.main?.todo);
   const [plantNo, setPlantNo] = React.useState(null);
 
+  const scrollRef = React.useRef([]);
+  const [currentTab, setCurrentTab] = React.useState();
+
+  const scroll = (index) => {
+    scrollRef.current[index].scrollIntoView();
+    setCurrentTab(scrollRef.current[index]);
+  }
+
   React.useEffect(() => {
-    if(is_login) {
+    if (is_login) {
       dispatch(mainActions.getSentenceDB());
       dispatch(mainActions.getMyPlantDB());
       dispatch(mainActions.getTodoListDB());
@@ -39,30 +47,34 @@ const TodoContent = () => {
             </SentenceBox>
           </Grid>
           <Grid width="100%" margin="-10px 0 16px 0">
-            <TodoProfile 
-            plantNo={plantNo} 
-            setPlantNo={setPlantNo} 
-            // selectPlant={selectPlant} 
+
+            <TodoProfile
+              plantNo={plantNo}
+              setPlantNo={setPlantNo}
+              scroll={scroll}
             />
+
           </Grid>
         </TitleBox>
 
         <Wrapper bg={todoList?.length ? "#F7F8FA" : "#fff"}>
           <Grid margin="-8px auto 16px auto" width="100%">
-          <Grid width="100%">
-            <EventBannerBox onClick={() => { history.push('/event'); }}>
-              <EventItem className="item"/>
-            </EventBannerBox> 
-          </Grid>
-            {/* <EventBanner style={{ filter: 'drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.16))' }} onClick={() => { history.push('/event'); }} /> */}
+            <Grid width="100%">
+              <EventBannerBox onClick={() => { history.push('/event'); }}>
+                <EventItem className="item" />
+              </EventBannerBox>
+            </Grid>
           </Grid>
           {todoList ?
             <>
               {todoList?.map((plant, idx) => {
                 return (
-                  <TodoBox key={plant.myPlantNo} id={plant.myPlantNo}>
+                  <TodoBox 
+                    key={plant.myPlantNo} 
+                    id={plant?.myPlantNo}
+                    ref={el => (scrollRef.current[idx] = el)}>
                     <Grid is_flex margin="8px 0" align="center">
-                      <Image type="circle" filter="drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.12))" size="32px" imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileSmall.svg'} />
+                      <Image type="circle" filter="drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.12))" size="32px" imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileSmall.svg'} />
                       <GridRowBox>
                         <Text size="small">{plant.myPlantName}</Text>
                         <Text size="xsmall" weight="400" color="#525252">{plant.plantName} · {plant.myPlantPlace}</Text>
@@ -106,15 +118,15 @@ const TodoContent = () => {
                   <Arrow className="arrow" />
                 </Grid>
               </LinkBox>
-              {is_login?
-              <LinkBox onClick={() => { history.push('/plant') }}>
-                <Grid width="100%" padding="13px 16px">
-                  <Text size="xsmall" color="#24A148">식물을 키우고 있다면</Text><br />
-                  <Text size="large">식물 추가하기</Text>
-                  <Arrow className="arrow" />
-                </Grid>
-              </LinkBox>
-              : null }
+              {is_login ?
+                <LinkBox onClick={() => { history.push('/plant') }}>
+                  <Grid width="100%" padding="13px 16px">
+                    <Text size="xsmall" color="#24A148">식물을 키우고 있다면</Text><br />
+                    <Text size="large">식물 추가하기</Text>
+                    <Arrow className="arrow" />
+                  </Grid>
+                </LinkBox>
+                : null}
             </>
           }
           <Grid height="100px" />
@@ -215,8 +227,8 @@ const EventBannerBox = styled.div`
   background-size: cover;
   background-position: center;
 
-  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.16));
-
+  ${'' /* filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.16)); */}
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
   .item {
     position: absolute;
     bottom: 0;

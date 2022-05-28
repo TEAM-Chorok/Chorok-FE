@@ -26,7 +26,7 @@ const Login = () => {
         <Container>
           <InnerDiv>
             {/* 로고 */}
-            <Text display="block" line="36px" fontSize="26px" weight="700" color="#ffffff" >내 공간에 <br />활기를 더해줄,<br />초록</Text>
+            <TitleText>내 공간에 <br />활기를 더해줄,<br />초록</TitleText>
           </InnerDiv>
           
           <InnerDiv style={{marginTop:"148px"}}>
@@ -54,7 +54,7 @@ const Login = () => {
                 variant='contained' 
                 style={{textAlign:"center", display:"block", width:"100%", fontWeight:"700",height: "48px", alignItems:"center", backgroundColor:"#FFFFFF ", padding:"14px", borderRadius:"6px",  color:"#392020", boxShadow:"none", boxSizing:"border-box"}}>
                   <img src="img/logo_google.svg" style={{margin:"0px 4px"}}/>
-                   구글로 계속하기</Button>
+                  구글로 계속하기</Button>
             </Grid> */}
 
               <Grid width="100%" margin="8px 0px 0px 0px">
@@ -105,4 +105,13 @@ height: 100vh;
 background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url('/img/LoginPage.svg');
 background-size: cover;
 `
+
+const TitleText = styled.div`
+  font-family: 'SUIT';
+  font-size: 26px;
+  color: #fff;
+  font-weight: 700;
+  line-height: 36px;
+`
+
 export default Login;

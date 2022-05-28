@@ -27,35 +27,35 @@ const TodoProfile = (props) => {
       <XdragScroll>
 
         <Grid is_flex>
-          <PlantProfile 
-            checked={unCheck} 
-            name="전체" 
-            imgUrl="/img/todoIcons/all.svg" 
+          <PlantProfile
+            checked={unCheck}
+            name="전체"
+            imgUrl="/img/todoIcons/all.svg"
             _onClick={() => {
               props.setPlantNo(null);
               setUnCheck(true);
             }}
-            />
+          />
 
-        {myPlant?.map((plant, idx) => {
-          return ( 
-            <a href={'#'+plant.myPlantNo} key={plant?.myPlantNo} >
-            <PlantProfile
-              checked={plant?.myPlantNo === props.plantNo? true : false}
-              name={plant?.myPlantName.length<6? plant.myPlantName : plant.myPlantName.slice(0,4)+'...'} 
-              plant={plant.plantName.length < 6? plant.plantName : plant.plantName.slice(0, 5)+'...'} 
-              imgUrl={plant.myPlantImgUrl? plant.myPlantImgUrl : "/img/nonImageIcons/nonImagePlantProfile.svg" }
-              _onClick={() => {
-                props.setPlantNo(plant.myPlantNo);
-                setUnCheck(false);
-              }}
-              />
-            </a>
-          );
+          {myPlant?.map((plant, idx) => {
+            return (
+                <PlantProfile
+                  key={plant?.myPlantNo}
+                  checked={plant?.myPlantNo === props.plantNo ? true : false}
+                  name={plant?.myPlantName.length < 6 ? plant.myPlantName : plant.myPlantName.slice(0, 4) + '...'}
+                  plant={plant.plantName.length < 6 ? plant.plantName : plant.plantName.slice(0, 5) + '...'}
+                  imgUrl={plant.myPlantImgUrl ? plant.myPlantImgUrl : "/img/nonImageIcons/nonImagePlantProfile.svg"}
+                  _onClick={() => {
+                    props.setPlantNo(plant.myPlantNo);
+                    props.scroll(idx);
+                    setUnCheck(false);
+                  }}
+                />
+            );
         })}
         {is_login? 
           <PlantProfile imgUrl="/img/todoIcons/plus.svg" _onClick={openAddPlant}/>
-        : null }
+        : null}
         </Grid>
 
       </XdragScroll>
