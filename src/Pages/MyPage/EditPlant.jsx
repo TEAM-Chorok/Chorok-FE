@@ -74,8 +74,6 @@ const EditPlant = () => {
       window.alert('식물의 별명을 지어주세요 :)');
       return;
     }
-
-    console.log(myPlantId, myPlantName, placeValue, place, plantImgUrl, preview);
     dispatch(myActions.editMyPlantDB(myPlantId, myPlantName, place, plantImgUrl, preview))
   }
 
@@ -111,7 +109,7 @@ const EditPlant = () => {
               <Image
                 margin="10px auto" size="120px"
                 type="circle"
-                imgUrl="/img/plantProfile.svg"
+                imgUrl="/img/nonImageIcons/nonImagePlantProfileLarge.svg"
                 alt="preview-img" />
             )
           }

@@ -99,7 +99,13 @@ export const labelAPI = {
     answer2: answer2, 
     answer3: answer3, 
     answer4: answer4
+  },  {
+    headers: {
+      "Authorization": `${localStorage.getItem('token')}`,
+    }
   }
+  ),
+  labeling_nonLogin: (answer1, answer2, answer3, answer4) => api.get(`/auth/labeling?answer1=${answer1}&answer2=${answer2}&answer3=${answer3}&answer4=${answer4}`,
   )
 }
 

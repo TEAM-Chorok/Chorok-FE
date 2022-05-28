@@ -45,11 +45,9 @@ const initialState = {
 // 식물도감 필터링 
 const plantFilteringDB = (filterData, page) => {
   return function (dispatch, getState, { history }) {
-    // console.log("plantFilteringDB : filterData", filterData)
     searchAPI
     .plantFiltering(filterData, page)
     .then((response) => {
-      // console.log("plantFilteringDB : response", response.data.plantList);
       dispatch(plantFiltering(response.data, filterData));
     }).catch((error) => {
       console.log("plantFilteringDB : error", error.response);
@@ -64,7 +62,6 @@ const getPlantDictDB = (page) => {
     searchAPI
     .getPlantDict(page)
     .then((response) => {
-      // console.log("getPlantDictDB : response", response.data);
       dispatch(getPlantDict(response.data))
     }).catch((error) => {
       console.log("getPlantDictDB : error", error.response);
@@ -79,7 +76,6 @@ const getPlanteriorListDB = (page) => {
   searchAPI
   .getPlanteriorList(page)
   .then((response) => {
-    // console.log("getPlanterior : response", response.data);
     dispatch(getPlanterior(response.data))
   }).catch((error) => {
       console.log("getPlanterior : error", error.response);
@@ -93,7 +89,6 @@ const planteriorFilteringDB = (placeCode, page) => {
     searchAPI
     .planteriorFiltering(placeCode, page)
     .then((response) => {
-      // console.log("planteriorFiltering : response", response.data);
       dispatch(planteriorFiltering(response.data))
     }).catch((error) => {
       console.log("planteriorFiltering : error", error.response);
@@ -107,7 +102,6 @@ const writePlanteriorPostDB = (postdata) => {
     searchAPI
     .writePlanteriorPost(postdata)
     .then((response) => {
-      // console.log("writePlanteriorPostDB : response", response);
       history.replace(`/planterior/post/${response.data.postId}`);
       window.location.reload();
     }).catch((error) => {
@@ -122,7 +116,6 @@ const editPlanteriorPostDB = (postdata, postId) => {
     searchAPI
     .editPlanteriorPost(postdata, postId)
     .then((response) => {
-      // console.log("editPlanteriorPostDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
       window.location.reload()
     }).catch((error) => {
@@ -137,7 +130,6 @@ const deletePlanteriorPostDB = (postId) => {
     searchAPI
     .deletePlanteriorPost(postId)
     .then((response) => {
-      // console.log("deletePlanteriorPostDB : response", response);
       history.replace('/search');
       window.location.reload();
     }).catch((error) => {
@@ -152,7 +144,6 @@ const likePlanteriorPostDB = (postId) => {
     searchAPI
     .likePlanteriorPost(postId)
     .then((response) => {
-      // console.log("likePlanteriorPostDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("likePlanteriorPostDB : error", error.response);
@@ -166,7 +157,6 @@ const bookMarkPlanteriorPostDB = (postId) => {
     searchAPI
     .bookMarkPlanteriorPost(postId)
     .then((response) => {
-      // console.log("bookMarkPlanteriorPostDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("bookMarkPlanteriorPostDB : error", error.response);
@@ -180,7 +170,6 @@ const writePlanteriorCommentDB = (commentdata) => {
     searchAPI
     .writePlanteriorComment(commentdata)
     .then((response) => {
-      // console.log("writePlanteriorCommentDB : response", response);
       dispatch(getPlanteriorDetailDB(commentdata.postId));
     }).catch((error) => {
       console.log("writePlanteriorCommentDB : error", error.response);
@@ -194,7 +183,6 @@ const editPlanteriorCommentDB = (editdata, postId) => {
     searchAPI
     .editPlanteriorComment(editdata)
     .then((response) => {
-      // console.log("editPlanteriorCommentDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("editPlanteriorCommentDB : error", error.response);
@@ -208,7 +196,6 @@ const deletePlanteriorCommentDB = (commentId, postId) => {
     searchAPI
     .deletePlanteriorComment(commentId)
     .then((response) => {
-      // console.log("deletePlanteriorCommentDB : response", response);
       dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("deletePlanteriorCommentDB : error", error.response);
@@ -223,7 +210,6 @@ const getPlanteriorDetailDB = (postId) => {
     searchAPI
       .getPlanteriorDetail(postId)
       .then((response) => {
-        // console.log("getPlanteriorDB : response", response.data);
         dispatch(getPlanteriorDetail(response.data));
       }).catch((error) => {
         console.log("getPlanteriorDetailDB : error", error.response);
@@ -237,7 +223,6 @@ const keywordSearchingDB = (value) => {
     searchAPI
     .keywordSearching(value)
     .then((response) => {
-      // console.log("keywordSearchingDB : searching", response.data);
       dispatch(keywordSearching(response.data))
     }).catch((error) => {
       console.log("keywordSearchingDB : error", error.response);
@@ -251,7 +236,6 @@ const keywordSearchingPhotoDB = (value, page) => {
     searchAPI
     .keywordSearchingPhoto(value, page)
     .then((response) => {
-      // console.log("keywordSearchingPhotoDB : searching", response.data);
       dispatch(keywordSearchingPhoto(response.data, value));
     }).catch((error) => {
       console.log("keywordSearchingPhotoDB : error", error.response);
@@ -265,7 +249,6 @@ const keywordSearchingPhotoPlaceDB = (value, page) => {
     searchAPI
     .keywordSearchingPhotoPlace(value, page)
     .then((response) => {
-      // console.log("keywordSearchingPhotoPlaceDB : searching", response.data.content);
       dispatch(keywordSearchingPhotoPlace(response.data.content))
     }).catch((error) => {
       console.log("keywordSearchingPhotoPlaceDB : error", error.response);
@@ -276,12 +259,9 @@ const keywordSearchingPhotoPlaceDB = (value, page) => {
 // 탐색탭 키워드 검색 - 식물도감
 const keywordSearchingPlantDB = (value, page) => {
   return function (dispatch, getState, {history}) {
-    // console.log("요청해요", value, page);
     searchAPI
     .keywordSearchingPlant(value, page)
     .then((response) => {
-      // console.log("받았어요", response.data.page);
-      // console.log("keywordSearchingPlantDB : searching", response.data.plantList);
       dispatch(keywordSearchingPlant(response.data, value));
     }).catch((error) => {
       console.log("keywordSearchingPlantDB : error", error.response);
@@ -295,7 +275,6 @@ const getRecommendDB = () => {
     searchAPI
     .getRecommend()
     .then((response) => {
-      // console.log("getRecommendDB : recommend", response);
       dispatch(getRecommend(response.data));
     }).catch((error) => {
       console.log("getRecommendDB : error", error.response);
@@ -308,7 +287,6 @@ const getRecommendDB = () => {
 export default handleActions(
   {
     [PLANT_FILTERING]: (state, action) => produce(state, (draft) => {
-      // console.log("PLANT_FILTERING : searchList", action.payload);
       if (action.payload.searchlist.page > 0) {
         draft.plantDictList.content.push(...action.payload.searchlist.content);
       } else {
@@ -318,7 +296,6 @@ export default handleActions(
       draft.plantDictList.page = action.payload.searchlist.page;
     }),
     [GET_PLANTERIORLIST]: (state, action) => produce(state, (draft) => {
-      // console.log("GET_PLANTERIORLIST : planteriorList", action.payload.planteriorlist);
       if(action.payload.planteriorlist.page > 0) {
         draft.planteriorList.content.push(...action.payload.planteriorlist.content);
       } else {
@@ -327,7 +304,6 @@ export default handleActions(
       draft.planteriorList.page = action.payload.planteriorlist.page;
     }),
     [PLANTERIOR_FILTERING]: (state, action) => produce(state, (draft) => {
-      // console.log("PLANTERIOR_FILTERING : planteriorList", action.payload.filteringdata);
       if (action.payload.filteringdata.page > 0) {
         draft.planteriorList.content.push(...action.payload.filteringdata.content);
       } else {
@@ -336,19 +312,15 @@ export default handleActions(
       draft.planteriorList.page = action.payload.filteringdata.page;
     }),
     [PLANTERIOR_DETAIL]: (state, action) => produce(state, (draft) => {
-      // console.log("PLANTERIOR_DETAIL : planteriordetail", action.payload.planteriordetail);
       draft.planterior = action.payload.planteriordetail;
     }),
     [GET_RECOMMEND]: (state, action) => produce(state, (draft) => {
-      // console.log("GET_RECOMMEND : recommendList", action.payload.recommendlist);
       draft.recommendlist = action.payload.recommendlist;
     }),
     [KEYWORD_SEARCHING]: (state, action) => produce(state, (draft) => {
-      // console.log("KEYWORD_SEARCHING : searchingdata", action.payload.searchingdata);
       draft.result = action.payload.searchingdata;
     }),
     [KEYWORD_SEARCHING_PHOTO]: (state, action) => produce(state, (draft) => {
-      // console.log("KEYWORD_SEARCHING_Photo : searchingdata", action.payload.searchingdata);
       if (action.payload.searchingdata.page > 0) {
         draft.resultPhoto.content.push(...action.payload.searchingdata.content);
       } else {
@@ -358,7 +330,6 @@ export default handleActions(
       draft.resultPhoto.page = action.payload.searchingdata.page;
     }),
     [KEYWORD_SEARCHING_PLANT]: (state, action) => produce(state, (draft) => {
-      // console.log("KEYWORD_SEARCHING_Plant : searchingdata", action.payload.searchingdata);
       if (action.payload.searchingdata.page > 0) {
         draft.resultPlant.content.push(...action.payload.searchingdata.content);
       } else {
@@ -368,7 +339,6 @@ export default handleActions(
       draft.resultPlant.page = action.payload.searchingdata.page;
     }),
     [GET_PLANT_DICT]: (state, action) => produce(state, (draft) => {
-      // console.log("GET_PLANT_DICT : plantlist", action.payload.plantlist);
       if (action.payload.plantlist.page > 0) {
         draft.plantDictList.content.push(...action.payload.plantlist.content);
       } else {

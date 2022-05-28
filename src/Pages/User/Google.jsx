@@ -12,7 +12,6 @@ const Google = (props) => {
     }, [params])
 
     const getAccessToken = async(params)=>{
-           console.log(params);
         params = params.split("&")
         const param = new Array();
         for(var i = 0; i<params.length; i++){

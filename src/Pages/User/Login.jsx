@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { KAKAO_AUTH_URL } from '../../Shared/OAuthKaKao.js';
 import { GOOGLE_AUTH_URL } from '../../Shared/OAuthGoogle.js';
+import { ReactComponent as KakaoIcon} from '../../Assets/img/logo/kakaoLogo.svg';
+import { ReactComponent as GoogleIcon} from '../../Assets/img/logo/googleLogo.svg';
 
 const Login = () => {
   const history = useHistory();
@@ -24,7 +26,7 @@ const Login = () => {
         <Container>
           <InnerDiv>
             {/* 로고 */}
-            <Text display="block" fontSize="26px" bold color="#ffffff" >내 공간에 <br />활기를 더해줄,<br />초록</Text>
+            <Text display="block" line="36px" fontSize="26px" weight="700" color="#ffffff" >내 공간에 <br />활기를 더해줄,<br />초록</Text>
           </InnerDiv>
           
           <InnerDiv style={{marginTop:"148px"}}>
@@ -33,7 +35,7 @@ const Login = () => {
                 <a href={KAKAO_AUTH_URL}><div
                   style={{ placeItems: "self-start", display: "grid", gridTemplateColumns: "0.3fr 0.15fr 0.8fr", width: "100%", fontWeight: "500", height: "48px", alignItems: "center", backgroundColor: "#FEE500 ", padding: "14px", borderRadius: "6px", color: "#242424", boxShadow: "none", boxSizing: "border-box" }}>
                   <div></div>
-                  <img src="img/socialLoginLogo/kakao 1.svg" style={{ margin: "0px 4px" }} />
+                  <KakaoIcon />
                   <Text size="small" bold>카카오로 계속하기</Text>
                 </div></a>
               </Grid>
@@ -41,7 +43,7 @@ const Login = () => {
                 <a href={GOOGLE_AUTH_URL}><div
                   style={{ placeItems: "self-start", display: "grid", gridTemplateColumns: "0.35fr 0.15fr 0.8fr", width: "100%", fontWeight: "500", height: "48px", alignItems: "center", backgroundColor: "#FFFFFF ", padding: "14px", borderRadius: "6px", color: "#392020", boxShadow: "none", boxSizing: "border-box" }}>
                   <div></div>
-                  <img src="img/socialLoginLogo/logo_google.svg" style={{ margin: "0px 4px" }} />
+                  <GoogleIcon />
                   <Text size="small" bold>구글로 계속하기</Text>
                 </div></a>
               </Grid>

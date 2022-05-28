@@ -15,7 +15,6 @@ const ScrapPlantList = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const scrapPlants = useSelector(state => state.mypage?.scrapPlant?.content);
-    console.log(scrapPlants);
 
     useEffect(() => {
         dispatch(MyActions.getScrapPlantListDB());

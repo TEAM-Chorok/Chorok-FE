@@ -14,8 +14,6 @@ const MyPlants = () => {
     const scrapPlantList = useSelector(state => state.mypage?.scrapPlantList);
     const scrapPlantCount = useSelector(state => state.mypage?.scrapPlantCount);
 
-    console.log(scrapPlantList);
-
     useEffect(() => {
         dispatch(MyActions.getMySixPlantsDB());
         dispatch(MyActions.getScrapSixPlantListDB());
@@ -44,8 +42,9 @@ const MyPlants = () => {
                 <ContentWrap>
                     {myPlantList?.map((p, index) => {
                         return (
-                            <Contents key={index}>
-                                <Image type="circle" size="96px"
+                            <Contents key={index} onClick={()=>history.push(`/myplant/${p.myPlantNo}`)}>
+                                <Image 
+                                    type="circle" size="96px"
                                     imgUrl={p.myPlantImgUrl ? p.myPlantImgUrl : '/img/nonImageIcons/nonImagePlantProfileLarge.svg'} />
                                 <Grid margin="6px auto 0px auto">
                                     <Text display="block">

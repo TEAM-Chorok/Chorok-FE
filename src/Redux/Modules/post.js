@@ -77,7 +77,6 @@ const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
         postAPI
             .addPost(formData)
             .then((res) => {
-                console.log("response:" , res);
                 dispatch(addPost(res)); // 데이터 주나 안주나
                 history.push(`/community`);
                 window.location.reload();
@@ -97,7 +96,6 @@ const getPostListDB_login = (category, page) => {
       postAPI
         .getAllPost_login(page)
         .then((res) => {
-          console.log(res.data);
           dispatch(getPostList(res.data));
         })
         .catch((error) => {
@@ -150,11 +148,9 @@ const getPostListDB_non_login = (category, page) => {
 const getDetailPostDB = (postId) => {
   const _postId = parseInt(postId);
   return function (dispatch, getState, { history }) {
-    console.log("게시글 detail 조회", _postId);
     postAPI
       .getDetailPost(_postId)
       .then((response) => {
-        console.log(response.data);
         dispatch(getDetailPost(response.data));
       })
       .catch((err) => {
@@ -168,11 +164,9 @@ const getDetailPostDB = (postId) => {
 //커뮤니티 글 삭제
 const deletePostDB = (postId) => {
     return function(dispatch, getState, { history }) {
-        console.log("게시글 삭제요청", postId);
         postAPI
             .deletePost(postId)
             .then((response) => {
-                console.log("게시글 삭제 성공");
                 dispatch(deletePost());
                 window.alert('게시글이 성공적으로 삭제되었습니다.');
                 history.push('/community');
@@ -192,7 +186,6 @@ const editPostDB = (formData, postId) => {
     postAPI
       .editPost(formData, postId)
       .then((response) => {
-        console.log("게시글 수정 성공");
         window.alert('게시글이 성공적으로 수정되었습니다.');
         history.push(`/community/${postId}`);
         window.location.reload();
@@ -211,11 +204,6 @@ const likePostDB = (category, postId) => {
     postAPI
       .likePost(postId)
       .then((res) => {
-        if (res.data.result === "true") {
-          console.log('좋아요 성공');
-        } else if (res.data.result === "false") {
-          console.log('좋아요 취소');
-        }
         dispatch(getPostListDB_login(category, 0));
       })
       .catch((err) => {
@@ -230,11 +218,6 @@ const likeDetailPostDB = (postId) => {
     postAPI
       .likePost(postId)
       .then((res) => {
-        if (res.data.result === "true") {
-          console.log('좋아요 성공');
-        } else if (res.data.result === "false") {
-          console.log('좋아요 취소');
-        }
         dispatch(getPostListDB_login(0));
         dispatch(getDetailPostDB(postId));
       })
@@ -252,7 +235,6 @@ const bookmarkPostDB = (category, postId) => {
       .bookmarkPost(postId)
       .then((res) => {
         if (res.data.result === "true") {
-          console.log(res.data.result);
           window.alert("북마크로 등록되었습니다.");
         } else {
           window.alert("북마크를 취소하였습니다.");
@@ -272,7 +254,6 @@ const bookmarkDetailPostDB = (postId) => {
       .bookmarkPost(postId)
       .then((res) => {
         if (res.data.result === "true") {
-          console.log(res.data.result);
           window.alert("북마크로 등록되었습니다.");
         } else {
           window.alert("북마크를 취소하였습니다.");
@@ -293,12 +274,10 @@ const postSearchingDB = (postTypeCode, keyword) => {
   if (postTypeCode === "all") {
     postTypeCode = ""
   }
-  console.log(postTypeCode, keyword);
   return function (dispatch, getState, { history }) {
     searchAPI
       .postSearching(postTypeCode, keyword)
       .then((res) => {
-        console.log("response : ", res.data);
         dispatch(postSearching(res.data));
         dispatch(getPostListDB_login(res.data));
       }).catch((error) => {
@@ -315,7 +294,6 @@ const addCommentDB = (postId, commentdata) => {
     postAPI
       .addComment(commentdata)
       .then((res) => {
-        console.log(res);
         dispatch(getDetailPostDB(postId));
       }).catch((error) => {
         console.log("error: ", error);
@@ -330,7 +308,6 @@ const editCommentDB = (postId, editdata) => {
       postAPI
         .editComment(editdata)
         .then((res) => {
-          console.log("response : ", res.data);
           dispatch(getDetailPostDB(postId));
         }).catch((error) => {
           console.log("error: ", error);
@@ -345,7 +322,6 @@ const deleteCommentDB = (postId, commentId) => {
       postAPI
         .deleteComment(commentId)
         .then((res) => {
-          console.log("response : ", res.data);
           dispatch(getDetailPostDB(postId));
         }).catch((error) => {
           console.log("error: ", error);

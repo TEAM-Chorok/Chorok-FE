@@ -16,8 +16,6 @@ const MyPictures = () => {
     const scrapPhotoList = useSelector(state => state.mypage?.myPlanteriorBookMarKList);
 
 
-    console.log(myPhotoList);
-
     useEffect(() => {
         dispatch(MyActions.getMyPhotoScrapedPhotoListDB());
     }, [])
@@ -46,9 +44,9 @@ const MyPictures = () => {
                     <ContentWrap>
                         {myPhotoList && myPhotoList?.map((p, idx) => {
                             return (
-                                <Contents key={idx}>
+                                <Contents key={idx} onClick={() => history.push('/mypictures')}>
                                     <Grid is_flex align="center" height="100%">
-                                        <Image type="square" borderRadius="4px" size="104px" imgUrl={p.postImgUrl} />
+                                        <Image  type="square" borderRadius="4px" size="104px" imgUrl={p.postImgUrl} />
                                     </Grid>
                                     <Grid is_flex align="center" borderRadius="20px" padding="2px 8px" bg="rgb(0,0,0,0.5)" position="absolute" bottom="6px" >
                                         <Text color="#fff" size="xxsmall" weight="500">{p.plantPlace}</Text>
@@ -94,7 +92,7 @@ const MyPictures = () => {
                     {scrapPhotoList && scrapPhotoList.map((p, idx) => {
 
                         return (
-                            <Contents key={idx}>
+                            <Contents key={idx} onClick={() => history.push('/scrap-picture')}>
                                 <Image type="square" borderRadius="4px" size="104px" imgUrl={p.postImgUrl} />
                             </Contents>
                         )

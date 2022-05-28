@@ -53,21 +53,24 @@ const LogInEmail = () => {
                 { !idCheck(userEmail) && userEmail !== "" ? 
                <Input _onChange={(e)=>{setUserEmail(e.target.value); 
                                         idCheck(e.target.value)}} 
-                type="email" borderRadius="6px" placeholder="이메일" name="user_id" padding="0px 0px 0px 20px" height="52px" width="100%" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56"/> :
+                type="email" borderRadius="6px" placeholder="이메일" name="user_id" margin="0px 0px 8px 0px" padding="0px 0px 0px 20px" height="52px" width="100%" border="1px solid #FA4D56" focusOutline="1px solid #FA4D56"/> :
                 <Input _onChange={(e)=>{setUserEmail(e.target.value);
                                         idCheck(e.target.value)}}  
-                borderRadius="6px" type="email" placeholder="이메일" name="user_id" padding="0px 0px 0px 20px" height="52px" width="100%" />
+                borderRadius="6px" type="email" placeholder="이메일" margin="0px 0px 8px 0px" name="user_id" padding="0px 0px 0px 20px" height="52px" width="100%" />
                 }
                 {
                   !idCheck(userEmail) && userEmail !== "" ? 
-                  <Text margin="0px 0px 0px 10px" color="#FA4D56" size="xsmall"> 이메일의 형식이 올바르지 않습니다.</Text> : 
+                  <Grid margin="0px 0px 8px 10px">
+                    <Text margin="0px" color="#FA4D56" size="xsmall"> 이메일의 형식이 올바르지 않습니다.</Text> 
+                  </Grid>
+                  : 
                   null
                 }
               
               <Grid position="relative" width="100%">
                   <Input 
                   _onChange={(e)=>setPassword(e.target.value)} 
-                  borderRadius="6px" type={showPwd? "shownPassword" : "password"} placeholder="비밀번호"/>
+                  borderRadius="6px" type={showPwd? "shownPassword" : "password"} margin="0px" placeholder="비밀번호"/>
               {showPwd? 
               <ShowIcon style={{position:"absolute", top:"44%", right:"16px"}} onClick={()=>setShowPwd(false)} />  : 
               <HideIcon style={{position:"absolute", top:"41%", right:"16px"}} onClick={()=>setShowPwd(true)}/> }
