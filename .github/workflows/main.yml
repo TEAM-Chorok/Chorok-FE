@@ -15,12 +15,20 @@ jobs:
         - name: Checkout source code.
           uses: actions/checkout@v1
         
-        - name: Upload binary to S3 bucket
-          uses: chorok-test/s3-sync-action@main
+        - name: Deploy
+          uses: chorok-test/s3-deploy@v1
           with:
-            args: --acl public-read --exclude '*' --include 'index.html'
-          env:
-            AWS_S3_BUCKET: ${{ secrets.BUCKET_NAME }}
+            folder: build
+            bucket: ${{ secrets.S3_BUCKET }}
+            dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+            invalidation: / *
+
+#         - name: Upload binary to S3 bucket
+#           uses: chorok-test/s3-sync-action@main
+#           with:
+#             args: --acl public-read --exclude '*' --include 'index.html'
+#           env:
+#             AWS_S3_BUCKET: ${{ secrets.BUCKET_NAME }}
             
         - name: Invalidate cache CloudFront
           uses: chetan/invalidate-cloudfront-action@main
