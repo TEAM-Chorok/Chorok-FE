@@ -78,7 +78,7 @@ const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
             .addPost(formData)
             .then((res) => {
                 dispatch(addPost(res)); // 데이터 주나 안주나
-                history.push(`/community`);
+                history.replace(`/community`);
                 window.location.reload();
             }).catch((err) => {
                 console.log("error: ", err);
@@ -165,7 +165,7 @@ const deletePostDB = (postId) => {
             .then((response) => {
                 dispatch(deletePost());
                 window.alert('게시글이 성공적으로 삭제되었습니다.');
-                history.push('/community');
+                history.replace('/community');
                 window.location.reload();
             })
             .catch((err)=>{
@@ -183,7 +183,7 @@ const editPostDB = (formData, postId) => {
       .editPost(formData, postId)
       .then((response) => {
         // window.alert('게시글이 성공적으로 수정되었습니다.');
-        history.push(`/community/${postId}`);
+        history.replace(`/community/${postId}`);
         window.location.reload();
         dispatch(getDetailPost(postId));
       })

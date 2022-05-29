@@ -70,8 +70,6 @@ function App() {
             <Route path="/planterior/edit/:postId" exact component={PlanteriorWrite} />
             <Route path="/planterior/post/:postId" exact component={PlanteriorDetail} />
 
-            <Route path="/test" exact component={SearchOnFocus} />
-
             <Route path="/community" exact component={Community} />
             <Route path="/addpost" exact component={AddPost} />
             <Route path="/community/:postId" exact component={PostDetail} />
