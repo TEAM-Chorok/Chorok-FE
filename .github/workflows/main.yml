@@ -14,17 +14,31 @@ jobs:
     steps:
         - name: Checkout source code.
           uses: actions/checkout@v1
-
-        - name: Install dependencies
-          run: yarn
-
-        - name: Build
-          run: yarn build
-
-        - name: Deploy
-          uses: lbertenasco/s3-deploy@v1
+        
+        - name: Upload binary to S3 bucket
+          uses: chorok-test/s3-sync-action@main
           with:
-            folder: build
-            bucket: ${{ secrets.S3_BUCKET }}
-            dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-            invalidation: / *
+            args: --acl public-read --exclude '*' --include 'index.html'
+          env:
+            AWS_S3_BUCKET: ${{ secrets.BUCKET_NAME }}
+            
+        - name: Invalidate cache CloudFront
+          uses: chetan/invalidate-cloudfront-action@main
+          env:
+            DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
+            PATHS: '/index.html'
+
+
+#         - name: Install dependencies
+#           run: yarn
+
+#         - name: Build
+#           run: yarn build
+
+#         - name: Deploy
+#           uses: chorok-test/s3-deploy@v1
+#           with:
+#             folder: build
+#             bucket: ${{ secrets.S3_BUCKET }}
+#             dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+#             invalidation: / *
