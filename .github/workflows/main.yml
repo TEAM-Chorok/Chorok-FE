@@ -15,14 +15,23 @@ jobs:
         - name: Checkout source code.
           uses: actions/checkout@v1
         
+        - name: Install dependencies
+          run: yarn
+
+        - name: Build
+          run: yarn build
+
         - name: Deploy
-          uses: CHOROK-FE/main@v1
+          uses: chorok-test/s3-deploy@v1
           with:
             folder: build
             bucket: ${{ secrets.S3_BUCKET }}
             dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
             invalidation: / *
 
+        
+        
+        
 #         - name: Upload binary to S3 bucket
 #           uses: chorok-test/s3-sync-action@main
 #           with:
