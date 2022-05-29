@@ -16,7 +16,7 @@ jobs:
           uses: actions/checkout@v1
         
         - name: Deploy
-          uses: chorok-test/s3-deploy@v1
+          uses: CHOROK-FE/main@v1
           with:
             folder: build
             bucket: ${{ secrets.S3_BUCKET }}
