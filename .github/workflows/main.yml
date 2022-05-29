@@ -12,7 +12,8 @@ jobs:
       AWS_DEFAULT_REGION: 'ap-northeast-2'
       
     steps:
-        - uses: actions/checkout@v1
+        - name: Checkout source code.
+          uses: actions/checkout@main
 
         - name: Install dependencies
           run: yarn
