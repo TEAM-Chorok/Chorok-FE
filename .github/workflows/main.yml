@@ -22,7 +22,7 @@ jobs:
           run: yarn build
 
         - name: Deploy
-          uses: chorok-test/s3-deploy@v1
+          uses: lbertenasco/s3-deploy@v1
           with:
             folder: build
             bucket: ${{ secrets.S3_BUCKET }}
