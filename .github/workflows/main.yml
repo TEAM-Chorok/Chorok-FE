@@ -30,11 +30,11 @@ jobs:
 #           env:
 #             AWS_S3_BUCKET: ${{ secrets.BUCKET_NAME }}
             
-        - name: Invalidate cache CloudFront
-          uses: chetan/invalidate-cloudfront-action@main
-          env:
-            DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
-            PATHS: '/index.html'
+#         - name: Invalidate cache CloudFront
+#           uses: chetan/invalidate-cloudfront-action@main
+#           env:
+#             DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
+#             PATHS: '/index.html'
 
 
 #         - name: Install dependencies
