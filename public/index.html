@@ -5,16 +5,6 @@
   <base href="/" />
   <meta charset="utf-8" />
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-229955546-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-229955546-1');
-  </script> -->
-
-
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
 
@@ -35,20 +25,48 @@
   <meta property='og:type' , content='website' />
   <meta property='og:url' , content='https://chorok.kr/' />
   <meta property="og:description" content="내 공간에 활기를 더해줄, 초록" />
-  <meta name="image" property="og:image" content="%PUBLIC_URL%/meta.png" />
+  <meta property="og:image" name="image" content="https://imgbuckett.s3.ap-northeast-2.amazonaws.com/meta.png" />
 
   <meta name='twitter:title' , content='초록 | Chorok' />
   <meta name='twitter:description' , content='내 공간에 활기를 더해줄, 초록' />
   <meta name='twitter:card' , content='photo' />
   <meta name='twitter:url' , content='https://chorok.kr/' />
-  <meta name='twitter:image' , content='%PUBLIC_URL%/meta.png' />
+  <meta name='twitter:image' , content='https://imgbuckett.s3.ap-northeast-2.amazonaws.com/meta.png' />
 
   <title> 초록 | Chorok </title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript"
     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9264f95f598e2d29370c2949214a1c07&libraries=services,clusterer"></script>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-229955546-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-229955546-1');
+  </script>
 
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '320531640081172');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=320531640081172&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 
 <body>
