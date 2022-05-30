@@ -39,14 +39,24 @@ const EditPlant = () => {
     setMyPlantName(myPlant?.myPlantName);
     setPlaceValue(myPlant?.myPlantPlace);
     setPreviousPlantPlace(myPlant?.myPlantPlace);
-    if (placeValue === "통로") { setPlace("pp01") }
-    else if (placeValue === "방안") { setPlace("pp02") }
-    else if (placeValue === "화장실") { setPlace("pp03") }
-    else if (placeValue === "거실") { setPlace("pp04") }
-    else if (placeValue === "창가") { setPlace("pp05") }
-    else if (placeValue === "베란다,발코니") { setPlace("pp06") }
+    switch(placeValue) {
+      case "통로" : 
+        setPlace("pp01");
+      case "방안" : 
+        setPlace("pp02");
+      case "통로" : 
+        setPlace("pp03");
+      case "화장실" : 
+        setPlace("pp04");
+      case "거실" : 
+        setPlace("pp05");
+      case "베란다,발코니" : 
+        setPlace("pp06");
+    }
     setPreview(myPlant?.myPlantImgUrl);
-  }, [myPlant?.myPlantName, myPlant?.myPlantPlace, myPlant?.myPlantImgUrl, previousPlace])
+  }, [myPlant?.myPlantName, myPlant?.myPlantPlace, myPlant?.myPlantImgUrl, previousPlace]);
+
+  
 
   // Base64로 인코딩하여 미리보기 이미지 출력
   const reader = new FileReader();
@@ -75,9 +85,21 @@ const EditPlant = () => {
     if (myPlantName === "  " || myPlantName === " ") {
       setOpen(true);
       setMessage("식물의 별명을 지어주세요 :)");
-      console.log(open);
-
     }else {
+      switch(placeValue) {
+        case "통로" : 
+          setPlace("pp01");
+        case "방안" : 
+          setPlace("pp02");
+        case "통로" : 
+          setPlace("pp03");
+        case "화장실" : 
+          setPlace("pp04");
+        case "거실" : 
+          setPlace("pp05");
+        case "베란다,발코니" : 
+          setPlace("pp06");
+      }
       dispatch(myActions.editMyPlantDB(myPlantId, myPlantName, place, plantImgUrl, preview));
     }
   }
