@@ -19,7 +19,18 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
-
+            
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "REACT_APP_KAKAO_REST_API_KEY=$REACT_APP_KAKAO_REST_API_KEY" >> .env.production
+          echo "REACT_APP_KAKAO_REDIRECT_URI=$REACT_APP_KAKAO_REDIRECT_URI" >> .env.production
+          echo "REACT_APP_GOOGLE_CLIENT_ID=$REACT_APP_GOOGLE_CLIENT_ID" >> .env.production
+          echo "REACT_APP_GOOGLE_CLIENT_SECURITY_PASSWORD=$REACT_APP_GOOGLE_CLIENT_SECURITY_PASSWORD" >> .env.production
+        env:
+          REACT_APP_KAKAO_REST_API_KEY: ${{ secrets.REACT_APP_KAKAO_REST_API_KEY }}
+          REACT_APP_KAKAO_REDIRECT_URI: ${{ secrets.REACT_APP_KAKAO_REDIRECT_URI }}
+          REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
+          REACT_APP_GOOGLE_CLIENT_SECURITY_PASSWORD: ${{ secrets.REACT_APP_GOOGLE_CLIENT_SECURITY_PASSWORD }}
 
       - name: yarn install 
         run: yarn install
