@@ -45,6 +45,8 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          CI: "" # 경고를 에러로 보지 않게 함
         run: |
-          aws s3 cp --recursive --region ap-northeast-2 build s3://chorok.kr
+          aws s3 cp \
+            --recursive \
+            --region ap-northeast-2 \
+            build s3://chorok.kr
