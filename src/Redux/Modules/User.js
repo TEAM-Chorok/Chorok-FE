@@ -21,11 +21,7 @@ const initialState = {
   user: null,
   isLogin: false,
 }
-const initialUser = {
-  username: "",
-  nickname : "",
-  profileImgUrl: "",
-}
+
 // 미들웨어 
 const logInDB = (username, password) => {
   return function (dispatch, getState, { history }) {
@@ -38,7 +34,7 @@ const logInDB = (username, password) => {
         history.replace('/home');
       }).catch((error) => {
         console.log("logInDB : error", error.response);
-        window.alert("이메일 혹은 비밀번호를 다시 확인해주세요.");
+        // window.alert("이메일 혹은 비밀번호를 다시 확인해주세요.");
         return;
       });
   }
@@ -74,7 +70,7 @@ const signUpDB = (username, password, nickname, profileImgUrl) => {
         history.replace('/'); 
       }).catch((err) => {
         console.log("signUpDB : error", err.response);
-        window.alert("회원가입에 실패하였습니다. 다시 시도하여주세요.")
+        // window.alert("회원가입에 실패하였습니다. 다시 시도하여주세요.")
       })
   }
 }
@@ -89,7 +85,7 @@ const emailValidationDB = (token, email) => {
         dispatch(isLoginDB());
       }).catch((err) => {
         console.log(err);
-        window.alert("이메일 인증에 실패하였습니다. 다시 시도하여주세요."); 
+        // window.alert("이메일 인증에 실패하였습니다. 다시 시도하여주세요."); 
         history.replace('/');
       })
   }
@@ -113,7 +109,7 @@ const kakaoLogInDB = (code) => {
       })
       .catch((error) => {
         console.log("error: ", error);
-        window.alert('로그인에 실패하였습니다. ')
+        // window.alert('로그인에 실패하였습니다. ')
         history.goBack();
       })
   }
@@ -133,7 +129,7 @@ const googleLogInDB = (code) => {
       }
       ).catch((error) => {
         console.log("error: ", error);
-        window.alert('로그인에 실패하였습니다. ');
+        // window.alert('로그인에 실패하였습니다. ');
         return;
         // history.goBack();
       })
@@ -148,6 +144,7 @@ const logOutDB = () => {
       .then((res) => {
         localStorage.removeItem("token");
         localStorage.removeItem("nickname");
+        localStorage.removeItem("username");
         dispatch(logOut());
         history.push('/');  
         window.location.reload();
@@ -199,7 +196,7 @@ const deactivateUserDB = () => {
         window.location.reload();
       }).catch((error) => {
         console.log("deactivate : error", error.response);
-        window.alert('회원탈퇴를 실패하였습니다.');
+        // window.alert('회원탈퇴를 실패하였습니다.');
 
       });
   }
@@ -226,13 +223,13 @@ const changePwdDB = (password) => {
     userAPI
       .changePwd(password)
       .then(() => {
-        window.alert('고객님의 비밀번호가 정상적으로 변경되었습니다.');
+        // window.alert('고객님의 비밀번호가 정상적으로 변경되었습니다.');
         history.replace('/home');
         window.location.reload();
       })
       .catch((error) => {
         console.log("logInDB : error", error.response);
-        alert("비밀번호를 다시 확인해주세요.")
+        // alert("비밀번호를 다시 확인해주세요.")
       });
   }
 }

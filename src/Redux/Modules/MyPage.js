@@ -49,7 +49,7 @@ const getMySixPlantsDB = () => {
             })
             .catch((err) => {
                 console.log("error: ", err);
-                window.alert('내 식물 리스트를 불러오는 데에 실패하였습니다.');
+                // window.alert('내 식물 리스트를 불러오는 데에 실패하였습니다.');
                 return;
             })
     }
@@ -64,7 +64,7 @@ const getMyPlantDetailDB = (myPlantNo) => {
             })
             .catch((err) => {
                 console.log("error:" , err);
-                window.alert('내 식물 상세 정보를 불러오는 데에 실패하였습니다. ')
+                // window.alert('내 식물 상세 정보를 불러오는 데에 실패하였습니다. ')
                 return;
             })
     }
@@ -80,12 +80,12 @@ const deleteMyPlantDB = (myPlantNo) => {
             })
             .catch((err) => {
                 console.log("error:" , err);
-                window.alert('내 식물 삭제하는 데에 실패하였습니다. ')
+                // window.alert('내 식물 삭제하는 데에 실패하였습니다. ');
                 return;
             })
     }
 }
-//나의 식물 수정 on process...
+//나의 식물 수정 
 const editMyPlantDB = (myPlantId, myPlantName, myPlantPlaceCode, myPlantImgUrl, originalUrl) => {
     const formData = new FormData();
     if(myPlantImgUrl === ""){
@@ -107,7 +107,7 @@ const editMyPlantDB = (myPlantId, myPlantName, myPlantPlaceCode, myPlantImgUrl, 
             })
             .catch((err) => {
                 console.log("error:" , err);
-                window.alert('내 식물 수정하는 데에 실패하였습니다. ')
+                // window.alert('내 식물 수정하는 데에 실패하였습니다. ');
                 return;
             })
     }
