@@ -1,29 +1,50 @@
-name: Chorok
-on:
-  push:
+name: React build
+on: 
+  push:                               # dev Branch에서 push 이벤트가 일어났을 때만 실행
     branches:
       - main
+ 
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: 'ap-northeast-2'
-      
+  build:
+    runs-on: ubuntu-18.04
     steps:
-        - uses: actions/checkout@v1
+      - name: Checkout source code.   # 레포지토리 체크아웃
+        uses: actions/checkout@main
 
-        - name: Install dependencies
-          run: yarn
+      - name: Cache node modules      # node modules 캐싱
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+            
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "REACT_APP_KAKAO_REST_API_KEY=$REACT_APP_KAKAO_REST_API_KEY" >> .env.production
+          echo "REACT_APP_KAKAO_REDIRECT_URI=$REACT_APP_KAKAO_REDIRECT_URI" >> .env.production
+          echo "REACT_APP_GOOGLE_CLIENT_ID=$REACT_APP_GOOGLE_CLIENT_ID" >> .env.production
+          echo "REACT_APP_GOOGLE_CLIENT_SECURITY_PASSWORD=$REACT_APP_GOOGLE_CLIENT_SECURITY_PASSWORD" >> .env.production
+        env:
+          REACT_APP_KAKAO_REST_API_KEY: ${{ secrets.REACT_APP_KAKAO_REST_API_KEY }}
+          REACT_APP_KAKAO_REDIRECT_URI: ${{ secrets.REACT_APP_KAKAO_REDIRECT_URI }}
+          REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
+          REACT_APP_GOOGLE_CLIENT_SECURITY_PASSWORD: ${{ secrets.REACT_APP_GOOGLE_CLIENT_SECURITY_PASSWORD }}
 
-        - name: Build
-          run: yarn build
+      - name: yarn install 
+        run: yarn install
 
-        - name: Deploy
-          uses: lbertenasco/s3-deploy@v1
-          with:
-            folder: build
-            bucket: ${{ secrets.S3_BUCKET }}
-            dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-            invalidation: / *
+      - name: Build                   
+        run: yarn build
+        env:
+          CI: "" # 경고를 에러로 보지 않게 함
+
+
+      - name: Deploy # S3에 배포하기
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          CI: "" # 경고를 에러로 보지 않게 함
+        run: |
+          aws s3 cp --recursive --region ap-northeast-2 build s3://chorok.kr
