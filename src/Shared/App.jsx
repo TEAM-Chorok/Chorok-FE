@@ -87,7 +87,7 @@ function App() {
             <Route path="/setting/myposts" exact component={MyPostsPage} />
             <Route path="/setting/scrap-posts" exact component={ScrapPostsPage} />
             <Route path="/setting/profile" exact component={ProfileSetting} />
-            <Route path="/setting/changepwd" exact component={ChangePwd} />
+            <Route path="/setting/changepwd" component={ChangePwd} />
             <Route path="/setting/deactivation" exact component={DeactivateAccount} />
 
             <Route path="/test" exact component={Test} />
