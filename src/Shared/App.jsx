@@ -90,7 +90,7 @@ function App() {
             <Route path="/setting/changepwd" exact component={ChangePwd} />
             <Route path="/setting/deactivation" exact component={DeactivateAccount} />
 
-            <Route path="/test" exact component={Test} />
+            {/* <Route path="/test" exact component={Test} /> */}
 
             <Route path="/event" exact component={Event} />
             <Route path="/easter" exact component={Easter} />

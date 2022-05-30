@@ -145,6 +145,7 @@ const likePlanteriorPostDB = (postId) => {
     searchAPI
     .likePlanteriorPost(postId)
     .then((response) => {
+      console.log(response);
       dispatch(getPlanteriorDetailDB(postId));
     }).catch((error) => {
       console.log("likePlanteriorPostDB : error", error.response);
