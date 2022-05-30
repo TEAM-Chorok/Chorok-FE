@@ -1,61 +1,37 @@
-name: Chorok
-on:
-  push:
+name: React build
+on: 
+  push:                               # dev Branch에서 push 이벤트가 일어났을 때만 실행
     branches:
-      - main
+      - dev
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: 'ap-northeast-2'
-      
+    runs-on: ubuntu-18.04
     steps:
-        - name: Checkout source code.
-          uses: actions/checkout@v1
-        
-        - name: Install dependencies
-          run: yarn
+      - name: Checkout source code.   # 레포지토리 체크아웃
+        uses: actions/checkout@dev
 
-        - name: Build
-          run: yarn build
+      - name: Cache node modules      # node modules 캐싱
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
 
-        - name: Deploy
-          uses: lbertenasco/s3-deploy@v1
-          with:
-            folder: build
-            bucket: ${{ secrets.S3_BUCKET }}
-            dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-            invalidation: / *
+      - name: Install Dependencies    # 의존 파일 설치
+        run: yarn add
 
-        
-        
-        
-#         - name: Upload binary to S3 bucket
-#           uses: chorok-test/s3-sync-action@main
-#           with:
-#             args: --acl public-read --exclude '*' --include 'index.html'
-#           env:
-#             AWS_S3_BUCKET: ${{ secrets.BUCKET_NAME }}
-            
-#         - name: Invalidate cache CloudFront
-#           uses: chetan/invalidate-cloudfront-action@main
-#           env:
-#             DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
-#             PATHS: '/index.html'
+      - name: Build                   # React Build
+        run: yarn build
 
-
-#         - name: Install dependencies
-#           run: yarn
-
-#         - name: Build
-#           run: yarn build
-
-#         - name: Deploy
-#           uses: chorok-test/s3-deploy@v1
-#           with:
-#             folder: build
-#             bucket: ${{ secrets.S3_BUCKET }}
-#             dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-#             invalidation: / *
+      - name: Deploy                  # S3에 배포하기
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp \
+            --recursive \
+            --region ap-northeast-2 \
+            build s3://github-action-tutorial # 자신의 레포지토리로 변경해주세요.
