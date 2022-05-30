@@ -1,29 +1,37 @@
-name: Chorok
-on:
-  push:
+name: React build
+on: 
+  push:                               # dev Branch에서 push 이벤트가 일어났을 때만 실행
     branches:
-      - main
+      - dev
+
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: 'ap-northeast-2'
-      
+  build:
+    runs-on: ubuntu-18.04
     steps:
-        - uses: actions/checkout@v1
+      - name: Checkout source code.   # 레포지토리 체크아웃
+        uses: actions/checkout@dev
 
-        - name: Install dependencies
-          run: yarn
+      - name: Cache node modules      # node modules 캐싱
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
 
-        - name: build
-          run: yarn build
+      - name: Install Dependencies    # 의존 파일 설치
+        run: yarn add
 
-        - name: Deploy
-          uses: lbertenasco/s3-deploy@v1
-          with:
-            folder: build
-            bucket: ${{ secrets.S3_BUCKET }}
-            dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-            invalidation: / *
+      - name: Build                   # React Build
+        run: yarn build
+
+      - name: Deploy                  # S3에 배포하기
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp \
+            --recursive \
+            --region ap-northeast-2 \
+            build s3://github-action-tutorial # 자신의 레포지토리로 변경해주세요.
