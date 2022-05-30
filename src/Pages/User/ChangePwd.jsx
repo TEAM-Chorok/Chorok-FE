@@ -14,12 +14,17 @@ const ChangePwd = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const isLogin = localStorage.getItem('token') ? true : false ;
+  
+  const url = new URL(window.location.href);
+  const token = url.searchParams.get("token");
+  const email = url.searchParams.get("email");
+
   const [password, setPassword] = React.useState("");
   const [passwordChk, setPasswordChk] = React.useState("");
-
   const [showPassword, setShowPassword] = React.useState(false);
     
-
+  
   //비밀번호 정규식
   const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
 
@@ -29,11 +34,18 @@ const ChangePwd = (props) => {
         return true;
       } else { return false; }
     }
+    
     const changePwd = () => {
-      dispatch(userActions.changePwdDB(password));
+      if(isLogin){
+        dispatch(userActions.changePwdDB(password));
+      }else {
+        //이메일통해서 비밀번호 변경
+        //dispatch(userActions.changePwd_non_login(token, email, password));
+      }
+     
     }
- 
-    return (
+
+      return (
       <React.Fragment>
         <GeneralHeader title="비밀번호 변경" size="base" />
         <AbsoluteBox>
@@ -144,7 +156,7 @@ const ChangePwd = (props) => {
           </Grid>
         </Container>
       </React.Fragment>
-    );
+    )
   }
   const HideBtn = styled.button`
     width:fit-content;
