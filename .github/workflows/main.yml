@@ -29,12 +29,10 @@ jobs:
         env:
           CI: "" # 경고를 에러로 보지 않게 함
 
-      - name: Deploy                  # S3에 배포하기
+
+      - name: Deploy # S3에 배포하기
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp \
-            --recursive \
-            --region ap-northeast-2 \
-            build s3://github.com/TEAM-Chorok/Chorok-FE # 자신의 레포지토리로 변경해주세요.
+          aws s3 cp --recursive --region ap-northeast-2 build s3://chorok.kr
