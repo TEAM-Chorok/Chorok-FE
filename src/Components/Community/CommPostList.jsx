@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../../Redux/Modules/post";
 import InfiniteScroll from "../share/etc/InfiniteScroll";
 import { useHistory } from "react-router-dom";
+import { Masonry } from "@mui/lab";
 
 const CommPostList = (props) => {
     const history = useHistory();
@@ -13,6 +14,9 @@ const CommPostList = (props) => {
 
 
      const [done, setDone] = React.useState(false);
+
+     // skeleton
+    const height = ["100px", "110px", "120px", "170px", "120px", "150px"]
 
 
     // 무한스크롤 관련 state
@@ -57,15 +61,31 @@ const CommPostList = (props) => {
         return (
             <RelativeBox>
               <FloatBox>
-                <Grid margin="auto">
+                <Grid margin="auto" height="100px" width="100%" align="center" position="absolute" top="300px">
                   {done &&
-                    <Grid done={done}>
+                    <DoneBox done={done}>
                       <Text bold size="base" margin="auto">데이터를 불러올 수 없습니다💬</Text>
-                    </Grid>
+                    </DoneBox>
                   }
                 </Grid>
               </FloatBox>
-              
+              <Masonry columns={1} spacing={2} sx={{ "margin": "auto", padding: '0 8px' }}>
+                {height.map((height, idx) => {
+                  return (
+                    <ContentWrapper key={idx}>
+                      <Grid width="100%" height={height} bg="#ddd" borderRadius="8px" />
+                      <Grid is_flex margin="4px 0" align="center">
+                        <Grid width="20px" height="20px" bg="#ddd" borderRadius="20px" />
+                        <Grid margin="0 4px" width="80px" height="12px" bg="#ddd" borderRadius="4px" />
+                      </Grid>
+                      <Grid width="100%">
+                        <Grid margin="2px 0" width="140px" height="8px" bg="#ddd" borderRadius="4px" />
+                        <Grid margin="8px 0" width="130px" height="8px" bg="#ddd" borderRadius="4px" />
+                      </Grid>
+                    </ContentWrapper>
+                  )
+                })}
+              </Masonry>
               <Grid margin="-16px auto">
                 <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
                 <Grid margin="8px" width="5px" height="5px" borderRadius="5px" bg="#ddd" />
@@ -111,9 +131,15 @@ const RelativeBox = styled.div`
   width: 100%;
 `
 
+const ContentWrapper = styled.div`
+  ${'' /* box-sizing: border-box; */}
+  width: 100%;
+  height: fit-content;
+`
+
 const FloatBox = styled.div`
   position: absolute;
-  top: 300px;
+  top: 0px;
 
   display:flex;
   align-items: center;
@@ -126,4 +152,22 @@ const FloatBox = styled.div`
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
 `
+const FadeIn = keyframes`
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+`;
+
+
+const DoneBox = styled.div`
+  width: 100%;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-name: ${FadeIn};
+  animation-fill-mode: forwards;
+`;
+
 export default CommPostList;
