@@ -25,6 +25,7 @@ import { ReactComponent as Frame } from '../Assets/img/phoneframe.svg';
 import { useLocation, Switch } from 'react-router-dom';
 import Event from '../Pages/Event';
 import NotFound from '../Pages/NotFound';
+import Easter from '../Pages/Easter';
 
 
 
@@ -90,6 +91,7 @@ function App() {
             <Route path="/setting/deactivation" exact component={DeactivateAccount} />
 
             <Route path="/event" exact component={Event} />
+            <Route path="/easter" exact component={Easter} />
             
             <Route component={NotFound} />
           </Switch>
