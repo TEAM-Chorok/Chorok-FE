@@ -154,12 +154,12 @@ button {
   overflow: hidden;
 }
 
+@keyframes motion {
+  0% {padding-top: 0px;}
+100% {padding-top: 10px;}
+} 
+
 .labelingLogo{
   animation: motion 0.6s linear 0s infinite alternate; 
 }
-
-@keyframes motion {
-    0% {padding-top: 0px;}
-	100% {padding-top: 10px;}
-} 
 

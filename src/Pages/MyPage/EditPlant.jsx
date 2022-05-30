@@ -34,6 +34,7 @@ const EditPlant = () => {
   const [plantImgUrl, setPlantImgUrl] = React.useState("");
   const [preview, setPreview] = React.useState(null);
 
+
   React.useEffect(() => {
     setMyPlantName(myPlant?.myPlantName);
     setPlaceValue(myPlant?.myPlantPlace);
@@ -65,16 +66,20 @@ const EditPlant = () => {
   }
 
   //modal 열고 닫는 것을 useState로 관리
-  const [openModal, setOpenModal] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState("");
   const [deleteOpen, setDeleteOpen] = React.useState(false);
 
   //내 식물 수정하기
   const editMyPlant = () => {
-    if (myPlantName === "" || myPlantName === " ") {
-      // window.alert('식물의 별명을 지어주세요 :)');
-      return;
+    if (myPlantName === "  " || myPlantName === " ") {
+      setOpen(true);
+      setMessage("식물의 별명을 지어주세요 :)");
+      console.log(open);
+
+    }else {
+      dispatch(myActions.editMyPlantDB(myPlantId, myPlantName, place, plantImgUrl, preview));
     }
-    dispatch(myActions.editMyPlantDB(myPlantId, myPlantName, place, plantImgUrl, preview))
   }
 
   //내 식물 삭제하기
@@ -156,24 +161,6 @@ const EditPlant = () => {
               </AbsoluteBox>
             </Grid>
           </Grid>
-          {/* <Modal 
-                        isOpen={openModal}
-                        style={modalStyle}
-                        onRequestClose={()=>setOpenModal(false)}
-                        ariaHideApp={false}>
-                        <Grid display="block" position="inherit" padding="16px 16px 0px 0px" right="0px">
-                            <img src="/img/cancel_s.svg" onClick={()=>{setOpenModal(false);}}/>
-                        </Grid>
-                        <Text margin="32px 24px 24px 24px" size="xsmall" display="block">정말 삭제하시겠습니까?<br />삭제된 식물은 복구할 수 없습니다.</Text>
-                        <Grid margin="0px 0px 0px 24px">
-                            <Button 
-                                onClick={()=>setOpenModal(false)}
-                                style={{fontSize:"14px", fontWeight:"700", borderRadius:"8px", border:"none", backgroundColor:"#F7F8FA", color:"#262626", marginRight:"8px", width:"116px", height:"36px"}}>취소하기</Button>
-                            <Button 
-                                onClick={()=>{deleteMyPlant()}}
-                                style={{fontSize:"14px", fontWeight:"700", borderRadius:"8px", border:"none", backgroundColor:"#F7F8FA", color:"#FA4D56", width:"116px", height:"36px"}}>삭제하기</Button>
-                        </Grid>
-                    </Modal> */}
         </Grid>
       </Container>
       {deleteOpen &&
@@ -188,7 +175,15 @@ const EditPlant = () => {
           </Alert2>
         </AlertBox>
       }
-
+      {open &&
+          <AlertBox>
+            <Alert2 type="center" open={open} setOpen={setOpen} btn1={"확인"}>
+              <Text bold wordbreak size="small">
+                {message}
+              </Text>
+            </Alert2>
+          </AlertBox>
+      }
     </React.Fragment>
   )
 }
