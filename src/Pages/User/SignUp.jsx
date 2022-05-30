@@ -24,13 +24,13 @@ const SignUp = () => {
     }
   }, []);
 
-  const [loading, setLoading] = React.useState(false);
-
   const [nextPage, setNextPage] = React.useState(1);
+
+  const [duplicated, setDuplicated] = React.useState(false); // 이메일 중복 확인
+  const [duplicatedNickname, setDuplicatedNickname] = React.useState(true); // 닉네임 중복 확인
+  const [openResult, setOpenResult] = React.useState(false); // 중복 확인 메시지 출력
+
   const [userEmail, setUserEmail] = React.useState("");
-  const [duplicated, setDuplicated] = React.useState(false);
-  const [duplicatedNickname, setDuplicatedNickname] = React.useState(true);
-  const [openResult, setOpenResult] = React.useState(false);
   const [password, setPassword] = React.useState("");
   const [passwordChk, setPasswordChk] = React.useState("");
   const [profileImgUrl, setProfileImageUrl] = React.useState(null);
@@ -76,7 +76,7 @@ const SignUp = () => {
       })
       .catch((error) => {
         console.log(error);
-        setOpen(open);
+        setOpen(true);
         setMessage("연결에 실패하였습니다. ")
       })
   }
@@ -106,7 +106,7 @@ const SignUp = () => {
   //회원가입! 
   const signUp = () => {
     if (nickname === "") {
-      setOpen(open);
+      setOpen(true);
       setMessage("닉네임을 작성해주세요. ")
       console.log(message);
       return;
@@ -341,26 +341,24 @@ const SignUp = () => {
                 <Grid margin="auto"
                   _onClick={() => { 
                     dispatch(userActions.signUpDB(userEmail, password, nickname, profileImgUrl)); 
-                    window.alert('이메일을 재발송하였습니다.') }}>
-                  <p style={{ borderBottom: "1px solid #8D8D8D", color: "#8D8D8D", fontSize: "13px" }} >인증메일 재발송</p>
+                    setOpen(true); 
+                    setMessage("인증메일을 재발송하였습니다."); 
+                    console.log(open);}}>
+                  <p style={{color: "#8D8D8D", fontSize: "13px", borderBottom: "1px solid #8D8D8D"}}> 인증메일 재발송 </p>
                 </Grid>
               </Grid>
-
-
             </Grid>
           )}
-        {
-          open ?
-            <AlertBox>
-              <Alert2 open={open} setOpen={setOpen} btn1={"확인"} func={setOpen(false)}>
-                <Text bold wordbreak size="small">
-                  {message}
-                </Text>
-              </Alert2>
-            </AlertBox>
-            : null
-        }
       </Container>
+      {open &&
+                  <AlertBox>
+                    <Alert2 open={open} setOpen={setOpen} btn1={"확인"}>
+                      <Text bold wordbreak size="small">
+                        {message}
+                      </Text>
+                    </Alert2>
+                  </AlertBox>
+              }
     </React.Fragment>
   )
 }
@@ -373,6 +371,8 @@ position: relative;
 
 transition: 0.3s;
 `
+
+
 const ProfileWrap = styled.div`
 width: 100%;
 height: 80%;

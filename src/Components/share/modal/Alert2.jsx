@@ -29,6 +29,56 @@ const Alert2 = (props) => {
     }
   }, [props.open])
 
+  if(type==="center"){
+    return (
+      <React.Fragment>
+        {props.open ?
+          <>
+            <Dimmer setOpenModal={props.setOpen} onClick={() => { props.setOpen(false); }} />
+            <Modal2 onClick={e => e.stopPropagation()}>
+              <InnerWrap>
+                <Grid align="center" width="200px" margin="auto">
+                  {children}
+                </Grid>
+                <Grid is_flex margin="24px auto 0 auto" width="100%" align="center" padding="0 16px">
+                  <Grid width="100%">
+                    <Button type="square" color="#F4F4F4" _onClick={() => {
+                      if (func) {
+                        func();
+                      } else if (error) {
+                        history.replace(error);
+                      } else {
+                        props.setOpen(false)
+                      }
+                    }}>
+                      <Text size="base">
+                        {btn1}
+                      </Text>
+                    </Button>
+                  </Grid>
+                  {btn2 ? <Grid width="8px"/> : null }
+                  {btn2 ?
+                    <Grid width="100%">
+                      <Button type="square" _onClick={() => { history.replace(url); }}>
+                        <Text size="base" color="#fff">
+                          {btn2}
+                        </Text>
+                      </Button>
+                    </Grid>
+                    :
+                    <></>
+                  }
+                </Grid>
+              </InnerWrap>
+            </Modal2>
+          </>
+          :
+          null
+        }
+      </React.Fragment>
+    )
+  }
+
   if(type==="editPlant"){
     return (
       <React.Fragment>
@@ -137,6 +187,18 @@ height: fit-content;
 z-index: 200;
 position: sticky;
 bottom: 40%;
+margin: auto;
+border-radius: 16px;
+box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+`
+const Modal2 = styled.div`
+width: fit-content;
+height: fit-content;
+z-index: 200;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, 0%);
 margin: auto;
 border-radius: 16px;
 box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);

@@ -77,12 +77,12 @@ const addPostDB = (postTitle, postImgUrl, postContent, postTypeCode) => {
         postAPI
             .addPost(formData)
             .then((res) => {
-                dispatch(addPost(res)); // 데이터 주나 안주나
+                dispatch(addPost(res));
                 history.replace(`/community`);
                 window.location.reload();
             }).catch((err) => {
                 console.log("error: ", err);
-                window.alert('글 작성하기에 실패하였습니다.');
+                // window.alert('글 작성하기에 실패하였습니다.');
                 return;
             })
     }
@@ -164,13 +164,13 @@ const deletePostDB = (postId) => {
             .deletePost(postId)
             .then((response) => {
                 dispatch(deletePost());
-                window.alert('게시글이 성공적으로 삭제되었습니다.');
+                // window.alert('게시글이 성공적으로 삭제되었습니다.');
                 history.replace('/community');
                 window.location.reload();
             })
             .catch((err)=>{
                 console.log("error:" , err);
-                window.alert("게시글 삭제를 실패하였습니다.");
+                // window.alert("게시글 삭제를 실패하였습니다.");
             })
     }
 }
@@ -189,7 +189,7 @@ const editPostDB = (formData, postId) => {
       })
       .catch((err) => {
         console.log("error:", err);
-        window.alert("게시글 수정을 실패하였습니다.");
+        // window.alert("게시글 수정을 실패하였습니다.");
       })
   }
 }
@@ -204,7 +204,7 @@ const likePostDB = (category, postId) => {
       })
       .catch((err) => {
         console.log("error:", err);
-        window.alert("게시글 좋아요에 실패하였습니다.");
+        // window.alert("게시글 좋아요에 실패하였습니다.");
       })
   }
 }
@@ -219,7 +219,7 @@ const likeDetailPostDB = (postId) => {
       })
       .catch((err) => {
         console.log("error:", err);
-        window.alert("게시글 좋아요에 실패하였습니다.");
+        // window.alert("게시글 좋아요에 실패하였습니다.");
       })
   }
 }
@@ -239,7 +239,7 @@ const bookmarkPostDB = (category, postId) => {
       })
       .catch((err) => {
         console.log("error:", err);
-        window.alert("게시글 북마크 등록에 실패하였습니다.");
+        // window.alert("게시글 북마크 등록에 실패하였습니다.");
       })
   }
 }
@@ -259,7 +259,7 @@ const bookmarkDetailPostDB = (postId) => {
       })
       .catch((err) => {
         console.log("error:", err);
-        window.alert("게시글 좋아요에 실패하였습니다.");
+        // window.alert("게시글 좋아요에 실패하였습니다.");
       })
   }
 }
