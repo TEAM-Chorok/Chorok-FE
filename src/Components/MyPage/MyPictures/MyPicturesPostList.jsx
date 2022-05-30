@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
-import { Text, Grid, Image, Container } from '../../../Elements';
+import styled, { keyframes } from 'styled-components';
+import { Text, Grid, Image, Container, Button } from '../../../Elements';
 import { actionCreators as MyActions } from '../../../Redux/Modules/MyPage';
 import { ReactComponent as FavoriteIcon} from "../../../Assets/img/likeBookmarkIcons/favorite.svg"
 import { ReactComponent as FavoriteSelectedIcon} from "../../../Assets/img/likeBookmarkIcons/favorite_selected.svg"
@@ -11,6 +11,8 @@ import { ReactComponent as BookmarkSelectedIcon} from "../../../Assets/img/likeB
 import { ReactComponent as CommentIcon } from "../../../Assets/img/likeBookmarkIcons/Comment.svg";
 import { actionCreators as postActions } from '../../../Redux/Modules/post';
 import InfiniteScroll from '../../share/etc/InfiniteScroll';
+import { ReactComponent as NotFound } from "../../../Assets/img/errorIcons/nondata.svg"
+
 
 const MyPicturesPostList = () => {
     const dispatch = useDispatch();
@@ -49,7 +51,25 @@ const MyPicturesPostList = () => {
             }   
         }   
     }
-
+    if (!myPictureList || myPictureList.length === 0) {
+        return (
+          <>
+            <Grid margin="15vh auto">
+              <Grid margin="20px auto" align="center">
+                <Text bold size="h5" weight="700">작성된<br />식물 공간 사진이 없어요</Text>
+              </Grid>
+              <Grid margin="auto">
+                <NotFound />
+              </Grid>
+            </Grid>
+            <Grid width="100%" padding="0 16px">
+              <Button type="square" _onClick={() => { history.push('/planterior/write'); }}>
+                <Text color="#fff" weight="600">식물공간 자랑하기</Text>
+              </Button>
+            </Grid>
+          </>
+        )
+      }
     return (
         <React.Fragment>
             {myPictureList? 
@@ -120,13 +140,8 @@ const MyPicturesPostList = () => {
                 })}
             </InfiniteScroll> :
 
-            <RelativeBox>
-                <FloatBox>
-                <Grid margin="auto">
-                    <Text bold size="base" margin="auto">데이터를 불러오고 있습니다💬</Text>
-                </Grid>
-                </FloatBox>
-            </RelativeBox>
+                null
+
             }   
                  
                     
@@ -138,15 +153,18 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-rows: 1fr 1fr;
     width: 100%;
+
 `
-const RelativeBox = styled.div`
-  position: relative;
+
+const ContentWrapper = styled.div`
+  ${'' /* box-sizing: border-box; */}
   width: 100%;
+  height: fit-content;
 `
 
 const FloatBox = styled.div`
   position: absolute;
-  top: 0;
+  top: 0px;
 
   display:flex;
   align-items: center;
@@ -159,4 +177,26 @@ const FloatBox = styled.div`
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
 `
+const FadeIn = keyframes`
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+`;
+
+
+const DoneBox = styled.div`
+  width: 100%;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-name: ${FadeIn};
+  animation-fill-mode: forwards;
+`;
+const RelativeBox = styled.div`
+  position: relative;
+  width: 100%;
+`
+
 export default MyPicturesPostList;
