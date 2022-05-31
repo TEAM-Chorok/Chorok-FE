@@ -52,9 +52,7 @@ const CommPostList = (props) => {
             setIsLoading(false);
             observer.observe(entry.target);
             }
-        }
-        
-        
+        }       
     }
 
     if(!postList){

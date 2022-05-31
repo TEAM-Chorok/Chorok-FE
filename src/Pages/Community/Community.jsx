@@ -15,6 +15,7 @@ const Community = () => {
   const dispatch = useDispatch();
   const isLogin = localStorage.getItem('token') ? true : false;
 
+  //infinite scroll 페이지네이션
   const [page, setPage] = React.useState(0);
 
   //+버튼 모달창
@@ -75,27 +76,6 @@ const Community = () => {
             null
           }
 
-
-          {/* {open ?
-                        <>
-                            <Dimmer setOpenModal={setOpenModal} onClick={() => closeModal()} />
-                            <Modal onClick={e => e.stopPropagation()}>
-                                <InnerWrap onClick={() => history.push('/search')}>
-                                    <Text size="small" >🌱 식물 추가하기</Text>
-                                </InnerWrap>
-
-                                <InnerWrap>
-                                    <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
-                                        <Text size="small">🏡 공간 자랑하기</Text>
-                                    </InnerBox1>
-                                    <InnerBox2 onClick={() => history.push(`/addpost`)}>
-                                        <Text size="small">💬 초록톡 글쓰기</Text>
-                                    </InnerBox2>
-                                </InnerWrap>
-                            </Modal>
-                        </>
-                        :
-                        null} */}
         </Grid>
       </Container>
     </React.Fragment>

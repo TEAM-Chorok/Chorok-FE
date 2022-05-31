@@ -39,6 +39,11 @@ const EditPlant = () => {
     setMyPlantName(myPlant?.myPlantName);
     setPlaceValue(myPlant?.myPlantPlace);
     setPreviousPlantPlace(myPlant?.myPlantPlace);
+  
+    setPreview(myPlant?.myPlantImgUrl);
+  }, [myPlant?.myPlantName, myPlant?.myPlantPlace, myPlant?.myPlantImgUrl, previousPlace]);
+
+  React.useMemo(()=> {
     switch(placeValue) {
       case "통로" : 
         setPlace("pp01");
@@ -53,9 +58,7 @@ const EditPlant = () => {
       case "베란다,발코니" : 
         setPlace("pp06");
     }
-    setPreview(myPlant?.myPlantImgUrl);
-  }, [myPlant?.myPlantName, myPlant?.myPlantPlace, myPlant?.myPlantImgUrl, previousPlace]);
-
+  }, [placeValue]);
   
 
   // Base64로 인코딩하여 미리보기 이미지 출력
@@ -100,6 +103,8 @@ const EditPlant = () => {
         case "베란다,발코니" : 
           setPlace("pp06");
       }
+      console.log(myPlantId, myPlantName, place, plantImgUrl, preview);
+      return;
       dispatch(myActions.editMyPlantDB(myPlantId, myPlantName, place, plantImgUrl, preview));
     }
   }

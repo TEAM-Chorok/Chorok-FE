@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { ReactComponent as Logo} from '../../Assets/img/logo/leafLogo.svg';
 import { Container, Grid, Text } from "../../Elements";
 import { actionCreators as UserActions } from "../../Redux/Modules/User";
