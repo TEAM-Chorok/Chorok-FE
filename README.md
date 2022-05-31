@@ -56,7 +56,7 @@ Chorok은 식물 집사들을 위한 일정관리 및 커뮤니티 서비스입�
 
 ![](https://imgbuckett.s3.ap-northeast-2.amazonaws.com/3.png)
 
-![](https://imgbuckett.s3.ap-northeast-2.amazonaws.com/Chorok_DB2.png)
+![](https://imgbuckett.s3.ap-northeast-2.amazonaws.com/erd.png)
 
 <br/>
 <br/>
