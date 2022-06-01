@@ -91,7 +91,7 @@ const PlanteriorList = ({ place, page, setPage }) => {
                       <Image type="planterior" width="100%" imgUrl={post.postImgUrl} />
                       <Grid is_flex margin="4px 0">
                         <Image type="circle" size="20px"
-                          imgUrl={post.profileImageUrl ? post.profileImageUrl : "/img/noProfileImgSmall.svg"}
+                          imgUrl={ !post.profileImageUrl || post.profileImageUrl==="null" ? "/img/noProfileImgSmall.svg" : post.profileImageUrl}
                         />
                         <Text bold size="xsmall" margin="1px 8px">{post.nickname}</Text>
                       </Grid>

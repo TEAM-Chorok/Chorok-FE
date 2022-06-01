@@ -1,6 +1,6 @@
 
-// export const GOOGLE_OAUTH_REDIRECT_URI = "http://localhost:3000/auth/google/callback"
-export const GOOGLE_OAUTH_REDIRECT_URI = "https://chorok.kr/auth/google/callback"
+// export const GOOGLE_OAUTH_REDIRECT_URI = "http://localhost:3000/auth/google/callback" // local
+export const GOOGLE_OAUTH_REDIRECT_URI = "https://chorok.kr/auth/google/callback" // deploy
 
 export const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/auth?client_id=" + 
                                 process.env.REACT_APP_GOOGLE_CLIENT_ID + 
