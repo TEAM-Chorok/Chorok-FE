@@ -7,7 +7,6 @@ import { AddPlantList, Planterior, PlantSearchHeader, SearchOnFocus, SideButton,
 import { Grid, Permit } from "../../Elements";
 import { actionCreators as searchActions } from "../../Redux/Modules/Search";
 import Result from "./Result";
-import { StepContext } from "@mui/material";
 
 // 탐색페이지
 const Search = () => {

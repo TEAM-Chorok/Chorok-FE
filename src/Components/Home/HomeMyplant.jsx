@@ -26,7 +26,7 @@ const HomeMyplant = () => {
     <React.Fragment>
       <Permit>
         <Grid padding="20px 8px" width="100%" bg="#fff">
-          {myPlant ?
+          {myPlant?.length ?
             <>
               {myPlant?.pp04?.length ?
                 <Grid margin="0 0 40px 0" width="100%">
