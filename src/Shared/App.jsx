@@ -58,10 +58,12 @@ function App() {
             <Route path="/home" exact component={Home} />
 
             <Route path="/plant" exact component={SearchPlant} />
-            <Route path="/add/done" exact component={AddDone} />
+            <Route path="/done" exact component={AddDone} />
             <Route path="/add/:plantNo" exact component={AddPlants} />
 
             <Route path="/plant/:plantname" exact component={PlantCard} />
+            {/* <Route path="/addplant/:plantname" exact component={PlantCard} />
+            <Route path="/result/plant/:plantname" exact component={PlantCard} /> */}
 
             <Route path="/calendar" exact component={CalendarPage} />
 
