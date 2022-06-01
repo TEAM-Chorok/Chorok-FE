@@ -58,8 +58,8 @@ function App() {
             <Route path="/home" exact component={Home} />
 
             <Route path="/plant" exact component={SearchPlant} />
+            <Route path="/add/done" exact component={AddDone} />
             <Route path="/add/:plantNo" exact component={AddPlants} />
-            <Route path="/done" exact component={AddDone} />
 
             <Route path="/plant/:plantname" exact component={PlantCard} />
 
