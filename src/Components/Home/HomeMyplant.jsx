@@ -26,7 +26,8 @@ const HomeMyplant = () => {
     <React.Fragment>
       <Permit>
         <Grid padding="20px 8px" width="100%" bg="#fff">
-          {myPlant?.length ?
+          { myPlant?.pp01?.length || myPlant?.pp02?.length || myPlant?.pp03?.length || 
+            myPlant?.pp04?.length || myPlant?.pp05?.length || myPlant?.pp06?.length ?
             <>
               {myPlant?.pp04?.length ?
                 <Grid margin="0 0 40px 0" width="100%">
@@ -160,7 +161,7 @@ const HomeMyplant = () => {
           }
         </Grid>
       </Permit>
-      <Grid height="20vh"/>
+      <Grid height="20vh" />
     </React.Fragment>
   );
 }
