@@ -31,18 +31,21 @@ const AddDone = (props) => {
                 </Grid>
                 <Grid margin="4px auto">
                     <Text size="base" bold>
-                        추가된 내 식물을 확인해보세요!
+                        홈에서 내 식물을 확인해보세요!
                     </Text>
                 </Grid>
                 <Grid margin="110px auto" width="100%" padding="0 20px">
-                    <Grid margin="8px 0" width="100%">
-                        <Button type="square" _onClick={() => { history.replace("/myplants"); }}>
+                    <Grid margin="8px 0" width="100%" height="48px">
+                        {/* <Button type="square" _onClick={() => { history.replace("/myplants"); }}>
                             <Text color="#fff">지금 확인할게요</Text>
-                        </Button>
+                        </Button> */}
                     </Grid>
                     <Grid width="100%">
-                        <Button type="square" width="100%" color="#F7F8FA" _onClick={() => { history.replace("/home") }}>
+                        {/* <Button type="square" width="100%" color="#F7F8FA" _onClick={() => { history.replace("/home") }}>
                             <Text color="#A8A8A8">홈으로 돌아가기</Text>
+                        </Button> */}
+                        <Button type="square" width="100%" _onClick={() => { history.replace("/home") }}>
+                            <Text color="#fff">지금 바로 할 일 확인하기</Text>
                         </Button>
                     </Grid>
                 </Grid>

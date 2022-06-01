@@ -43,7 +43,7 @@ const Community = () => {
 
           {open ?
             <>
-              <Dimmer setOpenModal={setOpenModal} onClick={() => openModal()} />
+              <Dimmer setOpenModal={setOpenModal} onClick={() => closeModal()} />
               <Modal onClick={e => e.stopPropagation()}>
                 <InnerWrap onClick={() => history.push('/plant')}>
                   <LeafIcon style={{ width: '24px', height: '24px' }} />
@@ -77,25 +77,29 @@ const Community = () => {
 
 
           {/* {open ?
-                        <>
-                            <Dimmer setOpenModal={setOpenModal} onClick={() => closeModal()} />
-                            <Modal onClick={e => e.stopPropagation()}>
-                                <InnerWrap onClick={() => history.push('/search')}>
-                                    <Text size="small" >🌱 식물 추가하기</Text>
-                                </InnerWrap>
+            <>
+              <Dimmer setOpenModal={setOpenModal} onClick={() => closeModal()} />
+              <Modal onClick={e => e.stopPropagation()}>
+                <InnerWrap onClick={() => history.push('/search')}>
+                <LeafIcon style={{ width: '24px', height: '24px' }} />
+                  <PlusIcon className="plus" />
+                  <Text size="small" > 식물 추가하기</Text>
+                </InnerWrap>
 
-                                <InnerWrap>
-                                    <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
-                                        <Text size="small">🏡 공간 자랑하기</Text>
-                                    </InnerBox1>
-                                    <InnerBox2 onClick={() => history.push(`/addpost`)}>
-                                        <Text size="small">💬 초록톡 글쓰기</Text>
-                                    </InnerBox2>
-                                </InnerWrap>
-                            </Modal>
-                        </>
-                        :
-                        null} */}
+                <InnerWrap>
+                  <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
+                    <HouseIcon style={{ width: '24px', height: '24px' }} />
+                    <Text size="small">공간 자랑하기</Text>
+                  </InnerBox1>
+                  <InnerBox2 onClick={() => history.push(`/addpost`)}>
+                    <BubbleIcon style={{ width: '24px', height: '24px' }} />
+                    <Text size="small"> 초록톡 글쓰기</Text>
+                  </InnerBox2>
+                </InnerWrap>
+              </Modal>
+            </>
+            :
+            null} */}
         </Grid>
       </Container>
     </React.Fragment>
@@ -156,6 +160,7 @@ background-color: white;
     left: 30px;
   }
 `
+
 const InnerBox1 = styled.div`
 display: flex;
 align-items: center;

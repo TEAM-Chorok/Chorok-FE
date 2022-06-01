@@ -45,48 +45,57 @@ const PlantCard = () => {
     <React.Fragment>
       <Wrapper open={open}>
 
-          <HeaderBox>
-            {/* <GeneralHeader title="식물카드" size="base" /> */}
-            <GeneralHeader title={plantName} size="base" />
-            {bookmark ?
-              <BookMarkIcon
-                className='bookmark'
-                fill="#0AAF42"
-                stroke="#0AAF42"
-                onClick={check}
-              />
-              :
-              <BookMarkIcon
-                className='bookmark'
-                fill="none"
-                stroke="#6F6F6F"
-                onClick={check}
-              />
-            }
-          </HeaderBox>
+        <HeaderBox>
+          {/* <GeneralHeader title="식물카드" size="base" /> */}
+          <GeneralHeader title={plantName} size="base" />
+          {bookmark ?
+            <BookMarkIcon
+              className='bookmark'
+              fill="#0AAF42"
+              stroke="#0AAF42"
+              onClick={check}
+            />
+            :
+            <BookMarkIcon
+              className='bookmark'
+              fill="none"
+              stroke="#6F6F6F"
+              onClick={check}
+            />
+          }
+        </HeaderBox>
 
-          <Grid width="100%" bg="#F7F8FA">
+        <Grid width="100%" bg="#F7F8FA">
 
-            <PlantCardProfile />
-            <PlantCardFeed />
-            
-            <Grid width="100%">
-              <Grid margin="auto" width="200px">
-                <Button type="longfloat" _onClick={() => { setOpen(true); }}>
+          <PlantCardProfile />
+          <PlantCardFeed />
+
+          <FloatBox>
+            <Grid is_flex margin="auto" width="100%" padding="0 16px">
+              <Grid width="40%" padding="0 4px 0 0">
+                <Button type="square" color="#E0E0E0" _onClick={() => { history.push({
+                  pathname: '/search',
+                  state: {searchTabDisplay: 1},
+                }); }}>
+                  <Text size="base" color="#fff">닫기</Text>
+                </Button>
+              </Grid>
+              <Grid width="100%" padding="0 0 0 4px">
+                <Button type="square" _onClick={() => { setOpen(true); }}>
                   <Text size="base" color="#fff">내 식물에 추가하기</Text>
                 </Button>
               </Grid>
             </Grid>
+          </FloatBox>
 
+          <Alert2 open={open} setOpen={setOpen} btn1="아니오" btn2="네" url={`/add/${plantNo}`}>
+            <Text bold size="small">
+              내 식물에 <br /> 추가하시겠습니까?
+            </Text>
+          </Alert2>
 
-            <Alert2 open={open} setOpen={setOpen} btn1="아니오" btn2="네" url={`/add/${plantNo}`}>
-              <Text bold size="small">
-                내 식물에 <br /> 추가하시겠습니까?
-              </Text>
-            </Alert2>
-
-            <Grid height="130px"/>
-          </Grid>
+          <Grid height="120px" />
+        </Grid>
       </Wrapper>
     </React.Fragment>
   );
@@ -109,6 +118,12 @@ const HeaderBox = styled.div`
     top: 12px;
     right: 16px;
   }
+`
+
+const FloatBox = styled.div`
+  width: 100%;
+  position: fixed;
+  bottom: 76px;
 `
 
 export default PlantCard;

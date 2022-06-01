@@ -1,7 +1,7 @@
 import React from "react";
 import { debounce } from "lodash";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { AddPlantList, Planterior, PlantSearchHeader, SearchOnFocus, SideButton, Tabbar } from "../../Components";
 import { Grid, Permit } from "../../Elements";
@@ -15,6 +15,9 @@ const Search = () => {
   const dispatch = useDispatch();
   const pattern = /\s/g;
   const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
+
+  const location = useLocation();
+  const item = location.state?.searchTabDisplay;
   
   // 보여줄 컴포넌트 넘버
   const [compNum, setCompNum] = React.useState(0);
@@ -53,6 +56,12 @@ const Search = () => {
       dispatch(searchActions.keywordSearchingPlantDB(text));
     }
   }, 100)
+
+  React.useEffect(() => {
+    if(item) {
+      setCompNum(item);
+    }
+  }, [item]);
   
   return (
     <React.Fragment>
