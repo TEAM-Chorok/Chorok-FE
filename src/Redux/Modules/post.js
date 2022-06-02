@@ -203,7 +203,6 @@ const likePostDB = (category, postId) => {
       .likePost(postId)
       .then((res) => {
         dispatch(getPostLikeCount(res.data));
-        // dispatch(getPostListDB_login("all", 0));
       })
       .catch((err) => {
         console.log("error:", err);
@@ -218,8 +217,7 @@ const bookmarkPostDB = (category, postId) => {
     postAPI
       .bookmarkPost(postId)
       .then((res) => {
-        console.log(res.data);
-        dispatch(getPostListDB_login("all", 0))
+        return;
       })
       .catch((err) => {
         console.log("error:", err);
