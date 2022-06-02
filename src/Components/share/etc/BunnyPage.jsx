@@ -4,10 +4,12 @@ import { ReactComponent as Bunny } from "../../../Assets/img/etc/rabbit.svg"
 import styled from "styled-components";
 import emailjs from '@emailjs/browser';
 import Alert2 from "../modal/Alert2";
+import { useHistory } from "react-router-dom";
 
 // open api test components
 const BunnyPage = () => {
   const form = React.useRef();
+  const history = useHistory();
   const userId = localStorage.getItem('nickname');
   
   const [open, setOpen] = React.useState(false);
@@ -29,9 +31,9 @@ const BunnyPage = () => {
 
     emailjs.sendForm('chorok', 'template_tfpybt5', form.current, 'ubROo8DlGiM8Exu6H')
       .then((result) => {
-        window.location.reload();
         setMessage("참여해주셔서 감사합니다!");
         setOpen(true);
+        history.push('/home')
       }, (error) => {
         console.log(error.text);
       });
