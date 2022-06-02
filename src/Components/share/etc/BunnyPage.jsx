@@ -22,10 +22,14 @@ const BunnyPage = () => {
     if(nameRef.current.value === "") {
       setMessage("이름을 입력해주세요!")
       setOpen(true);
+      return;
     } else if(emailRef.current.value === "") {
       setMessage("이메일 주소를 입력해주세요!")
       setOpen(true);
+      return;
     }
+
+
 
     e.preventDefault();
 
@@ -33,7 +37,6 @@ const BunnyPage = () => {
       .then((result) => {
         setMessage("참여해주셔서 감사합니다!");
         setOpen(true);
-        history.push('/home')
       }, (error) => {
         console.log(error.text);
       });
@@ -79,7 +82,7 @@ const BunnyPage = () => {
             <Grid height="50px" />
           </Grid>
         </Container>
-        <Alert2 open={open} setOpen={setOpen} btn1="확인">
+        <Alert2 open={open} setOpen={setOpen} btn1="확인" error="/home">
           {message}
         </Alert2>
       </Permit>
