@@ -304,7 +304,6 @@ export default handleActions(
             draft.postList.page = action.payload.postList.page;
         }),
         [GET_SCRAP_SIX_POST_LIST]: (state, action) => produce(state, (draft) => {
-            console.log(action.payload);
             draft.scrapPlantList = action.payload.scrapPlantList;
             draft.scrapPlantCount = action.payload.scrapPlantCount;
         }),

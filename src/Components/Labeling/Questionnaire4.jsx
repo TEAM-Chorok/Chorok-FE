@@ -24,7 +24,7 @@ const Questionnaire4 = (props) => {
               </ImageBox>
               <ImageBox onClick={()=>props.setAttribute2("pgs03")}>
                 <ImageWrap className='child'
-                 border={props.attribute2 === "pgs05"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
+                 border={props.attribute2 === "pgs03"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                   <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="img/plantType/관목형.png"></Image>
                 </ImageWrap>
                 <TextWrap >
