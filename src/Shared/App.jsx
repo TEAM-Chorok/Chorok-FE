@@ -48,7 +48,7 @@ function App() {
             <Route path="/auth/kakao/callback" component={Kakao} />
             <Route path="/auth/google/callback" exact component={Google} />
 
-            <Route path="/findpwd" exact component={FindPwd} />
+            <Route path="/findpwd" component={FindPwd} />
             <Route path="/changepwd" exact component={ChangePwd} />
 
             <Route path="/profilesetting" exact component={ProfileSetting} />

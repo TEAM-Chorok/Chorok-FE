@@ -202,19 +202,18 @@ const deactivateUserDB = () => {
   }
 }
 
-const findPwdDB = (userName, userId) => {
-  // return function( dispatch, getState, {history} ) {
-
-  //   userAPI
-  //     .findPwd(userName, userId)
-  //     .then(() => {
-  //       window.alert('고객님의 이메일 함을 확인해주세요. 비밀번호 변경 링크를 보내드렸습니다.');
-  //     })
-  //     .catch((error) => {
-  //       console.log("logInDB : error", error.response);
-  //       alert("아이디와 성함을 다시 확인해주세요.")
-  //     });
-  // }
+const findPwdDB = (username) => {
+  return function( dispatch, getState, {history} ) {
+    userAPI
+      .findPwd(username)
+      .then(() => {
+        return;
+      })
+      .catch((error) => {
+        console.log("logInDB : error", error.response);
+        return;
+      });
+  }
 }
 const changePwdDB = (password) => {
   return function( dispatch, getState, {history} ) {
@@ -225,6 +224,21 @@ const changePwdDB = (password) => {
       .then(() => {
         // window.alert('고객님의 비밀번호가 정상적으로 변경되었습니다.');
         history.replace('/home');
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log("logInDB : error", error.response);
+        // alert("비밀번호를 다시 확인해주세요.")
+      });
+  }
+}
+const changePwd_non_loginDB = (token, username, newPassword) => {
+  return function( dispatch, getState, {history} ) {
+    userAPI
+      .changeNewPwd(token, username, newPassword)
+      .then(() => {
+        // window.alert('고객님의 비밀번호가 정상적으로 변경되었습니다.');
+        history.replace('/');
         window.location.reload();
       })
       .catch((error) => {
@@ -265,6 +279,7 @@ const actionCreators = {
   logOutDB,
   findPwdDB,
   changePwdDB,
+  changePwd_non_loginDB,
   editProfileDB,
 }
 

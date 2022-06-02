@@ -11,8 +11,6 @@ import { idCheck, pwdCheck } from '../../Shared/RegEx';
 import { ReactComponent as HideIcon } from '../../Assets/img/hidePassword.svg';
 import { ReactComponent as ShowIcon } from '../../Assets/img/showPassword.svg';
 
-//1. JWT토큰 const isLogin  = dispatch(isLogin(localStorage.getItem('token')))
-
 const LogInEmail = () => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -45,7 +43,7 @@ const LogInEmail = () => {
   return (
     <React.Fragment>
       <Container>
-      <Grid width="100%">
+        <Grid width="100%">
           <GeneralHeader title="이메일로 계속하기"></GeneralHeader>
         
           <InnerDiv>
@@ -87,11 +85,11 @@ const LogInEmail = () => {
              <Button variant='text' 
                 style={{display:"block", margin:"10px auto", width:"100%", height:"48px",  backgroundColor:"#0AAF42", color:"white", fontWeight:"700"}} 
                 onClick={()=>login()}>로그인하기</Button>}
-              {/* <Button variant='text' 
+              <Button variant='text' 
                 style={{display:"block", margin:"10px auto", width:"100%",  color:"#6F6F6F"}} 
-                onClick={()=>history.push('/changepwd')}>비밀번호 재설정</Button> */}
+                onClick={()=>{history.push('/findpwd')}}>비밀번호 재설정</Button>
             </Grid>  
-      </Grid>
+        </Grid>
       </Container>
     </React.Fragment>
     );
