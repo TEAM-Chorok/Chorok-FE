@@ -22,14 +22,14 @@ const Questionnaire4 = (props) => {
                 <Text size="small" className='text' weight={props.attribute2 ===  "pgs01" ? "700" : "500"} color={props.attribute2 ===  "pgs01" ? "#24A148" : "#262626"}>부드러운</Text>
               </TextWrap>
               </ImageBox>
-              <ImageBox onClick={()=>props.setAttribute2("pgs05")}>
+              <ImageBox onClick={()=>props.setAttribute2("pgs03")}>
                 <ImageWrap className='child'
                  border={props.attribute2 === "pgs05"? "3px solid #0AAF42" : "1px solid #F4F4F4"}>
                   <Image margin="0px auto" type="square" borderRadius="16px" size="100px"imgUrl="img/plantType/관목형.png"></Image>
                 </ImageWrap>
                 <TextWrap >
-                  <Text size="small" weight={props.attribute2 ===  "pgs05" ? "700" : "500"}
-                  className='text' color={props.attribute2 ===  "pgs05" ? "#24A148" : "#262626"}>아담한</Text>
+                  <Text size="small" weight={props.attribute2 ===  "pgs03" ? "700" : "500"}
+                  className='text' color={props.attribute2 ===  "pgs03" ? "#24A148" : "#262626"}>아담한</Text>
                 </TextWrap>
               </ImageBox>
               <ImageBox onClick={()=>props.setAttribute2("pgs04")}>
