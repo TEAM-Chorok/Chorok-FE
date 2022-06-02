@@ -15,6 +15,7 @@ const Community = () => {
   const dispatch = useDispatch();
   const isLogin = localStorage.getItem('token') ? true : false;
 
+  //infinite scroll 페이지네이션
   const [page, setPage] = React.useState(0);
 
   //+버튼 모달창
@@ -75,62 +76,11 @@ const Community = () => {
             null
           }
 
-
-          {/* {open ?
-            <>
-              <Dimmer setOpenModal={setOpenModal} onClick={() => closeModal()} />
-              <Modal onClick={e => e.stopPropagation()}>
-                <InnerWrap onClick={() => history.push('/search')}>
-                <LeafIcon style={{ width: '24px', height: '24px' }} />
-                  <PlusIcon className="plus" />
-                  <Text size="small" > 식물 추가하기</Text>
-                </InnerWrap>
-
-                <InnerWrap>
-                  <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
-                    <HouseIcon style={{ width: '24px', height: '24px' }} />
-                    <Text size="small">공간 자랑하기</Text>
-                  </InnerBox1>
-                  <InnerBox2 onClick={() => history.push(`/addpost`)}>
-                    <BubbleIcon style={{ width: '24px', height: '24px' }} />
-                    <Text size="small"> 초록톡 글쓰기</Text>
-                  </InnerBox2>
-                </InnerWrap>
-              </Modal>
-            </>
-            :
-            null} */}
         </Grid>
       </Container>
     </React.Fragment>
   )
 }
-
-// const Modal = styled.div`
-// width: fit-content;
-// height: fit-content;
-// z-index: 200;
-// position: fixed;
-// right: 20px;
-// bottom: 140px; 
-// margin: auto;
-// `
-// const InnerWrap = styled.div`
-// margin: 12px 0;
-// padding: 12px 16px;
-
-// width: 136px;
-// height: fit-content;
-// border-radius: 16px;
-
-// background-color: white;
-// `
-// const InnerBox1 = styled.div`
-// padding-bottom: 10px;
-// `
-// const InnerBox2 = styled.div`
-// padding-top: 10px;
-// `
 
 
 const Modal = styled.div`

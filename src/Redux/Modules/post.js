@@ -12,6 +12,7 @@ const GET_POST_DETAIL = "GET_POST_DETAIL";
 const POST_SEARCHING = "POST_SEARCHING";
 
 const LIKE_POST = "LIKE_POST";
+const GET_LIKE_CNT = "GET_LIKE_CNT";
 const BOOKMARK_POST = "BOOKMARK_POST";
 
 const ADD_COMMENT = "ADD_COMMENT";
@@ -27,6 +28,7 @@ const getDetailPost = createAction(GET_POST_DETAIL, (post) => ({ post }));
 const postSearching = createAction(POST_SEARCHING, (searchList) => ({ searchList }));
 
 const likePost = createAction(LIKE_POST, (post) => ({ post }));
+const getPostLikeCount = createAction(GET_LIKE_CNT, (postLikeCount) => ({postLikeCount}));
 const bookmarkPost = createAction(BOOKMARK_POST, (post) => ({ post }));
 
 const addComment = createAction(ADD_COMMENT, () => ({ }));
@@ -36,7 +38,7 @@ const deleteComment = createAction(DELETE_COMMENT, () => ({}));
 
 // initial State
 const initialState = {
-  list: [],
+  postList: [],
   post: {
     postId: 0,
     nickname: "",
@@ -200,7 +202,7 @@ const likePostDB = (category, postId) => {
     postAPI
       .likePost(postId)
       .then((res) => {
-        dispatch(getPostListDB_login(category, 0));
+        dispatch(getPostLikeCount(res.data));
       })
       .catch((err) => {
         console.log("error:", err);
@@ -208,6 +210,22 @@ const likePostDB = (category, postId) => {
       })
   }
 }
+
+// 북마크 표시하기 (bookmark는 count는 필요없고 true.false값만 보내주면 될듯 )
+const bookmarkPostDB = (category, postId) => {
+  return function (dispatch, getState, { history }) {
+    postAPI
+      .bookmarkPost(postId)
+      .then((res) => {
+        return;
+      })
+      .catch((err) => {
+        console.log("error:", err);
+        // window.alert("게시글 북마크 등록에 실패하였습니다.");
+      })
+  }
+}
+
 // detail페이지에서 좋아요 표시하기
 const likeDetailPostDB = (postId) => {
   return function (dispatch, getState, { history }) {
@@ -220,26 +238,6 @@ const likeDetailPostDB = (postId) => {
       .catch((err) => {
         console.log("error:", err);
         // window.alert("게시글 좋아요에 실패하였습니다.");
-      })
-  }
-}
-
-// 북마크 표시하기
-const bookmarkPostDB = (category, postId) => {
-  return function (dispatch, getState, { history }) {
-    postAPI
-      .bookmarkPost(postId)
-      .then((res) => {
-        // if (res.data.result === "true") {
-        //   // window.alert("북마크로 등록되었습니다.");
-        // } else {
-        //   // window.alert("북마크를 취소하였습니다.");
-        // }
-        dispatch(getPostListDB_login(category, 0));
-      })
-      .catch((err) => {
-        console.log("error:", err);
-        // window.alert("게시글 북마크 등록에 실패하였습니다.");
       })
   }
 }
@@ -343,6 +341,30 @@ export default handleActions(
     }),
     [GET_POST_DETAIL]: (state, action) => produce(state, (draft) => {
       draft.post = action.payload.post;
+    }),
+    [GET_LIKE_CNT]: (state, action) => produce (state, (draft) => {
+      //result
+      const postId = parseInt(action.payload.postLikeCount.postId);
+      const likeCount = parseInt(action.payload.postLikeCount.likeCount);
+      const liked = action.payload.postLikeCount.result;
+      
+      //현재 배열에서 바꿀 배열의 index값
+      const index = state.postList.content.findIndex(i => i.postId === postId);
+
+      //바꿀 객체의 앞 배열
+      const contentAheadEditOne = state.postList.content.slice(0,index);
+      
+      //바꿀 객체 
+      const arrayToEdit = state.postList.content.filter(x => x.postId === postId);
+      const newArray = arrayToEdit.map(p => 
+        p.postId === postId
+        ? {...p, postLikeCount: likeCount, postLike: liked} //좋아요 개수와 좋아요 여부 변경
+        : p);
+
+      //바꿀 객체의 뒷 배열
+      const contentAfterEditOne = state.postList.content.slice(index+1);
+
+      draft.postList.content = [...contentAheadEditOne, ...newArray, ...contentAfterEditOne];
     }),
     [POST_SEARCHING]: (state, action) => produce(state, (draft) => {
       draft.searchList = action.payload.searchList;

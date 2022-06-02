@@ -8,6 +8,7 @@ import { ReactComponent as HideIcon } from '../../Assets/img/hidePassword.svg';
 import { ReactComponent as ShowIcon } from '../../Assets/img/showPassword.svg';
 import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../../Redux/Modules/User';
+import { useEffect } from 'react';
 
 
 const ChangePwd = (props) => {
@@ -24,7 +25,6 @@ const ChangePwd = (props) => {
   const [passwordChk, setPasswordChk] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
     
-  
   //비밀번호 정규식
   const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
 
@@ -35,22 +35,26 @@ const ChangePwd = (props) => {
       } else { return false; }
     }
     
+    useEffect(() => {
+      console.log(password);
+    }, [password])
+
     const changePwd = () => {
-      if(isLogin){
+      if(isLogin){ //로그인 했을 때 비밀번호 변경
         dispatch(userActions.changePwdDB(password));
       }else {
-        //이메일통해서 비밀번호 변경
-        //dispatch(userActions.changePwd_non_login(token, email, password));
+        //이메일 인증 통해서 비밀번호 변경
+        console.log(token, email, password);
+        dispatch(userActions.changePwd_non_loginDB(token, email, password));
       }
-     
     }
-
+  
       return (
       <React.Fragment>
         <GeneralHeader title="비밀번호 변경" size="base" />
         <AbsoluteBox>
-          {passwordMatch() === false ?
-            <Button type="tran" disabled={passwordMatch() === false}>
+          {passwordMatch(password, passwordChk) === false ?
+            <Button type="tran" disabled="true">
               <Text color="#A8A8A8">완료</Text>
             </Button> :
             <Button type="tran" _onClick={() => changePwd()}>
@@ -67,12 +71,14 @@ const ChangePwd = (props) => {
             <Text weight="400">변경하실 비밀번호를 입력해주세요 :)</Text>
           </Grid>
   
-          <Grid width="100%">
-            {passwordMatch(password, passwordChk) || passwordChk === "" ?
+  {/* 비밀번호 동일할 때  */}
+          <Grid width="100%"> 
+            {passwordMatch(password, passwordChk) || passwordChk === "" ? 
               <Grid width="100%" position="relative">
                 <Grid is_flex width="100%" position="relative">
                   <Input
                     _value={password}
+                    margin="4px auto 0px auto"
                     type={showPassword ? "shownPassword" : "password"}
                     _onChange={(e) => {
                       setPassword(e.target.value);
@@ -81,13 +87,13 @@ const ChangePwd = (props) => {
                     border="1px solid #D5D8DB"
                     placeholder="비밀번호" ></Input>
   
-                  <HideBtn style={{ position: "absolute", top: "26px", right: "8px" }}
+                  <HideBtn style={{ position: "absolute", top: "18px", right: "8px" }}
                     onClick={() => setShowPassword(!showPassword)}>
                     {showPassword ? <ShowIcon /> : <HideIcon />}</HideBtn>
                 </Grid>
-                  <Grid margin="-4px 4px 12px 4px">
+                  <Grid margin="4px 4px 12px 20px">
                     {password !== "" && !pwdCheck(password) ?
-                      <Text size="xsmall" color="#FA4D56"> 영문 대문자, 소문자, 숫자를 포함하여 8~20자를 입력해주세요.</Text> : ""
+                      <Text size="xxsmall" color="#FA4D56"> 영문 대문자, 소문자, 숫자를 포함하여 8~20자를 입력해주세요.</Text> : ""
                     }
                   </Grid>
                 <Grid is_flex width="100%" position="relative">
@@ -95,23 +101,25 @@ const ChangePwd = (props) => {
                     type={showPassword ? "shownPassword" : "password"}
                     border="1px solid #D5D8DB"
                     _value={passwordChk}
+                    margin="0px auto 4px auto"
                     _onChange={(e) => {
                       setPasswordChk(e.target.value);
                       pwdCheck(e.target.value);
                     }}
                     placeholder="비밀번호 확인"  ></Input>
-                  <HideBtn style={{ position: "absolute", top: "26px", right: "8px" }}
+                  <HideBtn style={{ position: "absolute", top: "16px", right: "8px" }}
                     onClick={() => setShowPassword(!showPassword)} >
                     {showPassword ? <ShowIcon /> : <HideIcon />}</HideBtn>
                 </Grid>
               </Grid>
   
               :
-  
+  // 비밀번호 다를 때
               <Grid width="100%" position="relative">
                 <Input
                   type={showPassword ? "shownPassword" : "password"}
                   _value={password}
+                  margin="4px auto 8px auto"
                   _onChange={(e) => {
                     setPassword(e.target.value);
                     pwdCheck(e.target.value)
@@ -119,12 +127,13 @@ const ChangePwd = (props) => {
                   border="1px solid #FA4D56"
                   placeholder="비밀번호"  ></Input>
   
-                <HideBtn style={{ position: "absolute", top: "28px", right: "8px" }}
+                <HideBtn style={{ position: "absolute", top: "18px", right: "8px" }}
                   onClick={() => setShowPassword(!showPassword)}  >
                   {showPassword ? <ShowIcon /> : <HideIcon />}</HideBtn>
   
                 <Grid is_flex width="100%" position="relative">
                   <Input
+                    margin="4px auto 4px auto"
                     type={showPassword ? "shownPassword" : "password"}
                     border="1px solid #FA4D56"
                     _value={passwordChk}
@@ -134,7 +143,7 @@ const ChangePwd = (props) => {
                     }}
                     placeholder="비밀번호 확인" />
   
-                  <HideBtn style={{ position: "absolute", top: "28px", right: "8px" }}
+                  <HideBtn style={{ position: "absolute", top: "20px", right: "8px" }}
                     onClick={() => setShowPassword(!showPassword)}  >
                     {showPassword ? <ShowIcon /> : <HideIcon />}</HideBtn>
                 </Grid>
@@ -167,7 +176,7 @@ const ChangePwd = (props) => {
   
   const AbsoluteBox = styled.div`
     position: absolute;
-    top: 8px;
+    top: 0px;
     right: 12px;
   `
   

@@ -74,11 +74,10 @@ export const userAPI = {
     }
   }),
 
-  //비밀번호 찾기
-  // findPwd: (userName, userId) => api.post('/api/findPwd', {
-  //   userName: userName,
-  //   userId: userId,
-  // }),
+  // 비밀번호 찾기
+  findPwd: (email) => api.post('/auth/password-reset-email', {
+    email,
+  }),
 
   //비밀번호 변경
   changePwd: (password) => api.patch('/user/update/password', 
@@ -88,6 +87,10 @@ export const userAPI = {
         "Authorization": `${localStorage.getItem('token')}`,
       }
     }),
+
+  //비밀번호 변경
+  changeNewPwd: (token, email, newPassword) => api.post(`/auth/password-reset-email/callback?token=${token}&email=${email}&newPassword=${newPassword}`, {}),
+
 }
 
 //Labeling API

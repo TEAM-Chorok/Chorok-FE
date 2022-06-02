@@ -40,7 +40,6 @@ const PlantCard = () => {
 
 
 
-
   return (
     <React.Fragment>
       <Wrapper open={open}>
