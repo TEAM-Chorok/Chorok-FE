@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { debounce } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -31,10 +31,14 @@ const SearchPlant = () => {
       return;
     } 
     // 검색 실행
-    dispatch(searchActions.keywordSearchingDB(text));
-    dispatch(searchActions.keywordSearchingPhotoDB(text));
     dispatch(searchActions.keywordSearchingPlantDB(text));
   }, 100)
+  
+  React.useEffect(() => {
+    // 식물 추가 플로우 첫 진입시 검색어 초기화
+    dispatch(searchActions.keywordSearchingPlantDB(""));
+  }, [])
+
 
   return (
     <React.Fragment>

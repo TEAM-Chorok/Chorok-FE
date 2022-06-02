@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Text } from "../../Elements";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { BottomSheet } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as searchActions } from "../../Redux/Modules/Search";
@@ -14,11 +14,15 @@ import { ReactComponent as NotFound } from "../../Assets/img/errorIcons/nondata.
 const AddPlantList = () => {
   const is_login = localStorage.getItem('token') ? true : false;
 
-  const history = useHistory();
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation().pathname.split('/')[1];
+
+  // console.log("여긴어딘가용", location);
   const data = useSelector((state) => state.search?.plantDictList);
   const plantList = data?.content;
   const filterData = useSelector((state) => state.search?.filterData);
+  const value = ""
 
   // 무한스크롤 관련 state
   const [page, setPage] = React.useState(0);
@@ -45,11 +49,14 @@ const AddPlantList = () => {
   }
 
 
+
   React.useEffect(() => {
     if(is_login) {
       dispatch(searchActions.plantFilteringDB(filterData, page));
     }
   }, [page, dispatch])
+
+
 
   return (
     <React.Fragment>

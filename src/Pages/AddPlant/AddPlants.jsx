@@ -30,6 +30,8 @@ const AddPlants = () => {
             setCompNum={setCompNum}/>,
     }
 
+
+
     return (
         <React.Fragment>
             {comp[compNum]}
