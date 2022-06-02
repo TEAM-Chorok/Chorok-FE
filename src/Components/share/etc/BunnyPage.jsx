@@ -1,11 +1,11 @@
 import React from "react";
-import { Button, Container, Grid, Permit, Text } from "../Elements";
-import { ReactComponent as Bunny } from "../Assets/img/etc/rabbit.svg"
+import { Button, Container, Grid, Permit, Text } from "../../../Elements";
+import { ReactComponent as Bunny } from "../../../Assets/img/etc/rabbit.svg"
 import styled from "styled-components";
 import emailjs from '@emailjs/browser';
 
 // open api test components
-const Easter = () => {
+const BunnyPage = () => {
   const form = React.useRef();
   const userId = localStorage.getItem('nickname');
   
@@ -113,4 +113,4 @@ const FormBox = styled.div`
 `
 
 
-export default Easter;
+export default BunnyPage;

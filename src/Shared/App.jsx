@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import { AddDone, Navbar, SearchOnFocus } from '../Components';
+import { AddDone, Navbar } from '../Components';
 import MobileFrame from '../Components/MobileFrame';
 import {
   Login, Home, SignUp, Kakao, Google, ProfileSetting, Labeling,
@@ -13,19 +13,18 @@ import {
   Community, MyPage, Setting,
   MyPlantsPage, MyPicturesPage, ScrapPicturesPage, ScrapPlantsPage,
   EditPlant, MyPostsPage, DeactivateAccount,
-  Test,
   AddPost, EditPost, 
   PostDetail,
   LogInEmail,
   ScrapPostsPage,
   EmailValidation,
 } from '../Pages';
+import BunnyPage from '../Components/share/etc/BunnyPage';
 import theme from './theme';
 import { ReactComponent as Frame } from '../Assets/img/phoneframe.svg';
 import { useLocation, Switch } from 'react-router-dom';
 import Event from '../Pages/Event';
 import NotFound from '../Pages/NotFound';
-import Easter from '../Pages/Easter';
 
 
 
@@ -68,6 +67,7 @@ function App() {
             <Route path="/calendar" exact component={CalendarPage} />
 
             <Route path="/search" exact component={Search} />
+            <Route path="/easter" exact component={BunnyPage} />
             <Route path="/search/:result" exact component={Result} />
             <Route path="/planterior/write" exact component={PlanteriorWrite} />
             <Route path="/planterior/edit/:postId" exact component={PlanteriorWrite} />
@@ -92,10 +92,7 @@ function App() {
             <Route path="/setting/changepwd" component={ChangePwd} />
             <Route path="/setting/deactivation" exact component={DeactivateAccount} />
 
-            {/* <Route path="/test" exact component={Test} /> */}
-
             <Route path="/event" exact component={Event} />
-            <Route path="/easter" exact component={Easter} />
             
             <Route component={NotFound} />
           </Switch>
