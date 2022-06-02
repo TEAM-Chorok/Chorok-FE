@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Grid, Text } from "../../../Elements";
 import { actionCreators as searchActions } from "../../../Redux/Modules/Search";
 import InfiniteScroll from "../../share/etc/InfiniteScroll";
@@ -10,13 +10,17 @@ import { ReactComponent as NotFound } from "../../../Assets/img/errorIcons/nonda
 
 const PlantResult = (props) => {
   const is_login = localStorage.getItem('token') ? true : false;
+  
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation().pathname.split('/')[1];
+
   const data = useSelector((state) => state.search?.resultPlant);
   const plantList = data?.content;
   const totalPage = data?.totalPage;
   const count = useSelector((state) => state.search?.result?.plantDictionaryCount);
-  const value = useSelector((state) => state.search?.value);
+  const keyword = useSelector((state) => state.search?.value);
+  const [value, setValue] = React.useState(keyword);
   // 무한스크롤 관련 state
   const [page, setPage] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -35,11 +39,16 @@ const PlantResult = (props) => {
     }
   };
 
+
+  
   React.useEffect(() => {
     if(is_login) {
       dispatch(searchActions.keywordSearchingPlantDB(value, page));
     }
-  }, [page, value])
+  }, [value, page])
+
+
+
 
 
   return (
