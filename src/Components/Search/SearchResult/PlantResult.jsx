@@ -47,7 +47,13 @@ const PlantResult = (props) => {
     }
   }, [value, page])
 
-
+const movePage = (plantNo) => {
+  if(location === "plant") {
+    history.push(`/plant/${plantNo}`);
+  } else {
+    history.push(`/result/plant/${plantNo}`);
+  }
+}
 
 
 
@@ -72,7 +78,7 @@ const PlantResult = (props) => {
                       key={plant.plantNo}
                       plant={plant.plantName}
                       imgUrl={plant.plantImgUrl}
-                      _onClick={() => { history.push(`plant/${plant.plantNo}`) }}
+                      _onClick={() => { movePage(plant.plantNo); }}
                     />
                   )
                 })}

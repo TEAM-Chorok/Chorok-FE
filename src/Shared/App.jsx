@@ -61,8 +61,11 @@ function App() {
             <Route path="/add/:plantNo" exact component={AddPlants} />
 
             <Route path="/plant/:plantname" exact component={PlantCard} />
-            {/* <Route path="/addplant/:plantname" exact component={PlantCard} />
-            <Route path="/result/plant/:plantname" exact component={PlantCard} /> */}
+            <Route path="/note/:plantname" exact component={PlantCard} />
+            <Route path="/result/plant/:plantname" exact component={PlantCard} />
+            
+            {/* 식물카드 뷰 분기 수정작업 진행중
+            <Route path="/addplant/:plantname" exact component={PlantCard} /> */}
 
             <Route path="/calendar" exact component={CalendarPage} />
 

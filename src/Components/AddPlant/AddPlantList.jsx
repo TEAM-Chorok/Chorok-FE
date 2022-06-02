@@ -22,7 +22,6 @@ const AddPlantList = () => {
   const data = useSelector((state) => state.search?.plantDictList);
   const plantList = data?.content;
   const filterData = useSelector((state) => state.search?.filterData);
-  const value = ""
 
   // 무한스크롤 관련 state
   const [page, setPage] = React.useState(0);
@@ -43,11 +42,15 @@ const AddPlantList = () => {
     }
   };
 
+
   // 식물카드로 이동
   const openPlantCard = (plantNo) => {
+    if(location === "search") {
+      history.push(`/note/${plantNo}`);
+      return;
+    }
     history.push(`/plant/${plantNo}`);
   }
-
 
 
   React.useEffect(() => {
@@ -55,8 +58,19 @@ const AddPlantList = () => {
       dispatch(searchActions.plantFilteringDB(filterData, page));
     }
   }, [page, dispatch])
-
-
+  
+  React.useEffect(() => {
+    // 리스트 진입시 필터링 데이터 초기화
+    if(is_login) {
+      const data = {
+        plantGrowthShapeCode: "",
+        plantLevelCode: "",
+        plantPlaceCode: "",
+        plantTypeCode: ""
+      }
+      dispatch(searchActions.plantFilteringDB(data, page));
+  }
+}, [])
 
   return (
     <React.Fragment>

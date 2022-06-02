@@ -16,7 +16,7 @@ const AllResult = (props) => {
   const dictionary = result?.plantDictionaryList;
 
   const openPlantCard = (plantNo) => {
-    history.push(`/plant/${plantNo}`);
+    history.push(`/result/plant/${plantNo}`);
   }
 
   return (

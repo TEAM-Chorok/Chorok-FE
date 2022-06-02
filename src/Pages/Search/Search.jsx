@@ -18,7 +18,7 @@ const Search = () => {
 
   const location = useLocation();
   const item = location.state?.searchTabDisplay;
-  
+
   // 보여줄 컴포넌트 넘버
   const [compNum, setCompNum] = React.useState(0);
   

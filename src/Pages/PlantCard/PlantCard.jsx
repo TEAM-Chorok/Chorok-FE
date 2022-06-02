@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert2, GeneralHeader, PlantCardFeed, PlantCardProfile } from '../../Components';
 import { Button, Grid, Text } from '../../Elements';
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components';
 import { ReactComponent as BookMarkIcon } from '../../Assets/img/likeBookmarkIcons/Bookmark.svg'
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +12,7 @@ import { actionCreators as plantActions } from '../../Redux/Modules/Plant';
 const PlantCard = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const location = useLocation().pathname.split('/')[1];
 
   const plantNo = useParams().plantname;
   const plantName = useSelector((state) => state.plant?.plantData?.plantName);
@@ -45,8 +46,27 @@ const PlantCard = () => {
       <Wrapper open={open}>
 
         <HeaderBox>
-          {/* <GeneralHeader title="식물카드" size="base" /> */}
-          <GeneralHeader title={plantName} size="base" />
+          {location === "note" ? 
+          <GeneralHeader title={plantName} size="base" _onClick={() => {
+            history.push({
+              pathname: '/search',
+              state: {searchTabDisplay: 1},
+            })
+          }} />
+          :
+          <>
+            {location === "result" ?
+            <GeneralHeader title={plantName} size="base" _onClick={() => {
+            history.push({
+              pathname: '/search',
+              state: {searchTabDisplay: 0},
+            })
+            }}/>
+            :
+            <GeneralHeader title={plantName} size="base" />
+            }
+          </>
+          }
           {bookmark ?
             <BookMarkIcon
               className='bookmark'
@@ -71,14 +91,17 @@ const PlantCard = () => {
 
           <FloatBox>
             <Grid is_flex margin="auto" width="100%" padding="0 16px">
+
+              {/* 식물카드 뷰 분기작업중            
               <Grid width="40%" padding="0 4px 0 0">
                 <Button type="square" color="#E0E0E0" _onClick={() => { history.push({
                   pathname: '/search',
                   state: {searchTabDisplay: 1},
                 }); }}>
-                  <Text size="base" color="#fff">닫기</Text>
+                  <Text size="base" color="#fff">목록</Text>
                 </Button>
-              </Grid>
+              </Grid> */}
+
               <Grid width="100%" padding="0 0 0 4px">
                 <Button type="square" _onClick={() => { setOpen(true); }}>
                   <Text size="base" color="#fff">내 식물에 추가하기</Text>

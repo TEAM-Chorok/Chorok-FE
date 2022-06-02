@@ -16,7 +16,7 @@ const RecommandPlant = () => {
   const recommendList = useSelector((state) => state?.search?.recommendlist);
   // 식물카드 페이지로 
   const openPlantCard = (plantid) => {
-    history.push(`/plant/${plantid}`);
+    history.push(`/result/plant/${plantid}`);
   }
 
   React.useEffect(() => {

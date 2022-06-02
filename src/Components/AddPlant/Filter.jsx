@@ -16,10 +16,10 @@ const FilterLevel = (props) => {
           <Grid width="100%">
 
             <Grid width="100%" margin="0 0 4px 0">
-              <Button checked={props.code === "pl01" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl01"); props.setLevelText("새싹집사") }}>
+              <Button checked={props.code === "pl01" ? true : false} type="filterlong" _onClick={() => { props.setLevel("pl01"); props.setLevelText("입문집사") }}>
                 <Grid is_flex width="100%">
                   <ButtonTextWrapped>
-                    <Text margin="0 8px 0 24px" size="base" color={props.code === "pl01" ? "#0AAF42" : ""}>새싹집사</Text>
+                    <Text margin="0 8px 0 24px" size="base" color={props.code === "pl01" ? "#0AAF42" : ""}>입문집사</Text>
                     <Text size="xxsmall" color="#8D8D8D">이제 막 식물집사가 되었다면</Text>
                   </ButtonTextWrapped>
                 </Grid>
