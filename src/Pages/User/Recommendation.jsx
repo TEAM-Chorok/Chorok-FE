@@ -19,12 +19,12 @@ const Recommendation = (props) => {
       <>
         <Container>
           <Grid width="100%" height="100vh"> 
-          <Grid margin="100px auto" align="center">
+          <Grid margin="230px auto" align="center">
           {/*추후 애니메이션 넣기*/}
           <LeafLogo className="labelingLogo" />
           <LeafLogoShadow style={{width:"30px", position:"absolute", top:"328px", left:"154px"}}/>
         </Grid>
-            <div style={{ position: "absolute", top: "387px", right: "78px", textAlign:"center"}}>
+            <div style={{ position: "absolute", top: "387px", right: "70px", textAlign:"center"}}>
               <Text bold color="#262626" size="large" display="block" margin="0px auto">열심히 취향 분석 중!<br />곧 맞춤 식물을 알려드릴게요!👍</Text>
             </div>
           </Grid>
