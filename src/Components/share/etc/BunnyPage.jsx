@@ -3,20 +3,35 @@ import { Button, Container, Grid, Permit, Text } from "../../../Elements";
 import { ReactComponent as Bunny } from "../../../Assets/img/etc/rabbit.svg"
 import styled from "styled-components";
 import emailjs from '@emailjs/browser';
+import Alert2 from "../modal/Alert2";
 
 // open api test components
 const BunnyPage = () => {
   const form = React.useRef();
   const userId = localStorage.getItem('nickname');
   
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState();
 
+  const nameRef = React.useRef();
+  const emailRef = React.useRef();
 
   const sendEmail = (e) => {
+    if(nameRef.current.value === "") {
+      setMessage("이름을 입력해주세요!")
+      setOpen(true);
+    } else if(emailRef.current.value === "") {
+      setMessage("이메일 주소를 입력해주세요!")
+      setOpen(true);
+    }
+
     e.preventDefault();
 
     emailjs.sendForm('chorok', 'template_tfpybt5', form.current, 'ubROo8DlGiM8Exu6H')
       .then((result) => {
         window.location.reload();
+        setMessage("참여해주셔서 감사합니다!");
+        setOpen(true);
       }, (error) => {
         console.log(error.text);
       });
@@ -44,9 +59,9 @@ const BunnyPage = () => {
                 <FormBox>
                   <form ref={form} onSubmit={sendEmail}>
                     <label>이름</label>
-                    <input type="text" name="user_name" className="input" />
+                    <input type="text" name="user_name" className="input" ref={nameRef}/>
                     <label>이메일 주소</label>
-                    <input type="email" name="user_email" className="input" />
+                    <input type="email" name="user_email" className="input" ref={emailRef}/>
                     <label>코드</label>
                     <input name="message" className="input" defaultValue="WITH_CHOROK_EVERYDAY" />
                     <input type="submit" value="메일 보내기" className="button" />
@@ -62,6 +77,9 @@ const BunnyPage = () => {
             <Grid height="50px" />
           </Grid>
         </Container>
+        <Alert2 open={open} setOpen={setOpen} btn1="확인">
+          {message}
+        </Alert2>
       </Permit>
     </React.Fragment>
   );
