@@ -46,7 +46,7 @@ const PlantCard = () => {
       <Wrapper open={open}>
 
         <HeaderBox>
-          {location === "note" ? 
+          {location === "plantcard" ? 
           <GeneralHeader title={plantName} size="base" _onClick={() => {
             history.push({
               pathname: '/search',

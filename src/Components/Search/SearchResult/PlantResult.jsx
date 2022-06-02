@@ -18,7 +18,7 @@ const PlantResult = (props) => {
   const data = useSelector((state) => state.search?.resultPlant);
   const plantList = data?.content;
   const totalPage = data?.totalPage;
-  const count = useSelector((state) => state.search?.result?.plantDictionaryCount);
+  const count = useSelector((state) => state.search?.resultPlant?.contentCount);
   const keyword = useSelector((state) => state.search?.value);
   const [value, setValue] = React.useState(keyword);
   // 무한스크롤 관련 state

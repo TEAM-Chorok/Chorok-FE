@@ -46,7 +46,7 @@ const AddPlantList = () => {
   // 식물카드로 이동
   const openPlantCard = (plantNo) => {
     if(location === "search") {
-      history.push(`/note/${plantNo}`);
+      history.push(`/plantcard/${plantNo}`);
       return;
     }
     history.push(`/plant/${plantNo}`);
