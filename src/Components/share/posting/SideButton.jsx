@@ -42,7 +42,8 @@ const SideButton = (props) => {
       {props.open ?
         <>
           <Dimmer setOpenModal={props.setOpen} onClick={() => openModal()} />
-          <Modal onClick={e => e.stopPropagation()}>
+          {/* 부모 엘리먼트에게 이벤트 전달을 중단 */}
+          <Modal onClick={e => e.stopPropagation()}> 
             <InnerWrap onClick={() => history.push('/plant')}>
               <LeafIcon style={{width:'24px', height:'24px'}}/>
               <PlusIcon className="plus"/>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button, Container, Text, Grid } from "../../Elements";
-import { CommPostList, CommunityFilter, Dimmer, SearchHeader } from "../../Components";
+import { CommPostList, CommunityFilter, Dimmer, SearchHeader, SideButton } from "../../Components";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ReactComponent as LeafIcon } from "../../Assets/img/sidebuttonIcons/leaf.svg"
@@ -18,16 +18,10 @@ const Community = () => {
   //infinite scroll 페이지네이션
   const [page, setPage] = React.useState(0);
 
-  //+버튼 모달창
-  const [open, setOpenModal] = React.useState(false);
-  const openModal = () => {
-    setOpenModal(true);
-  }
-  const closeModal = () => {
-    setOpenModal(false);
-  }
-
+  
   const [category, setCategory] = React.useState("all");
+
+  const [open, setOpen] = React.useState(false);
 
   return (
     <React.Fragment>
@@ -39,42 +33,9 @@ const Community = () => {
           </Grid>
           <CommPostList page={page} setPage={setPage} category={category} isLogin={isLogin} />
           <Grid height="70px" />
-
-          <Button type="plus" _onClick={() => openModal()} />
-
-          {open ?
-            <>
-              <Dimmer setOpenModal={setOpenModal} onClick={() => closeModal()} />
-              <Modal onClick={e => e.stopPropagation()}>
-                <InnerWrap onClick={() => history.push('/plant')}>
-                  <LeafIcon style={{ width: '24px', height: '24px' }} />
-                  <PlusIcon className="plus" />
-                  <Grid margin="0 8px">
-                    <Text size="small" >식물 추가하기</Text>
-                  </Grid>
-                </InnerWrap>
-
-                <InnerWrap>
-                  <Grid width="100%">
-                    <InnerBox1 onClick={() => history.push(`/planterior/write`)}>
-                      <HouseIcon style={{ width: '24px', height: '24px' }} />
-                      <Grid margin="0 8px">
-                        <Text size="small">식물 공간 올리기</Text>
-                      </Grid>
-                    </InnerBox1>
-                    <InnerBox2 onClick={() => history.push(`/addpost`)}>
-                      <BubbleIcon style={{ width: '24px', height: '24px' }} />
-                      <Grid margin="0 8px">
-                        <Text size="small">초록톡 글쓰기</Text>
-                      </Grid>
-                    </InnerBox2>
-                  </Grid>
-                </InnerWrap>
-              </Modal>
-            </>
-            :
-            null
-          }
+          
+          <SideButton open={open} setOpen={setOpen} />
+          
 
         </Grid>
       </Container>

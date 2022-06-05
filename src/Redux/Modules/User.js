@@ -32,10 +32,15 @@ const logInDB = (username, password) => {
         localStorage.setItem ("token", response.headers.authorization);
         dispatch(isLoginDB());
         history.replace('/home');
-      }).catch((error) => {
-        console.log("logInDB : error", error.response);
-        // window.alert("이메일 혹은 비밀번호를 다시 확인해주세요.");
-        return;
+      }).catch((err) => {
+        if(err.status === 496 || err.status === 495){
+          localStorage.removeItem('token');
+          history.replace('/');
+        }else{
+          console.log("logInDB : error", err.response);
+          // window.alert("이메일 혹은 비밀번호를 다시 확인해주세요.");
+          return;
+        }
       });
   }
 };
@@ -49,8 +54,13 @@ const isLoginDB = () => {
         localStorage.setItem('nickname', res.data.nickname);
       })
       .catch((err) => {
-        console.log("isLogin : error", err);
-        return;
+        if(err.status === 496 || err.status === 495){
+          localStorage.removeItem('token');
+          history.replace('/');
+        }else{
+          console.log("isLogin : error", err);
+          return;
+        }
       })
   }
 }

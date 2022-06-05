@@ -71,7 +71,7 @@ const FindPwd = (props) => {
                   </Text>
                 </Alert2>
               </AlertBox>
-  }
+      }
     </React.Fragment>
   );
 }
