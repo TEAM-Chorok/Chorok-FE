@@ -8,15 +8,52 @@
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
 
+  <!--Progressive Web Application-->
+  <link rel="apple-touch-icon" sizes="161x161" href="img/Icons/161.png" />
+  <link rel="apple-touch-icon" sizes="110x100" href="img/Icons/100.png" />
+
+  <link rel="apple-touch-icon-precomposed" 
+        sizes="57x57" href="img/Icons/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" 
+        sizes="114x114" href="img/Icons/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" 
+        sizes="72x72" href="img/Icons/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" 
+        sizes="144x144" href="img/Icons/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" 
+        sizes="60x60" href="img/Icons/apple-touch-icon-60x60.png" />
+  <link rel="apple-touch-icon-precomposed" 
+        sizes="120x120" href="img/Icons/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" 
+        sizes="76x76" href="img/Icons/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon-precomposed" 
+        sizes="152x152" href="img/Icons/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" 
+        href="img/Icons/android-chrome-512x512.png" sizes="512x512" />
+  <link rel="icon" type="image/png" 
+        href="img/Icons/favicon-196x196.png" sizes="196x196" />
+  <link rel="icon" type="image/png" 
+        href="img/Icons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" 
+        href="img/Icons/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" 
+        href="img/Icons/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" 
+        href="img/Icons/favicon-128.png" sizes="128x128" />
+  <meta name="application-name" content="Chorok"/>
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+  <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Chorok" />
   <meta name="viewport"
     content="width=device-width, viewport-fit=cover, initial-scale=1.0, minimal-ui, maximum-scale=1.0" />
   <meta name="theme-color" content="#000000" />
-
-  <link rel="apple-touch-icon" sizes="161x161" href="./img/Icons/161.png" />
-  <link rel="apple-touch-icon" sizes="110x100" href="./img/Icons/100.png" />
 
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
@@ -34,6 +71,27 @@
   <meta name='twitter:image' , content='https://imgbuckett.s3.ap-northeast-2.amazonaws.com/meta.png' />
 
   <title> 초록 | Chorok </title>
+  <style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+    
+    .page-info {
+        padding: 10px;
+    }
+    
+    .Current {
+        color: #2e8b57;
+    }
+    
+    .Completed {
+        color: #ff6347;
+        text-decoration: line-through;
+    }
+  </style>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript"
     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9264f95f598e2d29370c2949214a1c07&libraries=services,clusterer"></script>
@@ -71,7 +129,32 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+  <div id="root">
+    <div>
+      <h3>Task Manager</h3>
+      <a href="/">Current Tasks</a>
+      <a href="/completed">Completed Tasks</a>
+    </div>
+    <p class="page-info">
+        Loading...
+    </p>
+  </div>
+  <!--ServiceWorker-->
+  <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('worker.js').then(function(registration) {
+                console.log('Worker registration successful', registration.scope);
+            }, function(err) {
+                console.log('Worker registration failed', err);
+            }).catch(function(err) {
+                console.log(err);
+            });
+        });
+    } else {
+        console.log('Service Worker is not supported by browser.');
+    }
+</script>
 </body>
 
 </html>

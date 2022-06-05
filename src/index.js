@@ -21,3 +21,4 @@ root.render(
   </Provider>
 );
 
+ServiceWorker.register();
